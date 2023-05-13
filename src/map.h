@@ -5,17 +5,19 @@
 #include "soldier.h"
 #include "walker.h"
 
-class Map {
+class GameMap {
  private:
     std::uint16_t x_size;
     std::uint16_t y_size;
-    std::vector<std::vector<void*>> map;
- public:
+    std::vector<std::vector<GameObject*>> map;
 
-Map(std::uint16_t x_size, std::uint16_t y_size);
+ public:
+GameMap(std::uint16_t x_size, std::uint16_t y_size);
 
 // ***************************************** Metodos de testeo **********************************************************//
-bool collision(std::uint16_t direccion);
+bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
+bool collision_going_up(std::uint16_t x_pos, std::uint16_t y_pos);
+bool collision_going_down(std::uint16_t x_pos, std::uint16_t y_pos);
 void add_soldier(Soldier* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
 void add_zombie(Walker* walker, std::uint16_t x_pos, std::uint16_t y_pos);
 };

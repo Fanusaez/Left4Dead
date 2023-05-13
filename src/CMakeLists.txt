@@ -1,5 +1,11 @@
 add_executable(main
 	main.cpp
+	map.cpp
+	soldier.cpp
+	walker.cpp
+	idf.cpp
+	game_object.h
+	weapon.h
 )
 
 #add_library(client_translator 

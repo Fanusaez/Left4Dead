@@ -7,17 +7,24 @@ include_directories("../src")
 add_executable(testPrueba
         test_prueba.cpp
 )
-# target_link_libraries(testPrueba PRIVATE myLibrary)
 add_executable(testClient
         test_protocol_client.cpp
         ../src/client_translator.cpp
 )
-#target_link_libraries(testClient PRIVATE client_translator)
+
+add_executable(testCollision
+        test_collision.cpp
+        ../src/soldier.cpp
+        ../src/walker.cpp
+        ../src/map.cpp
+)
+# target_link_libraries(testPrueba PRIVATE myLibrary)
 
 # Despues agregar el target aca y listo
 set(testTargets
         testPrueba
         testClient
+        testCollision
 )
 
 foreach(target ${testTargets})
