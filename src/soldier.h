@@ -10,11 +10,10 @@ class Soldier : public GameObject{
  private:
     std::uint16_t health = 100;
     Weapon* weapon = nullptr;
-    //Idf& idf;
-
+    std::uint16_t x_pos;
+    std::uint16_t y_pos;
  public:
-Soldier(Weapon* weapon); //prosponemos polimorfismo
-//Soldier(Idf& idf);
+Soldier(Weapon* weapon);
 void get_shot(std::uint16_t damage) override;
 ~Soldier();
 };

@@ -20,5 +20,6 @@ bool collision_going_up(std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_down(std::uint16_t x_pos, std::uint16_t y_pos);
 void add_soldier(Soldier* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
 void add_zombie(Walker* walker, std::uint16_t x_pos, std::uint16_t y_pos);
+bool valid_entire_soldier_position(std::int16_t x_pos, std::int16_t y_pos);
 };
 #endif  // MAP_H_
