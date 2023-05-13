@@ -8,10 +8,16 @@ add_executable(testPrueba
         test_prueba.cpp
 )
 # target_link_libraries(testPrueba PRIVATE myLibrary)
+add_executable(testClient
+        test_protocol_client.cpp
+        ../src/client_translator.cpp
+)
+#target_link_libraries(testClient PRIVATE client_translator)
 
 # Despues agregar el target aca y listo
 set(testTargets
         testPrueba
+        testClient
 )
 
 foreach(target ${testTargets})

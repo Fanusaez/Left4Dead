@@ -3,6 +3,7 @@
 
 # IDE files
 .idea/
+.vscode/
 
 # CMake build directory
 build/
