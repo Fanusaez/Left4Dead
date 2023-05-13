@@ -5,7 +5,7 @@
 #include "walker.h"
 #include "weapon.h"
 
-class Idf {
+class Idf : public Weapon {
  private:
     std::uint16_t bullets = 50;
     std::uint16_t close_range_damage = 30;

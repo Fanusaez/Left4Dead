@@ -17,6 +17,7 @@ add_executable(testCollision
         ../src/soldier.cpp
         ../src/walker.cpp
         ../src/map.cpp
+        ../src/idf.cpp
 )
 # target_link_libraries(testPrueba PRIVATE myLibrary)
 

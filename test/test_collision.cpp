@@ -8,7 +8,7 @@
 #include "../src/weapon.h"
 
 void testCollisionSameLineUp(void) {
-    Idf idf;
+    Weapon* idf = new Idf;
     Soldier* soldier = new Soldier(idf);
     Walker walker;
     GameMap map(10, 10);
@@ -19,7 +19,7 @@ void testCollisionSameLineUp(void) {
 }
 
 void testCollisionSameLineDown(void) {
-    Idf idf;
+    Weapon* idf = new Idf;
     Soldier* soldier = new Soldier(idf);
     Walker walker;
     GameMap map(10, 10);
@@ -30,7 +30,7 @@ void testCollisionSameLineDown(void) {
      }
 
 void testNoCollisionSameLineUp(void) {
-    Idf idf;
+   Weapon* idf = new Idf;
     Soldier* soldier = new Soldier(idf);
     Walker walker;
     GameMap map(10, 10);
@@ -41,9 +41,8 @@ void testNoCollisionSameLineUp(void) {
 }
 
 void testNoCollisionSameLineDown(void) {
-    Idf idf;
+    Weapon* idf = new Idf;
     Soldier* soldier = new Soldier(idf);
-
     Walker walker;
     GameMap map(10, 10);
     map.add_soldier(soldier, 5, 5);
