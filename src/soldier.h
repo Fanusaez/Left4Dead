@@ -19,13 +19,13 @@ class Soldier : public GameObject {
     std::uint16_t health = 100;
 
  public:
-
 Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
 Soldier(Weapon* weapon, GameMap& map, std::uint16_t x_pos, std::uint16_t y_pos);
 
 void shoot();
-void get_shot(std::uint16_t damage) override;
 void set_direction(std::int16_t direction);
+void get_shot(std::uint16_t damage) override;
+std::uint16_t get_y_position() override;
 ~Soldier();
 
 };

@@ -17,7 +17,7 @@ void Soldier::shoot() {
               x_pos,
               y_pos,
               direction);
-    weapon->shoot(shooting_objects);
+    weapon->shoot(shooting_objects, y_pos);
 }
 
 void Soldier::get_shot(std::uint16_t damage) {
@@ -25,6 +25,10 @@ void Soldier::get_shot(std::uint16_t damage) {
     if (health <= 0) {
         dead = true;
     }
+}
+
+std::uint16_t Soldier::get_y_position() {
+    return y_pos;
 }
 
 void Soldier::set_direction(std::int16_t new_direction) {

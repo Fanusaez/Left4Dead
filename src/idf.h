@@ -12,7 +12,8 @@ class Idf : public Weapon {
 
  public:
 
-void shoot(std::vector<GameObject*>& shooting_objects) override;
+void shoot(std::vector<GameObject*>& shooting_objects,
+           std::uint16_t y_pos_sold) override;
 void reload();
 };
 #endif // IDF_H_
