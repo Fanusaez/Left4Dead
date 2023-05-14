@@ -17,60 +17,54 @@ void GameMap::shoot(Weapon* weapon,
                     std::uint16_t x_pos_sold,
                     std::uint16_t y_pos_sold,
                     std::int16_t direction) {
-    std::vector<signed int> zombie_pos = collision_with_zombie(direction,
+    GameObject* game_object = collision_with_zombie(direction,
                                                                x_pos_sold,
                                                                y_pos_sold);
-    if (zombie_pos[X_POS] < 0) return;
-    map[zombie_pos[Y_POS]][zombie_pos[X_POS]]->get_shot(weapon);
+    if (game_object == nullptr) return;
+    game_object->get_shot(weapon);
 }
 
-std::vector<signed int> GameMap::
+GameObject* GameMap::
 collision_with_zombie(std::int16_t direction,
                       std::uint16_t x_pos_sold,
                       std::uint16_t y_pos_sold) {
-
     // las 3 columnas a revisar
     std::vector<signed int> pos_soldier = {x_pos_sold, x_pos_sold - 1, x_pos_sold + 1};
-    std::vector<signed int> zombieless_pos = {-1, -1};
 
     if (direction == UP) {
         for (signed int i = 0; i < pos_soldier.size(); i++) {
-            std::vector<signed int> zombie_pos = collision_going_up(pos_soldier[i], y_pos_sold);
-            if (zombie_pos[0] != -1){
-                return zombie_pos;
+            GameObject* game_object = collision_going_up(pos_soldier[i], y_pos_sold);
+            if (game_object != nullptr){
+                return game_object;
             }
         }
-        return zombieless_pos;
+        return nullptr;
     }
     for (signed int i = 0; i < pos_soldier.size(); i++) {
-        std::vector<signed int> zombie_pos = collision_going_down(pos_soldier[i], y_pos_sold);
-        if (zombie_pos[0] != -1){
-            return zombie_pos;
+        GameObject* game_object = collision_going_down(pos_soldier[i], y_pos_sold);
+        if (game_object != nullptr){
+            return game_object;
         }
     }
-    return zombieless_pos;
+    return nullptr;
 }
 
-std::vector<signed int> GameMap::collision_going_down(std::uint16_t x_pos, std::uint16_t y_pos) {
-    std::vector<signed int> zombieless_pos = {-1, -1};
+GameObject* GameMap::collision_going_down(std::uint16_t x_pos, std::uint16_t y_pos) {
     for (int j = y_pos + 1; j < y_size; j++) { // +1 para no autodispararme jeej
         if (map[j][x_pos] != nullptr) {
-            std::vector<signed int> zomb_pos = {x_pos, j};
-            return zomb_pos;
+            return map[j][x_pos];
         }
     }
-    return zombieless_pos;
+    return nullptr;
 }
 
-std::vector<signed int> GameMap::collision_going_up(std::uint16_t x_pos, std::uint16_t y_pos) {
-    std::vector<signed int> zombieless_pos = {-1, -1};
+GameObject* GameMap::collision_going_up(std::uint16_t x_pos, std::uint16_t y_pos) {
     for (int j = y_pos - 1; j >= 0; j--) {
         if (map[j][x_pos] != nullptr) {
-            std::vector<signed int> zomb_pos = {x_pos, j};
-            return zomb_pos;
+            return map[j][x_pos];
         }
     }
-    return zombieless_pos;
+    return nullptr;
 }
 
 
