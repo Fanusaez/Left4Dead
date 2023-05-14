@@ -12,14 +12,16 @@ Soldier::Soldier(Weapon* weapon,
         y_pos(y_pos) {}
 
 void Soldier::shoot() {
-    map.shoot(weapon,
+    std::vector<GameObject*> shooting_objects;
+    map.shoot(shooting_objects,
               x_pos,
               y_pos,
               direction);
+    weapon->shoot(shooting_objects);
 }
 
-void Soldier::get_shot(Weapon* weapon) {
-    health -= weapon -> shoot(y_pos);
+void Soldier::get_shot(std::uint16_t damage) {
+    health -= damage;
     if (health <= 0) {
         dead = true;
     }

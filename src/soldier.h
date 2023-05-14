@@ -4,7 +4,7 @@
 #include <cstdint>
 #include "game_object.h"
 #include "map.h"
-
+#include "weapon.h"
 #define DOWN 1
 #define UP -1
 
@@ -24,7 +24,7 @@ Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
 Soldier(Weapon* weapon, GameMap& map, std::uint16_t x_pos, std::uint16_t y_pos);
 
 void shoot();
-void get_shot(Weapon* weapon) override;
+void get_shot(std::uint16_t damage) override;
 void set_direction(std::int16_t direction);
 ~Soldier();
 

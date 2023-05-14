@@ -13,16 +13,22 @@ class GameMap {
  public:
 GameMap(std::uint16_t x_size, std::uint16_t y_size);
 
-void shoot(Weapon* weapon,
+void shoot(std::vector<GameObject*>& game_objects,
            std::uint16_t x_pos_sold,
            std::uint16_t y_pos_sold,
            std::int16_t direction);
-GameObject* collision_with_zombie(std::int16_t direction,
-                                                 std::uint16_t x_pos_sold,
-                                                 std::uint16_t y_pos_sold);
 
-GameObject* collision_going_down(std::uint16_t x_pos, std::uint16_t y_pos);
-GameObject* collision_going_up(std::uint16_t x_pos, std::uint16_t y_pos);
+void collision_with_zombie(std::vector<GameObject*>& game_objects,
+                           std::uint16_t x_pos_sold,
+                           std::uint16_t y_pos_sold,
+                           std::int16_t direction);
+
+void collision_going_down(std::vector<GameObject*>& game_objects,
+                                              std::uint16_t x_pos,
+                                              std::uint16_t y_pos);
+void collision_going_up(std::vector<GameObject*>& game_objects,
+                                            std::uint16_t x_pos,
+                                            std::uint16_t y_pos);
     // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);
