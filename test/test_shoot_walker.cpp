@@ -99,6 +99,70 @@ void testSoldierShootsOnly1WalkerOutOf3AimingUp(){
     TEST_CHECK(remaining_health3 == 100);
 }
 
+void testSoldierShootsAndMissWalkerOutOfRangeUp(void) {
+    GameMap map(10, 10);
+    Weapon* idf = new Idf;
+
+    Soldier soldier(idf, map, 8, 9);
+    map.add_soldier(&soldier, 8, 9);
+
+    Walker walker(6,1);
+    map.add_zombie(&walker, 6, 1);
+
+    soldier.set_direction(UP);
+    soldier.shoot();
+    std::uint16_t remaining_health = walker.get_health();
+    TEST_ASSERT(remaining_health == 100);
+}
+
+void testSoldierShootsAndMissWalkerOutOfRangeDown(void) {
+    GameMap map(10, 10);
+    Weapon* idf = new Idf;
+
+    Soldier soldier(idf, map, 3, 3);
+    map.add_soldier(&soldier, 3, 3);
+
+    Walker walker(5,8);
+    map.add_zombie(&walker, 5, 8);
+
+    soldier.set_direction(DOWN);
+    soldier.shoot();
+    std::uint16_t remaining_health = walker.get_health();
+    TEST_ASSERT(remaining_health == 100);
+}
+
+void testSoldierShootsAndMissAimingDownTurnedAroundToWalker(void) {
+    GameMap map(10, 10);
+    Weapon* idf = new Idf;
+
+    Soldier soldier(idf, map, 8, 9);
+    map.add_soldier(&soldier, 8, 9);
+
+    Walker walker(8,1);
+    map.add_zombie(&walker, 8, 1);
+
+    soldier.set_direction(DOWN);
+    soldier.shoot();
+    std::uint16_t remaining_health = walker.get_health();
+    TEST_ASSERT(remaining_health == 100);
+}
+
+void testSoldierShootsAndMissAimingUpTurnedAroundToWalker(void) {
+    GameMap map(10, 10);
+    Weapon* idf = new Idf;
+
+    Soldier soldier(idf, map, 3, 3);
+    map.add_soldier(&soldier, 3, 3);
+
+    Walker walker(3,8);
+    map.add_zombie(&walker, 3, 8);
+
+    soldier.set_direction(UP);
+    soldier.shoot();
+    std::uint16_t remaining_health = walker.get_health();
+    TEST_ASSERT(remaining_health == 100);
+}
+
 
 TEST_LIST = {
         {" Soldier shoots walker aiming Left and health decrease", testSoldierShootsWalkerSameLineUp},
@@ -106,5 +170,9 @@ TEST_LIST = {
         {" Soldier shoots walker not same line aiming Left and health decrease", testSoldierShootsWalkerNotSameLineUp},
         {" Soldier shoots walker not same line aiming Right and health decrease", testSoldierShootsWalkerNotSameLineDown},
         {" Soldier shoots only 1 walker out of 3 on shooting sight", testSoldierShootsOnly1WalkerOutOf3AimingUp},
+        {" Soldier shoots walker and miss aiming left", testSoldierShootsAndMissWalkerOutOfRangeUp},
+        {" Soldier shoots walker and miss aiming right", testSoldierShootsAndMissWalkerOutOfRangeDown},
+        {" Soldier shoots and miss aiming(down) contrary to walker", testSoldierShootsAndMissAimingDownTurnedAroundToWalker},
+        {" Soldier shoots and miss aiming(up) contrary to walker ",testSoldierShootsAndMissAimingUpTurnedAroundToWalker},
         {NULL, NULL}
 };
