@@ -4,17 +4,80 @@
 
 #define UP -1
 #define DOWN 1
+#define X_POS 0
+#define Y_POS 1
+
 GameMap::GameMap(std::uint16_t x_size, std::uint16_t y_size) :
         x_size(x_size),
         y_size(y_size),
         map(y_size, std::vector<GameObject*>(x_size, nullptr)) {}
 
 
-/*
- * Metodos de testeo
- */
+void GameMap::shoot(Weapon* weapon,
+                    std::uint16_t x_pos_sold,
+                    std::uint16_t y_pos_sold,
+                    std::int16_t direction) {
+    std::vector<signed int> zombie_pos = collision_with_zombie(direction,
+                                                               x_pos_sold,
+                                                               y_pos_sold);
+    if (zombie_pos[X_POS] < 0) return;
+    map[zombie_pos[Y_POS]][zombie_pos[X_POS]]->get_shot(weapon);
+}
 
-void GameMap::add_soldier(Soldier* soldier,
+std::vector<signed int> GameMap::
+collision_with_zombie(std::int16_t direction,
+                      std::uint16_t x_pos_sold,
+                      std::uint16_t y_pos_sold) {
+
+    // las 3 columnas a revisar
+    std::vector<signed int> pos_soldier = {x_pos_sold, x_pos_sold - 1, x_pos_sold + 1};
+    std::vector<signed int> zombieless_pos = {-1, -1};
+
+    if (direction == UP) {
+        for (signed int i = 0; i < pos_soldier.size(); i++) {
+            std::vector<signed int> zombie_pos = collision_going_up(pos_soldier[i], y_pos_sold);
+            if (zombie_pos[0] != -1){
+                return zombie_pos;
+            }
+        }
+        return zombieless_pos;
+    }
+    for (signed int i = 0; i < pos_soldier.size(); i++) {
+        std::vector<signed int> zombie_pos = collision_going_down(pos_soldier[i], y_pos_sold);
+        if (zombie_pos[0] != -1){
+            return zombie_pos;
+        }
+    }
+    return zombieless_pos;
+}
+
+std::vector<signed int> GameMap::collision_going_down(std::uint16_t x_pos, std::uint16_t y_pos) {
+    std::vector<signed int> zombieless_pos = {-1, -1};
+    for (int j = y_pos + 1; j < y_size; j++) { // +1 para no autodispararme jeej
+        if (map[j][x_pos] != nullptr) {
+            std::vector<signed int> zomb_pos = {x_pos, j};
+            return zomb_pos;
+        }
+    }
+    return zombieless_pos;
+}
+
+std::vector<signed int> GameMap::collision_going_up(std::uint16_t x_pos, std::uint16_t y_pos) {
+    std::vector<signed int> zombieless_pos = {-1, -1};
+    for (int j = y_pos - 1; j >= 0; j--) {
+        if (map[j][x_pos] != nullptr) {
+            std::vector<signed int> zomb_pos = {x_pos, j};
+            return zomb_pos;
+        }
+    }
+    return zombieless_pos;
+}
+
+
+
+// ****************************** Metodos de Testeo ***********************************//
+
+void GameMap::add_soldier(GameObject* soldier,
                       std::uint16_t x_pos,
                       std::uint16_t y_pos) {
     if (!valid_entire_soldier_position(x_pos, y_pos)){
@@ -26,7 +89,7 @@ void GameMap::add_soldier(Soldier* soldier,
 
 }
 
-void GameMap::add_zombie(Walker *walker, std::uint16_t x_pos, std::uint16_t y_pos) {
+void GameMap::add_zombie(GameObject *walker, std::uint16_t x_pos, std::uint16_t y_pos) {
         map[y_pos][x_pos] = walker;
 }
 
@@ -39,21 +102,21 @@ bool GameMap::collision(std::int16_t direction, std::uint16_t x_pos, std::uint16
 
     if (direction == UP) {
         for (signed int i = 0; i < pos_soldier.size(); i++) {
-           if (collision_going_up(pos_soldier[i], y_pos)){
+           if (collision_going_up_test(pos_soldier[i], y_pos)){
                return true;
            }
         }
         return false;
     }
     for (signed int i = 0; i < pos_soldier.size(); i++) {
-        if (collision_going_down(pos_soldier[i], y_pos)){
+        if (collision_going_down_test(pos_soldier[i], y_pos)){
             return true;
         }
     }
     return false;
 }
 
-bool GameMap::collision_going_down(std::uint16_t x_pos, std::uint16_t y_pos) {
+bool GameMap::collision_going_down_test(std::uint16_t x_pos, std::uint16_t y_pos) {
     for (int i = y_pos; i < y_size; i++) {
         if (map[i][x_pos] != nullptr) {
             return true;
@@ -62,7 +125,7 @@ bool GameMap::collision_going_down(std::uint16_t x_pos, std::uint16_t y_pos) {
     return false;
 }
 
-bool GameMap::collision_going_up(std::uint16_t x_pos, std::uint16_t y_pos) {
+bool GameMap::collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos) {
     for (int j = y_pos; j >= 0; j--) {
         if (map[j][x_pos] != nullptr) {
             return true;

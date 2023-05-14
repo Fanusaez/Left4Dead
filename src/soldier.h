@@ -2,19 +2,31 @@
 #define SOLDIER_H_
 
 #include <cstdint>
-#include "weapon.h"
 #include "game_object.h"
-#include "idf.h"
+#include "map.h"
 
-class Soldier : public GameObject{
+#define DOWN 1
+#define UP -1
+
+class Soldier : public GameObject {
  private:
-    std::uint16_t health = 100;
     Weapon* weapon = nullptr;
-    std::uint16_t x_pos;
-    std::uint16_t y_pos;
+    GameMap &map;
+    std::uint16_t x_pos = 0;
+    std::uint16_t y_pos = 0;
+    std::int16_t direction = UP;
+    bool dead = false;
+    std::uint16_t health = 100;
+
  public:
-Soldier(Weapon* weapon);
-void get_shot(std::uint16_t damage) override;
+
+Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
+Soldier(Weapon* weapon, GameMap& map, std::uint16_t x_pos, std::uint16_t y_pos);
+
+void shoot();
+void get_shot(Weapon* weapon) override;
+void set_direction(std::int16_t direction);
 ~Soldier();
+
 };
 #endif  // SOLDIER_H_

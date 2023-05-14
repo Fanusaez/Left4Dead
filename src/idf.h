@@ -2,7 +2,6 @@
 #define  IDF_H_
 
 #include <cstdint>
-#include "walker.h"
 #include "weapon.h"
 
 class Idf : public Weapon {
@@ -14,7 +13,7 @@ void reload();
 
  public:
 
-void shoot(Walker& walker);
+std::uint16_t shoot(std::uint16_t zomb_y_pos) override;
 
 };
 #endif // IDF_H_
