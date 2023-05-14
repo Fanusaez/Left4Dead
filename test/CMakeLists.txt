@@ -7,9 +7,15 @@ include_directories("../src")
 add_executable(testPrueba
         test_prueba.cpp
 )
-add_executable(testClient
+
+add_executable(testProtocolClient
         test_protocol_client.cpp
         ../src/client_translator.cpp
+)
+
+add_executable(testProtocolServer
+        test_protocol_server.cpp
+        ../src/server_translator.cpp
 )
 
 add_executable(testCollision
@@ -33,7 +39,8 @@ add_executable(testShooting
 # Despues agregar el target aca y listo
 set(testTargets
         testPrueba
-        #testClient
+        testProtocolClient
+        testProtocolServer
         testCollision
         testShooting
 )

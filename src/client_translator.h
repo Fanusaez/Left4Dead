@@ -12,7 +12,7 @@ class ClientTranslator{
 private:
 
 public:
-    /*----------------------Game message--------------------*/
+    /*----------------------Lobby message--------------------*/
 
     std::vector<char> translate_create_scenario(std::string *scenario_name);
 
@@ -22,7 +22,7 @@ public:
 
     std::vector<char> translate_soldier(SoldierType *soldier_type);
 
-    /*----------------------Lobby message--------------------*/
+    /*----------------------Game message--------------------*/
 
     std::vector<char> translate_move(Move *move);
 

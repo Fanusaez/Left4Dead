@@ -96,6 +96,7 @@ void testReloadingGun(void)
     TEST_CHECK(buffer.size() == 1);
     TEST_CHECK(buffer.at(0) == 0x06);
 }
+
 TEST_LIST = {
     {"Testing serialization: create scenario", testSerializeCreateScenario},
     {"Testing serialization: join scenario", testSerializeJoinScenario},

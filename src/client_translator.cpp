@@ -47,6 +47,15 @@ std::vector<char> ClientTranslator::translate_soldier(SoldierType *soldier_type)
 std::vector<char> ClientTranslator::translate_move(Move *move)
 {
     std::vector<char> buffer;
+    buffer.push_back(0x05);
+    buffer.push_back(0x01);
+    buffer.push_back(*move);
+    return buffer;
+}
+
+std::vector<char> ClientTranslator::translate_reloading()
+{
+    std::vector<char> buffer;
     buffer.push_back(0x06);
     return buffer;
 }
