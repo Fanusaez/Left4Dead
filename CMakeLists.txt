@@ -6,6 +6,9 @@ project(Left4Dead
     LANGUAGES CXX
 )
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+
 option(TESTING "Build internal testing suite" OFF)
 
 add_subdirectory(src)
