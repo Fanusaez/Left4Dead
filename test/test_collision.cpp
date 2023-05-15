@@ -22,29 +22,35 @@
 
 
 void testCollisionSameLineUp(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
+
     GameObject* soldier = new Soldier(idf, map);
-    Walker walker(8, 1);
     map.add_soldier(soldier, 8, 9);
+
+    Walker walker(8, 1);
     map.add_zombie(&walker, 8, 1);
+
     TEST_ASSERT(map.collision(UP, 8, 8) == true);
     delete soldier;
 }
 
 void testCollisionSameLineDown(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
+
     Soldier* soldier = new Soldier(idf, map);
-    Walker walker(7, 5);
     map.add_soldier(soldier, 7, 0);
+
+    Walker walker(7, 5);
     map.add_zombie(&walker, 7, 5);
+
     TEST_ASSERT(map.collision(DOWN, 7, 1) == true);
     delete soldier;
 }
 
 void testCollisionNotSameLineLeftUp(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier* soldier = new Soldier(idf, map);
@@ -58,56 +64,71 @@ void testCollisionNotSameLineLeftUp(void) {
 }
 
 void testCollisionNotSameLineRightUp(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
+
     Soldier* soldier = new Soldier(idf, map);
-    Walker walker(8, 1);
     map.add_soldier(soldier, 7, 9);
+
+    Walker walker(8, 1);
     map.add_zombie(&walker, 8, 1);
+
     TEST_ASSERT(map.collision(UP, 7, 8) == true);
     delete soldier;
 }
 
 void testCollisionNotSameLineLeftDown(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
+
     Soldier* soldier = new Soldier(idf, map);
-    Walker walker(0, 9);
     map.add_soldier(soldier, 1, 1);
+
+    Walker walker(0, 9);
     map.add_zombie(&walker, 0, 9);
+
     TEST_ASSERT(map.collision(DOWN, 1, 2) == true);
     delete soldier;
 }
 
 void testCollisionNotSameLineRightDown(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
+
     Soldier* soldier = new Soldier(idf, map);
-    Walker walker(2, 9);
     map.add_soldier(soldier, 1, 1);
+
+    Walker walker(2, 9);
     map.add_zombie(&walker, 2, 9);
+
     TEST_ASSERT(map.collision(DOWN, 1, 2) == true);
     delete soldier;
 }
 
 void testNoCollisionUp(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
+
     Soldier* soldier = new Soldier(idf, map);
+    map.add_soldier(soldier, 8, 9);
+
     Walker walker(1,1);
-    map.add_soldier(soldier, 9, 9);
     map.add_zombie(&walker, 1, 1);
-    TEST_ASSERT(map.collision(UP, 9, 8) == false);
+
+    TEST_ASSERT(map.collision(UP, 8, 8) == false);
     delete soldier;
 }
 
 void testNoCollisionDown(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
+
     Soldier* soldier = new Soldier(idf, map);
-    Walker walker(9, 9);
     map.add_soldier(soldier, 1, 1);
-    map.add_zombie(&walker, 9, 9);
+
+    Walker walker(8, 9);
+    map.add_zombie(&walker, 8, 9);
+
     TEST_ASSERT(map.collision(DOWN, 5, 2) == false);
     delete soldier;
 }

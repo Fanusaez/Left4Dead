@@ -8,11 +8,13 @@
 #include "../src/weapon.h"
 #define UP -1
 #define DOWN 1
+#define MAP_SIZE_X 10
+#define MAP_SIZE_Y 10
 #define CLOSE_RANGE_DAMAGE 30
 #define LONG_RANGE_DAMAGE 15
 
 void testSoldierShootsIdfCloseRangeUp(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
@@ -28,7 +30,7 @@ void testSoldierShootsIdfCloseRangeUp(void) {
 }
 
 void testSoldierShootsIdfCloseRangeDown(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
@@ -44,7 +46,7 @@ void testSoldierShootsIdfCloseRangeDown(void) {
 }
 
 void testSoldierShootsIdfCloseRangeUpNotSameLine(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
@@ -60,7 +62,7 @@ void testSoldierShootsIdfCloseRangeUpNotSameLine(void) {
 }
 
 void testSoldierShootsIdfCloseRangeDownNotSameLine(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
@@ -76,7 +78,7 @@ void testSoldierShootsIdfCloseRangeDownNotSameLine(void) {
 }
 
 void testSoldierShootsIdfLongRangeUp(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 5);
@@ -92,7 +94,7 @@ void testSoldierShootsIdfLongRangeUp(void) {
 }
 
 void testSoldierShootsIdfLongRangeDown(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
@@ -108,7 +110,7 @@ void testSoldierShootsIdfLongRangeDown(void) {
 }
 
 void testSoldierShootsIdfLongRangeUpNotSameLine(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 6);
@@ -124,7 +126,7 @@ void testSoldierShootsIdfLongRangeUpNotSameLine(void) {
 }
 
 void testSoldierShootsIdfLongRangeDownNotSameLine(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
@@ -140,7 +142,7 @@ void testSoldierShootsIdfLongRangeDownNotSameLine(void) {
 }
 
 void testSoldierShootsIdfWith2WalkersInLine(void) {
-    GameMap map(10, 10);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
