@@ -167,12 +167,12 @@ void testSoldierShootsIdfWith2WalkersInLine(void) {
 TEST_LIST = {
         {"Soldier shoots Idf close range up", testSoldierShootsIdfCloseRangeUp},
         {"Soldier shoots Idf close range down",testSoldierShootsIdfCloseRangeDown},
-        {"Soldier shoots Idf close range up not same line", testSoldierShootsIdfCloseRangeUp},
-        {"Soldier shoots Idf close range down not same line",testSoldierShootsIdfCloseRangeDown},
+        {"Soldier shoots Idf close range up not same line", testSoldierShootsIdfCloseRangeUpNotSameLine},
+        {"Soldier shoots Idf close range down not same line",testSoldierShootsIdfCloseRangeDownNotSameLine},
         {"Soldier shoots Idf long range up", testSoldierShootsIdfLongRangeUp},
         {"Soldier shoots Idf long range down",testSoldierShootsIdfLongRangeDown},
-        {"Soldier shoots Idf long range up not same line", testSoldierShootsIdfLongRangeUp},
-        {"Soldier shoots Idf long range down not same line",testSoldierShootsIdfLongRangeDown},
+        {"Soldier shoots Idf long range up not same line", testSoldierShootsIdfLongRangeUpNotSameLine},
+        {"Soldier shoots Idf long range down not same line",testSoldierShootsIdfLongRangeDownNotSameLine},
         {"Soldier shoots idf with one walker behind another, only damages the first", testSoldierShootsIdfWith2WalkersInLine},
         {NULL, NULL}
 };

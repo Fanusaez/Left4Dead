@@ -11,6 +11,10 @@ void Walker::get_shot(std::uint16_t damage) {
     }
 }
 
+void Walker::move_up() {
+
+}
+
 std::uint16_t Walker::get_y_position() {
     return y_pos;
 }

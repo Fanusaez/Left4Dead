@@ -69,12 +69,51 @@ void GameMap::collision_going_down(std::vector<GameObject*>& game_objects,
     }
 }
 
+// Visualmente para nosotros es mover a la izquierda
+void GameMap::move_soldier_up(std::uint16_t x_pos,
+                              std::uint16_t y_pos,
+                              std::int16_t& new_y_pos_ref) {
+    if (y_pos > 0){
+        std::uint16_t new_y_pos = y_pos - 1;
+        bool first_position = check_free_position(x_pos, new_y_pos);
+        bool sec_position = check_free_position(x_pos + 1, new_y_pos);
+        if (first_position && sec_position){
+            map[new_y_pos][x_pos] = map[y_pos][x_pos];
+            map[y_pos][x_pos] = nullptr;
+
+            map[new_y_pos][x_pos + 1] = map[y_pos][x_pos + 1];
+            map[y_pos][x_pos + 1] = nullptr;
+
+            new_y_pos_ref = new_y_pos;
+        }
+        return;
+    }
+    if(y_pos == 0) {
+        std::uint16_t new_y_pos = y_size - 1;
+        bool first_position = check_free_position(x_pos, new_y_pos);
+        bool sec_position = check_free_position(x_pos + 1, new_y_pos);
+        if (first_position && sec_position){
+            map[new_y_pos][x_pos] = map[y_pos][x_pos];
+            map[y_pos][x_pos] = nullptr;
+
+            map[new_y_pos][x_pos + 1] = map[y_pos][x_pos + 1];
+            map[y_pos][x_pos + 1] = nullptr;
+
+            new_y_pos_ref = new_y_pos;
+        }
+    }
+}
+
+bool GameMap::check_free_position(std::uint16_t x_sold_pos,
+                                  std::uint16_t y_sold_pos) {
+    return map[y_sold_pos][x_sold_pos] == nullptr; // !map[y_sold_pos][x_sold_pos]
+}
 // ****************************** Metodos de Testeo ***********************************//
 
 void GameMap::add_soldier(GameObject* soldier,
                       std::uint16_t x_pos,
                       std::uint16_t y_pos) {
-    if (!valid_entire_soldier_position(x_pos, y_pos)){
+    if (!valid_entire_object_position(x_pos, y_pos)){
         return; // excepcion
     }
     map[y_pos][x_pos] = soldier;
@@ -83,7 +122,7 @@ void GameMap::add_soldier(GameObject* soldier,
 }
 
 void GameMap::add_zombie(GameObject *walker, std::uint16_t x_pos, std::uint16_t y_pos) {
-    if (!valid_entire_soldier_position(x_pos, y_pos)){ // cambiar por validar_gameObject
+    if (!valid_entire_object_position(x_pos, y_pos)){ // cambiar por validar_gameObject
         return; // excepcion
     }
     map[y_pos][x_pos] = walker;
@@ -91,7 +130,7 @@ void GameMap::add_zombie(GameObject *walker, std::uint16_t x_pos, std::uint16_t 
 }
 
 bool GameMap::collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos) {
-    if (!valid_entire_soldier_position(x_pos, y_pos)) {
+    if (!valid_entire_object_position(x_pos, y_pos)) {
         return false; // deberia levantar error.
     }
 
@@ -131,10 +170,10 @@ bool GameMap::collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos) 
     return false;
 }
 
-bool GameMap::valid_entire_soldier_position(std::int16_t x_pos, std::int16_t y_pos) {
+bool GameMap::valid_entire_object_position(std::int16_t x_pos, std::int16_t y_pos) {
     bool valid_x = false;
     bool valid_y = false;
-    if ( x_pos >= 0 && (x_pos + 1) < x_size) {
+    if ( x_pos >= 0 && x_pos + 1 < x_size) { // +1 dado que en x tenemos un slot mas
         valid_x = true;
     }
     if (y_pos >= 0 && y_pos < y_size){

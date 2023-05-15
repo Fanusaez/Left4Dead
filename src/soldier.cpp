@@ -27,8 +27,21 @@ void Soldier::get_shot(std::uint16_t damage) {
     }
 }
 
+void Soldier::move_up() {
+    std::int16_t new_y_pos = -1;
+    map.move_soldier_up(x_pos, y_pos, new_y_pos);
+    if(new_y_pos >= 0){
+        direction = UP;
+        y_pos = new_y_pos;
+    }
+}
+
 std::uint16_t Soldier::get_y_position() {
     return y_pos;
+}
+
+std::uint16_t Soldier::get_x_position() {
+    return x_pos;
 }
 
 void Soldier::set_direction(std::int16_t new_direction) {
