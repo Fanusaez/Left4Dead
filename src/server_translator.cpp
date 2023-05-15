@@ -66,3 +66,4 @@ std::vector<char> ServerTranslator::translate_game_stats(int *infected,int *ammo
     buffer.push_back(*ammo);
     buffer.push_back(*time);
 }
+

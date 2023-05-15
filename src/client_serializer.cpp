@@ -1,6 +1,6 @@
-#include "client_translator.h"
+#include "client_serializer.h"
 
-std::vector<char> ClientTranslator::translate_create_scenario(std::string *scenario_name){
+std::vector<char> ClientSerializer::translate_create_scenario(std::string *scenario_name){
     std::vector<char> buffer;
     buffer.push_back(0x01); //Capaz enum con todas las instrucciones/mensajes a mandar
     buffer.push_back(scenario_name->length());
@@ -8,11 +8,10 @@ std::vector<char> ClientTranslator::translate_create_scenario(std::string *scena
     return buffer;
 }
 
-std::vector<char> ClientTranslator::translate_join_scenario(int32_t *scenario_code)
+std::vector<char> ClientSerializer::translate_join_scenario(int32_t *scenario_code)
 {
     std::vector<char> buffer;
     buffer.push_back(0x02);
-    buffer.push_back(sizeof(int32_t));
     buffer.push_back((*scenario_code >> 24) & 0xFF);
     buffer.push_back((*scenario_code >> 16) & 0xFF);
     buffer.push_back((*scenario_code >> 8) & 0xFF);
@@ -20,11 +19,10 @@ std::vector<char> ClientTranslator::translate_join_scenario(int32_t *scenario_co
     return buffer;
 }
 
-std::vector<char> ClientTranslator::translate_game_mode(GameMode *game_mode)
+std::vector<char> ClientSerializer::translate_game_mode(GameMode *game_mode)
 {
     std::vector<char> buffer;
     buffer.push_back(0x03);
-    buffer.push_back(0x01);
     if (*game_mode == CLEAR_THE_ZONE || *game_mode == SURVIVAL)
         buffer.push_back(*game_mode);
     else
@@ -32,11 +30,10 @@ std::vector<char> ClientTranslator::translate_game_mode(GameMode *game_mode)
     return buffer;
 }
 
-std::vector<char> ClientTranslator::translate_soldier(SoldierType *soldier_type)
+std::vector<char> ClientSerializer::translate_soldier(SoldierType *soldier_type)
 {
     std::vector<char> buffer;
     buffer.push_back(0x04);
-    buffer.push_back(0x01);
     if (*soldier_type == IDF || *soldier_type == P90 || *soldier_type == SCOUT)
         buffer.push_back(*soldier_type);
     else
@@ -44,18 +41,36 @@ std::vector<char> ClientTranslator::translate_soldier(SoldierType *soldier_type)
     return buffer;
 }
 
-std::vector<char> ClientTranslator::translate_move(Move *move)
-{
+std::vector<char> ClientSerializer::translate_request_game_list(){
     std::vector<char> buffer;
     buffer.push_back(0x05);
-    buffer.push_back(0x01);
+    return buffer;
+}
+
+std::vector<char> ClientSerializer::translate_move(Move *move)
+{
+    std::vector<char> buffer;
+    buffer.push_back(0x06);
     buffer.push_back(*move);
     return buffer;
 }
 
-std::vector<char> ClientTranslator::translate_reloading()
+std::vector<char> ClientSerializer::translate_reloading()
 {
     std::vector<char> buffer;
-    buffer.push_back(0x06);
+    buffer.push_back(0x07);
+    return buffer;
+}
+
+std::vector<char> ClientSerializer::translate_shooting(){
+    std::vector<char> buffer;
+    buffer.push_back(0x08);
+    return buffer;
+}
+
+std::vector<char> ClientSerializer::translate_throw_grenede(int *time){
+    std::vector<char> buffer;
+    buffer.push_back(0x09);
+    buffer.push_back(*time);
     return buffer;
 }

@@ -1,5 +1,5 @@
-#ifndef CLIENTTRANSLATOR_H
-#define CLIENTTRANSLATOR_H
+#ifndef CLIENTSERIALIZER_H
+#define CLIENTSERIALIZER_H
 
 #include <vector>
 #include <string>
@@ -8,7 +8,7 @@
 #include "../src/soldier_type.h"
 #include "../src/move.h"
 
-class ClientTranslator{
+class ClientSerializer{
 private:
 
 public:
@@ -22,10 +22,16 @@ public:
 
     std::vector<char> translate_soldier(SoldierType *soldier_type);
 
+    std::vector<char> translate_request_game_list();
+
     /*----------------------Game message--------------------*/
 
     std::vector<char> translate_move(Move *move);
 
     std::vector<char> translate_reloading();
+
+    std::vector<char> translate_shooting();
+
+    std::vector<char> translate_throw_grenede(int *time);
 };
 #endif

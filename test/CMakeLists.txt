@@ -10,7 +10,7 @@ add_executable(testPrueba
 
 add_executable(testProtocolClient
         test_protocol_client.cpp
-        ../src/client_translator.cpp
+        ../src/client_serializer.cpp
 )
 
 add_executable(testProtocolServer

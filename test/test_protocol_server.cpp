@@ -89,10 +89,21 @@ void testGameStats(void)
     TEST_CHECK(buffer.at(3) == 900);
 }
 
+/* void testListGamesAvailable(void)
+{
+    ServerTranslator server_translator;
+
+
+    std::vector<char> buffer = server_translator.translate_games_availables();
+    //- list of games: <number of games> <code game i> <number of players in i> 
+} */
+
 TEST_LIST = {
     {"Testing serialization: create scenario", testSerializeCreateScenario},
     {"Testing serialization: join scenario", testSerializeJoinScenario},
     {"Testing serialization: soldier position", testSerializeSoldierPosition},
     {"Testing serialization: soldier ammo ", testSerializeSoldierAmmo},
     {"Testing serialization: soldier health ", testSerializeSoldierHealth},
-    {NULL, NULL}};
+    //{"Testing serialization: games list", testListGamesAvailable},
+    {NULL, NULL}
+};
