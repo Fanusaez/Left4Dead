@@ -6,8 +6,20 @@
 #include "../src/game_object.h"
 #include "../src/idf.h"
 #include "../src/weapon.h"
+
+#define MAP_SIZE_X 10
+#define MAP_SIZE_Y 10
 #define UP -1
 #define DOWN 1
+
+/*
+ * Colisiones:
+ * Todos los objetos del juego (por ahora walkers y soldados) utilizan dos espacios en X y uno en Y.
+ * La posicion que se indiaca en X en los test es la de la izquierda.
+ * Por ejemplo: si agrego un soldado en la posicion (1,3), este soldado verdaderamente ocupara en la matriz
+ * la posicion x_pos = [1,2] y_pos = 3.
+ */
+
 
 void testCollisionSameLineUp(void) {
     GameMap map(10, 10);
@@ -34,10 +46,13 @@ void testCollisionSameLineDown(void) {
 void testCollisionNotSameLineLeftUp(void) {
     GameMap map(10, 10);
     Weapon* idf = new Idf;
+
     Soldier* soldier = new Soldier(idf, map);
-    Walker walker(7, 1);
     map.add_soldier(soldier, 8, 9);
+
+    Walker walker(7, 1);
     map.add_zombie(&walker, 7, 1);
+
     TEST_ASSERT(map.collision(UP, 8, 8) == true);
     delete soldier;
 }
@@ -46,10 +61,10 @@ void testCollisionNotSameLineRightUp(void) {
     GameMap map(10, 10);
     Weapon* idf = new Idf;
     Soldier* soldier = new Soldier(idf, map);
-    Walker walker(9, 1);
-    map.add_soldier(soldier, 8, 9);
-    map.add_zombie(&walker, 9, 1);
-    TEST_ASSERT(map.collision(UP, 8, 8) == true);
+    Walker walker(8, 1);
+    map.add_soldier(soldier, 7, 9);
+    map.add_zombie(&walker, 8, 1);
+    TEST_ASSERT(map.collision(UP, 7, 8) == true);
     delete soldier;
 }
 
