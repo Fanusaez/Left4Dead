@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-#include "../src/server_translator.h"
+#include "../src/server_serializer.h"
 #include "../src/game_mode.h"
 #include "../src/soldier_type.h"
 #include "../src/move.h"
@@ -11,7 +11,7 @@
 
 void testSerializeCreateScenario(void)
 {
-    ServerTranslator server_translator;
+    ServerSerializer server_translator;
     int32_t code_scenario = 10;
     std::vector<char> buffer = server_translator.translate_create_scenario(&code_scenario);
     //- create: <scenario code>
@@ -24,7 +24,7 @@ void testSerializeCreateScenario(void)
 
 void testSerializeJoinScenario(void)
 {
-    ServerTranslator server_translator;
+    ServerSerializer server_translator;
     bool join = true;   //Could join?
     std::vector<char> buffer = server_translator.translate_join_scenario(&join);
     //- join: <join>
@@ -35,7 +35,7 @@ void testSerializeJoinScenario(void)
 // Soldier position or infected position
 void testSerializeSoldierPosition(void)
 {
-    ServerTranslator server_translator;
+    ServerSerializer server_translator;
     int16_t x_pos = 0x10; // int16_t from soldier.h
     int16_t y_pos = 0x0F00; // int16_t from soldier.h
     std::vector<char> buffer = server_translator.translate_soldier_position(&x_pos, &y_pos);
@@ -50,7 +50,7 @@ void testSerializeSoldierPosition(void)
 
 void testSerializeSoldierAmmo(void)
 {
-    ServerTranslator server_translator;
+    ServerSerializer server_translator;
     int ammo = 50;
     std::vector<char> buffer = server_translator.translate_soldier_ammo(&ammo);
     //- position: 0x02 <msg len> <ammo>
@@ -62,7 +62,7 @@ void testSerializeSoldierAmmo(void)
 
 void testSerializeSoldierHealth(void)
 {
-    ServerTranslator server_translator;
+    ServerSerializer server_translator;
     int health = 100; 
     std::vector<char> buffer = server_translator.translate_soldier_health(&health);
     //- position: 0x03 <msg len> <health>
@@ -76,27 +76,38 @@ void testSerializeSoldierHealth(void)
 
 void testGameStats(void)
 {
-    ServerTranslator server_translator;
+    ServerSerializer server_translator;
     int infected = 100;
-    int ammo = 1000;
-    int time = 900; //Segundos totales?
+    int16_t ammo = 0x0810; // 2064
+    int16_t time = 0x0354; // Segundos totales? ->852 sec
     std::vector<char> buffer = server_translator.translate_game_stats(&infected, &ammo, &time);
     //- position: 0x04 <infected> <ammo> <time>
-    TEST_CHECK(buffer.size() == 4);
+    TEST_CHECK(buffer.size() == 6);
     TEST_CHECK(buffer.at(0) == 0x04);
     TEST_CHECK(buffer.at(1) == 100);
-    TEST_CHECK(buffer.at(2) == 1000);
-    TEST_CHECK(buffer.at(3) == 900);
+    TEST_CHECK(buffer.at(2) == 0x08);
+    TEST_CHECK(buffer.at(3) == 0x10);
+    TEST_CHECK(buffer.at(4) == 0x03);
+    TEST_CHECK(buffer.at(5) == 0x54);
 }
 
-/* void testListGamesAvailable(void)
+void testListGamesAvailable(void)
 {
-    ServerTranslator server_translator;
-
-
-    std::vector<char> buffer = server_translator.translate_games_availables();
-    //- list of games: <number of games> <code game i> <number of players in i> 
-} */
+    ServerSerializer server_translator;
+    int games = 3;
+    std::vector<int> codes = {0,1,2}; //codes capaz tiene que ser de int32_t
+    std::vector<int> people = {2, 4, 3}; //En la partide de code=0 hay 2 personas
+    std::vector<char> buffer = server_translator.translate_games_availables(&games,&codes,&people);
+    //- list of games: <number of games> <code game i> <number of players in i>
+    TEST_CHECK(buffer.size() == 7);
+    TEST_CHECK(buffer.at(0) == 0x03);
+    TEST_CHECK(buffer.at(1) == 0x00);
+    TEST_CHECK(buffer.at(2) == 0x02);
+    TEST_CHECK(buffer.at(3) == 0x01);
+    TEST_CHECK(buffer.at(4) == 0x04);
+    TEST_CHECK(buffer.at(5) == 0x02);
+    TEST_CHECK(buffer.at(6) == 0x03);
+}
 
 TEST_LIST = {
     {"Testing serialization: create scenario", testSerializeCreateScenario},
@@ -104,6 +115,6 @@ TEST_LIST = {
     {"Testing serialization: soldier position", testSerializeSoldierPosition},
     {"Testing serialization: soldier ammo ", testSerializeSoldierAmmo},
     {"Testing serialization: soldier health ", testSerializeSoldierHealth},
-    //{"Testing serialization: games list", testListGamesAvailable},
-    {NULL, NULL}
-};
+    {"Testing serialization: games stats", testGameStats},
+    {"Testing serialization: games list", testListGamesAvailable},
+    {NULL, NULL}};

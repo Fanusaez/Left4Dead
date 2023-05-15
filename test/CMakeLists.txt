@@ -15,7 +15,7 @@ add_executable(testProtocolClient
 
 add_executable(testProtocolServer
         test_protocol_server.cpp
-        ../src/server_translator.cpp
+        ../src/server_serializer.cpp
 )
 
 add_executable(testCollision

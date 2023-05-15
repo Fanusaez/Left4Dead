@@ -1,5 +1,5 @@
-#ifndef SERVERTRANSLATOR_H
-#define SERVERTRANSLATOR_H
+#ifndef SERVERSERIALIZER_H
+#define SERVERSERIALIZER_H
 
 #include <vector>
 #include <string>
@@ -8,7 +8,7 @@
 #include "../src/soldier_type.h"
 #include "../src/move.h"
 
-class ServerTranslator
+class ServerSerializer
 {
 private:
 
@@ -23,6 +23,8 @@ public:
 
     std::vector<char> translate_soldier_health(int *health);
 
-    std::vector<char> translate_game_stats(int *infected,int *ammo,int *time);
+    std::vector<char> translate_game_stats(int *infected, int16_t *ammo, int16_t *time);
+
+    std::vector<char> translate_games_availables(int *games, std::vector<int> *codes, std::vector<int> *people);
 };
 #endif
