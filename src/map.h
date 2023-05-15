@@ -10,6 +10,15 @@ class GameMap {
     std::uint16_t y_size;
     std::vector<std::vector<GameObject*>> map;
 
+void find_new_y_pos(std::int16_t& new_y_pos_ref,
+                    std::uint16_t possible_new_y_pos,
+                    std::uint16_t x_pos_sold,
+                    std::uint16_t y_pos_sold);
+
+void move_object_to(std::uint16_t x_pos,
+                    std::uint16_t y_pos,
+                    std::uint16_t x_new_pos,
+                    std::uint16_t y_new_pos);
  public:
 GameMap(std::uint16_t x_size, std::uint16_t y_size);
 

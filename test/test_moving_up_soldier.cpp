@@ -65,11 +65,51 @@ void testNotMoveSoldierUp(){
     TEST_CHECK(y_pos == 8);
 }
 
+void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 3, 8);
+    map.add_soldier(&soldier, 3, 8);
+
+    Walker walker(4,7);
+    map.add_zombie(&walker, 4, 7);
+
+    soldier.move_up();
+
+    std::uint16_t x_pos = soldier.get_x_position();
+    std::uint16_t y_pos = soldier.get_y_position();
+
+    TEST_CHECK(x_pos == 3);
+    TEST_CHECK(y_pos == 8);
+}
+
+void testNotMoveSoldierUpCrashesPartiallyWithZombie2(){
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 3, 8);
+    map.add_soldier(&soldier, 3, 8);
+
+    Walker walker(2,7);
+    map.add_zombie(&walker, 2, 7);
+
+    soldier.move_up();
+
+    std::uint16_t x_pos = soldier.get_x_position();
+    std::uint16_t y_pos = soldier.get_y_position();
+
+    TEST_CHECK(x_pos == 3);
+    TEST_CHECK(y_pos == 8);
+}
+
 
 TEST_LIST = {
         {"Move soldier 1 position up",testMoveSoldierUp},
         {"Move soldier 1 position up goes to the other side of map",testMoveSoldierUpGoesToEndOfMap},
-        {"Move soldier 1 position up goes not possible for walker",testNotMoveSoldierUp},
+        {"Move soldier 1 position up goes not possible for walker totally aligned",testNotMoveSoldierUp},
+        {"Move soldier 1 position up goes not possible for walker partially aligned (right side)", testNotMoveSoldierUpCrashesPartiallyWithZombie},
+        {"Move soldier 1 position up goes not possible for walker partially aligned(left side)", testNotMoveSoldierUpCrashesPartiallyWithZombie2},
         {NULL, NULL},
 };
 

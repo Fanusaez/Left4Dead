@@ -75,33 +75,36 @@ void GameMap::move_soldier_up(std::uint16_t x_pos,
                               std::int16_t& new_y_pos_ref) {
     if (y_pos > 0){
         std::uint16_t new_y_pos = y_pos - 1;
-        bool first_position = check_free_position(x_pos, new_y_pos);
-        bool sec_position = check_free_position(x_pos + 1, new_y_pos);
-        if (first_position && sec_position){
-            map[new_y_pos][x_pos] = map[y_pos][x_pos];
-            map[y_pos][x_pos] = nullptr;
-
-            map[new_y_pos][x_pos + 1] = map[y_pos][x_pos + 1];
-            map[y_pos][x_pos + 1] = nullptr;
-
-            new_y_pos_ref = new_y_pos;
-        }
+        find_new_y_pos(new_y_pos_ref, new_y_pos, x_pos, y_pos);
         return;
     }
     if(y_pos == 0) {
         std::uint16_t new_y_pos = y_size - 1;
-        bool first_position = check_free_position(x_pos, new_y_pos);
-        bool sec_position = check_free_position(x_pos + 1, new_y_pos);
-        if (first_position && sec_position){
-            map[new_y_pos][x_pos] = map[y_pos][x_pos];
-            map[y_pos][x_pos] = nullptr;
-
-            map[new_y_pos][x_pos + 1] = map[y_pos][x_pos + 1];
-            map[y_pos][x_pos + 1] = nullptr;
-
-            new_y_pos_ref = new_y_pos;
-        }
+        find_new_y_pos(new_y_pos_ref, new_y_pos, x_pos, y_pos);
     }
+}
+
+void GameMap::find_new_y_pos(std::int16_t &new_y_pos_ref,
+                             std::uint16_t possible_new_y_pos,
+                             std::uint16_t x_pos,
+                             std::uint16_t y_pos) {
+    bool first_position = check_free_position(x_pos, possible_new_y_pos);
+    bool sec_position = check_free_position(x_pos + 1, possible_new_y_pos);
+    if (first_position && sec_position){
+        move_object_to(x_pos, y_pos, x_pos, possible_new_y_pos);
+        new_y_pos_ref = possible_new_y_pos;
+    }
+}
+
+void GameMap::move_object_to(std::uint16_t x_pos,
+                             std::uint16_t y_pos,
+                             std::uint16_t x_new_pos,
+                             std::uint16_t y_new_pos) {
+    map[y_new_pos][x_new_pos] = map[y_pos][x_pos];
+    map[y_pos][x_pos] = nullptr;
+
+    map[y_new_pos][x_new_pos + 1] = map[y_pos][x_pos + 1];
+    map[y_pos][x_pos + 1] = nullptr;
 }
 
 bool GameMap::check_free_position(std::uint16_t x_sold_pos,
