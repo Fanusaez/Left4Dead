@@ -29,8 +29,14 @@ if(GAMEUI)
 	file(COPY ${PROJECT_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
 endif()
 
-#add_library(client_translator 
-#	client_translator.cpp
-#)
+option(SERVER "Build server" OFF)
 
-#target_include_directories(client_translator PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+if(SERVER)
+	add_library(socket OBJECT ./common/socket.cpp ./common/socket.h)
+	add_library(resolver OBJECT ./common/resolver.cpp ./common/resolver.h)
+	add_library(thread OBJECT ./common/thread.h)
+	add_library(acceptor OBJECT ./server/acceptor.cpp ./server/acceptor.h)
+	add_library(server OBJECT ./server/server.cpp ./server/server.h)
+	add_executable(server_main ./server/server_main.cpp)
+	target_link_libraries(server_main PRIVATE acceptor server socket thread resolver)
+endif()
