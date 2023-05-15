@@ -139,16 +139,38 @@ void testSoldierShootsIdfLongRangeDownNotSameLine(void) {
     TEST_ASSERT(remaining_health == 100 - LONG_RANGE_DAMAGE);
 }
 
+void testSoldierShootsIdfWith2WalkersInLine(void) {
+    GameMap map(10, 10);
+    Weapon* idf = new Idf;
+
+    Soldier soldier(idf, map, 3, 3);
+    map.add_soldier(&soldier, 3, 3);
+
+    Walker walker1(4,8);
+    map.add_zombie(&walker1, 4, 8);
+
+    Walker walker2(4,9);
+    map.add_zombie(&walker2, 4, 9);
+
+    soldier.set_direction(DOWN);
+    soldier.shoot();
+    std::uint16_t remaining_health1 = walker1.get_health();
+    std::uint16_t remaining_health2 = walker2.get_health();
+    TEST_ASSERT(remaining_health1 == 100 - LONG_RANGE_DAMAGE);
+    TEST_ASSERT(remaining_health2 == 100);
+}
+
 
 
 TEST_LIST = {
-        {" Soldier shoots Idf close range up", testSoldierShootsIdfCloseRangeUp},
+        {"Soldier shoots Idf close range up", testSoldierShootsIdfCloseRangeUp},
         {"Soldier shoots Idf close range down",testSoldierShootsIdfCloseRangeDown},
-        {" Soldier shoots Idf close range up not same line", testSoldierShootsIdfCloseRangeUp},
+        {"Soldier shoots Idf close range up not same line", testSoldierShootsIdfCloseRangeUp},
         {"Soldier shoots Idf close range down not same line",testSoldierShootsIdfCloseRangeDown},
-        {" Soldier shoots Idf long range up", testSoldierShootsIdfLongRangeUp},
+        {"Soldier shoots Idf long range up", testSoldierShootsIdfLongRangeUp},
         {"Soldier shoots Idf long range down",testSoldierShootsIdfLongRangeDown},
-        {" Soldier shoots Idf long range up not same line", testSoldierShootsIdfLongRangeUp},
+        {"Soldier shoots Idf long range up not same line", testSoldierShootsIdfLongRangeUp},
         {"Soldier shoots Idf long range down not same line",testSoldierShootsIdfLongRangeDown},
+        {"Soldier shoots idf with one walker behind another, only damages the first", testSoldierShootsIdfWith2WalkersInLine},
         {NULL, NULL}
 };

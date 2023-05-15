@@ -4,6 +4,7 @@ add_executable(main
 	soldier.cpp
 	walker.cpp
 	idf.cpp
+	scout.cpp
 	game_object.h
 	weapon.h
 )
