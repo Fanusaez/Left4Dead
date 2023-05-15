@@ -23,10 +23,17 @@ if(GAMEUI)
 			graphics/Player.cpp
 			graphics/Animation.cpp
 	)
+
 	target_include_directories(client PRIVATE ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)
 	target_include_directories(client PRIVATE ${PROJECT_SOURCE_DIR}/src/graphics)
 	target_link_libraries(client PRIVATE SDL2pp)
-	file(COPY ${PROJECT_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
+	set(CLIENT_OUTPUT_DIR ${CMAKE_BINARY_DIR}/src/client)
+	set_target_properties(client
+			PROPERTIES
+			RUNTIME_OUTPUT_DIRECTORY ${CLIENT_OUTPUT_DIR})
+	file(COPY ${PROJECT_SOURCE_DIR}/assets DESTINATION ${CLIENT_OUTPUT_DIR})
+	target_compile_definitions(client PUBLIC ASSETS_PATH="${CLIENT_OUTPUT_DIR}/assets/")
+
 endif()
 
 #add_library(client_translator 

@@ -5,7 +5,9 @@
 #include <iostream>
 #include <exception>
 #include <unistd.h>
+#include <string>
 
+static const std::string AssetsPath = ASSETS_PATH;
 
 static bool handleEvents(Player &player);
 static void render(SDL2pp::Renderer &renderer, Player &player);
@@ -16,13 +18,13 @@ int main(int argc, char *argv[])
 	try {
 		SDL2pp::SDL sdl(SDL_INIT_VIDEO);
 		SDL2pp::SDLImage image(IMG_INIT_PNG);
-		SDL2pp::Window window("Hello world", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-				      800, 600,
+		SDL2pp::Window window("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+				      1280, 720,
 				      SDL_WINDOW_RESIZABLE);
 		SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
-		SDL2pp::Texture im(renderer,
-				   SDL2pp::Surface("../resources/Soldier_1/Walk.png").SetColorKey(true, 0));
+		SDL2pp::Texture im(renderer, SDL2pp::Surface(std::string(AssetsPath).append("Soldier_1/Walk.png")).SetColorKey(true, 0));
 		Player player(im);
+
 		bool running = true;
 
 		while (running) {
@@ -79,7 +81,10 @@ static bool handleEvents(Player &player) {
 }
 
 static void render(SDL2pp::Renderer &renderer, Player &player) {
+	// TODO: fix this. I'm loading the backgorund everytime xd.
+	SDL2pp::Texture background(renderer, SDL2pp::Surface(std::string(AssetsPath).append("backgrounds/War1/Pale/War.png")).SetColorKey(true, 0));
 	renderer.Clear();
+	renderer.Copy(background);
 	player.render(renderer);
 	renderer.Present();
 }
