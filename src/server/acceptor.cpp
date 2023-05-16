@@ -21,6 +21,7 @@ void Acceptor::run() {
 
         reap_dead();
     }
+    match_mananger.joinMatchs();
     kill_all();
 }
 
