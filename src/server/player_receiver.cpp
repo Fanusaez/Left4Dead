@@ -7,17 +7,18 @@
 
 #include <arpa/inet.h>
 
-PlayerReceiver::PlayerReceiver(Socket *socket, MatchMananger *match_manager, 
-    Queue<std::vector<char>> *queue_receiver, Queue<std::vector<char>> *queue_sender, std::atomic<bool> &keep_talking) : 
-    match_manager(match_manager), queue_receiver(queue_receiver),queue_sender(queue_sender),
-    keep_talking(keep_talking) {}
+PlayerReceiver::PlayerReceiver(Socket *socket, MatchMananger *match_manager, std::atomic<bool> &keep_talking) : 
+    match_manager(match_manager), keep_talking(keep_talking) {
+        this->queue_receiver = queue_receiver;
+    }
 
 void PlayerReceiver::run() {
     bool was_closed = false;
-    while (queue_receiver == NULL){ //Mientras no se le asigne partida
-        //socket->recev()
-        //Recibo un creat o un join
-        std::string mapa = "map123";
-        queue_receiver = match_manager->crear(queue_sender, &mapa); //En el caso de create despues hay que hacer una para join
-    }
+    //Recibo instruccion y la pusheo a queue receiver que pertenece al hilo Game
+    std::vector<char> bytes = {0, 0, 0, 0};
+    queue_receiver->push(bytes);
+}
+
+void PlayerReceiver::setQueueReceiver(Queue<std::vector<char>> *queue_receiver){
+    this->queue_receiver = queue_receiver;
 }

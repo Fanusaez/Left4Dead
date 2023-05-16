@@ -4,13 +4,11 @@
 #include <iostream>
 #include <utility>
 
-Player::Player(Socket socket,MatchMananger *matchMananger): queue_sender(10000), 
-        player_sender(&peer, std::ref(keep_talking), &queue_sender),
-        player_receiver(&peer, matchMananger, queue_receiver,&queue_sender, std::ref(keep_talking))
+Player::Player(Socket socket,MatchMananger *matchMananger): 
+        player_sender(&peer, std::ref(keep_talking),matchMananger)
 {
     this->peer = std::move(socket);
-    player_sender.start();
-    player_receiver.start();    
+    player_sender.start();    
     keep_talking = true;
 }
 
@@ -26,5 +24,5 @@ void Player::kill() {
 
 void Player::join(){
     player_sender.join();
-    player_receiver.join();
+    player_sender.joinPlayerReceiver();
 }

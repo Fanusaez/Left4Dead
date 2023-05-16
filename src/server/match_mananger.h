@@ -26,7 +26,7 @@ private:
 public:
     MatchMananger();
 
-    Queue<std::vector<char>> *crear(Queue<std::vector<char>> *queue_sender, std::string *escenario);
+    Queue<std::vector<char>> *getQueueGame(Queue<std::vector<char>> *queue_sender, std::string *escenario);
 
     int crear_escenario(std::string *escenario);
 

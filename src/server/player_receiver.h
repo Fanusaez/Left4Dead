@@ -17,17 +17,13 @@ private:
 
     Queue<std::vector<char>> *queue_receiver;
 
-    Queue<std::vector<char>> *queue_sender;
-
     std::atomic<bool>& keep_talking;
 
 public:
-    PlayerReceiver(Socket *socket, MatchMananger *match_manager,
-                   Queue<std::vector<char>> *queue_receiver, Queue<std::vector<char>> *queue_sender,
-                   std::atomic<bool> &keep_talking);
+    PlayerReceiver(Socket *socket, MatchMananger *match_manager, std::atomic<bool> &keep_talking);
 
     void run() override;
 
-    void setKeepTalking(bool keep_talking); //No se esta usando!!!    
+    void setQueueReceiver(Queue<std::vector<char>> *queue_receiver);
 };
 #endif

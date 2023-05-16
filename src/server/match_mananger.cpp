@@ -7,8 +7,8 @@ MatchMananger::MatchMananger(){
     contador = 0;
 }
 
-Queue<std::vector<char>> * MatchMananger::crear(Queue<std::vector<char>> *queue_sender, std::string *escenario){
-    if(crear_escenario(escenario) != -1){
+Queue<std::vector<char>> * MatchMananger::getQueueGame(Queue<std::vector<char>> *queue_sender, std::string *escenario){
+    if(crear_escenario(escenario) != -1){   //Si el escenario no existe crearlo
         Game* new_game = new Game(queue_sender);
         games.push_back(new_game);
         Queue<std::vector<char>> *aux = new_game->getQueue();
