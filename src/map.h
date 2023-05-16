@@ -46,6 +46,11 @@ void move_soldier_up(std::uint16_t x_sold_pos,
                      std::uint16_t y_sold_pos,
                      std::int16_t& new_y_pos_ref);
 
+
+void move_soldier_down(std::uint16_t x_sold_pos,
+                         std::uint16_t y_sold_pos,
+                         std::int16_t& new_y_pos_ref);
+
 bool check_free_position(std::uint16_t x_pos,
                          std::uint16_t y_sold_pos);
 

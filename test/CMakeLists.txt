@@ -51,7 +51,15 @@ add_executable(testShootingScout
         )
 
 add_executable(testMovingUpSoldier
-        test_moving_up_soldier.cpp
+        test_moving_soldier_up.cpp
+        ../src/soldier.cpp
+        ../src/walker.cpp
+        ../src/map.cpp
+        ../src/scout.cpp
+        )
+
+add_executable(testMovingSoldierDown
+        test_moving_soldier_down.cpp
         ../src/soldier.cpp
         ../src/walker.cpp
         ../src/map.cpp
@@ -70,6 +78,7 @@ set(testTargets
         testShootingIdf
         testShootingScout
         testMovingUpSoldier
+        testMovingSoldierDown
 )
 
 foreach(target ${testTargets})
