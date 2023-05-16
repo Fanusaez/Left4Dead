@@ -98,6 +98,31 @@ void GameMap::move_soldier_down(std::uint16_t x_pos,
     }
 }
 
+void GameMap::move_soldier_right(std::uint16_t x_pos,
+                                 std::uint16_t y_pos,
+                                 std::int16_t &new_x_pos_ref) {
+
+    // Menos dos pq los objetos del mapa (por ahora soldado y walker)
+    // tienen dos posiciones en x, la "verdadera" y una extra a la derecha
+    // osea que si la verdadera esta en x_size - 2, la otra esta en el
+    // borde x_size - 1.
+    if (x_pos == x_size - 2) return;
+    std::uint16_t new_x_pos = x_pos + 1;
+    find_new_x_pos(new_x_pos_ref, new_x_pos, x_pos, y_pos);
+}
+
+void GameMap::find_new_x_pos(std::int16_t &new_x_pos_ref,
+                             std::uint16_t possible_new_x_pos,
+                             std::uint16_t x_pos,
+                             std::uint16_t y_pos) {
+    // no hace falta checkear la primera pos, pq la estoy ocupando con el soldado
+    bool sec_position = check_free_position(possible_new_x_pos + 1, y_pos);
+    if (sec_position) {
+        move_object_x(x_pos, y_pos, possible_new_x_pos);
+        new_x_pos_ref = possible_new_x_pos;
+    }
+}
+
 void GameMap::find_new_y_pos(std::int16_t &new_y_pos_ref,
                              std::uint16_t possible_new_y_pos,
                              std::uint16_t x_pos,
@@ -105,20 +130,28 @@ void GameMap::find_new_y_pos(std::int16_t &new_y_pos_ref,
     bool first_position = check_free_position(x_pos, possible_new_y_pos);
     bool sec_position = check_free_position(x_pos + 1, possible_new_y_pos);
     if (first_position && sec_position){
-        move_object_to(x_pos, y_pos, x_pos, possible_new_y_pos);
+        move_object_y(x_pos, y_pos, possible_new_y_pos);
         new_y_pos_ref = possible_new_y_pos;
     }
 }
 
-void GameMap::move_object_to(std::uint16_t x_pos,
+void GameMap::move_object_y(std::uint16_t x_pos,
                              std::uint16_t y_pos,
-                             std::uint16_t x_new_pos,
                              std::uint16_t y_new_pos) {
-    map[y_new_pos][x_new_pos] = map[y_pos][x_pos];
+    map[y_new_pos][x_pos] = map[y_pos][x_pos];
     map[y_pos][x_pos] = nullptr;
 
-    map[y_new_pos][x_new_pos + 1] = map[y_pos][x_pos + 1];
+    map[y_new_pos][x_pos + 1] = map[y_pos][x_pos + 1];
     map[y_pos][x_pos + 1] = nullptr;
+}
+
+void GameMap::move_object_x(std::uint16_t x_pos,
+                            std::uint16_t y_pos,
+                            std::uint16_t x_new_pos) {
+    map[y_pos][x_new_pos] = map[y_pos][x_pos]; // se puede borrar
+    map[y_pos][x_new_pos + 1] = map[y_pos][x_pos + 1];
+
+    map[y_pos][x_pos] = nullptr;
 }
 
 bool GameMap::check_free_position(std::uint16_t x_sold_pos,

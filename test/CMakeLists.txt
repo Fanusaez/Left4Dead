@@ -66,6 +66,14 @@ add_executable(testMovingSoldierDown
         ../src/scout.cpp
         )
 
+add_executable(testMovingSoldierRight
+        test_moving_soldier_right.cpp
+        ../src/soldier.cpp
+        ../src/walker.cpp
+        ../src/map.cpp
+        ../src/scout.cpp
+        )
+
 # target_link_libraries(testPrueba PRIVATE myLibrary)
 
 # Despues agregar el target aca y listo
@@ -79,6 +87,7 @@ set(testTargets
         testShootingScout
         testMovingUpSoldier
         testMovingSoldierDown
+        testMovingSoldierRight
 )
 
 foreach(target ${testTargets})

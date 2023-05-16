@@ -29,6 +29,7 @@ std::uint16_t get_y_position() override;
 std::uint16_t get_x_position();
 void move_up() override;
 void move_down();
+void move_right();
 ~Soldier();
 
 };
