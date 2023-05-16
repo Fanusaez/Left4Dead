@@ -15,18 +15,9 @@ void find_new_y_pos(std::int16_t& new_y_pos_ref,
                     std::uint16_t x_pos_sold,
                     std::uint16_t y_pos_sold);
 
-void find_new_x_pos(std::int16_t& new_x_pos_ref,
-                    std::uint16_t possible_new_x_pos,
-                    std::uint16_t x_pos_sold,
-                    std::uint16_t y_pos_sold);
-
 void move_object_y(std::uint16_t x_pos,
                     std::uint16_t y_pos,
                     std::uint16_t y_new_pos);
-
-void move_object_x(std::uint16_t x_pos,
-                   std::uint16_t y_pos,
-                   std::uint16_t x_new_pos);
 
  public:
 GameMap(std::uint16_t x_size, std::uint16_t y_size);
@@ -63,6 +54,10 @@ void move_soldier_down(std::uint16_t x_sold_pos,
 void move_soldier_right(std::uint16_t x_sold_pos,
                        std::uint16_t y_sold_pos,
                        std::int16_t& new_x_pos_ref);
+
+void move_soldier_left(std::uint16_t x_sold_pos,
+                        std::uint16_t y_sold_pos,
+                        std::int16_t& new_x_pos_ref);
 
 bool check_free_position(std::uint16_t x_pos,
                          std::uint16_t y_sold_pos);

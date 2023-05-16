@@ -53,6 +53,14 @@ void Soldier::move_right() {
     }
 }
 
+void Soldier::move_left() {
+    std::int16_t new_x_pos = -1;
+    map.move_soldier_left(x_pos, y_pos, new_x_pos);
+    if(new_x_pos >= 0){
+        x_pos = new_x_pos;
+    }
+}
+
 std::uint16_t Soldier::get_y_position() {
     return y_pos;
 }

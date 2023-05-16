@@ -74,6 +74,13 @@ add_executable(testMovingSoldierRight
         ../src/scout.cpp
         )
 
+add_executable(testMoveSoldierLeft
+        test_moving_soldier_left.cpp
+        ../src/soldier.cpp
+        ../src/walker.cpp
+        ../src/map.cpp
+        ../src/scout.cpp
+        )
 add_executable(testMoveMap
         test_move_map.cpp
         ../src/soldier.cpp
@@ -95,6 +102,7 @@ set(testTargets
         testMovingUpSoldier
         testMovingSoldierDown
         testMovingSoldierRight
+        testMoveSoldierLeft
         testMoveMap
 )
 

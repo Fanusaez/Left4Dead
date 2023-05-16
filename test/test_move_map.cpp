@@ -380,11 +380,13 @@ TEST_LIST = {
         {"Move down stays in same place for complete collision with walker", testNotMoveSoldierDownForCompleteCollisionWithZombie},
         {"Move down stays in same place for partial collision with walker", testNotMoveSoldierDownForPartialCollisionWithZombie},
         {"Move down stays in same place for partial collision with walker 2", testNotMoveSoldierDownForPartialCollisionWithZombie2},
+
         {"Move soldier 1 position up and check Map",testMoveSoldierUpAndCheckPositions},
         {"Move soldier 1 position up goes to ending position and check Map", testMoveSoldierUpGoesToEndingCheckPositions},
         {"Move up stays in same place for complete collision with walker", testNotMoveSoldierUpForCompleteCollisionWithZombie},
         {"Move up stays in same place for partial collision with walker", testNotMoveSoldierUpForPartialCollisionWithZombie},
         {"Move up stays in same place for partial collision with walker 2", testNotMoveSoldierUpForPartialCollisionWithZombie2},
+
         {"Move soldier 1 position right",testMoveSoldierRightAndCheckMap},
         {"Try to move soldier 1 position on limit of map, stays in place",testMoveSoldierRightEndOfMapAndCheckMap},
         {"Move soldier 1 position right not possible for walker",testNotMoveSoldierRightForCollisionWithZombieAndCheckMap},
