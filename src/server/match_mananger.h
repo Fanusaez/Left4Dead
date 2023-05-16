@@ -8,6 +8,7 @@
 #include <list>
 #include <vector>
 #include <string>
+#include <atomic>
 
 class Player;
 
@@ -21,6 +22,8 @@ private:
 
     std::list<Game* > games;    //Falta funcion que les haga un join a todas estas partidas
 
+    std::atomic<bool> keep_playing;
+
     bool existe_escenario(int codigo);
 
 public:
@@ -31,6 +34,8 @@ public:
     int crear_escenario(std::string *escenario);
 
     bool join(int codigo);
+
+    void joinMatchs();
 };
 #endif
 

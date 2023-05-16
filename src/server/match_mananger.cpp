@@ -9,7 +9,7 @@ MatchMananger::MatchMananger(){
 
 Queue<std::vector<char>> * MatchMananger::getQueueGame(Queue<std::vector<char>> *queue_sender, std::string *escenario){
     if(crear_escenario(escenario) != -1){   //Si el escenario no existe crearlo
-        Game* new_game = new Game(queue_sender);
+        Game *new_game = new Game(queue_sender, std::ref(keep_playing));
         games.push_back(new_game);
         Queue<std::vector<char>> *aux = new_game->getQueue();
         new_game->start();
@@ -46,5 +46,16 @@ bool MatchMananger::existe_escenario(int codigo){
 }
 
 bool MatchMananger::join(int codigo){
-    return (existe_escenario(codigo));
+    if (existe_escenario(codigo)){
+        //add queue
+    }
+}
+
+void MatchMananger::joinMatchs(){
+    for (Game *game : games){
+        keep_playing = false;
+        game->join();
+        delete game;
+    }
+    games.clear();
 }

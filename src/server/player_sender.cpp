@@ -13,7 +13,9 @@ void PlayerSender::run() {
     bool was_closed = false;
     std::vector<char> bytes;
     while (keep_talking && was_closed == false) {
-        bytes = queue_sender.pop();
+        std::vector<char> bytes;
+        bool could_pop = queue_sender.try_pop(bytes);
+        if (could_pop)
         socket->sendall(bytes.data(), bytes.size(), &was_closed);
     }
     keep_talking = false;
