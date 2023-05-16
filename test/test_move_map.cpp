@@ -374,6 +374,96 @@ void testMoveSoldierRightWithZombieCloseAndCheckMap(){
 
 //*********************************** Move Left ******************************************************8
 
+void testMoveSoldierLeftAndCheckMap(){
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 3, 8);
+    map.add_soldier(&soldier, 3, 8);
+
+    soldier.move_left();
+
+    GameObject* soldier1 = map.get_object(2, 8);
+    GameObject* soldier2 = map.get_object(3, 8);
+
+    GameObject* old_pos1= map.get_object(4, 8);
+
+    TEST_CHECK(soldier1 != nullptr);
+    TEST_CHECK(soldier2 != nullptr);
+    TEST_CHECK(old_pos1 == nullptr);
+}
+
+void testMoveSoldierLeftBeginningOfMapAndCheckMap() {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 0, 3);
+    map.add_soldier(&soldier, 0, 3);
+
+    soldier.move_left();
+
+    GameObject* soldier1 = map.get_object(0, 3);
+    GameObject* soldier2 = map.get_object(1, 3);
+
+
+    TEST_CHECK(soldier1 != nullptr);
+    TEST_CHECK(soldier2 != nullptr);
+}
+
+void testNotMoveSoldierLeftForCollisionWithZombieAndCheckMap(){
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 3, 7);
+    map.add_soldier(&soldier, 3, 7);
+
+    Walker walker(1,7);
+    map.add_zombie(&walker, 1, 7);
+
+    soldier.move_left();
+
+    GameObject* soldier1 = map.get_object(3, 7);
+    GameObject* soldier2 = map.get_object(4, 7);
+
+    GameObject* walker1 = map.get_object(1, 7);
+    GameObject* walker2 = map.get_object(2, 7);
+
+    // Si casteo a a algo que no es, me tira nullptr
+    TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
+    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
+    TEST_CHECK(dynamic_cast<Walker*>(walker1) != nullptr);
+    TEST_CHECK(dynamic_cast<Walker*>(walker2) != nullptr);
+}
+
+
+void testMoveSoldierLeftWithZombieCloseAndCheckMap(){
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 6, 8);
+    map.add_soldier(&soldier, 6, 8);
+
+    Walker walker(4,9);
+    map.add_zombie(&walker, 4, 9);
+
+    soldier.move_left();
+
+    GameObject* soldier1 = map.get_object(5, 8);
+    GameObject* soldier2 = map.get_object(6, 8);
+
+    GameObject* walker1 = map.get_object(4, 9);
+    GameObject* walker2 = map.get_object(5, 9);
+
+    // Si casteo a a algo que no es, me tira nullptr
+    TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
+    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
+    TEST_CHECK(dynamic_cast<Walker*>(walker1) != nullptr);
+    TEST_CHECK(dynamic_cast<Walker*>(walker2) != nullptr);
+}
+
+
+
+
 TEST_LIST = {
         {"Move soldier 1 position down and check Map",testMoveSoldierDownAndCheckPositions},
         {"Move soldier 1 position down goes to beginning and check Map",testMoveSoldierDownGoesToBeginningCheckPositions},
@@ -391,6 +481,12 @@ TEST_LIST = {
         {"Try to move soldier 1 position on limit of map, stays in place",testMoveSoldierRightEndOfMapAndCheckMap},
         {"Move soldier 1 position right not possible for walker",testNotMoveSoldierRightForCollisionWithZombieAndCheckMap},
         {"Move soldier 1 position right close to a zombie", testMoveSoldierRightWithZombieCloseAndCheckMap},
+
+        {"Move soldier 1 position Left",testMoveSoldierLeftAndCheckMap},
+        {"Move soldier 1 position on limit of map",testMoveSoldierLeftBeginningOfMapAndCheckMap},
+        {"Move soldier 1 position Left not possible for walker",testNotMoveSoldierLeftForCollisionWithZombieAndCheckMap},
+        {"Move soldier 1 position Left close to a zombie", testMoveSoldierLeftWithZombieCloseAndCheckMap},
+
         {NULL, NULL},
 };
 
