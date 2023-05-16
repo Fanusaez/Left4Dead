@@ -231,3 +231,7 @@ bool GameMap::valid_entire_object_position(std::int16_t x_pos, std::int16_t y_po
     }
     return valid_x && valid_y;
 }
+
+GameObject* GameMap::get_object(std::uint16_t x_pos, std::uint16_t y_pos) {
+    return map[y_pos][x_pos];
+}
