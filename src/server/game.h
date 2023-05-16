@@ -4,6 +4,8 @@
 #include "../common/queue.h"
 #include "../common/thread.h"
 
+#include <list>
+
 class Game : public Thread {
 private:
     //Juego juego
@@ -12,7 +14,7 @@ private:
     Queue<std::vector<char>> queue_entrante;
  
     // Tengo una referencia  a la queue del sender
-    Queue<std::vector<char>> *queue_saliente;
+    std::list<Queue<std::vector<char>> *> queue_salientes;
 
 public:
     Game(Queue<std::vector<char>> *queue_sender);
