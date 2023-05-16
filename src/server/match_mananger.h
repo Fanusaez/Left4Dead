@@ -1,0 +1,37 @@
+#ifndef MATCHMANANGER_H
+#define MATCHMANANGER_H
+
+#include "../common/queue.h"
+#include "game.h"
+
+#include <map>
+#include <list>
+#include <vector>
+#include <string>
+
+class Player;
+
+class MatchMananger{
+private:    
+    int contador;
+
+    std::mutex m;
+
+    std::map<std::string, int> escenarios;
+
+    std::list<Game* > games;    //Falta funcion que les haga un join a todas estas partidas
+
+    bool existe_escenario(int codigo);
+
+public:
+    MatchMananger();
+
+    Queue<std::vector<char>> *crear(Queue<std::vector<char>> *queue_sender, std::string *escenario);
+
+    int crear_escenario(std::string *escenario);
+
+    bool join(int codigo);
+};
+#endif
+
+    

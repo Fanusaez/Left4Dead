@@ -14,13 +14,37 @@ void Acceptor::run() {
             break;
         }
         //Le muevo el socket al cliente para que se maneje el en enviar y recibir mensajes
-        //Player *nuevo = new Player(std::move(socket_player), &player_mananger);
+        Player *new_player = new Player(std::move(socket_player), &match_mananger);
 
-        //players_mananger -> add_player(nuevo);
+        //Agergo mi jugador a mi lista de jugadores
+        players.push_back(new_player);
 
-        //reap_dead();
+        reap_dead();
     }
-    //kill_all();
+    kill_all();
+}
+
+void Acceptor::reap_dead()
+{
+    players.remove_if([](Player *c)
+                      {
+    if (c->is_dead()) {
+        c->join();
+        delete c;
+        return true;
+    }
+    return false; });
+}
+
+void Acceptor::kill_all()
+{
+    for (Player *c : players)
+    {
+        c->kill();
+        c->join();
+        delete c;
+    }
+    players.clear();
 }
 
 Acceptor::~Acceptor() {}
