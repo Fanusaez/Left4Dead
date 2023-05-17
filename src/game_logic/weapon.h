@@ -10,5 +10,8 @@ class Weapon {
  public:
 virtual void shoot(std::vector<GameObject*>& shooting_objects,
                    std::uint16_t y_pos_sold) = 0;
+
+virtual void throw_explosive_grenade(std::vector<GameObject*>& shooting_objects) = 0;
+
 };
 #endif  // WEAPON_H_

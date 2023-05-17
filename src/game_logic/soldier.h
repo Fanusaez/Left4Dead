@@ -23,8 +23,9 @@ Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
 Soldier(Weapon* weapon, GameMap& map, std::uint16_t x_pos, std::uint16_t y_pos);
 
 void shoot();
+void throw_explosive_grenade();
 void set_direction(std::int16_t direction);
-void get_shot(std::uint16_t damage) override;
+void receive_damage(std::uint16_t damage) override;
 std::uint16_t get_y_position() override;
 std::uint16_t get_x_position();
 void move_up() override;

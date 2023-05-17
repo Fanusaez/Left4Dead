@@ -1,5 +1,7 @@
 #include "soldier.h"
 
+#define GRANADE_DISTANCE_REACH 4
+
 Soldier::Soldier(Weapon* weapon, GameMap& map) : weapon(weapon), map(map){} // lo dejo por ahora
 
 Soldier::Soldier(Weapon* weapon,
@@ -20,7 +22,24 @@ void Soldier::shoot() {
     weapon->shoot(shooting_objects, y_pos);
 }
 
-void Soldier::get_shot(std::uint16_t damage) {
+void Soldier::throw_explosive_grenade() {
+    // deberia verificar que no tenga una p90, pq sino estaria haciendo laburar al programa al pedo
+    // me ahorraria una operacion costosa
+
+    std::vector<GameObject*> objects;
+    std::int16_t y_granade_pos = y_pos;
+
+    if (direction == UP) {
+         y_granade_pos -= GRANADE_DISTANCE_REACH;
+    } else {
+        y_granade_pos += GRANADE_DISTANCE_REACH;
+    }
+
+    map.throw_grenade(objects, x_pos, y_granade_pos);
+    weapon->throw_explosive_grenade(objects);
+}
+
+void Soldier::receive_damage(std::uint16_t damage) {
     health -= damage;
     if (health <= 0) {
         dead = true;
@@ -75,7 +94,6 @@ void Soldier::set_direction(std::int16_t new_direction) {
     } else if (new_direction == -1) {
         direction = UP;
     }
-
 }
 
 Soldier::~Soldier(){

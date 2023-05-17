@@ -23,6 +23,52 @@ void GameMap::shoot(std::vector<GameObject*>& game_objects,
                           direction);
 }
 
+void GameMap::throw_grenade(std::vector<GameObject *> &game_objects,
+                            std::uint16_t x_pos_granade,
+                            std::uint16_t y_pos_granade) {
+    if (y_pos_granade >= y_size) {
+        y_pos_granade = y_size - 1;
+    } else if (y_pos_granade < 0) {
+        y_pos_granade = 0;
+    }
+    get_objects_in_distance(x_pos_granade,
+                            y_pos_granade,
+                            game_objects);
+}
+
+void GameMap::get_objects_in_distance(std::int16_t x_granade_pos,
+                                      std::int16_t y_granade_pos,
+                                      std::vector<GameObject *> &game_objects) {
+    std::int16_t x_start = x_granade_pos - radius_damage_granade;
+    std::int16_t y_start = y_granade_pos - radius_damage_granade;
+    validate_position(x_start, y_start);
+
+    std::int16_t x_finish = x_granade_pos + radius_damage_granade;
+    std::int16_t y_finish = y_granade_pos + radius_damage_granade;
+    validate_position(x_finish, y_finish);
+
+    for (std::int16_t j = y_start; j <= y_finish; j++) {
+        for (std::int16_t i = x_start; i <= x_finish; i++)
+            if (map[j][i] != nullptr) {
+                game_objects.push_back(map[j][i]);
+            }
+    }
+}
+
+void GameMap::validate_position(std::int16_t& x_pos,
+                                std::int16_t& y_pos) {
+    if (x_pos > x_size - 1) {
+        x_pos = x_size - 1;
+    } else if (x_pos < 0) {
+        x_pos = 0;
+    }
+    if (y_pos > y_size - 1) {
+        y_pos = y_size - 1;
+    } else if (y_pos < 0) {
+        y_pos = 0;
+    }
+}
+
 void GameMap::
 collision_with_zombie(std::vector<GameObject*>& game_objects,
                       std::uint16_t x_pos_sold,

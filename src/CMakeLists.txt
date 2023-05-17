@@ -1,12 +1,12 @@
 add_executable(main
 	main.cpp
-	map.cpp
-	soldier.cpp
-	walker.cpp
-	idf.cpp
-	scout.cpp
-	game_object.h
-	weapon.h
+        game_logic/map.cpp
+        game_logic/soldier.cpp
+        game_logic/walker.cpp
+        game_logic/idf.cpp
+        game_logic/scout.cpp
+        game_logic/game_object.h
+        game_logic/weapon.h
 )
 
 option(GAMEUI "Build game user interface" OFF)

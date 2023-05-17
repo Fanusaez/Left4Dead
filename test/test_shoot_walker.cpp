@@ -1,11 +1,11 @@
 #include <cstdint>
 #include "acutest.h"
-#include "../src/soldier.h"
-#include "../src/walker.h"
-#include "../src/map.h"
-#include "../src/game_object.h"
-#include "../src/idf.h"
-#include "../src/weapon.h"
+#include "game_logic/soldier.h"
+#include "game_logic/walker.h"
+#include "game_logic/map.h"
+#include "game_logic/game_object.h"
+#include "game_logic/idf.h"
+#include "game_logic/weapon.h"
 #define UP -1
 #define DOWN 1
 

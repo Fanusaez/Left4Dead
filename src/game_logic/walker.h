@@ -15,7 +15,7 @@ class Walker : public GameObject {
  public:
 Walker(std::uint16_t x_pos, std::uint16_t y_pos);
 
-void get_shot(std::uint16_t damage) override;
+void receive_damage(std::uint16_t damage) override;
 std::uint16_t get_y_position() override;
 void move_up() override;
 // ************************* Metodos de testeo ************************************************8//

@@ -20,74 +20,83 @@ add_executable(testProtocolServer
 
 add_executable(testCollision
         test_collision.cpp
-        ../src/soldier.cpp
-        ../src/walker.cpp
-        ../src/map.cpp
-        ../src/idf.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/idf.cpp
 )
 
 add_executable(testShooting
         test_shoot_walker.cpp
-        ../src/soldier.cpp
-        ../src/walker.cpp
-        ../src/map.cpp
-        ../src/idf.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/idf.cpp
         )
 
 add_executable(testShootingIdf
         test_shooting_idf.cpp
-        ../src/soldier.cpp
-        ../src/walker.cpp
-        ../src/map.cpp
-        ../src/idf.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/idf.cpp
         )
 
 add_executable(testShootingScout
         test_shooting_scout.cpp
-        ../src/soldier.cpp
-        ../src/walker.cpp
-        ../src/map.cpp
-        ../src/scout.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/scout.cpp
         )
 
 add_executable(testMovingUpSoldier
         test_moving_soldier_up.cpp
-        ../src/soldier.cpp
-        ../src/walker.cpp
-        ../src/map.cpp
-        ../src/scout.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/scout.cpp
         )
 
 add_executable(testMovingSoldierDown
         test_moving_soldier_down.cpp
-        ../src/soldier.cpp
-        ../src/walker.cpp
-        ../src/map.cpp
-        ../src/scout.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/scout.cpp
         )
 
 add_executable(testMovingSoldierRight
         test_moving_soldier_right.cpp
-        ../src/soldier.cpp
-        ../src/walker.cpp
-        ../src/map.cpp
-        ../src/scout.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/scout.cpp
         )
 
 add_executable(testMoveSoldierLeft
         test_moving_soldier_left.cpp
-        ../src/soldier.cpp
-        ../src/walker.cpp
-        ../src/map.cpp
-        ../src/scout.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/scout.cpp
         )
 add_executable(testMoveMap
         test_move_map.cpp
-        ../src/soldier.cpp
-        ../src/walker.cpp
-        ../src/map.cpp
-        ../src/scout.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/scout.cpp
         )
+
+add_executable(testExplosiveGrenade
+        test_explosive_grenade.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/scout.cpp
+        )
+
 # target_link_libraries(testPrueba PRIVATE myLibrary)
 
 # Despues agregar el target aca y listo
@@ -104,6 +113,7 @@ set(testTargets
         testMovingSoldierRight
         testMoveSoldierLeft
         testMoveMap
+        testExplosiveGrenade
 )
 
 foreach(target ${testTargets})
