@@ -15,8 +15,17 @@ class TextureLoader {
 public:
 	TextureLoader();
 
+	/*
+	 * Load all sprites in the spriteNames list.
+	 * Each sprite name should be relative to the assets directory.
+	 * renderer is the rendering context.
+	 */
     	void load(SDL2pp::Renderer &renderer, const std::list<std::string> &spriteNames);
 
+	/*
+	 * Return a reference to the texture with name spriteName.
+	 * The sprite name should be relative to the assets directory.
+	 */
 	SDL2pp::Texture &getTexture(const std::string &spriteName);
 
 	~TextureLoader();
