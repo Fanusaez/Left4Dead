@@ -8,7 +8,7 @@ class GameMap {
  private:
     std::uint16_t x_size;
     std::uint16_t y_size;
-    std::uint16_t radius_damage_granade = y_size / 6;
+    std::uint16_t radius_damage_grenade = 3 ; // y_size / 6;
     std::vector<std::vector<GameObject*>> map;
 
 void find_new_y_pos(std::int16_t& new_y_pos_ref,
@@ -20,8 +20,8 @@ void move_object_y(std::uint16_t x_pos,
                     std::uint16_t y_pos,
                     std::uint16_t y_new_pos);
 
-void get_objects_in_distance(std::int16_t x_granade_pos,
-                             std::int16_t y_granade_pos,
+void get_objects_in_distance(std::int16_t x_grenade_pos,
+                             std::int16_t y_grenade_pos,
                              std::vector<GameObject*>& game_objects);
 
 void validate_position(std::int16_t& x_pos, std::int16_t& y_pos);
@@ -34,8 +34,8 @@ void shoot(std::vector<GameObject*>& game_objects,
            std::int16_t direction);
 
 void throw_grenade(std::vector<GameObject*>& game_objects,
-           std::uint16_t x_pos_granade,
-           std::uint16_t y_pos_granade);
+           std::uint16_t x_pos_grenade,
+           std::uint16_t y_pos_grenade);
 
 void collision_with_zombie(std::vector<GameObject*>& game_objects,
                            std::uint16_t x_pos_sold,

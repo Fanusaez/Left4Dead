@@ -24,28 +24,28 @@ void GameMap::shoot(std::vector<GameObject*>& game_objects,
 }
 
 void GameMap::throw_grenade(std::vector<GameObject *> &game_objects,
-                            std::uint16_t x_pos_granade,
-                            std::uint16_t y_pos_granade) {
-    if (y_pos_granade >= y_size) {
-        y_pos_granade = y_size - 1;
-    } else if (y_pos_granade < 0) {
-        y_pos_granade = 0;
+                            std::uint16_t x_pos_grenade,
+                            std::uint16_t y_pos_grenade) {
+    if (y_pos_grenade >= y_size) {
+        y_pos_grenade = y_size - 1;
+    } else if (y_pos_grenade < 0) {
+        y_pos_grenade = 0;
     }
-    get_objects_in_distance(x_pos_granade,
-                            y_pos_granade,
+    get_objects_in_distance(x_pos_grenade,
+                            y_pos_grenade,
                             game_objects);
 }
 
-void GameMap::get_objects_in_distance(std::int16_t x_granade_pos,
-                                      std::int16_t y_granade_pos,
-                                      std::vector<GameObject *> &game_objects) {
-    std::int16_t x_start = x_granade_pos - radius_damage_granade;
-    std::int16_t y_start = y_granade_pos - radius_damage_granade;
-    validate_position(x_start, y_start);
+void GameMap::get_objects_in_distance(std::int16_t x_grenade_pos,
+                                      std::int16_t y_grenade_pos,
+                                      std::vector<GameObject*>& game_objects) {
+    std::int16_t x_start = x_grenade_pos - radius_damage_grenade;
+    std::int16_t y_start = y_grenade_pos - radius_damage_grenade;
+    //validate_position(x_start, y_start);
 
-    std::int16_t x_finish = x_granade_pos + radius_damage_granade;
-    std::int16_t y_finish = y_granade_pos + radius_damage_granade;
-    validate_position(x_finish, y_finish);
+    std::int16_t x_finish = x_grenade_pos + radius_damage_grenade;
+    std::int16_t y_finish = y_grenade_pos + radius_damage_grenade;
+   // validate_position(x_finish, y_finish);
 
     for (std::int16_t j = y_start; j <= y_finish; j++) {
         for (std::int16_t i = x_start; i <= x_finish; i++)
