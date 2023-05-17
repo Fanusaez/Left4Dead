@@ -21,7 +21,7 @@ void Acceptor::run() {
 
         reap_dead();
     }
-    match_mananger.joinMatchs();
+    match_mananger.joinGames();
     kill_all();
 }
 

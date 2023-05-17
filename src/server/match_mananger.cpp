@@ -7,10 +7,11 @@ MatchMananger::MatchMananger(){
     contador = 0;
 }
 
-Queue<std::vector<char>> * MatchMananger::getQueueGame(Queue<std::vector<char>> *queue_sender, std::string *escenario){
-    if(crear_escenario(escenario) != -1){   //Si el escenario no existe crearlo
-        Game *new_game = new Game(queue_sender, std::ref(keep_playing));
+Queue<std::vector<char>> * MatchMananger::create_game(Queue<std::vector<char>> *queue_sender, std::string *escenario){
+    if(!game_name_exist(escenario)){   //Si el escenario no existe crearlo
+        Game *new_game = new Game(queue_sender, std::ref(keep_playing),&contador,escenario);
         games.push_back(new_game);
+        contador++;
         Queue<std::vector<char>> *aux = new_game->getQueue();
         new_game->start();
         return (aux);
@@ -20,38 +21,39 @@ Queue<std::vector<char>> * MatchMananger::getQueueGame(Queue<std::vector<char>> 
     }
 }
 
-int32_t MatchMananger::crear_escenario(std::string *escenario){
+bool MatchMananger::game_name_exist(std::string *game_name){
+    bool exist = false;
     m.lock();
-    auto it = escenarios.find(*escenario);
-
-    if (it != escenarios.end()) {
-        //Error
-        m.unlock();
-        return -1;
-    } else {
-        escenarios.insert(std::make_pair(*escenario, contador));
-        contador++;
-        m.unlock();
-        return (contador-1);
+    for (Game *game : games){
+        if (game->compare_game_name(game_name))
+            exist = true;
     }
-}
-
-bool MatchMananger::existe_escenario(int codigo){
-    m.lock();
-    bool exist = std::any_of(escenarios.begin(), escenarios.end(),
-                       [=](const auto &elem)
-                       { return elem.second == codigo; });
     m.unlock();
     return exist;
 }
 
-bool MatchMananger::join(int codigo){
-    if (existe_escenario(codigo)){
-        //add queue
+Game* MatchMananger::game_code_exist(int *codigo){
+    Game* return_game = NULL;
+    m.lock();
+    for (Game *game: games){
+        if (game->compare_code(codigo))
+            return_game = game;
     }
+    m.unlock();
+    return return_game;
 }
 
-void MatchMananger::joinMatchs(){
+Queue<std::vector<char>> *MatchMananger::join(Queue<std::vector<char>> *queue_sender, int *codigo)
+{
+    Game* game = game_code_exist(codigo);
+    if (game){
+        game->addPlayer(queue_sender);
+        return game->getQueue();
+    }
+    return NULL;
+}
+
+void MatchMananger::joinGames(){
     for (Game *game : games){
         keep_playing = false;
         game->join();

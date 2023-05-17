@@ -18,24 +18,22 @@ private:
 
     std::mutex m;
 
-    std::map<std::string, int> escenarios;
-
-    std::list<Game* > games;    //Falta funcion que les haga un join a todas estas partidas
+    std::list<Game* > games;
 
     std::atomic<bool> keep_playing;
 
-    bool existe_escenario(int codigo);
+    Game *game_code_exist(int *codigo);
+
+    bool game_name_exist(std::string *escenario);
 
 public:
     MatchMananger();
 
-    Queue<std::vector<char>> *getQueueGame(Queue<std::vector<char>> *queue_sender, std::string *escenario);
+    Queue<std::vector<char>> *create_game(Queue<std::vector<char>> *queue_sender, std::string *escenario);
 
-    int crear_escenario(std::string *escenario);
+    Queue<std::vector<char>> *join(Queue<std::vector<char>> *queue_sender, int *codigo);
 
-    bool join(int codigo);
-
-    void joinMatchs();
+    void joinGames();
 };
 #endif
 

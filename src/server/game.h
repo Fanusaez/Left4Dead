@@ -11,6 +11,10 @@ class Game : public Thread {
 private:
     //Juego juego
 
+    int32_t code;
+
+    std::string game_name;
+
     // La queue donde el player_receiver va a pushear es eta
     Queue<std::vector<char>> queue_entrante;
  
@@ -20,10 +24,16 @@ private:
     std::atomic<bool> &keep_playing;
 
 public:
-    Game(Queue<std::vector<char>> *queue_sender, std::atomic<bool> &keep_playing);
+    Game(Queue<std::vector<char>> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name);
 
     void run() override;
 
     Queue<std::vector<char>> *getQueue();
+
+    void addPlayer(Queue<std::vector<char>> *queue_sender);
+
+    bool compare_code(int32_t *code_to_compare);
+
+    bool compare_game_name(std::string *game_name_to_compare);
 };
 #endif

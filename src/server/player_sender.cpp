@@ -20,7 +20,6 @@ void PlayerSender::run() {
     }
     keep_talking = false;
 }
-
 void PlayerSender::joinPlayerReceiver(){
     player_receiver.join();
 }
@@ -32,7 +31,7 @@ void PlayerSender::initPlayerReceiver(){
         // socket->recev()
         // Recibo un creat o un join
         std::string mapa = "map123";
-        queue_receiver = match_mananger->getQueueGame(&queue_sender, &mapa); // Es el caso de create despues hay que hacer una para join
+        queue_receiver = match_mananger->create_game(&queue_sender, &mapa); // Es el caso de create despues hay que hacer una para join
     }
     player_receiver.setQueueReceiver(queue_receiver);
     // Una vez que se pudo unir a una partida lanzo el player_receiver
