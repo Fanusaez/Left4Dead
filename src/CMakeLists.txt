@@ -22,6 +22,7 @@ if(GAMEUI)
 			client_main.cpp
 			graphics/Player.cpp
 			graphics/Animation.cpp
+			graphics/texture_loader.cpp
 	)
 
 	target_include_directories(client PRIVATE ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)

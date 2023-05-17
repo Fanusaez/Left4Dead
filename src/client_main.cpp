@@ -2,15 +2,14 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2pp/SDL2pp.hh>
 #include "Player.h"
+#include "texture_loader.h"
 #include <iostream>
 #include <exception>
 #include <unistd.h>
 #include <string>
-
-static const std::string AssetsPath = ASSETS_PATH;
+#include <list>
 
 static bool handleEvents(Player &player);
-static void render(SDL2pp::Renderer &renderer, Player &player);
 static void update(Player &player, float dt);
 
 int main(int argc, char *argv[])
@@ -22,15 +21,27 @@ int main(int argc, char *argv[])
 				      1280, 720,
 				      SDL_WINDOW_RESIZABLE);
 		SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
-		SDL2pp::Texture im(renderer, SDL2pp::Surface(std::string(AssetsPath).append("Soldier_1/Walk.png")).SetColorKey(true, 0));
-		Player player(im);
+		std::list<std::string> spritesToLoad;
+		spritesToLoad.push_back("Soldier_1/Walk.png");
+		spritesToLoad.push_back("backgrounds/War1/Pale/War.png");
+		TextureLoader textureLoader;
+		textureLoader.load(renderer, spritesToLoad);
+		Player player1(textureLoader.getTexture("Soldier_1/Walk.png"));
+		Player player2(textureLoader.getTexture("Soldier_1/Walk.png"));
+		SDL2pp::Texture &background = textureLoader.getTexture("backgrounds/War1/Pale/War.png");
+		player2.moveLeft();
 
 		bool running = true;
 
 		while (running) {
-			running = handleEvents(player);
-			update(player, FRAME_RATE);
-			render(renderer, player);
+			running = handleEvents(player1);
+			update(player1, FRAME_RATE);
+			update(player2, FRAME_RATE);
+			renderer.Clear();
+			renderer.Copy(background);
+			player1.render(renderer);
+			player2.render(renderer);
+			renderer.Present();
 			// la cantidad de segundos que debo dormir se debe ajustar en función
 			// de la cantidad de tiempo que demoró el handleEvents y el render
 			usleep(FRAME_RATE);
@@ -78,15 +89,6 @@ static bool handleEvents(Player &player) {
 		} // fin switch(event)
 	} // fin while(SDL_PollEvents)
 	return true;
-}
-
-static void render(SDL2pp::Renderer &renderer, Player &player) {
-	// TODO: fix this. I'm loading the backgorund everytime xd.
-	SDL2pp::Texture background(renderer, SDL2pp::Surface(std::string(AssetsPath).append("backgrounds/War1/Pale/War.png")).SetColorKey(true, 0));
-	renderer.Clear();
-	renderer.Copy(background);
-	player.render(renderer);
-	renderer.Present();
 }
 
 static void update(Player &player, float dt) {
