@@ -8,7 +8,9 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
+#ifndef FRAME_RATE
 #define FRAME_RATE 1000000.0f/25.0f
+#endif
 
 class SdlTexture;
 class Area;
