@@ -36,7 +36,7 @@ void Background::render(SDL2pp::Renderer &renderer)
 	SDL2pp::Rect rightDst(
 		renderer.GetLogicalWidth() - this->scrollingOffset,
 		0,
-		renderer.GetLogicalWidth(),
+		this->scrollingOffset,
 		renderer.GetLogicalHeight());
 
 	renderer.Copy(this->texture, leftSrc, leftDst);
