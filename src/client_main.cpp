@@ -10,8 +10,7 @@
 #include <string>
 #include <list>
 
-static bool handleEvents(Player &player);
-static void update(Player &player, float dt);
+static bool handleEvents(Player &player, Background &background);
 
 int main(int argc, char *argv[])
 {
@@ -29,17 +28,18 @@ int main(int argc, char *argv[])
 		spritesToLoad.push_back("backgrounds/War2/Pale/War2.png");
 		TextureLoader textureLoader;
 		textureLoader.load(renderer, spritesToLoad);
-		Player player1(textureLoader.getTexture("Soldier_1/Walk.png"));
+		Player player(textureLoader.getTexture("Soldier_1/Walk.png"));
 		Background background(textureLoader.getTexture("backgrounds/War1/Pale/War.png"));
 
 		bool running = true;
 
 		while (running) {
-			running = handleEvents(player1);
-			update(player1, FRAME_RATE);
+			running = handleEvents(player, background);
+			background.update(FRAME_RATE);
+			player.update(FRAME_RATE);
 			renderer.Clear();
 			background.render(renderer);
-			player1.render(renderer);
+			player.render(renderer);
 			renderer.Present();
 			// la cantidad de segundos que debo dormir se debe ajustar en función
 			// de la cantidad de tiempo que demoró el handleEvents y el render
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-static bool handleEvents(Player &player) {
+static bool handleEvents(Player &player, Background &background) {
 	SDL_Event event;
 	// Para el alumno: Buscar diferencia entre waitEvent y pollEvent
 	while(SDL_PollEvent(&event)){
@@ -63,9 +63,11 @@ static bool handleEvents(Player &player) {
 				switch (keyEvent.keysym.sym) {
 					case SDLK_LEFT:
 						player.moveLeft();
+						background.moveRight();
 						break;
 					case SDLK_RIGHT:
 						player.moveRigth();
+						background.moveLeft();
 						break;
 				}
 			} // Fin KEY_DOWN
@@ -75,9 +77,11 @@ static bool handleEvents(Player &player) {
 				switch (keyEvent.keysym.sym) {
 					case SDLK_LEFT:
 						player.stopMoving();
+						background.stop();
 						break;
 					case SDLK_RIGHT:
 						player.stopMoving();
+						background.stop();
 						break;
 				}
 			}// Fin KEY_UP
