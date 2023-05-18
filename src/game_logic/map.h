@@ -11,6 +11,10 @@ class GameMap {
     std::uint16_t radius_damage_grenade = 3 ; // y_size / 6;
     std::vector<std::vector<GameObject*>> map;
 
+    // Mas adelante podria ser Movable* , y si mete todo menos los obstaculos
+    // se podria considerar lo que esta "vivo"
+    std::vector<GameObject*> game_objects_alive;
+
 void find_new_y_pos(std::int16_t& new_y_pos_ref,
                     std::uint16_t possible_new_y_pos,
                     std::uint16_t x_pos_sold,

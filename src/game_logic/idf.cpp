@@ -14,9 +14,9 @@ void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t y_sold
     }
 }
 
-void Idf::throw_explosive_grenade(std::vector<GameObject *> &shooting_objects) {
-    for (const auto& shooting_object : shooting_objects) {
-        shooting_object->receive_damage(grenade_damage);
+void Idf::throw_explosive_grenade(std::vector<GameObject*> &explosive_objects) {
+    for (const auto& explosive_object : explosive_objects) {
+        explosive_object->receive_damage(grenade_damage);
     }
 }
 

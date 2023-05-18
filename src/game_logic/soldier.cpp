@@ -80,13 +80,7 @@ void Soldier::move_left() {
     }
 }
 
-std::uint16_t Soldier::get_y_position() {
-    return y_pos;
-}
 
-std::uint16_t Soldier::get_x_position() {
-    return x_pos;
-}
 
 void Soldier::set_direction(std::int16_t new_direction) {
     if (new_direction == 1){
@@ -96,6 +90,27 @@ void Soldier::set_direction(std::int16_t new_direction) {
     }
 }
 
+bool Soldier::in_range_of_explosion(std::int16_t x_start,
+                                   std::int16_t x_finish,
+                                   std::int16_t y_start,
+                                   std::int16_t y_finish) {
+    return (x_start <= x_pos && x_pos <= x_finish && y_start <= y_pos && y_pos <= y_finish);
+}
+
 Soldier::~Soldier(){
     delete weapon;
+}
+
+//************************* Metodo de testeo *********************************************
+
+std::uint16_t Soldier::get_y_position() {
+    return y_pos;
+}
+
+std::uint16_t Soldier::get_x_position() {
+    return x_pos;
+}
+
+std::int16_t Soldier::get_health() {
+    return health;
 }

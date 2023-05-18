@@ -41,17 +41,16 @@ void GameMap::get_objects_in_distance(std::int16_t x_grenade_pos,
                                       std::vector<GameObject*>& game_objects) {
     std::int16_t x_start = x_grenade_pos - radius_damage_grenade;
     std::int16_t y_start = y_grenade_pos - radius_damage_grenade;
-    //validate_position(x_start, y_start);
+    validate_position(x_start, y_start);
 
     std::int16_t x_finish = x_grenade_pos + radius_damage_grenade;
     std::int16_t y_finish = y_grenade_pos + radius_damage_grenade;
-   // validate_position(x_finish, y_finish);
+    validate_position(x_finish, y_finish);
 
-    for (std::int16_t j = y_start; j <= y_finish; j++) {
-        for (std::int16_t i = x_start; i <= x_finish; i++)
-            if (map[j][i] != nullptr) {
-                game_objects.push_back(map[j][i]);
-            }
+    for (GameObject* object : game_objects_alive){
+        if (object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
+            game_objects.push_back(object);
+        }
     }
 }
 
@@ -203,6 +202,7 @@ void GameMap::add_soldier(GameObject* soldier,
     map[y_pos][x_pos] = soldier;
     map[y_pos][x_pos + 1] = soldier;
 
+    game_objects_alive.push_back(soldier);
 }
 
 void GameMap::add_zombie(GameObject *walker, std::uint16_t x_pos, std::uint16_t y_pos) {
@@ -211,6 +211,8 @@ void GameMap::add_zombie(GameObject *walker, std::uint16_t x_pos, std::uint16_t 
     }
     map[y_pos][x_pos] = walker;
     map[y_pos][x_pos + 1] = walker;
+
+    game_objects_alive.push_back(walker);
 }
 
 bool GameMap::collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos) {

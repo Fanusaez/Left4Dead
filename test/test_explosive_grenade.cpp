@@ -77,15 +77,6 @@ void testSoldierThrowsExplosiveGrenadeUpAndDamages5Zombies(void) {
 
 void testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies(void) {
 
-    /*
-     * los muevo a la izquierda/derecha para que los 4 que estaban
-     * en los limites, no sufran dano.
-     * Acordarse que donde se crea el objeto, tiene una posicion extra en x lado derecho para simular las colisiones
-     * debido a esto, si el zombie esta completamente adentro (dos posiciones en zona de dano de granada)
-     * se le va a aplicar un damage doble. Esto se podria evitar (creo) con un poco mas de logica en map,
-     * teniendo un vector de los zombies en el mapa y preguntrle a uno por uno si esta en el rango de damage. ver despues
-     */
-
     std::int16_t  x_throwing_place = 10;
     std::int16_t  y_throwing_place = 15;
 
@@ -109,14 +100,14 @@ void testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies(void) {
     Walker walker1(x_explosion,y_explosion); // donde cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    Walker walker2(x_limit_damage_left - 2,y_limit_damage_up); //falla
+    Walker walker2(x_limit_damage_left - 1,y_limit_damage_up); //falla
     map.add_zombie(&walker2, x_limit_damage_left - 2,y_limit_damage_up);
 
     Walker walker3(x_limit_damage_right + 1,y_limit_damage_up);
     map.add_zombie(&walker3, x_limit_damage_right + 1,y_limit_damage_up);
 
-    Walker walker4(x_limit_damage_left - 2,y_limit_damage_down); // falla
-    map.add_zombie(&walker4, x_limit_damage_left - 2,y_limit_damage_down);
+    Walker walker4(x_limit_damage_left - 1,y_limit_damage_down); // falla
+    map.add_zombie(&walker4, x_limit_damage_left - 1,y_limit_damage_down);
 
     Walker walker5(x_limit_damage_right + 1,y_limit_damage_down);
     map.add_zombie(&walker5, x_limit_damage_right + 1,y_limit_damage_down);
@@ -194,9 +185,38 @@ void testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies2(void) {
 }
 
 
+void testSoldierThrowsExplosiveGrenadeToOtherSoldier(void) {
+
+    std::int16_t  x_throwing_place = 10;
+    std::int16_t  y_throwing_place = 15;
+
+    std::int16_t  x_explosion = x_throwing_place;
+    std::int16_t  y_explosion= y_throwing_place - DISTANCE_THROWN;
+
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout1 = new Scout;
+    Weapon* scout2 = new Scout;
+
+    Soldier soldier1(scout1, map, x_throwing_place, y_throwing_place);
+    map.add_soldier(&soldier1, x_throwing_place, y_throwing_place);
+
+    Soldier soldier2(scout2, map, x_explosion,y_explosion); // donde cae la granada
+    map.add_soldier(&soldier2, x_explosion,y_explosion);
+
+    soldier1.set_direction(UP);
+    soldier1.throw_explosive_grenade();
+
+    std::int16_t remaining_health1 = soldier1.get_health();
+    std::int16_t remaining_health2 = soldier2.get_health();
+
+    TEST_CHECK(remaining_health1 == 100);
+    TEST_CHECK(remaining_health2 != 100);
+}
+
 TEST_LIST = {
         {"Soldier throws granade and damage 5 zombies", testSoldierThrowsExplosiveGrenadeUpAndDamages5Zombies},
         {"Soldier throws granade and damage 1 zombie", testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies},
         {"Soldier throws granade and damage 1 zombie", testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies2},
+        {"Soldier throws granade and damages other soldier", testSoldierThrowsExplosiveGrenadeToOtherSoldier},
         {NULL, NULL}
 };
