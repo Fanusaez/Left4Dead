@@ -26,11 +26,12 @@ void shoot();
 void throw_explosive_grenade();
 void receive_damage(std::uint16_t damage) override;
 std::uint16_t get_y_position() override;
-void move_up() override;
+
 bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t x_finish,
                            std::int16_t y_start,
                            std::int16_t y_finish) override;
+void move_up();
 void move_down();
 void move_right();
 void move_left();

@@ -11,10 +11,6 @@ void Walker::receive_damage(std::uint16_t damage) {
     }
 }
 
-void Walker::move_up() {
-
-}
-
 bool Walker::in_range_of_explosion(std::int16_t x_start,
                                    std::int16_t x_finish,
                                    std::int16_t y_start,

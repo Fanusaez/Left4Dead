@@ -47,7 +47,12 @@ void GameMap::get_objects_in_distance(std::int16_t x_grenade_pos,
     std::int16_t y_finish = y_grenade_pos + radius_damage_grenade;
     validate_position(x_finish, y_finish);
 
-    for (GameObject* object : game_objects_alive){
+    for (GameObject* object : zombies){
+        if (object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
+            game_objects.push_back(object);
+        }
+    }
+    for (GameObject* object : soldiers){
         if (object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
             game_objects.push_back(object);
         }
@@ -187,9 +192,12 @@ void GameMap::move_object_y(std::uint16_t x_pos,
     map[y_pos][x_pos + 1] = nullptr;
 }
 
-bool GameMap::check_free_position(std::uint16_t x_sold_pos,
-                                  std::uint16_t y_sold_pos) {
-    return map[y_sold_pos][x_sold_pos] == nullptr; // !map[y_sold_pos][x_sold_pos]
+bool GameMap::check_free_position(std::uint16_t x_pos,
+                                  std::uint16_t y_pos) {
+    if (x_pos < 0 || x_pos >= x_size|| y_pos < 0 || x_pos >= y_size){
+        return false;
+    }
+    return map[y_pos][x_pos] == nullptr; // !map[y_sold_pos][x_sold_pos]
 }
 // ****************************** Metodos de Testeo ***********************************//
 
@@ -202,7 +210,7 @@ void GameMap::add_soldier(GameObject* soldier,
     map[y_pos][x_pos] = soldier;
     map[y_pos][x_pos + 1] = soldier;
 
-    game_objects_alive.push_back(soldier);
+    soldiers.push_back(soldier);
 }
 
 void GameMap::add_zombie(GameObject *walker, std::uint16_t x_pos, std::uint16_t y_pos) {
@@ -212,7 +220,7 @@ void GameMap::add_zombie(GameObject *walker, std::uint16_t x_pos, std::uint16_t 
     map[y_pos][x_pos] = walker;
     map[y_pos][x_pos + 1] = walker;
 
-    game_objects_alive.push_back(walker);
+    zombies.push_back(walker);
 }
 
 bool GameMap::collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos) {

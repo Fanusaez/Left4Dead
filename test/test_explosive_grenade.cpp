@@ -213,10 +213,64 @@ void testSoldierThrowsExplosiveGrenadeToOtherSoldier(void) {
     TEST_CHECK(remaining_health2 != 100);
 }
 
+void testSoldierThrowsExplosiveGrenadeDownAndDamages5Zombies(void) {
+
+    std::int16_t  x_throwing_place = 10;
+    std::int16_t  y_throwing_place = 5;
+
+    std::int16_t  x_explosion = x_throwing_place;
+    std::int16_t  y_explosion= y_throwing_place + DISTANCE_THROWN;
+
+    std::int16_t  x_limit_damage_left = x_explosion - REACH_EXPLOSIVE_DAMAGE;
+    std::int16_t  x_limit_damage_right = x_explosion + REACH_EXPLOSIVE_DAMAGE;
+
+    std::int16_t  y_limit_damage_up = y_explosion - REACH_EXPLOSIVE_DAMAGE;
+    std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
+
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
+    map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
+
+    soldier.set_direction(DOWN);
+
+    Walker walker1(x_explosion,y_explosion); // donde cae la granada
+    map.add_zombie(&walker1, x_explosion,y_explosion);
+
+    Walker walker2(x_limit_damage_left,y_limit_damage_up);
+    map.add_zombie(&walker2, x_limit_damage_left,y_limit_damage_up);
+
+    Walker walker3(x_limit_damage_right,y_limit_damage_up);
+    map.add_zombie(&walker3, x_limit_damage_right,y_limit_damage_up);
+
+    Walker walker4(x_limit_damage_left,y_limit_damage_down);
+    map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down);
+
+    Walker walker5(x_limit_damage_right,y_limit_damage_down);
+    map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
+
+    soldier.throw_explosive_grenade();
+
+    std::uint16_t remaining_health1 = walker1.get_health();
+    std::uint16_t remaining_health2 = walker2.get_health();
+    std::uint16_t remaining_health3 = walker3.get_health();
+    std::uint16_t remaining_health4 = walker4.get_health();
+    std::uint16_t remaining_health5 = walker5.get_health();
+
+    TEST_CHECK(remaining_health1 < 100);
+    TEST_CHECK(remaining_health2 < 100);
+    TEST_CHECK(remaining_health3 < 100);
+    TEST_CHECK(remaining_health4 < 100);
+    TEST_CHECK(remaining_health5 < 100);
+}
+
+
 TEST_LIST = {
-        {"Soldier throws granade and damage 5 zombies", testSoldierThrowsExplosiveGrenadeUpAndDamages5Zombies},
-        {"Soldier throws granade and damage 1 zombie", testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies},
-        {"Soldier throws granade and damage 1 zombie", testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies2},
-        {"Soldier throws granade and damages other soldier", testSoldierThrowsExplosiveGrenadeToOtherSoldier},
+        {"Soldier throws granade up and damage 5 zombies", testSoldierThrowsExplosiveGrenadeUpAndDamages5Zombies},
+        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies},
+        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies2},
+        {"Soldier throws granade up and damages other soldier", testSoldierThrowsExplosiveGrenadeToOtherSoldier},
+        {"Soldier throws granade Down and damage 5 zombies",testSoldierThrowsExplosiveGrenadeDownAndDamages5Zombies},
         {NULL, NULL}
 };
