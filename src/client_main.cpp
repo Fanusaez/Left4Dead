@@ -3,6 +3,7 @@
 #include <SDL2pp/SDL2pp.hh>
 #include "Player.h"
 #include "texture_loader.h"
+#include "background.h"
 #include <iostream>
 #include <exception>
 #include <unistd.h>
@@ -29,21 +30,16 @@ int main(int argc, char *argv[])
 		TextureLoader textureLoader;
 		textureLoader.load(renderer, spritesToLoad);
 		Player player1(textureLoader.getTexture("Soldier_1/Walk.png"));
-		Player player2(textureLoader.getTexture("Soldier_1/Walk.png"));
-		SDL2pp::Texture &background = textureLoader.getTexture("backgrounds/War1/Pale/War.png");
-		//SDL2pp::Texture &background2 = textureLoader.getTexture("backgrounds/War2/Pale/War2.png");
-		player2.moveLeft();
+		Background background(textureLoader.getTexture("backgrounds/War1/Pale/War.png"));
 
 		bool running = true;
 
 		while (running) {
 			running = handleEvents(player1);
 			update(player1, FRAME_RATE);
-			update(player2, FRAME_RATE);
 			renderer.Clear();
-			renderer.Copy(background);
+			background.render(renderer);
 			player1.render(renderer);
-			player2.render(renderer);
 			renderer.Present();
 			// la cantidad de segundos que debo dormir se debe ajustar en función
 			// de la cantidad de tiempo que demoró el handleEvents y el render
