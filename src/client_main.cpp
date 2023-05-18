@@ -21,14 +21,17 @@ int main(int argc, char *argv[])
 				      1280, 720,
 				      SDL_WINDOW_RESIZABLE);
 		SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
+		renderer.SetLogicalSize(1920, 1080);
 		std::list<std::string> spritesToLoad;
 		spritesToLoad.push_back("Soldier_1/Walk.png");
 		spritesToLoad.push_back("backgrounds/War1/Pale/War.png");
+		spritesToLoad.push_back("backgrounds/War2/Pale/War2.png");
 		TextureLoader textureLoader;
 		textureLoader.load(renderer, spritesToLoad);
 		Player player1(textureLoader.getTexture("Soldier_1/Walk.png"));
 		Player player2(textureLoader.getTexture("Soldier_1/Walk.png"));
 		SDL2pp::Texture &background = textureLoader.getTexture("backgrounds/War1/Pale/War.png");
+		//SDL2pp::Texture &background2 = textureLoader.getTexture("backgrounds/War2/Pale/War2.png");
 		player2.moveLeft();
 
 		bool running = true;
