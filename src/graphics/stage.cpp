@@ -1,89 +1,104 @@
 #include "stage.h"
 #include <cstdlib>
 
-Stage::Stage(SDL2pp::Texture &backgroundTexture) :
-	texture(backgroundTexture),
-	scrollingOffset(0),
-	speed(0),
+Stage::Stage(SDL2pp::Texture &skyTexture, SDL2pp::Texture &backgroundTexture, SDL2pp::Texture &floorTexture) :
+	skyTexture(skyTexture),
+	backgroundTexture(backgroundTexture),
+	floorTexture(floorTexture),
+	backgroundOffset(0),
+	backgroundSpeed(0),
+	floorOffset(0),
+	floorSpeed(0),
 	elapsed(0){}
 
 void Stage::moveLeft()
 {
-	this->speed = 1;
+	this->backgroundSpeed = 1;
+	this->floorSpeed = 2;
 }
 
 void Stage::moveRight()
 {
-	this->speed = -1;
+	this->backgroundSpeed = -1;
+	this->floorSpeed = -2;
 }
 
 void Stage::stop()
 {
-	this->speed = 0;
+	this->backgroundSpeed = 0;
+	this->floorSpeed = 0;
 }
 
 void Stage::update(float dt)
 {
 	this->elapsed += dt;
 	if (this->elapsed > FRAME_RATE) {
-		this->scrollingOffset += speed;
+		this->backgroundOffset += this->backgroundSpeed;
+		this->floorOffset += this->floorSpeed;
 		this->elapsed -= FRAME_RATE;
 	}
 }
 
 void Stage::render(SDL2pp::Renderer &renderer)
 {
-	if (std::abs(this->scrollingOffset) >= this->texture.GetWidth())
-		this->scrollingOffset = 0;
-
-	if (this->scrollingOffset < 0)
-		this->renderMovedRight(renderer);
-	else if (this->scrollingOffset > 0)
-		this->renderMovedLeft(renderer);
-	else
-		renderer.Copy(this->texture);
+	renderer.Copy(this->skyTexture);
+	this->render(renderer, this->backgroundTexture, this->backgroundOffset);
+	this->render(renderer, this->floorTexture, this->floorOffset);
 }
 
-void Stage::renderMovedLeft(SDL2pp::Renderer &renderer)
+void Stage::render(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int &offset)
+{
+	if (std::abs(offset) >= texture.GetWidth())
+		offset = 0;
+
+	if (offset < 0)
+		this->renderMovedRight(renderer, texture, offset);
+	else if (offset > 0)
+		this->renderMovedLeft(renderer, texture, offset);
+	else
+		renderer.Copy(texture);
+}
+
+void Stage::renderMovedLeft(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset)
 {
 	SDL2pp::Rect leftSrc(
-		this->scrollingOffset,
+		offset,
 		0,
-		this->texture.GetWidth() - this->scrollingOffset,
-		this->texture.GetHeight());
+		texture.GetWidth() - offset,
+		texture.GetHeight());
 	SDL2pp::Rect rightSrc(
 		0,
 		0,
-		this->scrollingOffset,
-		this->texture.GetHeight());
+		offset,
+		texture.GetHeight());
 	SDL2pp::Rect leftDst(
 		0,
 		0,
-		renderer.GetLogicalWidth() - this->scrollingOffset,
+		renderer.GetLogicalWidth() - offset,
 		renderer.GetLogicalHeight());
 	SDL2pp::Rect rightDst(
-		renderer.GetLogicalWidth() - this->scrollingOffset,
+		renderer.GetLogicalWidth() - offset,
 		0,
-		this->scrollingOffset,
+		offset,
 		renderer.GetLogicalHeight());
 
-	renderer.Copy(this->texture, leftSrc, leftDst);
-	renderer.Copy(this->texture, rightSrc, rightDst);
+	renderer.Copy(texture, leftSrc, leftDst);
+	renderer.Copy(texture, rightSrc, rightDst);
 }
 
-void Stage::renderMovedRight(SDL2pp::Renderer &renderer)
+void Stage::renderMovedRight(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset)
 {
-	int absoluteOffset = (-1) * this->scrollingOffset;
+	int absoluteOffset = (-1) * offset;
 	SDL2pp::Rect leftSrc(
-		this->texture.GetWidth() - absoluteOffset,
+		texture.GetWidth() - absoluteOffset,
 		0,
 		absoluteOffset,
-		this->texture.GetHeight());
+		texture.GetHeight());
 	SDL2pp::Rect rightSrc(
 		0,
 		0,
-		this->texture.GetWidth() - absoluteOffset,
-		this->texture.GetHeight());
+		texture.GetWidth() - absoluteOffset,
+		texture.GetHeight());
 	SDL2pp::Rect leftDst(
 		0,
 		0,
@@ -95,8 +110,8 @@ void Stage::renderMovedRight(SDL2pp::Renderer &renderer)
 		renderer.GetLogicalWidth() - absoluteOffset,
 		renderer.GetLogicalHeight());
 
-	renderer.Copy(this->texture, leftSrc, leftDst);
-	renderer.Copy(this->texture, rightSrc, rightDst);
+	renderer.Copy(texture, leftSrc, leftDst);
+	renderer.Copy(texture, rightSrc, rightDst);
 }
 
 Stage::~Stage() = default;

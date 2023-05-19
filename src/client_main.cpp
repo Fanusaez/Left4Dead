@@ -24,12 +24,16 @@ int main(int argc, char *argv[])
 		renderer.SetLogicalSize(1920, 1080);
 		std::list<std::string> spritesToLoad;
 		spritesToLoad.push_back("Soldier_1/Walk.png");
-		spritesToLoad.push_back("backgrounds/War1/Pale/War.png");
-		spritesToLoad.push_back("backgrounds/War2/Pale/War2.png");
+		spritesToLoad.push_back("backgrounds/War1/Pale/Full_Sky.png");
+		spritesToLoad.push_back("backgrounds/War1/Pale/Far_Background.png");
+		spritesToLoad.push_back("backgrounds/War1/Pale/Floor.png");
 		TextureLoader textureLoader;
 		textureLoader.load(renderer, spritesToLoad);
 		Player player(textureLoader.getTexture("Soldier_1/Walk.png"));
-		Stage stage(textureLoader.getTexture("backgrounds/War1/Pale/War.png"));
+		Stage stage(
+			textureLoader.getTexture("backgrounds/War1/Pale/Full_Sky.png"),
+			textureLoader.getTexture("backgrounds/War1/Pale/Far_Background.png"),
+			textureLoader.getTexture("backgrounds/War1/Pale/Floor.png"));
 
 		bool running = true;
 
