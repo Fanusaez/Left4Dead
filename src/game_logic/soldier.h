@@ -31,6 +31,9 @@ bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t x_finish,
                            std::int16_t y_start,
                            std::int16_t y_finish) override;
+
+void get_position(std::vector<std::int16_t>& pos) override;
+
 void move_up();
 void move_down();
 void move_right();
@@ -38,7 +41,7 @@ void move_left();
 ~Soldier();
 
 //******************************* Metodos de testeo ***************************************************
-void set_direction(std::int16_t direction);
+void set_direction(std::int16_t direction) override;
 std::int16_t get_health();
 std::uint16_t get_x_position();
 };

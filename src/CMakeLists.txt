@@ -7,6 +7,7 @@ add_executable(main
         game_logic/scout.cpp
         game_logic/game_object.h
         game_logic/weapon.h
+		game_logic/zombie.h
 )
 
 option(GAMEUI "Build game user interface" OFF)

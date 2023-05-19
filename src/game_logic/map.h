@@ -2,8 +2,8 @@
 #define MAP_H_
 
 #include <vector>
-#include "game_object.h"
-
+#include "zombie.h"
+#include "walker.h"
 class GameMap {
  private:
     std::uint16_t x_size;
@@ -11,8 +11,9 @@ class GameMap {
     std::uint16_t radius_damage_grenade = 3 ; // y_size / 6;
     std::vector<std::vector<GameObject*>> map;
 
-    std::vector<GameObject*> zombies;
+    //std::vector<GameObject*> zombies_object;
     std::vector<GameObject*> soldiers;
+    std::vector<Zombie*> zombies;
 
 void find_new_y_pos(std::int16_t& new_y_pos_ref,
                     std::uint16_t possible_new_y_pos,
@@ -75,6 +76,7 @@ void move_soldier_left(std::uint16_t x_sold_pos,
 bool check_free_position(std::uint16_t x_pos,
                          std::uint16_t y_sold_pos);
 
+void chase_soldier_walking(Zombie* zombie, std::int16_t& x_new_pos, std::int16_t& y_new_pos, GameObject* closest_soldier);
     // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);

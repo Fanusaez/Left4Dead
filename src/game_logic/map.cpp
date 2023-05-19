@@ -47,9 +47,9 @@ void GameMap::get_objects_in_distance(std::int16_t x_grenade_pos,
     std::int16_t y_finish = y_grenade_pos + radius_damage_grenade;
     validate_position(x_finish, y_finish);
 
-    for (GameObject* object : zombies){
+    for (Zombie* object : zombies){
         if (object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
-            game_objects.push_back(object);
+            game_objects.push_back(dynamic_cast<GameObject*>(object));
         }
     }
     for (GameObject* object : soldiers){
@@ -199,6 +199,37 @@ bool GameMap::check_free_position(std::uint16_t x_pos,
     }
     return map[y_pos][x_pos] == nullptr; // !map[y_sold_pos][x_sold_pos]
 }
+
+void GameMap::chase_soldier_walking(Zombie* walker,
+                                    std::int16_t &x_new_pos,
+                                    std::int16_t &y_new_pos,
+                                    GameObject *soldier) {
+    std::vector<std::int16_t> sold_pos;
+    soldier->get_position(sold_pos);
+    std::int16_t x_sold = sold_pos[X_POS];
+    std::int16_t y_sold = sold_pos[Y_POS];
+
+    std::vector<std::int16_t> walker_pos;
+    walker->get_position(walker_pos);
+    std::int16_t x_walker = walker_pos[X_POS];
+    std::int16_t y_walker = walker_pos[Y_POS];
+
+    if (x_sold > x_walker && y_sold < y_walker) { // movimiento diagonal derecha arriba
+        bool cond1 = check_free_position(x_walker + 1, y_walker + 1); // primera pos
+        bool cond2 = check_free_position(x_walker + 2, y_walker + 1); // seg pos
+        if(cond1 && cond2) {
+            x_new_pos = x_walker + 1;
+            y_new_pos = y_walker + 1;
+            map[y_walker + 1][x_walker + 1] = map[y_walker][x_walker];
+            map[y_walker + 1][x_walker + 2] = map[y_walker][x_walker];
+            map[y_walker][x_walker] = nullptr;
+            map[y_walker][x_walker + 1] = nullptr;
+            walker->set_direction(UP);
+        }
+    }
+}
+
+
 // ****************************** Metodos de Testeo ***********************************//
 
 void GameMap::add_soldier(GameObject* soldier,
@@ -213,14 +244,15 @@ void GameMap::add_soldier(GameObject* soldier,
     soldiers.push_back(soldier);
 }
 
-void GameMap::add_zombie(GameObject *walker, std::uint16_t x_pos, std::uint16_t y_pos) {
+void GameMap::add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos) {
     if (!valid_entire_object_position(x_pos, y_pos)){ // cambiar por validar_gameObject
         return; // excepcion
     }
+    zombies.push_back(dynamic_cast<Zombie*>(walker));
+
     map[y_pos][x_pos] = walker;
     map[y_pos][x_pos + 1] = walker;
-
-    zombies.push_back(walker);
+    //zombies_object.push_back(walker);
 }
 
 bool GameMap::collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos) {

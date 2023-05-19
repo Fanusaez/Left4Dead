@@ -101,6 +101,11 @@ Soldier::~Soldier(){
     delete weapon;
 }
 
+void Soldier::get_position(std::vector<std::int16_t> &pos) {
+    pos.push_back(x_pos);
+    pos.push_back(y_pos);
+}
+
 //************************* Metodo de testeo *********************************************
 
 std::uint16_t Soldier::get_y_position() {
