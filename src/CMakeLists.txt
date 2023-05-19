@@ -34,8 +34,8 @@ if(GAMEUI)
 	set_target_properties(client
 			PROPERTIES
 			RUNTIME_OUTPUT_DIRECTORY ${CLIENT_OUTPUT_DIR})
-	file(COPY ${PROJECT_SOURCE_DIR}/assets DESTINATION ${CLIENT_OUTPUT_DIR})
-	target_compile_definitions(client PUBLIC ASSETS_PATH="${CLIENT_OUTPUT_DIR}/assets/")
+	#file(COPY ${PROJECT_SOURCE_DIR}/assets DESTINATION ${CLIENT_OUTPUT_DIR})
+	target_compile_definitions(client PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
 
 endif()
 
