@@ -112,6 +112,101 @@ void testMapChaseWalkerDiagonallyDownAndLeft() {
     TEST_CHECK(old_pos2 == nullptr);
 }
 
+//*********************************** Up and Down **************************************//
+
+void testMapChaseWalkerUp() {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 5, 5);
+    map.add_soldier(&soldier, 5, 5);
+
+    Walker walker(5,8);
+    map.add_zombie(&walker, 5, 8);
+
+    map.chase_soldiers();
+
+    GameObject* walker1 = map.get_object(5, 7);
+    GameObject* walker2 = map.get_object(6, 7);
+
+    GameObject* old_pos1= map.get_object(5, 8);
+    GameObject* old_pos2 = map.get_object(6, 8);
+
+    TEST_CHECK(walker1 != nullptr);
+    TEST_CHECK(walker2 != nullptr);
+    TEST_CHECK(old_pos1 == nullptr);
+    TEST_CHECK(old_pos2 == nullptr);
+}
+
+void testMapChaseWalkerDown() {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 5, 5);
+    map.add_soldier(&soldier, 5, 5);
+
+    Walker walker(5,1);
+    map.add_zombie(&walker, 5, 1);
+
+    map.chase_soldiers();
+
+    GameObject* walker1 = map.get_object(5, 2);
+    GameObject* walker2 = map.get_object(6, 2);
+
+    GameObject* old_pos1= map.get_object(5, 1);
+    GameObject* old_pos2 = map.get_object(6, 1);
+
+    TEST_CHECK(walker1 != nullptr);
+    TEST_CHECK(walker2 != nullptr);
+    TEST_CHECK(old_pos1 == nullptr);
+    TEST_CHECK(old_pos2 == nullptr);
+}
+
+//********************************** Right and Left **********************************************//
+
+void testMapChaseWalkerRight() {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 5, 5);
+    map.add_soldier(&soldier, 5, 5);
+
+    Walker walker(2,5);
+    map.add_zombie(&walker, 2, 5);
+
+    map.chase_soldiers();
+
+    GameObject* walker1 = map.get_object(3, 5);
+    GameObject* walker2 = map.get_object(4, 5);
+
+    GameObject* old_pos1= map.get_object(2, 5);
+
+    TEST_CHECK(walker1 != nullptr);
+    TEST_CHECK(walker2 != nullptr);
+    TEST_CHECK(old_pos1 == nullptr);
+}
+
+void testMapChaseWalkerLeft() {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 5, 5);
+    map.add_soldier(&soldier, 5, 5);
+
+    Walker walker(8,5);
+    map.add_zombie(&walker, 8, 5);
+
+    map.chase_soldiers();
+
+    GameObject* walker1 = map.get_object(7, 5);
+    GameObject* walker2 = map.get_object(8, 5);
+
+    GameObject* old_pos1= map.get_object(9, 5);
+
+    TEST_CHECK(walker1 != nullptr);
+    TEST_CHECK(walker2 != nullptr);
+    TEST_CHECK(old_pos1 == nullptr);
+}
 
 
 
@@ -120,6 +215,11 @@ TEST_LIST = {
         {"Walker chase soldier diagonally up and left", testMapChaseWalkerDiagonallyUpAndLeft},
         {"Walker chase soldier diagonally down and right", testMapChaseWalkerDiagonallyDownAndRight},
         {"Walker chase soldier diagonally down and left", testMapChaseWalkerDiagonallyDownAndLeft},
+
+        {"Walker chase soldier up", testMapChaseWalkerUp},
+        {"Walker chase soldier down", testMapChaseWalkerDown},
+        {"Walker chase soldier right", testMapChaseWalkerRight},
+        {"Walker chase soldier left", testMapChaseWalkerLeft},
         {NULL, NULL},
 
 };
