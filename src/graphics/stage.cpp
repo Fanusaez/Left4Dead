@@ -1,28 +1,28 @@
-#include "background.h"
+#include "stage.h"
 #include <cstdlib>
 
-Background::Background(SDL2pp::Texture &backgroundTexture) :
+Stage::Stage(SDL2pp::Texture &backgroundTexture) :
 	texture(backgroundTexture),
 	scrollingOffset(0),
 	speed(0),
 	elapsed(0){}
 
-void Background::moveLeft()
+void Stage::moveLeft()
 {
 	this->speed = 1;
 }
 
-void Background::moveRight()
+void Stage::moveRight()
 {
 	this->speed = -1;
 }
 
-void Background::stop()
+void Stage::stop()
 {
 	this->speed = 0;
 }
 
-void Background::update(float dt)
+void Stage::update(float dt)
 {
 	this->elapsed += dt;
 	if (this->elapsed > FRAME_RATE) {
@@ -31,7 +31,7 @@ void Background::update(float dt)
 	}
 }
 
-void Background::render(SDL2pp::Renderer &renderer)
+void Stage::render(SDL2pp::Renderer &renderer)
 {
 	if (std::abs(this->scrollingOffset) >= this->texture.GetWidth())
 		this->scrollingOffset = 0;
@@ -44,7 +44,7 @@ void Background::render(SDL2pp::Renderer &renderer)
 		renderer.Copy(this->texture);
 }
 
-void Background::renderMovedLeft(SDL2pp::Renderer &renderer)
+void Stage::renderMovedLeft(SDL2pp::Renderer &renderer)
 {
 	SDL2pp::Rect leftSrc(
 		this->scrollingOffset,
@@ -71,7 +71,7 @@ void Background::renderMovedLeft(SDL2pp::Renderer &renderer)
 	renderer.Copy(this->texture, rightSrc, rightDst);
 }
 
-void Background::renderMovedRight(SDL2pp::Renderer &renderer)
+void Stage::renderMovedRight(SDL2pp::Renderer &renderer)
 {
 	int absoluteOffset = (-1) * this->scrollingOffset;
 	SDL2pp::Rect leftSrc(
@@ -99,4 +99,4 @@ void Background::renderMovedRight(SDL2pp::Renderer &renderer)
 	renderer.Copy(this->texture, rightSrc, rightDst);
 }
 
-Background::~Background() = default;
+Stage::~Stage() = default;
