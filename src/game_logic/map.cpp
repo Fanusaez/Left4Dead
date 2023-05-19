@@ -313,6 +313,16 @@ void GameMap::add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t 
     //zombies_object.push_back(walker);
 }
 
+void GameMap::add_obstacle(GameObject* obstacle,
+                           std::uint16_t x_pos,
+                           std::uint16_t y_pos) {
+    if (!valid_entire_object_position(x_pos, y_pos)){ // cambiar por validar_gameObject
+        return; // excepcion
+    }
+    map[y_pos][x_pos] = obstacle;
+    map[y_pos][x_pos + 1] = obstacle;
+}
+
 bool GameMap::collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos) {
     if (!valid_entire_object_position(x_pos, y_pos)) {
         return false; // deberia levantar error.

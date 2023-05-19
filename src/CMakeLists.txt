@@ -8,6 +8,9 @@ add_executable(main
         game_logic/game_object.h
         game_logic/weapon.h
 		game_logic/zombie.h
+		#game_logic/movement.h
+		game_logic/obstacle.cpp
+		#game_logic/walking.cpp
 )
 
 option(GAMEUI "Build game user interface" OFF)

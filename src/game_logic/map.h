@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "zombie.h"
-#include "walker.h"
+//#include "walker.h"
 class GameMap {
  private:
     std::uint16_t x_size;
@@ -89,12 +89,14 @@ void move_object_diagonally(std::int16_t& x_old_pos,
                             std::int16_t& y_new_pos);
 
 void chase_soldiers();
+
     // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_down_test(std::uint16_t x_pos, std::uint16_t y_pos);
 void add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
 void add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
+void add_obstacle(GameObject* obstacle, std::uint16_t x_pos, std::uint16_t y_pos);
 GameObject* get_object(std::uint16_t x_pos, std::uint16_t y_pos);
 };
 #endif  // MAP_H_
