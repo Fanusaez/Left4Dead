@@ -268,8 +268,9 @@ void GameMap::chase_soldier_walking(Zombie* walker,
         if (x_new_pos != INVALID_POSITION) same_place = false;
     } else if (x_sold > x_walker && same_place) { // movimiento para derecha
         move_soldier_right(x_walker, y_walker, x_new_pos); /// ya no debe llamarse asi
-    }
+    } else { } // no te pudiste mover para ningun lado, caso obstaculo o estas al lado del soldado o enfrente
 }
+
 void GameMap::move_object_diagonally(std::int16_t& x_old_pos,
                                      std::int16_t& y_old_pos,
                                      std::int16_t& x_new_pos,
