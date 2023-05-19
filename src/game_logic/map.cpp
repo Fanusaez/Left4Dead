@@ -215,20 +215,64 @@ void GameMap::chase_soldier_walking(Zombie* walker,
     std::int16_t y_walker = walker_pos[Y_POS];
 
     if (x_sold > x_walker && y_sold < y_walker) { // movimiento diagonal derecha arriba
-        bool cond1 = check_free_position(x_walker + 1, y_walker + 1); // primera pos
-        bool cond2 = check_free_position(x_walker + 2, y_walker + 1); // seg pos
+        bool cond1 = check_free_position(x_walker + 1, y_walker - 1); // primera pos
+        bool cond2 = check_free_position(x_walker + 2, y_walker - 1); // seg pos
         if(cond1 && cond2) {
+            // muevo pos de walker diagonalmente
             x_new_pos = x_walker + 1;
             y_new_pos = y_walker - 1;
-            map[y_walker + 1][x_walker + 1] = map[y_walker][x_walker];
-            map[y_walker + 1][x_walker + 2] = map[y_walker][x_walker];
+            // muevo objeto en mapa diagonalmente
+            map[y_walker - 1][x_walker + 1] = map[y_walker][x_walker];
+            map[y_walker - 1][x_walker + 2] = map[y_walker][x_walker];
             map[y_walker][x_walker] = nullptr;
             map[y_walker][x_walker + 1] = nullptr;
             walker->set_direction(UP);
         }
+    } else if (x_sold < x_walker && y_sold < y_walker) { // movimiento diagonal izquierda arriba
+        bool cond1 = check_free_position(x_walker - 1, y_walker - 1); // primera pos
+        bool cond2 = check_free_position(x_walker, y_walker - 1); // seg pos
+        if(cond1 && cond2) {
+            // muevo pos de walker diagonalmente
+            x_new_pos = x_walker - 1;
+            y_new_pos = y_walker - 1;
+            // muevo objeto en mapa diagonalmente
+            map[y_walker - 1][x_walker - 1] = map[y_walker][x_walker];
+            map[y_walker - 1][x_walker] = map[y_walker][x_walker];
+            map[y_walker][x_walker] = nullptr;
+            map[y_walker][x_walker + 1] = nullptr;
+            walker->set_direction(UP);
+        }
+    } else if (x_sold > x_walker && y_sold > y_walker) { // movimiento diagonal derecha abajo
+        bool cond1 = check_free_position(x_walker + 1, y_walker + 1); // primera pos
+        bool cond2 = check_free_position(x_walker + 2, y_walker + 1); // seg pos
+        if(cond1 && cond2) {
+            // muevo pos de walker diagonalmente
+            x_new_pos = x_walker + 1;
+            y_new_pos = y_walker + 1;
+            // muevo objeto en mapa diagonalmente
+            map[y_walker + 1][x_walker + 1] = map[y_walker][x_walker];
+            map[y_walker + 1][x_walker + 2] = map[y_walker][x_walker];
+            map[y_walker][x_walker] = nullptr;
+            map[y_walker][x_walker + 1] = nullptr;
+            walker->set_direction(DOWN); // lo deberia setear en walker
+        }
+
+    } else if (x_sold < x_walker && y_sold > y_walker) { // movimiento diagonal izquierda abajo
+        bool cond1 = check_free_position(x_walker + 1, y_walker + 1); // primera pos
+        bool cond2 = check_free_position(x_walker, y_walker + 1); // seg pos
+        if(cond1 && cond2) {
+            // muevo pos de walker diagonalmente
+            x_new_pos = x_walker - 1;
+            y_new_pos = y_walker + 1;
+            // muevo objeto en mapa diagonalmente
+            map[y_walker + 1][x_walker - 1] = map[y_walker][x_walker];
+            map[y_walker + 1][x_walker] = map[y_walker][x_walker];
+            map[y_walker][x_walker] = nullptr;
+            map[y_walker][x_walker + 1] = nullptr;
+            walker->set_direction(DOWN); // lo deberia setear en walker
+        }
     }
 }
-
 void GameMap::chase_soldiers() {
     for (Zombie* zombie : zombies) {
         zombie->chase_closest_soldier(*this, soldiers);
