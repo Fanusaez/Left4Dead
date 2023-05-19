@@ -35,6 +35,11 @@ void Walker::chase_closest_soldier(GameMap& map, std::vector<GameObject*> soldie
         x_pos = x_new_pos;
     }
     if (y_new_pos != INVALID_POSITION) {
+        if (y_new_pos > y_pos) {
+            direction = DOWN;
+        } else if (y_new_pos < y_pos) {
+            direction = UP;
+        }
         y_pos = y_new_pos;
     }
 }
