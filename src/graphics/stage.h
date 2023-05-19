@@ -1,5 +1,5 @@
-#ifndef LEFT4DEAD_BACKGROUND_H
-#define LEFT4DEAD_BACKGROUND_H
+#ifndef LEFT4DEAD_STAGE_H
+#define LEFT4DEAD_STAGE_H
 
 #include <SDL2pp/SDL2pp.hh>
 
@@ -7,7 +7,7 @@
 #define FRAME_RATE 1000000.0f/25.0f
 #endif
 
-class Background {
+class Stage {
 	SDL2pp::Texture &texture;
 
 	int scrollingOffset;
@@ -17,7 +17,7 @@ class Background {
 	float elapsed;
 
 public:
-	Background(SDL2pp::Texture &backgroundTexture);
+	Stage(SDL2pp::Texture &backgroundTexture);
 
 	void moveLeft();
 
@@ -29,7 +29,7 @@ public:
 
 	void render(SDL2pp::Renderer &renderer);
 
-	~Background();
+	~Stage();
 
 private:
 	void renderMovedLeft(SDL2pp::Renderer &renderer);
@@ -37,4 +37,4 @@ private:
 	void renderMovedRight(SDL2pp::Renderer &renderer);
 };
 
-#endif //LEFT4DEAD_BACKGROUND_H
+#endif //LEFT4DEAD_STAGE_H

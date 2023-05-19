@@ -3,14 +3,14 @@
 #include <SDL2pp/SDL2pp.hh>
 #include "Player.h"
 #include "texture_loader.h"
-#include "background.h"
+#include "stage.h"
 #include <iostream>
 #include <exception>
 #include <unistd.h>
 #include <string>
 #include <list>
 
-static bool handleEvents(Player &player, Background &background);
+static bool handleEvents(Player &player, Stage &stage);
 
 int main(int argc, char *argv[])
 {
@@ -29,16 +29,16 @@ int main(int argc, char *argv[])
 		TextureLoader textureLoader;
 		textureLoader.load(renderer, spritesToLoad);
 		Player player(textureLoader.getTexture("Soldier_1/Walk.png"));
-		Background background(textureLoader.getTexture("backgrounds/War1/Pale/War.png"));
+		Stage stage(textureLoader.getTexture("backgrounds/War1/Pale/War.png"));
 
 		bool running = true;
 
 		while (running) {
-			running = handleEvents(player, background);
-			background.update(FRAME_RATE);
+			running = handleEvents(player, stage);
+			stage.update(FRAME_RATE);
 			player.update(FRAME_RATE);
 			renderer.Clear();
-			background.render(renderer);
+			stage.render(renderer);
 			player.render(renderer);
 			renderer.Present();
 			// la cantidad de segundos que debo dormir se debe ajustar en función
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-static bool handleEvents(Player &player, Background &background) {
+static bool handleEvents(Player &player, Stage &stage) {
 	SDL_Event event;
 	// Para el alumno: Buscar diferencia entre waitEvent y pollEvent
 	while(SDL_PollEvent(&event)){
@@ -63,11 +63,11 @@ static bool handleEvents(Player &player, Background &background) {
 				switch (keyEvent.keysym.sym) {
 					case SDLK_LEFT:
 						player.moveLeft();
-						background.moveRight();
+						stage.moveRight();
 						break;
 					case SDLK_RIGHT:
 						player.moveRigth();
-						background.moveLeft();
+						stage.moveLeft();
 						break;
 				}
 			} // Fin KEY_DOWN
@@ -77,11 +77,11 @@ static bool handleEvents(Player &player, Background &background) {
 				switch (keyEvent.keysym.sym) {
 					case SDLK_LEFT:
 						player.stopMoving();
-						background.stop();
+						stage.stop();
 						break;
 					case SDLK_RIGHT:
 						player.stopMoving();
-						background.stop();
+						stage.stop();
 						break;
 				}
 			}// Fin KEY_UP
