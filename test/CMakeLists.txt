@@ -97,6 +97,14 @@ add_executable(testExplosiveGrenade
         ../src/game_logic/scout.cpp
         )
 
+add_executable(testChaseSoldierWalking
+        test_chase_soldier_walker.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/scout.cpp
+        )
+
 # target_link_libraries(testPrueba PRIVATE myLibrary)
 
 # Despues agregar el target aca y listo
@@ -114,6 +122,7 @@ set(testTargets
         testMoveSoldierLeft
         testMoveMap
         testExplosiveGrenade
+        testChaseSoldierWalking
 )
 
 foreach(target ${testTargets})

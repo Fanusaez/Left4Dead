@@ -33,6 +33,8 @@ std::int16_t get_distance_to_soldier(GameObject* soldier);
 
 // ************************* Metodos de testeo ************************************************8//
  std::int16_t get_health();
+ std::int16_t get_x();
+    std::int16_t get_y();
 };
 
 #endif  // WALKER_H_

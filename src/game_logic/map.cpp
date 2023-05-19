@@ -192,8 +192,8 @@ void GameMap::move_object_y(std::uint16_t x_pos,
     map[y_pos][x_pos + 1] = nullptr;
 }
 
-bool GameMap::check_free_position(std::uint16_t x_pos,
-                                  std::uint16_t y_pos) {
+bool GameMap::check_free_position(std::int16_t x_pos,
+                                  std::int16_t y_pos) {
     if (x_pos < 0 || x_pos >= x_size|| y_pos < 0 || x_pos >= y_size){
         return false;
     }
@@ -219,13 +219,19 @@ void GameMap::chase_soldier_walking(Zombie* walker,
         bool cond2 = check_free_position(x_walker + 2, y_walker + 1); // seg pos
         if(cond1 && cond2) {
             x_new_pos = x_walker + 1;
-            y_new_pos = y_walker + 1;
+            y_new_pos = y_walker - 1;
             map[y_walker + 1][x_walker + 1] = map[y_walker][x_walker];
             map[y_walker + 1][x_walker + 2] = map[y_walker][x_walker];
             map[y_walker][x_walker] = nullptr;
             map[y_walker][x_walker + 1] = nullptr;
             walker->set_direction(UP);
         }
+    }
+}
+
+void GameMap::chase_soldiers() {
+    for (Zombie* zombie : zombies) {
+        zombie->chase_closest_soldier(*this, soldiers);
     }
 }
 
