@@ -8,17 +8,30 @@
 #include <arpa/inet.h>
 
 PlayerReceiver::PlayerReceiver(Socket *socket, MatchMananger *match_manager, std::atomic<bool> &keep_talking) : 
-    match_manager(match_manager), keep_talking(keep_talking) {
-        this->queue_receiver = queue_receiver;
-    }
+    match_manager(match_manager), keep_talking(keep_talking), server_deserializer(socket),  queue_receiver(queue_receiver) {}
 
 void PlayerReceiver::run() {
     bool was_closed = false;
-    //Recibo instruccion y la pusheo a queue receiver que pertenece al hilo Game
-    std::vector<char> bytes = {0, 0, 0, 0};
-    queue_receiver->push(bytes);
+    Instructions instruction;
+    while (keep_talking && was_closed == false) {
+        instruction = server_deserializer.obtener_instruccion(&was_closed);
+        switch (instruction) {
+        case MOVE:
+            queue_receiver->push(server_deserializer.deserialize_move(&was_closed));
+            break;
+        case RELOAD:
+            queue_receiver->push(server_deserializer.deserialize_reloading(&was_closed));
+            break;
+        case SHOOT:
+            queue_receiver->push(server_deserializer.deserialize_shooting(&was_closed));
+            break;
+        case GRANEDE:
+            queue_receiver->push(server_deserializer.deserialize_grenede(&was_closed));
+            break;
+        }
+    }
 }
 
-void PlayerReceiver::setQueueReceiver(Queue<std::vector<char>> *queue_receiver){
+void PlayerReceiver::setQueueReceiver(Queue<InstructionsDTO> *queue_receiver){
     this->queue_receiver = queue_receiver;
 }

@@ -23,6 +23,7 @@ void Player::kill() {
 }
 
 void Player::join(){
+    player_sender.close_queue(); //Es correcto hacer eso?
     player_sender.join();
-    player_sender.joinPlayerReceiver();
+    player_sender.join_player_receiver();
 }

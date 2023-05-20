@@ -3,6 +3,8 @@
 
 #include "../common/queue.h"
 #include "../common/thread.h"
+#include "../common/instructions_dto.h"
+#include "../common/game_dto.h"
 
 #include <list>
 #include <atomic>
@@ -16,21 +18,21 @@ private:
     std::string game_name;
 
     // La queue donde el player_receiver va a pushear es eta
-    Queue<std::vector<char>> queue_entrante;
+    Queue<InstructionsDTO> queue_entrante;
  
     // Tengo una referencia  a la queue del sender
-    std::list<Queue<std::vector<char>> *> queue_salientes;
+    std::list<Queue<GameDTO> *> queue_salientes;
 
     std::atomic<bool> &keep_playing;
 
 public:
-    Game(Queue<std::vector<char>> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name);
+    Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name);
 
     void run() override;
 
-    Queue<std::vector<char>> *getQueue();
+    Queue<InstructionsDTO> *getQueue();
 
-    void addPlayer(Queue<std::vector<char>> *queue_sender);
+    void addPlayer(Queue<GameDTO> *queue_sender);
 
     bool compare_code(int32_t *code_to_compare);
 
