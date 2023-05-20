@@ -45,16 +45,20 @@ endif()
 option(SERVER "Build server" OFF)
 
 if(SERVER)
-	add_library(socket OBJECT ./common/socket.cpp ./common/socket.h)
-	add_library(resolver OBJECT ./common/resolver.cpp ./common/resolver.h)
-	add_library(thread OBJECT ./common/thread.h)
-	add_library(acceptor OBJECT ./server/acceptor.cpp ./server/acceptor.h)
-	add_library(server OBJECT ./server/server.cpp ./server/server.h)
-	add_library(match_mananger OBJECT ./server/match_mananger.cpp ./server/match_mananger.h)
-	add_library(player_receiver OBJECT ./server/player_receiver.cpp ./server/player_receiver.h)
-	add_library(player_sender OBJECT ./server/player_sender.cpp ./server/player_sender.h)
-	add_library(player OBJECT ./server/player.cpp ./server/player.h)
-	add_library(game OBJECT ./server/game.cpp ./server/game.h)
-	add_executable(server_main ./server/server_main.cpp)
-	target_link_libraries(server_main PRIVATE acceptor server socket thread resolver match_mananger player_receiver player_sender player game)
+	add_executable(server
+		./server/server_main.cpp
+		./common/socket.cpp
+		./common/resolver.cpp
+		./common/game_dto.cpp
+		./common/instructions_dto.cpp
+		./server/acceptor.cpp
+		./server/server.cpp
+		./server/match_mananger.cpp
+		./server/player_receiver.cpp
+		./server/player_sender.cpp
+		./server/player.cpp
+		./server/game.cpp
+		./server/server_serializer.cpp
+		./server/server_deserializer.cpp
+	)
 endif()

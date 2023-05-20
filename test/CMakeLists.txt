@@ -10,12 +10,15 @@ add_executable(testPrueba
 
 add_executable(testProtocolClient
         test_protocol_client.cpp
-        ../src/client_serializer.cpp
+        ../src/client/client_serializer.cpp
 )
 
 add_executable(testProtocolServer
         test_protocol_server.cpp
-        ../src/server_serializer.cpp
+        ../src/server/server_serializer.cpp
+        ../src/common/game_dto.cpp
+        ../src/common/socket.cpp
+        ../src/common/resolver.cpp
 )
 
 add_executable(testCollision
