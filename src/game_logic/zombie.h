@@ -17,5 +17,6 @@ virtual bool in_range_of_explosion(std::int16_t x_start,
                                    std::int16_t y_finish) = 0;
 virtual void get_position(std::vector<std::int16_t>& pos) = 0;
 virtual void set_direction(std::int16_t direction) = 0;
+virtual void attack(GameMap& map, std::vector<GameObject*> soldiers) = 0;
 };
 #endif   // ZOMBIE_H_

@@ -80,6 +80,31 @@ void chase_soldier_walking(Zombie* zombie,
                            std::int16_t& x_new_pos,
                            std::int16_t& y_new_pos,
                            GameObject* closest_soldier);
+
+void move_diagonally_up_right(std::int16_t x_zombie,
+                              std::int16_t y_zombie,
+                              std::int16_t& x_new_zombie,
+                              std::int16_t& y_new_zombie,
+                              bool& same_place);
+
+void move_diagonally_up_left(std::int16_t x_zombie,
+                             std::int16_t y_zombie,
+                             std::int16_t& x_new_zombie,
+                             std::int16_t& y_new_zombie,
+                             bool& same_place);
+
+void move_diagonally_down_right(std::int16_t x_zombie,
+                                std::int16_t y_zombie,
+                                std::int16_t& x_new_zombie,
+                                std::int16_t& y_new_zombie,
+                                bool& same_place);
+
+void move_diagonally_down_left(std::int16_t x_zombie,
+                               std::int16_t y_zombie,
+                               std::int16_t& x_new_zombie,
+                               std::int16_t& y_new_zombie,
+                               bool& same_place);
+
 /*
  * Asume que le pasas la posicon verdadera (la del x menor), como siempre
 */
@@ -89,6 +114,8 @@ void move_object_diagonally(std::int16_t& x_old_pos,
                             std::int16_t& y_new_pos);
 
 void chase_soldiers();
+void attack_soldiers();
+
 
     // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);

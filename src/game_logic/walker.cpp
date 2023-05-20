@@ -30,8 +30,8 @@ void Walker::chase_closest_soldier(GameMap& map, std::vector<GameObject*> soldie
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t x_new_pos = - 1;
     std::int16_t y_new_pos = - 1;
-    //movement->chase_soldier(this, x_new_pos, y_new_pos, closest_soldier, map);
-    map.chase_soldier_walking(this, x_new_pos, y_new_pos, closest_soldier);
+    movement->chase_soldier(this, x_new_pos, y_new_pos, closest_soldier, map);
+    //map.chase_soldier_walking(this, x_new_pos, y_new_pos, closest_soldier);
     if (x_new_pos != INVALID_POSITION) {
         x_pos = x_new_pos;
     }
@@ -82,8 +82,15 @@ void Walker::set_direction(std::int16_t direction_to_set) {
     }
 }
 
+void Walker::attack(GameMap &map, std::vector<GameObject *> soldiers) {
+    GameObject* closest_soldier = get_closest_soldier(soldiers);
+    std::int16_t distance = get_distance_to_soldier(closest_soldier);
+    if (distance > 1) return;
+    closest_soldier->receive_damage(damage_attack);
+}
+
 Walker::~Walker() {
-    //delete movement;
+    delete movement;
 }
 
 // ************************* Metodos de testeo ************************************************8//
