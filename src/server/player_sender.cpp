@@ -34,7 +34,6 @@ void PlayerSender::init_player_receiver(){
         if (instruction == CREATE){
             std::string game_name = server_deserializer.deserialize_create(&was_closed);
             queue_receiver = match_mananger->create_game(&queue_sender,&game_name);
-            (&queue_sender, &game_name);
         } else if (instruction == JOIN){
             int32_t game_code = server_deserializer.deserialize_join(&was_closed);
             queue_receiver = match_mananger->join(&queue_sender,&game_code);

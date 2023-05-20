@@ -5,6 +5,7 @@
 #include "../common/socket.h"
 #include "../common/queue.h"
 #include "../common/game_dto.h"
+#include "client_deserializer.h"
 
 #include <atomic>
 #include <vector>
@@ -13,11 +14,11 @@
 class ClientReceiver : public Thread
 {
 private:
-    Socket *socket;
-
     Queue<GameDTO> *queue_receiver;
 
     std::atomic<bool> &keep_talking;
+
+    ClientDeserializer client_deserializer;
 
 public:
     ClientReceiver(Socket *socket, std::atomic<bool> &keep_talking, Queue<GameDTO> *queue_receiver);
