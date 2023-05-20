@@ -23,13 +23,11 @@ bool Client::move(Move *move)
 
 GameDTO Client::get_game(){
     GameDTO game_dto;
-    bool could_pop = queue_receiver.try_pop(game_dto);
-    if (could_pop)
-        return game_dto
-    return NULL;
+    queue_receiver.try_pop(game_dto);
+    return game_dto;
 }
 
-    void Client::join()
+void Client::join()
 {
     queue_sender.close(); // Es correcto hacer eso?
     client_sender.join();
