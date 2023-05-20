@@ -22,7 +22,7 @@ if(GAMEUI)
 	set(SDL2PP_WITH_TTF ON)
 	add_subdirectory(${CMAKE_SOURCE_DIR}/lib/libSDL2pp ${CMAKE_SOURCE_DIR}/build/lib/libSDL2pp)
 
-	add_executable(client
+	add_executable(gameview
 			client_main.cpp
 			graphics/Player.cpp
 			graphics/Animation.cpp
@@ -30,15 +30,15 @@ if(GAMEUI)
             graphics/stage.cpp
 	)
 
-	target_include_directories(client PRIVATE ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)
-	target_include_directories(client PRIVATE ${PROJECT_SOURCE_DIR}/src/graphics)
-	target_link_libraries(client PRIVATE SDL2pp)
+	target_include_directories(gameview PRIVATE ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)
+	target_include_directories(gameview PRIVATE ${PROJECT_SOURCE_DIR}/src/graphics)
+	target_link_libraries(gameview PRIVATE SDL2pp)
 	set(CLIENT_OUTPUT_DIR ${CMAKE_BINARY_DIR}/src/client)
-	set_target_properties(client
+	set_target_properties(gameview
 			PROPERTIES
 			RUNTIME_OUTPUT_DIRECTORY ${CLIENT_OUTPUT_DIR})
 	#file(COPY ${PROJECT_SOURCE_DIR}/assets DESTINATION ${CLIENT_OUTPUT_DIR})
-	target_compile_definitions(client PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
+	target_compile_definitions(gameview PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
 
 endif()
 
