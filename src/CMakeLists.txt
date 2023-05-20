@@ -62,3 +62,20 @@ if(SERVER)
 		./server/server_deserializer.cpp
 	)
 endif()
+
+option(CLIENT "Build client" OFF)
+
+if(CLIENT)
+	add_executable(client
+		main.cpp
+		./client/client_deserializer.cpp
+		./client/client_serializer.cpp
+		./client/client_sender.cpp
+		./client/client_receiver.cpp
+		./client/client.cpp
+		./common/socket.cpp
+		./common/resolver.cpp
+		./common/game_dto.cpp
+		./common/instructions_dto.cpp
+	)
+endif()
