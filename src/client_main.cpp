@@ -73,6 +73,12 @@ static bool handleEvents(Player &player, Stage &stage) {
 						player.moveRigth();
 						stage.moveLeft();
 						break;
+					case SDLK_UP:
+						player.moveUp();
+						break;
+					case SDLK_DOWN:
+						player.moveDown();
+						break;
 				}
 			} // Fin KEY_DOWN
 				break;
@@ -86,6 +92,12 @@ static bool handleEvents(Player &player, Stage &stage) {
 					case SDLK_RIGHT:
 						player.stopMoving();
 						stage.stop();
+						break;
+					case SDLK_UP:
+						player.stopMoving();
+						break;
+					case SDLK_DOWN:
+						player.stopMoving();
 						break;
 				}
 			}// Fin KEY_UP
