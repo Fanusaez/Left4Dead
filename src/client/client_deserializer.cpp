@@ -35,9 +35,9 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
     GameObjectState state; // Estado del objeto
     for (int i = 0; i < size_game_dto; i++)
     {
-        socket->recvall(&state, 1, &was_closed);
-        socket->recvall(&position_x, 2, &was_closed);
-        socket->recvall(&position_y, 2, &was_closed);
+        socket->recvall(&state, 1, was_closed);
+        socket->recvall(&position_x, 2, was_closed);
+        socket->recvall(&position_y, 2, was_closed);
         game_dto.add_object(GameObjectDTO(1, position_x, position_y, state));
     }
 }
