@@ -1,7 +1,5 @@
 #include "walking.h"
 
-void Walking(){}
-
 void Walking::chase_soldier(Zombie* zombie,
                             std::int16_t &x_new_pos,
                             std::int16_t &y_new_pos,

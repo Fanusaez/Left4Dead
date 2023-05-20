@@ -218,44 +218,20 @@ void GameMap::chase_soldier_walking(Zombie* walker,
     bool same_place = true;
 
     if (x_sold > x_walker && y_sold < y_walker) { // movimiento diagonal derecha arriba
-        bool cond1 = check_free_position(x_walker + 1, y_walker - 1); // primera pos
-        bool cond2 = check_free_position(x_walker + 2, y_walker - 1); // seg pos
-        if (cond1 && cond2) {
-            x_new_pos = x_walker + 1;
-            y_new_pos = y_walker - 1;
-            move_object_diagonally(x_walker, y_walker, x_new_pos, y_new_pos);
-            same_place = false;
-        }
+        move_diagonally_up_right(x_walker, y_walker, x_new_pos, y_new_pos, same_place);
     } else if (x_sold < x_walker && y_sold < y_walker) { // movimiento diagonal izquierda arriba
-        bool cond1 = check_free_position(x_walker - 1, y_walker - 1); // primera pos
-        bool cond2 = check_free_position(x_walker, y_walker - 1); // seg pos
-        if (cond1 && cond2) {
-            x_new_pos = x_walker - 1;
-            y_new_pos = y_walker - 1;
-            move_object_diagonally(x_walker, y_walker, x_new_pos, y_new_pos);
-            same_place = false;
-        }
+        move_diagonally_up_left(x_walker, y_walker, x_new_pos, y_new_pos, same_place);
     } else if (x_sold > x_walker && y_sold > y_walker) { // movimiento diagonal derecha abajo
-        bool cond1 = check_free_position(x_walker + 1, y_walker + 1); // primera pos
-        bool cond2 = check_free_position(x_walker + 2, y_walker + 1); // seg pos
-        if (cond1 && cond2) {
-            // muevo pos de walker diagonalmente
-            x_new_pos = x_walker + 1;
-            y_new_pos = y_walker + 1;
-            move_object_diagonally(x_walker, y_walker, x_new_pos, y_new_pos);
-            same_place = false;
-        }
-
+        move_diagonally_down_right(x_walker, y_walker, x_new_pos, y_new_pos, same_place);
     } else if (x_sold < x_walker && y_sold > y_walker) { // movimiento diagonal izquierda abajo
-        bool cond1 = check_free_position(x_walker + 1, y_walker + 1); // primera pos
-        bool cond2 = check_free_position(x_walker, y_walker + 1); // seg pos
-        if (cond1 && cond2) {
-            // muevo pos de walker diagonalmente
-            x_new_pos = x_walker - 1;
-            y_new_pos = y_walker + 1;
-            move_object_diagonally(x_walker, y_walker, x_new_pos, y_new_pos);
-            same_place = false;
-        }
+        move_diagonally_down_left(x_walker, y_walker, x_new_pos, y_new_pos, same_place);
+    }
+    if (x_sold < x_walker && same_place) { // movimiento para izquierda
+        move_soldier_left(x_walker, y_walker, x_new_pos); /// ya no debe llamarse asi
+        if (x_new_pos != INVALID_POSITION) same_place = false;
+    } else if (x_sold > x_walker && same_place) { // movimiento para derecha
+        move_soldier_right(x_walker, y_walker, x_new_pos); /// ya no debe llamarse asi
+        if (x_new_pos != INVALID_POSITION) same_place = false;
     }
     if (y_sold > y_walker && same_place) { // movimiento para abajo
         move_soldier_down(x_walker, y_walker, y_new_pos); /// ya no debe llamarse asi
@@ -263,12 +239,65 @@ void GameMap::chase_soldier_walking(Zombie* walker,
     } else if (y_sold < y_walker && same_place) { // movimiento para arriba
         move_soldier_up(x_walker, y_walker, y_new_pos); /// ya no debe llamarse asi
         if (y_new_pos != INVALID_POSITION) same_place = false;
-    } else if (x_sold < x_walker && same_place) { // movimiento para izquierda
-        move_soldier_left(x_walker, y_walker, x_new_pos); /// ya no debe llamarse asi
-        if (x_new_pos != INVALID_POSITION) same_place = false;
-    } else if (x_sold > x_walker && same_place) { // movimiento para derecha
-        move_soldier_right(x_walker, y_walker, x_new_pos); /// ya no debe llamarse asi
-    } else { } // no te pudiste mover para ningun lado, caso obstaculo o estas al lado del soldado o enfrente
+    }
+
+    if (same_place) { // se quedo trababado por obstaculo, decido que el zombie puede atacar de costado
+        move_soldier_left(x_walker, y_walker, x_new_pos);
+    }
+}
+
+void GameMap::move_diagonally_up_right(std::int16_t x_zombie, std::int16_t y_zombie,
+                                       std::int16_t &x_new_zombie, std::int16_t &y_new_zombie,
+                                       bool &same_place) {
+    bool cond1 = check_free_position(x_zombie + 1, y_zombie - 1); // primera pos
+    bool cond2 = check_free_position(x_zombie + 2, y_zombie - 1); // seg pos
+    if (cond1 && cond2) {
+        x_new_zombie = x_zombie + 1;
+        y_new_zombie = y_zombie - 1;
+        move_object_diagonally(x_zombie, y_zombie, x_new_zombie, y_new_zombie);
+        same_place = false;
+    }
+}
+
+void GameMap::move_diagonally_up_left(std::int16_t x_zombie, std::int16_t y_zombie,
+                                      std::int16_t &x_new_zombie, std::int16_t &y_new_zombie,
+                                      bool &same_place) {
+    bool cond1 = check_free_position(x_zombie - 1, y_zombie - 1); // primera pos
+    bool cond2 = check_free_position(x_zombie, y_zombie - 1); // seg pos
+    if (cond1 && cond2) {
+        x_new_zombie = x_zombie - 1;
+        y_new_zombie = y_zombie - 1;
+        move_object_diagonally(x_zombie, y_zombie, x_new_zombie, y_new_zombie);
+        same_place = false;
+    }
+}
+
+void GameMap::move_diagonally_down_right(std::int16_t x_zombie, std::int16_t y_zombie,
+                                         std::int16_t &x_new_zombie, std::int16_t &y_new_zombie,
+                                         bool &same_place) {
+    bool cond1 = check_free_position(x_zombie + 1, y_zombie + 1); // primera pos
+    bool cond2 = check_free_position(x_zombie + 2, y_zombie + 1); // seg pos
+    if (cond1 && cond2) {
+        // muevo pos de walker diagonalmente
+        x_new_zombie = x_zombie + 1;
+        y_new_zombie = y_zombie + 1;
+        move_object_diagonally(x_zombie, y_zombie, x_new_zombie, y_new_zombie);
+        same_place = false;
+    }
+}
+
+void GameMap::move_diagonally_down_left(std::int16_t x_zombie, std::int16_t y_zombie,
+                                        std::int16_t &x_new_zombie, std::int16_t &y_new_zombie,
+                                        bool &same_place) {
+    bool cond1 = check_free_position(x_zombie - 1, y_zombie + 1); // primera pos
+    bool cond2 = check_free_position(x_zombie, y_zombie + 1); // seg pos
+    if (cond1 && cond2) {
+        // muevo pos de walker diagonalmente
+        x_new_zombie = x_zombie - 1;
+        y_new_zombie = y_zombie + 1;
+        move_object_diagonally(x_zombie, y_zombie, x_new_zombie, y_new_zombie);
+        same_place = false;
+    }
 }
 
 void GameMap::move_object_diagonally(std::int16_t& x_old_pos,
@@ -284,6 +313,12 @@ void GameMap::move_object_diagonally(std::int16_t& x_old_pos,
 void GameMap::chase_soldiers() {
     for (Zombie* zombie : zombies) {
         zombie->chase_closest_soldier(*this, soldiers);
+    }
+}
+
+void GameMap::attack_soldiers() {
+    for (Zombie* zombie : zombies) {
+        zombie->attack(*this, soldiers);
     }
 }
 
