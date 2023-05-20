@@ -138,7 +138,15 @@ add_executable(testChaseSoldierWalkingObstacles
         ../src/game_logic/walking.cpp
         )
 
-
+add_executable(testWalkerAttackSoldier
+        test_walker_attack_soldier.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/scout.cpp
+        ../src/game_logic/obstacle.cpp
+        ../src/game_logic/walking.cpp
+        )
 # target_link_libraries(testPrueba PRIVATE myLibrary)
 
 # Despues agregar el target aca y listo

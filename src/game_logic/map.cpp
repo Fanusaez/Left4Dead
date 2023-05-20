@@ -242,7 +242,7 @@ void GameMap::chase_soldier_walking(Zombie* walker,
     }
 
     if (same_place) { // se quedo trababado por obstaculo, decido que el zombie puede atacar de costado
-        move_soldier_left(x_walker, y_walker, x_new_pos);
+        //move_soldier_left(x_walker, y_walker, x_new_pos);
     }
 }
 
