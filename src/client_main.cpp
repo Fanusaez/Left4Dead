@@ -75,9 +75,11 @@ static bool handleEvents(Player &player, Stage &stage) {
 						break;
 					case SDLK_UP:
 						player.moveUp();
+                        stage.stop();
 						break;
 					case SDLK_DOWN:
 						player.moveDown();
+                        stage.stop();
 						break;
 				}
 			} // Fin KEY_DOWN
