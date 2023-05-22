@@ -27,7 +27,7 @@ if(GAMEUI)
 			graphics/Player.cpp
 			graphics/Animation.cpp
 			graphics/texture_loader.cpp
-            graphics/stage.cpp
+			graphics/scene.cpp
 	)
 
 	target_include_directories(gameview PRIVATE ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)

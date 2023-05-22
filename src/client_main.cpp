@@ -3,14 +3,16 @@
 #include <SDL2pp/SDL2pp.hh>
 #include "Player.h"
 #include "texture_loader.h"
-#include "stage.h"
+#include "scene.h"
 #include <iostream>
 #include <exception>
 #include <unistd.h>
 #include <string>
 #include <list>
 
-static bool handleEvents(Player &player, Stage &stage);
+static const std::string TmpAssetsPath = ASSETS_PATH;
+
+static bool handleEvents(Player &player, Scene &scene);
 
 int main(int argc, char *argv[])
 {
@@ -22,6 +24,8 @@ int main(int argc, char *argv[])
 							  SDL_WINDOW_RESIZABLE);
 		SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 		renderer.SetLogicalSize(1920, 1080);
+		SDL2pp::Mixer mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
+		SDL2pp::Music music(std::string(TmpAssetsPath).append("Music/10. no way back.flac"));
 		std::list<std::string> spritesToLoad;
 		spritesToLoad.push_back("Soldier_1/Walk.png");
 		spritesToLoad.push_back("backgrounds/War1/Pale/Full_Sky.png");
@@ -30,7 +34,7 @@ int main(int argc, char *argv[])
 		TextureLoader textureLoader;
 		textureLoader.load(renderer, spritesToLoad);
 		Player player(textureLoader.getTexture("Soldier_1/Walk.png"));
-		Stage stage(
+		Scene scene(
 			textureLoader.getTexture("backgrounds/War1/Pale/Full_Sky.png"),
 			textureLoader.getTexture("backgrounds/War1/Pale/Far_Background.png"),
 			textureLoader.getTexture("backgrounds/War1/Pale/Floor.png"));
@@ -39,11 +43,15 @@ int main(int argc, char *argv[])
 
 		while (running)
 		{
-			running = handleEvents(player, stage);
-			stage.update(FRAME_RATE);
+			if (not mixer.IsMusicPlaying()) {
+				mixer.SetMusicVolume(32);
+				mixer.PlayMusic(music);
+			}
+			running = handleEvents(player, scene);
+			scene.update(FRAME_RATE);
 			player.update(FRAME_RATE);
 			renderer.Clear();
-			stage.render(renderer);
+			scene.render(renderer);
 			player.render(renderer);
 			renderer.Present();
 			// la cantidad de segundos que debo dormir se debe ajustar en función
@@ -59,7 +67,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-static bool handleEvents(Player &player, Stage &stage)
+static bool handleEvents(Player &player, Scene &scene)
 {
 	SDL_Event event;
 	// Para el alumno: Buscar diferencia entre waitEvent y pollEvent
@@ -75,19 +83,19 @@ static bool handleEvents(Player &player, Stage &stage)
 			{
 			case SDLK_LEFT:
 				player.moveLeft();
-				stage.moveRight();
+				scene.moveRight();
 				break;
 			case SDLK_RIGHT:
 				player.moveRigth();
-				stage.moveLeft();
+				scene.moveLeft();
 				break;
 			case SDLK_UP:
 				player.moveUp();
-				stage.stop();
+				scene.stop();
 				break;
 			case SDLK_DOWN:
 				player.moveDown();
-				stage.stop();
+				scene.stop();
 				break;
 			}
 		} // Fin KEY_DOWN
@@ -99,11 +107,11 @@ static bool handleEvents(Player &player, Stage &stage)
 			{
 			case SDLK_LEFT:
 				player.stopMoving();
-				stage.stop();
+				scene.stop();
 				break;
 			case SDLK_RIGHT:
 				player.stopMoving();
-				stage.stop();
+				scene.stop();
 				break;
 			case SDLK_UP:
 				player.stopMoving();
