@@ -28,15 +28,6 @@ if(GAMEUI)
 			graphics/Animation.cpp
 			graphics/texture_loader.cpp
             graphics/stage.cpp
-			./client/client_deserializer.cpp
-			./client/client_serializer.cpp
-			./client/client_sender.cpp
-			./client/client_receiver.cpp
-			./client/client.cpp
-			./common/socket.cpp
-			./common/resolver.cpp
-			./common/game_dto.cpp
-			./common/instructions_dto.cpp
 	)
 
 	target_include_directories(gameview PRIVATE ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)
@@ -72,3 +63,19 @@ if(SERVER)
 	)
 endif()
 
+option(CLIENT "Build client" OFF)
+
+if(CLIENT)
+	add_executable(client
+		main.cpp
+		./client/client_deserializer.cpp
+		./client/client_serializer.cpp
+		./client/client_sender.cpp
+		./client/client_receiver.cpp
+		./client/client.cpp
+		./common/socket.cpp
+		./common/resolver.cpp
+		./common/game_dto.cpp
+		./common/instructions_dto.cpp
+	)
+endif()

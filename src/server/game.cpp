@@ -17,17 +17,7 @@ void Game::run(){
         //instructionDTO = queue_entrante.pop();
         if (could_pop)
         {
-            // Proceso la instrcuccion
-            if (instructionDTO.get_instruction() == MOVE){
-                if (static_cast<Move>(instructionDTO.get_parameters().at(0)) == LEFT)
-                    std::cout<<"Left"<<std::endl;
-                if (static_cast<Move>(instructionDTO.get_parameters().at(0)) == RIGHT)
-                    std::cout << "Right" << std::endl;
-                if (static_cast<Move>(instructionDTO.get_parameters().at(0)) == UP)
-                    std::cout << "Up" << std::endl;
-                if (static_cast<Move>(instructionDTO.get_parameters().at(0)) == DOWN)
-                    std::cout << "Down" << std::endl;
-            }
+            
         }
         // Actualizo el juego
         // Saco screen

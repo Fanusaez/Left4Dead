@@ -10,18 +10,17 @@
 #include <string>
 #include <list>
 
-#include "./client/client.h"
-
-static bool handleEvents(Player &player, Stage &stage, Client *client);
+static bool handleEvents(Player &player, Stage &stage);
 
 int main(int argc, char *argv[])
 {
-	try {
+	try
+	{
 		SDL2pp::SDL sdl(SDL_INIT_VIDEO);
 		SDL2pp::SDLImage image(IMG_INIT_PNG);
 		SDL2pp::Window window("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-				      1280, 720,
-				      SDL_WINDOW_RESIZABLE);
+							  1280, 720,
+							  SDL_WINDOW_RESIZABLE);
 		SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 		renderer.SetLogicalSize(1920, 1080);
 		std::list<std::string> spritesToLoad;
@@ -39,14 +38,9 @@ int main(int argc, char *argv[])
 
 		bool running = true;
 
-		Client client(argv[1], argv[2]);
-		std::string map = "map1";
-		client.create_scenario(&map);
-		std::cout<<"Creo el escenario"<<std::endl;
-
 		while (running)
 		{
-			running = handleEvents(player, stage, &client);
+			running = handleEvents(player, stage);
 			stage.update(FRAME_RATE);
 			player.update(FRAME_RATE);
 			renderer.Clear();
@@ -57,76 +51,79 @@ int main(int argc, char *argv[])
 			// de la cantidad de tiempo que demoró el handleEvents y el render
 			usleep(FRAME_RATE);
 		}
-		client.join();
-	} catch (std::exception &e) {
+	}
+	catch (std::exception &e)
+	{
 		std::cout << e.what() << std::endl;
 		return 1;
 	}
 	return 0;
 }
 
-static bool handleEvents(Player &player, Stage &stage, Client *client) {
+static bool handleEvents(Player &player, Stage &stage)
+{
 	SDL_Event event;
 	// Para el alumno: Buscar diferencia entre waitEvent y pollEvent
-	while(SDL_PollEvent(&event)){
-		switch(event.type) {
-			case SDL_KEYDOWN: {
-				// ¿Qué pasa si mantengo presionada la tecla?
-				SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
-				Move move;
-				switch (keyEvent.keysym.sym) {
-					case SDLK_LEFT:
-						player.moveLeft();
-						stage.moveRight();
-						move = LEFT;
-						break;
-					case SDLK_RIGHT:
-						player.moveRigth();
-						stage.moveLeft();
-						move = RIGHT;
-						break;
-					case SDLK_UP:
-						player.moveUp();
-                        stage.stop();
-						move = UP;
-						break;
-					case SDLK_DOWN:
-						player.moveDown();
-                        stage.stop();
-						move = DOWN;
-						break;
-				}
-				client->move(&move);
-			} // Fin KEY_DOWN
+	while (SDL_PollEvent(&event))
+	{
+		switch (event.type)
+		{
+		case SDL_KEYDOWN:
+		{
+			// ¿Qué pasa si mantengo presionada la tecla?
+			SDL_KeyboardEvent &keyEvent = (SDL_KeyboardEvent &)event;
+			switch (keyEvent.keysym.sym)
+			{
+			case SDLK_LEFT:
+				player.moveLeft();
+				stage.moveRight();
 				break;
-			case SDL_KEYUP: {
-				SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
-				switch (keyEvent.keysym.sym) {
-					case SDLK_LEFT:
-						player.stopMoving();
-						stage.stop();
-						break;
-					case SDLK_RIGHT:
-						player.stopMoving();
-						stage.stop();
-						break;
-					case SDLK_UP:
-						player.stopMoving();
-						break;
-					case SDLK_DOWN:
-						player.stopMoving();
-						break;
-				}
-			}// Fin KEY_UP
+			case SDLK_RIGHT:
+				player.moveRigth();
+				stage.moveLeft();
 				break;
-			case SDL_QUIT:
-				std::cout << "Quit :(" << std::endl;
-				return false;
+			case SDLK_UP:
+				player.moveUp();
+				stage.stop();
+				break;
+			case SDLK_DOWN:
+				player.moveDown();
+				stage.stop();
+				break;
+			}
+		} // Fin KEY_DOWN
+		break;
+		case SDL_KEYUP:
+		{
+			SDL_KeyboardEvent &keyEvent = (SDL_KeyboardEvent &)event;
+			switch (keyEvent.keysym.sym)
+			{
+			case SDLK_LEFT:
+				player.stopMoving();
+				stage.stop();
+				break;
+			case SDLK_RIGHT:
+				player.stopMoving();
+				stage.stop();
+				break;
+			case SDLK_UP:
+				player.stopMoving();
+				break;
+			case SDLK_DOWN:
+				player.stopMoving();
+				break;
+			}
+		} // Fin KEY_UP
+		break;
+		case SDL_QUIT:
+			std::cout << "Quit :(" << std::endl;
+			return false;
 		} // fin switch(event)
-	} // fin while(SDL_PollEvents)
+	}	  // fin while(SDL_PollEvents)
 	return true;
 }
 
-static void update(Player &player, float dt) {
+static void update(Player &player, float dt)
+{
 	player.update(dt);
 }
