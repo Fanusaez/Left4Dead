@@ -7,16 +7,16 @@ Client::Client(char *localhost, char *puerto) : socket(localhost, puerto), queue
     keep_talking = true;        
 }
 
-bool Client::create_scenario(std::string *scenario_name){
+bool Client::create_scenario(const std::string& scenario_name){
     return (queue_sender.try_push(client_seializer.serialize_create_scenario(scenario_name)));
 }
 
-bool Client::join_scenario(int32_t *scenario_code)
+bool Client::join_scenario(const int32_t& scenario_code)
 {
     return (queue_sender.try_push(client_seializer.serialize_join_scenario(scenario_code)));
 }
 
-bool Client::move(Move *move)
+bool Client::move(Move move)
 {
     return (queue_sender.try_push(client_seializer.serialize_move(move)));
 }

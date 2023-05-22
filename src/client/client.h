@@ -29,11 +29,11 @@ private:
 public:
     Client(char *localhost, char *puerto);
 
-    bool create_scenario(std::string *scenario_name);
+    bool create_scenario(const std::string& scenario_name);
 
-    bool join_scenario(int32_t *scenario_code);
+    bool join_scenario(const int32_t& scenario_code);
 
-    bool move(Move *move);
+    bool move(Move move);
 
     bool start();
 
