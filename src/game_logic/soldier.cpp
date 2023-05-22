@@ -1,6 +1,8 @@
+#include <cmath>
 #include "soldier.h"
 
 #define GRANADE_DISTANCE_REACH 4
+#define WALLS_LIMITS 0.4
 
 Soldier::Soldier(Weapon* weapon, GameMap& map) : weapon(weapon), map(map){} // lo dejo por ahora
 
@@ -12,6 +14,18 @@ Soldier::Soldier(Weapon* weapon,
         map(map),
         x_pos(x_pos),
         y_pos(y_pos) {}
+
+Soldier::Soldier(Weapon *weapon,
+                 GameMap &map,
+                 std::uint16_t x_pos,
+                 std::uint16_t y_pos,
+                 float speed) :
+        weapon(weapon),
+        map(map),
+        x_pos(x_pos),
+        y_pos(y_pos),
+        soldier_speed(speed){}
+
 
 void Soldier::shoot() {
     std::vector<GameObject*> shooting_objects;
@@ -48,35 +62,55 @@ void Soldier::receive_damage(std::uint16_t damage) {
 
 void Soldier::move_up() {
     direction = UP;
+    if (y_pos <= 0) return;
+    // Si no va a cambiar la pos de la matriz, no sigo
+    if (round(y_pos) == round(y_pos - soldier_speed)) {
+        y_pos -= soldier_speed;
+        return;
+    }
     std::int16_t new_y_pos = -1;
-    map.move_soldier_up(x_pos, y_pos, new_y_pos);
-    if(new_y_pos >= 0){
-        y_pos = new_y_pos;
+    map.move_soldier_up(round(x_pos), round(y_pos), new_y_pos);
+    if(new_y_pos >= 0) { // si fue exitoso
+        if (y_pos > 0)
+        y_pos -= soldier_speed;
     }
 }
 
 void Soldier::move_down() {
     direction = DOWN;
+    if (round(y_pos) == round(y_pos + soldier_speed)) {
+        y_pos += soldier_speed;
+        return;
+    }
     std::int16_t new_y_pos = -1;
-    map.move_soldier_down(x_pos, y_pos, new_y_pos);
+    map.move_soldier_down(round(x_pos), round(y_pos), new_y_pos);
     if(new_y_pos >= 0){
-        y_pos = new_y_pos;
+        y_pos += soldier_speed;
     }
 }
 
 void Soldier::move_right() {
+    if (round(x_pos) == round(x_pos + soldier_speed)) {
+        x_pos += soldier_speed;
+        return;
+    }
     std::int16_t new_x_pos = -1;
-    map.move_soldier_right(x_pos, y_pos, new_x_pos);
+    map.move_soldier_right(round(x_pos), round(y_pos), new_x_pos);
     if(new_x_pos >= 0){
-        x_pos = new_x_pos;
+        x_pos += soldier_speed;
     }
 }
 
 void Soldier::move_left() {
+    if (x_pos <= WALLS_LIMITS) return;
+    if (round(x_pos) == round(x_pos - soldier_speed)) {
+        x_pos -= soldier_speed;
+        return;
+    }
     std::int16_t new_x_pos = -1;
-    map.move_soldier_left(x_pos, y_pos, new_x_pos);
+    map.move_soldier_left(round(x_pos), round(y_pos), new_x_pos);
     if(new_x_pos >= 0){
-        x_pos = new_x_pos;
+        x_pos -= soldier_speed;
     }
 }
 
@@ -108,13 +142,14 @@ void Soldier::get_position(std::vector<std::int16_t> &pos) {
 
 //************************* Metodo de testeo *********************************************
 
-std::uint16_t Soldier::get_y_position() {
+float Soldier::get_y_position() {
     return y_pos;
 }
 
-std::uint16_t Soldier::get_x_position() {
+float Soldier::get_x_position() {
     return x_pos;
 }
+
 
 std::int16_t Soldier::get_health() {
     return health;

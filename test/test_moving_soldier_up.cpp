@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <iostream>
 #include "acutest.h"
 #include "game_logic/soldier.h"
 #include "game_logic/walker.h"
@@ -12,7 +13,7 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-
+#define SOLDIER_SPEED 0.2
 
 void testMoveSoldierUp(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
@@ -21,29 +22,17 @@ void testMoveSoldierUp(){
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-   soldier.move_up();
-
-   std::uint16_t x_pos = soldier.get_x_position();
-   std::uint16_t y_pos = soldier.get_y_position();
-
-    TEST_CHECK(x_pos == 3);
-    TEST_CHECK(y_pos == 7);
-}
-
-void testMoveSoldierUpGoesToEndOfMap() {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
-
-    Soldier soldier(scout, map, 3, 0);
-    map.add_soldier(&soldier, 3, 0);
-
     soldier.move_up();
 
-    std::uint16_t x_pos = soldier.get_x_position();
-    std::uint16_t y_pos = soldier.get_y_position();
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
+
+    const float epsilon = 0.001; // Valor de tolerancia
+    float received_numered = y_pos;
+    float expected_number = 8 - SPEED_SOLDIER;
 
     TEST_CHECK(x_pos == 3);
-    TEST_CHECK(y_pos == 9);
+    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
 
 void testNotMoveSoldierUp(){
@@ -56,13 +45,19 @@ void testNotMoveSoldierUp(){
     Walker walker(3,7);
     map.add_zombie(&walker, 3, 7);
 
-    soldier.move_up();
+    for (float i = 0; i < 20; i++){
+        soldier.move_up();
+    }
 
-    std::uint16_t x_pos = soldier.get_x_position();
-    std::uint16_t y_pos = soldier.get_y_position();
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
+
+    const float epsilon = 0.001; // Valor de tolerancia
+    float received_numered = y_pos;
+    float expected_number = 7.6;
 
     TEST_CHECK(x_pos == 3);
-    TEST_CHECK(y_pos == 8);
+    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
 
 void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
@@ -75,13 +70,19 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
     Walker walker(4,7);
     map.add_zombie(&walker, 4, 7);
 
-    soldier.move_up();
+    for (float i = 0; i < 20; i++){
+        soldier.move_up();
+    }
 
-    std::uint16_t x_pos = soldier.get_x_position();
-    std::uint16_t y_pos = soldier.get_y_position();
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
+
+    const float epsilon = 0.001; // Valor de tolerancia
+    float received_numered = y_pos;
+    float expected_number = 7.6;
 
     TEST_CHECK(x_pos == 3);
-    TEST_CHECK(y_pos == 8);
+    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
 
 void testNotMoveSoldierUpCrashesPartiallyWithZombie2(){
@@ -94,19 +95,24 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie2(){
     Walker walker(2,7);
     map.add_zombie(&walker, 2, 7);
 
-    soldier.move_up();
+    for (float i = 0; i < 20; i++){
+        soldier.move_up();
+    }
 
-    std::uint16_t x_pos = soldier.get_x_position();
-    std::uint16_t y_pos = soldier.get_y_position();
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
+
+    const float epsilon = 0.001; // Valor de tolerancia
+    float received_numered = y_pos;
+    float expected_number = 7.6;
 
     TEST_CHECK(x_pos == 3);
-    TEST_CHECK(y_pos == 8);
+    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
 
 
 TEST_LIST = {
         {"Move soldier 1 position up",testMoveSoldierUp},
-        {"Move soldier 1 position up goes to the other side of map",testMoveSoldierUpGoesToEndOfMap},
         {"Move soldier 1 position up goes not possible for walker totally aligned",testNotMoveSoldierUp},
         {"Move soldier 1 position up goes not possible for walker partially aligned (right side)", testNotMoveSoldierUpCrashesPartiallyWithZombie},
         {"Move soldier 1 position up goes not possible for walker partially aligned(left side)", testNotMoveSoldierUpCrashesPartiallyWithZombie2},

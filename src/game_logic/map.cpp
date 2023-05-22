@@ -129,21 +129,12 @@ void GameMap::move_soldier_up(std::uint16_t x_pos,
         find_new_y_pos(new_y_pos_ref, new_y_pos, x_pos, y_pos);
         return;
     }
-    if(y_pos == 0) { // no hace falta if
-        std::uint16_t new_y_pos = y_size - 1;
-        find_new_y_pos(new_y_pos_ref, new_y_pos, x_pos, y_pos);
-    }
 }
 
 void GameMap::move_soldier_down(std::uint16_t x_pos,
                                 std::uint16_t y_pos,
                                 std::int16_t &new_y_pos_ref) {
-    if (y_pos == y_size - 1){
-        std::uint16_t new_y_pos = 0;
-        find_new_y_pos(new_y_pos_ref, new_y_pos, x_pos, y_pos);
-        return;
-    }
-    if(y_pos < y_size - 1) { // no hace falta if
+    if(y_pos < y_size - 1) {
         std::uint16_t new_y_pos = y_pos + 1;
         find_new_y_pos(new_y_pos_ref, new_y_pos, x_pos, y_pos);
     }

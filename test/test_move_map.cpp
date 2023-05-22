@@ -12,7 +12,7 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-
+#define SOLDIER_SPEED 0.2
 //**************************************** Move Down *************************************//
 
 void testMoveSoldierDownAndCheckPositions(){
@@ -22,7 +22,9 @@ void testMoveSoldierDownAndCheckPositions(){
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    soldier.move_down();
+    for (float i = 0; i < 4; i++){
+        soldier.move_down();
+    }
 
     GameObject* soldier1 = map.get_object(3, 9);
     GameObject* soldier2 = map.get_object(4, 9);
@@ -37,26 +39,22 @@ void testMoveSoldierDownAndCheckPositions(){
 
 }
 
-void testMoveSoldierDownGoesToBeginningCheckPositions() {
+void testMoveSoldierDownAtTheEndStaysInPlace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3, MAP_SIZE_Y - 1);
     map.add_soldier(&soldier, 3, MAP_SIZE_Y - 1);
 
-    soldier.move_down();
+    for (float i = 0; i < 4; i++){
+        soldier.move_down();
+    }
 
-    GameObject* soldier1 = map.get_object(3, 0);
-    GameObject* soldier2 = map.get_object(4, 0);
-
-    GameObject* old_pos1= map.get_object(3, MAP_SIZE_Y - 1);
-    GameObject* old_pos2 = map.get_object(4, MAP_SIZE_Y - 1);
+    GameObject* soldier1= map.get_object(3, MAP_SIZE_Y - 1);
+    GameObject* soldier2 = map.get_object(4, MAP_SIZE_Y - 1);
 
     TEST_CHECK(soldier1 != nullptr);
     TEST_CHECK(soldier2 != nullptr);
-    TEST_CHECK(old_pos1 == nullptr);
-    TEST_CHECK(old_pos2 == nullptr);
-
 }
 
 
@@ -70,7 +68,9 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie(){
     Walker walker(3,8);
     map.add_zombie(&walker, 3, 8);
 
-    soldier.move_down();
+    for (float i = 0; i < 4; i++){
+        soldier.move_down();
+    }
 
     GameObject* soldier1 = map.get_object(3, 7);
     GameObject* soldier2 = map.get_object(4, 7);
@@ -96,7 +96,9 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
     Walker walker(4,8);
     map.add_zombie(&walker, 4, 8);
 
-    soldier.move_down();
+    for (float i = 0; i < 4; i++){
+        soldier.move_down();
+    }
 
     GameObject* soldier1 = map.get_object(3, 7);
     GameObject* soldier2 = map.get_object(4, 7);
@@ -127,7 +129,9 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
     Walker walker(2,8);
     map.add_zombie(&walker, 2, 8);
 
-    soldier.move_down();
+    for (float i = 0; i < 4; i++){
+        soldier.move_down();
+    }
 
     GameObject* soldier1 = map.get_object(3, 7);
     GameObject* soldier2 = map.get_object(4, 7);
@@ -157,7 +161,9 @@ void testMoveSoldierUpAndCheckPositions(){
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    soldier.move_up();
+    for (float i = 0; i < 3; i++){
+        soldier.move_up();
+    }
 
     GameObject* soldier1 = map.get_object(3, 7);
     GameObject* soldier2 = map.get_object(4, 7);
@@ -172,20 +178,22 @@ void testMoveSoldierUpAndCheckPositions(){
 
 }
 
-void testMoveSoldierUpGoesToEndingCheckPositions() {
+void testMoveSoldierUpAtTheBeginningStaysInPlace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 0);
-    map.add_soldier(&soldier, 3, 0);
+    Soldier soldier(scout, map, 3, 1);
+    map.add_soldier(&soldier, 3, 1);
 
-    soldier.move_up();
+    for (float i = 0; i < 3; i++){
+        soldier.move_up();
+    }
 
-    GameObject* soldier1 = map.get_object(3, MAP_SIZE_Y - 1);
-    GameObject* soldier2 = map.get_object(4, MAP_SIZE_Y - 1);
+    GameObject* soldier1 = map.get_object(3, 0);
+    GameObject* soldier2 = map.get_object(4, 0);
 
-    GameObject* old_pos1= map.get_object(3, 0);
-    GameObject* old_pos2 = map.get_object(4, 0);
+    GameObject* old_pos1= map.get_object(3, 1);
+    GameObject* old_pos2 = map.get_object(4, 1);
 
     TEST_CHECK(soldier1 != nullptr);
     TEST_CHECK(soldier2 != nullptr);
@@ -204,7 +212,9 @@ void testNotMoveSoldierUpForCompleteCollisionWithZombie(){
     Walker walker(3,6);
     map.add_zombie(&walker, 3, 6);
 
-    soldier.move_up();
+    for (float i = 0; i < 3; i++){
+        soldier.move_up();
+    }
 
     GameObject* soldier1 = map.get_object(3, 7);
     GameObject* soldier2 = map.get_object(4, 7);
@@ -230,7 +240,9 @@ void testNotMoveSoldierUpForPartialCollisionWithZombie(){
     Walker walker(4,6);
     map.add_zombie(&walker, 4, 6);
 
-    soldier.move_up();
+    for (float i = 0; i < 4; i++){
+        soldier.move_up();
+    }
 
     GameObject* soldier1 = map.get_object(3, 7);
     GameObject* soldier2 = map.get_object(4, 7);
@@ -261,7 +273,9 @@ void testNotMoveSoldierUpForPartialCollisionWithZombie2(){
     Walker walker(2,6);
     map.add_zombie(&walker, 2, 6);
 
-    soldier.move_up();
+    for (float i = 0; i < 20; i++){
+        soldier.move_up();
+    }
 
     GameObject* soldier1 = map.get_object(3, 7);
     GameObject* soldier2 = map.get_object(4, 7);
@@ -292,7 +306,9 @@ void testMoveSoldierRightAndCheckMap(){
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    soldier.move_right();
+    for (float i = 0; i < 3; i++){
+        soldier.move_right();
+    }
 
     GameObject* soldier1 = map.get_object(4, 8);
     GameObject* soldier2 = map.get_object(5, 8);
@@ -311,7 +327,9 @@ void testMoveSoldierRightEndOfMapAndCheckMap() {
     Soldier soldier(scout, map, MAP_SIZE_X - 2, 3);
     map.add_soldier(&soldier, MAP_SIZE_X - 2, 3);
 
-    soldier.move_right();
+    for (float i = 0; i < 3; i++){
+        soldier.move_right();
+    }
 
     GameObject* soldier1 = map.get_object(MAP_SIZE_X - 2, 3);
     GameObject* soldier2 = map.get_object(MAP_SIZE_X - 2, 3);
@@ -331,7 +349,9 @@ void testNotMoveSoldierRightForCollisionWithZombieAndCheckMap(){
     Walker walker(5,7);
     map.add_zombie(&walker, 5, 7);
 
-    soldier.move_right();
+    for (float i = 0; i < 3; i++){
+        soldier.move_right();
+    }
 
     GameObject* soldier1 = map.get_object(3, 7);
     GameObject* soldier2 = map.get_object(4, 7);
@@ -357,7 +377,9 @@ void testMoveSoldierRightWithZombieCloseAndCheckMap(){
     Walker walker(4,9);
     map.add_zombie(&walker, 4, 9);
 
-    soldier.move_right();
+    for (float i = 0; i < 3; i++){
+        soldier.move_right();
+    }
 
     GameObject* soldier1 = map.get_object(4, 8);
     GameObject* soldier2 = map.get_object(5, 8);
@@ -381,7 +403,9 @@ void testMoveSoldierLeftAndCheckMap(){
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    soldier.move_left();
+    for (float i = 0; i < 3; i++){
+        soldier.move_left();
+    }
 
     GameObject* soldier1 = map.get_object(2, 8);
     GameObject* soldier2 = map.get_object(3, 8);
@@ -400,7 +424,9 @@ void testMoveSoldierLeftBeginningOfMapAndCheckMap() {
     Soldier soldier(scout, map, 0, 3);
     map.add_soldier(&soldier, 0, 3);
 
-    soldier.move_left();
+    for (float i = 0; i < 3; i++){
+        soldier.move_left();
+    }
 
     GameObject* soldier1 = map.get_object(0, 3);
     GameObject* soldier2 = map.get_object(1, 3);
@@ -420,7 +446,9 @@ void testNotMoveSoldierLeftForCollisionWithZombieAndCheckMap(){
     Walker walker(1,7);
     map.add_zombie(&walker, 1, 7);
 
-    soldier.move_left();
+    for (float i = 0; i < 3; i++){
+        soldier.move_left();
+    }
 
     GameObject* soldier1 = map.get_object(3, 7);
     GameObject* soldier2 = map.get_object(4, 7);
@@ -446,7 +474,9 @@ void testMoveSoldierLeftWithZombieCloseAndCheckMap(){
     Walker walker(4,9);
     map.add_zombie(&walker, 4, 9);
 
-    soldier.move_left();
+    for (float i = 0; i < 3; i++){
+        soldier.move_left();
+    }
 
     GameObject* soldier1 = map.get_object(5, 8);
     GameObject* soldier2 = map.get_object(6, 8);
@@ -466,13 +496,13 @@ void testMoveSoldierLeftWithZombieCloseAndCheckMap(){
 
 TEST_LIST = {
         {"Move soldier 1 position down and check Map",testMoveSoldierDownAndCheckPositions},
-        {"Move soldier 1 position down goes to beginning and check Map",testMoveSoldierDownGoesToBeginningCheckPositions},
+        {"Move soldier 1 position at the end stays in place and check Map",testMoveSoldierDownAtTheEndStaysInPlace},
         {"Move down stays in same place for complete collision with walker", testNotMoveSoldierDownForCompleteCollisionWithZombie},
         {"Move down stays in same place for partial collision with walker", testNotMoveSoldierDownForPartialCollisionWithZombie},
         {"Move down stays in same place for partial collision with walker 2", testNotMoveSoldierDownForPartialCollisionWithZombie2},
 
         {"Move soldier 1 position up and check Map",testMoveSoldierUpAndCheckPositions},
-        {"Move soldier 1 position up goes to ending position and check Map", testMoveSoldierUpGoesToEndingCheckPositions},
+        {"Move soldier 1 position up at the beginning stays in place check Map", testMoveSoldierUpAtTheBeginningStaysInPlace},
         {"Move up stays in same place for complete collision with walker", testNotMoveSoldierUpForCompleteCollisionWithZombie},
         {"Move up stays in same place for partial collision with walker", testNotMoveSoldierUpForPartialCollisionWithZombie},
         {"Move up stays in same place for partial collision with walker 2", testNotMoveSoldierUpForPartialCollisionWithZombie2},

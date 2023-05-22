@@ -7,7 +7,7 @@ void Obstacle::get_position(std::vector<std::int16_t> &pos) {
 
 void Obstacle::set_direction(std::int16_t direction) {}
 
-std::uint16_t Obstacle::get_y_position() {
+float Obstacle::get_y_position() {
     return y_pos;
 }
 

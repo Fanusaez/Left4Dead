@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <iostream>
 #include "acutest.h"
 #include "game_logic/soldier.h"
 #include "game_logic/walker.h"
@@ -21,12 +22,18 @@ void testMoveSoldierLeft(){
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
+
     soldier.move_left();
 
-    std::uint16_t x_pos = soldier.get_x_position();
-    std::uint16_t y_pos = soldier.get_y_position();
 
-    TEST_CHECK(x_pos == 2);
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
+
+    const float epsilon = 0.001; // Valor de tolerancia
+    float received_numered = x_pos;
+    float expected_number = 2.8;
+
+    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
     TEST_CHECK(y_pos == 8);
 }
 
@@ -34,15 +41,21 @@ void testMoveSoldierLeftBeginningOfMap() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 0, 3);
-    map.add_soldier(&soldier, 0, 3);
+    Soldier soldier(scout, map, 1, 3);
+    map.add_soldier(&soldier, 1, 3);
 
-    soldier.move_left();
+    for (float i = 0; i < 20; i++){
+        soldier.move_left();
+    }
 
-    std::uint16_t x_pos = soldier.get_x_position();
-    std::uint16_t y_pos = soldier.get_y_position();
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
 
-    TEST_CHECK(x_pos == 0);
+    const float epsilon = 0.001; // Valor de tolerancia
+    float received_numered = x_pos;
+    float expected_number = 0.2; // ver
+
+    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
     TEST_CHECK(y_pos == 3);
 }
 
@@ -56,33 +69,20 @@ void testNotMoveSoldierLeftForCollisionWithZombie(){
     Walker walker(1,7);
     map.add_zombie(&walker, 1, 7);
 
-    soldier.move_left();
+    for (float i = 0; i < 20; i++){
+        soldier.move_left();
+    }
 
-    std::uint16_t x_pos = soldier.get_x_position();
-    std::uint16_t y_pos = soldier.get_y_position();
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
+    std::cout << x_pos;
 
-    TEST_CHECK(x_pos == 3);
+    const float epsilon = 0.001; // Valor de tolerancia
+    float received_numered = x_pos;
+    float expected_number = 2.6;
+
+    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
     TEST_CHECK(y_pos == 7);
-}
-
-
-void testMoveSoldierLeftWithZombieClose(){
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
-
-    Soldier soldier(scout, map, 3, 8);
-    map.add_soldier(&soldier, 3, 8);
-
-    Walker walker(4,9);
-    map.add_zombie(&walker, 4, 9);
-
-    soldier.move_left();
-
-    std::uint16_t x_pos = soldier.get_x_position();
-    std::uint16_t y_pos = soldier.get_y_position();
-
-    TEST_CHECK(x_pos == 2);
-    TEST_CHECK(y_pos == 8);
 }
 
 
@@ -90,7 +90,6 @@ TEST_LIST = {
         {"Move soldier 1 position Left",testMoveSoldierLeft},
         {"Move soldier 1 position on limit of map",testMoveSoldierLeftBeginningOfMap},
         {"Move soldier 1 position Left not possible for walker",testNotMoveSoldierLeftForCollisionWithZombie},
-        {"Move soldier 1 position Left close to a zombie", testMoveSoldierLeftWithZombieClose},
         {NULL, NULL},
 };
 

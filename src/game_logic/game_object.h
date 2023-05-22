@@ -8,7 +8,7 @@ class GameObject {
  public:
 virtual void get_position(std::vector<std::int16_t>& pos) = 0;
 virtual void receive_damage(std::uint16_t damage) = 0;
-virtual std::uint16_t get_y_position() = 0;
+virtual float get_y_position() = 0;
 virtual bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t x_finish,
                            std::int16_t y_start,
