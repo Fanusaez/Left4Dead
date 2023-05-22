@@ -1,4 +1,5 @@
 #include "game.h"
+#include "../common/move.h"
 
 Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name) : 
     queue_entrante(10000), keep_playing(keep_playing), code(*code), game_name(*game_name)
@@ -8,20 +9,31 @@ Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_
 
 void Game::run(){
     // Logica del juego
-    InstructionsDTO instructionDTO;
     GameDTO game_dto;
     while (keep_playing)
     {
+        InstructionsDTO instructionDTO;
         bool could_pop = queue_entrante.try_pop(instructionDTO);
+        //instructionDTO = queue_entrante.pop();
         if (could_pop)
         {
             // Proceso la instrcuccion
+            if (instructionDTO.get_instruction() == MOVE){
+                if (static_cast<Move>(instructionDTO.get_parameters().at(0)) == LEFT)
+                    std::cout<<"Left"<<std::endl;
+                if (static_cast<Move>(instructionDTO.get_parameters().at(0)) == RIGHT)
+                    std::cout << "Right" << std::endl;
+                if (static_cast<Move>(instructionDTO.get_parameters().at(0)) == UP)
+                    std::cout << "Up" << std::endl;
+                if (static_cast<Move>(instructionDTO.get_parameters().at(0)) == DOWN)
+                    std::cout << "Down" << std::endl;
+            }
         }
         // Actualizo el juego
         // Saco screen
         for (const auto &queue : queue_salientes)
         {
-            queue->push(game_dto);
+            queue->try_push(game_dto);
         }
     }
 }

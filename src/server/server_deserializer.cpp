@@ -32,10 +32,9 @@ int32_t ServerDeserializer::deserialize_join(bool *was_closed)
 
 InstructionsDTO ServerDeserializer::deserialize_move(bool *was_closed)
 {
-    std::vector<char> bytes;
+    std::vector<char> bytes(1);
     socket->recvall(bytes.data(), 1, was_closed);
-    std::list<char> parameters(bytes.begin(), bytes.end());
-    InstructionsDTO instructionDTO(MOVE, parameters);
+    InstructionsDTO instructionDTO(MOVE, bytes);
     return instructionDTO;
 }
 
@@ -55,7 +54,6 @@ InstructionsDTO ServerDeserializer::deserialize_grenede(bool *was_closed)
 {
     std::vector<char> bytes;
     socket->recvall(bytes.data(), 1, was_closed);
-    std::list<char> parameters(bytes.begin(), bytes.end());
-    InstructionsDTO instructionDTO(GRANEDE, parameters);
+    InstructionsDTO instructionDTO(GRANEDE, bytes);
     return instructionDTO;
 }

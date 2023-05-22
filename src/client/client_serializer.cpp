@@ -23,7 +23,7 @@ std::vector<char> ClientSerializer::serialize_join_scenario(int32_t *scenario_co
 std::vector<char> ClientSerializer::serialize_game_mode(GameMode *game_mode)
 {
     std::vector<char> buffer;
-    buffer.push_back(0x03);
+    buffer.push_back(GAME_MODE);
     if (*game_mode == CLEAR_THE_ZONE || *game_mode == SURVIVAL)
         buffer.push_back(*game_mode);
     else
@@ -34,7 +34,7 @@ std::vector<char> ClientSerializer::serialize_game_mode(GameMode *game_mode)
 std::vector<char> ClientSerializer::serialize_soldier(SoldierType *soldier_type)
 {
     std::vector<char> buffer;
-    buffer.push_back(0x04);
+    buffer.push_back(SOLDIER_TYPE);
     if (*soldier_type == IDF || *soldier_type == P90 || *soldier_type == SCOUT)
         buffer.push_back(*soldier_type);
     else
@@ -44,14 +44,14 @@ std::vector<char> ClientSerializer::serialize_soldier(SoldierType *soldier_type)
 
 std::vector<char> ClientSerializer::serialize_request_game_list(){
     std::vector<char> buffer;
-    buffer.push_back(0x05);
+    buffer.push_back(GAME_LIST);
     return buffer;
 }
 
 std::vector<char> ClientSerializer::serialize_move(Move *move)
 {
     std::vector<char> buffer;
-    buffer.push_back(0x06);
+    buffer.push_back(MOVE);
     buffer.push_back(*move);
     return buffer;
 }
@@ -59,19 +59,19 @@ std::vector<char> ClientSerializer::serialize_move(Move *move)
 std::vector<char> ClientSerializer::serialize_reloading()
 {
     std::vector<char> buffer;
-    buffer.push_back(0x07);
+    buffer.push_back(RELOAD);
     return buffer;
 }
 
 std::vector<char> ClientSerializer::serialize_shooting(){
     std::vector<char> buffer;
-    buffer.push_back(0x08);
+    buffer.push_back(SHOOT);
     return buffer;
 }
 
 std::vector<char> ClientSerializer::serialize_throw_grenede(int *time){
     std::vector<char> buffer;
-    buffer.push_back(0x09);
+    buffer.push_back(GRANEDE);
     buffer.push_back(*time);
     return buffer;
 }
