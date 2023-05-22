@@ -29,7 +29,7 @@ void testMoveSoldierUp(){
 
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = y_pos;
-    float expected_number = 8 - SPEED_SOLDIER;
+    float expected_number = 8 - SOLDIER_SPEED;
 
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
@@ -52,12 +52,8 @@ void testNotMoveSoldierUp(){
     float x_pos = soldier.get_x_position();
     float y_pos = soldier.get_y_position();
 
-    const float epsilon = 0.001; // Valor de tolerancia
-    float received_numered = y_pos;
-    float expected_number = 7.6;
-
     TEST_CHECK(x_pos == 3);
-    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(y_pos == 8);
 }
 
 void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
@@ -77,12 +73,8 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
     float x_pos = soldier.get_x_position();
     float y_pos = soldier.get_y_position();
 
-    const float epsilon = 0.001; // Valor de tolerancia
-    float received_numered = y_pos;
-    float expected_number = 7.6;
-
     TEST_CHECK(x_pos == 3);
-    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(y_pos == 8);
 }
 
 void testNotMoveSoldierUpCrashesPartiallyWithZombie2(){
@@ -102,9 +94,27 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie2(){
     float x_pos = soldier.get_x_position();
     float y_pos = soldier.get_y_position();
 
+    TEST_CHECK(x_pos == 3);
+    TEST_CHECK(y_pos == 8);
+}
+
+void testMoveSoldierUpUntilEndOfTheMap(){
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 3, 1);
+    map.add_soldier(&soldier, 3, 1);
+
+    for (float i = 0; i < 20; i++){
+        soldier.move_up();
+    }
+
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
+    std::cout << y_pos;
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = y_pos;
-    float expected_number = 7.6;
+    float expected_number = 0.4;
 
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
@@ -116,6 +126,7 @@ TEST_LIST = {
         {"Move soldier 1 position up goes not possible for walker totally aligned",testNotMoveSoldierUp},
         {"Move soldier 1 position up goes not possible for walker partially aligned (right side)", testNotMoveSoldierUpCrashesPartiallyWithZombie},
         {"Move soldier 1 position up goes not possible for walker partially aligned(left side)", testNotMoveSoldierUpCrashesPartiallyWithZombie2},
+        {"Move soldier up until end of the map",testMoveSoldierUpUntilEndOfTheMap},
         {NULL, NULL},
 };
 

@@ -33,7 +33,7 @@ void Walker::chase_closest_soldier(GameMap& map, std::vector<GameObject*> soldie
     movement->chase_soldier(this, x_new_pos, y_new_pos, closest_soldier, map);
     //map.chase_soldier_walking(this, x_new_pos, y_new_pos, closest_soldier);
     if (x_new_pos != INVALID_POSITION) {
-        x_pos = x_new_pos;
+        //x_pos = x_new_pos;
     }
     if (y_new_pos != INVALID_POSITION) {
         if (y_new_pos > y_pos) {
@@ -41,7 +41,7 @@ void Walker::chase_closest_soldier(GameMap& map, std::vector<GameObject*> soldie
         } else if (y_new_pos < y_pos) {
             direction = UP;
         }
-        y_pos = y_new_pos;
+        //y_pos = y_new_pos;
     }
 }
 
@@ -60,14 +60,14 @@ GameObject* Walker::get_closest_soldier(std::vector<GameObject*> soldiers) {
 }
 
 std::int16_t Walker::get_distance_to_soldier(GameObject* soldier) {
-    std::vector<std::int16_t> sold_pos;
+    std::vector<float> sold_pos;
     soldier->get_position(sold_pos);
-    std::int16_t x_distance = sold_pos[0] - x_pos;
-    std::int16_t y_distance = sold_pos[1] - y_pos;
+    std::int16_t x_distance = round(sold_pos[0]) - floor(x_pos);
+    std::int16_t y_distance = round(sold_pos[1]) - floor(y_pos);
     return std::sqrt(x_distance * x_distance + y_distance * y_distance);
 }
 
-void Walker::get_position(std::vector<std::int16_t>& pos) {
+void Walker::get_position(std::vector<float>& pos) {
     pos.push_back(x_pos);
     pos.push_back(y_pos);
 }
@@ -99,9 +99,9 @@ std::int16_t Walker::get_health() {
     return health;
 }
 
-std::int16_t Walker::get_x() {
+float Walker::get_x() {
     return x_pos;
 }
-std::int16_t Walker::get_y() {
+float Walker::get_y() {
     return y_pos;
 }

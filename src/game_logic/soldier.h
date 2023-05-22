@@ -7,18 +7,17 @@
 #include "weapon.h"
 #define DOWN 1
 #define UP -1
-#define SPEED_SOLDIER 0.2
 
 class Soldier : public GameObject {
  private:
     Weapon* weapon = nullptr;
     GameMap &map;
-    float x_pos;
-    float y_pos;
+    double x_pos;
+    double y_pos;
     std::int16_t direction = UP;
     bool dead = false;
     std::int16_t health = 100;
-    float soldier_speed = 0.2;
+    double soldier_speed = 0.2;
 
  public:
 Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
@@ -35,7 +34,7 @@ bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t y_start,
                            std::int16_t y_finish) override;
 
-void get_position(std::vector<std::int16_t>& pos) override;
+void get_position(std::vector<float>& pos) override;
 
 void move_up();
 void move_down();

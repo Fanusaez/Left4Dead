@@ -53,7 +53,7 @@ void testMoveSoldierLeftBeginningOfMap() {
 
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = x_pos;
-    float expected_number = 0.2; // ver
+    float expected_number = 0.4; // ver
 
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
     TEST_CHECK(y_pos == 3);
@@ -79,7 +79,7 @@ void testNotMoveSoldierLeftForCollisionWithZombie(){
 
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = x_pos;
-    float expected_number = 2.6;
+    float expected_number = 3;
 
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
     TEST_CHECK(y_pos == 7);

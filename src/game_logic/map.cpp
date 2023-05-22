@@ -192,51 +192,6 @@ bool GameMap::check_free_position(std::int16_t x_pos,
     return map[y_pos][x_pos] == nullptr; // !map[y_sold_pos][x_sold_pos]
 }
 
-void GameMap::chase_soldier_walking(Zombie* walker,
-                                    std::int16_t &x_new_pos,
-                                    std::int16_t &y_new_pos,
-                                    GameObject *soldier) {
-    std::vector<std::int16_t> sold_pos;
-    soldier->get_position(sold_pos);
-    std::int16_t x_sold = sold_pos[X_POS];
-    std::int16_t y_sold = sold_pos[Y_POS];
-
-    std::vector<std::int16_t> walker_pos;
-    walker->get_position(walker_pos);
-    std::int16_t x_walker = walker_pos[X_POS];
-    std::int16_t y_walker = walker_pos[Y_POS];
-
-    bool same_place = true;
-
-    if (x_sold > x_walker && y_sold < y_walker) { // movimiento diagonal derecha arriba
-        move_diagonally_up_right(x_walker, y_walker, x_new_pos, y_new_pos, same_place);
-    } else if (x_sold < x_walker && y_sold < y_walker) { // movimiento diagonal izquierda arriba
-        move_diagonally_up_left(x_walker, y_walker, x_new_pos, y_new_pos, same_place);
-    } else if (x_sold > x_walker && y_sold > y_walker) { // movimiento diagonal derecha abajo
-        move_diagonally_down_right(x_walker, y_walker, x_new_pos, y_new_pos, same_place);
-    } else if (x_sold < x_walker && y_sold > y_walker) { // movimiento diagonal izquierda abajo
-        move_diagonally_down_left(x_walker, y_walker, x_new_pos, y_new_pos, same_place);
-    }
-    if (x_sold < x_walker && same_place) { // movimiento para izquierda
-        move_soldier_left(x_walker, y_walker, x_new_pos); /// ya no debe llamarse asi
-        if (x_new_pos != INVALID_POSITION) same_place = false;
-    } else if (x_sold > x_walker && same_place) { // movimiento para derecha
-        move_soldier_right(x_walker, y_walker, x_new_pos); /// ya no debe llamarse asi
-        if (x_new_pos != INVALID_POSITION) same_place = false;
-    }
-    if (y_sold > y_walker && same_place) { // movimiento para abajo
-        move_soldier_down(x_walker, y_walker, y_new_pos); /// ya no debe llamarse asi
-        if (y_new_pos != INVALID_POSITION) same_place = false;
-    } else if (y_sold < y_walker && same_place) { // movimiento para arriba
-        move_soldier_up(x_walker, y_walker, y_new_pos); /// ya no debe llamarse asi
-        if (y_new_pos != INVALID_POSITION) same_place = false;
-    }
-
-    if (same_place) { // se quedo trababado por obstaculo, decido que el zombie puede atacar de costado
-        //move_soldier_left(x_walker, y_walker, x_new_pos);
-    }
-}
-
 void GameMap::move_diagonally_up_right(std::int16_t x_zombie, std::int16_t y_zombie,
                                        std::int16_t &x_new_zombie, std::int16_t &y_new_zombie,
                                        bool &same_place) {

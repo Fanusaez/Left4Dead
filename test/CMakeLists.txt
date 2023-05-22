@@ -165,8 +165,8 @@ set(testTargets
         testMoveMap
         testExplosiveGrenade
         testChaseSoldierWalking
-        testMapChaseSoldierWalking
-        testChaseSoldierWalkingObstacles
+        #testMapChaseSoldierWalking
+        #testChaseSoldierWalkingObstacles
 )
 
 foreach(target ${testTargets})

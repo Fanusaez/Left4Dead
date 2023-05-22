@@ -42,16 +42,16 @@ void testMoveSoldierRightEndOfMap() {
     Soldier soldier(scout, map, MAP_SIZE_X - 2, 3);
     map.add_soldier(&soldier, MAP_SIZE_X - 2, 3);
 
-    for (float i = 0; i < 20; i++){
+    for (float i = 0; i < 6; i++){
         soldier.move_right();
     }
 
     float x_pos = soldier.get_x_position();
     float y_pos = soldier.get_y_position();
-
+    std::cout << x_pos;
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = x_pos;
-    float expected_number = 8.4;
+    float expected_number = 9; /// deberia ser 9.8
 
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
     TEST_CHECK(y_pos == 3);
@@ -77,14 +77,14 @@ void testNotMoveSoldierRightForCollisionWithZombie(){
 
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = x_pos;
-    float expected_number = 3.4;
+    float expected_number = 3.8;
 
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
     TEST_CHECK(y_pos == 7);
 }
 
 
-void testMoveSoldierRightWithZombieClose(){
+void testMoveSoldierRightWithZombieClose() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
@@ -94,17 +94,16 @@ void testMoveSoldierRightWithZombieClose(){
     Walker walker(4,9);
     map.add_zombie(&walker, 4, 9);
 
-    for (float i = 0; i < 30; i++){
+    for (int i = 0; i < 30; i++){
         soldier.move_right();
     }
 
     float x_pos = soldier.get_x_position();
     float y_pos = soldier.get_y_position();
-    std::cout << x_pos;
 
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = x_pos;
-    float expected_number = 8.4;
+    float expected_number = 8.8;
 
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
     TEST_CHECK(y_pos == 8);

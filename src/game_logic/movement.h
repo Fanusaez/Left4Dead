@@ -14,5 +14,6 @@ virtual void chase_soldier(Zombie* zombie,
                            std::int16_t& y_new_pos,
                            GameObject* closest_soldier,
                            GameMap& map) = 0;
+
 };
 #endif  // MOVEMENT_H_

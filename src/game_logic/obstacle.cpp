@@ -1,6 +1,6 @@
 #include "obstacle.h"
 
-void Obstacle::get_position(std::vector<std::int16_t> &pos) {
+void Obstacle::get_position(std::vector<float> &pos) {
     pos.push_back(x_pos);
     pos.push_back(y_pos);
 }

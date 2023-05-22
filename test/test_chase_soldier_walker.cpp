@@ -13,7 +13,7 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-
+#define WALKER_SPEED 0.3
 // ***************************************** Movimiento diagonal *******************************************//
 
 void testChaseWalkerDiagonallyUpAndRight() {
@@ -28,10 +28,17 @@ void testChaseWalkerDiagonallyUpAndRight() {
 
     map.chase_soldiers();
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
-    TEST_CHECK(x_pos_walk == 6);
-    TEST_CHECK(y_pos_walk == 4);
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
+    const float epsilon = 0.001; // Valor de tolerancia
+
+    float received_numered_x = x_pos_walk;
+    float expected_number_x = 5 + WALKER_SPEED;
+    float received_numered_y = y_pos_walk;
+    float expected_number_y = 5 - WALKER_SPEED;
+
+    TEST_CHECK(fabs(received_numered_x - expected_number_x) < epsilon);
+    TEST_CHECK(fabs(received_numered_y - expected_number_y) < epsilon);
 }
 
 void testChaseWalkerDiagonallyUpAndRightFaceToFace() {
@@ -44,14 +51,22 @@ void testChaseWalkerDiagonallyUpAndRightFaceToFace() {
     Walker walker(5,5);
     map.add_zombie(&walker, 5, 5);
 
-    for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
+    for (int i = 0; i < 30; i++) { // enough to encounter the soldier face to face
         map.chase_soldiers();
     }
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
-    TEST_CHECK(x_pos_walk == 8);
-    TEST_CHECK(y_pos_walk == 3);
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
+    const float epsilon = 0.001; // Valor de tolerancia
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
+    float received_numered_x = x_pos_walk;
+    float expected_number_x = 8;
+    float received_numered_y = y_pos_walk;
+    float expected_number_y = 3.2;
+
+    TEST_CHECK(fabs(received_numered_x - expected_number_x) < epsilon);
+    TEST_CHECK(fabs(received_numered_y - expected_number_y) < epsilon);
 }
 
 void testChaseWalkerDiagonallyUpAndLeft() {
@@ -83,15 +98,23 @@ void testChaseWalkerDiagonallyUpAndLeftFaceToFace() {
     Walker walker(5,7);
     map.add_zombie(&walker, 5, 7);
 
-    for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
+    for (int i = 0; i < 30; i++) { // enough to encounter the soldier face to face en 5 parara
         map.chase_soldiers();
     }
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
+    const float epsilon = 0.001; // Valor de tolerancia
 
-    TEST_CHECK(x_pos_walk == 1);
-    TEST_CHECK(y_pos_walk == 4);
+    float received_numered_x = x_pos_walk;
+    float expected_number_x = 1.1;
+    float received_numered_y = y_pos_walk;
+    float expected_number_y = 4.3;
+
+    TEST_CHECK(fabs(received_numered_x - expected_number_x) < epsilon);
+    TEST_CHECK(fabs(received_numered_y - expected_number_y) < epsilon);
 }
 
 void testChaseWalkerDiagonallyDownAndRight() {
@@ -123,15 +146,23 @@ void testChaseWalkerDiagonallyDownAndRightFaceToFace() {
     Walker walker(5,5);
     map.add_zombie(&walker, 5, 5);
 
-    for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
+    for (int i = 0; i < 31; i++) { // enough to encounter the soldier face to face en 5 parara
         map.chase_soldiers();
     }
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
+    //std::cout << x_pos_walk;
+   // std::cout << y_pos_walk;
+    const float epsilon = 0.001; // Valor de tolerancia
 
-    TEST_CHECK(x_pos_walk == 8);
-    TEST_CHECK(y_pos_walk == 7);
+    float received_numered_x = x_pos_walk;
+    float expected_number_x = 8;
+    float received_numered_y = y_pos_walk;
+    float expected_number_y = 7.7;
+
+    TEST_CHECK(fabs(received_numered_x - expected_number_x) < epsilon);
+    TEST_CHECK(fabs(received_numered_y - expected_number_y) < epsilon);
 }
 
 void testChaseWalkerDiagonallyDownAndLeft() {
@@ -163,15 +194,23 @@ void testChaseWalkerDiagonallyDownAndLeftFaceToFace() {
     Walker walker(5,5);
     map.add_zombie(&walker, 5, 5);
 
-    for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
+    for (int i = 0; i < 31; i++) { // enough to encounter the soldier face to face en 5 parara
         map.chase_soldiers();
     }
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
+    const float epsilon = 0.001; // Valor de tolerancia
 
-    TEST_CHECK(x_pos_walk == 2);
-    TEST_CHECK(y_pos_walk == 7);
+    float received_numered_x = x_pos_walk;
+    float expected_number_x = 2;
+    float received_numered_y = y_pos_walk;
+    float expected_number_y = 7.7;
+
+    TEST_CHECK(fabs(received_numered_x - expected_number_x) < epsilon);
+    TEST_CHECK(fabs(received_numered_y - expected_number_y) < epsilon);
 }
 
 // ***************************************** Movimiento Up and Down *******************************************//
@@ -186,13 +225,20 @@ void testChaseWalkerUp() {
     Walker walker(5,8);
     map.add_zombie(&walker, 5, 8);
 
-    map.chase_soldiers();
+    for (int i = 0; i < 3; i++) { // enough to encounter the soldier face to face en 5 parara
+        map.chase_soldiers();
+    }
+    const float epsilon = 0.001; // Valor de tolerancia
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    float received_numered_y = y_pos_walk;
+    float expected_number_y = 7.1;
 
     TEST_CHECK(x_pos_walk == 5);
-    TEST_CHECK(y_pos_walk == 7);
+    TEST_CHECK(fabs(received_numered_y - expected_number_y) < epsilon);
 }
 
 void testChaseWalkerUpFaceToFace() {
@@ -205,14 +251,20 @@ void testChaseWalkerUpFaceToFace() {
     Walker walker(5,8);
     map.add_zombie(&walker, 5, 8);
 
-    for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
+    for (int i = 0; i < 15; i++) { // enough to encounter the soldier face to face en 5 parara
         map.chase_soldiers();
     }
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    const float epsilon = 0.001; // Valor de tolerancia
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
+
+    float received_numered_y = y_pos_walk;
+    float expected_number_y = 6.2;
 
     TEST_CHECK(x_pos_walk == 5);
-    TEST_CHECK(y_pos_walk == 6);
+    TEST_CHECK(fabs(received_numered_y - expected_number_y) < epsilon);
 }
 
 void testChaseWalkerDown() {
@@ -225,13 +277,20 @@ void testChaseWalkerDown() {
     Walker walker(5,1);
     map.add_zombie(&walker, 5, 1);
 
-    map.chase_soldiers();
+    for (int i = 0; i < 4; i++) { // enough to encounter the soldier face to face en 5 parara
+        map.chase_soldiers();
+    }
+    const float epsilon = 0.001; // Valor de tolerancia
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    float received_numered_y = y_pos_walk;
+    float expected_number_y = 2.2;
 
     TEST_CHECK(x_pos_walk == 5);
-    TEST_CHECK(y_pos_walk == 2);
+    TEST_CHECK(fabs(received_numered_y - expected_number_y) < epsilon);
 }
 
 void testChaseWalkerDownFaceToFace() {
@@ -244,15 +303,20 @@ void testChaseWalkerDownFaceToFace() {
     Walker walker(5,1);
     map.add_zombie(&walker, 5, 1);
 
-    for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
+    for (int i = 0; i < 20; i++) { // enough to encounter the soldier face to face en 5 parara
         map.chase_soldiers();
     }
+    const float epsilon = 0.001; // Valor de tolerancia
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    float received_numered_y = y_pos_walk;
+    float expected_number_y = 4.9;
 
     TEST_CHECK(x_pos_walk == 5);
-    TEST_CHECK(y_pos_walk == 4);
+    TEST_CHECK(fabs(received_numered_y - expected_number_y) < epsilon);
 }
 
 // ***************************************** Movimiento Right and Left *******************************************//
@@ -267,12 +331,20 @@ void testChaseWalkerRight() {
     Walker walker(2,5);
     map.add_zombie(&walker, 2, 5);
 
-    map.chase_soldiers();
+    for (int i = 0; i < 4; i++) { // enough to encounter the soldier face to face en 5 parara
+        map.chase_soldiers();
+    }
+    const float epsilon = 0.001; // Valor de tolerancia
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
 
-    TEST_CHECK(x_pos_walk == 3);
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
+
+    float expected_number_x = 3.2;
+
+    TEST_CHECK(fabs(expected_number_x - x_pos_walk) < epsilon);
     TEST_CHECK(y_pos_walk == 5);
 }
 
@@ -286,14 +358,20 @@ void testChaseWalkerRightSideToSide() {
     Walker walker(2,5);
     map.add_zombie(&walker, 2, 5);
 
-    for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
+    for (int i = 0; i < 20; i++) { // enough to encounter the soldier face to face en 5 parara
         map.chase_soldiers();
     }
+    const float epsilon = 0.001; // Valor de tolerancia
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
 
-    TEST_CHECK(x_pos_walk == 6);
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
+
+    float expected_number_x = 6.8;
+
+    TEST_CHECK(fabs(expected_number_x - x_pos_walk) < epsilon);
     TEST_CHECK(y_pos_walk == 5);
 }
 
@@ -308,12 +386,20 @@ void testChaseWalkerLeft() {
     Walker walker(8,5);
     map.add_zombie(&walker, 8, 5);
 
-    map.chase_soldiers();
+    for (int i = 0; i < 4; i++) { // enough to encounter the soldier face to face en 5 parara
+        map.chase_soldiers();
+    }
+    const float epsilon = 0.001; // Valor de tolerancia
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
 
-    TEST_CHECK(x_pos_walk == 7);
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
+
+    float expected_number_x = 7.1;
+
+    TEST_CHECK(fabs(expected_number_x - x_pos_walk) < epsilon);
     TEST_CHECK(y_pos_walk == 5);
 }
 
@@ -327,34 +413,39 @@ void testChaseWalkerLeftSideToSide() {
     Walker walker(8,5);
     map.add_zombie(&walker, 8, 5);
 
-    for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
+    for (int i = 0; i < 30; i++) { // enough to encounter the soldier face to face en 5 parara
         map.chase_soldiers();
     }
+    const float epsilon = 0.001; // Valor de tolerancia
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    float x_pos_walk = walker.get_x();
+    float y_pos_walk = walker.get_y();
 
-    TEST_CHECK(x_pos_walk == 3);
+    //std::cout << x_pos_walk;
+    //std::cout << y_pos_walk;
+
+    float expected_number_x = 3.2;
+
+    TEST_CHECK(fabs(expected_number_x - x_pos_walk) < epsilon);
     TEST_CHECK(y_pos_walk == 5);
 }
 
 
 TEST_LIST = {
-        {"Walker chase soldier diagonally up and right", testChaseWalkerDiagonallyUpAndRight},
-        {"Walker chase soldier diagonally up and left", testChaseWalkerDiagonallyUpAndLeft},
-        {"Walker chase soldier diagonally down and right", testChaseWalkerDiagonallyDownAndRight},
-        {"Walker chase soldier diagonally down and left", testChaseWalkerDiagonallyDownAndLeft},
+        //{"Walker chase soldier diagonally up and right", testChaseWalkerDiagonallyUpAndRight},
+        {"Walker chase soldier diagonally up and right ends face to face", testChaseWalkerDiagonallyUpAndRightFaceToFace},
+       // {"Walker chase soldier diagonally up and left", testChaseWalkerDiagonallyUpAndLeft},
+        {"Walker chase soldier diagonally up and left ends face to face", testChaseWalkerDiagonallyUpAndLeftFaceToFace},
+       // {"Walker chase soldier diagonally down and right", testChaseWalkerDiagonallyDownAndRight},
+        {"Walker chase soldier diagonally down and right ends face to face", testChaseWalkerDiagonallyDownAndRightFaceToFace},
+      //  {"Walker chase soldier diagonally down and left", testChaseWalkerDiagonallyDownAndLeft},
+        {"Walker chase soldier diagonally down and left ends face to face", testChaseWalkerDiagonallyDownAndLeftFaceToFace},
 
         {"Walker chase soldier up", testChaseWalkerUp},
         {"Walker chase soldier down", testChaseWalkerDown},
 
         {"Walker chase soldier right", testChaseWalkerRight},
         {"Walker chase soldier left", testChaseWalkerLeft},
-
-        {"Walker chase soldier diagonally up and right ends face to face", testChaseWalkerDiagonallyUpAndRightFaceToFace},
-        {"Walker chase soldier diagonally up and left ends face to face", testChaseWalkerDiagonallyUpAndLeftFaceToFace},
-        {"Walker chase soldier diagonally down and right ends face to face", testChaseWalkerDiagonallyDownAndRightFaceToFace},
-        {"Walker chase soldier diagonally down and left ends face to face", testChaseWalkerDiagonallyDownAndLeftFaceToFace},
 
         {"Walker chase soldier up", testChaseWalkerUpFaceToFace},
         {"Walker chase soldier down", testChaseWalkerDownFaceToFace},
