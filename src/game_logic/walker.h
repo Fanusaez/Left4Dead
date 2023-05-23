@@ -17,11 +17,12 @@ class Walker : public GameObject, public Zombie {
     std::int16_t direction = -1;
     Movement* movement = new Walking(x_pos, y_pos);
 
+GameObject* get_closest_soldier(std::vector<GameObject*> soldiers);
+std::int16_t get_distance_to_soldier(GameObject* soldier);
  public:
 Walker(std::uint16_t x_pos, std::uint16_t y_pos);
 
 void receive_damage(std::uint16_t damage) override;
-float get_y_position() override;
 
 bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t x_finish,
@@ -32,8 +33,7 @@ void chase_closest_soldier(GameMap& map, std::vector<GameObject*> soldiers) over
 void set_direction(std::int16_t direction) override;
 void get_position(std::vector<float>& pos) override;
 void attack(GameMap& map, std::vector<GameObject*> soldiers) override;
-GameObject* get_closest_soldier(std::vector<GameObject*> soldiers);
-std::int16_t get_distance_to_soldier(GameObject* soldier);
+
 ~Walker();
 
 // ************************* Metodos de testeo ************************************************8//

@@ -44,7 +44,7 @@ void move_left();
 
 //******************************* Metodos de testeo ***************************************************
 void set_direction(std::int16_t direction) override;
-float get_y_position() override;
+float get_y_position();
 float get_x_position();
 std::int16_t get_health();
 

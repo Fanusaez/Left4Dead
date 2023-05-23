@@ -76,7 +76,7 @@ void Soldier::move_up() {
     }
 
     std::int16_t new_y_map_pos = -1;
-    map.move_soldier_up(x_old_pos, y_old_pos, new_y_map_pos);
+    map.move_object_up(x_old_pos, y_old_pos, new_y_map_pos);
     if (new_y_map_pos >= 0) {
         y_pos -= soldier_speed;
     }
@@ -93,7 +93,7 @@ void Soldier::move_down() {
     }
 
     std::int16_t new_y_map_pos = -1;
-    map.move_soldier_down(x_old_pos, y_old_pos, new_y_map_pos);
+    map.move_object_down(x_old_pos, y_old_pos, new_y_map_pos);
     if (new_y_map_pos >= 0) {
         y_pos += soldier_speed;
     }
@@ -109,7 +109,7 @@ void Soldier::move_right() {
     }
 
     std::int16_t new_x_map_pos = -1;
-    map.move_soldier_right(x_old_pos, y_old_pos, new_x_map_pos);
+    map.move_object_right(x_old_pos, y_old_pos, new_x_map_pos);
 
     if (new_x_map_pos >= 0) {
         x_pos += soldier_speed;
@@ -127,7 +127,7 @@ void Soldier::move_left() {
     }
 
     std::int16_t new_x_map_pos = -1;
-    map.move_soldier_left(x_old_pos, y_old_pos, new_x_map_pos);
+    map.move_object_left(x_old_pos, y_old_pos, new_x_map_pos);
 
     if (new_x_map_pos >= 0) {
         x_pos -= soldier_speed;

@@ -22,26 +22,17 @@ bool Walker::in_range_of_explosion(std::int16_t x_start,
     return (x_start <= x_pos && x_pos <= x_finish && y_start <= y_pos && y_pos <= y_finish);
 }
 
-float Walker::get_y_position() {
-    return y_pos;
-}
-
 void Walker::chase_closest_soldier(GameMap& map, std::vector<GameObject*> soldiers) {
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t x_new_pos = - 1;
     std::int16_t y_new_pos = - 1;
     movement->chase_soldier(this, x_new_pos, y_new_pos, closest_soldier, map);
-    //map.chase_soldier_walking(this, x_new_pos, y_new_pos, closest_soldier);
-    if (x_new_pos != INVALID_POSITION) {
-        //x_pos = x_new_pos;
-    }
     if (y_new_pos != INVALID_POSITION) {
         if (y_new_pos > y_pos) {
             direction = DOWN;
         } else if (y_new_pos < y_pos) {
             direction = UP;
         }
-        //y_pos = y_new_pos;
     }
 }
 

@@ -18,7 +18,6 @@ void Walking::chase_soldier(Zombie* zombie,
                             std::int16_t &y_new_pos,
                             GameObject* closest_soldier,
                             GameMap& map) {
-    //map.chase_soldier_walking(zombie, x_new_pos, y_new_pos, closest_soldier);
     std::vector<float> sold_pos;
     closest_soldier->get_position(sold_pos);
     float x_sold = sold_pos[X_POS];
@@ -78,7 +77,7 @@ void Walking::chase_soldier(Zombie* zombie,
             x_pos -= walker_speed;
             return;
         }
-        map.move_soldier_left(floor(x_pos), floor(y_pos), x_new_pos); /// ya no debe llamarse asi
+        map.move_object_left(floor(x_pos), floor(y_pos), x_new_pos); /// ya no debe llamarse asi
         if (x_new_pos != INVALID_POSITION) {
             same_place = false;
             x_pos -= walker_speed;
@@ -88,7 +87,7 @@ void Walking::chase_soldier(Zombie* zombie,
             x_pos += walker_speed;
             return;
         }
-        map.move_soldier_right(floor(x_pos), floor(y_pos), x_new_pos); /// ya no debe llamarse asi
+        map.move_object_right(floor(x_pos), floor(y_pos), x_new_pos); /// ya no debe llamarse asi
         if (x_new_pos != INVALID_POSITION) {
             same_place = false;
             x_pos += walker_speed;
@@ -99,7 +98,7 @@ void Walking::chase_soldier(Zombie* zombie,
             y_pos += walker_speed;
             return;
         }
-        map.move_soldier_down(floor(x_pos), floor(y_pos), y_new_pos); /// ya no debe llamarse asi
+        map.move_object_down(floor(x_pos), floor(y_pos), y_new_pos); /// ya no debe llamarse asi
         if (y_new_pos != INVALID_POSITION) {
             same_place = false;
             y_pos += walker_speed;
@@ -110,7 +109,7 @@ void Walking::chase_soldier(Zombie* zombie,
             y_pos -= walker_speed;
             return;
         }
-        map.move_soldier_up(floor(x_pos), floor(y_pos), y_new_pos); /// ya no debe llamarse asi
+        map.move_object_up(floor(x_pos), floor(y_pos), y_new_pos); /// ya no debe llamarse asi
         if (y_new_pos != INVALID_POSITION) {
             same_place = false;
             y_pos -= walker_speed;
