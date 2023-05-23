@@ -32,7 +32,7 @@ void Scene::stop()
 void Scene::update(float dt)
 {
 	this->elapsed += dt;
-	if (this->elapsed > FRAME_RATE) {
+	if (this->elapsed >= FRAME_RATE) {
 		this->backgroundOffset += this->backgroundSpeed;
 		this->floorOffset += this->floorSpeed;
 		this->elapsed -= FRAME_RATE;
