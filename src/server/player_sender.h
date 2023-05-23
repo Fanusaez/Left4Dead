@@ -39,8 +39,10 @@ private:
     //Esta referencia es unicamente para el proceso inicial de create/join
     MatchMananger *match_mananger;
 
+    int *player_id;
+
 public:
-    PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, MatchMananger *matchMananger);
+    PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, MatchMananger *matchMananger, int *player_id);
 
     void run() override;
 

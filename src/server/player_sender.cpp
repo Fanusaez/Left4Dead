@@ -1,9 +1,9 @@
 #include "player_sender.h"
 #include <string.h>
 
-PlayerSender::PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, MatchMananger *match_mananger) : 
-    keep_talking(keep_talking),queue_sender(10000), player_receiver(socket,match_mananger,keep_talking),
-    match_mananger(match_mananger), server_deserializer(socket), server_serializer(socket)
+PlayerSender::PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, MatchMananger *match_mananger, int* player_id) : 
+    keep_talking(keep_talking),queue_sender(10000), player_receiver(socket,match_mananger,keep_talking, player_id),
+    match_mananger(match_mananger), server_deserializer(socket), server_serializer(socket), player_id(player_id)
 {
     keep_talking = true;
 }
@@ -33,10 +33,10 @@ void PlayerSender::init_player_receiver(){
         Instructions instruction = server_deserializer.obtener_instruccion(&was_closed);
         if (instruction == CREATE){
             std::string game_name = server_deserializer.deserialize_create(&was_closed);
-            queue_receiver = match_mananger->create_game(&queue_sender,&game_name);
+            queue_receiver = match_mananger->create_game(&queue_sender, &game_name, player_id);
         } else if (instruction == JOIN){
             int32_t game_code = server_deserializer.deserialize_join(&was_closed);
-            queue_receiver = match_mananger->join(&queue_sender,&game_code);
+            queue_receiver = match_mananger->join(&queue_sender, &game_code, player_id);
         }
     }
     //Le digo al player receiver la queueu que tiene que usar

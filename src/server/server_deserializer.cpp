@@ -30,11 +30,11 @@ int32_t ServerDeserializer::deserialize_join(bool *was_closed)
     return code;
 }
 
-InstructionsDTO ServerDeserializer::deserialize_move(bool *was_closed)
+InstructionsDTO ServerDeserializer::deserialize_move(bool *was_closed, int* player_id)
 {
     std::vector<char> bytes(1);
     socket->recvall(bytes.data(), 1, was_closed);
-    InstructionsDTO instructionDTO(MOVE, bytes);
+    InstructionsDTO instructionDTO(player_id, MOVE, bytes);
     return instructionDTO;
 }
 

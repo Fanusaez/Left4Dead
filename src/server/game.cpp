@@ -1,7 +1,8 @@
 #include "game.h"
 #include "../common/move.h"
+#include <unistd.h>
 
-Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name) : 
+Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name, int* player_id) : 
     queue_entrante(10000), keep_playing(keep_playing), code(*code), game_name(*game_name)
 {
     queue_salientes.push_back(queue_sender);
@@ -17,10 +18,11 @@ void Game::run(){
         //instructionDTO = queue_entrante.pop();
         if (could_pop)
         {
-            
+            // Proceso la instrcuccion
         }
         // Actualizo el juego
         // Saco screen
+        // usleep(FRAME_RATE); deberia usar esto aca para sincronizar con el cliente?
         for (const auto &queue : queue_salientes)
         {
             queue->try_push(game_dto);
@@ -32,7 +34,7 @@ Queue<InstructionsDTO> *Game::getQueue(){
     return &queue_entrante;
 }
 
-void Game::addPlayer(Queue<GameDTO> *queue_sender){
+void Game::addPlayer(Queue<GameDTO> *queue_sender,int* player_id){
     queue_salientes.push_back(queue_sender);
 }
 

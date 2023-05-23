@@ -13,6 +13,8 @@
 
 class Player{
 private:
+    int player_id;
+
     Socket peer;
 
     //Hilo sender
@@ -21,7 +23,7 @@ private:
     std::atomic<bool> keep_talking;
 
 public:
-    Player(Socket socket, MatchMananger *matchMananger);
+    Player(Socket socket, MatchMananger *matchMananger, int player_id);
 
     bool is_dead();
 

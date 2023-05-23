@@ -21,7 +21,7 @@ public:
 
     int32_t deserialize_join(bool *was_closed);
 
-    InstructionsDTO deserialize_move(bool *was_closed);
+    InstructionsDTO deserialize_move(bool *was_closed, int *player_id);
 
     InstructionsDTO deserialize_reloading(bool *was_closed);
 

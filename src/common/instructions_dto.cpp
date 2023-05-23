@@ -7,11 +7,19 @@ InstructionsDTO::InstructionsDTO(Instructions instruction, std::vector<char> par
     instruction(instruction), parameters(parameters) {
     }
 
+InstructionsDTO::InstructionsDTO(int* player_id, Instructions instruction, std::vector<char> parameters) : 
+    player_id(player_id), instruction(instruction), parameters(parameters){}
+
 InstructionsDTO::InstructionsDTO(Instructions instruction) : parameters() {}
 
 Instructions InstructionsDTO::get_instruction()
 {
     return instruction;
+}
+
+int InstructionsDTO::get_player_id()
+{
+    return *player_id;
 }
 
 std::vector<char> InstructionsDTO::get_parameters(){

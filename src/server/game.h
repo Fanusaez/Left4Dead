@@ -26,13 +26,13 @@ private:
     std::atomic<bool> &keep_playing;
 
 public:
-    Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name);
+    Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name, int *player_id);
 
     void run() override;
 
     Queue<InstructionsDTO> *getQueue();
 
-    void addPlayer(Queue<GameDTO> *queue_sender);
+    void addPlayer(Queue<GameDTO> *queue_sender, int *player_id);
 
     bool compare_code(int32_t *code_to_compare);
 
