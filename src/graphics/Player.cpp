@@ -3,14 +3,16 @@
 Player::Player(SDL2pp::Texture &texture):
 	an(texture),
 	facingLeft(false),
-	position(910, 900),
-	speed(0, 0){}
+	position(885, 900),
+	speed(0, 0),
+	moving(false){}
 
 Player::~Player() {}
 
 bool Player::isMoving() const
 {
-	return (this->speed.first != 0 or this->speed.second != 0);
+	//return (this->speed.first != 0 or this->speed.second != 0);
+	return this->moving;
 }
 
 /**
@@ -31,30 +33,35 @@ void Player::render(SDL2pp::Renderer &renderer) {
 }
 
 void Player::moveRigth() {
-	this->speed.first = 3;
+	this->speed.first = 0;
 	this->speed.second = 0;
 	this->facingLeft = false;
+	this->moving = true;
 }
 
 void Player::moveLeft() {
-	this->speed.first = -3;
+	this->speed.first = 0;
 	this->speed.second = 0;
 	this->facingLeft = true;
+	this->moving = true;
 }
 
 void Player::moveUp()
 {
 	this->speed.first = 0;
 	this->speed.second = -3;
+	this->moving = true;
 }
 
 void Player::moveDown()
 {
 	this->speed.first = 0;
 	this->speed.second = 3;
+	this->moving = true;
 }
 
 void Player::stopMoving() {
 	this->speed.first = 0;
 	this->speed.second = 0;
+	this->moving = false;
 }

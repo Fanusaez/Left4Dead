@@ -14,13 +14,13 @@ Scene::Scene(SDL2pp::Texture &skyTexture, SDL2pp::Texture &backgroundTexture, SD
 void Scene::moveLeft()
 {
 	this->backgroundSpeed = 1;
-	this->floorSpeed = 2;
+	this->floorSpeed = 5;
 }
 
 void Scene::moveRight()
 {
 	this->backgroundSpeed = -1;
-	this->floorSpeed = -2;
+	this->floorSpeed = -5;
 }
 
 void Scene::stop()
