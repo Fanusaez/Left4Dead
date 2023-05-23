@@ -35,7 +35,7 @@ public:
 
 	void stop();
 
-    	void update(float dt);
+	void update(float dt);
 
 	void render(SDL2pp::Renderer &renderer);
 
