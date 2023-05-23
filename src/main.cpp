@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 		std::vector<GameObjectDTO> gameObjects = gameState.get_objects_game();
 		if (gameObjects.size() != 1) {
 			std::cerr << "Error\n";
+			client.join();
 			return 1;
 		}
 		GameObjectDTO playerDTO = gameObjects.front();
@@ -27,5 +28,6 @@ int main(int argc, char *argv[])
 		std::cout << playerDTO.position_x << ", " << playerDTO.position_y << std::endl;
 		std::cin >> c;
 	}
+	client.join();
 	return 0;
 }

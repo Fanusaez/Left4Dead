@@ -94,8 +94,7 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
 {
     std::vector<char> buffer;
     std::vector<GameObjectDTO> objects_game = game_dto.get_objects_game();
-    buffer.push_back(objects_game.size());
-
+    buffer.push_back(uint8_t(objects_game.size()));
     for (const auto &obj : objects_game)
     {
         buffer.push_back(obj.state);

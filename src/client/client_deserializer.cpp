@@ -1,5 +1,5 @@
 #include "client_deserializer.h"
-
+#include <iostream>
 ClientDeserializer::ClientDeserializer(Socket *socket) : socket(socket) {}
 
 Instructions ClientDeserializer::obtener_instruccion(bool *was_closed)
@@ -28,7 +28,7 @@ bool ClientDeserializer::deserialize_join_scenario(bool *was_closed)
 GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
 {
     GameDTO game_dto;
-    int size_game_dto;
+    uint8_t size_game_dto;
     socket->recvall(&size_game_dto, 1, was_closed);
     uint16_t position_x;   // Coordenada X de la posición
     uint16_t position_y;   // Coordenada Y de la posición
@@ -40,4 +40,5 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
         socket->recvall(&position_y, 2, was_closed);
         game_dto.add_object(GameObjectDTO(1, position_x, position_y, state));
     }
+    return game_dto;
 }
