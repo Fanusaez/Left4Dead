@@ -10,6 +10,7 @@ class Player {
 	bool facingLeft;
 	std::pair<int, int> position;
 	std::pair<int, int> speed;
+	bool moving;
 
 public:
     Player(SDL2pp::Texture &texture);
