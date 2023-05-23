@@ -20,7 +20,8 @@ class Walker : public GameObject, public Zombie {
 GameObject* get_closest_soldier(std::vector<GameObject*> soldiers);
 std::int16_t get_distance_to_soldier(GameObject* soldier);
  public:
-Walker(std::uint16_t x_pos, std::uint16_t y_pos);
+Walker(std::int16_t x_pos, std::int16_t y_pos);
+Walker(std::int16_t x_pos, std::int16_t y_pos, float walking_speed);
 
 void receive_damage(std::uint16_t damage) override;
 

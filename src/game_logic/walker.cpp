@@ -4,9 +4,15 @@
 #define DOWN 1
 #define MAX_DISTANCE 10000
 
-Walker::Walker(std::uint16_t x_pos, std::uint16_t y_pos) :
+Walker::Walker(std::int16_t x_pos, std::int16_t y_pos) :
                 x_pos(x_pos),
                 y_pos(y_pos) {}
+
+Walker::Walker(std::int16_t x_pos, std::int16_t y_pos, float walker_speed) :
+        x_pos(x_pos),
+        y_pos(y_pos) {
+    movement->set_speed(walker_speed);
+}
 
 void Walker::receive_damage(std::uint16_t damage) {
     health -= damage;
