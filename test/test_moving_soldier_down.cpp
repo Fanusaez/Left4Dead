@@ -153,8 +153,7 @@ void testMoveSoldierDownUntilTheEnd() {
     const float epsilon = 0.001; // Valor de tolerancia
     double received_numered = y_pos;
     double expected_number =  9; /// deberia ser 9.8. hay un bug
-    //std::cout << x_pos;
-    //std::cout << y_pos;
+
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
