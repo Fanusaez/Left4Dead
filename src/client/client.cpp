@@ -22,8 +22,7 @@ bool Client::move(Move move)
 }
 
 GameDTO Client::get_game(){
-    GameDTO game_dto;
-    queue_receiver.try_pop(game_dto);
+    GameDTO game_dto = queue_receiver.pop();
     return game_dto;
 }
 

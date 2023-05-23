@@ -66,7 +66,7 @@ endif()
 option(CLIENT "Build client" OFF)
 
 if(CLIENT)
-	add_executable(client
+	add_executable(main_client
 		main.cpp
 		./client/client_deserializer.cpp
 		./client/client_serializer.cpp
@@ -78,4 +78,5 @@ if(CLIENT)
 		./common/game_dto.cpp
 		./common/instructions_dto.cpp
 	)
+	target_include_directories(main_client PUBLIC ${PROJECT_SOURCE_DIR}/src/client)
 endif()

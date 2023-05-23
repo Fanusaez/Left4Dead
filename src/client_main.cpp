@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 		while (running)
 		{
 			if (not mixer.IsMusicPlaying()) {
-				mixer.SetMusicVolume(32);
+				mixer.SetMusicVolume(4);
 				mixer.PlayMusic(music);
 			}
 			running = handleEvents(player, scene);
