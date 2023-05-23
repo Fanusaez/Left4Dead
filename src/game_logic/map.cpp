@@ -121,8 +121,8 @@ void GameMap::collision_going_down(std::vector<GameObject*>& game_objects,
 }
 
 // Visualmente para nosotros es mover a la izquierda
-void GameMap::move_soldier_up(std::uint16_t x_pos,
-                              std::uint16_t y_pos,
+void GameMap::move_object_up(std::int16_t x_pos,
+                              std::int16_t y_pos,
                               std::int16_t& new_y_pos_ref) {
     if (y_pos > 0){
         std::uint16_t new_y_pos = y_pos - 1;
@@ -131,8 +131,8 @@ void GameMap::move_soldier_up(std::uint16_t x_pos,
     }
 }
 
-void GameMap::move_soldier_down(std::uint16_t x_pos,
-                                std::uint16_t y_pos,
+void GameMap::move_object_down(std::int16_t x_pos,
+                                std::int16_t y_pos,
                                 std::int16_t &new_y_pos_ref) {
     if(y_pos < y_size - 1) {
         std::uint16_t new_y_pos = y_pos + 1;
@@ -140,8 +140,8 @@ void GameMap::move_soldier_down(std::uint16_t x_pos,
     }
 }
 
-void GameMap::move_soldier_right(std::uint16_t x_pos,
-                                 std::uint16_t y_pos,
+void GameMap::move_object_right(std::int16_t x_pos,
+                                 std::int16_t y_pos,
                                  std::int16_t &new_x_pos_ref) {
 
     std::uint16_t new_x_pos = x_pos + 2;
@@ -151,8 +151,8 @@ void GameMap::move_soldier_right(std::uint16_t x_pos,
         new_x_pos_ref = new_x_pos - 1;
     }
 }
-void GameMap::move_soldier_left(std::uint16_t x_pos,
-                                std::uint16_t y_pos,
+void GameMap::move_object_left(std::int16_t x_pos,
+                                std::int16_t y_pos,
                                 std::int16_t &new_x_pos_ref) {
     std::uint16_t new_x_pos = x_pos - 1;
     if (x_pos > 0 && check_free_position(new_x_pos, y_pos)) {

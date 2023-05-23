@@ -56,21 +56,21 @@ void collision_going_up(std::vector<GameObject*>& game_objects,
 bool valid_entire_object_position(std::int16_t x_pos,
                                   std::int16_t y_pos);
 
-void move_soldier_up(std::uint16_t x_sold_pos,
-                     std::uint16_t y_sold_pos,
+void move_object_up(std::int16_t x_sold_pos,
+                     std::int16_t y_sold_pos,
                      std::int16_t& new_y_pos_ref);
 
 
-void move_soldier_down(std::uint16_t x_sold_pos,
-                         std::uint16_t y_sold_pos,
+void move_object_down(std::int16_t x_sold_pos,
+                         std::int16_t y_sold_pos,
                          std::int16_t& new_y_pos_ref);
 
-void move_soldier_right(std::uint16_t x_sold_pos,
-                       std::uint16_t y_sold_pos,
+void move_object_right(std::int16_t x_sold_pos,
+                       std::int16_t y_sold_pos,
                        std::int16_t& new_x_pos_ref);
 
-void move_soldier_left(std::uint16_t x_sold_pos,
-                        std::uint16_t y_sold_pos,
+void move_object_left(std::int16_t x_sold_pos,
+                        std::int16_t y_sold_pos,
                         std::int16_t& new_x_pos_ref);
 
 bool check_free_position(std::int16_t x_pos,
@@ -116,13 +116,14 @@ void move_object_diagonally(std::int16_t& x_old_pos,
 void chase_soldiers();
 void attack_soldiers();
 
+void add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
+void add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
+
 
     // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_down_test(std::uint16_t x_pos, std::uint16_t y_pos);
-void add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
-void add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
 void add_obstacle(GameObject* obstacle, std::uint16_t x_pos, std::uint16_t y_pos);
 GameObject* get_object(std::uint16_t x_pos, std::uint16_t y_pos);
 };
