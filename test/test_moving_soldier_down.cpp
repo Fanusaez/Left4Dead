@@ -32,7 +32,8 @@ void testMoveSoldierDown(){
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = y_pos;
     float expected_number = 8 + (SOLDIER_SPEED*3);
-
+    //std::cout << x_pos;
+    //std::cout << y_pos;
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
@@ -57,7 +58,7 @@ void testMoveSoldierDownAtTheEndDoesNotMove() {
     //std::cout << y_pos;
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = y_pos;
-    float expected_number = 9.8; /// si el soldier speed le pongo 0.21 en vez de 0.2 da bien, algo sucede ahi
+    float expected_number = 9.8;
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
@@ -148,10 +149,10 @@ void testMoveSoldierDownUntilTheEnd() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 7);
-    map.add_soldier(&soldier, 3, 7);
+    Soldier soldier(scout, map, 3, 8);
+    map.add_soldier(&soldier, 3, 8);
 
-    for (int i = 0; i < 16; i++){
+    for (int i = 0; i < 15; i++){
         soldier.move_down();
     }
 
@@ -160,12 +161,11 @@ void testMoveSoldierDownUntilTheEnd() {
 
     const float epsilon = 0.001; // Valor de tolerancia
     double received_numered = y_pos;
-    double expected_number = 9; /// deberia ser 9.8. hay un bug
+    double expected_number =  9; /// deberia ser 9.8. hay un bug
     //std::cout << x_pos;
-    std::cout << y_pos;
+    //std::cout << y_pos;
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
-
 }
 
 

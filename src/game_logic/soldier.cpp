@@ -4,6 +4,7 @@
 
 #define GRANADE_DISTANCE_REACH 4
 #define WALLS_LIMITS 0.5
+#define EPSILON 0.001f
 
 Soldier::Soldier(Weapon* weapon, GameMap& map) : weapon(weapon), map(map){} // lo dejo por ahora
 
@@ -65,59 +66,73 @@ void Soldier::move_up() {
     direction = UP;
     // ver si con la interfaz si lo saco o no
     if (y_pos <= WALLS_LIMITS) return;
-    // Si no va a cambiar la pos de la matriz, no sigo
-    if (floor(y_pos) == floor(y_pos - soldier_speed)) {
+
+    std::int16_t y_new_pos = static_cast<std::int16_t>(floor(y_pos - soldier_speed - EPSILON));
+    std::int16_t x_old_pos = static_cast<std::int16_t>(floor(x_pos));
+    std::int16_t y_old_pos = static_cast<std::int16_t>(floor(y_pos));
+    if ((y_new_pos - y_old_pos) == 0) {
         y_pos -= soldier_speed;
         return;
     }
-    std::int16_t new_y_pos = -1;
-    map.move_soldier_up(floor(x_pos), floor(y_pos), new_y_pos);
-    if (new_y_pos >= 0) { // si fue exitoso
+
+    std::int16_t new_y_map_pos = -1;
+    map.move_soldier_up(x_old_pos, y_old_pos, new_y_map_pos);
+    if (new_y_map_pos >= 0) {
         y_pos -= soldier_speed;
     }
 }
 
 void Soldier::move_down() {
     direction = DOWN;
-    if (static_cast<int16_t>(floor(y_pos)) == static_cast<int16_t>(floor(y_pos + 0.21))) { // con speed_soldier se me va a 10 cuando bajo todo
+    std::int16_t y_new_pos = static_cast<std::int16_t>(floor(y_pos + soldier_speed + EPSILON));
+    std::int16_t x_old_pos = static_cast<std::int16_t>(floor(x_pos));
+    std::int16_t y_old_pos = static_cast<std::int16_t>(floor(y_pos));
+    if ((y_new_pos - y_old_pos) == 0) {
         y_pos += soldier_speed;
         return;
     }
-    std::int16_t new_y_pos = -1;
-    map.move_soldier_down(floor(x_pos), floor(y_pos), new_y_pos);
-    if(new_y_pos >= 0){
+
+    std::int16_t new_y_map_pos = -1;
+    map.move_soldier_down(x_old_pos, y_old_pos, new_y_map_pos);
+    if (new_y_map_pos >= 0) {
         y_pos += soldier_speed;
     }
 }
 
 void Soldier::move_right() {
-    double new_x_pos = x_pos + soldier_speed;
-    if (std::floor(x_pos) != std::floor(new_x_pos)) {
-        //std::cout << "entre\n";
-        std::int16_t new_x_pos = -1;
-        map.move_soldier_right(floor(x_pos), floor(y_pos), new_x_pos);
-        if(new_x_pos >= 0){
-            x_pos += soldier_speed;
-        }
-    } else {
+    std::int16_t x_new_pos = static_cast<std::int16_t>(floor(x_pos + soldier_speed + EPSILON));
+    std::int16_t x_old_pos = static_cast<std::int16_t>(floor(x_pos));
+    std::int16_t y_old_pos = static_cast<std::int16_t>(floor(y_pos));
+    if ((x_new_pos - x_old_pos) == 0) {
+        x_pos += soldier_speed;
+        return;
+    }
+
+    std::int16_t new_x_map_pos = -1;
+    map.move_soldier_right(x_old_pos, y_old_pos, new_x_map_pos);
+
+    if (new_x_map_pos >= 0) {
         x_pos += soldier_speed;
     }
 }
 
 void Soldier::move_left() {
     if (x_pos <= WALLS_LIMITS) return;
-    if (floor(x_pos) == floor(x_pos - soldier_speed)) {
+    std::int16_t x_new_pos = static_cast<std::int16_t>(floor(x_pos - soldier_speed - EPSILON));
+    std::int16_t x_old_pos = static_cast<std::int16_t>(floor(x_pos));
+    std::int16_t y_old_pos = static_cast<std::int16_t>(floor(y_pos));
+    if ((x_new_pos - x_old_pos) == 0) {
         x_pos -= soldier_speed;
         return;
     }
-    std::int16_t new_x_pos = -1;
-    map.move_soldier_left(floor(x_pos), floor(y_pos), new_x_pos);
-    if(new_x_pos >= 0){
+
+    std::int16_t new_x_map_pos = -1;
+    map.move_soldier_left(x_old_pos, y_old_pos, new_x_map_pos);
+
+    if (new_x_map_pos >= 0) {
         x_pos -= soldier_speed;
     }
 }
-
-
 
 void Soldier::set_direction(std::int16_t new_direction) {
     if (new_direction == 1){
