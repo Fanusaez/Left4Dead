@@ -19,7 +19,7 @@ void testMoveSoldierDown(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 8);
+    Soldier soldier(scout, map, 3, 8, SOLDIER_SPEED);
     map.add_soldier(&soldier, 3, 8);
 
     for (int i = 0; i < 3; i++){
@@ -32,8 +32,7 @@ void testMoveSoldierDown(){
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = y_pos;
     float expected_number = 8 + (SOLDIER_SPEED*3);
-    //std::cout << x_pos;
-    //std::cout << y_pos;
+
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
@@ -45,7 +44,7 @@ void testMoveSoldierDownAtTheEndDoesNotMove() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, MAP_SIZE_Y - 1);
+    Soldier soldier(scout, map, 3, MAP_SIZE_Y - 1, SOLDIER_SPEED);
     map.add_soldier(&soldier, 3, MAP_SIZE_Y - 1);
 
     for (int i = 0; i < 30; i++){
@@ -54,11 +53,10 @@ void testMoveSoldierDownAtTheEndDoesNotMove() {
 
     float x_pos = soldier.get_x_position();
     float y_pos = soldier.get_y_position();
-    //std::cout << x_pos;
-    //std::cout << y_pos;
+
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = y_pos;
-    float expected_number = 9.8;
+    float expected_number = MAP_SIZE_Y - SOLDIER_SPEED;
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
@@ -67,7 +65,7 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 7);
+    Soldier soldier(scout, map, 3, 7, SOLDIER_SPEED);
     map.add_soldier(&soldier, 3, 7);
 
     Walker walker(3,8);
@@ -80,12 +78,9 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie() {
     float x_pos = soldier.get_x_position();
     float y_pos = soldier.get_y_position();
 
-    //std::cout << x_pos;
-    //std::cout << y_pos;
-
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = y_pos;
-    float expected_number = 7.8;
+    float expected_number = 8 - SOLDIER_SPEED;
 
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
@@ -95,7 +90,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 8);
+    Soldier soldier(scout, map, 3, 8, SOLDIER_SPEED);
     map.add_soldier(&soldier, 3, 8);
 
     Walker walker(4,9);
@@ -110,7 +105,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
 
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = y_pos;
-    float expected_number = 8.8;
+    float expected_number = 9 - SOLDIER_SPEED;
 
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
@@ -120,7 +115,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 8);
+    Soldier soldier(scout, map, 3, 8, SOLDIER_SPEED);
     map.add_soldier(&soldier, 3, 8);
 
     Walker walker(2,9);
@@ -135,16 +130,12 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
 
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = y_pos;
-    float expected_number = 8.8;
+    float expected_number = 9 - SOLDIER_SPEED;
 
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
-
-/*
- * Ver hasta donde tiene que ir el soldado, en este caso se esta pasando del intervalo (0,9)
- * no se si eso esta bien o mal
- */
+/// BUG, REVISAR PQ SOLO AVANZA HASTA 9
 void testMoveSoldierDownUntilTheEnd() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;

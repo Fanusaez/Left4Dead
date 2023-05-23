@@ -15,5 +15,6 @@ virtual void chase_soldier(Zombie* zombie,
                            GameObject* closest_soldier,
                            GameMap& map) = 0;
 
+virtual void set_speed(float speed) = 0;
 };
 #endif  // MOVEMENT_H_

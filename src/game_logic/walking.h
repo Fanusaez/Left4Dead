@@ -17,6 +17,8 @@ void chase_soldier(Zombie* zombie,
                     std::int16_t& y_new_pos,
                     GameObject* closest_soldier,
                     GameMap& map) override;
+
+void set_speed(float speed) override;
 };
 
 #endif  // WALKING_H_

@@ -11,8 +11,6 @@ Walking::Walking(float &x_pos, float &y_pos) :
     x_pos(x_pos),
     y_pos(y_pos) {}
 
-
-
 void Walking::chase_soldier(Zombie* zombie,
                             std::int16_t &x_new_pos,
                             std::int16_t &y_new_pos,
@@ -71,7 +69,7 @@ void Walking::chase_soldier(Zombie* zombie,
         }
     }
     */
-    if (x_sold < x_pos && (x_pos - x_sold ) >= ERROR_BOUND&& same_place) { // movimiento para izquierda
+    if (x_sold < x_pos && (x_pos - x_sold ) >= ERROR_BOUND && same_place) { // movimiento para izquierda
         if (x_pos <= WALLS_LIMITS) return;
         if (floor(x_pos) == floor(x_pos - walker_speed)) {
             x_pos -= walker_speed;
@@ -119,4 +117,8 @@ void Walking::chase_soldier(Zombie* zombie,
     if (same_place) { // se quedo trababado por obstaculo, decido que el zombie puede atacar de costado
         //move_soldier_left(floor(x_pos), floor(y_pos), x_new_pos);
     }
+}
+
+void Walking::set_speed(float speed) {
+    walker_speed = speed;
 }
