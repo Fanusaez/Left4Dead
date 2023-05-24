@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2pp/SDL2pp.hh>
+#include "gameview.h"
 #include "Player.h"
 #include "texture_loader.h"
 #include "scene.h"
@@ -9,52 +10,47 @@
 #include <unistd.h>
 #include <string>
 #include <list>
+#include <map>
+#include <memory>
 
 static const std::string TmpAssetsPath = ASSETS_PATH;
 
-static bool handleEvents(Player &player, Scene &scene);
+static bool handleEvents(Player &player);
 
 int main(int argc, char *argv[])
 {
 	try
 	{
-
-		SDL2pp::SDL sdl(SDL_INIT_VIDEO);
-		SDL2pp::Window window("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-							  1280, 720,
-							  SDL_WINDOW_RESIZABLE);
-		SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
-		renderer.SetLogicalSize(1920, 1080);
-		SDL2pp::Mixer mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
-		SDL2pp::Music music(std::string(TmpAssetsPath).append("Music/10. no way back.flac"));
+		std::map<int, std::unique_ptr<RenderableObject>> objects;
+		Gameview view(objects);
 		std::list<std::string> spritesToLoad;
 		spritesToLoad.push_back("Soldier_1/Walk.png");
 		spritesToLoad.push_back("backgrounds/War1/Pale/Full_Sky.png");
 		spritesToLoad.push_back("backgrounds/War1/Pale/Far_Background.png");
 		spritesToLoad.push_back("backgrounds/War1/Pale/Floor.png");
 		TextureLoader textureLoader;
-		textureLoader.load(renderer, spritesToLoad);
-		Player player(textureLoader.getTexture("Soldier_1/Walk.png"));
-		Scene scene(
+		textureLoader.load(view.getRenderer(), spritesToLoad);
+		std::unique_ptr<RenderableObject> ptr1(new Player(textureLoader.getTexture("Soldier_1/Walk.png"), 1, 1000, 900));
+		std::unique_ptr<RenderableObject> ptr2(new Player(textureLoader.getTexture("Soldier_1/Walk.png"), 2, 700, 900));
+		objects[ptr1->getID()] = std::move(ptr1);
+		objects[ptr2->getID()] = std::move(ptr2);
+		view.assignMainObject(1);
+		std::unique_ptr<Scene> scene(new Scene(
 			textureLoader.getTexture("backgrounds/War1/Pale/Full_Sky.png"),
 			textureLoader.getTexture("backgrounds/War1/Pale/Far_Background.png"),
-			textureLoader.getTexture("backgrounds/War1/Pale/Floor.png"));
+			textureLoader.getTexture("backgrounds/War1/Pale/Floor.png"))
+			);
+		view.setScene(scene);
+		//SDL2pp::Music music(std::string(TmpAssetsPath).append("Music/10. no way back.flac"));
 
 		bool running = true;
 
 		while (running)
 		{
-			if (not mixer.IsMusicPlaying()) {
-				mixer.SetMusicVolume(4);
-				mixer.PlayMusic(music);
-			}
-			running = handleEvents(player, scene);
-			scene.update(FRAME_RATE);
+			Player &player = static_cast<Player &>(*(objects.at(1)));
+			running = handleEvents(player);
 			player.update(FRAME_RATE);
-			renderer.Clear();
-			scene.render(renderer);
-			player.render(renderer);
-			renderer.Present();
+			view.render();
 			// la cantidad de segundos que debo dormir se debe ajustar en función
 			// de la cantidad de tiempo que demoró el handleEvents y el render
 			usleep(FRAME_RATE);
@@ -68,7 +64,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-static bool handleEvents(Player &player, Scene &scene)
+static bool handleEvents(Player &player)
 {
 	SDL_Event event;
 	// Para el alumno: Buscar diferencia entre waitEvent y pollEvent
@@ -84,19 +80,15 @@ static bool handleEvents(Player &player, Scene &scene)
 			{
 			case SDLK_LEFT:
 				player.moveLeft();
-				scene.moveRight();
 				break;
 			case SDLK_RIGHT:
 				player.moveRigth();
-				scene.moveLeft();
 				break;
 			case SDLK_UP:
 				player.moveUp();
-				scene.stop();
 				break;
 			case SDLK_DOWN:
 				player.moveDown();
-				scene.stop();
 				break;
 			}
 		} // Fin KEY_DOWN
@@ -108,11 +100,9 @@ static bool handleEvents(Player &player, Scene &scene)
 			{
 			case SDLK_LEFT:
 				player.stopMoving();
-				scene.stop();
 				break;
 			case SDLK_RIGHT:
 				player.stopMoving();
-				scene.stop();
 				break;
 			case SDLK_UP:
 				player.stopMoving();
@@ -129,9 +119,4 @@ static bool handleEvents(Player &player, Scene &scene)
 		} // fin switch(event)
 	}	  // fin while(SDL_PollEvents)
 	return true;
-}
-
-static void update(Player &player, float dt)
-{
-	player.update(dt);
 }

@@ -24,6 +24,8 @@ if(GAMEUI)
 
 	add_executable(gameview
 			client_main.cpp
+			graphics/gameview.cpp
+			graphics/renderable_object.cpp
 			graphics/Player.cpp
 			graphics/Animation.cpp
 			graphics/texture_loader.cpp

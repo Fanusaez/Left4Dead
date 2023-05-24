@@ -3,20 +3,20 @@
 
 #include <SDL2pp/SDL2pp.hh>
 #include "Animation.h"
+#include "renderable_object.h"
 #include <utility>
 
-class Player {
+class Player : public RenderableObject {
 	Animation an;
 	bool facingLeft;
-	std::pair<int, int> position;
 	std::pair<int, int> speed;
 	bool moving;
 
 public:
-    Player(SDL2pp::Texture &texture);
-    ~Player();
+    Player(SDL2pp::Texture &texture, int id, int initialX, int initialY);
+    virtual ~Player();
     void update(float dt);
-    void render(SDL2pp::Renderer &renderer);
+	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) override;
     void moveRigth();
     void moveLeft();
     void moveUp();

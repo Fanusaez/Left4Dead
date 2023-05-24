@@ -1,13 +1,13 @@
 #include "Player.h"
 
-Player::Player(SDL2pp::Texture &texture):
+Player::Player(SDL2pp::Texture &texture, int id, int initialX, int initialY) :
+	RenderableObject(id, initialX, initialY),
 	an(texture),
 	facingLeft(false),
-	position(885, 900),
 	speed(0, 0),
 	moving(false){}
 
-Player::~Player() {}
+Player::~Player() = default;
 
 bool Player::isMoving() const
 {
@@ -22,25 +22,25 @@ bool Player::isMoving() const
 void Player::update(float dt) {
 	if (isMoving()) {
 		this->an.update(dt);
-		this->position.first += this->speed.first;
-		this->position.second += this->speed.second;
+		this->xPosition += this->speed.first;
+		this->yPosition += this->speed.second;
 	}
 }
 
-void Player::render(SDL2pp::Renderer &renderer) {
+void Player::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) {
     SDL_RendererFlip flip = this->facingLeft ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
-    an.render(renderer, SDL2pp::Rect(this->position.first, this->position.second, 150, 150), flip);
+    an.render(renderer, dst, flip);
 }
 
 void Player::moveRigth() {
-	this->speed.first = 0;
+	this->speed.first = 5;
 	this->speed.second = 0;
 	this->facingLeft = false;
 	this->moving = true;
 }
 
 void Player::moveLeft() {
-	this->speed.first = 0;
+	this->speed.first = -5;
 	this->speed.second = 0;
 	this->facingLeft = true;
 	this->moving = true;

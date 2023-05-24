@@ -5,51 +5,24 @@ Scene::Scene(SDL2pp::Texture &skyTexture, SDL2pp::Texture &backgroundTexture, SD
 	skyTexture(skyTexture),
 	backgroundTexture(backgroundTexture),
 	floorTexture(floorTexture),
-	backgroundOffset(0),
-	backgroundSpeed(0),
-	floorOffset(0),
-	floorSpeed(0),
-	elapsed(0){}
+	offset(0){}
 
-void Scene::moveLeft()
+void Scene::increaseOffset(int newOffset)
 {
-	this->backgroundSpeed = 1;
-	this->floorSpeed = 5;
+	this->offset += newOffset;
 }
 
-void Scene::moveRight()
-{
-	this->backgroundSpeed = -1;
-	this->floorSpeed = -5;
-}
-
-void Scene::stop()
-{
-	this->backgroundSpeed = 0;
-	this->floorSpeed = 0;
-}
-
-void Scene::update(float dt)
-{
-	this->elapsed += dt;
-	if (this->elapsed >= FRAME_RATE) {
-		this->backgroundOffset += this->backgroundSpeed;
-		this->floorOffset += this->floorSpeed;
-		this->elapsed -= FRAME_RATE;
-	}
-}
 
 void Scene::render(SDL2pp::Renderer &renderer)
 {
 	renderer.Copy(this->skyTexture);
-	this->render(renderer, this->backgroundTexture, this->backgroundOffset);
-	this->render(renderer, this->floorTexture, this->floorOffset);
+	this->render(renderer, this->backgroundTexture, this->offset / 5);
+	this->render(renderer, this->floorTexture, this->offset);
 }
 
-void Scene::render(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int &offset)
+void Scene::render(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset)
 {
-	if (std::abs(offset) >= texture.GetWidth())
-		offset = 0;
+	offset = offset % texture.GetWidth();
 
 	if (offset < 0)
 		this->renderMovedRight(renderer, texture, offset);

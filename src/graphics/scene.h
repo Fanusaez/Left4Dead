@@ -16,33 +16,19 @@ class Scene {
 
 	SDL2pp::Texture &floorTexture;
 
-	int backgroundOffset;
-
-	int backgroundSpeed;
-
-	int floorOffset;
-
-	int floorSpeed;
-
-	float elapsed;
+	int offset;
 
 public:
 	Scene(SDL2pp::Texture &skyTexture, SDL2pp::Texture &backgroundTexture, SDL2pp::Texture &floorTexture);
 
-	void moveLeft();
-
-	void moveRight();
-
-	void stop();
-
-	void update(float dt);
+	void increaseOffset(int newOffset);
 
 	void render(SDL2pp::Renderer &renderer);
 
 	~Scene();
 
 private:
-	void render(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int &offset);
+	void render(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset);
 
 	void renderMovedLeft(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset);
 
