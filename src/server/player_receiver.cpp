@@ -13,23 +13,8 @@ PlayerReceiver::PlayerReceiver(Socket *socket, MatchMananger *match_manager, std
 
 void PlayerReceiver::run() {
     bool was_closed = false;
-    Instructions instruction;
     while (keep_talking && was_closed == false) {
-        instruction = server_deserializer.obtener_instruccion(&was_closed);
-        switch (instruction) {
-        case MOVE:
-            queue_receiver->push(server_deserializer.deserialize_move(&was_closed, player_id));
-            break;
-        case RELOAD:
-            queue_receiver->push(server_deserializer.deserialize_reloading(&was_closed));
-            break;
-        case SHOOT:
-            queue_receiver->push(server_deserializer.deserialize_shooting(&was_closed));
-            break;
-        case GRANEDE:
-            queue_receiver->push(server_deserializer.deserialize_grenede(&was_closed));
-            break;
-        }
+        queue_receiver->push(server_deserializer.obtener_instruccion(&was_closed,player_id));
     }
 }
 
