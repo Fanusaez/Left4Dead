@@ -10,7 +10,7 @@ Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_
 
 void Game::run(){
     // Logica del juego
-	GameObjectDTO objectDto(13, 30, 45, MOVING);
+	GameObjectDTO objectDto(13, 30.55, 45.3, MOVING);
     GameDTO game_dto;
     game_dto.add_object(objectDto);
     while (keep_playing)
