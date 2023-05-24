@@ -1,7 +1,7 @@
 #ifndef GAME_OBJECT_H_
 #define GAME_OBJECT_H_
 #include <vector>
-
+#include <cstdint>
 class GameObject {
  private:
 

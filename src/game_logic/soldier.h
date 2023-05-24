@@ -5,12 +5,15 @@
 #include "game_object.h"
 #include "map.h"
 #include "weapon.h"
+#include "idle.h"
+
 #define DOWN 1
 #define UP -1
 
 class Soldier : public GameObject {
  private:
     Weapon* weapon = nullptr;
+    State* state = new Idle;
     GameMap &map;
     double x_pos;
     double y_pos;
@@ -40,13 +43,19 @@ void move_up();
 void move_down();
 void move_right();
 void move_left();
+
+void reload(float time);
+void shoot(float time);
+
 ~Soldier();
 
 //******************************* Metodos de testeo ***************************************************
 void set_direction(std::int16_t direction) override;
+std::int16_t get_direction();
 float get_y_position();
 float get_x_position();
 std::int16_t get_health();
+State* get_state();
 
 };
 #endif  // SOLDIER_H_
