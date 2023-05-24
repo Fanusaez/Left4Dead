@@ -13,10 +13,12 @@ class Game : public Thread {
 private:
     //Juego juego
 
+    std::mutex m;
+
     int32_t code;
 
     std::string game_name;
-
+    
     // La queue donde el player_receiver va a pushear es eta
     Queue<InstructionsDTO> queue_entrante;
  

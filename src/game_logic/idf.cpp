@@ -1,6 +1,7 @@
 #include "idf.h"
 #include <cmath>
 #define DISTANCE_LONG_RANGE 5
+#define MAG_CAPACITY 50
 #define X_POS 0
 #define Y_POS 1
 
@@ -26,4 +27,12 @@ void Idf::throw_explosive_grenade(std::vector<GameObject*> &explosive_objects) {
 
 void Idf::reload() {
     bullets = 50;
+}
+
+bool Idf::isFullyLoaded() {
+    return bullets == MAG_CAPACITY;
+}
+
+bool Idf::empty() {
+    return bullets > 0;
 }

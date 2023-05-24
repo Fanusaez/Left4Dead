@@ -11,6 +11,10 @@ add_executable(main
 		game_logic/obstacle.cpp
 		game_logic/movement.h
 		game_logic/walking.cpp
+		game_logic/state.h
+		game_logic/idle.cpp
+		game_logic/reloading.cpp
+		game_logic/shooting.cpp
 )
 
 option(GAMEUI "Build game user interface" OFF)

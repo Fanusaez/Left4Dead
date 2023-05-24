@@ -12,15 +12,6 @@ class ServerDeserializer {
 private:
     Socket *socket;
 
-public:
-    ServerDeserializer(Socket *socket);
-
-    Instructions obtener_instruccion(bool *was_closed);
-
-    std::string deserialize_create(bool *was_closed);
-
-    int32_t deserialize_join(bool *was_closed);
-
     InstructionsDTO deserialize_move(bool *was_closed, int *player_id);
 
     InstructionsDTO deserialize_reloading(bool *was_closed);
@@ -28,5 +19,15 @@ public:
     InstructionsDTO deserialize_shooting(bool *was_closed);
 
     InstructionsDTO deserialize_grenede(bool *was_closed);
+
+public:
+    ServerDeserializer(Socket *socket);
+
+    InstructionsDTO obtener_instruccion(bool *was_closed, int* player_id);
+
+    std::string deserialize_create(bool *was_closed);
+
+    int32_t deserialize_join(bool *was_closed);
+
 };
 #endif

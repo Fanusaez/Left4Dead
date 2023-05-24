@@ -18,6 +18,9 @@ void shoot(std::vector<GameObject*>& shooting_objects,
 
 void throw_explosive_grenade(std::vector<GameObject*>& shooting_objects) override;
 
-void reload();
+void reload() override;
+bool isFullyLoaded() override;
+bool empty() override;
+
 };
 #endif // IDF_H_

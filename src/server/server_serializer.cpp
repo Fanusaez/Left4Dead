@@ -1,6 +1,7 @@
 #include "server_serializer.h"
 
 #include <iostream>
+#include <cstring>
 
 ServerSerializer::ServerSerializer() {}
 
@@ -99,11 +100,12 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
     {
         buffer.push_back(obj.state);
 
-        buffer.push_back(obj.position_x & 0xFF);
-        buffer.push_back((obj.position_x >> 8) & 0xFF);
+        unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.position_x);
+        buffer.insert(buffer.end(), p, p + 4);
 
-        buffer.push_back(obj.position_y & 0xFF);
-        buffer.push_back((obj.position_y >> 8) & 0xFF);
+        p = reinterpret_cast<unsigned char const *>(&obj.position_y);
+        buffer.insert(buffer.end(), p, p + 4);
+
     }
-    socket->sendall(buffer.data(), buffer.size(), was_closed);
+    int sz = socket->sendall(buffer.data(), buffer.size(), was_closed);
 }

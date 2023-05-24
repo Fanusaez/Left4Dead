@@ -1,5 +1,5 @@
 #include "scout.h"
-
+#define MAG_CAPACITY 20
 
 void Scout::shoot(std::vector<GameObject *> &shooting_objects, std::uint16_t y_pos_sold) {
     if (bullets <= 0) return;
@@ -19,5 +19,13 @@ void Scout::throw_explosive_grenade(std::vector<GameObject*> &explosive_objects)
 }
 
 void Scout::reload() {
-    bullets = 20;
+    bullets = MAG_CAPACITY;
+}
+
+bool Scout::isFullyLoaded() {
+    return bullets == MAG_CAPACITY;
+}
+
+bool Scout::empty() {
+    return bullets == 0;
 }

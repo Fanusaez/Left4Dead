@@ -30,12 +30,20 @@ Soldier::Soldier(Weapon *weapon,
 
 
 void Soldier::shoot() {
+    // esto tiene que irse de aca
     std::vector<GameObject*> shooting_objects;
     map.shoot(shooting_objects,
               x_pos,
               y_pos,
               direction);
     weapon->shoot(shooting_objects, y_pos);
+
+    // harcodeado el time
+    State* new_state = state->shoot(weapon, 1);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
 }
 
 void Soldier::throw_explosive_grenade() {
@@ -149,8 +157,12 @@ bool Soldier::in_range_of_explosion(std::int16_t x_start,
     return (x_start <= x_pos && x_pos <= x_finish && y_start <= y_pos && y_pos <= y_finish);
 }
 
-Soldier::~Soldier(){
-    delete weapon;
+void Soldier::reload(float time) {
+    State* new_state = state->reload(weapon, time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
 }
 
 void Soldier::get_position(std::vector<float> &pos) {
@@ -158,6 +170,11 @@ void Soldier::get_position(std::vector<float> &pos) {
     pos.push_back(y_pos);
 }
 
+
+Soldier::~Soldier(){
+    delete weapon;
+    delete state;
+}
 //************************* Metodo de testeo *********************************************
 
 float Soldier::get_y_position() {
@@ -168,7 +185,14 @@ float Soldier::get_x_position() {
     return x_pos;
 }
 
+std::int16_t Soldier::get_direction() {
+    return direction;
+}
 
 std::int16_t Soldier::get_health() {
     return health;
+}
+
+State* Soldier::get_state() {
+    return state;
 }

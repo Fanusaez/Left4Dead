@@ -10,7 +10,7 @@ Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_
 
 void Game::run(){
     // Logica del juego
-	GameObjectDTO objectDto(13, 30, 45, MOVING);
+	GameObjectDTO objectDto(13, 30.55, 45.3, MOVING);
     GameDTO game_dto;
     game_dto.add_object(objectDto);
     while (keep_playing)
@@ -25,10 +25,12 @@ void Game::run(){
         // Actualizo el juego
         // Saco screen
         usleep(1000000.0f/25.0f); //deberia usar esto aca para sincronizar con el cliente?
+        m.lock();
         for (const auto &queue : queue_salientes)
         {
             queue->try_push(game_dto);
         }
+        m.unlock();
     }
 }
 
@@ -37,7 +39,9 @@ Queue<InstructionsDTO> *Game::getQueue(){
 }
 
 void Game::addPlayer(Queue<GameDTO> *queue_sender,int* player_id){
+    m.lock();
     queue_salientes.push_back(queue_sender);
+    m.unlock();
 }
 
 bool Game::compare_code(int32_t *code_to_compare){

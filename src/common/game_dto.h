@@ -7,12 +7,12 @@
 
 struct GameObjectDTO {
     int id;        // ID único del objeto
-    uint16_t position_x;     
-    uint16_t position_y;      
+    float position_x;     
+    float position_y;      
     GameObjectState state; // Estado del objeto
 
     // Constructor para inicializar los atributos
-    GameObjectDTO(const int id, uint16_t position_x, uint16_t position_y, GameObjectState state)
+    GameObjectDTO(const int id, float position_x, float position_y, GameObjectState state)
         : id(id), position_x(position_x), position_y(position_y), state(state) {}
 };
 

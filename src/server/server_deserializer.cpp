@@ -5,11 +5,25 @@
 
 ServerDeserializer::ServerDeserializer(Socket *socket) : socket(socket) {}
 
-Instructions ServerDeserializer::obtener_instruccion(bool *was_closed)
+InstructionsDTO ServerDeserializer::obtener_instruccion(bool *was_closed, int* player_id)
 {
     char code = 0;
     socket->recvall(&code, 1, was_closed);
-    return static_cast<Instructions>(code);
+    Instructions instruction = static_cast<Instructions>(code);
+    switch (instruction) {
+        case MOVE:
+            return (deserialize_move(was_closed, player_id));
+            break;
+        case RELOAD:
+            return (deserialize_reloading(was_closed));
+            break;
+        case SHOOT:
+            return (deserialize_shooting(was_closed));
+            break;
+        case GRANEDE:
+            return (deserialize_grenede(was_closed));
+            break;
+        }
 }
 
 std::string ServerDeserializer::deserialize_create(bool *was_closed)
