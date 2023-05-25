@@ -22,15 +22,23 @@ class Soldier : public GameObject {
     std::int16_t health = 100;
     double soldier_speed = 0.2;
 
+
  public:
 Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
 Soldier(Weapon* weapon, GameMap& map, std::uint16_t x_pos, std::uint16_t y_pos);
 Soldier(Weapon* weapon, GameMap& map, std::uint16_t x_pos, std::uint16_t y_pos, float speed);
 
-void shoot();
+void update(float time);
+void reload(float time);
+void shoot(float time);
 void throw_explosive_grenade();
-void receive_damage(std::uint16_t damage) override;
 
+void move_up();
+void move_down();
+void move_right();
+void move_left();
+
+void receive_damage(std::uint16_t damage) override;
 
 bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t x_finish,
@@ -38,14 +46,6 @@ bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t y_finish) override;
 
 void get_position(std::vector<float>& pos) override;
-
-void move_up();
-void move_down();
-void move_right();
-void move_left();
-
-void reload(float time);
-void shoot(float time);
 
 ~Soldier();
 
@@ -56,6 +56,7 @@ float get_y_position();
 float get_x_position();
 std::int16_t get_health();
 State* get_state();
+void shoot();
 
 };
 #endif  // SOLDIER_H_

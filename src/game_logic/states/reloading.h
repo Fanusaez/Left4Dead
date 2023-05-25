@@ -12,7 +12,7 @@ public:
     Reloading(Weapon* weapon, float time);
 
     State* update(float time) override;
-    State* shoot(Weapon* weapon, float time) override;
+    State* shoot(Soldier& soldier, Weapon* weapon, float time) override;
     State* move() override;
     State* reload(Weapon* weapon, float time) override;
     bool finished(float time);

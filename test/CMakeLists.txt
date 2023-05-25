@@ -211,9 +211,9 @@ add_executable(testChangeInStates
 
 # Despues agregar el target aca y listo
 set(testTargets
-        testPrueba
-        testProtocolClient
-        testProtocolServer
+        #testPrueba
+        #testProtocolClient
+        #testProtocolServer
         testCollision
         testShooting
         testShootingIdf

@@ -1,25 +1,29 @@
 #include "shooting.h"
+#include "../soldier.h"
 
-Shooting::Shooting(Weapon *weapon, float start_time) :
+Shooting::Shooting(Soldier& soldier, Weapon *weapon, float start_time) :
+                    soldier(soldier),
                     weapon(weapon),
                     start_time(start_time) {
-    //weapon->shoot();
+    soldier.shoot();
 }
 
 State *Shooting::update(float time) {
+    /*
+     * aca se tiene que decidir si update es para parar de disparar, o para seguir disparando.
+     */
+    return new Idle;
+}
 
+State* Shooting::shoot(Soldier& soldier, Weapon* weapon, float time) {
     if (time_to_shoot(time) && !weapon->empty()) {
         start_time = time; // actalizo ultimo disparo
-        //weapon->shoot() tengo que ver como resolver esto
+        soldier.shoot();
         return nullptr;
     } else if (time_to_shoot(time) && weapon->empty()) {
         return new Idle();
     }
     return nullptr;
-}
-
-State *Shooting::shoot(Weapon *weapon, float time) {
-    return update(time);
 }
 
 State* Shooting::move() {

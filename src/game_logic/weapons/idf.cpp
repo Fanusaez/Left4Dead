@@ -34,5 +34,5 @@ bool Idf::isFullyLoaded() {
 }
 
 bool Idf::empty() {
-    return bullets > 0;
+    return bullets <= 0;
 }

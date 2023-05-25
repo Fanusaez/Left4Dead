@@ -1,23 +1,17 @@
 #include "reloading.h"
-
+#include "../soldier.h"
 Reloading::Reloading(Weapon *weapon, float start_time) :
             weapon(weapon),
             start_time(start_time) {}
 
 
 State* Reloading::update(float time) {
-    if (weapon->isFullyLoaded()) return new Idle;
-
-    if (finished(time)) {
-        weapon -> reload();
-        return new Idle;
-    } else {
-        return nullptr;
-    }
+    return reload(weapon, time);
 }
 
-State* Reloading::shoot(Weapon* weapon, float time) {
-    return nullptr;
+State* Reloading::shoot(Soldier& soldier, Weapon* weapon, float time) {
+    // no se puede pasar de reloading a Shooting, charlable
+    return reload(weapon, time);
 }
 
 State* Reloading::move() {
@@ -28,7 +22,13 @@ State* Reloading::move() {
 }
 
 State* Reloading::reload(Weapon* weapon, float time) {
-    return update(time);
+    if (weapon->isFullyLoaded()) return new Idle;
+
+    if (finished(time)) {
+        weapon -> reload();
+        return new Idle;
+    }
+    return nullptr;
 }
 
 bool Reloading::finished(float time) {

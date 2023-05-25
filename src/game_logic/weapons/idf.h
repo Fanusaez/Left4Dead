@@ -6,9 +6,9 @@
 
 class Idf : public Weapon {
  private:
-    std::uint16_t bullets = 50;
-    std::uint16_t close_range_damage = 30;
-    std::uint16_t long_range_damage = 15;
+    std::int16_t bullets = 50;
+    std::int16_t close_range_damage = 30;
+    std::int16_t long_range_damage = 15;
     std::int16_t grenade_damage = 40;
 
  public:

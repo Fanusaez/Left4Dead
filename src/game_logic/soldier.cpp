@@ -28,18 +28,24 @@ Soldier::Soldier(Weapon *weapon,
         y_pos(y_pos),
         soldier_speed(speed){}
 
+void Soldier::update(float time) {
+    State* new_state = state->update(time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
 
-void Soldier::shoot() {
-    // esto tiene que irse de aca
-    std::vector<GameObject*> shooting_objects;
-    map.shoot(shooting_objects,
-              x_pos,
-              y_pos,
-              direction);
-    weapon->shoot(shooting_objects, y_pos);
+void Soldier::shoot(float time) {
+    State* new_state = state->shoot(*this, weapon, time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
 
-    // harcodeado el time
-    State* new_state = state->shoot(weapon, 1);
+void Soldier::reload(float time) {
+    State* new_state = state->reload(weapon, time);
     if (new_state != nullptr) {
         delete state;
         state = new_state;
@@ -157,12 +163,13 @@ bool Soldier::in_range_of_explosion(std::int16_t x_start,
     return (x_start <= x_pos && x_pos <= x_finish && y_start <= y_pos && y_pos <= y_finish);
 }
 
-void Soldier::reload(float time) {
-    State* new_state = state->reload(weapon, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+void Soldier::shoot() {
+    std::vector<GameObject*> shooting_objects;
+    map.shoot(shooting_objects,
+              x_pos,
+              y_pos,
+              direction);
+    weapon->shoot(shooting_objects, y_pos);
 }
 
 void Soldier::get_position(std::vector<float> &pos) {
