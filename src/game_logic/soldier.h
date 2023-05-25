@@ -4,8 +4,8 @@
 #include <cstdint>
 #include "game_object.h"
 #include "map.h"
-#include "weapon.h"
-#include "idle.h"
+#include "game_logic/weapons/weapon.h"
+#include "game_logic/states/idle.h"
 
 #define DOWN 1
 #define UP -1

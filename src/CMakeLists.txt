@@ -3,18 +3,18 @@ add_executable(main
         game_logic/map.cpp
         game_logic/soldier.cpp
         game_logic/walker.cpp
-        game_logic/idf.cpp
-        game_logic/scout.cpp
+		game_logic/weapons/idf.cpp
+		game_logic/weapons/scout.cpp
         game_logic/game_object.h
-        game_logic/weapon.h
+		game_logic/weapons/weapon.h
 		game_logic/zombie.h
 		game_logic/obstacle.cpp
 		game_logic/movement.h
 		game_logic/walking.cpp
-		game_logic/state.h
-		game_logic/idle.cpp
-		game_logic/reloading.cpp
-		game_logic/shooting.cpp
+		game_logic/states/state.h
+		game_logic/states/idle.cpp
+		game_logic/states/reloading.cpp
+		game_logic/states/shooting.cpp
 )
 
 option(GAMEUI "Build game user interface" OFF)

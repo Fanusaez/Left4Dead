@@ -5,9 +5,9 @@
 #include "game_logic/walker.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
-#include "game_logic/scout.h"
-#include "game_logic/weapon.h"
-#include "game_logic/idf.h"
+#include "game_logic/weapons/scout.h"
+#include "game_logic/weapons/weapon.h"
+#include "game_logic/weapons/idf.h"
 
 #define UP -1
 #define DOWN 1

@@ -19,9 +19,9 @@ add_executable(testProtocolServer
         ../src/common/game_dto.cpp
         ../src/common/socket.cpp
         ../src/common/resolver.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
 )
 
 add_executable(testCollision
@@ -29,11 +29,11 @@ add_executable(testCollision
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/idf.cpp
+        ../src/game_logic/weapons/idf.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
 )
 
 add_executable(testShooting
@@ -41,11 +41,11 @@ add_executable(testShooting
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/idf.cpp
+        ../src/game_logic/weapons/idf.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testShootingIdf
@@ -53,11 +53,11 @@ add_executable(testShootingIdf
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/idf.cpp
+        ../src/game_logic/weapons/idf.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testShootingScout
@@ -65,11 +65,11 @@ add_executable(testShootingScout
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testMovingUpSoldier
@@ -77,11 +77,11 @@ add_executable(testMovingUpSoldier
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testMovingSoldierDown
@@ -89,11 +89,11 @@ add_executable(testMovingSoldierDown
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testMovingSoldierRight
@@ -101,11 +101,11 @@ add_executable(testMovingSoldierRight
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testMoveSoldierLeft
@@ -113,22 +113,22 @@ add_executable(testMoveSoldierLeft
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 add_executable(testMoveMap
         test_move_map.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testExplosiveGrenade
@@ -136,11 +136,11 @@ add_executable(testExplosiveGrenade
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testChaseSoldierWalking
@@ -148,11 +148,11 @@ add_executable(testChaseSoldierWalking
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testMapChaseSoldierWalking
@@ -160,11 +160,11 @@ add_executable(testMapChaseSoldierWalking
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testChaseSoldierWalkingObstacles
@@ -172,12 +172,12 @@ add_executable(testChaseSoldierWalkingObstacles
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testWalkerAttackSoldier
@@ -185,12 +185,12 @@ add_executable(testWalkerAttackSoldier
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 add_executable(testChangeInStates
@@ -198,13 +198,13 @@ add_executable(testChangeInStates
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
-        ../src/game_logic/scout.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/walking.cpp
         ../src/game_logic/walking.cpp
-        ../src/game_logic/idle.cpp
-        ../src/game_logic/reloading.cpp
-        ../src/game_logic/shooting.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
         )
 
 # target_link_libraries(testPrueba PRIVATE myLibrary)

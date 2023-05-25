@@ -2,7 +2,7 @@
 #define STATE_H_
 
 
-#include "weapon.h"
+#include "game_logic/weapons/weapon.h"
 
 class State {
 

@@ -4,8 +4,8 @@
 #include "game_logic/walker.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
-#include "game_logic/idf.h"
-#include "game_logic/weapon.h"
+#include "game_logic/weapons/idf.h"
+#include "game_logic/weapons/weapon.h"
 
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
