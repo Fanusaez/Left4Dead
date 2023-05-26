@@ -5,13 +5,14 @@
 #include "../common/thread.h"
 #include "../common/instructions_dto.h"
 #include "../common/game_dto.h"
+#include "game_logic.h"
 
 #include <list>
 #include <atomic>
 
 class Game : public Thread {
 private:
-    //Juego juego
+    //GameLogic game_logic;
 
     std::mutex m;
 

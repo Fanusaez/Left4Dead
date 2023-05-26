@@ -17,15 +17,25 @@ int main(int argc, char *argv[])
 	std::cin >> c;
 	while (c != 'q') {
 		GameDTO gameState = client.get_game();
-		std::vector<GameObjectDTO> gameObjects = gameState.get_objects_game();
-		if (gameObjects.size() != 1) {
+		std::vector<SoldierObjectDTO> soldiers = gameState.get_soldiers();
+		std::vector<ZombieObjectDTO> zombies = gameState.get_zombies();
+		if (soldiers.size() == 0 || zombies.size() == 0) {
 			std::cerr << "Error\n";
 			client.join();
 			return 1;
 		}
-		GameObjectDTO playerDTO = gameObjects.front();
-		std::cout << "Id: " << playerDTO.id << std::endl;
-		std::cout << playerDTO.position_x << ", " << playerDTO.position_y << std::endl;
+		for (int i = 0 ; i < soldiers.size(); i++){
+			SoldierObjectDTO soldier = soldiers.at(i);
+			std::cout << "Id: " << soldier.id << std::endl;
+			std::cout << soldier.position_x << ", " << soldier.position_y << std::endl;
+			std::cout << soldier.soldier_type << ", " << soldier.state << std::endl;
+		}
+		for (int j = 0 ; j < zombies.size(); j++){
+			ZombieObjectDTO zombie = zombies.at(j);
+			std::cout << "Id: " << zombie.id << std::endl;
+			std::cout << zombie.position_x << ", " << zombie.position_y << std::endl;
+			std::cout << zombie.state << std::endl;
+		}
 		std::cin >> c;
 	}
 	client.join();

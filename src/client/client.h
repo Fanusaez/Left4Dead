@@ -41,6 +41,5 @@ public:
 
     void join();
 
-    ~Client();
 };
 #endif
