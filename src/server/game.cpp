@@ -5,27 +5,29 @@
 Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name, int* player_id) : 
     queue_entrante(10000), keep_playing(keep_playing), code(*code), game_name(*game_name)
 {
+    //game_logic.add_soldier(player_id);
     queue_salientes.push_back(queue_sender);
 }
 
 void Game::run(){
     // Logica del juego
     GameDTO game_dto;
-	SoldierObjectDTO soldier(13, 30.55, 52.38, RELOADING , P90);
-	ZombieObjectDTO zombie(20, 30.55, 45.3, STUNNED);
+    SoldierObjectDTO soldier(13, 10, 10, RELOADING , P90);
+    SoldierObjectDTO soldier2(100, 10.78, 10.85, RELOADING , P90);
+    ZombieObjectDTO zombie(20, 30.55, 45.3, STUNNED);
     game_dto.add_soldier(soldier);
+    game_dto.add_soldier(soldier2);
     game_dto.add_zombie(zombie);
+
     while (keep_playing)
     {
         InstructionsDTO instructionDTO;
         bool could_pop = queue_entrante.try_pop(instructionDTO);
-        if (could_pop)
-        {
-
+        if (could_pop) {
+            //game_logic.new_instruction(instructionDTO);
         }
         // Actualizo el juego
-        // Saco screen
-        usleep(1000000.0f/25.0f); //deberia usar esto aca para sincronizar con el cliente?
+
         m.lock();
         for (const auto &queue : queue_salientes)
         {
@@ -41,6 +43,7 @@ Queue<InstructionsDTO> *Game::getQueue(){
 
 void Game::addPlayer(Queue<GameDTO> *queue_sender,int* player_id){
     m.lock();
+    //game_logic.add_soldier(player_id);
     queue_salientes.push_back(queue_sender);
     m.unlock();
 }
