@@ -26,7 +26,7 @@ void testChaseWalkerDiagonallyUpAndRight() {
     Walker walker(5,5);
     map.add_zombie(&walker, 5, 5);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     float x_pos_walk = walker.get_x();
     float y_pos_walk = walker.get_y();
@@ -52,7 +52,7 @@ void testChaseWalkerDiagonallyUpAndRightFaceToFace() {
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 30; i++) { // enough to encounter the soldier face to face
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
 
     float x_pos_walk = walker.get_x();
@@ -79,7 +79,7 @@ void testChaseWalkerDiagonallyUpAndLeft() {
     Walker walker(5,5, WALKER_SPEED);
     map.add_zombie(&walker, 5, 5);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     std::int16_t x_pos_walk = walker.get_x();
     std::int16_t y_pos_walk = walker.get_y();
@@ -99,7 +99,7 @@ void testChaseWalkerDiagonallyUpAndLeftFaceToFace() {
     map.add_zombie(&walker, 5, 7);
 
     for (int i = 0; i < 30; i++) { // enough to encounter the soldier face to face en 5 parara
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
 
     float x_pos_walk = walker.get_x();
@@ -127,7 +127,7 @@ void testChaseWalkerDiagonallyDownAndRight() {
     Walker walker(5,5, WALKER_SPEED);
     map.add_zombie(&walker, 5, 5);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     std::int16_t x_pos_walk = walker.get_x();
     std::int16_t y_pos_walk = walker.get_y();
@@ -147,7 +147,7 @@ void testChaseWalkerDiagonallyDownAndRightFaceToFace() {
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 31; i++) { // enough to encounter the soldier face to face en 5 parara
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
 
     float x_pos_walk = walker.get_x();
@@ -174,7 +174,7 @@ void testChaseWalkerDiagonallyDownAndLeft() {
     Walker walker(5,5, WALKER_SPEED);
     map.add_zombie(&walker, 5, 5);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     std::int16_t x_pos_walk = walker.get_x();
     std::int16_t y_pos_walk = walker.get_y();
@@ -194,7 +194,7 @@ void testChaseWalkerDiagonallyDownAndLeftFaceToFace() {
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 31; i++) { // enough to encounter the soldier face to face en 5 parara
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
 
     float x_pos_walk = walker.get_x();
@@ -223,7 +223,7 @@ void testChaseWalkerUp() {
     Walker walker(5,8, WALKER_SPEED);
     map.add_zombie(&walker, 5, 8);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     const float epsilon = 0.001; // Valor de tolerancia
     float x_pos_walk = walker.get_x();
@@ -247,7 +247,7 @@ void testChaseWalkerUpFaceToFace() {
     map.add_zombie(&walker, 5, 8);
 
     for (int i = 0; i < 15; i++) { // enough to encounter the soldier face to face en 5 parara
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
     const float epsilon = 0.001; // Valor de tolerancia
     float x_pos_walk = walker.get_x();
@@ -270,7 +270,7 @@ void testChaseWalkerDown() {
     Walker walker(5,1, WALKER_SPEED);
     map.add_zombie(&walker, 5, 1);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     const float epsilon = 0.001;
 
@@ -295,7 +295,7 @@ void testChaseWalkerDownFaceToFace() {
     map.add_zombie(&walker, 5, 1);
 
     for (int i = 0; i < 20; i++) { // enough to encounter the soldier face to face en 5 parara
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
     const float epsilon = 0.001;
 
@@ -321,7 +321,7 @@ void testChaseWalkerRight() {
     Walker walker(2,5, WALKER_SPEED);
     map.add_zombie(&walker, 2, 5);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     const float epsilon = 0.001; // Valor de tolerancia
 
@@ -345,7 +345,7 @@ void testChaseWalkerRightSideToSide() {
     map.add_zombie(&walker, 2, 5);
 
     for (int i = 0; i < 20; i++) { // enough to encounter the soldier face to face en 5 parara
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
     const float epsilon = 0.001; // Valor de tolerancia
 
@@ -369,7 +369,7 @@ void testChaseWalkerLeft() {
     Walker walker(8,5, WALKER_SPEED);
     map.add_zombie(&walker, 8, 5);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     const float epsilon = 0.001; // Valor de tolerancia
 
@@ -393,7 +393,7 @@ void testChaseWalkerLeftSideToSide() {
     map.add_zombie(&walker, 8, 5);
 
     for (int i = 0; i < 30; i++) { // enough to encounter the soldier face to face en 5 parara
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
     const float epsilon = 0.001; // Valor de tolerancia
 

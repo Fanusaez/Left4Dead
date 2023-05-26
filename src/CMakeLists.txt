@@ -9,13 +9,15 @@ add_executable(main
 		game_logic/weapons/weapon.h
 		game_logic/zombie.h
 		game_logic/obstacle.cpp
-		game_logic/movement.h
-		game_logic/walking.cpp
+        game_logic/zombie_states/zombie_state.h
+        game_logic/zombie_states/walking.cpp
 		game_logic/states/state.h
 		game_logic/states/idle.cpp
 		game_logic/states/reloading.cpp
 		game_logic/states/shooting.cpp
 		game_logic/states/moving.cpp
+		game_logic/zombie_states/attacking.cpp
+		game_logic/zombie_states/zombie_idle.cpp
 )
 
 option(GAMEUI "Build game user interface" OFF)

@@ -22,8 +22,8 @@ Soldier::Soldier(Weapon* weapon,
 
 Soldier::Soldier(Weapon *weapon,
                  GameMap &map,
-                 std::uint16_t x_pos,
-                 std::uint16_t y_pos,
+                 float x_pos,
+                 float y_pos,
                  float speed) :
         weapon(weapon),
         map(map),

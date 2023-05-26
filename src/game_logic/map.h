@@ -113,8 +113,8 @@ void move_object_diagonally(std::int16_t& x_old_pos,
                             std::int16_t& x_new_pos,
                             std::int16_t& y_new_pos);
 
-void chase_soldiers();
-void attack_soldiers();
+void chase_soldiers(float time);
+void attack_soldiers(float time);
 
 void add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
 void add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
