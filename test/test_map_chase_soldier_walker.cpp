@@ -27,7 +27,7 @@ void testMapChaseWalkerDiagonallyUpAndRight() {
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 3; i++) {
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
 
     GameObject* walker1 = map.get_object(6, 4);
@@ -52,7 +52,7 @@ void testMapChaseWalkerDiagonallyUpAndLeft() {
     Walker walker(5,5);
     map.add_zombie(&walker, 5, 5);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     GameObject* walker1 = map.get_object(4, 4);
     GameObject* walker2 = map.get_object(5, 4);
@@ -76,7 +76,7 @@ void testMapChaseWalkerDiagonallyDownAndRight() {
     Walker walker(5,5);
     map.add_zombie(&walker, 5, 5);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     GameObject* walker1 = map.get_object(6, 6);
     GameObject* walker2 = map.get_object(7, 6);
@@ -100,7 +100,7 @@ void testMapChaseWalkerDiagonallyDownAndLeft() {
     Walker walker(5,5);
     map.add_zombie(&walker, 5, 5);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     GameObject* walker1 = map.get_object(4, 6);
     GameObject* walker2 = map.get_object(5, 6);
@@ -127,7 +127,7 @@ void testMapChaseWalkerUp() {
     map.add_zombie(&walker, 5, 8);
 
     for (int i = 0; i < 3; i++) {
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
     GameObject* walker1 = map.get_object(5, 7);
     GameObject* walker2 = map.get_object(6, 7);
@@ -152,7 +152,7 @@ void testMapChaseWalkerDown() {
     map.add_zombie(&walker, 5, 1);
 
     for (int i = 0; i < 4; i++) {
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
 
     GameObject* walker1 = map.get_object(5, 2);
@@ -180,7 +180,7 @@ void testMapChaseWalkerRight() {
     map.add_zombie(&walker, 2, 5);
 
     for (int i = 0; i < 4; i++) {
-        map.chase_soldiers();
+        map.chase_soldiers(i);
     }
 
     GameObject* walker1 = map.get_object(3, 5);
@@ -203,7 +203,7 @@ void testMapChaseWalkerLeft() {
     Walker walker(8,5);
     map.add_zombie(&walker, 8, 5);
 
-    map.chase_soldiers();
+    map.chase_soldiers(1);
 
     GameObject* walker1 = map.get_object(7, 5);
     GameObject* walker2 = map.get_object(8, 5);

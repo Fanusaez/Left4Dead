@@ -26,7 +26,7 @@ class Soldier : public GameObject {
  public:
 Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
 Soldier(Weapon* weapon, GameMap& map, std::uint16_t x_pos, std::uint16_t y_pos);
-Soldier(Weapon* weapon, GameMap& map, std::uint16_t x_pos, std::uint16_t y_pos, float speed);
+Soldier(Weapon* weapon, GameMap& map, float x_pos, float y_pos, float speed);
 
 void update(float time);
 void reload(float time);

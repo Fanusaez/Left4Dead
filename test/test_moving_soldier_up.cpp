@@ -102,15 +102,17 @@ void testMoveSoldierUpUntilEndOfTheMap(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 1);
-    map.add_soldier(&soldier, 3, 1);
+    Soldier soldier(scout, map, 3, 2, SOLDIER_SPEED);
+    map.add_soldier(&soldier, 3, 2);
 
-    for (float i = 0; i < 20; i++){
+    for (float i = 0; i < 30; i++) {
         soldier.move_up();
     }
 
     float x_pos = soldier.get_x_position();
     float y_pos = soldier.get_y_position();
+
+    std::cout << y_pos;
 
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = y_pos;
