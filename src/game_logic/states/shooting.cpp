@@ -12,7 +12,10 @@ State *Shooting::update(float time) {
     /*
      * aca se tiene que decidir si update es para parar de disparar, o para seguir disparando.
      */
-    return new Idle;
+    if (time_to_shoot(time)) {
+        return new Idle;
+    }
+    return nullptr;
 }
 
 State* Shooting::shoot(Soldier& soldier, Weapon* weapon, float time) {

@@ -20,15 +20,20 @@ State *Moving::update(float time) {
      * Aca deberia devolver un estado idle? dado que no se lo esta moviendo mas?
      * o deberia mover el soldado a la ultima pos?
      */
-    return new Idle();
+    if (time_to_move(time)) {
+        return new Idle();
+    }
+    return nullptr;
 }
 
 State *Moving::reload(Weapon *weapon, float start_time) {
-    if (!weapon->isFullyLoaded()) return new Idle();
+    if (!time_to_move(start_time)) return nullptr;
+    if (weapon->isFullyLoaded()) return new Idle();
     return new Reloading(weapon, start_time);
 }
 
 State *Moving::shoot(Soldier &soldier, Weapon *weapon, float time) {
+    if (!time_to_move(time)) return nullptr;
     if (weapon->empty()) return new Idle();
     return new Shooting(soldier, weapon, time);
 }
@@ -44,5 +49,5 @@ State* Moving::move(Soldier& soldier, std::int16_t direction, float time) {
 }
 
 bool Moving::time_to_move(float time) {
-    return (time - start_time) > waiting_time_to_move;
+    return (time - start_time) >= waiting_time_to_move;
 }
