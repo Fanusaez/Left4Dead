@@ -62,3 +62,17 @@ void MatchMananger::joinGames(){
     }
     games.clear();
 }
+
+void MatchMananger::delete_player(int* player_id) {
+    m.lock();
+    for (Game *game: games){
+        if (game->find_player(player_id)){
+            if(game->is_empty()){
+                game->join();
+                delete game;
+            }
+            break;
+        }
+    }
+    m.unlock();
+}

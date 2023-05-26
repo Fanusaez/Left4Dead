@@ -124,4 +124,5 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
 
     }
     int sz = socket->sendall(buffer.data(), buffer.size(), was_closed);
+    //std::cout<<"Envio n bytes: "<<sz<<std::endl;
 }

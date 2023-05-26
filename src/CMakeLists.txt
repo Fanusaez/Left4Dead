@@ -1,5 +1,3 @@
-
-
 option(GAMEUI "Build game user interface" OFF)
 
 if(GAMEUI)
@@ -31,6 +29,33 @@ if(GAMEUI)
 
 endif()
 
+option(GAMEUI2 "Test user interface" OFF)
+
+
+if(GAMEUI2)
+	# Graphics library
+	set(SDL2PP_WITH_IMAGE ON)
+	set(SDL2PP_WITH_MIXER ON)
+	set(SDL2PP_WITH_TTF ON)
+	add_subdirectory(${CMAKE_SOURCE_DIR}/lib/libSDL2pp ${CMAKE_SOURCE_DIR}/build/lib/libSDL2pp)
+
+	add_library(gameview
+			graphics/gameview.cpp
+			graphics/renderable_object.cpp
+			graphics/Player.cpp
+			graphics/Animation.cpp
+			graphics/texture_loader.cpp
+			graphics/scene.cpp
+	)
+
+	target_include_directories(gameview PUBLIC ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)
+	target_include_directories(gameview PUBLIC ${PROJECT_SOURCE_DIR}/src/graphics)
+	target_link_libraries(gameview PUBLIC SDL2pp)
+	#file(COPY ${PROJECT_SOURCE_DIR}/assets DESTINATION ${CLIENT_OUTPUT_DIR})
+	target_compile_definitions(gameview PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
+
+endif()
+
 option(SERVER "Build server" OFF)
 
 if(SERVER)
@@ -49,7 +74,27 @@ if(SERVER)
 		./server/game.cpp
 		./server/server_serializer.cpp
 		./server/server_deserializer.cpp
+		./server/game_logic.cpp
+		game_logic/map.cpp
+        game_logic/soldier.cpp
+        game_logic/walker.cpp
+		game_logic/weapons/idf.cpp
+		game_logic/weapons/scout.cpp
+        game_logic/game_object.h
+		game_logic/weapons/weapon.h
+		game_logic/zombie.h
+		game_logic/obstacle.cpp
+		game_logic/movement.h
+		game_logic/walking.cpp
+		game_logic/states/state.h
+		game_logic/states/idle.cpp
+		game_logic/states/reloading.cpp
+		game_logic/states/shooting.cpp
+		game_logic/states/moving.cpp
 	)
+
+	target_include_directories(server PUBLIC ${PROJECT_SOURCE_DIR}/src/game_logic)
+	
 endif()
 
 option(CLIENT "Build client" OFF)
@@ -67,5 +112,6 @@ if(CLIENT)
 		./common/game_dto.cpp
 		./common/instructions_dto.cpp
 	)
+	target_link_libraries(main_client PUBLIC gameview)
 	target_include_directories(main_client PUBLIC ${PROJECT_SOURCE_DIR}/src/client)
 endif()

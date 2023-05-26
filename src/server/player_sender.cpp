@@ -17,6 +17,7 @@ void PlayerSender::run() {
         server_serializer.send_game(game_dto, &was_closed);
     }
     keep_talking = false;
+    //match_mananger->delete_player(player_id);
 }
 
 void PlayerSender::join_player_receiver(){

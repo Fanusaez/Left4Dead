@@ -2,7 +2,7 @@
 #define WEAPON_H_
 
 #include <vector>
-#include "game_logic/game_object.h"
+#include "../game_object.h"
 
 class Weapon {
  private:

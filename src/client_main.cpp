@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 			Player &player = static_cast<Player &>(*(objects.at(1)));
 			running = handleEvents(player);
 			player.update(FRAME_RATE);
+			//update
 			view.render();
 			// la cantidad de segundos que debo dormir se debe ajustar en función
 			// de la cantidad de tiempo que demoró el handleEvents y el render

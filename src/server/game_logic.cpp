@@ -1,8 +1,15 @@
 #include "game_logic.h"
 #include <iostream>
+#include "../game_logic/weapons/idf.h"
+#include "../common/move.h"
+
+GameLogic::GameLogic() : game_map(1000,1000) {}
 
 void GameLogic::add_soldier(int* player_id) {
-    //playerSoldierMap[*player_id] = new Soldier();
+    Weapon* idf = new Idf;
+    Soldier* soldier = new Soldier(idf,game_map,0,0);
+    game_map.add_soldier(soldier,0,0);
+    playerSoldierMap[*player_id] = soldier;
 }
 
 void GameLogic::new_instruction(InstructionsDTO instruction) {
@@ -23,24 +30,44 @@ void GameLogic::new_instruction(InstructionsDTO instruction) {
 }
 
 GameDTO GameLogic::get_game() {
-
+    GameDTO game_dto;
+    for (const auto& piar: playerSoldierMap){
+        SoldierObjectDTO soldier(piar.first, piar.second->get_x_position(), piar.second->get_y_position(), MOVING , IDF);
+        game_dto.add_soldier(soldier);
+    }
+    return game_dto;
 }
 
 void GameLogic::move (Move move, int player_id) {
-    //Soldier soldier = playerSoldierMap[player_id];
+    Soldier* soldier = playerSoldierMap[player_id];
     switch (move) {
-    case RIGHT:
-        //soldier.move_rigth();
+    case 0:
+        soldier->move_right();
         std::cout<<"RIGTH"<<std::endl;
         break;
-    case LEFT:
+    case 1:
+        soldier->move_left();
         std::cout<<"LEFT"<<std::endl;
         break;
-    case UP:
+    case 2:
+        soldier->move_up();
         std::cout<<"UP"<<std::endl;
         break;
-    case DOWN:
+    case 3:
+        soldier->move_down();
         std::cout<<"DOWN"<<std::endl;
         break;
     }
 }
+
+void GameLogic::udpate_game(){
+
+}
+
+void GameLogic::delete_soldier(int* player_id){
+    for (const auto& piar: playerSoldierMap){
+        if (piar.first == *player_id)
+            playerSoldierMap.erase(*player_id);
+    }
+}
+

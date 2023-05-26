@@ -27,6 +27,10 @@ public:
 
 	int getPositionY() const;
 
+	void setPositionX(float position_x);
+
+	void setPositionY(float position_y);
+
 	virtual ~RenderableObject();
 };
 

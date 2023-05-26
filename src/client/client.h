@@ -6,6 +6,7 @@
 #include "client_sender.h"
 #include "client_receiver.h"
 #include "client_serializer.h"
+#include <optional>
 
 class Client
 {
@@ -37,7 +38,7 @@ public:
 
     bool start();
 
-    GameDTO get_game();
+    std::optional<GameDTO> get_game();
 
     void join();
 

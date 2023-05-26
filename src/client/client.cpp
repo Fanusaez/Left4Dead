@@ -20,10 +20,13 @@ bool Client::move(Move move){
     return (queue_sender.try_push(client_seializer.serialize_move(move)));
 }
 
-GameDTO Client::get_game(){
+std::optional<GameDTO> Client::get_game(){
     GameDTO game_dto;
-    queue_receiver.try_pop(game_dto);
-    return game_dto;
+    if(queue_receiver.try_pop(game_dto))
+        return std::optional<GameDTO> (game_dto);
+    else{
+        return std::optional<GameDTO> ();
+    }
 }
 
 void Client::join(){

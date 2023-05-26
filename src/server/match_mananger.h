@@ -34,6 +34,8 @@ public:
     Queue<InstructionsDTO> *join(Queue<GameDTO> *queue_sender, int *codigo, int* player_id);
 
     void joinGames();
+
+    void delete_player(int* player_id);
 };
 #endif
 

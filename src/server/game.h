@@ -7,12 +7,12 @@
 #include "../common/game_dto.h"
 #include "game_logic.h"
 
-#include <list>
+#include <map>
 #include <atomic>
 
 class Game : public Thread {
 private:
-    //GameLogic game_logic;
+    GameLogic game_logic;
 
     std::mutex m;
 
@@ -24,7 +24,7 @@ private:
     Queue<InstructionsDTO> queue_entrante;
  
     // Tengo una referencia  a la queue del sender
-    std::list<Queue<GameDTO> *> queue_salientes;
+    std::map<int,Queue<GameDTO> *> queue_salientes;
 
     std::atomic<bool> &keep_playing;
 
@@ -40,5 +40,9 @@ public:
     bool compare_code(int32_t *code_to_compare);
 
     bool compare_game_name(std::string *game_name_to_compare);
+
+    bool find_player(int* player_id);
+
+    bool is_empty();
 };
 #endif
