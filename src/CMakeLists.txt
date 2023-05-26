@@ -15,6 +15,7 @@ add_executable(main
 		game_logic/states/idle.cpp
 		game_logic/states/reloading.cpp
 		game_logic/states/shooting.cpp
+		game_logic/states/moving.cpp
 )
 
 option(GAMEUI "Build game user interface" OFF)

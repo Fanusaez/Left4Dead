@@ -9,8 +9,8 @@ State* Idle::shoot(Soldier& soldier, Weapon* weapon, float time) {
     return new Shooting(soldier, weapon, time);
 }
 
-State* Idle::move() {
-    return this; // no va
+State* Idle::move(Soldier& soldier, std::int16_t direction, float time) {
+    return new Moving(soldier, direction, time);
 }
 
 State* Idle::reload(Weapon* weapon, float start_time) {

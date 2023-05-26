@@ -4,8 +4,8 @@
 #include <cstdint>
 #include "game_object.h"
 #include "map.h"
-#include "game_logic/weapons/weapon.h"
-#include "game_logic/states/idle.h"
+#include "weapons/weapon.h"
+#include "states/idle.h"
 
 #define DOWN 1
 #define UP -1
@@ -32,6 +32,11 @@ void update(float time);
 void reload(float time);
 void shoot(float time);
 void throw_explosive_grenade();
+
+void move_up(float time);
+void move_down(float time);
+void move_right(float time);
+void move_left(float time);
 
 void move_up();
 void move_down();

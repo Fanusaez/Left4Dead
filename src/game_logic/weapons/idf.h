@@ -21,6 +21,6 @@ void throw_explosive_grenade(std::vector<GameObject*>& shooting_objects) overrid
 void reload() override;
 bool isFullyLoaded() override;
 bool empty() override;
-
+std::int16_t get_bullets() override;
 };
 #endif // IDF_H_

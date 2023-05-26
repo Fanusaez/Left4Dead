@@ -36,3 +36,7 @@ bool Idf::isFullyLoaded() {
 bool Idf::empty() {
     return bullets <= 0;
 }
+
+std::int16_t Idf::get_bullets() {
+    return bullets;
+}

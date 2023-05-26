@@ -29,3 +29,7 @@ bool Scout::isFullyLoaded() {
 bool Scout::empty() {
     return bullets == 0;
 }
+
+std::int16_t Scout::get_bullets() {
+    return bullets;
+}

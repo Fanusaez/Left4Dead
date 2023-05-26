@@ -15,6 +15,6 @@ virtual void throw_explosive_grenade(std::vector<GameObject*>& shooting_objects)
 virtual void reload() = 0;
 virtual bool isFullyLoaded() = 0;
 virtual bool empty() = 0;
-
+virtual std::int16_t get_bullets() = 0;
 };
 #endif  // WEAPON_H_

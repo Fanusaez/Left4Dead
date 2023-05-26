@@ -19,15 +19,14 @@ State* Shooting::shoot(Soldier& soldier, Weapon* weapon, float time) {
     if (time_to_shoot(time) && !weapon->empty()) {
         start_time = time; // actalizo ultimo disparo
         soldier.shoot();
-        return nullptr;
-    } else if (time_to_shoot(time) && weapon->empty()) {
+    } else if (weapon->empty()) {
         return new Idle();
     }
     return nullptr;
 }
 
-State* Shooting::move() {
-    return nullptr;
+State* Shooting::move(Soldier& soldier, std::int16_t direction, float time) {
+    return new Moving(soldier, direction, time);
 }
 
 State *Shooting::reload(Weapon *weapon, float start_time) {

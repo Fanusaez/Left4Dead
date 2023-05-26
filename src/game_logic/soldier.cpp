@@ -5,6 +5,9 @@
 #define GRANADE_DISTANCE_REACH 4
 #define WALLS_LIMITS 0.5
 #define EPSILON 0.001f
+#define LEFT 2
+#define RIGHT 3
+
 
 Soldier::Soldier(Weapon* weapon, GameMap& map) : weapon(weapon), map(map){} // lo dejo por ahora
 
@@ -44,6 +47,15 @@ void Soldier::shoot(float time) {
     }
 }
 
+void Soldier::shoot() {
+    std::vector<GameObject*> shooting_objects;
+    map.shoot(shooting_objects,
+              x_pos,
+              y_pos,
+              direction);
+    weapon->shoot(shooting_objects, y_pos);
+}
+
 void Soldier::reload(float time) {
     State* new_state = state->reload(weapon, time);
     if (new_state != nullptr) {
@@ -73,6 +85,38 @@ void Soldier::receive_damage(std::uint16_t damage) {
     health -= damage;
     if (health <= 0) {
         dead = true;
+    }
+}
+
+void Soldier::move_up(float time) {
+    State* new_state = state->move(*this, UP, time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
+
+void Soldier::move_down(float time) {
+    State* new_state = state->move(*this, DOWN, time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
+
+void Soldier::move_right(float time) {
+    State* new_state = state->move(*this, RIGHT, time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
+
+void Soldier::move_left(float time) {
+    State* new_state = state->move(*this, LEFT, time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
     }
 }
 
@@ -163,20 +207,10 @@ bool Soldier::in_range_of_explosion(std::int16_t x_start,
     return (x_start <= x_pos && x_pos <= x_finish && y_start <= y_pos && y_pos <= y_finish);
 }
 
-void Soldier::shoot() {
-    std::vector<GameObject*> shooting_objects;
-    map.shoot(shooting_objects,
-              x_pos,
-              y_pos,
-              direction);
-    weapon->shoot(shooting_objects, y_pos);
-}
-
 void Soldier::get_position(std::vector<float> &pos) {
     pos.push_back(x_pos);
     pos.push_back(y_pos);
 }
-
 
 Soldier::~Soldier(){
     delete weapon;

@@ -6,16 +6,16 @@
 class Reloading : public State {
 private:
     Weapon* weapon;
-    float time_to_reload = 0.5;
+    float waiting_time_to_reload = 0.5;
     float start_time;
 public:
     Reloading(Weapon* weapon, float time);
 
     State* update(float time) override;
     State* shoot(Soldier& soldier, Weapon* weapon, float time) override;
-    State* move() override;
+    State* move(Soldier& soldier, std::int16_t direction, float time) override;
     State* reload(Weapon* weapon, float time) override;
-    bool finished(float time);
+    bool time_to_relaod(float time);
 };
 
 

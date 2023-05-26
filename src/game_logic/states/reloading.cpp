@@ -10,27 +10,30 @@ State* Reloading::update(float time) {
 }
 
 State* Reloading::shoot(Soldier& soldier, Weapon* weapon, float time) {
-    // no se puede pasar de reloading a Shooting, charlable
+    if (time_to_relaod(time)) {
+        weapon->reload();
+        return new Shooting(soldier, weapon, time);
+    }
     return reload(weapon, time);
 }
 
-State* Reloading::move() {
-    // if (time - start_time >= time_to_reload) {
-    // weapon -> reload()
-    //}
-    return this;
+State* Reloading::move(Soldier& soldier, std::int16_t direction, float time) {
+    if (time_to_relaod(time)) {
+        weapon->reload();
+        return new Moving(soldier, direction, time);
+    }
+    return nullptr;
 }
 
 State* Reloading::reload(Weapon* weapon, float time) {
     if (weapon->isFullyLoaded()) return new Idle;
-
-    if (finished(time)) {
+    if (time_to_relaod(time)) {
         weapon -> reload();
         return new Idle;
     }
     return nullptr;
 }
 
-bool Reloading::finished(float time) {
-    return (time - start_time >= time_to_reload);
+bool Reloading::time_to_relaod(float time) {
+    return (time - start_time >= waiting_time_to_reload);
 }
