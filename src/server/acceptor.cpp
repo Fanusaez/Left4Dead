@@ -13,6 +13,7 @@ void Acceptor::run() {
         catch (const std::invalid_argument& e) {
             break;
         }
+        std::cout<<"Nuevo jugador"<<std::endl;
         //Le muevo el socket al cliente para que se maneje el en enviar y recibir mensajes
         Player *new_player = new Player(std::move(socket_player), &match_mananger, int(players.size()));
 

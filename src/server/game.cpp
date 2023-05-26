@@ -10,17 +10,18 @@ Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_
 
 void Game::run(){
     // Logica del juego
-	GameObjectDTO objectDto(13, 30.55, 45.3, MOVING);
     GameDTO game_dto;
-    game_dto.add_object(objectDto);
+	SoldierObjectDTO soldier(13, 30.55, 52.38, RELOADING , P90);
+	ZombieObjectDTO zombie(20, 30.55, 45.3, STUNNED);
+    game_dto.add_soldier(soldier);
+    game_dto.add_zombie(zombie);
     while (keep_playing)
     {
         InstructionsDTO instructionDTO;
         bool could_pop = queue_entrante.try_pop(instructionDTO);
-        //instructionDTO = queue_entrante.pop();
         if (could_pop)
         {
-            // Proceso la instrcuccion
+
         }
         // Actualizo el juego
         // Saco screen

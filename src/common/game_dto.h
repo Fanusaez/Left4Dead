@@ -4,30 +4,52 @@
 #include <cstdint>
 #include <vector>
 #include "../common/game_object_state.h"
+#include "../common/soldier_type.h"
 
-struct GameObjectDTO {
+struct SoldierObjectDTO {
     int id;        // ID único del objeto
     float position_x;     
     float position_y;      
-    GameObjectState state; // Estado del objeto
+    SoldierObjectState state; // Estado del objeto
+    SoldierType soldier_type;
 
     // Constructor para inicializar los atributos
-    GameObjectDTO(const int id, float position_x, float position_y, GameObjectState state)
+    SoldierObjectDTO(int8_t id, float position_x, float position_y, SoldierObjectState state, SoldierType soldier_type)
+        : id(id), position_x(position_x), position_y(position_y), state(state), soldier_type(soldier_type) {}
+};
+
+struct ZombieObjectDTO {
+    int id;        // ID único del objeto
+    float position_x;     
+    float position_y;      
+    ZombieObjectState state; // Estado del objeto
+
+    // Constructor para inicializar los atributos
+    ZombieObjectDTO(int8_t id, float position_x, float position_y, ZombieObjectState state)
         : id(id), position_x(position_x), position_y(position_y), state(state) {}
 };
 
 class GameDTO {
 private:
 
-    std::vector<GameObjectDTO> objects_game;
+    std::vector<SoldierObjectDTO> soldiers;
+
+    std::vector<ZombieObjectDTO> zombies;
+
+    //std::vector<SoldierObjectDTO> elements;
 
 public:
     GameDTO();  //Lo usamos nada mas para el player_sender y client_receiver
 
-    GameDTO(std::vector<GameObjectDTO> objects_game);
+    GameDTO(std::vector<SoldierObjectDTO> soldiers, std::vector<ZombieObjectDTO> zombies);
 
-    void add_object(GameObjectDTO game_object_dto);
+    void add_soldier(SoldierObjectDTO soldier);
 
-    std::vector<GameObjectDTO> get_objects_game();
+    void add_zombie(ZombieObjectDTO zombie);
+    
+    std::vector<SoldierObjectDTO> get_soldiers();
+
+    std::vector<ZombieObjectDTO> get_zombies();
+
 };
 #endif

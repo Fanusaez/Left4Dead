@@ -14,6 +14,7 @@ void ClientReceiver::run() {
     Instructions instruction;
     std::vector<char> bytes;
     while (!was_closed && keep_talking) {
-        queue_receiver->push(client_deserializer.deserialize_game_dto(&was_closed)); //Podemos pasarle los bytes o generar una estructura
+        GameDTO game_dto = client_deserializer.deserialize_game_dto(&was_closed);
+        queue_receiver->push(game_dto); //Podemos pasarle los bytes o generar una estructura
     }
 }

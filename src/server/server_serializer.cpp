@@ -94,10 +94,26 @@ std::vector<char> ServerSerializer::serialize_games_availables(int *games, std::
 void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
 {
     std::vector<char> buffer;
-    std::vector<GameObjectDTO> objects_game = game_dto.get_objects_game();
-    buffer.push_back(uint8_t(objects_game.size()));
-    for (const auto &obj : objects_game)
-    {
+    std::vector<SoldierObjectDTO> soldiers = game_dto.get_soldiers();
+    std::vector<ZombieObjectDTO> zombies = game_dto.get_zombies();
+    buffer.push_back(soldiers.size());
+    buffer.push_back(zombies.size());
+    for (const auto &obj : soldiers) {
+        buffer.push_back(obj.id);
+
+        buffer.push_back(obj.state);
+        buffer.push_back(obj.soldier_type);
+
+        unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.position_x);
+        buffer.insert(buffer.end(), p, p + 4);
+
+        p = reinterpret_cast<unsigned char const *>(&obj.position_y);
+        buffer.insert(buffer.end(), p, p + 4);
+
+    }
+
+    for (const auto &obj : zombies) {
+        buffer.push_back(obj.id);
         buffer.push_back(obj.state);
 
         unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.position_x);

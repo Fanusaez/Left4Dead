@@ -16,9 +16,7 @@ private:
 public:
     InstructionsDTO(); //Solo para el try_pop del hilo main
 
-    InstructionsDTO(Instructions instruction);
-
-    InstructionsDTO(Instructions instruction, std::vector<char> parameters);
+    InstructionsDTO(int* player_id, Instructions instruction);
 
     InstructionsDTO(int* player_id, Instructions instruction, std::vector<char> parameters);
 

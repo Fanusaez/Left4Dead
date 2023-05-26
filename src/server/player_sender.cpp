@@ -30,12 +30,13 @@ void PlayerSender::close_queue() {
 void PlayerSender::init_player_receiver(){
     // Mientras no se le asigne partida
     while (queue_receiver == NULL){
-        Instructions instruction = server_deserializer.obtener_instruccion(&was_closed);
-        if (instruction == CREATE){
-            std::string game_name = server_deserializer.deserialize_create(&was_closed);
+        InstructionsDTO instruction = server_deserializer.obtener_instruccion(&was_closed,player_id);
+        if (instruction.get_instruction() == CREATE){
+            std::vector<char> parameters = instruction.get_parameters();
+            std::string game_name(parameters.begin(), parameters.end());
             queue_receiver = match_mananger->create_game(&queue_sender, &game_name, player_id);
-        } else if (instruction == JOIN){
-            int32_t game_code = server_deserializer.deserialize_join(&was_closed);
+        } else if (instruction.get_instruction() == JOIN){
+            int32_t game_code = *reinterpret_cast<int32_t*>(instruction.get_parameters().data());
             queue_receiver = match_mananger->join(&queue_sender, &game_code, player_id);
         }
     }

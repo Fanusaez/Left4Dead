@@ -3,14 +3,10 @@
 
 InstructionsDTO::InstructionsDTO() {}
 
-InstructionsDTO::InstructionsDTO(Instructions instruction, std::vector<char> parameters) :
-    instruction(instruction), parameters(parameters) {
-    }
-
 InstructionsDTO::InstructionsDTO(int* player_id, Instructions instruction, std::vector<char> parameters) : 
     player_id(player_id), instruction(instruction), parameters(parameters){}
 
-InstructionsDTO::InstructionsDTO(Instructions instruction) : parameters() {}
+InstructionsDTO::InstructionsDTO(int* player_id, Instructions instruction) : parameters(),player_id(player_id) {}
 
 Instructions InstructionsDTO::get_instruction()
 {

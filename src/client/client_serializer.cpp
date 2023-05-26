@@ -1,5 +1,6 @@
 #include "client_serializer.h"
 #include "../common/instructions.h"
+#include <iostream>
 
 std::vector<char> ClientSerializer::serialize_create_scenario(const std::string& scenario_name){
     std::vector<char> buffer;

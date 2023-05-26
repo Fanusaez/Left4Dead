@@ -1,5 +1,5 @@
 #include "client.h"
-
+#include <sys/socket.h>
 
 Client::Client(char *localhost, char *puerto) : socket(localhost, puerto), queue_sender(10000), queue_receiver(10000),
     client_sender(&socket,std::ref(keep_talking),&queue_sender), client_receiver(&socket,std::ref(keep_talking),&queue_receiver) {
@@ -30,9 +30,17 @@ GameDTO Client::get_game(){
 
 void Client::join()
 {
-    socket.close();
+    socket.shutdown(SHUT_RDWR);
     queue_sender.close(); // Es correcto hacer eso?
     client_sender.join();
     queue_receiver.close(); // Es correcto hacer eso?
-    client_receiver.join();
+    client_receiver.join(); 
+}
+
+Client::~Client() {
+/*     socket.close();
+    queue_sender.close(); // Es correcto hacer eso?
+    client_sender.join();
+    queue_receiver.close(); // Es correcto hacer eso?
+    client_receiver.join(); */
 }

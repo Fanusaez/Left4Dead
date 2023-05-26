@@ -2,12 +2,21 @@
 
 GameDTO::GameDTO(){}
 
-GameDTO::GameDTO(std::vector<GameObjectDTO> objects_game) : objects_game (objects_game){}
+GameDTO::GameDTO(std::vector<SoldierObjectDTO> soldiers, std::vector<ZombieObjectDTO> zombies)
+ : soldiers(soldiers), zombies(zombies){}
 
-void GameDTO::add_object(GameObjectDTO game_object_dto){
-    objects_game.push_back(game_object_dto);
+void GameDTO::add_soldier(SoldierObjectDTO soldier){
+    soldiers.push_back(soldier);
 }
 
-std::vector<GameObjectDTO> GameDTO::get_objects_game(){
-    return objects_game;
+void GameDTO::add_zombie(ZombieObjectDTO zombie){
+    zombies.push_back(zombie);
+}
+
+std::vector<SoldierObjectDTO> GameDTO::get_soldiers(){
+    return soldiers;
+}
+
+std::vector<ZombieObjectDTO> GameDTO::get_zombies(){
+    return zombies;
 }

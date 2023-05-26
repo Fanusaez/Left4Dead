@@ -40,5 +40,7 @@ public:
     GameDTO get_game();
 
     void join();
+
+    ~Client();
 };
 #endif
