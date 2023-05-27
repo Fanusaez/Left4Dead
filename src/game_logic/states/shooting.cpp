@@ -32,9 +32,21 @@ State* Shooting::move(Soldier& soldier, std::int16_t direction, float time) {
     return new Moving(soldier, direction, time);
 }
 
-State *Shooting::reload(Weapon *weapon, float start_time) {
+State *Shooting::reload(Weapon *weapon, float time) {
     if (weapon->isFullyLoaded()) return nullptr;
-    return new Reloading(weapon, start_time);
+    return new Reloading(weapon, time);
+}
+
+State *Shooting::being_attacked(float time) {
+    return new BeingAttacked(time);
+}
+
+State *Shooting::die(float time) {
+    return new Dead(time);
+}
+
+State *Shooting::revive(float time) {
+    return nullptr;
 }
 
 bool Shooting::time_to_shoot(float time) {

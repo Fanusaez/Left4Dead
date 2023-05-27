@@ -1,27 +1,25 @@
-#ifndef SHOOTING_H_
-#define SHOOTING_H_
+#ifndef BEINGATTACKED_H_
+#define BEINGATTACKED_H_
 
-#include "reloading.h"
+#include "idle.h"
 
-class Shooting  : public State {
+class BeingAttacked : public State {
 private:
-    Soldier& soldier;
-    Weapon* weapon;
-    float waiting_time_to_shoot = 0.5;
+    float time_stop_being_attacked = 0.3; // cuanto tiempo dura la animacion
     float start_time;
 public:
-    Shooting(Soldier& sodlier, Weapon* weapon, float start_time);
+    BeingAttacked(float start_time);
 
     State* update(float time) override;
     State* shoot(Soldier& soldier, Weapon* weapon, float time) override;
     State* move(Soldier& soldier, std::int16_t direction, float time) override;
-    State* reload(Weapon* weapon, float start_time) override;
+    State* reload(Weapon* weapon, float time) override;
     State* being_attacked(float time) override;
     State* die(float time) override;
     State* revive(float time) override;
 
-    bool time_to_shoot(float time);
+    bool time_to_stop_being_attacked(float time);
 };
 
 
-#endif   // SHOOTING_H_
+#endif  // BEINGATTACKED_H_

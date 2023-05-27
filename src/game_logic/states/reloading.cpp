@@ -34,6 +34,18 @@ State* Reloading::reload(Weapon* weapon, float time) {
     return nullptr;
 }
 
+State *Reloading::being_attacked(float time) {
+    return new BeingAttacked(time);
+}
+
+State *Reloading::die(float time) {
+    return new Dead(time);
+}
+
+State *Reloading::revive(float time) {
+    return nullptr;
+}
+
 bool Reloading::time_to_relaod(float time) {
     return (time - start_time >= waiting_time_to_reload);
 }

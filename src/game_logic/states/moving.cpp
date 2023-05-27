@@ -48,6 +48,18 @@ State* Moving::move(Soldier& soldier, std::int16_t direction, float time) {
     return nullptr;
 }
 
+State *Moving::being_attacked(float time) {
+    return new BeingAttacked(time);
+}
+
+State *Moving::die(float time) {
+    return new Dead(time);
+}
+
+State *Moving::revive(float time) {
+    return nullptr;
+}
+
 bool Moving::time_to_move(float time) {
     return (time - start_time) >= waiting_time_to_move;
 }

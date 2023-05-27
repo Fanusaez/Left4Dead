@@ -17,3 +17,15 @@ State* Idle::reload(Weapon* weapon, float start_time) {
     if (weapon->isFullyLoaded()) return nullptr;
     return new Reloading(weapon, start_time);
 }
+
+State *Idle::being_attacked(float time) {
+    return new BeingAttacked(time);
+}
+
+State *Idle::die(float time) {
+    return new Dead(time);
+}
+
+State *Idle::revive(float time) {
+    return nullptr;
+}

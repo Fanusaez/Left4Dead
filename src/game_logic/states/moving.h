@@ -14,6 +14,9 @@ public:
     State* shoot(Soldier& soldier, Weapon* weapon, float time) override;
     State* move(Soldier& soldier, std::int16_t direction, float time) override;
     State* reload(Weapon* weapon, float start_time) override;
+    State* being_attacked(float time) override;
+    State* die(float time) override;
+    State* revive(float time) override;
 
     bool time_to_move(float time);
 };
