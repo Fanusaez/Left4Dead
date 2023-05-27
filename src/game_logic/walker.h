@@ -35,6 +35,8 @@ void set_direction(std::int16_t direction) override;
 void get_position(std::vector<float>& pos) override;
 void attack(GameMap& map, std::vector<GameObject*> soldiers, float time) override;
 
+bool in_range_of_attack(GameObject* object);
+
 ~Walker();
 
 // ************************* Metodos de testeo ************************************************8//

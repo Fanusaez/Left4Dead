@@ -12,14 +12,13 @@ Walking::Walking(Zombie* zombie,
                  std::int16_t &x_new_pos, std::int16_t &y_new_pos,
                  GameObject* closest_soldier, GameMap& map,
                  float time) :
-                                x_pos(x_pos),
+                                x_pos(x_pos), // al dope
                                 y_pos(y_pos),
-                                start_time(start_time) {
-    chase_soldier(zombie, x_pos, y_pos, x_new_pos, y_new_pos, closest_soldier, map, time + waiting_time_to_walk);
-    // esto esta mal, al otro llamado el tiempo va a estar adelantado, buscar la manera de mover el walker sin ahcer esto
+                                start_time(start_time - waiting_time_to_walk) {
+    chase_soldier(zombie, x_pos, y_pos, x_new_pos, y_new_pos, closest_soldier, map, time);
 }
 
-ZombieState* Walking::chase_soldier(Zombie* zombie,
+ZombieState* Walking::chase_soldier(Zombie* zombie, // no ocuopa zombie
                             float &x_pos,
                             float &y_pos,
                             std::int16_t &x_new_pos,

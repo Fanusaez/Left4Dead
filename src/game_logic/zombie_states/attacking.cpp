@@ -1,6 +1,10 @@
 #include "attacking.h"
 
-Attacking::Attacking(GameObject *closest_soldier, std::int16_t damage, float time) {
+Attacking::Attacking(GameObject *closest_soldier, std::int16_t damage, float time)  : start_time(time) {
+    /*
+     * Me parece que al atacar no deberia inmediatamente atacar, sino esperar
+     * a que pas el tiempo, y recien ahi da;ar al rival
+     */
     attack_soldier(closest_soldier, damage, time);
 }
 

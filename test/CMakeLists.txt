@@ -292,6 +292,7 @@ set(testTargets
         testChaseSoldierWalkingObstacles
         testChangeInStatesSoldier
         testChangeInStatesZombie
+        testWalkerAttackSoldier
 )
 
 foreach(target ${testTargets})

@@ -94,6 +94,15 @@ void Walker::attack(GameMap &map, std::vector<GameObject *> soldiers, float time
     }
 }
 
+// creo que no sirve
+bool Walker::in_range_of_attack(GameObject *object) {
+    std::vector<float> sold_pos;
+    object->get_position(sold_pos);
+    std::int16_t y_dist = abs(floor(sold_pos[1]) - floor(y_pos));
+    std::int16_t x_dist = abs(floor(sold_pos[0]) - floor(x_pos));
+    return (x_dist <= 1 && y_dist == 1);
+}
+
 Walker::~Walker() {
     delete state;
 }
