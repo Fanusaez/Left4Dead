@@ -152,20 +152,41 @@ void testMoveSoldierDownUntilTheEnd() {
 
     const float epsilon = 0.001; // Valor de tolerancia
     double received_numered = y_pos;
-    double expected_number =  9; /// deberia ser 9.8. hay un bug
+    double expected_number =  9.8; /// deberia ser 9.8. hay un bug
 
     TEST_CHECK(x_pos == 3);
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
 }
 
+void testMoveSoldierDownUntilTheEnd2() {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
 
+    Soldier soldier(scout, map, 0.0, 0.0);
+    map.add_soldier(&soldier, 0, 0);
+
+    for (int i = 0; i < 150; i++){
+        soldier.move_down(i);
+    }
+
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
+    //std::cout << y_pos;
+    const float epsilon = 0.001; // Valor de tolerancia
+    double received_numered = y_pos;
+    double expected_number =  9.8;
+
+   TEST_CHECK(x_pos == 0);
+    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+}
 TEST_LIST = {
         {"Move soldier 1 position down",testMoveSoldierDown},
         {"Move soldier 1 position down goes to the other side of map",testMoveSoldierDownAtTheEndDoesNotMove},
         {"Move soldier 1 position down goes not possible for walker totally aligned",testNotMoveSoldierDownForCompleteCollisionWithZombie},
         {"Move soldier 1 position down goes not possible for walker partially aligned (right side)", testNotMoveSoldierDownForPartialCollisionWithZombie},
         {"Move soldier 1 position down goes not possible for walker partially aligned(left side)", testNotMoveSoldierDownForPartialCollisionWithZombie2},
-        {"", testMoveSoldierDownUntilTheEnd},
+        {"Moves Soldier down until end of map", testMoveSoldierDownUntilTheEnd},
+        {"Moves Soldier down until end of map from 0,0", testMoveSoldierDownUntilTheEnd2},
         {NULL, NULL},
 };
 

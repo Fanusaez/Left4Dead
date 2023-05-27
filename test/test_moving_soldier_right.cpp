@@ -110,12 +110,35 @@ void testMoveSoldierRightWithZombieClose() {
     TEST_CHECK(y_pos == 8);
 }
 
+void testMoveSoldierRightAllTheWay(){
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 0, 0, SOLDIER_SPEED);
+    map.add_soldier(&soldier, 0, 0);
+
+    for (int i = 0; i < 60; i++) {
+        soldier.move_right(i);
+    }
+
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
+
+    const float epsilon = 0.001; // Valor de tolerancia
+    float received_numered = x_pos;
+    float expected_number = 8.8;
+    // Esta bien 8.8, acordarse del espacio extra de los objetos a la derecha
+
+    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(y_pos == 0);
+}
 
 TEST_LIST = {
         {"Move soldier 1 position right",testMoveSoldierRight},
         {"Move soldier 1 position on limit of map",testMoveSoldierRightEndOfMap},
         {"Move soldier 1 position right not possible for walker",testNotMoveSoldierRightForCollisionWithZombie},
         {"Move soldier 1 position right close to a zombie", testMoveSoldierRightWithZombieClose},
+        {"Move soldier from beginning to end",testMoveSoldierRightAllTheWay},
         {NULL, NULL},
 };
 

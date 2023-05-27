@@ -274,7 +274,7 @@ void GameMap::attack_soldiers(float time) {
 void GameMap::add_soldier(GameObject* soldier,
                       std::uint16_t x_pos,
                       std::uint16_t y_pos) {
-    if (!valid_entire_object_position(x_pos, y_pos)){
+    if (!valid_entire_object_position(x_pos, y_pos)) {
         return; // excepcion
     }
     map[y_pos][x_pos] = soldier;

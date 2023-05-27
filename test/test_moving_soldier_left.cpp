@@ -88,10 +88,33 @@ void testNotMoveSoldierLeftForCollisionWithZombie(){
 }
 
 
+void testMoveSoldierLeftAllTheWay(){
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 8, 0, SOLDIER_SPEED);
+    map.add_soldier(&soldier, 8, 0);
+
+    for (int i = 0; i < 50; i++) {
+        soldier.move_left(i);
+    }
+
+    float x_pos = soldier.get_x_position();
+    float y_pos = soldier.get_y_position();
+
+    const float epsilon = 0.001; // Valor de tolerancia
+    float received_numered = x_pos;
+    float expected_number = 0.4;
+
+    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(y_pos == 0);
+}
+
 TEST_LIST = {
         {"Move soldier 1 position Left",testMoveSoldierLeft},
         {"Move soldier 1 position on limit of map",testMoveSoldierLeftBeginningOfMap},
         {"Move soldier 1 position Left not possible for walker",testNotMoveSoldierLeftForCollisionWithZombie},
+        {"Move soldier from end to beginning", testMoveSoldierLeftAllTheWay},
         {NULL, NULL},
 };
 

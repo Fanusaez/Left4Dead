@@ -13,8 +13,8 @@ Soldier::Soldier(Weapon* weapon, GameMap& map) : weapon(weapon), map(map){} // l
 
 Soldier::Soldier(Weapon* weapon,
                  GameMap& map,
-                 std::uint16_t x_pos,
-                 std::uint16_t y_pos) :
+                 float x_pos,
+                 float y_pos) :
         weapon(weapon),
         map(map),
         x_pos(x_pos),
@@ -144,9 +144,10 @@ void Soldier::move_down() {
     direction = DOWN;
     std::int16_t y_new_pos = static_cast<std::int16_t>(floor(y_pos + soldier_speed + EPSILON));
     std::int16_t x_old_pos = static_cast<std::int16_t>(floor(x_pos));
-    std::int16_t y_old_pos = static_cast<std::int16_t>(floor(y_pos));
+    std::int16_t y_old_pos = static_cast<std::int16_t>(floor(y_pos + EPSILON));
     if ((y_new_pos - y_old_pos) == 0) {
         y_pos += soldier_speed;
+        //std::cout << y_pos << "\n";
         return;
     }
 
