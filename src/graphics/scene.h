@@ -5,10 +5,6 @@
 #include "texture_loader.h"
 #include <string>
 
-#ifndef FRAME_RATE
-#define FRAME_RATE 1000000.0f/25.0f
-#endif
-
 class Scene {
 	SDL2pp::Texture &skyTexture;
 

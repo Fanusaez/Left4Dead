@@ -15,7 +15,7 @@ class Player : public RenderableObject {
 public:
     Player(SDL2pp::Texture &texture, int id, int initialX, int initialY);
     virtual ~Player();
-    void update(float dt);
+    void update(unsigned dt);
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) override;
     void moveRigth();
     void moveLeft();

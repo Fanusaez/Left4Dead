@@ -13,8 +13,7 @@ class TextureLoader {
 	std::map<std::string, TexturePtr> textures;
 
 public:
-	TextureLoader();
-
+	static TextureLoader &getInstance();
 	/*
 	 * Load all sprites in the spriteNames list.
 	 * Each sprite name should be relative to the assets directory.
@@ -27,6 +26,9 @@ public:
 	 * The sprite name should be relative to the assets directory.
 	 */
 	SDL2pp::Texture &getTexture(const std::string &spriteName);
+
+private:
+	TextureLoader();
 
 	~TextureLoader();
 };

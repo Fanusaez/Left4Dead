@@ -19,7 +19,7 @@ bool Player::isMoving() const
  * Notar que el manejo de eventos y la actualización de modelo ocurren en momentos distintos.
  * Esto les va a resultar muy util. 
  */
-void Player::update(float dt) {
+void Player::update(unsigned dt) {
 	if (isMoving()) {
 		this->an.update(dt);
 		this->xPosition += this->speed.first;

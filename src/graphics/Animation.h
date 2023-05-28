@@ -8,10 +8,6 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
-#ifndef FRAME_RATE
-#define FRAME_RATE 1000000.0f/25.0f
-#endif
-
 class SdlTexture;
 class Area;
 
@@ -19,7 +15,7 @@ class Animation {
    public:
     Animation(SDL2pp::Texture &texture);
     ~Animation();
-    void update(float dt);
+    void update(unsigned dt);
     void render(SDL2pp::Renderer &renderer, const SDL2pp::Rect dest, SDL_RendererFlip &flipType);
 
 
@@ -34,7 +30,9 @@ class Animation {
     /** Size of the sprite (height and width). */
     int size;
     /** Time elapsed since last update. */
-    float elapsed;
+    unsigned elapsed;
+
+    unsigned frameRate;
 };
 
 #endif  //__ANIMATION_H__

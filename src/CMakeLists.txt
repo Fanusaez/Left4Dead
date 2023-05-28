@@ -1,4 +1,4 @@
-option(GAMEUI "Build game user interface" OFF)
+
 
 #add_executable(main
 	#	main.cpp
@@ -23,60 +23,35 @@ option(GAMEUI "Build game user interface" OFF)
 		#game_logic/zombie_states/zombie_state.h
 		#)
 
-if(GAMEUI)
-	# Graphics library
-	set(SDL2PP_WITH_IMAGE ON)
-	set(SDL2PP_WITH_MIXER ON)
-	set(SDL2PP_WITH_TTF ON)
-	add_subdirectory(${CMAKE_SOURCE_DIR}/lib/libSDL2pp ${CMAKE_SOURCE_DIR}/build/lib/libSDL2pp)
+set(SDL2PP_WITH_IMAGE ON)
+set(SDL2PP_WITH_MIXER ON)
+set(SDL2PP_WITH_TTF ON)
+add_subdirectory(${CMAKE_SOURCE_DIR}/lib/libSDL2pp ${CMAKE_SOURCE_DIR}/build/lib/libSDL2pp)
 
-	add_executable(gameview
-			client_main.cpp
-			graphics/gameview.cpp
-			graphics/renderable_object.cpp
-			graphics/Player.cpp
-			graphics/Animation.cpp
-			graphics/texture_loader.cpp
-			graphics/scene.cpp
-	)
+add_library(gameview
+		graphics/gameview.cpp
+		graphics/renderable_object.cpp
+		graphics/Player.cpp
+		graphics/Animation.cpp
+		graphics/texture_loader.cpp
+		graphics/gameview_configs_loader.cpp
+		graphics/scene.cpp
+		)
 
-	target_include_directories(gameview PRIVATE ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)
-	target_include_directories(gameview PRIVATE ${PROJECT_SOURCE_DIR}/src/graphics)
-	target_link_libraries(gameview PRIVATE SDL2pp)
+target_include_directories(gameview PUBLIC ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)
+target_include_directories(gameview PUBLIC ${PROJECT_SOURCE_DIR}/src/graphics)
+target_link_libraries(gameview PUBLIC SDL2pp)
+target_compile_definitions(gameview PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
+
+option(VIEWTEST "Test game user interface" OFF)
+if (VIEWTEST)
+	add_executable(viewtest
+			client_main.cpp)
+	target_link_libraries(viewtest PRIVATE gameview)
 	set(CLIENT_OUTPUT_DIR ${CMAKE_BINARY_DIR}/src/client)
-	set_target_properties(gameview
+	set_target_properties(viewtest
 			PROPERTIES
 			RUNTIME_OUTPUT_DIRECTORY ${CLIENT_OUTPUT_DIR})
-	#file(COPY ${PROJECT_SOURCE_DIR}/assets DESTINATION ${CLIENT_OUTPUT_DIR})
-	target_compile_definitions(gameview PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
-
-endif()
-
-option(GAMEUI2 "Test user interface" OFF)
-
-
-if(GAMEUI2)
-	# Graphics library
-	set(SDL2PP_WITH_IMAGE ON)
-	set(SDL2PP_WITH_MIXER ON)
-	set(SDL2PP_WITH_TTF ON)
-	add_subdirectory(${CMAKE_SOURCE_DIR}/lib/libSDL2pp ${CMAKE_SOURCE_DIR}/build/lib/libSDL2pp)
-
-	add_library(gameview
-			graphics/gameview.cpp
-			graphics/renderable_object.cpp
-			graphics/Player.cpp
-			graphics/Animation.cpp
-			graphics/texture_loader.cpp
-			graphics/scene.cpp
-	)
-
-	target_include_directories(gameview PUBLIC ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)
-	target_include_directories(gameview PUBLIC ${PROJECT_SOURCE_DIR}/src/graphics)
-	target_link_libraries(gameview PUBLIC SDL2pp)
-	#file(COPY ${PROJECT_SOURCE_DIR}/assets DESTINATION ${CLIENT_OUTPUT_DIR})
-	target_compile_definitions(gameview PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
-
 endif()
 
 option(SERVER "Build server" OFF)
@@ -107,8 +82,8 @@ if(SERVER)
 		game_logic/weapons/weapon.h
 		game_logic/zombie.h
 		game_logic/obstacle.cpp
-		game_logic/movement.h
-		game_logic/walking.cpp
+		#game_logic/movement.h
+		#game_logic/walking.cpp
 		game_logic/states/state.h
 		game_logic/states/being_attacked.cpp
 		game_logic/states/idle.cpp

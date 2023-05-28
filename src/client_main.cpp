@@ -4,6 +4,7 @@
 #include "gameview.h"
 #include "Player.h"
 #include "texture_loader.h"
+#include "gameview_configs_loader.h"
 #include "scene.h"
 #include <iostream>
 #include <exception>
@@ -21,15 +22,11 @@ int main(int argc, char *argv[])
 {
 	try
 	{
+		GameviewConfigurationsLoader &configs = GameviewConfigurationsLoader::getInstance();
 		std::map<int, std::unique_ptr<RenderableObject>> objects;
 		Gameview view(objects);
-		std::list<std::string> spritesToLoad;
-		spritesToLoad.push_back("Soldier_1/Walk.png");
-		spritesToLoad.push_back("backgrounds/War1/Pale/Full_Sky.png");
-		spritesToLoad.push_back("backgrounds/War1/Pale/Far_Background.png");
-		spritesToLoad.push_back("backgrounds/War1/Pale/Floor.png");
-		TextureLoader textureLoader;
-		textureLoader.load(view.getRenderer(), spritesToLoad);
+		TextureLoader &textureLoader = TextureLoader::getInstance();
+		textureLoader.load(view.getRenderer(), configs.getSpritesToLoad());
 		std::unique_ptr<RenderableObject> ptr1(new Player(textureLoader.getTexture("Soldier_1/Walk.png"), 1, 1000, 900));
 		std::unique_ptr<RenderableObject> ptr2(new Player(textureLoader.getTexture("Soldier_1/Walk.png"), 2, 700, 900));
 		objects[ptr1->getID()] = std::move(ptr1);
@@ -49,12 +46,12 @@ int main(int argc, char *argv[])
 		{
 			Player &player = static_cast<Player &>(*(objects.at(1)));
 			running = handleEvents(player);
-			player.update(FRAME_RATE);
+			player.update(configs.FRAME_RATE);
 			//update
 			view.render();
 			// la cantidad de segundos que debo dormir se debe ajustar en función
 			// de la cantidad de tiempo que demoró el handleEvents y el render
-			usleep(FRAME_RATE);
+			usleep(configs.FRAME_RATE);
 		}
 	}
 	catch (std::exception &e)

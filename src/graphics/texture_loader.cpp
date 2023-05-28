@@ -5,6 +5,12 @@ static const std::string AssetsPath = ASSETS_PATH;
 
 TextureLoader::TextureLoader() {}
 
+TextureLoader &TextureLoader::getInstance()
+{
+	static TextureLoader instance;
+	return instance;
+}
+
 void TextureLoader::load(SDL2pp::Renderer &renderer, const std::list <std::string> &spriteNames)
 {
 	for (auto const &sprite: spriteNames) {

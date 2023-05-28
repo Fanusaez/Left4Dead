@@ -10,22 +10,25 @@
 #include <string>
 
 #include "Animation.h"
+#include "gameview_configs_loader.h"
 
 Animation::Animation(SDL2pp::Texture &texture) : texture(texture), currentFrame(0),
                                                   numFrames(this->texture.GetWidth() / this->texture.GetHeight()),
-                                                  size(this->texture.GetHeight()), elapsed(0.0f) {
+                                                  size(this->texture.GetHeight()), elapsed(0) {
     assert(this->numFrames > 0);
     assert(this->size > 0);
+    GameviewConfigurationsLoader &configs = GameviewConfigurationsLoader::getInstance();
+    this->frameRate = configs.FRAME_RATE;
 }
 
 Animation::~Animation() {}
 
-void Animation::update(float dt) {
+void Animation::update(unsigned dt) {
     this->elapsed += dt;
     /* checks if the frame should be updated based on the time elapsed since the last update */
-    while (this->elapsed >= FRAME_RATE) {
+    while (this->elapsed >= this->frameRate) {
         this->advanceFrame();
-        this->elapsed -= FRAME_RATE;
+        this->elapsed -= this->frameRate;
     }
 }
 
