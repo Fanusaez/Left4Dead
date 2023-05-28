@@ -17,7 +17,13 @@ Walker::Walker(std::int16_t x_pos, std::int16_t y_pos, float walker_speed) :
 void Walker::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
     if (health <= 0) {
-        dead = true;
+        die(time);
+        return;
+    }
+    ZombieState* new_state = state->being_attacked(time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
     }
 }
 
@@ -101,6 +107,15 @@ bool Walker::in_range_of_attack(GameObject *object) {
     std::int16_t y_dist = abs(floor(sold_pos[1]) - floor(y_pos));
     std::int16_t x_dist = abs(floor(sold_pos[0]) - floor(x_pos));
     return (x_dist <= 1 && y_dist == 1);
+}
+
+void Walker::die(float time) {
+    dead = true;
+    ZombieState* new_state = state->die(time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
 }
 
 Walker::~Walker() {

@@ -92,6 +92,7 @@ if(SERVER)
 		game_logic/states/moving.cpp
 		game_logic/zombie_states/zombie_dead.cpp
 		game_logic/zombie_states/zombie_state.h
+		game_logic/zombie_states/zombie_being_attacked.cpp
 	)
 
 	target_include_directories(server PUBLIC ${PROJECT_SOURCE_DIR}/src/game_logic)

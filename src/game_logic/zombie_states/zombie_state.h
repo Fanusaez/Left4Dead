@@ -21,6 +21,10 @@ virtual ZombieState* chase_soldier(Zombie* zombie,
 
 virtual ZombieState* attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) = 0;
 
+virtual ZombieState* being_attacked(float time) = 0;
+
+virtual ZombieState* die(float time) = 0;
+
 virtual void set_speed(float speed) = 0;
 };
 #endif  // MOVEMENT_H_

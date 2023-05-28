@@ -151,6 +151,107 @@ void testWalkerAttacks2Times(void) {
     TEST_CHECK(health != health2);
 }
 
+//************************************************** BEING ATTACKED *****************************************//
+
+
+void testWalkerGetsAttacked(void) {
+    GameMap map(10, 10);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 5, 6);
+    map.add_soldier(&soldier, 5, 6);
+    soldier.set_direction(UP);
+
+    Walker walker(5,5);
+    map.add_zombie(&walker, 5, 5);
+
+    soldier.shoot(1);
+
+    ZombieIdle* idle_state = dynamic_cast<ZombieIdle*>(walker.get_state());
+    ZombieBeingAttacked* walker_state = dynamic_cast<ZombieBeingAttacked*>(walker.get_state());
+
+    TEST_ASSERT(walker_state != nullptr);
+    TEST_ASSERT(idle_state == nullptr);
+    TEST_CHECK(walker.get_health() < 100);
+}
+
+void testWalkerWalkingAndGetsAttacked(void) {
+    GameMap map(10, 10);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 5, 6);
+    map.add_soldier(&soldier, 5, 6);
+    soldier.set_direction(UP);
+
+    Walker walker(5,5);
+    map.add_zombie(&walker, 5, 5);
+    map.chase_soldiers(1);
+
+    Walking* old_state = dynamic_cast<Walking*>(walker.get_state());
+
+    soldier.shoot(1);
+
+    ZombieBeingAttacked* walker_state = dynamic_cast<ZombieBeingAttacked*>(walker.get_state());
+
+    TEST_ASSERT(walker_state != nullptr);
+    TEST_ASSERT(old_state != nullptr);
+    TEST_CHECK(walker.get_health() < 100);
+}
+
+void testWalkergetsShotAndDie(void) {
+    GameMap map(10, 10);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 5, 6);
+    map.add_soldier(&soldier, 5, 6);
+    soldier.set_direction(UP);
+
+    Walker walker(5,5);
+    map.add_zombie(&walker, 5, 5);
+    map.chase_soldiers(1);
+
+    Walking* old_state = dynamic_cast<Walking*>(walker.get_state());
+
+    for (int i = 0; i < 10; i++) {
+        soldier.shoot(i);
+    }
+
+    ZombieDead* walker_state = dynamic_cast<ZombieDead*>(walker.get_state());
+
+    TEST_ASSERT(walker_state != nullptr);
+    TEST_ASSERT(old_state != nullptr);
+    TEST_CHECK(walker.get_health() < 100);
+}
+
+void testWalkergetsShotWhileAttacking(void) {
+    GameMap map(10, 10);
+    Weapon* scout = new Scout;
+    Weapon* scout2 = new Scout;
+
+    Soldier soldier(scout, map, 4, 6);
+    map.add_soldier(&soldier, 4, 6);
+    soldier.set_direction(UP);
+
+    Soldier soldier2(scout2, map, 6, 6);
+    map.add_soldier(&soldier2, 6, 6);
+    soldier2.set_direction(UP);
+
+    Walker walker(5,5);
+    map.add_zombie(&walker, 5, 5);
+    map.attack_soldiers(1);
+
+    Attacking* old_state = dynamic_cast<Attacking*>(walker.get_state());
+
+    soldier.shoot(2);
+    soldier2.shoot(2);
+
+    ZombieBeingAttacked* walker_state = dynamic_cast<ZombieBeingAttacked*>(walker.get_state());
+
+    TEST_ASSERT(walker_state != nullptr);
+    TEST_ASSERT(old_state != nullptr);
+    TEST_CHECK(walker.get_health() < 100);
+}
+
 
 TEST_LIST = {
         {"Walker start with Idle state", testWalkerStartsWithIdleState},
@@ -159,6 +260,10 @@ TEST_LIST = {
         {"Walker gets called 2 times chase and moves 2 times",testWalkerChaseTwiceAndmoves2Times},
         //{"Walker attacks and state change to Attacking", testWalkerAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierYet},
         {"Walker attacks 2 times fast, only attacks once",testWalkerAttacks2TimesToFastOnlyAttacksOnce},
-        {"Walke attacks twice",testWalkerAttacks2Times},
+        {"Walker attacks twice",testWalkerAttacks2Times},
+        {"Walker gets attacked, state changes and health decrease",testWalkerGetsAttacked},
+        {"Walker gets attacked while walking",testWalkerWalkingAndGetsAttacked},
+        {"Walker gets killed", testWalkergetsShotAndDie},
+        {"Walker gets shot while attacking",testWalkergetsShotWhileAttacking},
         {NULL, NULL},
 };

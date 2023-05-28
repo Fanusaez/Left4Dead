@@ -37,6 +37,8 @@ void attack(GameMap& map, std::vector<GameObject*> soldiers, float time) overrid
 
 bool in_range_of_attack(GameObject* object);
 
+void die(float time);
+
 ~Walker();
 
 // ************************* Metodos de testeo ************************************************8//

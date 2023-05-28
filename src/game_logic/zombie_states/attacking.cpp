@@ -33,6 +33,14 @@ ZombieState *Attacking::attack_soldier(GameObject *closest_soldier,
     return nullptr;
 }
 
+ZombieState* Attacking::being_attacked(float time) {
+    return new ZombieBeingAttacked(time);
+}
+
+ZombieState *Attacking::die(float time) {
+    return new ZombieDead(time);
+}
+
 bool Attacking::time_to_attack(float time) {
     return (time - start_time) >= waiting_time_to_attack;
 }

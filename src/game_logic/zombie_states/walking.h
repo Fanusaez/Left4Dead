@@ -3,7 +3,8 @@
 
 #include "../map.h"
 #include "attacking.h"
-
+#include "zombie_dead.h"
+#include "zombie_being_attacked.h"
 
 class Walking : public ZombieState {
 
@@ -34,6 +35,10 @@ ZombieState* chase_soldier(Zombie* zombie,
                            float time) override;
 
 ZombieState* attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) override;
+
+ZombieState* being_attacked(float time) override;
+
+ZombieState* die(float time) override;
 
 bool time_to_walk(float time);
 

@@ -5,8 +5,11 @@
 
 class ZombieDead : public ZombieState {
 private:
-    // float time_to_disappear????
+    float time_to_disappear = 20;
+    float start_time;
 public:
+     explicit ZombieDead(float time);
+
     ZombieState* chase_soldier(Zombie* zombie,
                                float &x_pos,
                                float &y_pos,
@@ -18,6 +21,9 @@ public:
 
     ZombieState* attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) override;
 
+    ZombieState* being_attacked(float time) override;
+
+    ZombieState* die(float time) override;
 
     void set_speed(float speed) override;
 

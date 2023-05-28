@@ -33,17 +33,21 @@ add_executable(testCollision
         ../src/game_logic/soldier.cpp
         ../src/game_logic/walker.cpp
         ../src/game_logic/map.cpp
+        ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/weapons/idf.cpp
-        ../src/game_logic/zombie_states/walking.cpp
+        ../src/game_logic/obstacle.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
         ../src/game_logic/states/shooting.cpp
         ../src/game_logic/states/moving.cpp
-        ../src/game_logic/zombie_states/zombie_idle.cpp
-        ../src/game_logic/zombie_states/attacking.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
-        ../src/game_logic/states/dead.cpp
+        ../src/game_logic/zombie_states/walking.cpp
+        ../src/game_logic/zombie_states/zombie_idle.cpp
+        ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
+
 )
 
 add_executable(testShooting
@@ -59,6 +63,8 @@ add_executable(testShooting
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
         ../src/game_logic/states/dead.cpp
@@ -77,6 +83,8 @@ add_executable(testShootingIdf
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
         ../src/game_logic/states/dead.cpp
@@ -95,6 +103,8 @@ add_executable(testShootingScout
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
         ../src/game_logic/states/dead.cpp
@@ -113,6 +123,8 @@ add_executable(testMovingUpSoldier
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
         ../src/game_logic/states/dead.cpp
@@ -131,6 +143,8 @@ add_executable(testMovingSoldierDown
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
         ../src/game_logic/states/dead.cpp
@@ -149,6 +163,8 @@ add_executable(testMovingSoldierRight
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
         ../src/game_logic/states/dead.cpp
@@ -167,6 +183,8 @@ add_executable(testMoveSoldierLeft
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
         ../src/game_logic/states/dead.cpp
@@ -184,6 +202,8 @@ add_executable(testMoveMap
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
         ../src/game_logic/states/dead.cpp
@@ -202,6 +222,8 @@ add_executable(testExplosiveGrenade
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
         ../src/game_logic/states/dead.cpp
@@ -220,6 +242,8 @@ add_executable(testChaseSoldierWalking
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
         ../src/game_logic/states/dead.cpp
@@ -238,9 +262,10 @@ add_executable(testMapChaseSoldierWalking
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
-        ../src/game_logic/states/dead.cpp
         )
 
 add_executable(testChaseSoldierWalkingObstacles
@@ -257,9 +282,10 @@ add_executable(testChaseSoldierWalkingObstacles
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
-        ../src/game_logic/states/dead.cpp
         )
 
 add_executable(testWalkerAttackSoldier
@@ -276,9 +302,10 @@ add_executable(testWalkerAttackSoldier
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
-        ../src/game_logic/states/dead.cpp
         )
 
 add_executable(testChangeInStatesSoldier
@@ -296,9 +323,10 @@ add_executable(testChangeInStatesSoldier
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
-        ../src/game_logic/states/dead.cpp
         )
 
 add_executable(testChangeInStatesZombie
@@ -308,18 +336,17 @@ add_executable(testChangeInStatesZombie
         ../src/game_logic/map.cpp
         ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/obstacle.cpp
-        ../src/game_logic/zombie_states/walking.cpp
-        ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
         ../src/game_logic/states/shooting.cpp
         ../src/game_logic/states/moving.cpp
+        ../src/game_logic/states/dead.cpp
+        ../src/game_logic/states/being_attacked.cpp
+        ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/zombie_states/zombie_idle.cpp
         ../src/game_logic/zombie_states/attacking.cpp
         ../src/game_logic/zombie_states/zombie_dead.cpp
-        ../src/game_logic/states/dead.cpp
-        ../src/game_logic/states/being_attacked.cpp
-        ../src/game_logic/states/dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         )
 
 # target_link_libraries(testPrueba PRIVATE myLibrary)

@@ -1,6 +1,5 @@
 #include <cmath>
 #include "walking.h"
-
 #define X_POS 0
 #define Y_POS 1
 #define INVALID_POSITION -1
@@ -94,6 +93,14 @@ ZombieState* Walking::chase_soldier(Zombie* zombie, // no ocuopa zombie
 ZombieState* Walking::attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) {
     if (!time_to_walk(time)) return nullptr;
     return new Attacking(closest_soldier, damage, time);
+}
+
+ZombieState* Walking::being_attacked(float time) {
+    return new ZombieBeingAttacked(time);
+}
+
+ZombieState* Walking::die(float time) {
+    return new ZombieDead(time);
 }
 
 bool Walking::time_to_walk(float time) {

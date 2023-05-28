@@ -45,14 +45,8 @@ void Soldier::shoot(float time) {
         delete state;
         state = new_state;
     }
-    // esto podria pasar a ser responsabilidad del estado despues
-    //std::vector<GameObject*> shooting_objects;
-   // map.shoot(shooting_objects,
-       //       x_pos,
-             // y_pos,
-      //        direction);
-    //weapon->shoot(shooting_objects, y_pos, time);
 }
+
 // despues deberia pasar el map a estado y que el se encargue
 std::vector<GameObject *> Soldier::get_targets() {
     std::vector<GameObject*> shooting_objects;

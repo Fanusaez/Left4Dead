@@ -3,7 +3,10 @@
 BeingAttacked::BeingAttacked(float start_time) : start_time(start_time) {}
 
 State *BeingAttacked::update(float time) {
-    return being_attacked(time);
+    if (time_to_stop_being_attacked(time)) {
+        return new Idle();
+    }
+    return nullptr;
 }
 
 State *BeingAttacked::reload(Weapon *weapon, float time) {
@@ -28,6 +31,7 @@ State *BeingAttacked::move(Soldier &soldier, std::int16_t direction, float time)
 }
 
 State *BeingAttacked::being_attacked(float time) {
+    start_time = time;
     return nullptr;
 }
 

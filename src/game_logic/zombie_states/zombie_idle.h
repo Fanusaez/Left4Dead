@@ -16,6 +16,10 @@ public:
 
     ZombieState* attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) override;
 
+    ZombieState* being_attacked(float time) override;
+
+    ZombieState* die(float time) override;
+
     void set_speed(float speed) override;
 };
 
