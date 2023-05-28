@@ -5,23 +5,20 @@ Scene::Scene(SDL2pp::Texture &skyTexture, SDL2pp::Texture &backgroundTexture, SD
 	skyTexture(skyTexture),
 	backgroundTexture(backgroundTexture),
 	floorTexture(floorTexture),
-	offset(0){}
+	offset(0) {}
 
-void Scene::increaseOffset(int newOffset)
-{
+void Scene::increaseOffset(int newOffset) {
 	this->offset += newOffset;
 }
 
 
-void Scene::render(SDL2pp::Renderer &renderer)
-{
+void Scene::render(SDL2pp::Renderer &renderer) {
 	renderer.Copy(this->skyTexture);
 	this->render(renderer, this->backgroundTexture, this->offset / 5);
 	this->render(renderer, this->floorTexture, this->offset);
 }
 
-void Scene::render(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset)
-{
+void Scene::render(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset) {
 	offset = offset % texture.GetWidth();
 
 	if (offset < 0)
@@ -32,8 +29,7 @@ void Scene::render(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int off
 		renderer.Copy(texture);
 }
 
-void Scene::renderMovedLeft(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset)
-{
+void Scene::renderMovedLeft(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset) {
 	SDL2pp::Rect leftSrc(
 		offset,
 		0,
@@ -59,8 +55,7 @@ void Scene::renderMovedLeft(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture
 	renderer.Copy(texture, rightSrc, rightDst);
 }
 
-void Scene::renderMovedRight(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset)
-{
+void Scene::renderMovedRight(SDL2pp::Renderer &renderer, SDL2pp::Texture &texture, int offset) {
 	int absoluteOffset = (-1) * offset;
 	SDL2pp::Rect leftSrc(
 		texture.GetWidth() - absoluteOffset,

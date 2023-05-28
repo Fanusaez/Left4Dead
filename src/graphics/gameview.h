@@ -19,7 +19,7 @@ class Gameview {
 
 	SDL2pp::Mixer mixer;
 
-	std::unique_ptr<Scene> scene;
+	std::unique_ptr <Scene> scene;
 
 	std::optional<int> mainObjectID;
 
@@ -32,7 +32,7 @@ public:
 
 	void assignMainObject(int id);
 
-	void setScene(std::unique_ptr<Scene> &newScene);
+	void setScene(std::unique_ptr <Scene> &newScene);
 
 	void render();
 

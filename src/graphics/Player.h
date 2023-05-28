@@ -13,15 +13,23 @@ class Player : public RenderableObject {
 	bool moving;
 
 public:
-    Player(SDL2pp::Texture &texture, int id, int initialX, int initialY);
-    virtual ~Player();
-    void update(unsigned dt);
+	Player(SDL2pp::Texture &texture, int id, int initialX, int initialY);
+
+	virtual ~Player();
+
+	void update(unsigned dt);
+
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) override;
-    void moveRigth();
-    void moveLeft();
-    void moveUp();
-    void moveDown();
-    void stopMoving();
+
+	void moveRigth();
+
+	void moveLeft();
+
+	void moveUp();
+
+	void moveDown();
+
+	void stopMoving();
 
 private:
 	bool isMoving() const;

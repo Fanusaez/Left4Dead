@@ -5,16 +5,15 @@ static const std::string AssetsPath = ASSETS_PATH;
 
 TextureLoader::TextureLoader() {}
 
-TextureLoader &TextureLoader::getInstance()
-{
+TextureLoader &TextureLoader::getInstance() {
 	static TextureLoader instance;
 	return instance;
 }
 
-void TextureLoader::load(SDL2pp::Renderer &renderer, const std::list <std::string> &spriteNames)
-{
+void TextureLoader::load(SDL2pp::Renderer &renderer, const std::list <std::string> &spriteNames) {
 	for (auto const &sprite: spriteNames) {
-		SDL2pp::Texture im(renderer, SDL2pp::Surface(std::string(AssetsPath).append(sprite)).SetColorKey(true, 0));
+		SDL2pp::Texture im(renderer,
+				   SDL2pp::Surface(std::string(AssetsPath).append(sprite)).SetColorKey(true, 0));
 		this->textures[sprite] = std::make_unique<SDL2pp::Texture>(std::move(im));
 	}
 }
@@ -25,8 +24,7 @@ void TextureLoader::load(SDL2pp::Renderer &renderer, const std::list <std::strin
  * This is because the Renderer:Copy() method doesn't accept a const reference to
  * the texture.
  */
-SDL2pp::Texture &TextureLoader::getTexture(const std::string &spriteName)
-{
+SDL2pp::Texture &TextureLoader::getTexture(const std::string &spriteName) {
 	return *(this->textures.at(spriteName));
 }
 

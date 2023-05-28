@@ -13,23 +13,23 @@
 #include "gameview_configs_loader.h"
 
 Animation::Animation(SDL2pp::Texture &texture) : texture(texture), currentFrame(0),
-                                                  numFrames(this->texture.GetWidth() / this->texture.GetHeight()),
-                                                  size(this->texture.GetHeight()), elapsed(0) {
-    assert(this->numFrames > 0);
-    assert(this->size > 0);
-    GameviewConfigurationsLoader &configs = GameviewConfigurationsLoader::getInstance();
-    this->frameRate = configs.FRAME_RATE;
+						 numFrames(this->texture.GetWidth() / this->texture.GetHeight()),
+						 size(this->texture.GetHeight()), elapsed(0) {
+	assert(this->numFrames > 0);
+	assert(this->size > 0);
+	GameviewConfigurationsLoader &configs = GameviewConfigurationsLoader::getInstance();
+	this->frameRate = configs.FRAME_RATE;
 }
 
 Animation::~Animation() {}
 
 void Animation::update(unsigned dt) {
-    this->elapsed += dt;
-    /* checks if the frame should be updated based on the time elapsed since the last update */
-    while (this->elapsed >= this->frameRate) {
-        this->advanceFrame();
-        this->elapsed -= this->frameRate;
-    }
+	this->elapsed += dt;
+	/* checks if the frame should be updated based on the time elapsed since the last update */
+	while (this->elapsed >= this->frameRate) {
+		this->advanceFrame();
+		this->elapsed -= this->frameRate;
+	}
 }
 
 /**
@@ -40,17 +40,17 @@ void Animation::update(unsigned dt) {
  * @param y Y corrdinate.
  */
 void Animation::render(SDL2pp::Renderer &renderer, const SDL2pp::Rect dst, SDL_RendererFlip &flipType) {
-    renderer.Copy(
-            texture,
-            SDL2pp::Rect(1 + (1 + this->size) * this->currentFrame, 0, this->size, this->size),
-            dst,
-            0.0,                // don't rotate
-            SDL2pp::NullOpt,    // rotation center - not needed
-            flipType
-        );
+	renderer.Copy(
+		texture,
+		SDL2pp::Rect(1 + (1 + this->size) * this->currentFrame, 0, this->size, this->size),
+		dst,
+		0.0,                // don't rotate
+		SDL2pp::NullOpt,    // rotation center - not needed
+		flipType
+	);
 }
 
 void Animation::advanceFrame() {
-    this->currentFrame += 1;
-    this->currentFrame = this->currentFrame % this->numFrames; 
+	this->currentFrame += 1;
+	this->currentFrame = this->currentFrame % this->numFrames;
 }

@@ -5,12 +5,11 @@ Player::Player(SDL2pp::Texture &texture, int id, int initialX, int initialY) :
 	an(texture),
 	facingLeft(false),
 	speed(0, 0),
-	moving(false){}
+	moving(false) {}
 
 Player::~Player() = default;
 
-bool Player::isMoving() const
-{
+bool Player::isMoving() const {
 	//return (this->speed.first != 0 or this->speed.second != 0);
 	return this->moving;
 }
@@ -28,8 +27,8 @@ void Player::update(unsigned dt) {
 }
 
 void Player::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) {
-    SDL_RendererFlip flip = this->facingLeft ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
-    an.render(renderer, dst, flip);
+	SDL_RendererFlip flip = this->facingLeft ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
+	an.render(renderer, dst, flip);
 }
 
 void Player::moveRigth() {
@@ -46,15 +45,13 @@ void Player::moveLeft() {
 	this->moving = true;
 }
 
-void Player::moveUp()
-{
+void Player::moveUp() {
 	this->speed.first = 0;
 	this->speed.second = -3;
 	this->moving = true;
 }
 
-void Player::moveDown()
-{
+void Player::moveDown() {
 	this->speed.first = 0;
 	this->speed.second = 3;
 	this->moving = true;
