@@ -6,6 +6,7 @@
 #include "gameview.h"
 #include "Player.h"
 #include "texture_loader.h"
+#include "gameview_configs_loader.h"
 #include "scene.h"
 #include <iostream>
 #include <exception>
@@ -31,21 +32,17 @@ int main(int argc, char *argv[])
 		std::cout << "Joineo escenario" << std::endl;
 	}
 
+	GameviewConfigurationsLoader &configs = GameviewConfigurationsLoader::getInstance();
 	std::map<int, std::unique_ptr<RenderableObject>> objects;
 	Gameview view(objects);
-	std::list<std::string> spritesToLoad;
-	spritesToLoad.push_back("Soldier_1/Walk.png");
-	spritesToLoad.push_back("backgrounds/War1/Pale/Full_Sky.png");
-	spritesToLoad.push_back("backgrounds/War1/Pale/Far_Background.png");
-	spritesToLoad.push_back("backgrounds/War1/Pale/Floor.png");
-	TextureLoader textureLoader;
-	textureLoader.load(view.getRenderer(), spritesToLoad);
+	TextureLoader &textureLoader = TextureLoader::getInstance();
+	textureLoader.load(view.getRenderer(), configs.getSpritesToLoad());
 	std::unique_ptr<Scene> scene(new Scene(
 			textureLoader.getTexture("backgrounds/War1/Pale/Full_Sky.png"),
 			textureLoader.getTexture("backgrounds/War1/Pale/Far_Background.png"),
 			textureLoader.getTexture("backgrounds/War1/Pale/Floor.png"))
 			);
-		view.setScene(scene);
+	view.setScene(scene);
 
 	bool running = true;
 
@@ -73,9 +70,11 @@ int main(int argc, char *argv[])
 				ptr1.setPositionY(soldier.position_y);
 			}
 		}
+		for (auto &object : objects)
+			object.second->update(configs.FRAME_RATE);
 		view.render();
 		running = handleEvents(&client);
-		usleep(FRAME_RATE);
+		usleep(configs.FRAME_RATE);
 	}
 	client.join();
 	return 0;
