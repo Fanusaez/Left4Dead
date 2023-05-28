@@ -17,6 +17,8 @@ protected:
 public:
 	RenderableObject(int id, int initialX, int initialY);
 
+	virtual void update(unsigned dt) = 0;
+
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) = 0;
 
 	//virtual void renderAudio(SDL2pp::Mixer &mixer) = 0;

@@ -17,7 +17,7 @@ public:
 
 	virtual ~Player();
 
-	void update(unsigned dt);
+	virtual void update(unsigned dt) override;
 
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) override;
 
