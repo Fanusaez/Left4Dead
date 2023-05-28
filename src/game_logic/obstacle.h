@@ -11,7 +11,7 @@ private:
 
 public:
 void get_position(std::vector<float>& pos) override;
-void receive_damage(std::uint16_t damage) override;
+void receive_damage(std::uint16_t damage, float time) override;
 float get_y_position();
 bool in_range_of_explosion(std::int16_t x_start,
                                        std::int16_t x_finish,

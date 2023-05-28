@@ -1,20 +1,20 @@
 #include "scout.h"
 #define MAG_CAPACITY 20
 
-void Scout::shoot(std::vector<GameObject *> &shooting_objects, std::uint16_t y_pos_sold) {
+void Scout::shoot(std::vector<GameObject *> &shooting_objects, std::uint16_t y_pos_sold, float time) {
     if (bullets <= 0) return;
     std::uint16_t variant_damage = damage;
     for (const auto& shooting_object : shooting_objects) {
-        shooting_object->receive_damage(variant_damage);
+        shooting_object->receive_damage(variant_damage, time);
         variant_damage -= damage_reduction_hit;
         if (!variant_damage) return;
     }
     bullets--;
 }
 
-void Scout::throw_explosive_grenade(std::vector<GameObject*> &explosive_objects) {
+void Scout::throw_explosive_grenade(std::vector<GameObject*> &explosive_objects, float time) {
     for (const auto& explosive_object : explosive_objects) {
-        explosive_object->receive_damage(grenade_damage);
+        explosive_object->receive_damage(grenade_damage, time);
     }
 }
 

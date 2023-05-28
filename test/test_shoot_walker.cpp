@@ -20,7 +20,7 @@ void testSoldierShootsWalkerSameLineUp(void) {
     map.add_zombie(&walker, 8, 1);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health < 100);
 }
@@ -36,7 +36,7 @@ void testSoldierShootsWalkerSameLineDown(void) {
     map.add_zombie(&walker, 3, 8);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health < 100);
 }
@@ -52,7 +52,7 @@ void testSoldierShootsWalkerNotSameLineUp(void) {
     map.add_zombie(&walker, 7, 1);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health < 100);
 }
@@ -68,7 +68,7 @@ void testSoldierShootsWalkerNotSameLineDown(void) {
     map.add_zombie(&walker, 7, 9);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health < 100);
 }
@@ -91,7 +91,7 @@ void testSoldierShootsOnly1WalkerOutOf2AimingUp(){
     map.add_zombie(&walker2, 8, 3);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(11);
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
     TEST_CHECK(remaining_health1 < 100);
@@ -109,7 +109,7 @@ void testSoldierShootsAndMissWalkerOutOfRangeUp(void) {
     map.add_zombie(&walker, 6, 1);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100);
 }
@@ -125,7 +125,7 @@ void testSoldierShootsAndMissWalkerOutOfRangeDown(void) {
     map.add_zombie(&walker, 5, 8);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100);
 }
@@ -141,7 +141,7 @@ void testSoldierShootsAndMissAimingDownTurnedAroundToWalker(void) {
     map.add_zombie(&walker, 8, 1);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100);
 }
@@ -157,7 +157,7 @@ void testSoldierShootsAndMissAimingUpTurnedAroundToWalker(void) {
     map.add_zombie(&walker, 3, 8);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100);
 }

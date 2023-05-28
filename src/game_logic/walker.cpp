@@ -14,7 +14,7 @@ Walker::Walker(std::int16_t x_pos, std::int16_t y_pos, float walker_speed) :
     state->set_speed(walker_speed);
 }
 
-void Walker::receive_damage(std::uint16_t damage) {
+void Walker::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
     if (health <= 0) {
         dead = true;

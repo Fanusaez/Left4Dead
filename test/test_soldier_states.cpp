@@ -36,7 +36,7 @@ void testSoldierShootsReloadAndStateChangesToReloading(void) {
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    soldier.shoot();
+    soldier.shoot(1);
     soldier.reload(0);
 
     Reloading* soldier_state = dynamic_cast<Reloading*>(soldier.get_state());
@@ -69,9 +69,9 @@ void testSoldierShootsWhileReloadingAndStateNotChange(void) {
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    soldier.shoot(); // to be able to reload
+    soldier.shoot(1); // to be able to reload
     soldier.reload(2);
-    soldier.shoot(0.0001); // shoot really fast after reloading
+    soldier.shoot(2.0001); // shoot really fast after reloading
 
     Shooting* shooting_state = dynamic_cast<Shooting*>(soldier.get_state());
     Reloading* soldier_state = dynamic_cast<Reloading*>(soldier.get_state());
@@ -87,7 +87,7 @@ void testSoldierUpdatesAfterReloadingAndStateChangesToIdle(void) {
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    soldier.shoot(); // to be able to reload
+    soldier.shoot(1); // to be able to reload
     soldier.reload(2);
     soldier.update(3);
 
@@ -105,7 +105,7 @@ void testSoldierUpdatesDuringReloadingAndStateChanges(void) {
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    soldier.shoot(); // to be able to reload
+    soldier.shoot(1); // to be able to reload
     soldier.reload(2);
     soldier.update(2.001);
 
@@ -141,7 +141,7 @@ void testSoldierShootsAfterReloadingAndStateChangesToShooting(void) {
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    soldier.shoot(); // to be able to reload
+    soldier.shoot(1); // to be able to reload
     soldier.reload(2);
     soldier.shoot(3);
 
@@ -317,7 +317,7 @@ void testSoldierMoveUpUntilEndOfMap(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 2, 2);
+    Soldier soldier(scout, map, 2.3, 2.3); /// si los pongo en 2 falla
     map.add_soldier(&soldier, 2, 2);
 
     for (int i = 0; i < 50; i++) {
@@ -325,7 +325,6 @@ void testSoldierMoveUpUntilEndOfMap(void) {
     }
 
     float y_sold = soldier.get_y_position();
-    std::cout << y_sold;
     Moving* soldier_state = dynamic_cast<Moving*>(soldier.get_state());
     Idle* idle_state = dynamic_cast<Idle*>(soldier.get_state());
 
@@ -334,24 +333,181 @@ void testSoldierMoveUpUntilEndOfMap(void) {
     TEST_CHECK(soldier_state != nullptr);
 }
 
+//**************************************** BEING ATTACKED *************************************************//
+
+void testSoldierStartsIdleAndIsAttacked(void) {
+    GameMap map(10, 10);
+    Weapon *scout = new Scout;
+
+    Soldier soldier(scout, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    Walker walker(2, 3);
+    map.add_zombie(&walker, 2, 3);
+
+    map.attack_soldiers(1);
+    map.attack_soldiers(2);
+
+    BeingAttacked* soldier_state = dynamic_cast<BeingAttacked*>(soldier.get_state());
+    Idle* idle_state = dynamic_cast<Idle*>(soldier.get_state());
+
+    TEST_CHECK(idle_state == nullptr);
+    TEST_CHECK(soldier_state != nullptr);
+}
+
+void testSoldierShootingAndIsAttacked(void) {
+    GameMap map(10, 10);
+    Weapon *scout = new Scout;
+
+    Soldier soldier(scout, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    Walker walker(2, 3);
+    map.add_zombie(&walker, 2, 3);
+
+    soldier.shoot(0);
+
+    map.attack_soldiers(1);
+    map.attack_soldiers(2);
+
+    BeingAttacked* soldier_state = dynamic_cast<BeingAttacked*>(soldier.get_state());
+    Shooting* shooting_state = dynamic_cast<Shooting*>(soldier.get_state());
+
+    TEST_CHECK(shooting_state == nullptr);
+    TEST_CHECK(soldier_state != nullptr);
+}
+
+void testSoldierReloadingAndIsAttacked(void) {
+    GameMap map(10, 10);
+    Weapon *scout = new Scout;
+
+    Soldier soldier(scout, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    Walker walker(2, 3);
+    map.add_zombie(&walker, 2, 3);
+
+    soldier.shoot(0);
+    soldier.reload(1);
+
+    Reloading* rel_state = dynamic_cast<Reloading*>(soldier.get_state());
+
+    map.attack_soldiers(1);
+    map.attack_soldiers(2);
+
+    BeingAttacked* soldier_state = dynamic_cast<BeingAttacked*>(soldier.get_state());
+
+
+    TEST_CHECK(rel_state != nullptr);
+    TEST_CHECK(soldier_state != nullptr);
+}
+
+//************************************************ DEAD *******************************************//
+
+void testSoldierGetsKilledAndStateChanges(void) {
+    GameMap map(10, 10);
+    Weapon *scout = new Scout;
+
+    Soldier soldier(scout, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    Walker walker(2, 3);
+    map.add_zombie(&walker, 2, 3);
+
+    for (int i = 0; i < 15; i++) {
+        map.attack_soldiers(i);
+    }
+
+    Dead* soldier_state = dynamic_cast<Dead*>(soldier.get_state());
+
+    TEST_CHECK(soldier_state != nullptr);
+}
+
+void testSoldierGetsKilledAndTryToMove(void) {
+    GameMap map(10, 10);
+    Weapon *scout = new Scout;
+
+    Soldier soldier(scout, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    Walker walker(2, 3);
+    map.add_zombie(&walker, 2, 3);
+
+    for (int i = 0; i < 15; i++) {
+        map.attack_soldiers(i);
+    }
+    soldier.move_up(20);
+
+    Dead* soldier_state = dynamic_cast<Dead*>(soldier.get_state());
+
+    TEST_CHECK(soldier_state != nullptr);
+}
+
+void testSoldierGetsKilledAndTryToShoot(void) {
+    GameMap map(10, 10);
+    Weapon *scout = new Scout;
+
+    Soldier soldier(scout, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    Walker walker(2, 3);
+    map.add_zombie(&walker, 2, 3);
+
+    for (int i = 0; i < 15; i++) {
+        map.attack_soldiers(i);
+    }
+    soldier.shoot(20);
+
+    Dead* soldier_state = dynamic_cast<Dead*>(soldier.get_state());
+
+    TEST_CHECK(soldier_state != nullptr);
+}
+
+void testSoldierGetsKilledAndTryToReload(void) {
+    GameMap map(10, 10);
+    Weapon *scout = new Scout;
+
+    Soldier soldier(scout, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    Walker walker(2, 3);
+    map.add_zombie(&walker, 2, 3);
+
+    for (int i = 0; i < 15; i++) {
+        map.attack_soldiers(i);
+    }
+    soldier.reload(20);
+
+    Dead* soldier_state = dynamic_cast<Dead*>(soldier.get_state());
+
+    TEST_CHECK(soldier_state != nullptr);
+}
+
 TEST_LIST = {
-        {"Soldier start with Idle state", testSoldierStartsWithIdleState},
-        {"Soldier shoots and reloads state changes to Reloading", testSoldierShootsReloadAndStateChangesToReloading},
-        {"Soldier shoots and state changes to Shooting", testSoldierShootsAndStateChangesToShooting},
+        {"Soldier start with Idle state",                                     testSoldierStartsWithIdleState},
+        {"Soldier shoots and reloads state changes to Reloading",             testSoldierShootsReloadAndStateChangesToReloading},
+        {"Soldier shoots and state changes to Shooting",                      testSoldierShootsAndStateChangesToShooting},
         {"Soldier tries to reload with full magazine, state does not change", testSoldierTryToReloadWithFullMagazineSameState},
-        {"Soldier tries to shoot while reloading, state not change", testSoldierShootsWhileReloadingAndStateNotChange},
-        {"Soldier shoots after finishing the reload and state changes", testSoldierShootsAfterReloadingAndStateChangesToShooting},
-        {"Soldier updates state after reloading and changes to Idle", testSoldierUpdatesAfterReloadingAndStateChangesToIdle},
-        {"Soldier updates state during reloading and state still reloading",testSoldierUpdatesDuringReloadingAndStateChanges},
-        {"Soldier shoots to fast and only one bullet is fired",testSoldierShootsToFastAndOnlyOneBulletIsFired},
-        {"Soldier shoots until runs out of ammo, state changes to Idle", testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle},
-        {"Soldier moves up and state changes to moving", testSoldierMoveUpAndStateChangesToMoving},
-        {"Soldier moves up and immediately reloads state not change",testSoldierMovesUpAndImmediatelyReloadStateStaysMoving},
-        {"Soldier changes from Moving to Reloading",testSoldierMovesUpAndReload},
-        {"Soldier tries to shoot while moving, state not change", testSoldierMovesUpAndShootsImmediately},
-        {"Soldier moves and then gets updated, state changes to idle",testSoldiergetsUpdateAfterMovingChangesToIdle},
+        {"Soldier tries to shoot while reloading, state not change",          testSoldierShootsWhileReloadingAndStateNotChange},
+        {"Soldier shoots after finishing the reload and state changes",       testSoldierShootsAfterReloadingAndStateChangesToShooting},
+        {"Soldier updates state after reloading and changes to Idle",         testSoldierUpdatesAfterReloadingAndStateChangesToIdle},
+        {"Soldier updates state during reloading and state still reloading",  testSoldierUpdatesDuringReloadingAndStateChanges},
+        {"Soldier shoots to fast and only one bullet is fired",               testSoldierShootsToFastAndOnlyOneBulletIsFired},
+        {"Soldier shoots until runs out of ammo, state changes to Idle",      testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle},
+        {"Soldier moves up and state changes to moving",                      testSoldierMoveUpAndStateChangesToMoving},
+        {"Soldier moves up and immediately reloads state not change",         testSoldierMovesUpAndImmediatelyReloadStateStaysMoving},
+        {"Soldier changes from Moving to Reloading",                          testSoldierMovesUpAndReload},
+        {"Soldier tries to shoot while moving, state not change",             testSoldierMovesUpAndShootsImmediately},
+        {"Soldier moves and then gets updated, state changes to idle",        testSoldiergetsUpdateAfterMovingChangesToIdle},
         {"Soldier gets updated immediately after moving, state still moving", testSoldiergetsUpdatedImmediatelyAfterMovingChangesToIdle},
-        {"Soldier moves multiple times but too fast, only moves once",testSoldierMoveUpTooFastOnlyMoveOnce},
-       // {"Soldie moves multiple times",testSoldierMoveUpUntilEndOfMap},
+        {"Soldier moves multiple times but too fast, only moves once",        testSoldierMoveUpTooFastOnlyMoveOnce},
+        {"Soldier moves multiple times",                                      testSoldierMoveUpUntilEndOfMap},
+        {"Soldier is in state idle and is attacked, state changes",           testSoldierStartsIdleAndIsAttacked},
+        {"Soldier is in state Shooting and is attacked, state changes",       testSoldierShootingAndIsAttacked},
+        {"Soldier is in state Reloading and is attacked, state changes",      testSoldierReloadingAndIsAttacked},
+        {"Soldier gets killed and state changes",                             testSoldierGetsKilledAndStateChanges},
+        {"Soldier gets killed and tries to move", testSoldierGetsKilledAndTryToMove},
+        {"Soldier gets killed and tries to reload", testSoldierGetsKilledAndTryToReload},
+        {"Soldier gets killed and tries to shoot", testSoldierGetsKilledAndTryToShoot},
         {NULL, NULL},
 };

@@ -24,7 +24,7 @@ void testSoldierShootsIdfCloseRangeUp(void) {
     map.add_zombie(&walker, 3, 2);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
 }
@@ -40,7 +40,7 @@ void testSoldierShootsIdfCloseRangeDown(void) {
     map.add_zombie(&walker, 3, 7);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
 }
@@ -56,7 +56,7 @@ void testSoldierShootsIdfCloseRangeUpNotSameLine(void) {
     map.add_zombie(&walker, 2, 2);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
 }
@@ -72,7 +72,7 @@ void testSoldierShootsIdfCloseRangeDownNotSameLine(void) {
     map.add_zombie(&walker, 4, 7);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
 }
@@ -88,7 +88,7 @@ void testSoldierShootsIdfLongRangeUp(void) {
     map.add_zombie(&walker, 3, 0);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100 - LONG_RANGE_DAMAGE);
 }
@@ -104,7 +104,7 @@ void testSoldierShootsIdfLongRangeDown(void) {
     map.add_zombie(&walker, 3, 8);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100 - LONG_RANGE_DAMAGE);
 }
@@ -120,7 +120,7 @@ void testSoldierShootsIdfLongRangeUpNotSameLine(void) {
     map.add_zombie(&walker, 2, 1);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100 - LONG_RANGE_DAMAGE);
 }
@@ -136,7 +136,7 @@ void testSoldierShootsIdfLongRangeDownNotSameLine(void) {
     map.add_zombie(&walker, 4, 8);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100 - LONG_RANGE_DAMAGE);
 }
@@ -155,7 +155,7 @@ void testSoldierShootsIdfWith2WalkersInLine(void) {
     map.add_zombie(&walker2, 4, 9);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
     TEST_ASSERT(remaining_health1 == 100 - LONG_RANGE_DAMAGE);

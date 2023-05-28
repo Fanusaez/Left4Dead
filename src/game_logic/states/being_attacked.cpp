@@ -28,9 +28,6 @@ State *BeingAttacked::move(Soldier &soldier, std::int16_t direction, float time)
 }
 
 State *BeingAttacked::being_attacked(float time) {
-    if (time_to_stop_being_attacked(time)) {
-        return new Idle;
-    }
     return nullptr;
 }
 

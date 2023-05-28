@@ -5,7 +5,8 @@ Attacking::Attacking(GameObject *closest_soldier, std::int16_t damage, float tim
      * Me parece que al atacar no deberia inmediatamente atacar, sino esperar
      * a que pas el tiempo, y recien ahi danar al soldado
      */
-    attack_soldier(closest_soldier, damage, time);
+    //attack_soldier(closest_soldier, damage, time);
+    closest_soldier->receive_damage(damage, time); // lo ataco de una, despues vemos
 }
 
 ZombieState *
@@ -27,7 +28,7 @@ ZombieState *Attacking::attack_soldier(GameObject *closest_soldier,
                                        float time) {
     if (time_to_attack(time)) {
         start_time = time;
-        closest_soldier->receive_damage(damage);
+        closest_soldier->receive_damage(damage, time);
     }
     return nullptr;
 }

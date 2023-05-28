@@ -11,7 +11,7 @@ float Obstacle::get_y_position() {
     return y_pos;
 }
 
-void Obstacle::receive_damage(std::uint16_t damage) {
+void Obstacle::receive_damage(std::uint16_t damage, float time) {
 
 }
 

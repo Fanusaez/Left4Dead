@@ -27,7 +27,7 @@ void testSoldierShootsScoutWith2WalkersInLineDown(void) {
     map.add_zombie(&walker2, 3, 9);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
     TEST_ASSERT(remaining_health1 == (100 - STARTING_DAMAGE));
@@ -51,7 +51,7 @@ void testSoldierShootsScoutWith3WalkersInLineDown(void) {
     map.add_zombie(&walker3, 4, 9);
 
     soldier.set_direction(DOWN);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
     std::uint16_t remaining_health3 = walker3.get_health();
@@ -74,7 +74,7 @@ void testSoldierShootsScoutWith2WalkersInLineUp(void) {
     map.add_zombie(&walker1, 3, 1);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
     TEST_ASSERT(remaining_health1 == 100 - STARTING_DAMAGE);
@@ -98,7 +98,7 @@ void testSoldierShootsScoutWith3WalkersInLineUp(void) {
     map.add_zombie(&walker1, 3, 2);
 
     soldier.set_direction(UP);
-    soldier.shoot();
+    soldier.shoot(1);
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
     std::uint16_t remaining_health3 = walker3.get_health();

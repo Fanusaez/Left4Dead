@@ -5,7 +5,9 @@ Shooting::Shooting(Soldier& soldier, Weapon *weapon, float start_time) :
                     soldier(soldier),
                     weapon(weapon),
                     start_time(start_time) {
-    soldier.shoot();
+    std::vector<GameObject*> targets = soldier.get_targets();
+    float y_pos = soldier.get_y_position();
+    weapon->shoot(targets, y_pos, start_time);
 }
 
 State *Shooting::update(float time) {
@@ -21,7 +23,9 @@ State *Shooting::update(float time) {
 State* Shooting::shoot(Soldier& soldier, Weapon* weapon, float time) {
     if (time_to_shoot(time) && !weapon->empty()) {
         start_time = time; // actalizo ultimo disparo
-        soldier.shoot();
+        std::vector<GameObject*> targets = soldier.get_targets();
+        float y_pos = soldier.get_y_position();
+        weapon->shoot(targets, y_pos, time);
     } else if (weapon->empty()) {
         return new Idle();
     }

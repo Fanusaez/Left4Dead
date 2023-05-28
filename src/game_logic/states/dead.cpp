@@ -28,7 +28,10 @@ State* Dead::die(float time) {
 }
 
 State* Dead::revive(float time) {
-    return nullptr; /// para safar
+    if (able_to_revive(time)) {
+        return new Idle();
+    }
+    return nullptr;
 }
 
 bool Dead::able_to_revive(float time) {

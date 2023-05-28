@@ -23,7 +23,7 @@ std::int16_t get_distance_to_soldier(GameObject* soldier);
 Walker(std::int16_t x_pos, std::int16_t y_pos);
 Walker(std::int16_t x_pos, std::int16_t y_pos, float walking_speed);
 
-void receive_damage(std::uint16_t damage) override;
+void receive_damage(std::uint16_t damage, float time) override;
 
 bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t x_finish,

@@ -45,16 +45,24 @@ void Soldier::shoot(float time) {
         delete state;
         state = new_state;
     }
+    // esto podria pasar a ser responsabilidad del estado despues
+    //std::vector<GameObject*> shooting_objects;
+   // map.shoot(shooting_objects,
+       //       x_pos,
+             // y_pos,
+      //        direction);
+    //weapon->shoot(shooting_objects, y_pos, time);
 }
-
-void Soldier::shoot() {
+// despues deberia pasar el map a estado y que el se encargue
+std::vector<GameObject *> Soldier::get_targets() {
     std::vector<GameObject*> shooting_objects;
     map.shoot(shooting_objects,
               x_pos,
               y_pos,
               direction);
-    weapon->shoot(shooting_objects, y_pos);
+    return shooting_objects;
 }
+
 
 void Soldier::reload(float time) {
     State* new_state = state->reload(weapon, time);
@@ -78,13 +86,19 @@ void Soldier::throw_explosive_grenade() {
     }
 
     map.throw_grenade(objects, x_pos, y_granade_pos);
-    weapon->throw_explosive_grenade(objects);
+    weapon->throw_explosive_grenade(objects, 1);
 }
 
-void Soldier::receive_damage(std::uint16_t damage) {
+void Soldier::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
     if (health <= 0) {
-        dead = true;
+        die(time);
+    } else {
+        State *new_state = state->being_attacked(time);
+        if (new_state != nullptr) {
+            delete state;
+            state = new_state;
+        }
     }
 }
 
@@ -211,6 +225,15 @@ bool Soldier::in_range_of_explosion(std::int16_t x_start,
 void Soldier::get_position(std::vector<float> &pos) {
     pos.push_back(x_pos);
     pos.push_back(y_pos);
+}
+
+void Soldier::die(float time) {
+    dead = true;
+    State* new_state = state->die(time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
 }
 
 Soldier::~Soldier(){

@@ -14,9 +14,9 @@ class Idf : public Weapon {
  public:
 
 void shoot(std::vector<GameObject*>& shooting_objects,
-           std::uint16_t y_pos_sold) override;
+           std::uint16_t y_pos_sold, float time) override;
 
-void throw_explosive_grenade(std::vector<GameObject*>& shooting_objects) override;
+void throw_explosive_grenade(std::vector<GameObject*>& shooting_objects, float time) override;
 
 void reload() override;
 bool isFullyLoaded() override;

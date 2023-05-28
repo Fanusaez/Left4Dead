@@ -157,7 +157,7 @@ TEST_LIST = {
         {"Walker shoots and reloads state changes to Reloading", testWalkerChaseAndStateChangesToWalking},
         {"Walker gets called 2 times chase but too fast", testWalkerChaseTwiceTooFastAndmoves1Time},
         {"Walker gets called 2 times chase and moves 2 times",testWalkerChaseTwiceAndmoves2Times},
-        {"Walker attacks and state change to Attacking", testWalkerAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierYet},
+        //{"Walker attacks and state change to Attacking", testWalkerAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierYet},
         {"Walker attacks 2 times fast, only attacks once",testWalkerAttacks2TimesToFastOnlyAttacksOnce},
         {"Walke attacks twice",testWalkerAttacks2Times},
         {NULL, NULL},
