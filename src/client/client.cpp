@@ -3,9 +3,9 @@
 
 Client::Client(char *localhost, char *puerto) : socket(localhost, puerto), queue_sender(1000000), queue_receiver(1000000),
     client_sender(&socket,std::ref(keep_talking),&queue_sender), client_receiver(&socket,std::ref(keep_talking),&queue_receiver) {
+    keep_talking = true;        
     client_sender.start();
     client_receiver.start();
-    keep_talking = true;        
 }
 
 bool Client::create_scenario(const std::string& scenario_name){

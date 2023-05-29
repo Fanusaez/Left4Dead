@@ -3,20 +3,13 @@
 #include <unistd.h>
 
 Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name, int* player_id) : 
-    queue_entrante(10000), keep_playing(keep_playing), code(*code), game_name(*game_name), game_logic(game_logic)
+    queue_entrante(10000), keep_playing(keep_playing), code(*code), game_name(*game_name), game_logic()
 {
     game_logic.add_soldier(player_id);
     queue_salientes[*player_id] = queue_sender;
 }
 
-void Game::run(){
-/*     GameDTO game_dto;
-    SoldierObjectDTO soldier(13, 10, 10, RELOADING , P90);
-    SoldierObjectDTO soldier2(100, 10.78, 10.85, RELOADING , P90);
-    ZombieObjectDTO zombie(20, 30.55, 45.3, STUNNED);
-    game_dto.add_soldier(soldier);
-    game_dto.add_soldier(soldier2);
-    game_dto.add_zombie(zombie); */
+void Game::run(){   
     while (keep_playing)
     {
         InstructionsDTO instructionDTO;
@@ -26,7 +19,7 @@ void Game::run(){
         }
         game_logic.udpate_game();
         GameDTO game_dto = game_logic.get_game();
-        usleep(1000000.0f/10.0f);
+        usleep(1000000.0f/30.0f);
         m.lock();
         for (const auto &queue : queue_salientes) {
             queue.second->try_push(game_dto);

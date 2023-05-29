@@ -73,26 +73,29 @@ if(SERVER)
 		./server/server_serializer.cpp
 		./server/server_deserializer.cpp
 		./server/game_logic.cpp
-		game_logic/map.cpp
-        game_logic/soldier.cpp
-        game_logic/walker.cpp
-		game_logic/weapons/idf.cpp
-		game_logic/weapons/scout.cpp
-        game_logic/game_object.h
-		game_logic/weapons/weapon.h
-		game_logic/zombie.h
-		game_logic/obstacle.cpp
-		#game_logic/movement.h
-		#game_logic/walking.cpp
-		game_logic/states/state.h
-		game_logic/states/being_attacked.cpp
-		game_logic/states/idle.cpp
-		game_logic/states/reloading.cpp
-		game_logic/states/shooting.cpp
-		game_logic/states/moving.cpp
-		game_logic/zombie_states/zombie_dead.cpp
-		game_logic/zombie_states/zombie_state.h
-		game_logic/zombie_states/zombie_being_attacked.cpp
+		./game_logic/states/being_attacked.cpp
+		./game_logic/states/dead.cpp
+		./game_logic/states/idle.cpp
+		./game_logic/states/moving.cpp
+		./game_logic/states/reloading.cpp
+		./game_logic/states/shooting.cpp
+		./game_logic/states/state.h
+		./game_logic/weapons/idf.cpp
+		./game_logic/weapons/scout.cpp
+		./game_logic/weapons/weapon.h
+		./game_logic/zombie_states/attacking.cpp
+		./game_logic/zombie_states/walking.cpp
+		./game_logic/zombie_states/zombie_being_attacked.cpp
+		./game_logic/zombie_states/zombie_dead.cpp
+		./game_logic/zombie_states/zombie_idle.cpp
+		./game_logic/zombie_states/zombie_state.h
+		./game_logic/map.cpp
+		./game_logic/obstacle.cpp
+		./game_logic/soldier.cpp
+		./game_logic/walker.cpp
+		./game_logic/walking.h
+		./game_logic/zombie.h
+
 	)
 
 	target_include_directories(server PUBLIC ${PROJECT_SOURCE_DIR}/src/game_logic)

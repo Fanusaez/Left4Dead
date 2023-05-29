@@ -13,6 +13,7 @@
 
 class GameLogic {
 private:
+    float timer;
 
     GameMap game_map;
 

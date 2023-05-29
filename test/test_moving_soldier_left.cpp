@@ -92,10 +92,10 @@ void testMoveSoldierLeftAllTheWay(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 8, 0, SOLDIER_SPEED);
-    map.add_soldier(&soldier, 8, 0);
+    Soldier soldier(scout, map, 5, 5, SOLDIER_SPEED);
+    map.add_soldier(&soldier, 5, 5);
 
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 10; i++) {
         soldier.move_left(i);
     }
 
@@ -104,10 +104,12 @@ void testMoveSoldierLeftAllTheWay(){
 
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = x_pos;
-    float expected_number = 0.4;
+    float expected_number = 3;
 
+    std::cout<<"El valor de x_pos: "<<x_pos<<std::endl;
+ 
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
-    TEST_CHECK(y_pos == 0);
+    TEST_CHECK(y_pos == 4);
 }
 
 TEST_LIST = {

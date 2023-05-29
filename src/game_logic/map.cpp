@@ -186,7 +186,7 @@ void GameMap::move_object_y(std::uint16_t x_pos,
 
 bool GameMap::check_free_position(std::int16_t x_pos,
                                   std::int16_t y_pos) {
-    if (x_pos < 0 || x_pos >= x_size|| y_pos < 0 || x_pos >= y_size){
+    if (x_pos < 0 || x_pos >= x_size|| y_pos < 0 || y_pos >= y_size){
         return false;
     }
     return map[y_pos][x_pos] == nullptr; // !map[y_sold_pos][x_sold_pos]
