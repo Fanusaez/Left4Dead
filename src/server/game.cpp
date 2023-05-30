@@ -13,27 +13,27 @@ Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_
 void Game::run(){   
     //InstructionsDTO instructionDTO = queue_entrante.pop(); //Hasta no recibir
     InstructionsDTO instructionDTO;
-    auto t1 = std::chrono::high_resolution_clock::now();
-    auto t2 = std::chrono::high_resolution_clock::now();
     while (keep_playing)
     {
-        bool could_pop = queue_entrante.try_pop(instructionDTO);
-        if (could_pop) {
-            game_logic.new_instruction(instructionDTO);
+        auto t1 = std::chrono::high_resolution_clock::now();
+        double seconds = 0;
+        while(seconds < 0.04){
+            bool could_pop = queue_entrante.try_pop(instructionDTO);
+            if (could_pop) {
+                game_logic.new_instruction(instructionDTO);
+            }
+            auto t2 = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> duration = t2 - t1;
+		    seconds = duration.count();
         }
         game_logic.udpate_game();
         GameDTO game_dto = game_logic.get_game();
-        t2 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration = t2 - t1;
-		double seconds = duration.count();
-        usleep(20000);
         if (seconds >= 0.04){
             m.lock();
             for (const auto &queue : queue_salientes) {
                 queue.second->try_push(game_dto);
             }
             m.unlock();
-            t1 = std::chrono::high_resolution_clock::now();
         }
     }
 }

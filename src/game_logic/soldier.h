@@ -53,6 +53,8 @@ void get_position(std::vector<float>& pos) override;
 
 std::vector<GameObject*> get_targets();
 
+void set_idle();
+
 ~Soldier();
 
 //******************************* Metodos de testeo ***************************************************

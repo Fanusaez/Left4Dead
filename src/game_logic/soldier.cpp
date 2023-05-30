@@ -238,3 +238,8 @@ std::int16_t Soldier::get_health() {
 State* Soldier::get_state() {
     return state;
 }
+
+void Soldier::set_idle() {
+    delete state;
+    state = new Idle;
+}

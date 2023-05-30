@@ -8,24 +8,24 @@
 
 struct SoldierObjectDTO {
     int id;        // ID único del objeto
-    float position_x;     
-    float position_y;      
+    int position_x;     
+    int position_y;      
     SoldierObjectState state; // Estado del objeto
     SoldierType soldier_type;
 
     // Constructor para inicializar los atributos
-    SoldierObjectDTO(int8_t id, float position_x, float position_y, SoldierObjectState state, SoldierType soldier_type)
+    SoldierObjectDTO(int8_t id, int position_x, int position_y, SoldierObjectState state, SoldierType soldier_type)
         : id(id), position_x(position_x), position_y(position_y), state(state), soldier_type(soldier_type) {}
 };
 
 struct ZombieObjectDTO {
     int id;        // ID único del objeto
-    float position_x;     
-    float position_y;      
+    int position_x;     
+    int position_y;      
     ZombieObjectState state; // Estado del objeto
 
     // Constructor para inicializar los atributos
-    ZombieObjectDTO(int8_t id, float position_x, float position_y, ZombieObjectState state)
+    ZombieObjectDTO(int8_t id, int position_x, int position_y, ZombieObjectState state)
         : id(id), position_x(position_x), position_y(position_y), state(state) {}
 };
 

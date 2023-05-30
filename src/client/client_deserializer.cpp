@@ -31,8 +31,8 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
     char soldiers_size;
     char zombies_size;
     int id;
-    float position_x;
-    float position_y;
+    int position_x;
+    int position_y;
     char soldier_state; 
     char zobmie_state; 
     char soldier_type;
@@ -46,6 +46,7 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
         socket->recvall(&position_x, 4, was_closed);
         socket->recvall(&position_y, 4, was_closed);
         game_dto.add_soldier(SoldierObjectDTO(id, position_x, position_y, static_cast<SoldierObjectState>(soldier_state), static_cast<SoldierType>(soldier_type)));
+        //std::cout<<position_x<<","<<position_y<<std::endl;
     }
     for (int i = 0; i < int(zombies_size); i++)
     {

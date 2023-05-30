@@ -49,9 +49,9 @@ void ClearTheZone::update_soldiers(float time) {
 }
 
 void ClearTheZone::update_zombies(float time) {
-    for (Zombie* zombie : zombies) {
+    /*for (Zombie* zombie : zombies) {
         zombie->chase_closest_soldier(map, soldiers, time);
-    }
+    }*/
 }
 
 void ClearTheZone::respawn_zombies(float time) {

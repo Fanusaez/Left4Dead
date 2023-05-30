@@ -13,6 +13,7 @@ Moving::Moving(Soldier &soldier, std::int16_t direction, float start_time) :
     else if (direction == DOWN) soldier.move_down();
     else if (direction == RIGHT) soldier.move_right();
     else if (direction == LEFT) soldier.move_left();
+    soldier_state = MOVING;
 }
 
 State *Moving::update(float time) {

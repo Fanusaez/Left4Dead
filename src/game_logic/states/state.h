@@ -4,6 +4,8 @@
 
 #include <cstdint>
 #include "../weapons/weapon.h"
+#include "../common/game_object_state.h"
+
 class Soldier;
 
 class State {
@@ -18,6 +20,7 @@ public:
     virtual State* revive(float time) = 0;
     // throwgranade etc
 
+    SoldierObjectState soldier_state = IDLE;
 };
 
 

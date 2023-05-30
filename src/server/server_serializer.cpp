@@ -105,10 +105,10 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
         buffer.push_back(obj.soldier_type);
 
         unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.position_x);
-        buffer.insert(buffer.end(), p, p + 4);
+        buffer.insert(buffer.end(), p, p + sizeof(int));
 
         p = reinterpret_cast<unsigned char const *>(&obj.position_y);
-        buffer.insert(buffer.end(), p, p + 4);
+        buffer.insert(buffer.end(), p, p + sizeof(int));
 
     }
 
@@ -117,10 +117,10 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
         buffer.push_back(obj.state);
 
         unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.position_x);
-        buffer.insert(buffer.end(), p, p + 4);
+        buffer.insert(buffer.end(), p, p + sizeof(int));
 
         p = reinterpret_cast<unsigned char const *>(&obj.position_y);
-        buffer.insert(buffer.end(), p, p + 4);
+        buffer.insert(buffer.end(), p, p + sizeof(int));
 
     }
     int sz = socket->sendall(buffer.data(), buffer.size(), was_closed);
