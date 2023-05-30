@@ -44,9 +44,10 @@ int main(int argc, char *argv[])
 
 		while (running)
 		{
+			RenderableObject &object = *objects.at(1);
 			Player &player = static_cast<Player &>(*(objects.at(1)));
-			running = handleEvents(player);
-			player.update(configs.FRAME_RATE);
+			running = handleEvents(static_cast<Player &>(object));
+			object.update(configs.FRAME_RATE);
 			//update
 			view.render();
 			// la cantidad de segundos que debo dormir se debe ajustar en función
