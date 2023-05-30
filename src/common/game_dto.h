@@ -12,10 +12,11 @@ struct SoldierObjectDTO {
     int position_y;      
     SoldierObjectState state; // Estado del objeto
     SoldierType soldier_type;
+    bool facingLeft;
 
     // Constructor para inicializar los atributos
-    SoldierObjectDTO(int8_t id, int position_x, int position_y, SoldierObjectState state, SoldierType soldier_type)
-        : id(id), position_x(position_x), position_y(position_y), state(state), soldier_type(soldier_type) {}
+    SoldierObjectDTO(int8_t id, int position_x, int position_y, SoldierObjectState state, SoldierType soldier_type, bool facingLeft)
+        : id(id), position_x(position_x), position_y(position_y), state(state), soldier_type(soldier_type), facingLeft(facingLeft) {}
 };
 
 struct ZombieObjectDTO {

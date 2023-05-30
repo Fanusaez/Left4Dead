@@ -27,6 +27,8 @@ void Player::updateState(const SoldierObjectDTO &soldierDTO)
 		this->moving = true;
 	else
 		this->moving = false;
+
+	facingLeft = soldierDTO.facingLeft;
 }
 
 void Player::updateState(const ZombieObjectDTO &zombieDTO) {}

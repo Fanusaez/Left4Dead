@@ -24,6 +24,8 @@ class Soldier : public GameObject {
 void die(float time);
 
  public:
+    bool facingLeft = false;
+
 Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
 Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos);
 

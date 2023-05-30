@@ -110,6 +110,7 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
         p = reinterpret_cast<unsigned char const *>(&obj.position_y);
         buffer.insert(buffer.end(), p, p + sizeof(int));
 
+        buffer.push_back(obj.facingLeft);
     }
 
     for (const auto &obj : zombies) {

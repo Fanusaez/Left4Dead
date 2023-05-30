@@ -39,9 +39,9 @@ void GameLogic::new_instruction(InstructionsDTO instruction) {
 GameDTO GameLogic::get_game() {
     GameDTO game_dto;
     for (const auto& piar: playerSoldierMap){
-        SoldierObjectDTO soldier(piar.first, piar.second->get_x_position(), piar.second->get_y_position(), piar.second->get_state()->soldier_state , IDF);
+        SoldierObjectDTO soldier(piar.first, piar.second->get_x_position(), piar.second->get_y_position(), piar.second->get_state()->soldier_state , IDF, piar.second->facingLeft);
         game_dto.add_soldier(soldier);
-        std::cout<<piar.second->get_x_position()<<","<<piar.second->get_y_position()<<std::endl;
+        //std::cout<<piar.second->get_x_position()<<","<<piar.second->get_y_position()<<std::endl;
         piar.second->set_idle();
     }
     return game_dto;
@@ -52,19 +52,21 @@ void GameLogic::move (Move move, int player_id) {
     switch (move) {
     case 0:
         soldier->move_right(timer);
-        std::cout<<"RIGTH"<<std::endl;
+        soldier->facingLeft = false;
+        //std::cout<<"RIGTH"<<std::endl;
         break;
     case 1:
         soldier->move_left(timer);
-        std::cout<<"LEFT"<<std::endl;
+        soldier->facingLeft = true;
+        //std::cout<<"LEFT"<<std::endl;
         break;
     case 2:
         soldier->move_up(timer);
-        std::cout<<"UP"<<std::endl;
+        //std::cout<<"UP"<<std::endl;
         break;
     case 3:
         soldier->move_down(timer);
-        std::cout<<"DOWN"<<std::endl;
+        //std::cout<<"DOWN"<<std::endl;
         break;
     }
 }
