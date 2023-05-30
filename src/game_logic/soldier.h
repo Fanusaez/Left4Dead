@@ -15,19 +15,17 @@ class Soldier : public GameObject {
     Weapon* weapon = nullptr;
     State* state = new Idle;
     GameMap &map;
-    double x_pos;
-    double y_pos;
+    std::int16_t x_pos;
+    std::int16_t y_pos;
     std::int16_t direction = UP;
     bool dead = false;
     std::int16_t health = 100;
-    double soldier_speed = 0.2;
 
 void die(float time);
 
  public:
 Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
-Soldier(Weapon* weapon, GameMap& map, float x_pos, float y_pos);
-Soldier(Weapon* weapon, GameMap& map, float x_pos, float y_pos, float speed);
+Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos);
 
 void update(float time);
 void reload(float time);
@@ -60,8 +58,8 @@ std::vector<GameObject*> get_targets();
 //******************************* Metodos de testeo ***************************************************
 void set_direction(std::int16_t direction) override;
 std::int16_t get_direction();
-float get_y_position();
-float get_x_position();
+std::int16_t get_y_position();
+std::int16_t get_x_position();
 std::int16_t get_health();
 State* get_state();
 

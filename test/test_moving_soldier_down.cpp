@@ -13,171 +13,142 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-#define SOLDIER_SPEED 0.2
+#define MOVEMENTS_PER_CELL 15
+#define MOV_NEEDED_TO_WALK_ALL_CELL 14
 
 void testMoveSoldierDown(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 8, SOLDIER_SPEED);
+    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 3, 8);
 
-    for (int i = 0; i < 3; i++){
+    for (int i = 0; i < MOV_NEEDED_TO_WALK_ALL_CELL; i++){
         soldier.move_down();
     }
 
-    float x_pos = soldier.get_x_position();
-    float y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_position();
+    std::int16_t y_pos = soldier.get_y_position();
 
-    const float epsilon = 0.001; // Valor de tolerancia
-    float received_numered = y_pos;
-    float expected_number = 8 + (SOLDIER_SPEED*3);
-
-    TEST_CHECK(x_pos == 3);
-    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(x_pos == 3*MOVEMENTS_PER_CELL);
+    TEST_CHECK(y_pos == (9*MOVEMENTS_PER_CELL - 1));
 }
 
-/*
- * Revisar
- */
 void testMoveSoldierDownAtTheEndDoesNotMove() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, MAP_SIZE_Y - 1, SOLDIER_SPEED);
+    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, (MAP_SIZE_Y - 1) * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 3, MAP_SIZE_Y - 1);
 
     for (int i = 0; i < 30; i++){
         soldier.move_down();
     }
 
-    float x_pos = soldier.get_x_position();
-    float y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_position();
+    std::int16_t y_pos = soldier.get_y_position();
 
-    const float epsilon = 0.001; // Valor de tolerancia
-    float received_numered = y_pos;
-    float expected_number = MAP_SIZE_Y - SOLDIER_SPEED;
-    TEST_CHECK(x_pos == 3);
-    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
+    TEST_CHECK(y_pos == (10 * MOVEMENTS_PER_CELL) - 1);
 }
 
 void testNotMoveSoldierDownForCompleteCollisionWithZombie() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 7, SOLDIER_SPEED);
+    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL, (7 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL);
     map.add_soldier(&soldier, 3, 7);
 
-    Walker walker(3,8);
+    Walker walker(3 * MOVEMENTS_PER_CELL,8 * MOVEMENTS_PER_CELL);
     map.add_zombie(&walker, 3, 8);
 
     for (float i = 0; i < 5; i++){ // con 5 se va a 8
         soldier.move_down();
     }
 
-    float x_pos = soldier.get_x_position();
-    float y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_position();
+    std::int16_t y_pos = soldier.get_y_position();
 
-    const float epsilon = 0.001; // Valor de tolerancia
-    float received_numered = y_pos;
-    float expected_number = 8 - SOLDIER_SPEED;
-
-    TEST_CHECK(x_pos == 3);
-    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
 }
 
 void testNotMoveSoldierDownForPartialCollisionWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 8, SOLDIER_SPEED);
+    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL, (8 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL - 5);
     map.add_soldier(&soldier, 3, 8);
 
-    Walker walker(4,9);
+    Walker walker(4 * MOVEMENTS_PER_CELL,9 * MOVEMENTS_PER_CELL);
     map.add_zombie(&walker, 4, 9);
 
     for (float i = 0; i < 10; i++){
         soldier.move_down();
     }
 
-    float x_pos = soldier.get_x_position();
-    float y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_position();
+    std::int16_t y_pos = soldier.get_y_position();
 
-    const float epsilon = 0.001; // Valor de tolerancia
-    float received_numered = y_pos;
-    float expected_number = 9 - SOLDIER_SPEED;
-
-    TEST_CHECK(x_pos == 3);
-    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
 }
 
 void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 8, SOLDIER_SPEED);
+    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL, (8 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL);
     map.add_soldier(&soldier, 3, 8);
 
-    Walker walker(2,9);
+    Walker walker(2 * MOVEMENTS_PER_CELL,9 * MOVEMENTS_PER_CELL);
     map.add_zombie(&walker, 2, 9);
 
     for (float i = 0; i < 10; i++){
         soldier.move_down();
     }
 
-    float x_pos = soldier.get_x_position();
-    float y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_position();
+    std::int16_t y_pos = soldier.get_y_position();
 
-    const float epsilon = 0.001; // Valor de tolerancia
-    float received_numered = y_pos;
-    float expected_number = 9 - SOLDIER_SPEED;
-
-    TEST_CHECK(x_pos == 3);
-    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
 }
-/// BUG, REVISAR PQ SOLO AVANZA HASTA 9
+
 void testMoveSoldierDownUntilTheEnd() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 8);
+    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL , 8 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 3, 8);
 
-    for (int i = 0; i < 15; i++){
+    for (int i = 0; i < 150; i++){
         soldier.move_down();
     }
 
-    float x_pos = soldier.get_x_position();
-    float y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_position();
+    std::int16_t y_pos = soldier.get_y_position();
 
-    const float epsilon = 0.001; // Valor de tolerancia
-    double received_numered = y_pos;
-    double expected_number =  9.8; /// deberia ser 9.8. hay un bug
-
-    TEST_CHECK(x_pos == 3);
-    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
+    TEST_CHECK(y_pos == 9 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
 }
 
 void testMoveSoldierDownUntilTheEnd2() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 0.0, 0.0);
+    Soldier soldier(scout, map, 0, 0);
     map.add_soldier(&soldier, 0, 0);
 
     for (int i = 0; i < 150; i++){
         soldier.move_down(i);
     }
 
-    float x_pos = soldier.get_x_position();
-    float y_pos = soldier.get_y_position();
-    //std::cout << y_pos;
-    const float epsilon = 0.001; // Valor de tolerancia
-    double received_numered = y_pos;
-    double expected_number =  9.8;
+    std::int16_t x_pos = soldier.get_x_position();
+    std::int16_t y_pos = soldier.get_y_position();
 
-   TEST_CHECK(x_pos == 0);
-    TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
+    TEST_CHECK(x_pos == 0 * MOVEMENTS_PER_CELL);
+    TEST_CHECK(y_pos == 9 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
 }
 TEST_LIST = {
         {"Move soldier 1 position down",testMoveSoldierDown},
