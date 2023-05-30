@@ -16,21 +16,13 @@
 #include <map>
 #include <memory>
 #include <optional>
+#include <chrono>
 
 static bool handleEvents(Client* client);
+double sleep_for(auto t1, auto t2);
 
 int main(int argc, char *argv[])
 {
-	Client client(argv[1], argv[2]);
-	if (std::string(argv[3]) == "c"){
-		std::string map = "map1";
-		client.create_scenario(map);
-		std::cout << "Creo el escenario" << std::endl;
-	} else {
-		int32_t code = 0;
-		client.join_scenario(code);
-		std::cout << "Joineo escenario" << std::endl;
-	}
 
 	GameviewConfigurationsLoader &configs = GameviewConfigurationsLoader::getInstance();
 	std::map<int, std::unique_ptr<RenderableObject>> objects;
@@ -46,18 +38,25 @@ int main(int argc, char *argv[])
 
 	bool running = true;
 
+	Client client(argv[1], argv[2]);
+	if (std::string(argv[3]) == "c"){
+		std::string map = "map1";
+		client.create_scenario(map);
+		std::cout << "Creo el escenario" << std::endl;
+	} else {
+		int32_t code = 0;
+		client.join_scenario(code);
+		std::cout << "Joineo escenario" << std::endl;
+	}
+
 	GameDTO gameState;
 	while (running) {
+		auto t1 = std::chrono::high_resolution_clock::now();
 		std::optional<GameDTO> game_optional = client.get_game();
 		if (game_optional.has_value()){
 			gameState = game_optional.value();
 		}
 		std::vector<SoldierObjectDTO> soldiers = gameState.get_soldiers();
-		if (soldiers.size() == 0) {
-			std::cerr << "Error\n";
-			client.join();
-			return 1;
-		}
 		for (auto& soldier: soldiers){
 			if(objects.find(soldier.id) == objects.end()){
 				std::unique_ptr<RenderableObject> ptr1(new Player(textureLoader.getTexture("Soldier_1/Walk.png"), soldier.id, soldier.position_x, soldier.position_y));
@@ -74,10 +73,23 @@ int main(int argc, char *argv[])
 			object.second->update(configs.FRAME_RATE);
 		view.render();
 		running = handleEvents(&client);
-		usleep(configs.FRAME_RATE);
+		auto t2 = std::chrono::high_resolution_clock::now();
+		std::this_thread::sleep_for(std::chrono::duration<double>(sleep_for(t1,t2)));
 	}
 	client.join();
 	return 0;
+}
+
+double sleep_for(auto t1, auto t2){
+	double rate = 0.04;
+	std::chrono::duration<double> duration = t2 - t1;
+	double seconds = duration.count();
+	double rest = rate - seconds;
+	if (rest < 0) {
+		double behind = -rest;
+		rest = rate - std::fmod(behind, rate);
+	}
+	return rest;
 }
 
 static bool handleEvents(Client* client)

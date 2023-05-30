@@ -2,15 +2,19 @@
 #include <iostream>
 #include "../game_logic/weapons/idf.h"
 #include "../common/move.h"
+#include <ctime>
 
-GameLogic::GameLogic() : game_map(100,100) {
-    std::cout<<"Entro al constructor de game logic" << std::endl;
-}
+GameLogic::GameLogic() : game_map(10000,10000) {}
 
 void GameLogic::add_soldier(int* player_id) {
     Weapon* idf = new Idf;
-    Soldier* soldier = new Soldier(idf,game_map,5,5);
-    game_map.add_soldier(soldier,5,5);
+    std::srand(std::time(0));
+    int16_t pos_x = std::rand() % 15 + 1;
+    while (!game_map.check_free_position(pos_x,15)){
+        int16_t pos_x = std::rand() % 100 + 1;
+    }
+    Soldier* soldier = new Soldier(idf,game_map,pos_x,15);
+    game_map.add_soldier(soldier,pos_x,15);
     playerSoldierMap[*player_id] = soldier;
     timer = 0;
 }
@@ -37,7 +41,7 @@ GameDTO GameLogic::get_game() {
     for (const auto& piar: playerSoldierMap){
         SoldierObjectDTO soldier(piar.first, piar.second->get_x_position(), piar.second->get_y_position(), MOVING , IDF);
         game_dto.add_soldier(soldier);
-        std::cout<<"pos x: "<<piar.second->get_x_position()<<" pos y: "<<piar.second->get_y_position()<<std::endl;
+        //std::cout<<piar.second->get_x_position()<<","<<piar.second->get_y_position()<<std::endl;
     }
     return game_dto;
 }
@@ -65,7 +69,7 @@ void GameLogic::move (Move move, int player_id) {
 }
 
 void GameLogic::udpate_game(){
-    timer += 0.01;
+    timer += 0.04;
 }
 
 void GameLogic::delete_soldier(int* player_id){

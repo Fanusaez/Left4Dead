@@ -42,11 +42,11 @@ void GameMap::get_objects_in_distance(std::int16_t x_grenade_pos,
                                       std::vector<GameObject*>& game_objects) {
     std::int16_t x_start = x_grenade_pos - radius_damage_grenade;
     std::int16_t y_start = y_grenade_pos - radius_damage_grenade;
-    validate_position(x_start, y_start);
+    validate_position_for_explosion(x_start, y_start);
 
     std::int16_t x_finish = x_grenade_pos + radius_damage_grenade;
     std::int16_t y_finish = y_grenade_pos + radius_damage_grenade;
-    validate_position(x_finish, y_finish);
+    validate_position_for_explosion(x_finish, y_finish);
 
     for (Zombie* object : zombies){
         if (object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
@@ -60,7 +60,7 @@ void GameMap::get_objects_in_distance(std::int16_t x_grenade_pos,
     }
 }
 
-void GameMap::validate_position(std::int16_t& x_pos,
+void GameMap::validate_position_for_explosion(std::int16_t& x_pos,
                                 std::int16_t& y_pos) {
     if (x_pos > x_size - 1) {
         x_pos = x_size - 1;
@@ -268,30 +268,79 @@ void GameMap::attack_soldiers(float time) {
     }
 }
 
+bool GameMap::check_entire_free_pos(std::int16_t x_pos, std::int16_t y_pos) {
+    bool free_pos1 = check_free_position(x_pos, y_pos);
+    bool free_pos2 = check_free_position(x_pos + 1, y_pos);
+    bool valid_pos = valid_entire_object_position(x_pos, y_pos);
+    return free_pos1 && free_pos2 && valid_pos;
+}
+
+void GameMap::get_position_for_object(std::vector<std::int16_t> &valid_pos) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis_x(0, x_size - 2);
+    std::uniform_int_distribution<> dis_y(0, y_size - 1);
+
+    for (int i = 0; i < 10; i++) {
+        std::int16_t random_x_pos = dis_x(gen);
+        std::int16_t random_y_pos = dis_y(gen);
+        if (check_entire_free_pos(random_x_pos, random_y_pos)) {
+            valid_pos.push_back(random_x_pos);
+            valid_pos.push_back(random_y_pos);
+        }
+    }
+}
+
+void GameMap::get_position_for_soldier(std::vector<std::int16_t> &valid_pos) {
+    while (true) {
+        get_position_for_object(valid_pos);
+        if (!valid_pos.empty()) return;
+    }
+}
+
+
+bool GameMap::valid_entire_object_position(std::int16_t x_pos, std::int16_t y_pos) {
+    bool valid_x = false;
+    bool valid_y = false;
+    if ( x_pos >= 0 && x_pos + 1 < x_size) { // +1 dado que en x tenemos un slot mas
+        valid_x = true;
+    }
+    if (y_pos >= 0 && y_pos < y_size){
+        valid_y = true;
+    }
+    return valid_x && valid_y;
+}
+
+
+// Deberia tener solo un add object y listo;
+
 
 // ****************************** Metodos de Testeo ***********************************//
 
-void GameMap::add_soldier(GameObject* soldier,
+bool GameMap::add_soldier(GameObject* soldier,
                       std::uint16_t x_pos,
                       std::uint16_t y_pos) {
-    if (!valid_entire_object_position(x_pos, y_pos)) {
-        return; // excepcion
+
+    if (!check_entire_free_pos(x_pos, y_pos)) {
+        return false;
     }
     map[y_pos][x_pos] = soldier;
     map[y_pos][x_pos + 1] = soldier;
 
-    soldiers.push_back(soldier);
+    soldiers.push_back(soldier); // ya no necesito
+    return true;
 }
 
-void GameMap::add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos) {
-    if (!valid_entire_object_position(x_pos, y_pos)){ // cambiar por validar_gameObject
-        return; // excepcion
+bool GameMap::add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos) {
+    if (!check_entire_free_pos(x_pos, y_pos)) {
+        return false;
     }
-    zombies.push_back(dynamic_cast<Zombie*>(walker));
+    zombies.push_back(dynamic_cast<Zombie*>(walker)); // ya no necesito
 
     map[y_pos][x_pos] = walker;
     map[y_pos][x_pos + 1] = walker;
-    //zombies_object.push_back(walker);
+
+    return true;
 }
 
 void GameMap::add_obstacle(GameObject* obstacle,
@@ -343,18 +392,6 @@ bool GameMap::collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos) 
         }
     }
     return false;
-}
-
-bool GameMap::valid_entire_object_position(std::int16_t x_pos, std::int16_t y_pos) {
-    bool valid_x = false;
-    bool valid_y = false;
-    if ( x_pos >= 0 && x_pos + 1 < x_size) { // +1 dado que en x tenemos un slot mas
-        valid_x = true;
-    }
-    if (y_pos >= 0 && y_pos < y_size){
-        valid_y = true;
-    }
-    return valid_x && valid_y;
 }
 
 GameObject* GameMap::get_object(std::uint16_t x_pos, std::uint16_t y_pos) {

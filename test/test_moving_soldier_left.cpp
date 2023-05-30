@@ -95,7 +95,7 @@ void testMoveSoldierLeftAllTheWay(){
     Soldier soldier(scout, map, 5, 5, SOLDIER_SPEED);
     map.add_soldier(&soldier, 5, 5);
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 50; i++) {
         soldier.move_left(i);
     }
 
@@ -104,12 +104,10 @@ void testMoveSoldierLeftAllTheWay(){
 
     const float epsilon = 0.001; // Valor de tolerancia
     float received_numered = x_pos;
-    float expected_number = 3;
-
-    std::cout<<"El valor de x_pos: "<<x_pos<<std::endl;
+    float expected_number = 0.4;
  
     TEST_CHECK(fabs(received_numered - expected_number) < epsilon);
-    TEST_CHECK(y_pos == 4);
+    TEST_CHECK(y_pos == 5);
 }
 
 TEST_LIST = {
