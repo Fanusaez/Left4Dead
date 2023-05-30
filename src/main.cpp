@@ -61,12 +61,11 @@ int main(int argc, char *argv[])
 			if(objects.find(soldier.id) == objects.end()){
 				std::unique_ptr<RenderableObject> ptr1(new Player(textureLoader.getTexture("Soldier_1/Walk.png"), soldier.id, soldier.position_x, soldier.position_y));
 				objects[ptr1->getID()] = std::move(ptr1);
-				view.assignMainObject(1);
+				view.assignMainObject(soldier.id);
 			}
 			else {
-				RenderableObject& ptr1 = *(objects.at(soldier.id));
-				ptr1.setPositionX(soldier.position_x);
-				ptr1.setPositionY(soldier.position_y);
+				RenderableObject &object = *(objects.at(soldier.id));
+				object.updateState(soldier);
 			}
 		}
 		for (auto &object : objects)

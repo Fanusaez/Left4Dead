@@ -17,6 +17,10 @@ public:
 
 	virtual ~Player();
 
+	virtual void updateState(const SoldierObjectDTO &soldierDTO) override;
+
+	virtual void updateState(const ZombieObjectDTO &zombieDTO) override;
+
 	virtual void update(unsigned dt) override;
 
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) override;

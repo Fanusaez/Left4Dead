@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2pp/SDL2pp.hh>
+#include "../common/game_dto.h"
 
 class RenderableObject {
 	int id_;
@@ -16,6 +17,10 @@ protected:
 
 public:
 	RenderableObject(int id, int initialX, int initialY);
+
+	virtual void updateState(const SoldierObjectDTO &soldierDTO) = 0;
+
+	virtual void updateState(const ZombieObjectDTO &zombieDTO) = 0;
 
 	virtual void update(unsigned dt) = 0;
 
@@ -29,9 +34,9 @@ public:
 
 	int getPositionY() const;
 
-	void setPositionX(float position_x);
+	void setPositionX(int x);
 
-	void setPositionY(float position_y);
+	void setPositionY(int y);
 
 	virtual ~RenderableObject();
 };
