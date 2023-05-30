@@ -19,11 +19,11 @@ int RenderableObject::getPositionY() const {
 }
 
 void RenderableObject::setPositionX(float position_x) {
-	this->xPosition = position_x * 100;
+	this->xPosition = position_x * 50;
 }
 
 void RenderableObject::setPositionY(float position_y) {
-	this->yPosition = position_y * 100;
+	this->yPosition = position_y * 50;
 }
 
 RenderableObject::~RenderableObject() = default;
