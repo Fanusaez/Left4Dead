@@ -1,6 +1,6 @@
 #ifndef MAP_H_
 #define MAP_H_
-
+#include <random>
 #include <vector>
 #include "zombie.h"
 //#include "walker.h"
@@ -28,8 +28,11 @@ void get_objects_in_distance(std::int16_t x_grenade_pos,
                              std::int16_t y_grenade_pos,
                              std::vector<GameObject*>& game_objects);
 
-void validate_position(std::int16_t& x_pos, std::int16_t& y_pos);
- public:
+void validate_position_for_explosion(std::int16_t& x_pos, std::int16_t& y_pos); // para granada, cambiar nombre, confunde
+
+bool check_entire_free_pos(std::int16_t x_pos, std::int16_t y_pos);
+
+public:
 GameMap(std::uint16_t x_size, std::uint16_t y_size);
 
 void shoot(std::vector<GameObject*>& game_objects,
@@ -74,7 +77,7 @@ void move_object_left(std::int16_t x_sold_pos,
                         std::int16_t& new_x_pos_ref);
 
 bool check_free_position(std::int16_t x_pos,
-                         std::int16_t y_sold_pos);
+                         std::int16_t y_pos);
 
 void chase_soldier_walking(Zombie* zombie,
                            std::int16_t& x_new_pos,
@@ -116,9 +119,10 @@ void move_object_diagonally(std::int16_t& x_old_pos,
 void chase_soldiers(float time);
 void attack_soldiers(float time);
 
-void add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
-void add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
-
+void get_position_for_object(std::vector<std::int16_t>& valid_pos);
+void get_position_for_soldier(std::vector<std::int16_t>& valid_pos);
+bool add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
+bool add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
 
 // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
