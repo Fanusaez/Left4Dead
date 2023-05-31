@@ -9,16 +9,16 @@
 class Walking : public ZombieState {
 
 private:
-    float walker_speed = 0.3;
+    std::int16_t walker_speed = 1;
     float waiting_time_to_walk = 0.2;
     float start_time;
-    float& x_pos;
-    float& y_pos;
+    std::int16_t& x_pos;
+    std::int16_t& y_pos;
 public:
 
 Walking(Zombie* zombie,
-        float &x_pos,
-        float &y_pos,
+        std::int16_t& x_pos,
+        std::int16_t& y_pos,
         std::int16_t &x_new_pos,
         std::int16_t &y_new_pos,
         GameObject* closest_soldier,
@@ -26,8 +26,8 @@ Walking(Zombie* zombie,
         float time);
 
 ZombieState* chase_soldier(Zombie* zombie,
-                           float &x_pos,
-                           float &y_pos,
+                           std::int16_t &x_pos,
+                           std::int16_t &y_pos,
                            std::int16_t &x_new_pos,
                            std::int16_t &y_new_pos,
                            GameObject* closest_soldier,

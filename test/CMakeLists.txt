@@ -366,12 +366,12 @@ set(testTargets
         testMoveSoldierLeft
         testMoveMap
         testExplosiveGrenade
-        #testChaseSoldierWalking
-        #testMapChaseSoldierWalking
-        #testChaseSoldierWalkingObstacles
+        testChaseSoldierWalking
+        testMapChaseSoldierWalking
+        testChaseSoldierWalkingObstacles
         testChangeInStatesSoldier
-        #testChangeInStatesZombie
-        #testWalkerAttackSoldier
+        testChangeInStatesZombie
+        testWalkerAttackSoldier
 )
 
 foreach(target ${testTargets})

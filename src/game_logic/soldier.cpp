@@ -123,7 +123,6 @@ void Soldier::move_up() {
     // ver si con la interfaz si lo saco o no
     if (y_pos <= WALLS_LIMITS) return;
 
-    //std::int16_t y_new_pos = y_pos - 1;
     if ((y_pos % MOVEMENTS_PER_CELL) != 0) {
         y_pos -= 1;
         return;

@@ -11,8 +11,8 @@ class Walker : public GameObject, public Zombie {
  private:
     std::int16_t health = 100;
     std::int16_t damage_attack = 20;
-    float x_pos;
-    float y_pos;
+    std::int16_t x_pos;
+    std::int16_t y_pos;
     bool dead = false;
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;

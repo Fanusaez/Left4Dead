@@ -16,7 +16,7 @@ ZombieState *ZombieBeingAttacked::attack_soldier(GameObject *closest_soldier,
     return nullptr;
 }
 
-ZombieState *ZombieBeingAttacked::chase_soldier(Zombie *zombie, float &x_pos, float &y_pos, std::int16_t &x_new_pos,
+ZombieState *ZombieBeingAttacked::chase_soldier(Zombie *zombie, std::int16_t &x_pos, std::int16_t &y_pos, std::int16_t &x_new_pos,
                                                 std::int16_t &y_new_pos, GameObject *closest_soldier, GameMap &map,
                                                 float time) {
     if (time_to_stop_being_attacked(time)) {

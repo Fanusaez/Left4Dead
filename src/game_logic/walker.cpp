@@ -3,6 +3,7 @@
 #define UP -1
 #define DOWN 1
 #define MAX_DISTANCE 10000
+#define MOVEMENTS_PER_CELL 15
 
 Walker::Walker(std::int16_t x_pos, std::int16_t y_pos) :
                 x_pos(x_pos),
@@ -69,8 +70,14 @@ GameObject* Walker::get_closest_soldier(std::vector<GameObject*> soldiers) {
 std::int16_t Walker::get_distance_to_soldier(GameObject* soldier) {
     std::vector<float> sold_pos;
     soldier->get_position(sold_pos);
-    std::int16_t x_distance = floor(sold_pos[0]) - floor(x_pos);
-    std::int16_t y_distance = floor(sold_pos[1]) - floor(y_pos);
+
+    std::int16_t x_matrix_sold = sold_pos[0] / MOVEMENTS_PER_CELL;
+    std::int16_t y_matrix_sold = sold_pos[1] / MOVEMENTS_PER_CELL;
+    std::int16_t x_matrix_walker = x_pos / MOVEMENTS_PER_CELL;
+    std::int16_t y_matrix_walker = y_pos / MOVEMENTS_PER_CELL;
+
+    std::int16_t x_distance = x_matrix_sold - x_matrix_walker;
+    std::int16_t y_distance = y_matrix_sold - y_matrix_walker;
     return std::sqrt(x_distance * x_distance + y_distance * y_distance);
 }
 

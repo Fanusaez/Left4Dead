@@ -13,7 +13,9 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-#define WALKER_SPEED 0.3
+#define WALKER_SPEED 1
+#define MOVEMENTS_PER_CELL 15
+#define MOV_NEEDED_TO_WALK_ALL_CELL 14
 // ***************************************** Movimiento diagonal *******************************************8
 
 void testMapChaseWalkerDiagonallyUpAndRight() {
@@ -120,13 +122,13 @@ void testMapChaseWalkerUp() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5, 5);
+    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(5,8, WALKER_SPEED);
+    Walker walker(5 * MOVEMENTS_PER_CELL,8 * MOVEMENTS_PER_CELL, WALKER_SPEED);
     map.add_zombie(&walker, 5, 8);
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 1; i++) {
         map.chase_soldiers(i);
     }
     GameObject* walker1 = map.get_object(5, 7);
@@ -145,13 +147,13 @@ void testMapChaseWalkerDown() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5, 5);
+    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(5,1, WALKER_SPEED);
+    Walker walker(5 * MOVEMENTS_PER_CELL,1 * MOVEMENTS_PER_CELL, WALKER_SPEED);
     map.add_zombie(&walker, 5, 1);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < MOVEMENTS_PER_CELL; i++) {
         map.chase_soldiers(i);
     }
 
@@ -173,13 +175,13 @@ void testMapChaseWalkerRight() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5, 5);
+    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(2,5, WALKER_SPEED);
+    Walker walker(2 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
     map.add_zombie(&walker, 2, 5);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < MOVEMENTS_PER_CELL; i++) {
         map.chase_soldiers(i);
     }
 
@@ -197,10 +199,10 @@ void testMapChaseWalkerLeft() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5, 5, WALKER_SPEED);
+    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(8,5);
+    Walker walker(8 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL);
     map.add_zombie(&walker, 8, 5);
 
     map.chase_soldiers(1);
