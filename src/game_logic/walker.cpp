@@ -7,13 +7,13 @@
 
 Walker::Walker(std::int16_t x_pos, std::int16_t y_pos) :
                 x_pos(x_pos),
-                y_pos(y_pos) {}
+                y_pos(y_pos),
+                id(0) {}
 
-Walker::Walker(std::int16_t x_pos, std::int16_t y_pos, float walker_speed) :
+Walker::Walker(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id) :
         x_pos(x_pos),
-        y_pos(y_pos) {
-    state->set_speed(walker_speed);
-}
+        y_pos(y_pos),
+        id(id) {}
 
 void Walker::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
@@ -123,6 +123,10 @@ void Walker::die(float time) {
         delete state;
         state = new_state;
     }
+}
+
+std::int16_t Walker::get_id() {
+    return id;
 }
 
 Walker::~Walker() {

@@ -16,12 +16,13 @@ class Walker : public GameObject, public Zombie {
     bool dead = false;
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;
+    const std::int16_t id;
 
 GameObject* get_closest_soldier(std::vector<GameObject*> soldiers);
 std::int16_t get_distance_to_soldier(GameObject* soldier);
  public:
 Walker(std::int16_t x_pos, std::int16_t y_pos);
-Walker(std::int16_t x_pos, std::int16_t y_pos, float walking_speed);
+Walker(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id);
 
 void receive_damage(std::uint16_t damage, float time) override;
 
@@ -39,6 +40,7 @@ bool in_range_of_attack(GameObject* object);
 
 void die(float time);
 
+std::int16_t get_id() override;
 ~Walker();
 
 // ************************* Metodos de testeo ************************************************8//

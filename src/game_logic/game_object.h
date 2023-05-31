@@ -14,7 +14,7 @@ virtual bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t y_finish) = 0;
 
 virtual void set_direction(std::int16_t direction) = 0;
-
+virtual std::int16_t get_id() = 0;
 };
 
 #endif  // GAME_OBJECT_H_

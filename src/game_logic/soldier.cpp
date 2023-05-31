@@ -10,7 +10,7 @@
 
 
 
-Soldier::Soldier(Weapon* weapon, GameMap& map) : weapon(weapon), map(map){} // lo dejo por ahora
+Soldier::Soldier(Weapon* weapon, GameMap& map) : weapon(weapon), map(map), id(0){} // lo dejo por ahora
 
 Soldier::Soldier(Weapon* weapon,
                  GameMap& map,
@@ -19,7 +19,19 @@ Soldier::Soldier(Weapon* weapon,
         weapon(weapon),
         map(map),
         x_pos(x_pos),
-        y_pos(y_pos) {}
+        y_pos(y_pos),
+        id(id) {}
+
+Soldier::Soldier(Weapon* weapon,
+                 GameMap& map,
+                 std::int16_t x_pos,
+                 std::int16_t y_pos,
+                 std::int16_t id) :
+        weapon(weapon),
+        map(map),
+        x_pos(x_pos),
+        y_pos(y_pos),
+        id(id) {}
 
 void Soldier::update(float time) {
     State* new_state = state->update(time);
@@ -210,6 +222,10 @@ void Soldier::die(float time) {
         delete state;
         state = new_state;
     }
+}
+
+std::int16_t Soldier::get_id() {
+    return id;
 }
 
 Soldier::~Soldier(){

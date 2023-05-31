@@ -20,6 +20,7 @@ class Soldier : public GameObject {
     std::int16_t direction = UP;
     bool dead = false;
     std::int16_t health = 100;
+    const std::int16_t id;
 
 void die(float time);
 
@@ -28,6 +29,7 @@ void die(float time);
 
 Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
 Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos);
+Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos, std::int16_t id);
 
 void update(float time);
 void reload(float time);
@@ -53,6 +55,7 @@ bool in_range_of_explosion(std::int16_t x_start,
 
 void get_position(std::vector<float>& pos) override;
 
+std::int16_t get_id() override;
 std::vector<GameObject*> get_targets();
 
 void set_idle();

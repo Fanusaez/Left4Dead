@@ -24,7 +24,7 @@ void testWalkerChaseSoldierdiagonallyUpAndRightWithObstacle() {
     Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 8, 2);
 
-    Obstacle obstacle;
+    Obstacle obstacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
     map.add_obstacle(&obstacle, 5, 5);
 
     Walker walker(5 * MOVEMENTS_PER_CELL,6 * MOVEMENTS_PER_CELL, WALKER_SPEED);
@@ -48,7 +48,7 @@ void testWalkerChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
     Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 8, 2);
 
-    Obstacle obstacle;
+    Obstacle obstacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
     map.add_obstacle(&obstacle, 5, 5);
 
     Walker walker(5 * MOVEMENTS_PER_CELL,6 * MOVEMENTS_PER_CELL, WALKER_SPEED);
@@ -72,7 +72,7 @@ void testWalkerChaseSoldierdiagonallyUpAndLeftWithObstacle() {
     Soldier soldier(scout, map, 1 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 1, 2);
 
-    Obstacle osbtacle;
+    Obstacle osbtacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
     Walker walker(5 * MOVEMENTS_PER_CELL,6 * MOVEMENTS_PER_CELL, WALKER_SPEED);
@@ -96,7 +96,7 @@ void testWalkerChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
     Soldier soldier(scout, map, 2 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 2, 2);
 
-    Obstacle osbtacle;
+    Obstacle osbtacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
     Walker walker(5 * MOVEMENTS_PER_CELL,6 * MOVEMENTS_PER_CELL, WALKER_SPEED);
@@ -120,7 +120,7 @@ void testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacle() {
     Soldier soldier(scout, map, 2 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 2, 8);
 
-    Obstacle osbtacle;
+    Obstacle osbtacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
     map.add_obstacle(&osbtacle, 5, 6);
 
     Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL);
@@ -144,7 +144,7 @@ void testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace() {
     Soldier soldier(scout, map, 2 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 2, 8);
 
-    Obstacle osbtacle;
+    Obstacle osbtacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
     Walker walker(5 * MOVEMENTS_PER_CELL,6 * MOVEMENTS_PER_CELL);

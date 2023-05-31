@@ -24,7 +24,7 @@ Soldier *ClearTheZone::create_and_add_soldier(Weapon *weapon) {
     std::vector<std::int16_t> sold_pos;
     map.get_position_for_soldier(sold_pos);
 
-    Soldier* soldier = new Soldier(weapon, map, sold_pos[X_POS], sold_pos[Y_POS]);
+    Soldier* soldier = new Soldier(weapon, map, sold_pos[X_POS], sold_pos[Y_POS], id++);
     bool added = map.add_soldier(soldier,sold_pos[X_POS], sold_pos[Y_POS]);
     if (!added) {
         // throw error
@@ -81,7 +81,7 @@ Zombie* ClearTheZone::create_random_zombie(std::vector<std::int16_t>& zombie_pos
 
     int random_num = dis(gen);
     if (random_num < walkers_probability) {
-        Zombie* walker = new Walker(zombie_pos[X_POS], zombie_pos[Y_POS]);
+        Zombie* walker = new Walker(zombie_pos[X_POS], zombie_pos[Y_POS], id++);
         return walker;
     }
 
