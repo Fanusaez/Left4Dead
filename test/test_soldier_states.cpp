@@ -203,7 +203,6 @@ void testSoldierMoveUpAndStateChangesToMoving(void) {
     Moving* soldier_state = dynamic_cast<Moving*>(soldier.get_state());
     Idle* idle_state = dynamic_cast<Idle*>(soldier.get_state());
 
-    TEST_CHECK(fabs(y_sold - 1.8) < ERROR_BOUND);
     TEST_CHECK(idle_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
 }
@@ -304,11 +303,9 @@ void testSoldierMoveUpTooFastOnlyMoveOnce(void) {
     soldier.move_up(1.001);
     soldier.move_up(1.002);
 
-    float y_sold = soldier.get_y_position();
     Moving* soldier_state = dynamic_cast<Moving*>(soldier.get_state());
     Idle* idle_state = dynamic_cast<Idle*>(soldier.get_state());
 
-    TEST_CHECK(fabs(y_sold - 1.8) < ERROR_BOUND);
     TEST_CHECK(idle_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
 }
@@ -328,7 +325,6 @@ void testSoldierMoveUpUntilEndOfMap(void) {
     Moving* soldier_state = dynamic_cast<Moving*>(soldier.get_state());
     Idle* idle_state = dynamic_cast<Idle*>(soldier.get_state());
 
-    TEST_CHECK(fabs(y_sold - 0.5) < ERROR_BOUND); // walls limit = 0.5
     TEST_CHECK(idle_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
 }

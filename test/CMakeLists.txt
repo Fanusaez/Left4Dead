@@ -364,12 +364,12 @@ set(testTargets
         testMovingSoldierDown
         testMovingSoldierRight
         testMoveSoldierLeft
-        #testMoveMap
-        #testExplosiveGrenade
+        testMoveMap
+        testExplosiveGrenade
         #testChaseSoldierWalking
         #testMapChaseSoldierWalking
         #testChaseSoldierWalkingObstacles
-        #testChangeInStatesSoldier
+        testChangeInStatesSoldier
         #testChangeInStatesZombie
         #testWalkerAttackSoldier
 )
