@@ -13,14 +13,14 @@ public:
 
     Dead(float time_of_death);
 
-    virtual State* update(float time) override;
-    virtual State* shoot(Soldier& soldier, Weapon* weapon, float time) override;
-    virtual State* move(Soldier& soldier, std::int16_t direction, float time) override;
-    virtual State* reload(Weapon* weapon, float time) override;
-    virtual State* being_attacked(float time) override;
-    virtual State* die(float time) override;
-    virtual State* revive(float time) override;
-
+    State* update(float time) override;
+    State* shoot(Soldier& soldier, Weapon* weapon, float time) override;
+    State* move(Soldier& soldier, std::int16_t direction, float time) override;
+    State* reload(Weapon* weapon, float time) override;
+    State* being_attacked(float time) override;
+    State* die(float time) override;
+    State* revive(float time) override;
+    State* throw_explosive_grenade(float time) override;
 
     bool able_to_revive(float time);
 

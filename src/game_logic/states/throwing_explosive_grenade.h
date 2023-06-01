@@ -9,6 +9,7 @@ private:
     float duration_of_throwing_granade = 0.2;
 
 public:
+
     explicit ThrowingExplosiveGrenade(float time);
 
     State* update(float time) override;
@@ -18,7 +19,7 @@ public:
     State* being_attacked(float time) override;
     State* die(float time) override;
     State* revive(float time) override;
-
+    State* throw_explosive_grenade(float time) override;
     bool time_stop_throwing(float time);
 
 };

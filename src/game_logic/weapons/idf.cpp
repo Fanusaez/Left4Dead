@@ -1,5 +1,7 @@
 #include "idf.h"
 #include <cmath>
+#include <iostream>
+
 #define DISTANCE_LONG_RANGE 5
 #define MAG_CAPACITY 50
 #define X_POS 0
@@ -21,18 +23,17 @@ void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t y_sold
 void Idf::throw_explosive_grenade(GameMap& map,
                                   std::int16_t x_matrix_sold,
                                   std::int16_t y_matrix_explosion,
-                                  State* current_state,
+                                  State*& current_state,
                                   float time) {
     if (!time_throw_grenade(time)) return;
     last_thrown_grenade = time;
 
     std::vector<GameObject*> objects;
     map.throw_grenade(objects, x_matrix_sold, y_matrix_explosion);
-    //State* new_state = current_state->throw_exposive_granade(time);
-    //if (new_state != nullptr) {
-       // delete current_state;
-       // current_state = new_state;
- //   }
+    State* new_state = current_state->throw_explosive_grenade(time);
+    if (new_state == nullptr) return;
+    delete current_state;
+    current_state = new_state;
     for (const auto& explosive_object : objects) {
         explosive_object->receive_damage(grenade_damage, time);
     }

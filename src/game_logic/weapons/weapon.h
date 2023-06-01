@@ -4,7 +4,6 @@
 #include <vector>
 #include "../game_object.h"
 #include "../map.h"
-
 class State;
 
 class Weapon {
@@ -17,7 +16,7 @@ virtual void shoot(std::vector<GameObject*>& shooting_objects,
 virtual void throw_explosive_grenade(GameMap& map,
                                      std::int16_t x_matrix_sold,
                                      std::int16_t y_matrix_explosion,
-                                     State* current_state,
+                                     State*& current_state,
                                      float time) = 0;
 virtual void reload() = 0;
 virtual bool isFullyLoaded() = 0;

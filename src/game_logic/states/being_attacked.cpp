@@ -43,6 +43,11 @@ State *BeingAttacked::revive(float time) {
     return nullptr;
 }
 
+State *BeingAttacked::throw_explosive_grenade(float time) {
+    if (!time_to_stop_being_attacked(time)) return nullptr;
+    return new ThrowingExplosiveGrenade(time);
+}
+
 bool BeingAttacked::time_to_stop_being_attacked(float time) {
     return (time - start_time >= time_stop_being_attacked);
 }

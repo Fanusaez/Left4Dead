@@ -23,6 +23,10 @@ State* Dead::shoot(Soldier &soldier, Weapon *weapon, float time) {
     return nullptr;
 }
 
+State *Dead::throw_explosive_grenade(float time) {
+    return nullptr;
+}
+
 State* Dead::die(float time) {
     return nullptr;
 }

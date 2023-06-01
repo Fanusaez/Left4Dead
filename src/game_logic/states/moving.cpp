@@ -61,6 +61,13 @@ State *Moving::revive(float time) {
     return nullptr;
 }
 
+State *Moving::throw_explosive_grenade(float time) {
+    if (time_to_move(time)) {
+        return new ThrowingExplosiveGrenade(time);
+    }
+    return nullptr;
+}
+
 bool Moving::time_to_move(float time) {
     return (time - start_time) >= waiting_time_to_move;
 }

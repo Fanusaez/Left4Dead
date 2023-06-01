@@ -6,6 +6,7 @@
 #include "shooting.h"
 #include "moving.h"
 #include "being_attacked.h"
+#include "throwing_explosive_grenade.h"
 #include "dead.h"
 
 class Idle : public State {
@@ -18,7 +19,7 @@ public:
     State* being_attacked(float time) override;
     State* die(float time) override;
     State* revive(float time) override;
-
+    State* throw_explosive_grenade(float time) override;
 };
 
 #endif  // IDLE_H_

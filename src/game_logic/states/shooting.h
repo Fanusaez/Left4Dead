@@ -19,6 +19,7 @@ public:
     State* being_attacked(float time) override;
     State* die(float time) override;
     State* revive(float time) override;
+    State* throw_explosive_grenade(float time) override;
 
     bool time_to_shoot(float time);
 };

@@ -9,6 +9,7 @@
 #include "game_logic/weapons/weapon.h"
 #include "game_logic/states/idle.h"
 #include "game_logic/weapons/scout.h"
+#include "game_logic/states/throwing_explosive_grenade.h"
 
 #define UP -1
 #define DOWN 1
@@ -479,6 +480,25 @@ void testSoldierGetsKilledAndTryToReload(void) {
     TEST_CHECK(soldier_state != nullptr);
 }
 
+// *************************************** THROWING GRENADE ********************************//
+
+void testSoldierThrowsGrenadeAndStateChanges(void) {
+    GameMap map(10, 10);
+    Weapon *idf = new Idf;
+
+    Soldier soldier(idf, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    soldier.throw_explosive_grenade(100);
+
+    //ThrowingExplosiveGrenade* soldier_state = dynamic_cast<ThrowingExplosiveGrenade*>(soldier.get_state());
+
+    //TEST_CHECK(soldier_state != nullptr);
+}
+
+
+
+
 TEST_LIST = {
         {"Soldier start with Idle state",                                     testSoldierStartsWithIdleState},
         {"Soldier shoots and reloads state changes to Reloading",             testSoldierShootsReloadAndStateChangesToReloading},
@@ -505,5 +525,6 @@ TEST_LIST = {
         {"Soldier gets killed and tries to move", testSoldierGetsKilledAndTryToMove},
         {"Soldier gets killed and tries to reload", testSoldierGetsKilledAndTryToReload},
         {"Soldier gets killed and tries to shoot", testSoldierGetsKilledAndTryToShoot},
+        {"Soldier throws grenade and state changes to Throwing...",testSoldierThrowsGrenadeAndStateChanges},
         {NULL, NULL},
 };

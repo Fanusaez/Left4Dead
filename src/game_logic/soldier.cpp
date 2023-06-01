@@ -76,7 +76,8 @@ void Soldier::throw_explosive_grenade(float time) {
     } else {
         y_grenade_pos += GRANADE_DISTANCE_REACH;
     }
-    weapon->throw_explosive_grenade(map, get_x_matrix_pos(), y_grenade_pos, state, 100);
+
+    weapon->throw_explosive_grenade(map, get_x_matrix_pos(), y_grenade_pos, state, time);
 }
 
 void Soldier::receive_damage(std::uint16_t damage, float time) {

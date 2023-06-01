@@ -1,5 +1,4 @@
 #include "idle.h"
-
 State* Idle::update(float time) {
     return nullptr;
 }
@@ -28,4 +27,8 @@ State *Idle::die(float time) {
 
 State *Idle::revive(float time) {
     return nullptr;
+}
+
+State *Idle::throw_explosive_grenade(float time) {
+    return new ThrowingExplosiveGrenade(time);
 }
