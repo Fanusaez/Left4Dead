@@ -53,8 +53,8 @@ void Soldier::shoot(float time) {
 std::vector<GameObject *> Soldier::get_targets() {
     std::vector<GameObject*> shooting_objects;
     map.shoot(shooting_objects,
-              x_pos / MOVEMENTS_PER_CELL,
-              y_pos / MOVEMENTS_PER_CELL,
+              get_x_matrix_pos(),
+              get_y_matrix_pos(),
               direction);
     return shooting_objects;
 }
@@ -73,7 +73,6 @@ void Soldier::throw_explosive_grenade() {
     // me ahorraria una operacion costosa
 
     std::vector<GameObject*> objects;
-    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
     std::int16_t y_granade_pos = y_pos / MOVEMENTS_PER_CELL;
 
     if (direction == UP) {
@@ -81,7 +80,7 @@ void Soldier::throw_explosive_grenade() {
     } else {
         y_granade_pos += GRANADE_DISTANCE_REACH;
     }
-    map.throw_grenade(objects, x_matrix_pos, y_granade_pos);
+    map.throw_grenade(objects, get_x_matrix_pos(), y_granade_pos);
     weapon->throw_explosive_grenade(objects, 1);
 }
 
@@ -139,10 +138,8 @@ void Soldier::move_up() {
         y_pos -= 1;
         return;
     }
-    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
-    std::int16_t y_matrix_pos = y_pos / MOVEMENTS_PER_CELL;
     std::int16_t new_y_map_pos = -1;
-    map.move_object_up(x_matrix_pos, y_matrix_pos, new_y_map_pos);
+    map.move_object_up(get_x_matrix_pos(), get_y_matrix_pos(), new_y_map_pos);
     if (new_y_map_pos >= 0) {
         y_pos -= 1;
     }
@@ -155,10 +152,8 @@ void Soldier::move_down() {
         y_pos += 1;
         return;
     }
-    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
-    std::int16_t y_matrix_pos = y_pos / MOVEMENTS_PER_CELL;
     std::int16_t new_y_map_pos = -1;
-    map.move_object_down(x_matrix_pos, y_matrix_pos, new_y_map_pos);
+    map.move_object_down(get_x_matrix_pos(), get_y_matrix_pos(), new_y_map_pos);
     if (new_y_map_pos >= 0) {
         y_pos += 1;
     }
@@ -170,10 +165,8 @@ void Soldier::move_right() {
         x_pos += 1;
         return;
     }
-    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
-    std::int16_t y_matrix_pos = y_pos / MOVEMENTS_PER_CELL;
     std::int16_t new_x_map_pos = -1;
-    map.move_object_right(x_matrix_pos, y_matrix_pos, new_x_map_pos);
+    map.move_object_right(get_x_matrix_pos(), get_y_matrix_pos(), new_x_map_pos);
     if (new_x_map_pos >= 0) {
         x_pos += 1;
     }
@@ -186,10 +179,7 @@ void Soldier::move_left() {
         return;
     }
     std::int16_t new_x_map_pos = -1;
-    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
-    std::int16_t y_matrix_pos = y_pos / MOVEMENTS_PER_CELL;
-    map.move_object_left(x_matrix_pos, y_matrix_pos, new_x_map_pos);
-
+    map.move_object_left(get_x_matrix_pos(), get_y_matrix_pos(), new_x_map_pos);
     if (new_x_map_pos >= 0) {
         x_pos -= 1;
     }
@@ -245,6 +235,7 @@ std::int16_t Soldier::get_y_matrix_pos() {
 std::int16_t Soldier::get_x_matrix_pos() {
     return x_pos / MOVEMENTS_PER_CELL;
 }
+
 //************************* Metodo de testeo *********************************************
 
 

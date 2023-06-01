@@ -37,8 +37,8 @@ ZombieState* Walking::chase_soldier(Zombie* zombie, // no ocuopa zombie
     //std::int16_t y_matrix_sold = closest_soldier->get_y_matrix_pos();
     std::int16_t x_sold = closest_soldier->get_x_pos();
     std::int16_t y_sold = closest_soldier->get_y_pos();
-    std::int16_t x_matrix_walker = x_pos / MOVEMENTS_PER_CELL; // deberia ser gameobject para pedirle
-    std::int16_t y_matrix_walker = y_pos / MOVEMENTS_PER_CELL;
+    std::int16_t x_matrix_walker = zombie->get_x_matrix_pos();
+    std::int16_t y_matrix_walker = zombie->get_y_matrix_pos();
 
     bool same_place = true;
     /*

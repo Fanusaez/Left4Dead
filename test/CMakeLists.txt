@@ -348,7 +348,25 @@ add_executable(testChangeInStatesZombie
         ../src/game_logic/zombie_states/zombie_dead.cpp
         ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         )
-
+add_executable(testCollisionSoldier
+        test_collision_soldiers.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/walker.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/weapons/scout.cpp
+        ../src/game_logic/obstacle.cpp
+        ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/reloading.cpp
+        ../src/game_logic/states/shooting.cpp
+        ../src/game_logic/states/moving.cpp
+        ../src/game_logic/states/dead.cpp
+        ../src/game_logic/states/being_attacked.cpp
+        ../src/game_logic/zombie_states/walking.cpp
+        ../src/game_logic/zombie_states/zombie_idle.cpp
+        ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
+        )
 # target_link_libraries(testPrueba PRIVATE myLibrary)
 
 # Despues agregar el target aca y listo
@@ -372,6 +390,7 @@ set(testTargets
         testChangeInStatesSoldier
         testChangeInStatesZombie
         testWalkerAttackSoldier
+        testCollisionSoldier
 )
 
 foreach(target ${testTargets})
