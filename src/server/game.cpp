@@ -11,30 +11,31 @@ Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_
 }
 
 void Game::run(){   
-    //InstructionsDTO instructionDTO = queue_entrante.pop(); //Hasta no recibir
     InstructionsDTO instructionDTO;
+    bool could_pop;
+    double rate = 0.04;
     while (keep_playing)
     {
-        auto t1 = std::chrono::high_resolution_clock::now();
-        double seconds = 0;
-        while(seconds < 0.04){
-            bool could_pop = queue_entrante.try_pop(instructionDTO);
-            if (could_pop) {
-                game_logic.new_instruction(instructionDTO);
-            }
-            auto t2 = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> duration = t2 - t1;
-		    seconds = duration.count();
+        auto t_start = std::chrono::high_resolution_clock::now();
+        could_pop = queue_entrante.try_pop(instructionDTO);
+        int count = 0;
+        while(could_pop){ //Controlar por cantidad y si no pudo popear mas
+            game_logic.new_instruction(instructionDTO);
+            could_pop = queue_entrante.try_pop(instructionDTO);
+            count++;
         }
         game_logic.udpate_game();
         GameDTO game_dto = game_logic.get_game();
-        if (seconds >= 0.04){
-            m.lock();
-            for (const auto &queue : queue_salientes) {
-                queue.second->try_push(game_dto);
-            }
-            m.unlock();
+        m.lock();   
+        for (const auto &queue : queue_salientes) {
+            queue.second->try_push(game_dto);
         }
+        m.unlock();
+        auto t_end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::duration<double>>(t_end - t_start);
+        double sleep_time = rate - duration.count();
+        if (sleep_time > 0)
+            std::this_thread::sleep_for(std::chrono::duration<double>(sleep_time));
     }
 }
 
