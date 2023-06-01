@@ -8,6 +8,8 @@
 #include "game_logic/weapons/weapon.h"
 #define UP -1
 #define DOWN 1
+#define MOVEMENTS_PER_CELL 15
+#define MOV_NEEDED_TO_WALK_ALL_CELL 14
 
 void testSoldierShootsWalkerSameLineUp(void) {
     GameMap map(10, 10);
@@ -16,7 +18,7 @@ void testSoldierShootsWalkerSameLineUp(void) {
     Soldier soldier(idf, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(8,1);
+    Walker walker(8,1, map);
     map.add_zombie(&walker, 8, 1);
 
     soldier.set_direction(UP);
@@ -32,7 +34,7 @@ void testSoldierShootsWalkerSameLineDown(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,8);
+    Walker walker(3,8, map);
     map.add_zombie(&walker, 3, 8);
 
     soldier.set_direction(DOWN);
@@ -48,7 +50,7 @@ void testSoldierShootsWalkerNotSameLineUp(void) {
     Soldier soldier(idf, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(7,1);
+    Walker walker(7,1, map);
     map.add_zombie(&walker, 7, 1);
 
     soldier.set_direction(UP);
@@ -64,7 +66,7 @@ void testSoldierShootsWalkerNotSameLineDown(void) {
     Soldier soldier(idf, map, 8, 1);
     map.add_soldier(&soldier, 8, 1);
 
-    Walker walker(7,9);
+    Walker walker(7,9, map);
     map.add_zombie(&walker, 7, 9);
 
     soldier.set_direction(DOWN);
@@ -84,10 +86,10 @@ void testSoldierShootsOnly1WalkerOutOf2AimingUp(){
     Soldier soldier(idf, map, 7, 7);
     map.add_soldier(&soldier, 7, 7);
 
-    Walker walker1(6,3);
+    Walker walker1(6,3, map);
     map.add_zombie(&walker1, 6, 3);
 
-    Walker walker2(8,3);
+    Walker walker2(8,3, map);
     map.add_zombie(&walker2, 8, 3);
 
     soldier.set_direction(UP);
@@ -105,7 +107,7 @@ void testSoldierShootsAndMissWalkerOutOfRangeUp(void) {
     Soldier soldier(idf, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(6,1);
+    Walker walker(6,1, map);
     map.add_zombie(&walker, 6, 1);
 
     soldier.set_direction(UP);
@@ -121,7 +123,7 @@ void testSoldierShootsAndMissWalkerOutOfRangeDown(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(5,8);
+    Walker walker(5,8, map);
     map.add_zombie(&walker, 5, 8);
 
     soldier.set_direction(DOWN);
@@ -137,7 +139,7 @@ void testSoldierShootsAndMissAimingDownTurnedAroundToWalker(void) {
     Soldier soldier(idf, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(8,1);
+    Walker walker(8,1, map);
     map.add_zombie(&walker, 8, 1);
 
     soldier.set_direction(DOWN);
@@ -153,7 +155,7 @@ void testSoldierShootsAndMissAimingUpTurnedAroundToWalker(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,8);
+    Walker walker(3,8, map);
     map.add_zombie(&walker, 3, 8);
 
     soldier.set_direction(UP);

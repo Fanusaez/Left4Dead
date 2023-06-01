@@ -20,10 +20,10 @@ void testSoldierShootsScoutWith2WalkersInLineDown(void) {
     Soldier soldier(scout, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker1(3,8);
+    Walker walker1(3,8, map);
     map.add_zombie(&walker1, 3, 8);
 
-    Walker walker2(3,9);
+    Walker walker2(3,9, map);
     map.add_zombie(&walker2, 3, 9);
 
     soldier.set_direction(DOWN);
@@ -41,13 +41,13 @@ void testSoldierShootsScoutWith3WalkersInLineDown(void) {
     Soldier soldier(scout, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker1(4,7);
+    Walker walker1(4,7, map);
     map.add_zombie(&walker1, 4, 7);
 
-    Walker walker2(4,8);
+    Walker walker2(4,8, map);
     map.add_zombie(&walker2, 4, 8);
 
-    Walker walker3(4,9);
+    Walker walker3(4,9, map);
     map.add_zombie(&walker3, 4, 9);
 
     soldier.set_direction(DOWN);
@@ -67,10 +67,10 @@ void testSoldierShootsScoutWith2WalkersInLineUp(void) {
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    Walker walker2(3,0);
+    Walker walker2(3,0, map);
     map.add_zombie(&walker2, 3, 0);
 
-    Walker walker1(3,1);
+    Walker walker1(3,1, map);
     map.add_zombie(&walker1, 3, 1);
 
     soldier.set_direction(UP);
@@ -88,13 +88,13 @@ void testSoldierShootsScoutWith3WalkersInLineUp(void) {
     Soldier soldier(scout, map, 2, 8);
     map.add_soldier(&soldier, 2, 8);
 
-    Walker walker3(3,0);
+    Walker walker3(3,0, map);
     map.add_zombie(&walker3, 3, 0);
 
-    Walker walker2(3,1);
+    Walker walker2(3,1, map);
     map.add_zombie(&walker2, 3, 1);
 
-    Walker walker1(3,2);
+    Walker walker1(3,2, map);
     map.add_zombie(&walker1, 3, 2);
 
     soldier.set_direction(UP);

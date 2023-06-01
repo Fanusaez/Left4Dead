@@ -21,13 +21,13 @@ void testWalkerChaseSoldierdiagonallyUpAndRightWithObstacle() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 8, 2);
     map.add_soldier(&soldier, 8, 2);
 
-    Obstacle obstacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
+    Obstacle obstacle(5, 5, 0);
     map.add_obstacle(&obstacle, 5, 5);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,6 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5,6, map);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) {
@@ -45,13 +45,13 @@ void testWalkerChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 8 , 2 );
     map.add_soldier(&soldier, 8, 2);
 
-    Obstacle obstacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
+    Obstacle obstacle(5 , 5 , 0);
     map.add_obstacle(&obstacle, 5, 5);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,6 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,6 , map);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < 100; i++) {
@@ -69,13 +69,13 @@ void testWalkerChaseSoldierdiagonallyUpAndLeftWithObstacle() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 1 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 1, 2);
     map.add_soldier(&soldier, 1, 2);
 
-    Obstacle osbtacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
+    Obstacle osbtacle(5, 5, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,6 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5,6, map);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) { // enough to encounter the soldier face to face
@@ -93,13 +93,13 @@ void testWalkerChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 2 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Obstacle osbtacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
+    Obstacle osbtacle(5, 5, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,6 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5,6, map);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < 100; i++) { // enough to encounter the soldier face to face
@@ -117,13 +117,13 @@ void testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacle() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 2 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 2, 8);
     map.add_soldier(&soldier, 2, 8);
 
-    Obstacle osbtacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
+    Obstacle osbtacle(5, 5, 0);
     map.add_obstacle(&osbtacle, 5, 6);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) { // enough to encounter the soldier face to face
@@ -141,13 +141,13 @@ void testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 2 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 2, 8);
     map.add_soldier(&soldier, 2, 8);
 
-    Obstacle osbtacle(5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL, 0);
+    Obstacle osbtacle(5, 5, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,6 * MOVEMENTS_PER_CELL);
+    Walker walker(5,6, map);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < 140; i++) { // enough to encounter the soldier face to face

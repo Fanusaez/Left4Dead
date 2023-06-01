@@ -13,7 +13,6 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-#define WALKER_SPEED 0.3
 #define WALKER_SPEED 1
 #define MOVEMENTS_PER_CELL 15
 #define MOV_NEEDED_TO_WALK_ALL_CELL 14
@@ -26,7 +25,7 @@ void testWalkertriesToAttackSoldierButOutOfRange() {
     Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 8, 2);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -42,10 +41,10 @@ void testWalkertriesToAttackSoldierButOutOfRange2() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 7 * MOVEMENTS_PER_CELL, 4 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 7 , 4 );
     map.add_soldier(&soldier, 7, 4);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -61,10 +60,10 @@ void testWalkertriesToAttackSoldierButOutOfRange3() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, 4 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 3 , 4 );
     map.add_soldier(&soldier, 3, 4);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -80,10 +79,10 @@ void testWalkertriesToAttackSoldierButOutOfRange4() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 7 * MOVEMENTS_PER_CELL, 6 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 7 , 6 );
     map.add_soldier(&soldier, 7, 6);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -99,10 +98,10 @@ void testWalkertriesToAttackSoldierButOutOfRange5() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, 6 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 3 , 6 );
     map.add_soldier(&soldier, 3, 6);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -120,10 +119,10 @@ void testWalkerDamagesSoldier() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 6 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 5 , 6 );
     map.add_soldier(&soldier, 5, 6);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -139,10 +138,10 @@ void testWalkerDamagesSoldier2() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 4 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 5 , 4 );
     map.add_soldier(&soldier, 5, 4);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -158,10 +157,10 @@ void testWalkerDamagesSoldier3() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 4 * MOVEMENTS_PER_CELL, 4 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 4 , 4 );
     map.add_soldier(&soldier, 4, 4);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -177,10 +176,10 @@ void testWalkerDamagesSoldier4() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 6 * MOVEMENTS_PER_CELL, 4 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 6 , 4 );
     map.add_soldier(&soldier, 6, 4);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face

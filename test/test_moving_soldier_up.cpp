@@ -21,25 +21,25 @@ void testMoveSoldierUp(){
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3, 8);
-    map.add_soldier(&soldier, 0, 0);
+    map.add_soldier(&soldier, 3, 8);
 
     soldier.move_up();
 
     std::int16_t x_pos = soldier.get_x_position();
     std::int16_t y_pos = soldier.get_y_position();
 
-    TEST_CHECK(x_pos == 3);
-    TEST_CHECK(y_pos == 7);
+    TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
+    TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
 }
 
 void testNotMoveSoldierUp(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, (3 * MOVEMENTS_PER_CELL), (8 * MOVEMENTS_PER_CELL));
+    Soldier soldier(scout, map, (3), (8));
     map.add_soldier(&soldier, 3, 8);
 
-    Walker walker(3 ,7);
+    Walker walker(3 ,7, map);
     map.add_zombie(&walker, 3, 7);
 
     for (float i = 0; i < 20; i++){
@@ -57,10 +57,10 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    Walker walker(4,7);
+    Walker walker(4,7, map);
     map.add_zombie(&walker, 4, 7);
 
     for (float i = 0; i < 20; i++){
@@ -78,10 +78,10 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie2(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    Walker walker(2,7);
+    Walker walker(2,7, map);
     map.add_zombie(&walker, 2, 7);
 
     for (float i = 0; i < 20; i++){
@@ -99,7 +99,7 @@ void testMoveSoldierUpUntilEndOfTheMap(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 3, 2);
     map.add_soldier(&soldier, 3, 2);
 
     for (float i = 0; i < 1000; i++) {
@@ -117,16 +117,16 @@ void testMoveSoldierUpUntilEndOfTheMap2(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 9 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    for (float i = 0; i < 1000; i++) {
+    for (int i = 0; i < 1000; i++) {
         soldier.move_up();
     }
 
     std::int16_t x_pos = soldier.get_x_position();
     std::int16_t y_pos = soldier.get_y_position();
-
+    std::cout << y_pos;
     TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 0);
 }

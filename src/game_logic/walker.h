@@ -7,6 +7,8 @@
 #include "zombie.h"
 #include "zombie_states/zombie_idle.h"
 
+#define MOVEMENTS_PER_CELL 15
+
 class Walker : public GameObject, public Zombie {
  private:
     std::int16_t health = 100;
@@ -17,12 +19,13 @@ class Walker : public GameObject, public Zombie {
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;
     const std::int16_t id;
+    GameMap& map;
 
 GameObject* get_closest_soldier(std::vector<GameObject*> soldiers);
 std::int16_t get_distance_to_soldier(GameObject* soldier);
  public:
-Walker(std::int16_t x_pos, std::int16_t y_pos);
-Walker(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id);
+Walker(std::int16_t x_pos, std::int16_t y_pos, GameMap& map);
+Walker(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
 
 void receive_damage(std::uint16_t damage, float time) override;
 
@@ -31,10 +34,10 @@ bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t y_start,
                            std::int16_t y_finish) override;
 
-void chase_closest_soldier(GameMap& map, std::vector<GameObject*> soldiers, float time) override;
+void chase_closest_soldier(std::vector<GameObject*> soldiers, float time) override;
 void set_direction(std::int16_t direction) override;
 void get_position(std::vector<float>& pos) override;
-void attack(GameMap& map, std::vector<GameObject*> soldiers, float time) override;
+void attack(std::vector<GameObject*> soldiers, float time) override;
 
 bool in_range_of_attack(GameObject* object);
 

@@ -20,7 +20,7 @@ void testSoldierShootsIdfCloseRangeUp(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,2);
+    Walker walker(3,2, map);
     map.add_zombie(&walker, 3, 2);
 
     soldier.set_direction(UP);
@@ -36,7 +36,7 @@ void testSoldierShootsIdfCloseRangeDown(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,7);
+    Walker walker(3,7,map);
     map.add_zombie(&walker, 3, 7);
 
     soldier.set_direction(DOWN);
@@ -52,7 +52,7 @@ void testSoldierShootsIdfCloseRangeUpNotSameLine(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(2,2);
+    Walker walker(2,2,map);
     map.add_zombie(&walker, 2, 2);
 
     soldier.set_direction(UP);
@@ -68,7 +68,7 @@ void testSoldierShootsIdfCloseRangeDownNotSameLine(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(4,7);
+    Walker walker(4,7,map);
     map.add_zombie(&walker, 4, 7);
 
     soldier.set_direction(DOWN);
@@ -84,7 +84,7 @@ void testSoldierShootsIdfLongRangeUp(void) {
     Soldier soldier(idf, map, 3, 5);
     map.add_soldier(&soldier, 3, 5);
 
-    Walker walker(3,0);
+    Walker walker(3,0,map);
     map.add_zombie(&walker, 3, 0);
 
     soldier.set_direction(UP);
@@ -100,7 +100,7 @@ void testSoldierShootsIdfLongRangeDown(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,8);
+    Walker walker(3,8,map);
     map.add_zombie(&walker, 3, 8);
 
     soldier.set_direction(DOWN);
@@ -116,7 +116,7 @@ void testSoldierShootsIdfLongRangeUpNotSameLine(void) {
     Soldier soldier(idf, map, 3, 6);
     map.add_soldier(&soldier, 3, 6);
 
-    Walker walker(2,1);
+    Walker walker(2,1,map);
     map.add_zombie(&walker, 2, 1);
 
     soldier.set_direction(UP);
@@ -132,7 +132,7 @@ void testSoldierShootsIdfLongRangeDownNotSameLine(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(4,8);
+    Walker walker(4,8,map);
     map.add_zombie(&walker, 4, 8);
 
     soldier.set_direction(DOWN);
@@ -148,10 +148,10 @@ void testSoldierShootsIdfWith2WalkersInLine(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker1(4,8);
+    Walker walker1(4,8, map);
     map.add_zombie(&walker1, 4, 8);
 
-    Walker walker2(4,9);
+    Walker walker2(4,9, map);
     map.add_zombie(&walker2, 4, 9);
 
     soldier.set_direction(DOWN);

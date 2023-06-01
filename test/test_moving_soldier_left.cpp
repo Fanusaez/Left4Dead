@@ -22,22 +22,22 @@ void testMoveSoldierLeft(){
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3, 8);
-    map.add_soldier(&soldier, 0, 0);
+    map.add_soldier(&soldier, 3, 8);
 
     soldier.move_left();
 
     std::int16_t x_pos = soldier.get_x_position();
     std::int16_t y_pos = soldier.get_y_position();
 
-    TEST_CHECK(x_pos == 2);
-    TEST_CHECK(y_pos == 8);
+    TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL);
 }
 
 void testMoveSoldierLeftBeginningOfMap() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 1 * MOVEMENTS_PER_CELL, 3 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 1, 3);
     map.add_soldier(&soldier, 1, 3);
 
     for (float i = 0; i < 20; i++){
@@ -55,10 +55,10 @@ void testNotMoveSoldierLeftForCollisionWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, 7 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 3, 7);
     map.add_soldier(&soldier, 3, 7);
 
-    Walker walker(1 * MOVEMENTS_PER_CELL,7 * MOVEMENTS_PER_CELL);
+    Walker walker(1,7, map);
     map.add_zombie(&walker, 1, 7);
 
     for (float i = 0; i < 20; i++){
@@ -77,7 +77,7 @@ void testMoveSoldierLeftAllTheWay(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 5, 5);
     map.add_soldier(&soldier, 5, 5);
 
     for (int i = 0; i < 100; i++) {

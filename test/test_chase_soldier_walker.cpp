@@ -25,7 +25,7 @@ void testChaseWalkerDiagonallyUpAndRight() {
     Soldier soldier(scout, map, 8, 2);
     map.add_soldier(&soldier, 8, 2);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -47,10 +47,10 @@ void testChaseWalkerDiagonallyUpAndRightFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 8, 2);
      bool added_soldier = map.add_soldier(&soldier, 8, 2);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5,5, map);
      bool added_walker = map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 1000; i++) { // enough to encounter the soldier face to face
@@ -73,7 +73,7 @@ void testChaseWalkerDiagonallyUpAndLeft() {
     Soldier soldier(scout, map, 1, 3);
     map.add_soldier(&soldier, 1, 3);
 
-    Walker walker(5,5, WALKER_SPEED);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -89,10 +89,10 @@ void testChaseWalkerDiagonallyUpAndLeftFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 1 * MOVEMENTS_PER_CELL, 3 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 1 , 3 );
     map.add_soldier(&soldier, 1, 3);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,7 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,7 , map);
     map.add_zombie(&walker, 5, 7);
 
     for (int i = 0; i < 500; i++) { // enough to encounter the soldier face to face en 5 parara
@@ -113,7 +113,7 @@ void testChaseWalkerDiagonallyDownAndRight() {
     Soldier soldier(scout, map, 8, 8);
     map.add_soldier(&soldier, 8, 8);
 
-    Walker walker(5,5, WALKER_SPEED);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -129,10 +129,10 @@ void testChaseWalkerDiagonallyDownAndRightFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 8, 8);
     map.add_soldier(&soldier, 8, 8);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 100; i++) { // enough to encounter the soldier face to face en 5 parara
@@ -153,7 +153,7 @@ void testChaseWalkerDiagonallyDownAndLeft() {
     Soldier soldier(scout, map, 2, 8);
     map.add_soldier(&soldier, 2, 8);
 
-    Walker walker(5,5, WALKER_SPEED);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -169,10 +169,10 @@ void testChaseWalkerDiagonallyDownAndLeftFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 2 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 2 , 8 );
     map.add_soldier(&soldier, 2, 8);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 100; i++) { // enough to encounter the soldier face to face en 5 parara
@@ -192,10 +192,10 @@ void testChaseWalkerUp() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 5 , 5 );
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,8 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,8 , map);
     map.add_zombie(&walker, 5, 8);
 
     map.chase_soldiers(1);
@@ -211,10 +211,10 @@ void testChaseWalkerUpFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 5 , 5 );
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,8 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,8 , map);
     map.add_zombie(&walker, 5, 8);
 
     for (int i = 0; i < 105; i++) { // enough to encounter the soldier face to face en 5 parara
@@ -231,10 +231,10 @@ void testChaseWalkerDown() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 5 , 5 );
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,1 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,1 , map);
     map.add_zombie(&walker, 5, 1);
 
     map.chase_soldiers(1);
@@ -250,10 +250,10 @@ void testChaseWalkerDownFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 5 , 5 );
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,1 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(5 ,1 , map);
     map.add_zombie(&walker, 5, 1);
 
     for (int i = 0; i < 105; i++) { // enough to encounter the soldier face to face en 5 parara
@@ -273,10 +273,10 @@ void testChaseWalkerRight() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 5 , 5 );
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(2 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(2 ,5 , map);
     map.add_zombie(&walker, 2, 5);
 
     map.chase_soldiers(1);
@@ -292,10 +292,10 @@ void testChaseWalkerRightSideToSide() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 8 , 5 );
     map.add_soldier(&soldier, 8, 5);
 
-    Walker walker(2 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(2 ,5 , map);
     map.add_zombie(&walker, 2, 5);
 
     for (int i = 0; i < 100; i++) { // enough to encounter the soldier face to face en 5 parara
@@ -313,10 +313,10 @@ void testChaseWalkerLeft() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 5 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 5 , 5 );
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(8 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(8 ,5 , map);
     map.add_zombie(&walker, 8, 5);
 
     map.chase_soldiers(1);
@@ -332,10 +332,10 @@ void testChaseWalkerLeftSideToSide() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 1 * MOVEMENTS_PER_CELL, 5 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 1 , 5 );
     map.add_soldier(&soldier, 1, 5);
 
-    Walker walker(8 * MOVEMENTS_PER_CELL,5 * MOVEMENTS_PER_CELL, WALKER_SPEED);
+    Walker walker(8 ,5 , map);
     map.add_zombie(&walker, 8, 5);
 
     for (int i = 0; i < 100; i++) { // enough to encounter the soldier face to face en 5 parara

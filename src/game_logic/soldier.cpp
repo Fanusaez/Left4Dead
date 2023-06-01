@@ -18,9 +18,9 @@ Soldier::Soldier(Weapon* weapon,
                  std::int16_t y_pos) :
         weapon(weapon),
         map(map),
-        x_pos(x_pos),
-        y_pos(y_pos),
-        id(id) {}
+        x_pos(x_pos * MOVEMENTS_PER_CELL),
+        y_pos(y_pos * MOVEMENTS_PER_CELL),
+        id(0) {}
 
 Soldier::Soldier(Weapon* weapon,
                  GameMap& map,
@@ -29,8 +29,8 @@ Soldier::Soldier(Weapon* weapon,
                  std::int16_t id) :
         weapon(weapon),
         map(map),
-        x_pos(x_pos),
-        y_pos(y_pos),
+        x_pos(x_pos * MOVEMENTS_PER_CELL),
+        y_pos(y_pos * MOVEMENTS_PER_CELL),
         id(id) {}
 
 void Soldier::update(float time) {
@@ -53,8 +53,8 @@ void Soldier::shoot(float time) {
 std::vector<GameObject *> Soldier::get_targets() {
     std::vector<GameObject*> shooting_objects;
     map.shoot(shooting_objects,
-              x_pos,
-              y_pos,
+              x_pos / MOVEMENTS_PER_CELL,
+              y_pos / MOVEMENTS_PER_CELL,
               direction);
     return shooting_objects;
 }
@@ -73,15 +73,15 @@ void Soldier::throw_explosive_grenade() {
     // me ahorraria una operacion costosa
 
     std::vector<GameObject*> objects;
-    std::int16_t y_granade_pos = y_pos;
+    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
+    std::int16_t y_granade_pos = y_pos / MOVEMENTS_PER_CELL;
 
     if (direction == UP) {
          y_granade_pos -= GRANADE_DISTANCE_REACH;
     } else {
         y_granade_pos += GRANADE_DISTANCE_REACH;
     }
-
-    map.throw_grenade(objects, x_pos, y_granade_pos);
+    map.throw_grenade(objects, x_matrix_pos, y_granade_pos);
     weapon->throw_explosive_grenade(objects, 1);
 }
 
@@ -207,7 +207,9 @@ bool Soldier::in_range_of_explosion(std::int16_t x_start,
                                    std::int16_t x_finish,
                                    std::int16_t y_start,
                                    std::int16_t y_finish) {
-    return (x_start <= x_pos && x_pos <= x_finish && y_start <= y_pos && y_pos <= y_finish);
+    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
+    std::int16_t y_matrix_pos = y_pos / MOVEMENTS_PER_CELL;
+    return (x_start <= x_matrix_pos && x_matrix_pos <= x_finish && y_start <= y_matrix_pos && y_matrix_pos <= y_finish);
 }
 
 void Soldier::get_position(std::vector<float> &pos) {
@@ -240,6 +242,14 @@ std::int16_t Soldier::get_y_position() {
 
 std::int16_t Soldier::get_x_position() {
     return x_pos;
+}
+
+std::int16_t Soldier::get_y_matrix_position() {
+    return y_pos / MOVEMENTS_PER_CELL;
+}
+
+std::int16_t Soldier::get_x_matrix_position() {
+    return x_pos / MOVEMENTS_PER_CELL;
 }
 
 std::int16_t Soldier::get_direction() {

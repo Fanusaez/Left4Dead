@@ -22,7 +22,7 @@ void testWalkerStartsWithIdleState(void) {
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     ZombieIdle* walker_state = dynamic_cast<ZombieIdle*>(walker.get_state());
@@ -39,7 +39,7 @@ void testWalkerChaseAndStateChangesToWalking(void) {
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -57,7 +57,7 @@ void testWalkerChaseTwiceTooFastAndmoves1Time(void) {
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -79,7 +79,7 @@ void testWalkerChaseTwiceAndmoves2Times(void) {
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -100,7 +100,7 @@ void testWalkerAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierY
     Soldier soldier(scout, map, 5, 6);
     map.add_soldier(&soldier, 5, 6);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.attack_soldiers(1);
@@ -122,7 +122,7 @@ void testWalkerAttacks2TimesToFastOnlyAttacksOnce(void) {
     Soldier soldier(scout, map, 5, 6);
     map.add_soldier(&soldier, 5, 6);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.attack_soldiers(1);
@@ -140,7 +140,7 @@ void testWalkerAttacks2Times(void) {
     Soldier soldier(scout, map, 5, 6);
     map.add_soldier(&soldier, 5, 6);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.attack_soldiers(1);
@@ -162,7 +162,7 @@ void testWalkerGetsAttacked(void) {
     map.add_soldier(&soldier, 5, 6);
     soldier.set_direction(UP);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     soldier.shoot(1);
@@ -183,7 +183,7 @@ void testWalkerWalkingAndGetsAttacked(void) {
     map.add_soldier(&soldier, 5, 6);
     soldier.set_direction(UP);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
     map.chase_soldiers(1);
 
@@ -206,7 +206,7 @@ void testWalkergetsShotAndDie(void) {
     map.add_soldier(&soldier, 5, 6);
     soldier.set_direction(UP);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
     map.chase_soldiers(1);
 
@@ -236,7 +236,7 @@ void testWalkergetsShotWhileAttacking(void) {
     map.add_soldier(&soldier2, 6, 6);
     soldier2.set_direction(UP);
 
-    Walker walker(5,5);
+    Walker walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
     map.attack_soldiers(1);
 

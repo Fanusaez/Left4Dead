@@ -7,6 +7,7 @@
 #include "weapons/weapon.h"
 #include "states/idle.h"
 
+#define MOVEMENTS_PER_CELL 15
 #define DOWN 1
 #define UP -1
 
@@ -67,6 +68,8 @@ void set_direction(std::int16_t direction) override;
 std::int16_t get_direction();
 std::int16_t get_y_position();
 std::int16_t get_x_position();
+std::int16_t get_y_matrix_position();
+std::int16_t get_x_matrix_position();
 std::int16_t get_health();
 State* get_state();
 

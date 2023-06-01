@@ -338,7 +338,7 @@ void testSoldierStartsIdleAndIsAttacked(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3);
+    Walker walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     map.attack_soldiers(1);
@@ -358,7 +358,7 @@ void testSoldierShootingAndIsAttacked(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3);
+    Walker walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     soldier.shoot(0);
@@ -380,7 +380,7 @@ void testSoldierReloadingAndIsAttacked(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3);
+    Walker walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     soldier.shoot(0);
@@ -407,7 +407,7 @@ void testSoldierGetsKilledAndStateChanges(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3);
+    Walker walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -426,7 +426,7 @@ void testSoldierGetsKilledAndTryToMove(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3);
+    Walker walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -446,7 +446,7 @@ void testSoldierGetsKilledAndTryToShoot(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3);
+    Walker walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -466,7 +466,7 @@ void testSoldierGetsKilledAndTryToReload(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3);
+    Walker walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {

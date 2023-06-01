@@ -21,7 +21,7 @@ void testMoveSoldierRight(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
     soldier.move_right();
@@ -37,7 +37,7 @@ void testMoveSoldierRightEndOfMap() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, (MAP_SIZE_X - 2) * MOVEMENTS_PER_CELL, 3 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, (MAP_SIZE_X - 2), 3);
     map.add_soldier(&soldier, MAP_SIZE_X - 2, 3);
 
     for (float i = 0; i < 15; i++){
@@ -56,10 +56,10 @@ void testNotMoveSoldierRightForCollisionWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, 7 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 3, 7);
     map.add_soldier(&soldier, 3, 7);
 
-    Walker walker(5 * MOVEMENTS_PER_CELL,7 * MOVEMENTS_PER_CELL);
+    Walker walker(5,7, map);
     map.add_zombie(&walker, 5, 7);
 
     for (float i = 0; i < 100; i++){
@@ -78,10 +78,10 @@ void testMoveSoldierRightWithZombieClose() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3 * MOVEMENTS_PER_CELL, 8 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    Walker walker(4 * MOVEMENTS_PER_CELL,9 * MOVEMENTS_PER_CELL);
+    Walker walker(4,9, map);
     map.add_zombie(&walker, 4, 9);
 
     for (int i = 0; i < 150; i++){

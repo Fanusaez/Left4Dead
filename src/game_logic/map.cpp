@@ -258,13 +258,13 @@ void GameMap::move_object_diagonally(std::int16_t& x_old_pos,
 
 void GameMap::chase_soldiers(float time) {
     for (Zombie* zombie : zombies) {
-        zombie->chase_closest_soldier(*this, soldiers, time);
+        zombie->chase_closest_soldier(soldiers, time);
     }
 }
 
 void GameMap::attack_soldiers(float time) {
     for (Zombie* zombie : zombies) {
-        zombie->attack(*this, soldiers, time);
+        zombie->attack(soldiers, time);
     }
 }
 
