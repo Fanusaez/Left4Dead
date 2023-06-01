@@ -27,8 +27,8 @@ void testMoveSoldierDown(){
         soldier.move_down();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == 3*MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == (9*MOVEMENTS_PER_CELL - 1));
@@ -45,8 +45,8 @@ void testMoveSoldierDownAtTheEndDoesNotMove() {
         soldier.move_down();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == (10 * MOVEMENTS_PER_CELL) - 1);
@@ -66,8 +66,8 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie() {
         soldier.move_down();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
@@ -87,8 +87,8 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
         soldier.move_down();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
@@ -108,8 +108,8 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
         soldier.move_down();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
@@ -126,8 +126,8 @@ void testMoveSoldierDownUntilTheEnd() {
         soldier.move_down();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 9 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
@@ -144,8 +144,8 @@ void testMoveSoldierDownUntilTheEnd2() {
         soldier.move_down(i);
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == 0 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 9 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);

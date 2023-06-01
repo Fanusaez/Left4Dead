@@ -25,8 +25,8 @@ void testMoveSoldierUp(){
 
     soldier.move_up();
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
@@ -46,8 +46,8 @@ void testNotMoveSoldierUp(){
         soldier.move_up();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == (3 * MOVEMENTS_PER_CELL));
     TEST_CHECK(y_pos == (8 * MOVEMENTS_PER_CELL));
@@ -67,8 +67,8 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
         soldier.move_up();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == (3 * MOVEMENTS_PER_CELL));
     TEST_CHECK(y_pos == (8 * MOVEMENTS_PER_CELL));
@@ -88,8 +88,8 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie2(){
         soldier.move_up();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == (3 * MOVEMENTS_PER_CELL));
     TEST_CHECK(y_pos == (8 * MOVEMENTS_PER_CELL));
@@ -106,8 +106,8 @@ void testMoveSoldierUpUntilEndOfTheMap(){
         soldier.move_up();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 0);
@@ -124,8 +124,8 @@ void testMoveSoldierUpUntilEndOfTheMap2(){
         soldier.move_up();
     }
 
-    std::int16_t x_pos = soldier.get_x_position();
-    std::int16_t y_pos = soldier.get_y_position();
+    std::int16_t x_pos = soldier.get_x_pos();
+    std::int16_t y_pos = soldier.get_y_pos();
     std::cout << y_pos;
     TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 0);

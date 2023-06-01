@@ -33,12 +33,11 @@ ZombieState* Walking::chase_soldier(Zombie* zombie, // no ocuopa zombie
         return nullptr;
     }
 
-    std::vector<float> sold_pos;
-
-    closest_soldier->get_position(sold_pos);
-    std::int16_t x_matrix_sold = sold_pos[X_POS] / MOVEMENTS_PER_CELL;
-    std::int16_t y_matrix_sold = sold_pos[Y_POS] / MOVEMENTS_PER_CELL;
-    std::int16_t x_matrix_walker = x_pos / MOVEMENTS_PER_CELL;
+    //std::int16_t x_matrix_sold = closest_soldier->get_x_matrix_pos();
+    //std::int16_t y_matrix_sold = closest_soldier->get_y_matrix_pos();
+    std::int16_t x_sold = closest_soldier->get_x_pos();
+    std::int16_t y_sold = closest_soldier->get_y_pos();
+    std::int16_t x_matrix_walker = x_pos / MOVEMENTS_PER_CELL; // deberia ser gameobject para pedirle
     std::int16_t y_matrix_walker = y_pos / MOVEMENTS_PER_CELL;
 
     bool same_place = true;
@@ -49,7 +48,7 @@ ZombieState* Walking::chase_soldier(Zombie* zombie, // no ocuopa zombie
      * Se van a alinear totalmente. Esto puede traer problemas al querer estar ajustando
      * el movimiento y pasar a atacar despues (creo). Por ahora pongo que se align totalmente
      */
-    if (sold_pos[X_POS] < x_pos && same_place) { // movimiento para izquierda
+    if (x_sold < x_pos && same_place) { // movimiento para izquierda
         //if (x_pos <= WALLS_LIMITS) return nullptr; por ahora no hay walls limit
         if ((x_pos % MOVEMENTS_PER_CELL) != 0) {
             x_pos -= walker_speed;
@@ -60,7 +59,7 @@ ZombieState* Walking::chase_soldier(Zombie* zombie, // no ocuopa zombie
             same_place = false;
             x_pos -= walker_speed;
         }
-    } else if (sold_pos[X_POS] > x_pos && same_place) { // movimiento para derecha
+    } else if (x_sold > x_pos && same_place) { // movimiento para derecha
         std::int16_t x_new = x_pos + walker_speed;
         if ((x_new % MOVEMENTS_PER_CELL) != 0) {
             x_pos += walker_speed;
@@ -73,7 +72,7 @@ ZombieState* Walking::chase_soldier(Zombie* zombie, // no ocuopa zombie
             x_pos += walker_speed;
         }
     }
-    if (sold_pos[Y_POS] > y_pos && same_place) { // movimiento para abajo
+    if (y_sold > y_pos && same_place) { // movimiento para abajo
         std::int16_t y_new = y_pos + walker_speed;
         if ((y_new % MOVEMENTS_PER_CELL) != 0) {
             y_pos += walker_speed;
@@ -84,7 +83,7 @@ ZombieState* Walking::chase_soldier(Zombie* zombie, // no ocuopa zombie
             same_place = false;
             y_pos += walker_speed;
         }
-    } else if (sold_pos[Y_POS] < y_pos && same_place) { // movimiento para arriba
+    } else if (y_sold < y_pos && same_place) { // movimiento para arriba
         //if (y_pos <= WALLS_LIMITS) return nullptr;
         if ((y_pos % MOVEMENTS_PER_CELL) != 0) {
             y_pos -= walker_speed;

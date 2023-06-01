@@ -30,8 +30,8 @@ void testChaseWalkerDiagonallyUpAndRight() {
 
     map.chase_soldiers(1);
 
-    float x_pos_walk = walker.get_x();
-    float y_pos_walk = walker.get_y();
+    float x_pos_walk = walker.get_x_pos();
+    float y_pos_walk = walker.get_y_pos();
     const float epsilon = 0.001; // Valor de tolerancia
 
     float received_numered_x = x_pos_walk;
@@ -57,8 +57,8 @@ void testChaseWalkerDiagonallyUpAndRightFaceToFace() {
         map.chase_soldiers(i);
     }
 
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 3 * MOVEMENTS_PER_CELL);
@@ -78,8 +78,8 @@ void testChaseWalkerDiagonallyUpAndLeft() {
 
     map.chase_soldiers(1);
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    std::int16_t x_pos_walk = walker.get_x_pos();
+    std::int16_t y_pos_walk = walker.get_y_pos();
 
     TEST_CHECK(x_pos_walk == 4);
     TEST_CHECK(y_pos_walk == 4);
@@ -99,8 +99,8 @@ void testChaseWalkerDiagonallyUpAndLeftFaceToFace() {
         map.chase_soldiers(i);
     }
 
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 1 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 4 * MOVEMENTS_PER_CELL);
@@ -118,8 +118,8 @@ void testChaseWalkerDiagonallyDownAndRight() {
 
     map.chase_soldiers(1);
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    std::int16_t x_pos_walk = walker.get_x_pos();
+    std::int16_t y_pos_walk = walker.get_y_pos();
 
     TEST_CHECK(x_pos_walk == 6);
     TEST_CHECK(y_pos_walk == 6);
@@ -139,8 +139,8 @@ void testChaseWalkerDiagonallyDownAndRightFaceToFace() {
         map.chase_soldiers(i);
     }
 
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
@@ -158,8 +158,8 @@ void testChaseWalkerDiagonallyDownAndLeft() {
 
     map.chase_soldiers(1);
 
-    std::int16_t x_pos_walk = walker.get_x();
-    std::int16_t y_pos_walk = walker.get_y();
+    std::int16_t x_pos_walk = walker.get_x_pos();
+    std::int16_t y_pos_walk = walker.get_y_pos();
 
     TEST_CHECK(x_pos_walk == 4);
     TEST_CHECK(y_pos_walk == 6);
@@ -179,8 +179,8 @@ void testChaseWalkerDiagonallyDownAndLeftFaceToFace() {
         map.chase_soldiers(i);
     }
 
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
@@ -200,8 +200,8 @@ void testChaseWalkerUp() {
 
     map.chase_soldiers(1);
 
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL - 1);
@@ -220,8 +220,8 @@ void testChaseWalkerUpFaceToFace() {
     for (int i = 0; i < 105; i++) { // enough to encounter the soldier face to face en 5 parara
         map.chase_soldiers(i);
     }
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 6 * MOVEMENTS_PER_CELL);
@@ -239,8 +239,8 @@ void testChaseWalkerDown() {
 
     map.chase_soldiers(1);
 
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 1 * MOVEMENTS_PER_CELL + 1);
@@ -260,8 +260,8 @@ void testChaseWalkerDownFaceToFace() {
         map.chase_soldiers(i);
     }
 
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 4 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
@@ -281,8 +281,8 @@ void testChaseWalkerRight() {
 
     map.chase_soldiers(1);
 
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL + 1);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
@@ -301,8 +301,8 @@ void testChaseWalkerRightSideToSide() {
     for (int i = 0; i < 100; i++) { // enough to encounter the soldier face to face en 5 parara
         map.chase_soldiers(i);
     }
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 6 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
@@ -321,8 +321,8 @@ void testChaseWalkerLeft() {
 
     map.chase_soldiers(1);
 
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL - 1);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
@@ -341,8 +341,8 @@ void testChaseWalkerLeftSideToSide() {
     for (int i = 0; i < 100; i++) { // enough to encounter the soldier face to face en 5 parara
         map.chase_soldiers(i);
     }
-    std::int16_t x_pos = walker.get_x();
-    std::int16_t y_pos = walker.get_y();
+    std::int16_t x_pos = walker.get_x_pos();
+    std::int16_t y_pos = walker.get_y_pos();
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);

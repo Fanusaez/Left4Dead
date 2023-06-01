@@ -61,12 +61,12 @@ void testWalkerChaseTwiceTooFastAndmoves1Time(void) {
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
-    float x_pos1 = walker.get_x();
-    float y_pos1 = walker.get_y();
+    float x_pos1 = walker.get_x_pos();
+    float y_pos1 = walker.get_y_pos();
 
     map.chase_soldiers(1.01);
-    float x_pos2 = walker.get_x();
-    float y_pos2 = walker.get_y();
+    float x_pos2 = walker.get_x_pos();
+    float y_pos2 = walker.get_y_pos();
 
     TEST_ASSERT(x_pos1 == x_pos2);
     TEST_ASSERT(y_pos1 == y_pos2);
@@ -83,10 +83,10 @@ void testWalkerChaseTwiceAndmoves2Times(void) {
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
-    float x_pos1 = walker.get_x();
+    float x_pos1 = walker.get_x_pos();
 
     map.chase_soldiers(3);
-    float x_pos2 = walker.get_x();
+    float x_pos2 = walker.get_x_pos();
 
     TEST_CHECK(x_pos1 != x_pos2);
 }

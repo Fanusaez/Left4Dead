@@ -36,7 +36,6 @@ bool in_range_of_explosion(std::int16_t x_start,
 
 void chase_closest_soldier(std::vector<GameObject*> soldiers, float time) override;
 void set_direction(std::int16_t direction) override;
-void get_position(std::vector<float>& pos) override;
 void attack(std::vector<GameObject*> soldiers, float time) override;
 
 bool in_range_of_attack(GameObject* object);
@@ -44,12 +43,16 @@ bool in_range_of_attack(GameObject* object);
 void die(float time);
 
 std::int16_t get_id() override;
+
+std::int16_t get_y_pos() override;
+std::int16_t get_x_pos() override;
+std::int16_t get_y_matrix_pos() override;
+std::int16_t get_x_matrix_pos() override;
+
 ~Walker();
 
 // ************************* Metodos de testeo ************************************************8//
 std::int16_t get_health();
-float get_x();
-float get_y();
 ZombieState* get_state() override;
 };
 

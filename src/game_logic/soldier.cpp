@@ -212,11 +212,6 @@ bool Soldier::in_range_of_explosion(std::int16_t x_start,
     return (x_start <= x_matrix_pos && x_matrix_pos <= x_finish && y_start <= y_matrix_pos && y_matrix_pos <= y_finish);
 }
 
-void Soldier::get_position(std::vector<float> &pos) {
-    pos.push_back(x_pos);
-    pos.push_back(y_pos);
-}
-
 void Soldier::die(float time) {
     dead = true;
     State* new_state = state->die(time);
@@ -234,23 +229,25 @@ Soldier::~Soldier(){
     delete weapon;
     delete state;
 }
-//************************* Metodo de testeo *********************************************
 
-std::int16_t Soldier::get_y_position() {
+std::int16_t Soldier::get_y_pos() {
     return y_pos;
 }
 
-std::int16_t Soldier::get_x_position() {
+std::int16_t Soldier::get_x_pos() {
     return x_pos;
 }
 
-std::int16_t Soldier::get_y_matrix_position() {
+std::int16_t Soldier::get_y_matrix_pos() {
     return y_pos / MOVEMENTS_PER_CELL;
 }
 
-std::int16_t Soldier::get_x_matrix_position() {
+std::int16_t Soldier::get_x_matrix_pos() {
     return x_pos / MOVEMENTS_PER_CELL;
 }
+//************************* Metodo de testeo *********************************************
+
+
 
 std::int16_t Soldier::get_direction() {
     return direction;

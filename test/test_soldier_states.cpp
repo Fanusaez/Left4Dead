@@ -199,7 +199,7 @@ void testSoldierMoveUpAndStateChangesToMoving(void) {
 
     soldier.move_up(1);
 
-    float y_sold = soldier.get_y_position();
+    float y_sold = soldier.get_y_pos();
     Moving* soldier_state = dynamic_cast<Moving*>(soldier.get_state());
     Idle* idle_state = dynamic_cast<Idle*>(soldier.get_state());
 
@@ -321,7 +321,7 @@ void testSoldierMoveUpUntilEndOfMap(void) {
         soldier.move_up(i); // me muevo cada 1 seg
     }
 
-    float y_sold = soldier.get_y_position();
+    float y_sold = soldier.get_y_pos();
     Moving* soldier_state = dynamic_cast<Moving*>(soldier.get_state());
     Idle* idle_state = dynamic_cast<Idle*>(soldier.get_state());
 

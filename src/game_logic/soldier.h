@@ -54,22 +54,22 @@ bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t y_start,
                            std::int16_t y_finish) override;
 
-void get_position(std::vector<float>& pos) override;
 
 std::int16_t get_id() override;
 std::vector<GameObject*> get_targets();
 
 void set_idle();
 
+std::int16_t get_y_pos() override;
+std::int16_t get_x_pos() override;
+std::int16_t get_y_matrix_pos() override;
+std::int16_t get_x_matrix_pos() override;
+
 ~Soldier();
 
 //******************************* Metodos de testeo ***************************************************
 void set_direction(std::int16_t direction) override;
 std::int16_t get_direction();
-std::int16_t get_y_position();
-std::int16_t get_x_position();
-std::int16_t get_y_matrix_position();
-std::int16_t get_x_matrix_position();
 std::int16_t get_health();
 State* get_state();
 

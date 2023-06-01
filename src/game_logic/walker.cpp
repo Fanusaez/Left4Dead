@@ -72,23 +72,17 @@ GameObject* Walker::get_closest_soldier(std::vector<GameObject*> soldiers) {
 }
 
 std::int16_t Walker::get_distance_to_soldier(GameObject* soldier) {
-    std::vector<float> sold_pos;
-    soldier->get_position(sold_pos);
 
-    std::int16_t x_matrix_sold = sold_pos[0] / MOVEMENTS_PER_CELL;
-    std::int16_t y_matrix_sold = sold_pos[1] / MOVEMENTS_PER_CELL;
-    std::int16_t x_matrix_walker = x_pos / MOVEMENTS_PER_CELL;
-    std::int16_t y_matrix_walker = y_pos / MOVEMENTS_PER_CELL;
+    std::int16_t x_matrix_sold = soldier->get_x_matrix_pos();
+    std::int16_t y_matrix_sold = soldier->get_y_matrix_pos();
+    std::int16_t x_matrix_walker = get_x_matrix_pos();
+    std::int16_t y_matrix_walker = get_y_matrix_pos();
 
     std::int16_t x_distance = x_matrix_sold - x_matrix_walker;
     std::int16_t y_distance = y_matrix_sold - y_matrix_walker;
     return std::sqrt(x_distance * x_distance + y_distance * y_distance);
 }
 
-void Walker::get_position(std::vector<float>& pos) { // esto hay que cambiar
-    pos.push_back(x_pos / MOVEMENTS_PER_CELL);
-    pos.push_back(y_pos/ MOVEMENTS_PER_CELL);
-}
 
 void Walker::set_direction(std::int16_t direction_to_set) {
     if (direction_to_set == UP){
@@ -114,7 +108,7 @@ void Walker::attack(std::vector<GameObject *> soldiers, float time) {
 // creo que no sirve
 bool Walker::in_range_of_attack(GameObject *object) {
     std::vector<float> sold_pos;
-    object->get_position(sold_pos);
+    //object->get_position(sold_pos);
     std::int16_t y_dist = abs(floor(sold_pos[1]) - floor(y_pos));
     std::int16_t x_dist = abs(floor(sold_pos[0]) - floor(x_pos));
     return (x_dist <= 1 && y_dist == 1);
@@ -133,6 +127,22 @@ std::int16_t Walker::get_id() {
     return id;
 }
 
+std::int16_t Walker::get_y_pos() {
+    return y_pos;
+}
+
+std::int16_t Walker::get_x_pos() {
+    return x_pos;
+}
+
+std::int16_t Walker::get_y_matrix_pos() {
+    return y_pos / MOVEMENTS_PER_CELL;
+}
+
+std::int16_t Walker::get_x_matrix_pos() {
+    return x_pos / MOVEMENTS_PER_CELL;
+}
+
 Walker::~Walker() {
     delete state;
 }
@@ -141,13 +151,6 @@ Walker::~Walker() {
 
 std::int16_t Walker::get_health() {
     return health;
-}
-
-float Walker::get_x() {
-    return x_pos;
-}
-float Walker::get_y() {
-    return y_pos;
 }
 
 ZombieState* Walker::get_state() {
