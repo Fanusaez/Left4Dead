@@ -60,7 +60,7 @@ void testSoldierThrowsExplosiveGrenadeUpAndDamages5Zombies(void) {
     Walker walker5(x_limit_damage_right,y_limit_damage_down, map);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
-    soldier.throw_explosive_grenade();
+    soldier.throw_explosive_grenade(100);
 
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
@@ -112,7 +112,7 @@ void testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies(void) {
     Walker walker5(x_limit_damage_right + 1,y_limit_damage_down, map);
     map.add_zombie(&walker5, x_limit_damage_right + 1,y_limit_damage_down);
 
-    soldier.throw_explosive_grenade();
+    soldier.throw_explosive_grenade(100);
 
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
@@ -169,7 +169,7 @@ void testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies2(void) {
     Walker walker5(x_limit_damage_right,y_limit_damage_down + 1, map);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down + 1);
 
-    soldier.throw_explosive_grenade();
+    soldier.throw_explosive_grenade(100);
 
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
@@ -204,7 +204,7 @@ void testSoldierThrowsExplosiveGrenadeToOtherSoldier(void) {
     map.add_soldier(&soldier2, x_explosion,y_explosion);
 
     soldier1.set_direction(UP);
-    soldier1.throw_explosive_grenade();
+    soldier1.throw_explosive_grenade(100);
 
     std::int16_t remaining_health1 = soldier1.get_health();
     std::int16_t remaining_health2 = soldier2.get_health();
@@ -250,7 +250,7 @@ void testSoldierThrowsExplosiveGrenadeDownAndDamages5Zombies(void) {
     Walker walker5(x_limit_damage_right,y_limit_damage_down, map);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
-    soldier.throw_explosive_grenade();
+    soldier.throw_explosive_grenade(100);
 
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();

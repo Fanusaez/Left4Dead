@@ -68,20 +68,15 @@ void Soldier::reload(float time) {
     }
 }
 
-void Soldier::throw_explosive_grenade() {
-    // deberia verificar que no tenga una p90, pq sino estaria haciendo laburar al programa al pedo
-    // me ahorraria una operacion costosa
-
-    std::vector<GameObject*> objects;
-    std::int16_t y_granade_pos = y_pos / MOVEMENTS_PER_CELL;
+void Soldier::throw_explosive_grenade(float time) {
+    std::int16_t y_grenade_pos = y_pos / MOVEMENTS_PER_CELL;
 
     if (direction == UP) {
-         y_granade_pos -= GRANADE_DISTANCE_REACH;
+         y_grenade_pos -= GRANADE_DISTANCE_REACH;
     } else {
-        y_granade_pos += GRANADE_DISTANCE_REACH;
+        y_grenade_pos += GRANADE_DISTANCE_REACH;
     }
-    map.throw_grenade(objects, get_x_matrix_pos(), y_granade_pos);
-    weapon->throw_explosive_grenade(objects, 1);
+    weapon->throw_explosive_grenade(map, get_x_matrix_pos(), y_grenade_pos, state, 100);
 }
 
 void Soldier::receive_damage(std::uint16_t damage, float time) {

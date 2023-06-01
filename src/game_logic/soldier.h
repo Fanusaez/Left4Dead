@@ -35,7 +35,7 @@ Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos, st
 void update(float time);
 void reload(float time);
 void shoot(float time);
-void throw_explosive_grenade();
+void throw_explosive_grenade(float time);
 
 void move_up(float time);
 void move_down(float time);
