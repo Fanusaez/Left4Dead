@@ -105,17 +105,9 @@ void Walker::attack(std::vector<GameObject *> soldiers, float time) {
     }
 }
 
-// creo que no sirve
-bool Walker::in_range_of_attack(GameObject *object) {
-    std::vector<float> sold_pos;
-    //object->get_position(sold_pos);
-    std::int16_t y_dist = abs(floor(sold_pos[1]) - floor(y_pos));
-    std::int16_t x_dist = abs(floor(sold_pos[0]) - floor(x_pos));
-    return (x_dist <= 1 && y_dist == 1);
-}
-
 void Walker::die(float time) {
     dead = true;
+    map.free_entire_position(get_x_matrix_pos(), get_y_matrix_pos());
     ZombieState* new_state = state->die(time);
     if (new_state != nullptr) {
         delete state;

@@ -30,7 +30,6 @@ void get_objects_in_distance(std::int16_t x_grenade_pos,
 
 void validate_position_for_explosion(std::int16_t& x_pos, std::int16_t& y_pos); // para granada, cambiar nombre, confunde
 
-bool check_entire_free_pos(std::int16_t x_pos, std::int16_t y_pos);
 
 public:
 GameMap(std::uint16_t x_size, std::uint16_t y_size);
@@ -123,7 +122,8 @@ void get_position_for_object(std::vector<std::int16_t>& valid_pos);
 void get_position_for_soldier(std::vector<std::int16_t>& valid_pos);
 bool add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
 bool add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
-
+void free_entire_position(std::int16_t x_pos, std::int16_t y_pos);
+bool check_entire_free_pos(std::int16_t x_pos, std::int16_t y_pos);
 // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);

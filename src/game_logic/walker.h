@@ -38,8 +38,6 @@ void chase_closest_soldier(std::vector<GameObject*> soldiers, float time) overri
 void set_direction(std::int16_t direction) override;
 void attack(std::vector<GameObject*> soldiers, float time) override;
 
-bool in_range_of_attack(GameObject* object);
-
 void die(float time);
 
 std::int16_t get_id() override;

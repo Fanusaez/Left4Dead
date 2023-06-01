@@ -314,6 +314,10 @@ bool GameMap::valid_entire_object_position(std::int16_t x_pos, std::int16_t y_po
 
 // Deberia tener solo un add object y listo;
 
+void GameMap::free_entire_position(std::int16_t x_pos, std::int16_t y_pos) {
+    map[y_pos][x_pos] = nullptr;
+    map[y_pos][x_pos + 1] = nullptr;
+}
 
 // ****************************** Metodos de Testeo ***********************************//
 
