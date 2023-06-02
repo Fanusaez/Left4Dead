@@ -9,9 +9,10 @@
 class Idf : public Weapon {
  private:
     std::int16_t bullets = 50;
-    std::int16_t close_range_damage = 30;
-    std::int16_t long_range_damage = 15;
-    std::int16_t grenade_damage = 40;
+    const std::int16_t mag_capacity = 50;
+    const std::int16_t close_range_damage = 30;
+    const std::int16_t long_range_damage = 15;
+    const std::int16_t grenade_damage = 40;
     float time_to_throw_grenade = 30;
     float last_thrown_grenade = 0;
 

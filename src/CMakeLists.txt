@@ -83,6 +83,7 @@ if(SERVER)
 		./game_logic/states/throwing_explosive_grenade.cpp
 		./game_logic/weapons/idf.cpp
 		./game_logic/weapons/scout.cpp
+		./game_logic/weapons/p90.cpp
 		./game_logic/weapons/weapon.h
 		./game_logic/zombie_states/attacking.cpp
 		./game_logic/zombie_states/walking.cpp

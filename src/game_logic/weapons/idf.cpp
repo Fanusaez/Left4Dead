@@ -3,7 +3,6 @@
 #include <iostream>
 
 #define DISTANCE_LONG_RANGE 5
-#define MAG_CAPACITY 50
 #define X_POS 0
 #define Y_POS 1
 
@@ -40,11 +39,11 @@ void Idf::throw_explosive_grenade(GameMap& map,
 }
 
 void Idf::reload() {
-    bullets = 50;
+    bullets = mag_capacity;
 }
 
 bool Idf::isFullyLoaded() {
-    return bullets == MAG_CAPACITY;
+    return bullets == mag_capacity;
 }
 
 bool Idf::empty() {

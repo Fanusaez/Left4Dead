@@ -1,5 +1,4 @@
 #include "scout.h"
-#define MAG_CAPACITY 20
 
 void Scout::shoot(std::vector<GameObject *> &shooting_objects, std::uint16_t y_pos_sold, float time) {
     if (bullets <= 0) return;
@@ -22,11 +21,11 @@ void Scout::throw_explosive_grenade(GameMap& map,
 
     std::vector<GameObject*> objects;
     map.throw_grenade(objects, x_matrix_sold, y_matrix_explosion);
-    //State* new_state = current_state->throw_exposive_granade(time);
-    //if (new_state != nullptr) {
-    // delete current_state;
-    // current_state = new_state;
-    //   }
+    State* new_state = current_state->throw_explosive_grenade(time);
+    if (new_state != nullptr) {
+        delete current_state;
+        current_state = new_state;
+    }
     for (const auto& explosive_object : objects) {
         explosive_object->receive_damage(grenade_damage, time);
     }
@@ -37,11 +36,11 @@ bool Scout::time_throw_grenade(float time) {
 }
 
 void Scout::reload() {
-    bullets = MAG_CAPACITY;
+    bullets = mag_capacity;
 }
 
 bool Scout::isFullyLoaded() {
-    return bullets == MAG_CAPACITY;
+    return bullets == mag_capacity;
 }
 
 bool Scout::empty() {

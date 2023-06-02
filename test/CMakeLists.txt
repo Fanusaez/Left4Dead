@@ -330,6 +330,7 @@ add_executable(testChangeInStatesSoldier
         ../src/game_logic/map.cpp
         ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/weapons/idf.cpp
+        ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/zombie_states/walking.cpp

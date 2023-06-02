@@ -6,6 +6,7 @@
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/idf.h"
+#include "game_logic/weapons/p90.h"
 #include "game_logic/weapons/weapon.h"
 #include "game_logic/states/idle.h"
 #include "game_logic/weapons/scout.h"
@@ -13,7 +14,7 @@
 
 #define UP -1
 #define DOWN 1
-#define SOLDIER_SPEED 0.2
+#define DAMAGE_GRENADE 40
 #define ERROR_BOUND 0.0001
 
 void testSoldierStartsWithIdleState(void) {
@@ -491,14 +492,57 @@ void testSoldierThrowsGrenadeAndStateChanges(void) {
 
     soldier.throw_explosive_grenade(100);
 
-    //ThrowingExplosiveGrenade* soldier_state = dynamic_cast<ThrowingExplosiveGrenade*>(soldier.get_state());
+    ThrowingExplosiveGrenade* soldier_state = dynamic_cast<ThrowingExplosiveGrenade*>(soldier.get_state());
 
-    //TEST_CHECK(soldier_state != nullptr);
+    TEST_CHECK(soldier_state != nullptr);
 }
 
+void testSoldierThrowsGrenadeAndTenSecondsPasses(void) {
+    GameMap map(10, 10);
+    Weapon *idf = new Idf;
 
+    Soldier soldier(idf, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
 
+    soldier.throw_explosive_grenade(100);
+    soldier.update(110);
 
+    Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
+
+    TEST_CHECK(soldier_state != nullptr);
+}
+
+void testSoldierThrows2GrenadeOnly1IsThrown(void) {
+    GameMap map(10, 10);
+    Weapon *idf = new Scout;
+
+    Soldier soldier(idf, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+    soldier.set_direction(DOWN);
+
+    Walker walker(2, 6, map);
+    map.add_zombie(&walker, 2, 6);
+
+    soldier.throw_explosive_grenade(100);
+    soldier.throw_explosive_grenade(101);
+
+    std::int16_t walker_health = walker.get_health();
+    TEST_CHECK(walker_health == 100 - DAMAGE_GRENADE);
+}
+
+void testSoldierThrowsGrenadeWithP90AndStateNotChanges(void) {
+    GameMap map(10, 10);
+    Weapon *p90 = new P90;
+
+    Soldier soldier(p90, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    soldier.throw_explosive_grenade(100);
+
+    Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
+
+    TEST_CHECK(soldier_state != nullptr);
+}
 TEST_LIST = {
         {"Soldier start with Idle state",                                     testSoldierStartsWithIdleState},
         {"Soldier shoots and reloads state changes to Reloading",             testSoldierShootsReloadAndStateChangesToReloading},
@@ -526,5 +570,8 @@ TEST_LIST = {
         {"Soldier gets killed and tries to reload", testSoldierGetsKilledAndTryToReload},
         {"Soldier gets killed and tries to shoot", testSoldierGetsKilledAndTryToShoot},
         {"Soldier throws grenade and state changes to Throwing...",testSoldierThrowsGrenadeAndStateChanges},
+        {"Soldier throws grenade time passes and state change to idle", testSoldierThrowsGrenadeAndTenSecondsPasses},
+        {"Soldier tries to throw 2 grenade, only 1 succeed", testSoldierThrows2GrenadeOnly1IsThrown},
+        {"Soldier tries throwing grenade with p90, not happening", testSoldierThrowsGrenadeWithP90AndStateNotChanges},
         {NULL, NULL},
 };
