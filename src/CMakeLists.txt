@@ -90,15 +90,15 @@ if(SERVER)
 		./game_logic/zombie_states/walking.cpp
 		./game_logic/zombie_states/zombie_being_attacked.cpp
 		./game_logic/zombie_states/zombie_dead.cpp
+		./game_logic/zombie_states/chasing_states/chase_walking.cpp
 		./game_logic/zombie_states/zombie_idle.cpp
 		./game_logic/zombie_states/zombie_state.h
 		./game_logic/chaser.cpp
 		./game_logic/map.cpp
 		./game_logic/obstacle.cpp
 		./game_logic/soldier.cpp
-			game_logic/zombies/walker.cpp
-		./game_logic/walking.h
-            game_logic/zombies/zombie.h
+		./game_logic/zombies/walker.cpp
+		./game_logic/zombies/zombie.h
 		./game_logic/clear_the_zone.cpp
 
 	)

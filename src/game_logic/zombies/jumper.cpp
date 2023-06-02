@@ -1,25 +1,16 @@
-#include "walker.h"
-#define INVALID_POSITION -1
+#include "jumper.h"
 #define UP -1
 #define DOWN 1
 #define MAX_DISTANCE 10000
-#define MOVEMENTS_PER_CELL 15
 
-Walker::Walker(std::int16_t x_pos_wal, std::int16_t y_pos_wal, GameMap& map) :
-                x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
-                y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
-                id(0),
-                map(map),
-                chaser(this, map, x_pos, y_pos) {}
-
-Walker::Walker(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
+Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
         y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
         id(id),
         map(map),
         chaser(this, map, x_pos, y_pos) {}
 
-void Walker::receive_damage(std::uint16_t damage, float time) {
+void Jumper::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
     if (health <= 0) {
         die(time);
@@ -32,7 +23,7 @@ void Walker::receive_damage(std::uint16_t damage, float time) {
     }
 }
 
-bool Walker::in_range_of_explosion(std::int16_t x_start,
+bool Jumper::in_range_of_explosion(std::int16_t x_start,
                                    std::int16_t x_finish,
                                    std::int16_t y_start,
                                    std::int16_t y_finish) {
@@ -41,19 +32,19 @@ bool Walker::in_range_of_explosion(std::int16_t x_start,
     return (x_start <= x_matrix_pos && x_matrix_pos <= x_finish && y_start <= y_matrix_pos && y_matrix_pos <= y_finish);
 }
 
-void Walker::chase_closest_soldier(std::vector<GameObject*> soldiers, float time) {
+void Jumper::chase_closest_soldier(std::vector<GameObject*> soldiers, float time) {
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t x_sold_pos = closest_soldier->get_x_pos();
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
 
-    ZombieState* new_state = chase_state->chase(state, chaser, x_sold_pos, y_sold_pos, time);
+    ZombieState* new_state = state->chase_soldier(chaser, x_sold_pos, y_sold_pos, time);
     if (new_state != nullptr) {
         delete state;
         state = new_state;
     }
 }
 
-GameObject* Walker::get_closest_soldier(std::vector<GameObject*> soldiers) {
+GameObject* Jumper::get_closest_soldier(std::vector<GameObject*> soldiers) {
     GameObject* closest_soldier = nullptr;
     std::int16_t min_distance = MAX_DISTANCE;
 
@@ -67,7 +58,7 @@ GameObject* Walker::get_closest_soldier(std::vector<GameObject*> soldiers) {
     return closest_soldier;
 }
 
-std::int16_t Walker::get_distance_to_soldier(GameObject* soldier) {
+std::int16_t Jumper::get_distance_to_soldier(GameObject* soldier) {
 
     std::int16_t x_matrix_sold = soldier->get_x_matrix_pos();
     std::int16_t y_matrix_sold = soldier->get_y_matrix_pos();
@@ -80,7 +71,7 @@ std::int16_t Walker::get_distance_to_soldier(GameObject* soldier) {
 }
 
 
-void Walker::set_direction(std::int16_t direction_to_set) {
+void Jumper::set_direction(std::int16_t direction_to_set) {
     if (direction_to_set == UP){
         direction = UP;
     } else if (direction_to_set == DOWN ){
@@ -90,7 +81,7 @@ void Walker::set_direction(std::int16_t direction_to_set) {
     }
 }
 
-void Walker::attack(std::vector<GameObject *> soldiers, float time) {
+void Jumper::attack(std::vector<GameObject *> soldiers, float time) {
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
     if (distance > 1) return;
@@ -101,7 +92,7 @@ void Walker::attack(std::vector<GameObject *> soldiers, float time) {
     }
 }
 
-void Walker::die(float time) {
+void Jumper::die(float time) {
     dead = true;
     map.free_entire_position(get_x_matrix_pos(), get_y_matrix_pos());
     ZombieState* new_state = state->die(time);
@@ -111,37 +102,36 @@ void Walker::die(float time) {
     }
 }
 
-std::int16_t Walker::get_id() {
+std::int16_t Jumper::get_id() {
     return id;
 }
 
-std::int16_t Walker::get_y_pos() {
+std::int16_t Jumper::get_y_pos() {
     return y_pos;
 }
 
-std::int16_t Walker::get_x_pos() {
+std::int16_t Jumper::get_x_pos() {
     return x_pos;
 }
 
-std::int16_t Walker::get_y_matrix_pos() {
+std::int16_t Jumper::get_y_matrix_pos() {
     return y_pos / MOVEMENTS_PER_CELL;
 }
 
-std::int16_t Walker::get_x_matrix_pos() {
+std::int16_t Jumper::get_x_matrix_pos() {
     return x_pos / MOVEMENTS_PER_CELL;
 }
 
-Walker::~Walker() {
+Jumper::~Jumper() {
     delete state;
-    delete chase_state;
 }
 
 // ************************* Metodos de testeo ************************************************8//
 
-std::int16_t Walker::get_health() {
+std::int16_t Jumper::get_health() {
     return health;
 }
 
-ZombieState* Walker::get_state() {
+ZombieState* Jumper::get_state() {
     return state;
 }
