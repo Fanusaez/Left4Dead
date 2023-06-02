@@ -5,6 +5,7 @@ PlayerSender::PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, Matc
     keep_talking(keep_talking),queue_sender(10000), player_receiver(socket,match_mananger,keep_talking, player_id),
     match_mananger(match_mananger), server_deserializer(socket), server_serializer(socket), player_id(player_id)
 {
+    queue_receiver = NULL;
     keep_talking = true;
 }
 
@@ -17,7 +18,7 @@ void PlayerSender::run() {
         server_serializer.send_game(game_dto, &was_closed);
     }
     keep_talking = false;
-    //match_mananger->delete_player(player_id);
+    match_mananger->delete_player(player_id);
 }
 
 void PlayerSender::join_player_receiver(){

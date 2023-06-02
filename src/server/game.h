@@ -26,10 +26,10 @@ private:
     // Tengo una referencia  a la queue del sender
     std::map<int,Queue<GameDTO> *> queue_salientes;
 
-    std::atomic<bool> &keep_playing;
+    bool keep_playing;
 
 public:
-    Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name, int *player_id);
+    Game(Queue<GameDTO> *queue_sender, int32_t *code, std::string *game_name, int *player_id);
 
     void run() override;
 
@@ -42,6 +42,8 @@ public:
     bool compare_game_name(std::string *game_name_to_compare);
 
     bool find_player(int* player_id);
+
+    void stop_playing();
 
     bool is_empty();
 };

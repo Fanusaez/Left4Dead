@@ -20,8 +20,6 @@ private:
 
     std::list<Game* > games;
 
-    std::atomic<bool> keep_playing;
-
     Game *game_code_exist(int *codigo);
 
     bool game_name_exist(std::string *escenario);

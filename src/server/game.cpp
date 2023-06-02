@@ -3,8 +3,8 @@
 #include <unistd.h>
 #include <chrono>
 
-Game::Game(Queue<GameDTO> *queue_sender, std::atomic<bool> &keep_playing, int32_t *code, std::string *game_name, int* player_id) : 
-    queue_entrante(10000), keep_playing(keep_playing), code(*code), game_name(*game_name), game_logic()
+Game::Game(Queue<GameDTO> *queue_sender, int32_t *code, std::string *game_name, int* player_id) : 
+    queue_entrante(10000), code(*code), game_name(*game_name), game_logic(), keep_playing(true)
 {
     game_logic.add_soldier(player_id);
     queue_salientes[*player_id] = queue_sender;
@@ -62,6 +62,7 @@ bool Game::find_player(int* player_id){
     for (const auto &queue : queue_salientes){
         if (queue.first == *player_id) {
             queue_salientes.erase(*player_id);
+            game_logic.delete_soldier(player_id);
             return true;    
         }
     }
@@ -74,4 +75,8 @@ bool Game::is_empty(){
         return true;
     }
     return false;
+}
+
+void Game::stop_playing(){
+    keep_playing = false;
 }

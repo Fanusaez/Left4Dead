@@ -10,7 +10,7 @@ MatchMananger::MatchMananger(){
 Queue<InstructionsDTO> *MatchMananger::create_game(Queue<GameDTO> *queue_sender, std::string *escenario, int *player_id)
 {
     if(!game_name_exist(escenario)){   //Si el escenario no existe crearlo
-        Game *new_game = new Game(queue_sender, std::ref(keep_playing),&contador,escenario, player_id);
+        Game *new_game = new Game(queue_sender,&contador,escenario, player_id);
         games.push_back(new_game);
         contador++;
         Queue<InstructionsDTO> *aux = new_game->getQueue();
@@ -18,7 +18,7 @@ Queue<InstructionsDTO> *MatchMananger::create_game(Queue<GameDTO> *queue_sender,
         return (aux);
     }
     else {
-        return NULL;
+        return nullptr;
     }
 }
 
@@ -56,7 +56,7 @@ Queue<InstructionsDTO> *MatchMananger::join(Queue<GameDTO> *queue_sender, int *c
 
 void MatchMananger::joinGames(){
     for (Game *game : games){
-        keep_playing = false;
+        game->stop_playing();
         game->join();
         delete game;
     }
@@ -70,6 +70,8 @@ void MatchMananger::delete_player(int* player_id) {
             if(game->is_empty()){
                 game->join();
                 delete game;
+                games.remove(game);
+                contador--;
             }
             break;
         }
