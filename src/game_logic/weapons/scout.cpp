@@ -16,23 +16,7 @@ void Scout::throw_explosive_grenade(GameMap& map,
                                   std::int16_t y_matrix_explosion,
                                   State*& current_state,
                                   float time) {
-    if (!time_throw_grenade(time)) return;
-    last_thrown_grenade = time;
-
-    std::vector<GameObject*> objects;
-    map.throw_grenade(objects, x_matrix_sold, y_matrix_explosion);
-    State* new_state = current_state->throw_explosive_grenade(time);
-    if (new_state != nullptr) {
-        delete current_state;
-        current_state = new_state;
-    }
-    for (const auto& explosive_object : objects) {
-        explosive_object->receive_damage(grenade_damage, time);
-    }
-}
-
-bool Scout::time_throw_grenade(float time) {
-    return (time - last_thrown_grenade) >= time_to_throw_grenade;
+    explosiveGrenade.throw_grenade(map, x_matrix_sold, y_matrix_explosion, current_state, time);
 }
 
 void Scout::reload() {

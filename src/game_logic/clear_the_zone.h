@@ -6,6 +6,7 @@
 #include "walker.h"
 #include "weapons/idf.h"
 #include "weapons/scout.h"
+#include "weapons/p90.h"
 
 class ClearTheZone {
 

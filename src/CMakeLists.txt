@@ -85,6 +85,7 @@ if(SERVER)
 		./game_logic/weapons/scout.cpp
 		./game_logic/weapons/p90.cpp
 		./game_logic/weapons/weapon.h
+		./game_logic/grenades/explosive_grenade.cpp
 		./game_logic/zombie_states/attacking.cpp
 		./game_logic/zombie_states/walking.cpp
 		./game_logic/zombie_states/zombie_being_attacked.cpp
@@ -98,7 +99,6 @@ if(SERVER)
 		./game_logic/walking.h
 		./game_logic/zombie.h
 		./game_logic/clear_the_zone.cpp
-
 
 	)
 

@@ -39,7 +39,7 @@ void shoot(std::vector<GameObject*>& game_objects,
            std::uint16_t y_pos_sold,
            std::int16_t direction);
 
-void throw_grenade(std::vector<GameObject*>& game_objects,
+void get_objects_in_explosion(std::vector<GameObject*>& game_objects,
            std::uint16_t x_pos_grenade,
            std::uint16_t y_pos_grenade);
 

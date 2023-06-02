@@ -5,6 +5,7 @@
 #include <cstdint>
 #include "weapon.h"
 #include "../states/state.h"
+#include "../grenades/explosive_grenade.h"
 
 class Scout : public Weapon {
  private:
@@ -12,9 +13,7 @@ class Scout : public Weapon {
     const std::uint16_t mag_capacity = 20;
     const std::uint16_t damage = 40;
     const std::uint16_t damage_reduction_hit = 10;
-    const std::int16_t grenade_damage = 40;
-    float time_to_throw_grenade = 30;
-    float last_thrown_grenade = 0;
+    ExplosiveGrenade explosiveGrenade;
 
  public:
 void shoot(std::vector<GameObject*>& shooting_objects,
@@ -30,7 +29,6 @@ void reload() override;
 bool isFullyLoaded() override;
 bool empty() override;
 std::int16_t get_bullets() override;
-bool time_throw_grenade(float time);
 };
 
 #endif  // SCOUT_H_

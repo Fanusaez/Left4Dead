@@ -20,6 +20,11 @@ Soldier *ClearTheZone::get_soldier_with_scout() {
     return create_and_add_soldier(scout);
 }
 
+Soldier *ClearTheZone::get_soldier_with_p90() {
+    Weapon* p90 = new P90();
+    return create_and_add_soldier(p90);
+}
+
 Soldier *ClearTheZone::create_and_add_soldier(Weapon *weapon) {
     std::vector<std::int16_t> sold_pos;
     map.get_position_for_soldier(sold_pos);

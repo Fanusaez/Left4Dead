@@ -24,7 +24,7 @@ void GameMap::shoot(std::vector<GameObject*>& game_objects,
                           direction);
 }
 
-void GameMap::throw_grenade(std::vector<GameObject *> &game_objects,
+void GameMap::get_objects_in_explosion(std::vector<GameObject *> &game_objects,
                             std::uint16_t x_pos_grenade,
                             std::uint16_t y_pos_grenade) {
     if (y_pos_grenade >= y_size) {
