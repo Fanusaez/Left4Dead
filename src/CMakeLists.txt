@@ -87,6 +87,7 @@ if(SERVER)
 		./game_logic/weapons/weapon.h
 		./game_logic/grenades/explosive_grenade.cpp
 		./game_logic/zombie_states/attacking.cpp
+		./game_logic/zombie_states/running.cpp
 		./game_logic/zombie_states/walking.cpp
 		./game_logic/zombie_states/zombie_being_attacked.cpp
 		./game_logic/zombie_states/zombie_dead.cpp

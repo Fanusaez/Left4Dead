@@ -5,6 +5,7 @@
 #include "zombie_dead.h"
 #include "zombie_being_attacked.h"
 #include "../chaser.h"
+#include "running.h"
 
 class Walking : public ZombieState {
 
@@ -21,6 +22,11 @@ Walking(Chaser& chaser,
         float time);
 
 ZombieState* chase_soldier(Chaser& chaser,
+                           std::int16_t x_pos_chase,
+                           std::int16_t y_pos_chase,
+                           float time) override;
+
+ZombieState* chase_soldier_running(Chaser& chaser,
                            std::int16_t x_pos_chase,
                            std::int16_t y_pos_chase,
                            float time) override;
