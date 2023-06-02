@@ -1,10 +1,10 @@
 #ifndef WALKING_H_
 #define WALKING_H_
 
-#include "../map.h"
 #include "attacking.h"
 #include "zombie_dead.h"
 #include "zombie_being_attacked.h"
+#include "../chaser.h"
 
 class Walking : public ZombieState {
 
@@ -12,26 +12,17 @@ private:
     std::int16_t walker_speed = 1;
     float waiting_time_to_walk = 0.2;
     float start_time;
-    std::int16_t& x_pos;
-    std::int16_t& y_pos;
+
 public:
 
-Walking(Zombie* zombie,
-        std::int16_t& x_pos,
-        std::int16_t& y_pos,
-        std::int16_t &x_new_pos,
-        std::int16_t &y_new_pos,
-        GameObject* closest_soldier,
-        GameMap& map,
+Walking(Chaser& chaser,
+        std::int16_t x_pos_chase,
+        std::int16_t y_pos_chase,
         float time);
 
-ZombieState* chase_soldier(Zombie* zombie,
-                           std::int16_t &x_pos,
-                           std::int16_t &y_pos,
-                           std::int16_t &x_new_pos,
-                           std::int16_t &y_new_pos,
-                           GameObject* closest_soldier,
-                           GameMap& map,
+ZombieState* chase_soldier(Chaser& chaser,
+                           std::int16_t x_pos_chase,
+                           std::int16_t y_pos_chase,
                            float time) override;
 
 ZombieState* attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) override;

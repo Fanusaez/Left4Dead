@@ -1,0 +1,10 @@
+#ifndef LEFT4DEAD_SMOKE_GRENADE_H
+#define LEFT4DEAD_SMOKE_GRENADE_H
+
+
+class SmokeGrenade {
+
+};
+
+
+#endif //LEFT4DEAD_SMOKE_GRENADE_H

@@ -5,17 +5,19 @@
 #define MAX_DISTANCE 10000
 #define MOVEMENTS_PER_CELL 15
 
-Walker::Walker(std::int16_t x_pos, std::int16_t y_pos, GameMap& map) :
-                x_pos(x_pos * MOVEMENTS_PER_CELL),
-                y_pos(y_pos * MOVEMENTS_PER_CELL),
+Walker::Walker(std::int16_t x_pos_wal, std::int16_t y_pos_wal, GameMap& map) :
+                x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
+                y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
                 id(0),
-                map(map) {}
+                map(map),
+                chaser(this, map, x_pos, y_pos) {}
 
-Walker::Walker(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map) :
-        x_pos(x_pos * MOVEMENTS_PER_CELL),
-        y_pos(y_pos * MOVEMENTS_PER_CELL),
+Walker::Walker(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
+        x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
+        y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
         id(id),
-        map(map) {}
+        map(map),
+        chaser(this, map, x_pos, y_pos) {}
 
 void Walker::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
@@ -41,19 +43,13 @@ bool Walker::in_range_of_explosion(std::int16_t x_start,
 
 void Walker::chase_closest_soldier(std::vector<GameObject*> soldiers, float time) {
     GameObject* closest_soldier = get_closest_soldier(soldiers);
-    std::int16_t x_new_pos = - 1;
-    std::int16_t y_new_pos = - 1;
-    ZombieState* new_state = state->chase_soldier(this, x_pos, y_pos,x_new_pos, y_new_pos, closest_soldier, map, time);
+    std::int16_t x_sold_pos = closest_soldier->get_x_pos();
+    std::int16_t y_sold_pos = closest_soldier->get_y_pos();
+
+    ZombieState* new_state = state->chase_soldier(chaser, x_sold_pos, y_sold_pos, time);
     if (new_state != nullptr) {
         delete state;
         state = new_state;
-    }
-    if (y_new_pos != INVALID_POSITION) {
-        if (y_new_pos > y_pos) {
-            direction = DOWN;
-        } else if (y_new_pos < y_pos) {
-            direction = UP;
-        }
     }
 }
 

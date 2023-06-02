@@ -14,13 +14,9 @@ private:
 public:
     Attacking(GameObject* closest_soldier, std::int16_t damage, float time);
 
-    ZombieState* chase_soldier(Zombie* zombie,
-                               std::int16_t &x_pos,
-                               std::int16_t &y_pos,
-                               std::int16_t& x_new_pos,
-                               std::int16_t& y_new_pos,
-                               GameObject* closest_soldier,
-                               GameMap& map,
+    ZombieState* chase_soldier(Chaser& chaser,
+                               std::int16_t x_pos_chase,
+                               std::int16_t y_pos_chase,
                                float time) override;
 
     ZombieState* attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) override;

@@ -92,6 +92,7 @@ if(SERVER)
 		./game_logic/zombie_states/zombie_dead.cpp
 		./game_logic/zombie_states/zombie_idle.cpp
 		./game_logic/zombie_states/zombie_state.h
+		./game_logic/chaser.cpp
 		./game_logic/map.cpp
 		./game_logic/obstacle.cpp
 		./game_logic/soldier.cpp

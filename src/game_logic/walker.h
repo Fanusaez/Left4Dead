@@ -6,7 +6,7 @@
 #include "map.h"
 #include "zombie.h"
 #include "zombie_states/zombie_idle.h"
-
+#include "chaser.h"
 #define MOVEMENTS_PER_CELL 15
 
 class Walker : public GameObject, public Zombie {
@@ -20,6 +20,7 @@ class Walker : public GameObject, public Zombie {
     ZombieState* state = new ZombieIdle;
     const std::int16_t id;
     GameMap& map;
+    Chaser chaser;
 
 GameObject* get_closest_soldier(std::vector<GameObject*> soldiers);
 std::int16_t get_distance_to_soldier(GameObject* soldier);
