@@ -2,7 +2,7 @@
 #define MAP_H_
 #include <random>
 #include <vector>
-#include "zombie.h"
+#include "zombies/zombie.h"
 //#include "walker.h"
 class GameMap {
  private:

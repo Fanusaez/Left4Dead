@@ -96,9 +96,9 @@ if(SERVER)
 		./game_logic/map.cpp
 		./game_logic/obstacle.cpp
 		./game_logic/soldier.cpp
-		./game_logic/walker.cpp
+			game_logic/zombies/walker.cpp
 		./game_logic/walking.h
-		./game_logic/zombie.h
+            game_logic/zombies/zombie.h
 		./game_logic/clear_the_zone.cpp
 
 	)

@@ -3,7 +3,7 @@
 
 #include <random>
 #include "soldier.h"
-#include "walker.h"
+#include "zombies/walker.h"
 #include "weapons/idf.h"
 #include "weapons/scout.h"
 #include "weapons/p90.h"

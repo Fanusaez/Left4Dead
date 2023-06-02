@@ -2,7 +2,7 @@
 #define ZOMBIE_H_
 
 #include <vector>
-#include "game_object.h"
+#include "../game_object.h"
 
 class ZombieState;
 

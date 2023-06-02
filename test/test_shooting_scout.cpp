@@ -1,7 +1,7 @@
 #include <cstdint>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/walker.h"
+#include "game_logic/zombies/walker.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/scout.h"

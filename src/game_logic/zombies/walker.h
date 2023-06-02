@@ -3,10 +3,10 @@
 
 #include <complex>
 #include <cstdint>
-#include "map.h"
+#include "../map.h"
 #include "zombie.h"
-#include "zombie_states/zombie_idle.h"
-#include "chaser.h"
+#include "../zombie_states/zombie_idle.h"
+#include "../chaser.h"
 #define MOVEMENTS_PER_CELL 15
 
 class Walker : public GameObject, public Zombie {
