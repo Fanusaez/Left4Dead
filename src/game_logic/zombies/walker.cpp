@@ -145,3 +145,12 @@ std::int16_t Walker::get_health() {
 ZombieState* Walker::get_state() {
     return state;
 }
+
+void Walker::change_chase_state_to_running() {
+    delete chase_state;
+    chase_state = new ChaseRunning;
+}
+
+ChaseState* Walker::get_chasing_state() {
+    return chase_state;
+}

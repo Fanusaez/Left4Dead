@@ -8,6 +8,7 @@
 #include "../zombie_states/zombie_idle.h"
 #include "../chaser.h"
 #include "../zombie_states/chasing_states/chase_walking.h"
+#include "../zombie_states/chasing_states/chase_running.h"
 #define MOVEMENTS_PER_CELL 15
 
 class Walker : public GameObject, public Zombie {
@@ -27,6 +28,7 @@ class Walker : public GameObject, public Zombie {
 
 GameObject* get_closest_soldier(std::vector<GameObject*> soldiers);
 std::int16_t get_distance_to_soldier(GameObject* soldier);
+
  public:
 Walker(std::int16_t x_pos, std::int16_t y_pos, GameMap& map);
 Walker(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
@@ -56,6 +58,8 @@ std::int16_t get_x_matrix_pos() override;
 // ************************* Metodos de testeo ************************************************8//
 std::int16_t get_health();
 ZombieState* get_state() override;
+void change_chase_state_to_running();
+ChaseState* get_chasing_state();
 };
 
 #endif  // WALKER_H_
