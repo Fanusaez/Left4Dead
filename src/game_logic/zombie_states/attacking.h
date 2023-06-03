@@ -30,6 +30,8 @@ public:
 
     ZombieState* die(float time) override;
 
+    ZombieState* get_stunned(float time) override;
+
     void set_speed(float speed) override;
 
     bool time_to_attack(float time);

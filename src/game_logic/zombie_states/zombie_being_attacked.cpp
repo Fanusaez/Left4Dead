@@ -40,6 +40,10 @@ ZombieState *ZombieBeingAttacked::die(float time) {
     return new ZombieDead(time);
 }
 
+ZombieState *ZombieBeingAttacked::get_stunned(float time) {
+    return new Stunned(time);
+}
+
 bool ZombieBeingAttacked::time_to_stop_being_attacked(float time) {
     return (time - start_time >= time_stop_being_attacked);
 }

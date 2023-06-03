@@ -4,6 +4,7 @@
 #include "attacking.h"
 #include "zombie_dead.h"
 #include "zombie_being_attacked.h"
+#include "stunned.h"
 #include "../chaser.h"
 #include "running.h"
 
@@ -12,7 +13,7 @@ class Walking : public ZombieState {
 private:
     std::int16_t walker_speed = 1;
     float waiting_time_to_walk = 0.2;
-    float start_time;
+    float last_time_moved = - 1;
 
 public:
 
@@ -37,7 +38,9 @@ ZombieState* being_attacked(float time) override;
 
 ZombieState* die(float time) override;
 
-bool time_to_walk(float time);
+ZombieState* get_stunned(float time) override;
+
+bool time_to_move(float time);
 
 void set_speed(float speed) override;
 };

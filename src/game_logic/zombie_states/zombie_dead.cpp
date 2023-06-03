@@ -30,6 +30,10 @@ ZombieState *ZombieDead::die(float time) {
     return nullptr;
 }
 
+ZombieState *ZombieDead::get_stunned(float time) {
+    return nullptr;
+}
+
 void ZombieDead::set_speed(float speed) {
 
 }

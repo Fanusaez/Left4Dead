@@ -91,6 +91,7 @@ if(SERVER)
 		./game_logic/zombie_states/walking.cpp
 		./game_logic/zombie_states/zombie_being_attacked.cpp
 		./game_logic/zombie_states/zombie_dead.cpp
+		./game_logic/zombie_states/stunned.cpp
 		./game_logic/zombie_states/chasing_states/chase_walking.cpp
 		./game_logic/zombie_states/chasing_states/chase_running.cpp
 		./game_logic/zombie_states/zombie_idle.cpp

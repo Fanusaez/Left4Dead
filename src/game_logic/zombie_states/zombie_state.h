@@ -27,6 +27,8 @@ virtual ZombieState* being_attacked(float time) = 0;
 
 virtual ZombieState* die(float time) = 0;
 
+virtual ZombieState* get_stunned(float time) = 0;
+
 virtual void set_speed(float speed) = 0;
 };
 #endif  // MOVEMENT_H_

@@ -28,6 +28,10 @@ ZombieState *ZombieIdle::die(float time) {
     return new ZombieDead(time);
 }
 
+ZombieState *ZombieIdle::get_stunned(float time) {
+    return new Stunned(time);
+}
+
 void ZombieIdle::set_speed(float speed) {
 
 }
