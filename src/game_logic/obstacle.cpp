@@ -23,6 +23,10 @@ bool Obstacle::in_range_of_explosion(std::int16_t x_start,
 
 }
 
+void Obstacle::get_stunned(float time) {
+
+}
+
 std::int16_t Obstacle::get_id() {
     return id;
 }

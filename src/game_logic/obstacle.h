@@ -20,6 +20,8 @@ bool in_range_of_explosion(std::int16_t x_start,
                                        std::int16_t y_start,
                                        std::int16_t y_finish) override;
 
+void get_stunned(float time) override;
+
 void set_direction(std::int16_t direction) override;
 
 std::int16_t get_y_pos() override;

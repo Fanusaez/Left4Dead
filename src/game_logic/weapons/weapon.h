@@ -18,6 +18,12 @@ virtual void throw_explosive_grenade(GameMap& map,
                                      std::int16_t y_matrix_explosion,
                                      State*& current_state,
                                      float time) = 0;
+virtual void throw_smoke_grenade(GameMap& map,
+                                     std::int16_t x_matrix_sold,
+                                     std::int16_t y_matrix_explosion,
+                                     State*& current_state,
+                                     float time) = 0;
+
 virtual void reload() = 0;
 virtual bool isFullyLoaded() = 0;
 virtual bool empty() = 0;

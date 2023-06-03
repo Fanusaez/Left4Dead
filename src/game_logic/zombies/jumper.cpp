@@ -32,6 +32,14 @@ bool Jumper::in_range_of_explosion(std::int16_t x_start,
     return (x_start <= x_matrix_pos && x_matrix_pos <= x_finish && y_start <= y_matrix_pos && y_matrix_pos <= y_finish);
 }
 
+void Jumper::get_stunned(float time) {
+    ZombieState* new_state = state->get_stunned(time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
+
 void Jumper::chase_closest_soldier(std::vector<GameObject*> soldiers, float time) {
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t x_sold_pos = closest_soldier->get_x_pos();

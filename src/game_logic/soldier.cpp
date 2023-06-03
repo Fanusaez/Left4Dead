@@ -80,6 +80,18 @@ void Soldier::throw_explosive_grenade(float time) {
     weapon->throw_explosive_grenade(map, get_x_matrix_pos(), y_grenade_pos, state, time);
 }
 
+void Soldier::throw_smoke_grenade(float time) {
+    std::int16_t y_grenade_pos = y_pos / MOVEMENTS_PER_CELL;
+
+    if (direction == UP) {
+        y_grenade_pos -= GRANADE_DISTANCE_REACH;
+    } else {
+        y_grenade_pos += GRANADE_DISTANCE_REACH;
+    }
+
+    weapon->throw_smoke_grenade(map, get_x_matrix_pos(), y_grenade_pos, state, time);
+}
+
 void Soldier::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
     if (health <= 0) {
@@ -92,6 +104,8 @@ void Soldier::receive_damage(std::uint16_t damage, float time) {
         }
     }
 }
+
+void Soldier::get_stunned(float time) {}
 
 void Soldier::move_up(float time) {
     State* new_state = state->move(*this, UP, time);

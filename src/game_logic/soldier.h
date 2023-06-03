@@ -36,7 +36,7 @@ void update(float time);
 void reload(float time);
 void shoot(float time);
 void throw_explosive_grenade(float time);
-
+void throw_smoke_grenade(float time);
 void move_up(float time);
 void move_down(float time);
 void move_right(float time);
@@ -48,6 +48,7 @@ void move_right();
 void move_left();
 
 void receive_damage(std::uint16_t damage, float time) override;
+void get_stunned(float time) override;
 
 bool in_range_of_explosion(std::int16_t x_start,
                            std::int16_t x_finish,

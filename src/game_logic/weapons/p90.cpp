@@ -16,6 +16,12 @@ void P90::throw_explosive_grenade(GameMap& map,
                                   State*& current_state,
                                   float time) {}
 
+void P90::throw_smoke_grenade(GameMap& map,
+                                  std::int16_t x_matrix_sold,
+                                  std::int16_t y_matrix_explosion,
+                                  State*& current_state,
+                                  float time) {}
+
 void P90::reload() {
     bullets = mag_capacity;
 }

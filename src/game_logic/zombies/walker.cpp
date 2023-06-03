@@ -32,6 +32,14 @@ void Walker::receive_damage(std::uint16_t damage, float time) {
     }
 }
 
+void Walker::get_stunned(float time) {
+    ZombieState* new_state = state->get_stunned(time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
+
 bool Walker::in_range_of_explosion(std::int16_t x_start,
                                    std::int16_t x_finish,
                                    std::int16_t y_start,

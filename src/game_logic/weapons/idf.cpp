@@ -27,6 +27,14 @@ void Idf::throw_explosive_grenade(GameMap& map,
     explosive_grenade.throw_grenade(map, x_matrix_sold, y_matrix_explosion, current_state, time);
 }
 
+void Idf::throw_smoke_grenade(GameMap& map,
+                                  std::int16_t x_matrix_sold,
+                                  std::int16_t y_matrix_explosion,
+                                  State*& current_state,
+                                  float time) {
+    smoke_grenade.throw_grenade(map, x_matrix_sold, y_matrix_explosion, current_state, time);
+}
+
 void Idf::reload() {
     bullets = mag_capacity;
 }

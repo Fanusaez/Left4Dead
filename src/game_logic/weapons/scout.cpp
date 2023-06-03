@@ -16,8 +16,17 @@ void Scout::throw_explosive_grenade(GameMap& map,
                                   std::int16_t y_matrix_explosion,
                                   State*& current_state,
                                   float time) {
-    explosiveGrenade.throw_grenade(map, x_matrix_sold, y_matrix_explosion, current_state, time);
+    explosive_grenade.throw_grenade(map, x_matrix_sold, y_matrix_explosion, current_state, time);
 }
+
+void Scout::throw_smoke_grenade(GameMap& map,
+                                    std::int16_t x_matrix_sold,
+                                    std::int16_t y_matrix_explosion,
+                                    State*& current_state,
+                                    float time) {
+    smoke_grenade.throw_grenade(map, x_matrix_sold, y_matrix_explosion, current_state, time);
+}
+
 
 void Scout::reload() {
     bullets = mag_capacity;
