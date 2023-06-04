@@ -30,9 +30,9 @@ int main(int argc, char *argv[])
 	TextureLoader &textureLoader = TextureLoader::getInstance();
 	textureLoader.load(view.getRenderer(), configs.getSpritesToLoad());
 	std::unique_ptr<Scene> scene(new Scene(
-			textureLoader.getTexture("backgrounds/War1/Pale/Full_Sky.png"),
-			textureLoader.getTexture("backgrounds/War1/Pale/Far_Background.png"),
-			textureLoader.getTexture("backgrounds/War1/Pale/Floor.png"))
+			*textureLoader.getTexture("backgrounds/War1/Pale/Full_Sky.png"),
+			*textureLoader.getTexture("backgrounds/War1/Pale/Far_Background.png"),
+			*textureLoader.getTexture("backgrounds/War1/Pale/Floor.png"))
 			);
 	view.setScene(scene);
 

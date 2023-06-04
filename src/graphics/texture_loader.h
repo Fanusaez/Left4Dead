@@ -7,7 +7,7 @@
 #include <map>
 #include <memory>
 
-typedef std::unique_ptr <SDL2pp::Texture> TexturePtr;
+typedef std::shared_ptr <SDL2pp::Texture> TexturePtr;
 
 class TextureLoader {
 	std::map <std::string, TexturePtr> textures;
@@ -23,10 +23,10 @@ public:
 	void load(SDL2pp::Renderer &renderer, const std::list <std::string> &spriteNames);
 
 	/*
-	 * Return a reference to the texture with name spriteName.
+	 * Return a smart pointer to the texture with name spriteName.
 	 * The sprite name should be relative to the assets directory.
 	 */
-	SDL2pp::Texture &getTexture(const std::string &spriteName);
+	TexturePtr getTexture(const std::string &spriteName);
 
 private:
 	TextureLoader();

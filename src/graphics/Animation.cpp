@@ -12,9 +12,13 @@
 #include "Animation.h"
 #include "gameview_configs_loader.h"
 
-Animation::Animation(SDL2pp::Texture &texture) : texture(texture), currentFrame(0),
-						 numFrames(this->texture.GetWidth() / this->texture.GetHeight()),
-						 size(this->texture.GetHeight()), elapsed(0) {
+Animation::Animation(std::shared_ptr<SDL2pp::Texture> texture) :
+	texture(texture),
+	currentFrame(0),
+	numFrames(this->texture->GetWidth() / this->texture->GetHeight()),
+	size(this->texture->GetHeight()),
+	elapsed(0)
+{
 	assert(this->numFrames > 0);
 	assert(this->size > 0);
 	GameviewConfigurationsLoader &configs = GameviewConfigurationsLoader::getInstance();
@@ -41,7 +45,7 @@ void Animation::update(unsigned dt) {
  */
 void Animation::render(SDL2pp::Renderer &renderer, const SDL2pp::Rect dst, SDL_RendererFlip &flipType) {
 	renderer.Copy(
-		texture,
+		*texture,
 		SDL2pp::Rect(1 + (1 + this->size) * this->currentFrame, 0, this->size, this->size),
 		dst,
 		0.0,                // don't rotate
@@ -55,11 +59,11 @@ void Animation::advanceFrame() {
 	this->currentFrame = this->currentFrame % this->numFrames;
 }
 
-void Animation::changeTexture(SDL2pp::Texture &texture)
+void Animation::changeTexture(std::shared_ptr<SDL2pp::Texture> texture)
 {
 	this->texture = texture;
 	this->currentFrame = 0;
-	this->numFrames = this->texture.GetWidth() / this->texture.GetHeight();
-	this->size = this->texture.GetHeight();
+	this->numFrames = this->texture->GetWidth() / this->texture->GetHeight();
+	this->size = this->texture->GetHeight();
 	this->elapsed = 0;
 }

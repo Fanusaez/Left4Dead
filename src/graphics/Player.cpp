@@ -47,11 +47,13 @@ void Player::changeState(const SoldierObjectState &state)
 	if (this->state == state)
 		return;
 
-	if (state == SHOOTING)
-		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Shoot_1.png"));
-	else if (state == RELOADING)
+	this->state = state;
+
+	if (this->state == SHOOTING)
+		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Shot_1.png"));
+	else if (this->state == RELOADING)
 		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Recharge.png"));
-	else if (state == MOVING)
+	else if (this->state == MOVING)
 		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Walk.png"));
 	else
 		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Idle.png"));
