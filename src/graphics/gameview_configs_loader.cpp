@@ -13,7 +13,7 @@ GameviewConfigurationsLoader::GameviewConfigurationsLoader() :
 {
 	this->spritesToLoad.push_back("Soldier_1/Walk.png");
 	this->spritesToLoad.push_back("Soldier_1/Idle.png");
-	this->spritesToLoad.push_back("Soldier_1/Shoot_1.png");
+	this->spritesToLoad.push_back("Soldier_1/Shot_1.png");
 	this->spritesToLoad.push_back("Soldier_1/Recharge.png");
 	this->spritesToLoad.push_back("backgrounds/War1/Pale/Full_Sky.png");
 	this->spritesToLoad.push_back("backgrounds/War1/Pale/Far_Background.png");
