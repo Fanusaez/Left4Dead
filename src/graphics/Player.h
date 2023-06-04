@@ -9,7 +9,6 @@
 class Player : public RenderableObject {
 	Animation an;
 	bool facingLeft;
-	std::pair<int, int> speed;
 	bool moving;
 
 public:
@@ -24,16 +23,6 @@ public:
 	virtual void update(unsigned dt) override;
 
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) override;
-
-	void moveRigth();
-
-	void moveLeft();
-
-	void moveUp();
-
-	void moveDown();
-
-	void stopMoving();
 
 private:
 	bool isMoving() const;
