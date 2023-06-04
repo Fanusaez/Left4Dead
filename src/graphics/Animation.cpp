@@ -54,3 +54,12 @@ void Animation::advanceFrame() {
 	this->currentFrame += 1;
 	this->currentFrame = this->currentFrame % this->numFrames;
 }
+
+void Animation::changeTexture(SDL2pp::Texture &texture)
+{
+	this->texture = texture;
+	this->currentFrame = 0;
+	this->numFrames = this->texture.GetWidth() / this->texture.GetHeight();
+	this->size = this->texture.GetHeight();
+	this->elapsed = 0;
+}

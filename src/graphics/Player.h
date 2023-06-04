@@ -4,15 +4,18 @@
 #include <SDL2pp/SDL2pp.hh>
 #include "Animation.h"
 #include "renderable_object.h"
+#include "texture_loader.h"
+#include "../common/game_object_state.h"
 #include <utility>
 
 class Player : public RenderableObject {
+	TextureLoader &textureLoader;
 	Animation an;
 	bool facingLeft;
-	bool moving;
+	SoldierObjectState state;
 
 public:
-	Player(SDL2pp::Texture &texture, int id, int initialX, int initialY);
+	Player(int id, int initialX, int initialY);
 
 	virtual ~Player();
 
@@ -26,6 +29,8 @@ public:
 
 private:
 	bool isMoving() const;
+
+	void changeState(const SoldierObjectState &state);
 };
 
 #endif // __WORM_H__

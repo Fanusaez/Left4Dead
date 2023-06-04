@@ -22,6 +22,7 @@ public:
 
 	void render(SDL2pp::Renderer &renderer, const SDL2pp::Rect dest, SDL_RendererFlip &flipType);
 
+	void changeTexture(SDL2pp::Texture &texture);
 
 private:
 	void advanceFrame();

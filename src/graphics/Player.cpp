@@ -1,18 +1,18 @@
 #include "Player.h"
-#include "../common/game_object_state.h"
 #include <stdexcept>
 
-Player::Player(SDL2pp::Texture &texture, int id, int initialX, int initialY) :
+Player::Player(int id, int initialX, int initialY) :
 	RenderableObject(id, initialX, initialY),
-	an(texture),
+	textureLoader(TextureLoader::getInstance()),
+	an(textureLoader.getTexture("Soldier_1/Walk.png")),
 	facingLeft(false),
-	moving(false) {}
+	state(IDLE)
+{}
 
 Player::~Player() = default;
 
 bool Player::isMoving() const {
-	//return (this->speed.first != 0 or this->speed.second != 0);
-	return this->moving;
+	return this->state == MOVING;
 }
 
 void Player::updateState(const SoldierObjectDTO &soldierDTO)
@@ -20,14 +20,10 @@ void Player::updateState(const SoldierObjectDTO &soldierDTO)
 	if (soldierDTO.id != this->getID())
 		throw std::invalid_argument("Invalid ID");
 
+	this->facingLeft = soldierDTO.facingLeft;
 	this->setPositionX(soldierDTO.position_x);
 	this->setPositionY(soldierDTO.position_y);
-	if (soldierDTO.state == MOVING)
-		this->moving = true;
-	else
-		this->moving = false;
-
-	facingLeft = soldierDTO.facingLeft;
+	this->changeState(soldierDTO.state);
 }
 
 void Player::updateState(const ZombieObjectDTO &zombieDTO) {}
@@ -37,12 +33,26 @@ void Player::updateState(const ZombieObjectDTO &zombieDTO) {}
  * Esto les va a resultar muy util. 
  */
 void Player::update(unsigned dt) {
-	if (isMoving()) {
+	if (this->isMoving())
 		this->an.update(dt);
-	}
 }
 
 void Player::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) {
 	SDL_RendererFlip flip = this->facingLeft ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 	an.render(renderer, dst, flip);
+}
+
+void Player::changeState(const SoldierObjectState &state)
+{
+	if (this->state == state)
+		return;
+
+	if (state == SHOOTING)
+		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Shoot_1.png"));
+	else if (state == RELOADING)
+		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Recharge.png"));
+	else if (state == MOVING)
+		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Walk.png"));
+	else
+		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Idle.png"));
 }

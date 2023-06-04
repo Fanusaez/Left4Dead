@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 		std::vector<SoldierObjectDTO> soldiers = gameState.get_soldiers();
 		for (auto& soldier: soldiers){
 			if(objects.find(soldier.id) == objects.end()){
-				std::unique_ptr<RenderableObject> ptr1(new Player(textureLoader.getTexture("Soldier_1/Walk.png"), soldier.id, soldier.position_x, soldier.position_y));
+				std::unique_ptr<RenderableObject> ptr1(new Player(soldier.id, soldier.position_x, soldier.position_y));
 				objects[ptr1->getID()] = std::move(ptr1);
 				view.assignMainObject(soldier.id);
 			}
