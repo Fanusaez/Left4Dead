@@ -4,7 +4,7 @@
 Player::Player(int id, int initialX, int initialY) :
 	RenderableObject(id, initialX, initialY),
 	textureLoader(TextureLoader::getInstance()),
-	an(textureLoader.getTexture("Soldier_1/Walk.png")),
+	an(textureLoader.getTexture("Soldier_1/Idle.png")),
 	facingLeft(false),
 	state(IDLE)
 {}
@@ -33,7 +33,7 @@ void Player::updateState(const ZombieObjectDTO &zombieDTO) {}
  * Esto les va a resultar muy util. 
  */
 void Player::update(unsigned dt) {
-	if (this->isMoving())
+	if (this->state != IDLE)
 		this->an.update(dt);
 }
 
