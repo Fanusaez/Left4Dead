@@ -20,6 +20,8 @@ public:
 
 	const std::list <std::string> &getSpritesToLoad();
 
+	const std::list<std::string> getSceneSprites() const;
+
 private:
 	GameviewConfigurationsLoader();
 

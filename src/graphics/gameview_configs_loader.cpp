@@ -24,4 +24,13 @@ const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad() 
 	return this->spritesToLoad;
 }
 
+const std::list <std::string> GameviewConfigurationsLoader::getSceneSprites() const
+{
+	std::list<std::string> sceneSprites;
+	sceneSprites.push_back("backgrounds/War1/Pale/Full_Sky.png");
+	sceneSprites.push_back("backgrounds/War1/Pale/Far_Background.png");
+	sceneSprites.push_back("backgrounds/War1/Pale/Floor.png");
+	return sceneSprites;
+}
+
 GameviewConfigurationsLoader::~GameviewConfigurationsLoader() = default;
