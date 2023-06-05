@@ -6,16 +6,13 @@
 #include <string>
 
 class Scene {
-	SDL2pp::Texture &skyTexture;
-
-	SDL2pp::Texture &backgroundTexture;
-
-	SDL2pp::Texture &floorTexture;
-
+	TexturePtr skyTexture;
+	TexturePtr backgroundTexture;
+	TexturePtr floorTexture;
 	int offset;
 
 public:
-	Scene(SDL2pp::Texture &skyTexture, SDL2pp::Texture &backgroundTexture, SDL2pp::Texture &floorTexture);
+	Scene();
 
 	void increaseOffset(int newOffset);
 

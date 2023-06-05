@@ -29,11 +29,7 @@ int main(int argc, char *argv[])
 	Gameview view(objects);
 	TextureLoader &textureLoader = TextureLoader::getInstance();
 	textureLoader.load(view.getRenderer(), configs.getSpritesToLoad());
-	std::unique_ptr<Scene> scene(new Scene(
-			*textureLoader.getTexture("backgrounds/War1/Pale/Full_Sky.png"),
-			*textureLoader.getTexture("backgrounds/War1/Pale/Far_Background.png"),
-			*textureLoader.getTexture("backgrounds/War1/Pale/Floor.png"))
-			);
+	std::unique_ptr<Scene> scene(new Scene());
 	view.setScene(scene);
 
 	bool running = true;
