@@ -7,6 +7,8 @@
 #include "zombie.h"
 #include "../zombie_states/zombie_idle.h"
 #include "../chaser.h"
+#include "../zombie_states/chasing_states/chase_jumping.h"
+#include "../zombie_states/chasing_states/chase_running.h"
 
 #define MOVEMENTS_PER_CELL 15
 
@@ -21,6 +23,7 @@ private:
     bool dead = false;
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;
+    ChaseState* chase_state = new ChaseJumping;
     const std::int16_t id;
     GameMap& map;
     Chaser chaser;
@@ -31,6 +34,8 @@ private:
 public:
 
     Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map);
+
+    void update(float time) override;
 
     void receive_damage(std::uint16_t damage, float time) override;
 

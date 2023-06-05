@@ -18,6 +18,14 @@ ZombieDead::chase_soldier_running(Chaser& chaser,
     return nullptr;
 }
 
+ZombieState*
+ZombieDead::chase_soldier_jumping(Chaser& chaser,
+                                  std::int16_t x_pos_chase,
+                                  std::int16_t y_pos_chase,
+                                  float time) {
+    return nullptr;
+}
+
 ZombieState* ZombieDead::attack_soldier(GameObject *closest_soldier, std::int16_t damage, float time) {
     return nullptr;
 }

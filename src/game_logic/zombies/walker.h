@@ -20,6 +20,8 @@ class Walker : public GameObject, public Zombie {
     bool dead = false;
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;
+
+    // se debera recibir por parametro, para que corra camine o salte
     ChaseState* chase_state = new ChaseWalking;
     const std::int16_t id;
     GameMap& map;
@@ -32,6 +34,8 @@ std::int16_t get_distance_to_soldier(GameObject* soldier);
  public:
 Walker(std::int16_t x_pos, std::int16_t y_pos, GameMap& map);
 Walker(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
+
+void update(float time) override;
 
 void receive_damage(std::uint16_t damage, float time) override;
 

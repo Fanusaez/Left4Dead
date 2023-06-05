@@ -36,6 +36,16 @@ ZombieState *ZombieBeingAttacked::chase_soldier_running(Chaser& chaser,
     return nullptr;
 }
 
+ZombieState *ZombieBeingAttacked::chase_soldier_jumping(Chaser& chaser,
+                                                        std::int16_t x_pos_chase,
+                                                        std::int16_t y_pos_chase,
+                                                        float time) {
+    if (time_to_stop_being_attacked(time)) {
+        return new Jumping(chaser, x_pos_chase, y_pos_chase, time);
+    }
+    return nullptr;
+}
+
 ZombieState *ZombieBeingAttacked::die(float time) {
     return new ZombieDead(time);
 }

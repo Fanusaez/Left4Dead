@@ -30,6 +30,20 @@ ZombieState* Stunned::chase_soldier_running(Chaser& chaser,
     return nullptr;
 }
 
+ZombieState* Stunned::chase_soldier_jumping(Chaser& chaser,
+                                            std::int16_t x_pos_chase,
+                                            std::int16_t y_pos_chase,
+                                            float time) {
+
+    if (time_to_walk(time) && time_stop_being_stunned(time)) {
+        return new Jumping(chaser, x_pos_chase, y_pos_chase, time);
+    } else if (time_to_walk(time)) {
+        last_time_moved = time;
+        chaser.chase(x_pos_chase, y_pos_chase);
+    }
+    return nullptr;
+}
+
 ZombieState* Stunned::attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) {
     if (!time_to_walk(time)) return nullptr;
     return new Attacking(closest_soldier, damage, time);

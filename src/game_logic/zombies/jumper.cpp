@@ -10,6 +10,10 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         map(map),
         chaser(this, map, x_pos, y_pos) {}
 
+void Jumper::update(float time) {
+
+}
+
 void Jumper::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
     if (health <= 0) {
@@ -90,6 +94,10 @@ void Jumper::set_direction(std::int16_t direction_to_set) {
 }
 
 void Jumper::attack(std::vector<GameObject *> soldiers, float time) {
+    /*
+     * Hay que ver como se ve cuando el zombi salta y lastima al soldado
+     * puede ser que haya que cambiar el "if (distance > 1) return; "
+     */
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
     if (distance > 1) return;

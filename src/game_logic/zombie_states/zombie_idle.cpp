@@ -16,6 +16,14 @@ ZombieIdle::chase_soldier_running(Chaser& chaser,
     return new Running(chaser, x_pos_chase, y_pos_chase, time);
 }
 
+ZombieState *
+ZombieIdle::chase_soldier_jumping(Chaser& chaser,
+                                  std::int16_t x_pos_chase,
+                                  std::int16_t y_pos_chase,
+                                  float time) {
+    return new Jumping(chaser, x_pos_chase, y_pos_chase, time);
+}
+
 ZombieState *ZombieIdle::attack_soldier(GameObject *closest_soldier, std::int16_t damage, float time) {
     return new Attacking(closest_soldier, damage, time);
 }

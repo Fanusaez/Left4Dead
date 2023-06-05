@@ -57,6 +57,7 @@ endif()
 option(SERVER "Build server" OFF)
 
 if(SERVER)
+	SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pthread")
 	add_executable(server
 		./server/server_main.cpp
 		./common/socket.cpp
@@ -89,12 +90,14 @@ if(SERVER)
 		./game_logic/grenades/smoke_grenade.cpp
 		./game_logic/zombie_states/attacking.cpp
 		./game_logic/zombie_states/running.cpp
+		./game_logic/zombie_states/jumping.cpp
 		./game_logic/zombie_states/walking.cpp
 		./game_logic/zombie_states/zombie_being_attacked.cpp
 		./game_logic/zombie_states/zombie_dead.cpp
 		./game_logic/zombie_states/stunned.cpp
 		./game_logic/zombie_states/chasing_states/chase_walking.cpp
 		./game_logic/zombie_states/chasing_states/chase_running.cpp
+		./game_logic/zombie_states/chasing_states/chase_jumping.cpp
 		./game_logic/zombie_states/zombie_idle.cpp
 		./game_logic/zombie_states/zombie_state.h
 		./game_logic/chaser.cpp

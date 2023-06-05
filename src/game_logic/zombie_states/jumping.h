@@ -1,19 +1,19 @@
-#ifndef RUNNING_H
-#define RUNNING_H
+#ifndef JUMPING_H_
+#define JUMPING_H_
 
 #include "zombie_idle.h"
 
-class Running : public ZombieState {
+class Jumping : public ZombieState{
 private:
-    float waiting_time_to_move = 0.1;
+    float waiting_time_to_move = 0.05;
     float last_time_moved = -1;
 
 public:
 
-    Running(Chaser& chaser,
-            std::int16_t x_pos_chase,
+    Jumping(Chaser& chaser,
+    std::int16_t x_pos_chase,
             std::int16_t y_pos_chase,
-            float time);
+    float time);
 
     ZombieState* chase_soldier(Chaser& chaser,
                                std::int16_t x_pos_chase,
@@ -21,9 +21,9 @@ public:
                                float time) override;
 
     ZombieState* chase_soldier_running(Chaser& chaser,
-                               std::int16_t x_pos_chase,
-                               std::int16_t y_pos_chase,
-                               float time) override;
+                                       std::int16_t x_pos_chase,
+                                       std::int16_t y_pos_chase,
+                                       float time) override;
 
     ZombieState* chase_soldier_jumping(Chaser& chaser,
                                        std::int16_t x_pos_chase,
@@ -44,4 +44,4 @@ public:
 };
 
 
-#endif  // RUNNING_H
+#endif // JUMPING_H_
