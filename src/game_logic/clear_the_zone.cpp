@@ -86,7 +86,7 @@ Zombie* ClearTheZone::create_random_zombie(std::vector<std::int16_t>& zombie_pos
 
     int random_num = dis(gen);
     if (random_num < walkers_probability) {
-        Zombie* walker = new Walker(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+        Zombie* walker = new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
         return walker;
     }
 
