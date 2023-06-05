@@ -2,7 +2,7 @@
 #include <iostream>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/scout.h"
@@ -18,14 +18,14 @@
 #define MOV_NEEDED_TO_WALK_ALL_CELL 14
 // ***************************************** Movimiento diagonal *******************************************8
 
-void testMapChaseWalkerDiagonallyUpAndRight() {
+void testMapChaseInfectedDiagonallyUpAndRight() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 8, 2);
     map.add_soldier(&soldier, 8, 2);
 
-    Walker walker(5,5,  map);
+    Infected walker(5,5,  map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 3; i++) {
@@ -44,14 +44,14 @@ void testMapChaseWalkerDiagonallyUpAndRight() {
     TEST_CHECK(old_pos2 == nullptr);
 }
 
-void testMapChaseWalkerDiagonallyUpAndLeft() {
+void testMapChaseInfectedDiagonallyUpAndLeft() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 1, 3);
     map.add_soldier(&soldier, 1, 3);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -68,14 +68,14 @@ void testMapChaseWalkerDiagonallyUpAndLeft() {
     TEST_CHECK(old_pos2 == nullptr);
 }
 
-void testMapChaseWalkerDiagonallyDownAndRight() {
+void testMapChaseInfectedDiagonallyDownAndRight() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 8, 8);
     map.add_soldier(&soldier, 8, 8);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -92,14 +92,14 @@ void testMapChaseWalkerDiagonallyDownAndRight() {
     TEST_CHECK(old_pos2 == nullptr);
 }
 
-void testMapChaseWalkerDiagonallyDownAndLeft() {
+void testMapChaseInfectedDiagonallyDownAndLeft() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 2, 8);
     map.add_soldier(&soldier, 2, 8);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -118,14 +118,14 @@ void testMapChaseWalkerDiagonallyDownAndLeft() {
 
 //*********************************** Up and Down **************************************//
 
-void testMapChaseWalkerUp() {
+void testMapChaseInfectedUp() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 5, 5);
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(5,8,  map);
+    Infected walker(5,8,  map);
     map.add_zombie(&walker, 5, 8);
 
     for (int i = 0; i < 1; i++) {
@@ -143,14 +143,14 @@ void testMapChaseWalkerUp() {
     TEST_CHECK(old_pos2 == nullptr);
 }
 
-void testMapChaseWalkerDown() {
+void testMapChaseInfectedDown() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 5, 5);
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(5,1,  map);
+    Infected walker(5,1,  map);
     map.add_zombie(&walker, 5, 1);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) {
@@ -171,14 +171,14 @@ void testMapChaseWalkerDown() {
 
 //********************************** Right and Left **********************************************//
 
-void testMapChaseWalkerRight() {
+void testMapChaseInfectedRight() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 5, 5);
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(2,5,  map);
+    Infected walker(2,5,  map);
     map.add_zombie(&walker, 2, 5);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) {
@@ -195,14 +195,14 @@ void testMapChaseWalkerRight() {
     TEST_CHECK(old_pos1 == nullptr);
 }
 
-void testMapChaseWalkerLeft() {
+void testMapChaseInfectedLeft() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 5, 5);
     map.add_soldier(&soldier, 5, 5);
 
-    Walker walker(8,5, map);
+    Infected walker(8,5, map);
     map.add_zombie(&walker, 8, 5);
 
     map.chase_soldiers(1);
@@ -218,15 +218,15 @@ void testMapChaseWalkerLeft() {
 }
 
 TEST_LIST = {
-      //  {"Walker chase soldier diagonally up and right", testMapChaseWalkerDiagonallyUpAndRight},
-      //  {"Walker chase soldier diagonally up and left", testMapChaseWalkerDiagonallyUpAndLeft},
-      //  {"Walker chase soldier diagonally down and right", testMapChaseWalkerDiagonallyDownAndRight},
-      //  {"Walker chase soldier diagonally down and left", testMapChaseWalkerDiagonallyDownAndLeft},
+      //  {"Infected chase soldier diagonally up and right", testMapChaseInfectedDiagonallyUpAndRight},
+      //  {"Infected chase soldier diagonally up and left", testMapChaseInfectedDiagonallyUpAndLeft},
+      //  {"Infected chase soldier diagonally down and right", testMapChaseInfectedDiagonallyDownAndRight},
+      //  {"Infected chase soldier diagonally down and left", testMapChaseInfectedDiagonallyDownAndLeft},
 
-        {"Walker chase soldier up", testMapChaseWalkerUp},
-        {"Walker chase soldier down", testMapChaseWalkerDown},
-        {"Walker chase soldier right", testMapChaseWalkerRight},
-        {"Walker chase soldier left", testMapChaseWalkerLeft},
+        {"Infected chase soldier up", testMapChaseInfectedUp},
+        {"Infected chase soldier down", testMapChaseInfectedDown},
+        {"Infected chase soldier right", testMapChaseInfectedRight},
+        {"Infected chase soldier left", testMapChaseInfectedLeft},
         {NULL, NULL},
 
 };

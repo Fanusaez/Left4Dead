@@ -1,7 +1,7 @@
 #include <cstdint>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/scout.h"
@@ -13,17 +13,17 @@
 #define STARTING_DAMAGE 40
 #define DAMAGE_REDUCTION 10
 
-void testSoldierShootsScoutWith2WalkersInLineDown(void) {
+void testSoldierShootsScoutWith2InfectedsInLineDown(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker1(3,8, map);
+    Infected walker1(3,8, map);
     map.add_zombie(&walker1, 3, 8);
 
-    Walker walker2(3,9, map);
+    Infected walker2(3,9, map);
     map.add_zombie(&walker2, 3, 9);
 
     soldier.set_direction(DOWN);
@@ -34,20 +34,20 @@ void testSoldierShootsScoutWith2WalkersInLineDown(void) {
     TEST_ASSERT(remaining_health2 == (100 - (STARTING_DAMAGE - DAMAGE_REDUCTION)));
 }
 
-void testSoldierShootsScoutWith3WalkersInLineDown(void) {
+void testSoldierShootsScoutWith3InfectedsInLineDown(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker1(4,7, map);
+    Infected walker1(4,7, map);
     map.add_zombie(&walker1, 4, 7);
 
-    Walker walker2(4,8, map);
+    Infected walker2(4,8, map);
     map.add_zombie(&walker2, 4, 8);
 
-    Walker walker3(4,9, map);
+    Infected walker3(4,9, map);
     map.add_zombie(&walker3, 4, 9);
 
     soldier.set_direction(DOWN);
@@ -60,17 +60,17 @@ void testSoldierShootsScoutWith3WalkersInLineDown(void) {
     TEST_ASSERT(remaining_health3 == (100 - (STARTING_DAMAGE - 2*DAMAGE_REDUCTION)));
 }
 
-void testSoldierShootsScoutWith2WalkersInLineUp(void) {
+void testSoldierShootsScoutWith2InfectedsInLineUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    Walker walker2(3,0, map);
+    Infected walker2(3,0, map);
     map.add_zombie(&walker2, 3, 0);
 
-    Walker walker1(3,1, map);
+    Infected walker1(3,1, map);
     map.add_zombie(&walker1, 3, 1);
 
     soldier.set_direction(UP);
@@ -81,20 +81,20 @@ void testSoldierShootsScoutWith2WalkersInLineUp(void) {
     TEST_ASSERT(remaining_health2 == 100 - (STARTING_DAMAGE - DAMAGE_REDUCTION));
 }
 
-void testSoldierShootsScoutWith3WalkersInLineUp(void) {
+void testSoldierShootsScoutWith3InfectedsInLineUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 2, 8);
     map.add_soldier(&soldier, 2, 8);
 
-    Walker walker3(3,0, map);
+    Infected walker3(3,0, map);
     map.add_zombie(&walker3, 3, 0);
 
-    Walker walker2(3,1, map);
+    Infected walker2(3,1, map);
     map.add_zombie(&walker2, 3, 1);
 
-    Walker walker1(3,2, map);
+    Infected walker1(3,2, map);
     map.add_zombie(&walker1, 3, 2);
 
     soldier.set_direction(UP);
@@ -108,9 +108,9 @@ void testSoldierShootsScoutWith3WalkersInLineUp(void) {
 }
 
 TEST_LIST = {
-        {"Soldier shoots down scout with one walker behind another, damages both", testSoldierShootsScoutWith2WalkersInLineDown},
-        {"Soldier shoots down scout with 3 walker in line, damages all of them", testSoldierShootsScoutWith3WalkersInLineDown},
-        {"Soldier shoots up scout with 2 walker in line, damages all of them",testSoldierShootsScoutWith2WalkersInLineUp},
-        {"Soldier shoots up scout with 3 walker in line, damages all of them",testSoldierShootsScoutWith3WalkersInLineUp},
+        {"Soldier shoots down scout with one walker behind another, damages both", testSoldierShootsScoutWith2InfectedsInLineDown},
+        {"Soldier shoots down scout with 3 walker in line, damages all of them", testSoldierShootsScoutWith3InfectedsInLineDown},
+        {"Soldier shoots up scout with 2 walker in line, damages all of them",testSoldierShootsScoutWith2InfectedsInLineUp},
+        {"Soldier shoots up scout with 3 walker in line, damages all of them",testSoldierShootsScoutWith3InfectedsInLineUp},
         {NULL, NULL},
 };

@@ -2,7 +2,7 @@
 #include <iostream>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/scout.h"
@@ -17,7 +17,7 @@
 #define MOVEMENTS_PER_CELL 15
 #define MOV_NEEDED_TO_WALK_ALL_CELL 14
 
-void testWalkerChaseSoldierdiagonallyUpAndRightWithObstacle() {
+void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacle() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
@@ -27,7 +27,7 @@ void testWalkerChaseSoldierdiagonallyUpAndRightWithObstacle() {
     Obstacle obstacle(5, 5, 0);
     map.add_obstacle(&obstacle, 5, 5);
 
-    Walker walker(5,6, map);
+    Infected walker(5,6, map);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) {
@@ -41,7 +41,7 @@ void testWalkerChaseSoldierdiagonallyUpAndRightWithObstacle() {
     TEST_CHECK(y_pos == 6 * MOVEMENTS_PER_CELL);
 }
 
-void testWalkerChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
+void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
@@ -51,7 +51,7 @@ void testWalkerChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
     Obstacle obstacle(5 , 5 , 0);
     map.add_obstacle(&obstacle, 5, 5);
 
-    Walker walker(5 ,6 , map);
+    Infected walker(5 ,6 , map);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < 100; i++) {
@@ -65,7 +65,7 @@ void testWalkerChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
     TEST_CHECK(y_pos == 3 * MOVEMENTS_PER_CELL);
 }
 
-void testWalkerChaseSoldierdiagonallyUpAndLeftWithObstacle() {
+void testInfectedChaseSoldierdiagonallyUpAndLeftWithObstacle() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
@@ -75,7 +75,7 @@ void testWalkerChaseSoldierdiagonallyUpAndLeftWithObstacle() {
     Obstacle osbtacle(5, 5, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
-    Walker walker(5,6, map);
+    Infected walker(5,6, map);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) { // enough to encounter the soldier face to face
@@ -89,7 +89,7 @@ void testWalkerChaseSoldierdiagonallyUpAndLeftWithObstacle() {
     TEST_CHECK(y_pos == 6 * MOVEMENTS_PER_CELL);
 }
 
-void testWalkerChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
+void testInfectedChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
@@ -99,7 +99,7 @@ void testWalkerChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
     Obstacle osbtacle(5, 5, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
-    Walker walker(5,6, map);
+    Infected walker(5,6, map);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < 100; i++) { // enough to encounter the soldier face to face
@@ -113,7 +113,7 @@ void testWalkerChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
     TEST_CHECK(y_pos == 3 * MOVEMENTS_PER_CELL);
 }
 
-void testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacle() {
+void testInfectedChaseSoldierdiagonallyDownAndLeftWithObstacle() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
@@ -123,7 +123,7 @@ void testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacle() {
     Obstacle osbtacle(5, 5, 0);
     map.add_obstacle(&osbtacle, 5, 6);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) { // enough to encounter the soldier face to face
@@ -137,7 +137,7 @@ void testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacle() {
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
 }
 
-void testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace() {
+void testInfectedChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
@@ -147,7 +147,7 @@ void testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace() {
     Obstacle osbtacle(5, 5, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
-    Walker walker(5,6, map);
+    Infected walker(5,6, map);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < 140; i++) { // enough to encounter the soldier face to face
@@ -161,11 +161,11 @@ void testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace() {
 }
 
 TEST_LIST = {
-        {"Walker avoid the obstacle and moves to chase the soldier", testWalkerChaseSoldierdiagonallyUpAndRightWithObstacle},
-        {"Walker avoid the obstacle and moves to chase the soldier and meets with soldier ftf", testWalkerChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace},
-        {"Walker avoid the obstacle and moves to chase the soldier", testWalkerChaseSoldierdiagonallyUpAndLeftWithObstacle},
-        {"Walker avoid the obstacle and moves to chase the soldier and meets with soldier ftf", testWalkerChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace},
-        {"Walker avoid the obstacle and moves to chase the soldier", testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacle},
-        {"Walker avoid the obstacle and moves to chase the soldier and meets with soldier ftf", testWalkerChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace},
+        {"Infected avoid the obstacle and moves to chase the soldier", testInfectedChaseSoldierdiagonallyUpAndRightWithObstacle},
+        {"Infected avoid the obstacle and moves to chase the soldier and meets with soldier ftf", testInfectedChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace},
+        {"Infected avoid the obstacle and moves to chase the soldier", testInfectedChaseSoldierdiagonallyUpAndLeftWithObstacle},
+        {"Infected avoid the obstacle and moves to chase the soldier and meets with soldier ftf", testInfectedChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace},
+        {"Infected avoid the obstacle and moves to chase the soldier", testInfectedChaseSoldierdiagonallyDownAndLeftWithObstacle},
+        {"Infected avoid the obstacle and moves to chase the soldier and meets with soldier ftf", testInfectedChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace},
         {NULL, NULL},
 };

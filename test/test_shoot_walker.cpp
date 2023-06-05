@@ -1,7 +1,7 @@
 #include <cstdint>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/idf.h"
@@ -11,14 +11,14 @@
 #define MOVEMENTS_PER_CELL 15
 #define MOV_NEEDED_TO_WALK_ALL_CELL 14
 
-void testSoldierShootsWalkerSameLineUp(void) {
+void testSoldierShootsInfectedSameLineUp(void) {
     GameMap map(10, 10);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(8,1, map);
+    Infected walker(8,1, map);
     map.add_zombie(&walker, 8, 1);
 
     soldier.set_direction(UP);
@@ -27,14 +27,14 @@ void testSoldierShootsWalkerSameLineUp(void) {
     TEST_ASSERT(remaining_health < 100);
 }
 
-void testSoldierShootsWalkerSameLineDown(void) {
+void testSoldierShootsInfectedSameLineDown(void) {
     GameMap map(10, 10);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,8, map);
+    Infected walker(3,8, map);
     map.add_zombie(&walker, 3, 8);
 
     soldier.set_direction(DOWN);
@@ -43,14 +43,14 @@ void testSoldierShootsWalkerSameLineDown(void) {
     TEST_ASSERT(remaining_health < 100);
 }
 
-void testSoldierShootsWalkerNotSameLineUp(void) {
+void testSoldierShootsInfectedNotSameLineUp(void) {
     GameMap map(10, 10);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(7,1, map);
+    Infected walker(7,1, map);
     map.add_zombie(&walker, 7, 1);
 
     soldier.set_direction(UP);
@@ -59,14 +59,14 @@ void testSoldierShootsWalkerNotSameLineUp(void) {
     TEST_ASSERT(remaining_health < 100);
 }
 
-void testSoldierShootsWalkerNotSameLineDown(void) {
+void testSoldierShootsInfectedNotSameLineDown(void) {
     GameMap map(10, 10);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 8, 1);
     map.add_soldier(&soldier, 8, 1);
 
-    Walker walker(7,9, map);
+    Infected walker(7,9, map);
     map.add_zombie(&walker, 7, 9);
 
     soldier.set_direction(DOWN);
@@ -79,17 +79,17 @@ void testSoldierShootsWalkerNotSameLineDown(void) {
  * Siempre dispara primero al zombie que este en el X mas chico.
  * Digamos la "verdadera" posicion
  */
-void testSoldierShootsOnly1WalkerOutOf2AimingUp(){
+void testSoldierShootsOnly1InfectedOutOf2AimingUp(){
     GameMap map(10, 10);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 7, 7);
     map.add_soldier(&soldier, 7, 7);
 
-    Walker walker1(6,3, map);
+    Infected walker1(6,3, map);
     map.add_zombie(&walker1, 6, 3);
 
-    Walker walker2(8,3, map);
+    Infected walker2(8,3, map);
     map.add_zombie(&walker2, 8, 3);
 
     soldier.set_direction(UP);
@@ -100,14 +100,14 @@ void testSoldierShootsOnly1WalkerOutOf2AimingUp(){
     TEST_CHECK(remaining_health2 == 100);
 }
 
-void testSoldierShootsAndMissWalkerOutOfRangeUp(void) {
+void testSoldierShootsAndMissInfectedOutOfRangeUp(void) {
     GameMap map(10, 10);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(6,1, map);
+    Infected walker(6,1, map);
     map.add_zombie(&walker, 6, 1);
 
     soldier.set_direction(UP);
@@ -116,14 +116,14 @@ void testSoldierShootsAndMissWalkerOutOfRangeUp(void) {
     TEST_ASSERT(remaining_health == 100);
 }
 
-void testSoldierShootsAndMissWalkerOutOfRangeDown(void) {
+void testSoldierShootsAndMissInfectedOutOfRangeDown(void) {
     GameMap map(10, 10);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(5,8, map);
+    Infected walker(5,8, map);
     map.add_zombie(&walker, 5, 8);
 
     soldier.set_direction(DOWN);
@@ -132,14 +132,14 @@ void testSoldierShootsAndMissWalkerOutOfRangeDown(void) {
     TEST_ASSERT(remaining_health == 100);
 }
 
-void testSoldierShootsAndMissAimingDownTurnedAroundToWalker(void) {
+void testSoldierShootsAndMissAimingDownTurnedAroundToInfected(void) {
     GameMap map(10, 10);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(8,1, map);
+    Infected walker(8,1, map);
     map.add_zombie(&walker, 8, 1);
 
     soldier.set_direction(DOWN);
@@ -148,14 +148,14 @@ void testSoldierShootsAndMissAimingDownTurnedAroundToWalker(void) {
     TEST_ASSERT(remaining_health == 100);
 }
 
-void testSoldierShootsAndMissAimingUpTurnedAroundToWalker(void) {
+void testSoldierShootsAndMissAimingUpTurnedAroundToInfected(void) {
     GameMap map(10, 10);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,8, map);
+    Infected walker(3,8, map);
     map.add_zombie(&walker, 3, 8);
 
     soldier.set_direction(UP);
@@ -166,14 +166,14 @@ void testSoldierShootsAndMissAimingUpTurnedAroundToWalker(void) {
 
 
 TEST_LIST = {
-        {" Soldier shoots walker aiming Left and health decrease", testSoldierShootsWalkerSameLineUp},
-        {" Soldier shoots walker aiming Right and health decrease", testSoldierShootsWalkerSameLineDown},
-        {" Soldier shoots walker not same line aiming Left and health decrease", testSoldierShootsWalkerNotSameLineUp},
-        {" Soldier shoots walker not same line aiming Right and health decrease", testSoldierShootsWalkerNotSameLineDown},
-        {" Soldier shoots only 1 walker out of 2 on shooting sight", testSoldierShootsOnly1WalkerOutOf2AimingUp},
-        {" Soldier shoots walker and miss aiming left", testSoldierShootsAndMissWalkerOutOfRangeUp},
-        {" Soldier shoots walker and miss aiming right", testSoldierShootsAndMissWalkerOutOfRangeDown},
-        {" Soldier shoots and miss aiming(down) contrary to walker", testSoldierShootsAndMissAimingDownTurnedAroundToWalker},
-        {" Soldier shoots and miss aiming(up) contrary to walker ",testSoldierShootsAndMissAimingUpTurnedAroundToWalker},
+        {" Soldier shoots walker aiming Left and health decrease", testSoldierShootsInfectedSameLineUp},
+        {" Soldier shoots walker aiming Right and health decrease", testSoldierShootsInfectedSameLineDown},
+        {" Soldier shoots walker not same line aiming Left and health decrease", testSoldierShootsInfectedNotSameLineUp},
+        {" Soldier shoots walker not same line aiming Right and health decrease", testSoldierShootsInfectedNotSameLineDown},
+        {" Soldier shoots only 1 walker out of 2 on shooting sight", testSoldierShootsOnly1InfectedOutOf2AimingUp},
+        {" Soldier shoots walker and miss aiming left", testSoldierShootsAndMissInfectedOutOfRangeUp},
+        {" Soldier shoots walker and miss aiming right", testSoldierShootsAndMissInfectedOutOfRangeDown},
+        {" Soldier shoots and miss aiming(down) contrary to walker", testSoldierShootsAndMissAimingDownTurnedAroundToInfected},
+        {" Soldier shoots and miss aiming(up) contrary to walker ",testSoldierShootsAndMissAimingUpTurnedAroundToInfected},
         {NULL, NULL}
 };

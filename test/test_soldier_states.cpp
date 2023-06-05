@@ -2,7 +2,7 @@
 #include <iostream>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/idf.h"
@@ -340,7 +340,7 @@ void testSoldierStartsIdleAndIsAttacked(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3, map);
+    Infected walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     map.attack_soldiers(1);
@@ -360,7 +360,7 @@ void testSoldierShootingAndIsAttacked(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3, map);
+    Infected walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     soldier.shoot(0);
@@ -382,7 +382,7 @@ void testSoldierReloadingAndIsAttacked(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3, map);
+    Infected walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     soldier.shoot(0);
@@ -409,7 +409,7 @@ void testSoldierGetsKilledAndStateChanges(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3, map);
+    Infected walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -428,7 +428,7 @@ void testSoldierGetsKilledAndTryToMove(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3, map);
+    Infected walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -448,7 +448,7 @@ void testSoldierGetsKilledAndTryToShoot(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3, map);
+    Infected walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -468,7 +468,7 @@ void testSoldierGetsKilledAndTryToReload(void) {
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
 
-    Walker walker(2, 3, map);
+    Infected walker(2, 3, map);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -520,7 +520,7 @@ void testSoldierThrows2GrenadeOnly1IsThrown(void) {
     map.add_soldier(&soldier, 2, 2);
     soldier.set_direction(DOWN);
 
-    Walker walker(2, 6, map);
+    Infected walker(2, 6, map);
     map.add_zombie(&walker, 2, 6);
 
     soldier.throw_explosive_grenade(100);

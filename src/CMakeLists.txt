@@ -104,7 +104,7 @@ if(SERVER)
 		./game_logic/map.cpp
 		./game_logic/obstacle.cpp
 		./game_logic/soldier.cpp
-		./game_logic/zombies/walker.cpp
+			game_logic/zombies/infected.cpp
 		./game_logic/zombies/zombie.h
 		./game_logic/clear_the_zone.cpp
 

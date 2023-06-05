@@ -2,7 +2,7 @@
 #include <iostream>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/scout.h"
@@ -58,7 +58,7 @@ void testNotMoveSoldierLeftForCollisionWithZombie(){
     Soldier soldier(scout, map, 3, 7);
     map.add_soldier(&soldier, 3, 7);
 
-    Walker walker(1,7, map);
+    Infected walker(1,7, map);
     map.add_zombie(&walker, 1, 7);
 
     for (float i = 0; i < 20; i++){

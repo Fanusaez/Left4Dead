@@ -1,7 +1,7 @@
 #include <cstdint>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/idf.h"
@@ -20,7 +20,7 @@ void testSoldierShootsIdfCloseRangeUp(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,2, map);
+    Infected walker(3,2, map);
     map.add_zombie(&walker, 3, 2);
 
     soldier.set_direction(UP);
@@ -36,7 +36,7 @@ void testSoldierShootsIdfCloseRangeDown(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,7,map);
+    Infected walker(3,7,map);
     map.add_zombie(&walker, 3, 7);
 
     soldier.set_direction(DOWN);
@@ -52,7 +52,7 @@ void testSoldierShootsIdfCloseRangeUpNotSameLine(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(2,2,map);
+    Infected walker(2,2,map);
     map.add_zombie(&walker, 2, 2);
 
     soldier.set_direction(UP);
@@ -68,7 +68,7 @@ void testSoldierShootsIdfCloseRangeDownNotSameLine(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(4,7,map);
+    Infected walker(4,7,map);
     map.add_zombie(&walker, 4, 7);
 
     soldier.set_direction(DOWN);
@@ -84,7 +84,7 @@ void testSoldierShootsIdfLongRangeUp(void) {
     Soldier soldier(idf, map, 3, 5);
     map.add_soldier(&soldier, 3, 5);
 
-    Walker walker(3,0,map);
+    Infected walker(3,0,map);
     map.add_zombie(&walker, 3, 0);
 
     soldier.set_direction(UP);
@@ -100,7 +100,7 @@ void testSoldierShootsIdfLongRangeDown(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,8,map);
+    Infected walker(3,8,map);
     map.add_zombie(&walker, 3, 8);
 
     soldier.set_direction(DOWN);
@@ -116,7 +116,7 @@ void testSoldierShootsIdfLongRangeUpNotSameLine(void) {
     Soldier soldier(idf, map, 3, 6);
     map.add_soldier(&soldier, 3, 6);
 
-    Walker walker(2,1,map);
+    Infected walker(2,1,map);
     map.add_zombie(&walker, 2, 1);
 
     soldier.set_direction(UP);
@@ -132,7 +132,7 @@ void testSoldierShootsIdfLongRangeDownNotSameLine(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(4,8,map);
+    Infected walker(4,8,map);
     map.add_zombie(&walker, 4, 8);
 
     soldier.set_direction(DOWN);
@@ -141,17 +141,17 @@ void testSoldierShootsIdfLongRangeDownNotSameLine(void) {
     TEST_ASSERT(remaining_health == 100 - LONG_RANGE_DAMAGE);
 }
 
-void testSoldierShootsIdfWith2WalkersInLine(void) {
+void testSoldierShootsIdfWith2InfectedsInLine(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker1(4,8, map);
+    Infected walker1(4,8, map);
     map.add_zombie(&walker1, 4, 8);
 
-    Walker walker2(4,9, map);
+    Infected walker2(4,9, map);
     map.add_zombie(&walker2, 4, 9);
 
     soldier.set_direction(DOWN);
@@ -173,6 +173,6 @@ TEST_LIST = {
         {"Soldier shoots Idf long range down",testSoldierShootsIdfLongRangeDown},
         {"Soldier shoots Idf long range up not same line", testSoldierShootsIdfLongRangeUpNotSameLine},
         {"Soldier shoots Idf long range down not same line",testSoldierShootsIdfLongRangeDownNotSameLine},
-        {"Soldier shoots idf with one walker behind another, only damages the first", testSoldierShootsIdfWith2WalkersInLine},
+        {"Soldier shoots idf with one walker behind another, only damages the first", testSoldierShootsIdfWith2InfectedsInLine},
         {NULL, NULL}
 };

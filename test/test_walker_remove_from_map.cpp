@@ -2,7 +2,7 @@
 #include <iostream>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/idf.h"
@@ -16,14 +16,14 @@
 #define CLOSE_RANGE_DAMAGE 30
 #define LONG_RANGE_DAMAGE 15
 
-void testSoldierShootsWalkerDiesAndIsRemovedFromMap(void) {
+void testSoldierShootsInfectedDiesAndIsRemovedFromMap(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Scout;
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Walker walker(3,2, map);
+    Infected walker(3,2, map);
     map.add_zombie(&walker, 3, 2);
 
     soldier.set_direction(UP);
@@ -40,7 +40,7 @@ void testSoldierShootsWalkerDiesAndIsRemovedFromMap(void) {
 }
 
 TEST_LIST = {
-        {"Soldier kills Walker and this disappear from map", testSoldierShootsWalkerDiesAndIsRemovedFromMap},
+        {"Soldier kills Infected and this disappear from map", testSoldierShootsInfectedDiesAndIsRemovedFromMap},
         {NULL, NULL}
 };
 

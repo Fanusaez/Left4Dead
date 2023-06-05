@@ -1,7 +1,7 @@
 #include <cstdint>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/idf.h"
@@ -45,19 +45,19 @@ void testSoldierThrowsExplosiveGrenadeUpAndDamages5Zombies(void) {
 
     soldier.set_direction(UP);
 
-    Walker walker1(x_explosion,y_explosion, map); // donde cae la granada
+    Infected walker1(x_explosion,y_explosion, map); // donde cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    Walker walker2(x_limit_damage_left,y_limit_damage_up, map);
+    Infected walker2(x_limit_damage_left,y_limit_damage_up, map);
     map.add_zombie(&walker2, x_limit_damage_left,y_limit_damage_up);
 
-    Walker walker3(x_limit_damage_right,y_limit_damage_up, map);
+    Infected walker3(x_limit_damage_right,y_limit_damage_up, map);
     map.add_zombie(&walker3, x_limit_damage_right,y_limit_damage_up);
 
-    Walker walker4(x_limit_damage_left,y_limit_damage_down,map);
+    Infected walker4(x_limit_damage_left,y_limit_damage_down,map);
     map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down);
 
-    Walker walker5(x_limit_damage_right,y_limit_damage_down, map);
+    Infected walker5(x_limit_damage_right,y_limit_damage_down, map);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
     soldier.throw_explosive_grenade(100);
@@ -97,19 +97,19 @@ void testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies(void) {
 
     soldier.set_direction(UP);
 
-    Walker walker1(x_explosion,y_explosion, map); // donde cae la granada
+    Infected walker1(x_explosion,y_explosion, map); // donde cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    Walker walker2(x_limit_damage_left - 1,y_limit_damage_up, map); //falla
+    Infected walker2(x_limit_damage_left - 1,y_limit_damage_up, map); //falla
     map.add_zombie(&walker2, x_limit_damage_left - 2,y_limit_damage_up);
 
-    Walker walker3(x_limit_damage_right + 1,y_limit_damage_up, map);
+    Infected walker3(x_limit_damage_right + 1,y_limit_damage_up, map);
     map.add_zombie(&walker3, x_limit_damage_right + 1,y_limit_damage_up);
 
-    Walker walker4(x_limit_damage_left - 1,y_limit_damage_down, map); // falla
+    Infected walker4(x_limit_damage_left - 1,y_limit_damage_down, map); // falla
     map.add_zombie(&walker4, x_limit_damage_left - 1,y_limit_damage_down);
 
-    Walker walker5(x_limit_damage_right + 1,y_limit_damage_down, map);
+    Infected walker5(x_limit_damage_right + 1,y_limit_damage_down, map);
     map.add_zombie(&walker5, x_limit_damage_right + 1,y_limit_damage_down);
 
     soldier.throw_explosive_grenade(100);
@@ -154,19 +154,19 @@ void testSoldierThrowsExplosiveGrenadeUpAndDamages1Zombies2(void) {
 
     soldier.set_direction(UP);
 
-    Walker walker1(x_explosion,y_explosion, map); // donde cae la granada
+    Infected walker1(x_explosion,y_explosion, map); // donde cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    Walker walker2(x_limit_damage_left,y_limit_damage_up - 1, map);
+    Infected walker2(x_limit_damage_left,y_limit_damage_up - 1, map);
     map.add_zombie(&walker2, x_limit_damage_left,y_limit_damage_up - 1);
 
-    Walker walker3(x_limit_damage_right,y_limit_damage_up - 1, map);
+    Infected walker3(x_limit_damage_right,y_limit_damage_up - 1, map);
     map.add_zombie(&walker3, x_limit_damage_right,y_limit_damage_up - 1);
 
-    Walker walker4(x_limit_damage_left,y_limit_damage_down + 1, map);
+    Infected walker4(x_limit_damage_left,y_limit_damage_down + 1, map);
     map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down + 1);
 
-    Walker walker5(x_limit_damage_right,y_limit_damage_down + 1, map);
+    Infected walker5(x_limit_damage_right,y_limit_damage_down + 1, map);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down + 1);
 
     soldier.throw_explosive_grenade(100);
@@ -235,19 +235,19 @@ void testSoldierThrowsExplosiveGrenadeDownAndDamages5Zombies(void) {
 
     soldier.set_direction(DOWN);
 
-    Walker walker1(x_explosion,y_explosion, map); // donde cae la granada
+    Infected walker1(x_explosion,y_explosion, map); // donde cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    Walker walker2(x_limit_damage_left,y_limit_damage_up, map);
+    Infected walker2(x_limit_damage_left,y_limit_damage_up, map);
     map.add_zombie(&walker2, x_limit_damage_left,y_limit_damage_up);
 
-    Walker walker3(x_limit_damage_right,y_limit_damage_up, map);
+    Infected walker3(x_limit_damage_right,y_limit_damage_up, map);
     map.add_zombie(&walker3, x_limit_damage_right,y_limit_damage_up);
 
-    Walker walker4(x_limit_damage_left,y_limit_damage_down, map);
+    Infected walker4(x_limit_damage_left,y_limit_damage_down, map);
     map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down);
 
-    Walker walker5(x_limit_damage_right,y_limit_damage_down, map);
+    Infected walker5(x_limit_damage_right,y_limit_damage_down, map);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
     soldier.throw_explosive_grenade(100);

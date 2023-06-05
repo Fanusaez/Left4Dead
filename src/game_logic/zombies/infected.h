@@ -11,7 +11,7 @@
 #include "../zombie_states/chasing_states/chase_running.h"
 #define MOVEMENTS_PER_CELL 15
 
-class Walker : public GameObject, public Zombie {
+class Infected : public GameObject, public Zombie {
  private:
     std::int16_t health = 100;
     std::int16_t damage_attack = 20;
@@ -32,8 +32,8 @@ GameObject* get_closest_soldier(std::vector<GameObject*> soldiers);
 std::int16_t get_distance_to_soldier(GameObject* soldier);
 
  public:
-Walker(std::int16_t x_pos, std::int16_t y_pos, GameMap& map);
-Walker(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
+Infected(std::int16_t x_pos, std::int16_t y_pos, GameMap& map);
+Infected(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
 
 void update(float time) override;
 
@@ -57,7 +57,7 @@ std::int16_t get_x_pos() override;
 std::int16_t get_y_matrix_pos() override;
 std::int16_t get_x_matrix_pos() override;
 
-~Walker();
+~Infected();
 
 // ************************* Metodos de testeo ************************************************8//
 std::int16_t get_health();

@@ -31,7 +31,7 @@ add_executable(testProtocolServer
 add_executable(testCollision
         test_collision.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -63,7 +63,7 @@ add_executable(testCollision
 add_executable(testShooting
         test_shoot_walker.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/idf.cpp
@@ -93,7 +93,7 @@ add_executable(testShooting
 add_executable(testShootingIdf
         test_shooting_idf.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/idf.cpp
@@ -123,7 +123,7 @@ add_executable(testShootingIdf
 add_executable(testShootingScout
         test_shooting_scout.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -154,7 +154,7 @@ add_executable(testShootingScout
 add_executable(testMovingUpSoldier
         test_moving_soldier_up.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -184,7 +184,7 @@ add_executable(testMovingUpSoldier
 add_executable(testMovingSoldierDown
         test_moving_soldier_down.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -214,7 +214,7 @@ add_executable(testMovingSoldierDown
 add_executable(testMovingSoldierRight
         test_moving_soldier_right.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -244,7 +244,7 @@ add_executable(testMovingSoldierRight
 add_executable(testMoveSoldierLeft
         test_moving_soldier_left.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -273,7 +273,7 @@ add_executable(testMoveSoldierLeft
 add_executable(testMoveMap
         test_move_map.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -303,7 +303,7 @@ add_executable(testMoveMap
 add_executable(testExplosiveGrenade
         test_explosive_grenade.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -333,7 +333,7 @@ add_executable(testExplosiveGrenade
 add_executable(testChaseSoldierWalking
         test_chase_soldier_walker.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -363,7 +363,7 @@ add_executable(testChaseSoldierWalking
 add_executable(testMapChaseSoldierWalking
         test_map_chase_soldier_walker.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -392,7 +392,7 @@ add_executable(testMapChaseSoldierWalking
 add_executable(testChaseSoldierWalkingObstacles
         test_chase_soldier_walker_obstacles.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -422,7 +422,7 @@ add_executable(testChaseSoldierWalkingObstacles
 add_executable(testWalkerAttackSoldier
         test_walker_attack_soldier.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -452,7 +452,7 @@ add_executable(testWalkerAttackSoldier
 add_executable(testChangeInStatesSoldier
         test_soldier_states.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -485,7 +485,7 @@ add_executable(testChangeInStatesSoldier
 add_executable(testChangeInStatesZombie
         test_zombie_states.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -514,7 +514,7 @@ add_executable(testChangeInStatesZombie
 add_executable(testCollisionSoldier
         test_collision_soldiers.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -543,7 +543,7 @@ add_executable(testCollisionSoldier
 add_executable(testWalkerRemove
         test_walker_remove_from_map.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -573,7 +573,7 @@ add_executable(testWalkerRemove
 add_executable(testChasingStates
         test_chasing_states.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp
@@ -603,7 +603,7 @@ add_executable(testChasingStates
 add_executable(testSmokeGrenade
         test_smoke_grenade.cpp
         ../src/game_logic/soldier.cpp
-        ../src/game_logic/zombies/walker.cpp
+        ../src/game_logic/zombies/infected.cpp
         ../src/game_logic/map.cpp
         ../src/game_logic/chaser.cpp
         ../src/game_logic/weapons/scout.cpp

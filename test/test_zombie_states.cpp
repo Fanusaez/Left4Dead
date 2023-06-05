@@ -2,7 +2,7 @@
 #include <iostream>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/idf.h"
@@ -15,14 +15,14 @@
 #define SOLDIER_SPEED 0.2
 #define ERROR_BOUND 0.0001
 
-void testWalkerStartsWithIdleState(void) {
+void testInfectedStartsWithIdleState(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     ZombieIdle* walker_state = dynamic_cast<ZombieIdle*>(walker.get_state());
@@ -32,14 +32,14 @@ void testWalkerStartsWithIdleState(void) {
 
 //****************************************** Moving ****************************************************//
 
-void testWalkerChaseAndStateChangesToWalking(void) {
+void testInfectedChaseAndStateChangesToWalking(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -50,14 +50,14 @@ void testWalkerChaseAndStateChangesToWalking(void) {
     TEST_ASSERT(walker_state != nullptr);
     TEST_ASSERT(old_state == nullptr);
 }
-void testWalkerChaseTwiceTooFastAndmoves1Time(void) {
+void testInfectedChaseTwiceTooFastAndmoves1Time(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -72,14 +72,14 @@ void testWalkerChaseTwiceTooFastAndmoves1Time(void) {
     TEST_ASSERT(y_pos1 == y_pos2);
 }
 
-void testWalkerChaseTwiceAndmoves2Times(void) {
+void testInfectedChaseTwiceAndmoves2Times(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -93,14 +93,14 @@ void testWalkerChaseTwiceAndmoves2Times(void) {
 
 //*********************************************** ATTACKING *************************************************//
 
-void testWalkerAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierYet(void) {
+void testInfectedAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierYet(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 5, 6);
     map.add_soldier(&soldier, 5, 6);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.attack_soldiers(1);
@@ -115,14 +115,14 @@ void testWalkerAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierY
     TEST_CHECK(health == 100);
 }
 
-void testWalkerAttacks2TimesToFastOnlyAttacksOnce(void) {
+void testInfectedAttacks2TimesToFastOnlyAttacksOnce(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 5, 6);
     map.add_soldier(&soldier, 5, 6);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.attack_soldiers(1);
@@ -133,14 +133,14 @@ void testWalkerAttacks2TimesToFastOnlyAttacksOnce(void) {
     TEST_CHECK(health == health2);
 }
 
-void testWalkerAttacks2Times(void) {
+void testInfectedAttacks2Times(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 5, 6);
     map.add_soldier(&soldier, 5, 6);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     map.attack_soldiers(1);
@@ -154,7 +154,7 @@ void testWalkerAttacks2Times(void) {
 //************************************************** BEING ATTACKED *****************************************//
 
 
-void testWalkerGetsAttacked(void) {
+void testInfectedGetsAttacked(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
@@ -162,7 +162,7 @@ void testWalkerGetsAttacked(void) {
     map.add_soldier(&soldier, 5, 6);
     soldier.set_direction(UP);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
 
     soldier.shoot(1);
@@ -175,7 +175,7 @@ void testWalkerGetsAttacked(void) {
     TEST_CHECK(walker.get_health() < 100);
 }
 
-void testWalkerWalkingAndGetsAttacked(void) {
+void testInfectedWalkingAndGetsAttacked(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
@@ -183,7 +183,7 @@ void testWalkerWalkingAndGetsAttacked(void) {
     map.add_soldier(&soldier, 5, 6);
     soldier.set_direction(UP);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
     map.chase_soldiers(1);
 
@@ -198,7 +198,7 @@ void testWalkerWalkingAndGetsAttacked(void) {
     TEST_CHECK(walker.get_health() < 100);
 }
 
-void testWalkergetsShotAndDie(void) {
+void testInfectedgetsShotAndDie(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
@@ -206,7 +206,7 @@ void testWalkergetsShotAndDie(void) {
     map.add_soldier(&soldier, 5, 6);
     soldier.set_direction(UP);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
     map.chase_soldiers(1);
 
@@ -223,7 +223,7 @@ void testWalkergetsShotAndDie(void) {
     TEST_CHECK(walker.get_health() < 100);
 }
 
-void testWalkergetsShotWhileAttacking(void) {
+void testInfectedgetsShotWhileAttacking(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
     Weapon* scout2 = new Scout;
@@ -236,7 +236,7 @@ void testWalkergetsShotWhileAttacking(void) {
     map.add_soldier(&soldier2, 6, 6);
     soldier2.set_direction(UP);
 
-    Walker walker(5,5, map);
+    Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);
     map.attack_soldiers(1);
 
@@ -254,16 +254,16 @@ void testWalkergetsShotWhileAttacking(void) {
 
 
 TEST_LIST = {
-        {"Walker start with Idle state", testWalkerStartsWithIdleState},
-        {"Walker shoots and reloads state changes to Reloading", testWalkerChaseAndStateChangesToWalking},
-        {"Walker gets called 2 times chase but too fast", testWalkerChaseTwiceTooFastAndmoves1Time},
-        {"Walker gets called 2 times chase and moves 2 times",testWalkerChaseTwiceAndmoves2Times},
-        //{"Walker attacks and state change to Attacking", testWalkerAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierYet},
-        {"Walker attacks 2 times fast, only attacks once",testWalkerAttacks2TimesToFastOnlyAttacksOnce},
-        {"Walker attacks twice",testWalkerAttacks2Times},
-        {"Walker gets attacked, state changes and health decrease",testWalkerGetsAttacked},
-        {"Walker gets attacked while walking",testWalkerWalkingAndGetsAttacked},
-        {"Walker gets killed", testWalkergetsShotAndDie},
-        {"Walker gets shot while attacking",testWalkergetsShotWhileAttacking},
+        {"Infected start with Idle state", testInfectedStartsWithIdleState},
+        {"Infected shoots and reloads state changes to Reloading", testInfectedChaseAndStateChangesToWalking},
+        {"Infected gets called 2 times chase but too fast", testInfectedChaseTwiceTooFastAndmoves1Time},
+        {"Infected gets called 2 times chase and moves 2 times",testInfectedChaseTwiceAndmoves2Times},
+        //{"Infected attacks and state change to Attacking", testInfectedAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierYet},
+        {"Infected attacks 2 times fast, only attacks once",testInfectedAttacks2TimesToFastOnlyAttacksOnce},
+        {"Infected attacks twice",testInfectedAttacks2Times},
+        {"Infected gets attacked, state changes and health decrease",testInfectedGetsAttacked},
+        {"Infected gets attacked while walking",testInfectedWalkingAndGetsAttacked},
+        {"Infected gets killed", testInfectedgetsShotAndDie},
+        {"Infected gets shot while attacking",testInfectedgetsShotWhileAttacking},
         {NULL, NULL},
 };

@@ -2,7 +2,7 @@
 #include <iostream>
 #include "acutest.h"
 #include "game_logic/soldier.h"
-#include "game_logic/zombies/walker.h"
+#include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
 #include "game_logic/game_object.h"
 #include "game_logic/weapons/scout.h"
@@ -18,14 +18,14 @@
 #define MOV_NEEDED_TO_WALK_ALL_CELL 14
 //************************************** NO DAMAGE ********************************************************//
 
-void testWalkertriesToAttackSoldierButOutOfRange() {
+void testInfectedtriesToAttackSoldierButOutOfRange() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
     map.add_soldier(&soldier, 8, 2);
 
-    Walker walker(5 ,5 , map);
+    Infected walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -37,14 +37,14 @@ void testWalkertriesToAttackSoldierButOutOfRange() {
     TEST_CHECK(soldier_health == 100);
 }
 
-void testWalkertriesToAttackSoldierButOutOfRange2() {
+void testInfectedtriesToAttackSoldierButOutOfRange2() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 7 , 4 );
     map.add_soldier(&soldier, 7, 4);
 
-    Walker walker(5 ,5 , map);
+    Infected walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -56,14 +56,14 @@ void testWalkertriesToAttackSoldierButOutOfRange2() {
     TEST_CHECK(soldier_health == 100);
 }
 
-void testWalkertriesToAttackSoldierButOutOfRange3() {
+void testInfectedtriesToAttackSoldierButOutOfRange3() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3 , 4 );
     map.add_soldier(&soldier, 3, 4);
 
-    Walker walker(5 ,5 , map);
+    Infected walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -75,14 +75,14 @@ void testWalkertriesToAttackSoldierButOutOfRange3() {
     TEST_CHECK(soldier_health == 100);
 }
 
-void testWalkertriesToAttackSoldierButOutOfRange4() {
+void testInfectedtriesToAttackSoldierButOutOfRange4() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 7 , 6 );
     map.add_soldier(&soldier, 7, 6);
 
-    Walker walker(5 ,5 , map);
+    Infected walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -94,14 +94,14 @@ void testWalkertriesToAttackSoldierButOutOfRange4() {
     TEST_CHECK(soldier_health == 100);
 }
 
-void testWalkertriesToAttackSoldierButOutOfRange5() {
+void testInfectedtriesToAttackSoldierButOutOfRange5() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3 , 6 );
     map.add_soldier(&soldier, 3, 6);
 
-    Walker walker(5 ,5 , map);
+    Infected walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -115,14 +115,14 @@ void testWalkertriesToAttackSoldierButOutOfRange5() {
 
 //****************************************************** DAMAGE ************************************************
 
-void testWalkerDamagesSoldier() {
+void testInfectedDamagesSoldier() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 5 , 6 );
     map.add_soldier(&soldier, 5, 6);
 
-    Walker walker(5 ,5 , map);
+    Infected walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -134,14 +134,14 @@ void testWalkerDamagesSoldier() {
     TEST_CHECK(soldier_health < 100);
 }
 
-void testWalkerDamagesSoldier2() {
+void testInfectedDamagesSoldier2() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 5 , 4 );
     map.add_soldier(&soldier, 5, 4);
 
-    Walker walker(5 ,5 , map);
+    Infected walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -153,14 +153,14 @@ void testWalkerDamagesSoldier2() {
     TEST_CHECK(soldier_health < 100);
 }
 
-void testWalkerDamagesSoldier3() {
+void testInfectedDamagesSoldier3() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 4 , 4 );
     map.add_soldier(&soldier, 4, 4);
 
-    Walker walker(5 ,5 , map);
+    Infected walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -172,14 +172,14 @@ void testWalkerDamagesSoldier3() {
     TEST_CHECK(soldier_health < 100);
 }
 
-void testWalkerDamagesSoldier4() {
+void testInfectedDamagesSoldier4() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 6 , 4 );
     map.add_soldier(&soldier, 6, 4);
 
-    Walker walker(5 ,5 , map);
+    Infected walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -192,15 +192,15 @@ void testWalkerDamagesSoldier4() {
 }
 
 TEST_LIST = {
-        {"Walker tries to attack soldier", testWalkertriesToAttackSoldierButOutOfRange},
-        {"Walker tries to attack soldier 2", testWalkertriesToAttackSoldierButOutOfRange2},
-        {"Walker tries to attack soldier 3", testWalkertriesToAttackSoldierButOutOfRange3},
-        {"Walker tries to attack soldier 4", testWalkertriesToAttackSoldierButOutOfRange4},
-        {"Walker tries to attack soldier 5", testWalkertriesToAttackSoldierButOutOfRange5},
-        {"Walker damages soldier", testWalkerDamagesSoldier},
-        {"Walker damages soldier 2", testWalkerDamagesSoldier2},
-        {"Walker damages soldier 3", testWalkerDamagesSoldier3},
-        {"Walker damages soldier 4", testWalkerDamagesSoldier4},
+        {"Infected tries to attack soldier", testInfectedtriesToAttackSoldierButOutOfRange},
+        {"Infected tries to attack soldier 2", testInfectedtriesToAttackSoldierButOutOfRange2},
+        {"Infected tries to attack soldier 3", testInfectedtriesToAttackSoldierButOutOfRange3},
+        {"Infected tries to attack soldier 4", testInfectedtriesToAttackSoldierButOutOfRange4},
+        {"Infected tries to attack soldier 5", testInfectedtriesToAttackSoldierButOutOfRange5},
+        {"Infected damages soldier", testInfectedDamagesSoldier},
+        {"Infected damages soldier 2", testInfectedDamagesSoldier2},
+        {"Infected damages soldier 3", testInfectedDamagesSoldier3},
+        {"Infected damages soldier 4", testInfectedDamagesSoldier4},
         {NULL, NULL},
 
 };
