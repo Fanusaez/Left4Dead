@@ -21,7 +21,7 @@
 #include <sstream>
 
 static bool handleEvents(Client* client);
-double sleep_for(auto t1, auto t2);
+double rate = 0.04;
 
 int main(int argc, char *argv[])
 {
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 	bool running = true;
 	GameDTO gameState;
 	while (running) {
-		auto t1 = std::chrono::high_resolution_clock::now();
+		auto t_start = std::chrono::high_resolution_clock::now();
 		std::optional<GameDTO> game_optional = client.get_game();
 		if (game_optional.has_value()){
 			gameState = game_optional.value();
@@ -90,23 +90,21 @@ int main(int argc, char *argv[])
 			object.second->update(configs.FRAME_RATE);
 		view.render();
 		running = handleEvents(&client);
-		auto t2 = std::chrono::high_resolution_clock::now();
-		std::this_thread::sleep_for(std::chrono::duration<double>(sleep_for(t1,t2)));
+		auto t_end = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double> duration = t_end - t_start;
+		double seconds = duration.count();
+		double rest = rate - seconds;
+		if(rest < 0) {
+			double behind = -rest;
+        	double lost = behind - std::fmod(behind, rate);
+        	t_start += std::chrono::duration_cast<std::chrono::high_resolution_clock::duration>(std::chrono::duration<double>(lost));
+		}
+		else {
+			std::this_thread::sleep_for(std::chrono::duration<double>(rest));
+		}
 	}
 	client.join();
 	return 0;
-}
-
-double sleep_for(auto t1, auto t2){
-	double rate = 0.04;
-	std::chrono::duration<double> duration = t2 - t1;
-	double seconds = duration.count();
-	double rest = rate - seconds;
-	if (rest < 0) {
-		double behind = -rest;
-		rest = rate - std::fmod(behind, rate);
-	}
-	return rest;
 }
 
 static bool handleEvents(Client* client)

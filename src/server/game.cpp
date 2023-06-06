@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <chrono>
 
+double rate = 0.05;
+
 Game::Game(Queue<GameDTO> *queue_sender, int32_t *code, std::string *game_name, int* player_id) : 
     queue_entrante(10000), code(*code), game_name(*game_name), game_logic(), keep_playing(true)
 {
@@ -33,16 +35,19 @@ void Game::run(){
         }
         m.unlock();
         auto t_end = std::chrono::high_resolution_clock::now();
-        constante_rate_loop(t_start,t_end);
-    }
-}
+        std::chrono::duration<double> duration = t_end - t_start;
+		double seconds = duration.count();
+		double rest = rate - seconds;
+		if(rest < 0) {
+			double behind = -rest;
+        	double lost = behind - std::fmod(behind, rate);
+        	t_start += std::chrono::duration_cast<std::chrono::high_resolution_clock::duration>(std::chrono::duration<double>(lost));
 
-void Game::constante_rate_loop(auto t_start, auto t_end) {
-    double rate = 0.05;
-    auto duration = std::chrono::duration_cast<std::chrono::duration<double>>(t_end - t_start);
-    double sleep_time = rate - duration.count();
-    if (sleep_time > 0)
-        std::this_thread::sleep_for(std::chrono::duration<double>(sleep_time));
+		}
+		else {
+			std::this_thread::sleep_for(std::chrono::duration<double>(rest));
+		}
+    }
 }
 
 Queue<InstructionsDTO> *Game::getQueue(){

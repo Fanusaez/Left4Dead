@@ -41,7 +41,7 @@ GameDTO GameLogic::get_game() {
     for (const auto& piar: playerSoldierMap){
         SoldierObjectDTO soldier(piar.first, piar.second->get_x_pos(), piar.second->get_y_pos(), piar.second->get_state()->soldier_state , IDF, piar.second->facingLeft);
         game_dto.add_soldier(soldier);
-        std::cout<<piar.second->get_x_pos()<<","<<piar.second->get_y_pos()<<std::endl;
+        //std::cout<<piar.second->get_x_pos()<<","<<piar.second->get_y_pos()<<std::endl;
     }
     return game_dto;
 }

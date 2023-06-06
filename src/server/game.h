@@ -28,8 +28,6 @@ private:
 
     bool keep_playing;
 
-    void constante_rate_loop(auto t_start, auto t_end);
-
 public:
     Game(Queue<GameDTO> *queue_sender, int32_t *code, std::string *game_name, int *player_id);
 
