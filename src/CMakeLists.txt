@@ -44,15 +44,15 @@ target_link_libraries(gameview PUBLIC SDL2pp)
 target_compile_definitions(gameview PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
 
 option(VIEWTEST "Test game user interface" OFF)
-if (VIEWTEST)
-	add_executable(viewtest
-			client_main.cpp)
-	target_link_libraries(viewtest PRIVATE gameview)
-	set(VIEWTEST_OUTPUT_DIR ${CMAKE_BINARY_DIR}/src/client)
-	set_target_properties(viewtest
-			PROPERTIES
-			RUNTIME_OUTPUT_DIRECTORY ${VIEWTEST_OUTPUT_DIR})
-endif()
+#if (VIEWTEST)
+#	add_executable(viewtest
+#			client_main.cpp)
+#	target_link_libraries(viewtest PRIVATE gameview)
+#	set(VIEWTEST_OUTPUT_DIR ${CMAKE_BINARY_DIR}/src/client)
+#	set_target_properties(viewtest
+#			PROPERTIES
+#			RUNTIME_OUTPUT_DIRECTORY ${VIEWTEST_OUTPUT_DIR})
+#endif()
 
 option(SERVER "Build server" OFF)
 

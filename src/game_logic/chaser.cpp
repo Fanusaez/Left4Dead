@@ -3,7 +3,7 @@
 #define Y_POS 1
 #define INVALID_POSITION -1
 #define WALLS_LIMITS 0.5
-#define MOVEMENTS_PER_CELL 15
+#define MOVEMENTS_PER_CELL 1
 #define UP -1
 #define DOWN 1
 

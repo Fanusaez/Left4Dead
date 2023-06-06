@@ -7,7 +7,7 @@
 #include "weapons/weapon.h"
 #include "states/idle.h"
 
-#define MOVEMENTS_PER_CELL 15
+#define MOVEMENTS_PER_CELL 2
 #define DOWN 1
 #define UP -1
 

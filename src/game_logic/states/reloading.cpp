@@ -2,7 +2,9 @@
 #include "../soldier.h"
 Reloading::Reloading(Weapon *weapon, float start_time) :
             weapon(weapon),
-            start_time(start_time) {}
+            start_time(start_time) {
+    soldier_state = RELOADING;
+}
 
 
 State* Reloading::update(float time) {

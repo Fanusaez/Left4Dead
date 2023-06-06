@@ -41,7 +41,6 @@ GameDTO GameLogic::get_game() {
     for (const auto& piar: playerSoldierMap){
         SoldierObjectDTO soldier(piar.first, piar.second->get_x_pos(), piar.second->get_y_pos(), piar.second->get_state()->soldier_state , IDF, piar.second->facingLeft);
         game_dto.add_soldier(soldier);
-        piar.second->set_idle();
         //std::cout<<piar.second->get_x_pos()<<","<<piar.second->get_y_pos()<<std::endl;
     }
     return game_dto;
@@ -73,6 +72,9 @@ void GameLogic::move (Move move, int player_id) {
 
 void GameLogic::udpate_game(){
     timer += 0.02;
+    for (const auto& piar: playerSoldierMap){
+        piar.second->update(timer);
+    }
 }
 
 void GameLogic::delete_soldier(int* player_id){

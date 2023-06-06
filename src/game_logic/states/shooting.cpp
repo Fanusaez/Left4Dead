@@ -5,6 +5,7 @@ Shooting::Shooting(Soldier& soldier, Weapon *weapon, float start_time) :
                     soldier(soldier),
                     weapon(weapon),
                     start_time(start_time) {
+    soldier_state = SHOOTING;
     std::vector<GameObject*> targets = soldier.get_targets();
     std::int16_t y_pos = soldier.get_y_matrix_pos();
     weapon->shoot(targets, y_pos, start_time);

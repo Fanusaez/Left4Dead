@@ -9,7 +9,7 @@
 #include "../chaser.h"
 #include "../zombie_states/chasing_states/chase_walking.h"
 #include "../zombie_states/chasing_states/chase_running.h"
-#define MOVEMENTS_PER_CELL 15
+#define MOVEMENTS_PER_CELL 2
 
 class Infected : public GameObject, public Zombie {
  private:

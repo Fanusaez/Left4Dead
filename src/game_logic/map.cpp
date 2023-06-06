@@ -120,7 +120,7 @@ void GameMap::collision_going_down(std::vector<GameObject*>& game_objects,
     }
 }
 
-// Visualmente para nosotros es mover a la izquierda
+// Visualmente para nosotros es mover a arriba
 void GameMap::move_object_up(std::int16_t x_pos,
                               std::int16_t y_pos,
                               std::int16_t& new_y_pos_ref) {
@@ -144,11 +144,11 @@ void GameMap::move_object_right(std::int16_t x_pos,
                                  std::int16_t y_pos,
                                  std::int16_t &new_x_pos_ref) {
 
-    std::uint16_t new_x_pos = x_pos + 2;
+    std::uint16_t new_x_pos = x_pos + 1;
     if (check_free_position(new_x_pos, y_pos) && new_x_pos < x_size) {
         map[y_pos][new_x_pos] = map[y_pos][x_pos];
         map[y_pos][x_pos] = nullptr;
-        new_x_pos_ref = new_x_pos - 1;
+        new_x_pos_ref = new_x_pos;
     }
 }
 void GameMap::move_object_left(std::int16_t x_pos,
@@ -157,7 +157,7 @@ void GameMap::move_object_left(std::int16_t x_pos,
     std::uint16_t new_x_pos = x_pos - 1;
     if (x_pos > 0 && check_free_position(new_x_pos, y_pos)) {
         map[y_pos][new_x_pos] = map[y_pos][x_pos];
-        map[y_pos][x_pos + 1] = nullptr;
+        map[y_pos][x_pos] = nullptr;
         new_x_pos_ref = new_x_pos;
     }
 }
@@ -167,8 +167,7 @@ void GameMap::find_new_y_pos(std::int16_t &new_y_pos_ref,
                              std::uint16_t x_pos,
                              std::uint16_t y_pos) {
     bool first_position = check_free_position(x_pos, possible_new_y_pos);
-    bool sec_position = check_free_position(x_pos + 1, possible_new_y_pos);
-    if (first_position && sec_position){
+    if (first_position){
         move_object_y(x_pos, y_pos, possible_new_y_pos);
         new_y_pos_ref = possible_new_y_pos;
     }
@@ -179,9 +178,6 @@ void GameMap::move_object_y(std::uint16_t x_pos,
                              std::uint16_t y_new_pos) {
     map[y_new_pos][x_pos] = map[y_pos][x_pos];
     map[y_pos][x_pos] = nullptr;
-
-    map[y_new_pos][x_pos + 1] = map[y_pos][x_pos + 1];
-    map[y_pos][x_pos + 1] = nullptr;
 }
 
 bool GameMap::check_free_position(std::int16_t x_pos,
@@ -329,7 +325,6 @@ bool GameMap::add_soldier(GameObject* soldier,
         return false;
     }
     map[y_pos][x_pos] = soldier;
-    map[y_pos][x_pos + 1] = soldier;
 
     soldiers.push_back(soldier); // ya no necesito
     return true;

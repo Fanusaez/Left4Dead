@@ -1,6 +1,8 @@
 #include "being_attacked.h"
 
-BeingAttacked::BeingAttacked(float start_time) : start_time(start_time) {}
+BeingAttacked::BeingAttacked(float start_time) : start_time(start_time) {
+    soldier_state  = IDLE;
+}
 
 State *BeingAttacked::update(float time) {
     if (time_to_stop_being_attacked(time)) {
