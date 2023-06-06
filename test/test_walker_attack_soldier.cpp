@@ -14,21 +14,21 @@
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
 #define WALKER_SPEED 1
-#define MOVEMENTS_PER_CELL 15
-#define MOV_NEEDED_TO_WALK_ALL_CELL 14
+#define MOVEMENTS_PER_CELL 2
+#define MOV_NEEDED_TO_WALK_ALL_CELL 1
 //************************************** NO DAMAGE ********************************************************//
 
 void testInfectedtriesToAttackSoldierButOutOfRange() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 8 * MOVEMENTS_PER_CELL, 2 * MOVEMENTS_PER_CELL);
+    Soldier soldier(scout, map, 8, 2);
     map.add_soldier(&soldier, 8, 2);
 
     Infected walker(5 ,5 , map);
     map.add_zombie(&walker, 5, 5);
 
-    for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
+    for (int i = 0; i < 10; i++) {
         map.attack_soldiers(i);
     }
 
@@ -44,8 +44,8 @@ void testInfectedtriesToAttackSoldierButOutOfRange2() {
     Soldier soldier(scout, map, 7 , 4 );
     map.add_soldier(&soldier, 7, 4);
 
-    Infected walker(5 ,5 , map);
-    map.add_zombie(&walker, 5, 5);
+    Infected walker(6 ,6 , map);
+    map.add_zombie(&walker, 6, 6);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
         map.attack_soldiers(i);
@@ -191,6 +191,25 @@ void testInfectedDamagesSoldier4() {
     TEST_CHECK(soldier_health < 100);
 }
 
+void testInfectedDamagesSoldier5() {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 5 , 6 );
+    map.add_soldier(&soldier, 5, 6);
+
+    Infected walker(6 ,6 , map);
+    map.add_zombie(&walker, 6, 6);
+
+    for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
+        map.attack_soldiers(i);
+    }
+
+    std::int16_t soldier_health = soldier.get_health();
+
+    TEST_CHECK(soldier_health < 100);
+}
+
 TEST_LIST = {
         {"Infected tries to attack soldier", testInfectedtriesToAttackSoldierButOutOfRange},
         {"Infected tries to attack soldier 2", testInfectedtriesToAttackSoldierButOutOfRange2},
@@ -201,6 +220,7 @@ TEST_LIST = {
         {"Infected damages soldier 2", testInfectedDamagesSoldier2},
         {"Infected damages soldier 3", testInfectedDamagesSoldier3},
         {"Infected damages soldier 4", testInfectedDamagesSoldier4},
+        {"Infected damages soldier 5", testInfectedDamagesSoldier4},
         {NULL, NULL},
 
 };

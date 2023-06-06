@@ -33,7 +33,7 @@ void testSoldierShootsInfectedDiesAndIsRemovedFromMap(void) {
     }
 
     std::int16_t remaining_health = walker.get_health();
-    bool free_pos = map.check_entire_free_pos(3, 2);
+    bool free_pos = map.check_free_position(3, 2);
 
     TEST_CHECK(remaining_health <= 0);
     TEST_CHECK(free_pos == true);

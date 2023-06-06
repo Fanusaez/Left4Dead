@@ -8,8 +8,8 @@
 #include "game_logic/weapons/weapon.h"
 #define UP -1
 #define DOWN 1
-#define MOVEMENTS_PER_CELL 15
-#define MOV_NEEDED_TO_WALK_ALL_CELL 14
+#define MOVEMENTS_PER_CELL 2
+#define MOV_NEEDED_TO_WALK_ALL_CELL 1
 
 void testSoldierShootsInfectedSameLineUp(void) {
     GameMap map(10, 10);
@@ -50,6 +50,8 @@ void testSoldierShootsInfectedNotSameLineUp(void) {
     Soldier soldier(idf, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
 
+    soldier.move_left();
+
     Infected walker(7,1, map);
     map.add_zombie(&walker, 7, 1);
 
@@ -59,19 +61,23 @@ void testSoldierShootsInfectedNotSameLineUp(void) {
     TEST_ASSERT(remaining_health < 100);
 }
 
-void testSoldierShootsInfectedNotSameLineDown(void) {
+void testSoldierShootsOtherSoldierNotSameLineDown(void) {
     GameMap map(10, 10);
+
     Weapon* idf = new Idf;
+    Weapon* idf2 = new Idf;
 
     Soldier soldier(idf, map, 8, 1);
     map.add_soldier(&soldier, 8, 1);
 
-    Infected walker(7,9, map);
-    map.add_zombie(&walker, 7, 9);
+    Soldier soldier2(idf2, map, 8, 9);
+    map.add_zombie(&soldier2, 8, 9);
+
+    soldier2.move_right();
 
     soldier.set_direction(DOWN);
     soldier.shoot(1);
-    std::uint16_t remaining_health = walker.get_health();
+    std::uint16_t remaining_health = soldier2.get_health();
     TEST_ASSERT(remaining_health < 100);
 }
 /*
@@ -83,14 +89,14 @@ void testSoldierShootsOnly1InfectedOutOf2AimingUp(){
     GameMap map(10, 10);
     Weapon* idf = new Idf;
 
-    Soldier soldier(idf, map, 7, 7);
-    map.add_soldier(&soldier, 7, 7);
+    Soldier soldier(idf, map, 6, 7);
+    map.add_soldier(&soldier, 6, 7);
 
     Infected walker1(6,3, map);
     map.add_zombie(&walker1, 6, 3);
 
-    Infected walker2(8,3, map);
-    map.add_zombie(&walker2, 8, 3);
+    Infected walker2(6,2, map);
+    map.add_zombie(&walker2, 6, 2);
 
     soldier.set_direction(UP);
     soldier.shoot(11);
@@ -169,7 +175,7 @@ TEST_LIST = {
         {" Soldier shoots walker aiming Left and health decrease", testSoldierShootsInfectedSameLineUp},
         {" Soldier shoots walker aiming Right and health decrease", testSoldierShootsInfectedSameLineDown},
         {" Soldier shoots walker not same line aiming Left and health decrease", testSoldierShootsInfectedNotSameLineUp},
-        {" Soldier shoots walker not same line aiming Right and health decrease", testSoldierShootsInfectedNotSameLineDown},
+        {" Soldier shoots soldier not same line aiming Right and health decrease", testSoldierShootsOtherSoldierNotSameLineDown},
         {" Soldier shoots only 1 walker out of 2 on shooting sight", testSoldierShootsOnly1InfectedOutOf2AimingUp},
         {" Soldier shoots walker and miss aiming left", testSoldierShootsAndMissInfectedOutOfRangeUp},
         {" Soldier shoots walker and miss aiming right", testSoldierShootsAndMissInfectedOutOfRangeDown},

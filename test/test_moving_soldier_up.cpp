@@ -13,8 +13,8 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-#define MOVEMENTS_PER_CELL 15
-#define MOV_NEEDED_TO_WALK_ALL_CELL 14
+#define MOVEMENTS_PER_CELL 2
+#define MOV_NEEDED_TO_WALK_ALL_CELL 1
 
 void testMoveSoldierUp(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
@@ -60,8 +60,10 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    Infected walker(4,7, map);
-    map.add_zombie(&walker, 4, 7);
+    soldier.move_right();
+
+    Infected walker(3,7, map);
+    map.add_zombie(&walker, 3, 7);
 
     for (float i = 0; i < 20; i++){
         soldier.move_up();
@@ -70,29 +72,32 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
     std::int16_t x_pos = soldier.get_x_pos();
     std::int16_t y_pos = soldier.get_y_pos();
 
-    TEST_CHECK(x_pos == (3 * MOVEMENTS_PER_CELL));
+    TEST_CHECK(x_pos == ((3 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL));
     TEST_CHECK(y_pos == (8 * MOVEMENTS_PER_CELL));
 }
 
-void testNotMoveSoldierUpCrashesPartiallyWithZombie2(){
+void testMoveSoldierWithZombieClose(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 8);
-    map.add_soldier(&soldier, 3, 8);
+    Soldier soldier(scout, map, 2, 8);
+    map.add_soldier(&soldier, 2, 8);
 
-    Infected walker(2,7, map);
-    map.add_zombie(&walker, 2, 7);
+    soldier.move_right();
 
-    for (float i = 0; i < 20; i++){
-        soldier.move_up();
-    }
+    Infected walker(3,7, map);
+    map.add_zombie(&walker, 3, 7);
+
+    soldier.move_up();
 
     std::int16_t x_pos = soldier.get_x_pos();
     std::int16_t y_pos = soldier.get_y_pos();
 
-    TEST_CHECK(x_pos == (3 * MOVEMENTS_PER_CELL));
-    TEST_CHECK(y_pos == (8 * MOVEMENTS_PER_CELL));
+    std::cout << x_pos << std::endl;
+    std::cout << y_pos << std::endl;
+
+    TEST_CHECK(x_pos == (2 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(y_pos == (7 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL);
 }
 
 void testMoveSoldierUpUntilEndOfTheMap(){
@@ -135,7 +140,7 @@ TEST_LIST = {
         {"Move soldier 1 position up",testMoveSoldierUp},
         {"Move soldier 1 position up goes not possible for walker totally aligned",testNotMoveSoldierUp},
         {"Move soldier 1 position up goes not possible for walker partially aligned (right side)", testNotMoveSoldierUpCrashesPartiallyWithZombie},
-        {"Move soldier 1 position up goes not possible for walker partially aligned(left side)", testNotMoveSoldierUpCrashesPartiallyWithZombie2},
+        {"Move soldier 1 position up with infected close", testMoveSoldierWithZombieClose},
         {"Move soldier up until end of the map",testMoveSoldierUpUntilEndOfTheMap},
         {"Move soldier up until end of the map",testMoveSoldierUpUntilEndOfTheMap2},
         {NULL, NULL},

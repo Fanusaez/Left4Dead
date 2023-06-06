@@ -14,34 +14,9 @@
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
 #define WALKER_SPEED 1
-#define MOVEMENTS_PER_CELL 15
-#define MOV_NEEDED_TO_WALK_ALL_CELL 14
+#define MOVEMENTS_PER_CELL 2
+#define MOV_NEEDED_TO_WALK_ALL_CELL 1
 // ***************************************** Movimiento diagonal *******************************************//
-
-void testChaseInfectedDiagonallyUpAndRight() {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
-
-    Soldier soldier(scout, map, 8, 2);
-    map.add_soldier(&soldier, 8, 2);
-
-    Infected walker(5,5, map);
-    map.add_zombie(&walker, 5, 5);
-
-    map.chase_soldiers(1);
-
-    float x_pos_walk = walker.get_x_pos();
-    float y_pos_walk = walker.get_y_pos();
-    const float epsilon = 0.001; // Valor de tolerancia
-
-    float received_numered_x = x_pos_walk;
-    float expected_number_x = 5 + WALKER_SPEED;
-    float received_numered_y = y_pos_walk;
-    float expected_number_y = 5 - WALKER_SPEED;
-
-    TEST_CHECK(fabs(received_numered_x - expected_number_x) < epsilon);
-    TEST_CHECK(fabs(received_numered_y - expected_number_y) < epsilon);
-}
 
 void testChaseInfectedDiagonallyUpAndRightFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
@@ -60,30 +35,12 @@ void testChaseInfectedDiagonallyUpAndRightFaceToFace() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL);
-    TEST_CHECK(y_pos == 3 * MOVEMENTS_PER_CELL);
+    TEST_CHECK(x_pos == (8 * MOVEMENTS_PER_CELL) - MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(y_pos == 2 * MOVEMENTS_PER_CELL);
     TEST_CHECK(added_soldier == true);
     TEST_CHECK(added_walker == true);
 }
 
-void testChaseInfectedDiagonallyUpAndLeft() {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
-
-    Soldier soldier(scout, map, 1, 3);
-    map.add_soldier(&soldier, 1, 3);
-
-    Infected walker(5,5, map);
-    map.add_zombie(&walker, 5, 5);
-
-    map.chase_soldiers(1);
-
-    std::int16_t x_pos_walk = walker.get_x_pos();
-    std::int16_t y_pos_walk = walker.get_y_pos();
-
-    TEST_CHECK(x_pos_walk == 4);
-    TEST_CHECK(y_pos_walk == 4);
-}
 
 void testChaseInfectedDiagonallyUpAndLeftFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
@@ -102,27 +59,8 @@ void testChaseInfectedDiagonallyUpAndLeftFaceToFace() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == 1 * MOVEMENTS_PER_CELL);
-    TEST_CHECK(y_pos == 4 * MOVEMENTS_PER_CELL);
-}
-
-void testChaseInfectedDiagonallyDownAndRight() {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
-
-    Soldier soldier(scout, map, 8, 8);
-    map.add_soldier(&soldier, 8, 8);
-
-    Infected walker(5,5, map);
-    map.add_zombie(&walker, 5, 5);
-
-    map.chase_soldiers(1);
-
-    std::int16_t x_pos_walk = walker.get_x_pos();
-    std::int16_t y_pos_walk = walker.get_y_pos();
-
-    TEST_CHECK(x_pos_walk == 6);
-    TEST_CHECK(y_pos_walk == 6);
+    TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL);
+    TEST_CHECK(y_pos == 3 * MOVEMENTS_PER_CELL);
 }
 
 void testChaseInfectedDiagonallyDownAndRightFaceToFace() {
@@ -142,28 +80,10 @@ void testChaseInfectedDiagonallyDownAndRightFaceToFace() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL);
-    TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(x_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL);
 }
 
-void testChaseInfectedDiagonallyDownAndLeft() {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
-
-    Soldier soldier(scout, map, 2, 8);
-    map.add_soldier(&soldier, 2, 8);
-
-    Infected walker(5,5, map);
-    map.add_zombie(&walker, 5, 5);
-
-    map.chase_soldiers(1);
-
-    std::int16_t x_pos_walk = walker.get_x_pos();
-    std::int16_t y_pos_walk = walker.get_y_pos();
-
-    TEST_CHECK(x_pos_walk == 4);
-    TEST_CHECK(y_pos_walk == 6);
-}
 
 void testChaseInfectedDiagonallyDownAndLeftFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
@@ -182,8 +102,8 @@ void testChaseInfectedDiagonallyDownAndLeftFaceToFace() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL);
-    TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
+    TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL);
 }
 
 // ***************************************** Movimiento Up and Down *******************************************//
@@ -304,7 +224,7 @@ void testChaseInfectedRightSideToSide() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == 6 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(x_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
 }
 
@@ -344,19 +264,15 @@ void testChaseInfectedLeftSideToSide() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
+    TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
 }
 
 
 TEST_LIST = {
-        //{"Infected chase soldier diagonally up and right", testChaseInfectedDiagonallyUpAndRight},
         {"Infected chase soldier diagonally up and right ends face to face", testChaseInfectedDiagonallyUpAndRightFaceToFace},
-       // {"Infected chase soldier diagonally up and left", testChaseInfectedDiagonallyUpAndLeft},
         {"Infected chase soldier diagonally up and left ends face to face", testChaseInfectedDiagonallyUpAndLeftFaceToFace},
-       // {"Infected chase soldier diagonally down and right", testChaseInfectedDiagonallyDownAndRight},
         {"Infected chase soldier diagonally down and right ends face to face", testChaseInfectedDiagonallyDownAndRightFaceToFace},
-      //  {"Infected chase soldier diagonally down and left", testChaseInfectedDiagonallyDownAndLeft},
         {"Infected chase soldier diagonally down and left ends face to face", testChaseInfectedDiagonallyDownAndLeftFaceToFace},
 
         {"Infected chase soldier up", testChaseInfectedUp},

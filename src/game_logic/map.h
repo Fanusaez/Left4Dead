@@ -83,37 +83,6 @@ void chase_soldier_walking(Zombie* zombie,
                            std::int16_t& y_new_pos,
                            GameObject* closest_soldier);
 
-void move_diagonally_up_right(std::int16_t x_zombie,
-                              std::int16_t y_zombie,
-                              std::int16_t& x_new_zombie,
-                              std::int16_t& y_new_zombie,
-                              bool& same_place);
-
-void move_diagonally_up_left(std::int16_t x_zombie,
-                             std::int16_t y_zombie,
-                             std::int16_t& x_new_zombie,
-                             std::int16_t& y_new_zombie,
-                             bool& same_place);
-
-void move_diagonally_down_right(std::int16_t x_zombie,
-                                std::int16_t y_zombie,
-                                std::int16_t& x_new_zombie,
-                                std::int16_t& y_new_zombie,
-                                bool& same_place);
-
-void move_diagonally_down_left(std::int16_t x_zombie,
-                               std::int16_t y_zombie,
-                               std::int16_t& x_new_zombie,
-                               std::int16_t& y_new_zombie,
-                               bool& same_place);
-
-/*
- * Asume que le pasas la posicon verdadera (la del x menor), como siempre
-*/
-void move_object_diagonally(std::int16_t& x_old_pos,
-                            std::int16_t& y_old_pos,
-                            std::int16_t& x_new_pos,
-                            std::int16_t& y_new_pos);
 
 void chase_soldiers(float time);
 void attack_soldiers(float time);
@@ -123,7 +92,6 @@ void get_position_for_soldier(std::vector<std::int16_t>& valid_pos);
 bool add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
 bool add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
 void free_entire_position(std::int16_t x_pos, std::int16_t y_pos);
-bool check_entire_free_pos(std::int16_t x_pos, std::int16_t y_pos);
 // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);
