@@ -135,6 +135,12 @@ static bool handleEvents(Client* client)
 			case SDLK_DOWN:
 				client->move(DOWN);
 				break;
+			case SDLK_r:
+				client->reload();
+				break;
+			case SDLK_s:
+				client->shoot();
+				break;
 			}
 		} // Fin KEY_DOWN
 		break;
