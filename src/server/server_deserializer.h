@@ -24,6 +24,8 @@ private:
 
     InstructionsDTO deserialize_grenede(bool *was_closed, int *player_id);
 
+    InstructionsDTO deserialize_start(bool *was_closed, int *player_id);
+
 public:
     ServerDeserializer(Socket *socket);
 

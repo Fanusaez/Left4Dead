@@ -12,8 +12,9 @@ Game::Game(Queue<GameDTO> *queue_sender, int32_t *code, std::string *game_name, 
 
 void Game::run(){   
     InstructionsDTO instructionDTO;
+    InstructionsDTO start;
     bool could_pop;
-    double rate = 0.04;
+    start = queue_entrante.pop();  //Espero a popoear la señal de start
     while (keep_playing)
     {
         auto t_start = std::chrono::high_resolution_clock::now();
@@ -32,11 +33,16 @@ void Game::run(){
         }
         m.unlock();
         auto t_end = std::chrono::high_resolution_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::duration<double>>(t_end - t_start);
-        double sleep_time = rate - duration.count();
-        if (sleep_time > 0)
-            std::this_thread::sleep_for(std::chrono::duration<double>(sleep_time));
+        constante_rate_loop(t_start,t_end);
     }
+}
+
+void Game::constante_rate_loop(auto t_start, auto t_end) {
+    double rate = 0.05;
+    auto duration = std::chrono::duration_cast<std::chrono::duration<double>>(t_end - t_start);
+    double sleep_time = rate - duration.count();
+    if (sleep_time > 0)
+        std::this_thread::sleep_for(std::chrono::duration<double>(sleep_time));
 }
 
 Queue<InstructionsDTO> *Game::getQueue(){
@@ -59,12 +65,11 @@ bool Game::compare_game_name(std::string *game_name_to_compare){
 }
 
 bool Game::find_player(int* player_id){
-    for (const auto &queue : queue_salientes){
-        if (queue.first == *player_id) {
-            queue_salientes.erase(*player_id);
-            game_logic.delete_soldier(player_id);
-            return true;    
-        }
+    auto it = queue_salientes.find(*player_id);
+    if (it != queue_salientes.end()){
+        game_logic.delete_soldier(player_id);
+        queue_salientes.erase(it);
+        return true;    
     }
     return false;
 }
@@ -79,4 +84,12 @@ bool Game::is_empty(){
 
 void Game::stop_playing(){
     keep_playing = false;
+}
+
+int32_t Game::get_game_code(){
+    return code;
+}
+
+int Game::get_players(){
+    return queue_salientes.size();
 }

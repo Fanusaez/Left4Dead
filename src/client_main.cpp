@@ -78,16 +78,16 @@ static bool handleEvents(Player &player)
 			switch (keyEvent.keysym.sym)
 			{
 			case SDLK_LEFT:
-				player.moveLeft();
+				//player.moveLeft();
 				break;
 			case SDLK_RIGHT:
-				player.moveRigth();
+				//player.moveRigth();
 				break;
 			case SDLK_UP:
-				player.moveUp();
+				//player.moveUp();
 				break;
 			case SDLK_DOWN:
-				player.moveDown();
+				//player.moveDown();
 				break;
 			}
 		} // Fin KEY_DOWN
@@ -98,16 +98,16 @@ static bool handleEvents(Player &player)
 			switch (keyEvent.keysym.sym)
 			{
 			case SDLK_LEFT:
-				player.stopMoving();
+				//player.stopMoving();
 				break;
 			case SDLK_RIGHT:
-				player.stopMoving();
+				//player.stopMoving();
 				break;
 			case SDLK_UP:
-				player.stopMoving();
+				//player.stopMoving();
 				break;
 			case SDLK_DOWN:
-				player.stopMoving();
+				//player.stopMoving();
 				break;
 			}
 		} // Fin KEY_UP

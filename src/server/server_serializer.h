@@ -6,6 +6,7 @@
 #include "../common/game_dto.h"
 #include "../common/socket.h"
 #include "../common/move.h"
+#include "./game.h"
 
 #include <vector>
 #include <string>
@@ -19,10 +20,14 @@ public:
 
     ServerSerializer(Socket *socket);
 
-    std::vector<char> serialize_create_scenario(int32_t *scenario_code);
+    void serialize_create_scenario(int32_t &scenario_code, bool *was_closed);
 
-    std::vector<char> serialize_join_scenario(bool *join);
+    void send_error_create(bool *was_closed);
 
+    void serialize_join_scenario(const bool &join, bool *was_closed);
+
+    void serialize_start_game(bool *was_closed);
+    
     std::vector<char> serialize_soldier_position(int16_t *pos_x, int16_t *pos_y);
 
     std::vector<char> serialize_soldier_ammo(int *ammo);
@@ -31,7 +36,7 @@ public:
 
     std::vector<char> serialize_game_stats(int *infected, int16_t *ammo, int16_t *time);
 
-    std::vector<char> serialize_games_availables(int *games, std::vector<int> *codes, std::vector<int> *people);
+    std::vector<char> serialize_games_availables(const std::vector<Game*> &games);
 
     void send_game(GameDTO game_dto, bool *was_closed);
 };

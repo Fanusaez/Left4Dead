@@ -27,7 +27,7 @@ private:
 public:
     MatchMananger();
 
-    Queue<InstructionsDTO> *create_game(Queue<GameDTO> *queue_sender, std::string *escenario, int *player_id);
+    Queue<InstructionsDTO> *create_game(Queue<GameDTO> *queue_sender, std::string *escenario, int *player_id, int32_t *game_code);
 
     Queue<InstructionsDTO> *join(Queue<GameDTO> *queue_sender, int *codigo, int* player_id);
 

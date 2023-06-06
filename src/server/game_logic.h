@@ -21,6 +21,10 @@ private:
 
     void move (Move move, int player_id);
 
+    void reload (int player_id);
+
+    void shoot (int player_id);
+
 public:
     GameLogic();
 

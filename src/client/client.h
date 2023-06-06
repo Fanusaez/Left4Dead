@@ -25,22 +25,20 @@ private:
 
     Queue<GameDTO> queue_receiver;
 
-    //bool game_stage; //0 = Lobby 1 = Game
-
 public:
-    Client(char *localhost, char *puerto);
-
-    bool create_scenario(const std::string& scenario_name);
-
-    bool join_scenario(const int32_t& scenario_code);
+    Client(Socket&& socket);
 
     bool move(Move move);
 
-    bool start();
+    bool reload();
+
+    bool shoot();
 
     std::optional<GameDTO> get_game();
 
     void join();
+
+    void start_playing();
 
 };
 #endif

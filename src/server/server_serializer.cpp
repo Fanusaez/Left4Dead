@@ -5,27 +5,34 @@
 
 ServerSerializer::ServerSerializer() {}
 
-ServerSerializer::ServerSerializer(Socket *socket) : socket(socket)
-{
+ServerSerializer::ServerSerializer(Socket *socket) : socket(socket){}
+
+void ServerSerializer::serialize_create_scenario(int32_t &scenario_code, bool *was_closed) {
+    std::vector<char> buffer;
+    buffer.push_back(CREATE);
+    unsigned char const * p = reinterpret_cast<unsigned char const *>(&scenario_code);
+    buffer.insert(buffer.end(), p, p + sizeof(int32_t));
+    socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
 
-std::vector<char> ServerSerializer::serialize_create_scenario(int32_t *scenario_code) {
+void ServerSerializer::send_error_create(bool *was_closed){
     std::vector<char> buffer;
-    buffer.push_back((*scenario_code >> 24) & 0xFF);
-    buffer.push_back((*scenario_code >> 16) & 0xFF);
-    buffer.push_back((*scenario_code >> 8) & 0xFF);
-    buffer.push_back(*scenario_code & 0xFF);
-    return buffer;
+    buffer.push_back(CREATE);
+    buffer.push_back(0x01);
+    socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
 
-std::vector<char> ServerSerializer::serialize_join_scenario(bool *join){
+void ServerSerializer::serialize_join_scenario(const bool &join, bool *was_closed){
     std::vector<char> buffer;
-    if (*join)
-        buffer.push_back(0x01);
-    else
-        buffer.push_back(0x00);
+    buffer.push_back(JOIN);
+    buffer.push_back(join);
+    socket->sendall(buffer.data(), buffer.size(), was_closed);
+}
 
-    return buffer;
+void ServerSerializer::serialize_start_game(bool *was_closed) {
+    std::vector<char> buffer;
+    buffer.push_back(START);
+    socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
 
 std::vector<char> ServerSerializer::serialize_soldier_position(int16_t *pos_x, int16_t *pos_y)
@@ -80,13 +87,15 @@ std::vector<char> ServerSerializer::serialize_game_stats(int *infected, int16_t 
     return buffer;
 }
 
-std::vector<char> ServerSerializer::serialize_games_availables(int *games, std::vector<int> *codes, std::vector<int> *people){
+std::vector<char> ServerSerializer::serialize_games_availables(const std::vector<Game*> &games){
     std::vector<char> buffer;
 
-    buffer.push_back(*games);
-    for(int i = 0; i < *games; i++){
-        buffer.push_back(codes->at(i));
-        buffer.push_back(people->at(i));
+    std::mutex m;
+    m.lock();
+    buffer.push_back(games.size());
+    for(auto &game: games){
+        buffer.push_back(game->get_game_code());
+        buffer.push_back(game->get_players());
     }
     return buffer;
 }
@@ -125,5 +134,4 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
 
     }
     int sz = socket->sendall(buffer.data(), buffer.size(), was_closed);
-    //std::cout<<"Envio n bytes: "<<sz<<std::endl;
 }

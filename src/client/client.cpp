@@ -1,23 +1,27 @@
 #include "client.h"
 #include <sys/socket.h>
 
-Client::Client(char *localhost, char *puerto) : socket(localhost, puerto), queue_sender(1000000), queue_receiver(1000000),
-    client_sender(&socket,std::ref(keep_talking),&queue_sender), client_receiver(&socket,std::ref(keep_talking),&queue_receiver) {
-    keep_talking = true;        
+Client::Client(Socket&& peer) : queue_sender(1000000), queue_receiver(1000000), keep_talking(true),
+    client_sender(&socket,std::ref(keep_talking),&queue_sender), client_receiver(&socket,std::ref(keep_talking),&queue_receiver), socket(std::move(peer)) {
     client_sender.start();
     client_receiver.start();
+    start_playing();
 }
 
-bool Client::create_scenario(const std::string& scenario_name){
-    return (queue_sender.try_push(client_seializer.serialize_create_scenario(scenario_name)));
-}
-
-bool Client::join_scenario(const int32_t& scenario_code) {
-    return (queue_sender.try_push(client_seializer.serialize_join_scenario(scenario_code)));
+void Client::start_playing(){
+    queue_sender.try_push(client_seializer.serialize_start_playing());
 }
 
 bool Client::move(Move move){
     return (queue_sender.try_push(client_seializer.serialize_move(move)));
+}
+
+bool Client::reload(){
+    return (queue_sender.try_push(client_seializer.serialize_reloading()));
+}
+
+bool Client::shoot(){
+    return (queue_sender.try_push(client_seializer.serialize_shooting()));
 }
 
 std::optional<GameDTO> Client::get_game(){

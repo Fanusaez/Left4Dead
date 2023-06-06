@@ -7,6 +7,7 @@ enum Instructions {
     GAME_MODE,
     SOLDIER_TYPE,
     GAME_LIST,
+    START,
     MOVE,
     RELOAD,
     SHOOT,

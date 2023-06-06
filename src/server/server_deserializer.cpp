@@ -9,6 +9,10 @@ InstructionsDTO ServerDeserializer::obtener_instruccion(bool *was_closed, int* p
 {
     char code = 0;
     socket->recvall(&code, 1, was_closed);
+    if (*was_closed){
+        InstructionsDTO instruction;
+        return instruction;
+    }
     Instructions instruction = static_cast<Instructions>(code);
     switch (instruction) {
         case CREATE:
@@ -16,6 +20,9 @@ InstructionsDTO ServerDeserializer::obtener_instruccion(bool *was_closed, int* p
             break;
         case JOIN:
             return (deserialize_join(was_closed, player_id));
+            break;
+        case START:
+            return (deserialize_start(was_closed, player_id));
             break;
         case MOVE:
             return (deserialize_move(was_closed, player_id));
@@ -30,6 +37,7 @@ InstructionsDTO ServerDeserializer::obtener_instruccion(bool *was_closed, int* p
             return (deserialize_grenede(was_closed, player_id));
             break;
         }
+
 }
 
 InstructionsDTO ServerDeserializer::deserialize_create(bool *was_closed, int* player_id)
@@ -75,5 +83,11 @@ InstructionsDTO ServerDeserializer::deserialize_grenede(bool *was_closed, int* p
     std::vector<char> bytes;
     socket->recvall(bytes.data(), 1, was_closed);
     InstructionsDTO instructionDTO(player_id, GRANEDE, bytes);
+    return instructionDTO;
+}
+
+InstructionsDTO ServerDeserializer::deserialize_start(bool *was_closed, int* player_id)
+{
+    InstructionsDTO instructionDTO(player_id, START);
     return instructionDTO;
 }

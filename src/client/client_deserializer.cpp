@@ -2,27 +2,6 @@
 #include <iostream>
 ClientDeserializer::ClientDeserializer(Socket *socket) : socket(socket) {}
 
-Instructions ClientDeserializer::obtener_instruccion(bool *was_closed)
-{
-    char code = 0;
-    socket->recvall(&code, 1, was_closed);
-    return static_cast<Instructions>(code);
-}
-
-/*----------------------Lobby message--------------------*/
-
-int32_t ClientDeserializer::deserialize_create_scenario(bool *was_closed)
-{
-    int32_t game_code;
-    socket->recvall(&game_code,4,was_closed);
-    return game_code;
-}
-
-bool ClientDeserializer::deserialize_join_scenario(bool *was_closed)
-{
-    bool status_join;
-}
-
 /*----------------------Game message--------------------*/
 
 GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)

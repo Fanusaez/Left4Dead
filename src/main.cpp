@@ -1,5 +1,6 @@
 #include <iostream>
 #include "client.h"
+#include "lobby.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2pp/SDL2pp.hh>
@@ -17,12 +18,43 @@
 #include <memory>
 #include <optional>
 #include <chrono>
+#include <sstream>
 
 static bool handleEvents(Client* client);
 double sleep_for(auto t1, auto t2);
 
 int main(int argc, char *argv[])
 {
+	/*
+	Gameloop donde estoy en el lobby. Todo el tiempo estoy chequeando nuevos mensajes de server ya sea por el create o el join o la lista de partidas o el chat
+	*/
+	Lobby lobby(argv[1], argv[2]);
+	
+	while (lobby.running()) {
+		std::string input;
+		std::getline(std::cin, input);
+
+		std::istringstream iss(input);
+		std::string mode;
+		iss >> mode;
+
+		if (mode == "create") {
+			std::string map;
+			iss >> map;
+			lobby.create_scenario(map);
+		} else if (mode == "join") {
+			int32_t code;
+			iss >> code;
+			lobby.join_scenario(code);
+		} else if (mode == "start") {
+			lobby.start();
+		} else if (mode == "quit") {
+			lobby.close();
+			return 0;
+		}
+		lobby.update();
+	}
+	std::cout<<"start playing"<<std::endl;
 
 	GameviewConfigurationsLoader &configs = GameviewConfigurationsLoader::getInstance();
 	std::map<int, std::unique_ptr<RenderableObject>> objects;
@@ -32,19 +64,9 @@ int main(int argc, char *argv[])
 	std::unique_ptr<Scene> scene(new Scene());
 	view.setScene(scene);
 
+	Socket socket = lobby.move_socket(); 
+	Client client(std::move(socket));
 	bool running = true;
-
-	Client client(argv[1], argv[2]);
-	if (std::string(argv[3]) == "c"){
-		std::string map = "map1";
-		client.create_scenario(map);
-		std::cout << "Creo el escenario" << std::endl;
-	} else {
-		int32_t code = 0;
-		client.join_scenario(code);
-		std::cout << "Joineo escenario" << std::endl;
-	}
-
 	GameDTO gameState;
 	while (running) {
 		auto t1 = std::chrono::high_resolution_clock::now();

@@ -4,7 +4,7 @@
 #include "../common/move.h"
 #include <ctime>
 
-GameLogic::GameLogic() : game_map(20,20) {}
+GameLogic::GameLogic() : game_map(200,200) {}
 
 void GameLogic::add_soldier(int* player_id) {
     Weapon* idf = new Idf;
@@ -25,7 +25,7 @@ void GameLogic::new_instruction(InstructionsDTO instruction) {
         move(static_cast<Move>(instruction.get_parameters().front()), instruction.get_player_id());
         break;
     case RELOAD:
-                
+        reload(instruction.get_player_id());
         break;
     case SHOOT:
                 
@@ -70,17 +70,28 @@ void GameLogic::move (Move move, int player_id) {
     }
 }
 
+void GameLogic::reload (int player_id) {
+    Soldier* soldier = playerSoldierMap[player_id];
+    soldier->reload(timer);
+}
+
+void GameLogic::shoot (int player_id) {
+    Soldier* soldier = playerSoldierMap[player_id];
+    soldier->shoot(timer);
+}
+
 void GameLogic::udpate_game(){
-    timer += 0.02;
+    timer += 0.05;
     for (const auto& piar: playerSoldierMap){
         piar.second->update(timer);
     }
 }
 
 void GameLogic::delete_soldier(int* player_id){
-    for (const auto& piar: playerSoldierMap){
-        if (piar.first == *player_id)
-            playerSoldierMap.erase(*player_id);
+    auto it = playerSoldierMap.find(*player_id);
+    if (it != playerSoldierMap.end()) {
+        delete it->second;
+        playerSoldierMap.erase(it);
     }
 }
 

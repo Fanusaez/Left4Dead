@@ -28,6 +28,8 @@ private:
 
     bool keep_playing;
 
+    void constante_rate_loop(auto t_start, auto t_end);
+
 public:
     Game(Queue<GameDTO> *queue_sender, int32_t *code, std::string *game_name, int *player_id);
 
@@ -38,6 +40,10 @@ public:
     void addPlayer(Queue<GameDTO> *queue_sender, int *player_id);
 
     bool compare_code(int32_t *code_to_compare);
+
+    int32_t get_game_code();
+
+    int get_players();
 
     bool compare_game_name(std::string *game_name_to_compare);
 

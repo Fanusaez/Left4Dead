@@ -16,14 +16,6 @@ private:
 public:
     ClientDeserializer(Socket *socket);
 
-    Instructions obtener_instruccion(bool *was_closed);
-
-    /*----------------------Lobby message--------------------*/
-
-    int32_t deserialize_create_scenario(bool *was_closed);
-
-    bool deserialize_join_scenario(bool *was_closed);
-
     /*----------------------Game message--------------------*/
 
     GameDTO deserialize_game_dto(bool *was_closed);

@@ -44,15 +44,15 @@ target_link_libraries(gameview PUBLIC SDL2pp)
 target_compile_definitions(gameview PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
 
 option(VIEWTEST "Test game user interface" OFF)
-#if (VIEWTEST)
-#	add_executable(viewtest
-#			client_main.cpp)
-#	target_link_libraries(viewtest PRIVATE gameview)
-#	set(VIEWTEST_OUTPUT_DIR ${CMAKE_BINARY_DIR}/src/client)
-#	set_target_properties(viewtest
-#			PROPERTIES
-#			RUNTIME_OUTPUT_DIRECTORY ${VIEWTEST_OUTPUT_DIR})
-#endif()
+if (VIEWTEST)
+	add_executable(viewtest
+			client_main.cpp)
+	target_link_libraries(viewtest PRIVATE gameview)
+	set(VIEWTEST_OUTPUT_DIR ${CMAKE_BINARY_DIR}/src/client)
+	set_target_properties(viewtest
+			PROPERTIES
+			RUNTIME_OUTPUT_DIRECTORY ${VIEWTEST_OUTPUT_DIR})
+endif()
 
 option(SERVER "Build server" OFF)
 
@@ -128,6 +128,11 @@ if(CLIENT)
 		./common/resolver.cpp
 		./common/game_dto.cpp
 		./common/instructions_dto.cpp
+		./client/lobby.cpp
+		./client/lobby_deserializer.cpp
+		./client/lobby_serializer.cpp
+		./client/lobby_sender.cpp
+		./client/lobby_receiver.cpp
 	)
 	target_link_libraries(main_client PUBLIC gameview)
 	target_include_directories(main_client PUBLIC ${PROJECT_SOURCE_DIR}/src/client)
