@@ -13,11 +13,11 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-#define MOVEMENTS_PER_CELL 15
-#define MOV_NEEDED_TO_WALK_ALL_CELL 14
+#define MOVEMENTS_PER_CELL 2
+#define MOV_NEEDED_TO_WALK_ALL_CELL 1
 #define SOLDIER_SPEED 1
 
-void testMoveSoldierRight(){
+void testMoveSoldierRight() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
@@ -37,17 +37,17 @@ void testMoveSoldierRightEndOfMap() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, (MAP_SIZE_X - 2), 3);
-    map.add_soldier(&soldier, MAP_SIZE_X - 2, 3);
+    Soldier soldier(scout, map, 5, 3);
+    map.add_soldier(&soldier, 5, 3);
 
-    for (float i = 0; i < 15; i++){
+    for (float i = 0; i < 100; i++){
         soldier.move_right();
     }
 
     std::int16_t x_pos = soldier.get_x_pos();
     std::int16_t y_pos = soldier.get_y_pos();
 
-    TEST_CHECK(x_pos == (MAP_SIZE_X - 2) * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(x_pos == 9 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 3 * MOVEMENTS_PER_CELL);
 
 }
@@ -69,7 +69,7 @@ void testNotMoveSoldierRightForCollisionWithZombie(){
     std::int16_t x_pos = soldier.get_x_pos();
     std::int16_t y_pos = soldier.get_y_pos();
 
-    TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(x_pos == 4 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL);
 }
 
@@ -91,7 +91,7 @@ void testMoveSoldierRightWithZombieClose() {
     std::int16_t x_pos = soldier.get_x_pos();
     std::int16_t y_pos = soldier.get_y_pos();
 
-    TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(x_pos == 9 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL);
 }
 
@@ -109,7 +109,7 @@ void testMoveSoldierRightAllTheWay(){
     std::int16_t x_pos = soldier.get_x_pos();
     std::int16_t y_pos = soldier.get_y_pos();
 
-    TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(x_pos == 9 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 0);
 }
 

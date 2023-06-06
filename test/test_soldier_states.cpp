@@ -217,7 +217,7 @@ void testSoldierMovesUpAndImmediatelyReloadStateStaysMoving(void) {
     map.add_soldier(&soldier, 2, 2);
 
     soldier.move_up(1);
-    soldier.reload(1.1);
+    soldier.reload(1.001);
 
     Moving* soldier_state = dynamic_cast<Moving*>(soldier.get_state());
     Idle* idle_state = dynamic_cast<Idle*>(soldier.get_state());

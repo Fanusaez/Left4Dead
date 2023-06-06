@@ -14,8 +14,8 @@
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
 #define WALKER_SPEED 1
-#define MOVEMENTS_PER_CELL 15
-#define MOV_NEEDED_TO_WALK_ALL_CELL 14
+#define MOVEMENTS_PER_CELL 2
+#define MOV_NEEDED_TO_WALK_ALL_CELL 1
 // ***************************************** Movimiento diagonal *******************************************8
 
 void testMapChaseInfectedDiagonallyUpAndRight() {
@@ -132,15 +132,10 @@ void testMapChaseInfectedUp() {
         map.chase_soldiers(i);
     }
     GameObject* walker1 = map.get_object(5, 7);
-    GameObject* walker2 = map.get_object(6, 7);
-
     GameObject* old_pos1= map.get_object(5, 8);
-    GameObject* old_pos2 = map.get_object(6, 8);
 
     TEST_CHECK(walker1 != nullptr);
-    TEST_CHECK(walker2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
-    TEST_CHECK(old_pos2 == nullptr);
 }
 
 void testMapChaseInfectedDown() {
@@ -158,15 +153,10 @@ void testMapChaseInfectedDown() {
     }
 
     GameObject* walker1 = map.get_object(5, 2);
-    GameObject* walker2 = map.get_object(6, 2);
-
     GameObject* old_pos1= map.get_object(5, 1);
-    GameObject* old_pos2 = map.get_object(6, 1);
 
     TEST_CHECK(walker1 != nullptr);
-    TEST_CHECK(walker2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
-    TEST_CHECK(old_pos2 == nullptr);
 }
 
 //********************************** Right and Left **********************************************//
@@ -186,12 +176,9 @@ void testMapChaseInfectedRight() {
     }
 
     GameObject* walker1 = map.get_object(3, 5);
-    GameObject* walker2 = map.get_object(4, 5);
-
     GameObject* old_pos1= map.get_object(2, 5);
 
     TEST_CHECK(walker1 != nullptr);
-    TEST_CHECK(walker2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
 }
 
@@ -208,12 +195,10 @@ void testMapChaseInfectedLeft() {
     map.chase_soldiers(1);
 
     GameObject* walker1 = map.get_object(7, 5);
-    GameObject* walker2 = map.get_object(8, 5);
 
     GameObject* old_pos1= map.get_object(9, 5);
 
     TEST_CHECK(walker1 != nullptr);
-    TEST_CHECK(walker2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
 }
 

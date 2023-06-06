@@ -12,8 +12,8 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-#define MOVEMENTS_PER_CELL 15
-#define MOV_NEEDED_TO_WALK_ALL_CELL 14
+#define MOVEMENTS_PER_CELL 2
+#define MOV_NEEDED_TO_WALK_ALL_CELL 1
 #define SOLDIER_SPEED 1
 //**************************************** Move Down *************************************//
 
@@ -29,15 +29,10 @@ void testMoveSoldierDownAndCheckPositions(){
     }
 
     GameObject* soldier1 = map.get_object(3, 9);
-    GameObject* soldier2 = map.get_object(4, 9);
-
     GameObject* old_pos1= map.get_object(3, 8);
-    GameObject* old_pos2 = map.get_object(4, 8);
 
     TEST_CHECK(soldier1 != nullptr);
-    TEST_CHECK(soldier2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
-    TEST_CHECK(old_pos2 == nullptr);
 
 }
 
@@ -53,10 +48,8 @@ void testMoveSoldierDownAtTheEndStaysInPlace() {
     }
 
     GameObject* soldier1= map.get_object(3, MAP_SIZE_Y - 1);
-    GameObject* soldier2 = map.get_object(4, MAP_SIZE_Y - 1);
 
     TEST_CHECK(soldier1 != nullptr);
-    TEST_CHECK(soldier2 != nullptr);
 }
 
 
@@ -75,16 +68,11 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie(){
     }
 
     GameObject* soldier1 = map.get_object(3, 7);
-    GameObject* soldier2 = map.get_object(4, 7);
-
     GameObject* walker1 = map.get_object(3, 8);
-    GameObject* walker2 = map.get_object(4, 8);
 
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker2) != nullptr);
 }
 
 
@@ -92,8 +80,10 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 7);
-    map.add_soldier(&soldier, 3, 7);
+    Soldier soldier(scout, map, 4, 7);
+    map.add_soldier(&soldier, 4, 7);
+
+    soldier.move_right();
 
     Infected walker(4,8, map);
     map.add_zombie(&walker, 4, 8);
@@ -102,23 +92,13 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
         soldier.move_down();
     }
 
-    GameObject* soldier1 = map.get_object(3, 7);
-    GameObject* soldier2 = map.get_object(4, 7);
-
+    GameObject* soldier1 = map.get_object(4, 7);
     GameObject* walker1 = map.get_object(4, 8);
-    GameObject* walker2 = map.get_object(5, 8);
-
-    GameObject* null_space1 = map.get_object(3, 8);
-    GameObject* null_space2 = map.get_object(5, 7);
 
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker2) != nullptr);
 
-    TEST_CHECK(null_space1 == nullptr);
-    TEST_CHECK(null_space2 == nullptr);
 }
 
 void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
@@ -128,6 +108,8 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
     Soldier soldier(scout, map, 3, 7);
     map.add_soldier(&soldier, 3, 7);
 
+    soldier.move_left();
+
     Infected walker(2,8, map);
     map.add_zombie(&walker, 2, 8);
 
@@ -135,23 +117,15 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
         soldier.move_down();
     }
 
-    GameObject* soldier1 = map.get_object(3, 7);
-    GameObject* soldier2 = map.get_object(4, 7);
+    GameObject* soldier1 = map.get_object(2, 7);
+    GameObject* soldier_old = map.get_object(3, 7);
 
     GameObject* walker1 = map.get_object(2, 8);
-    GameObject* walker2 = map.get_object(3, 8);
-
-    GameObject* null_space1 = map.get_object(2, 7);
-    GameObject* null_space2 = map.get_object(4, 8);
 
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
+    TEST_CHECK(dynamic_cast<Soldier*>(soldier_old) == nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker2) != nullptr);
-
-    TEST_CHECK(null_space1 == nullptr);
-    TEST_CHECK(null_space2 == nullptr);
 }
 
 //**************************************** Move UP *************************************//
@@ -168,15 +142,11 @@ void testMoveSoldierUpAndCheckPositions(){
     }
 
     GameObject* soldier1 = map.get_object(3, 7);
-    GameObject* soldier2 = map.get_object(4, 7);
 
     GameObject* old_pos1= map.get_object(3, 8);
-    GameObject* old_pos2 = map.get_object(4, 8);
 
     TEST_CHECK(soldier1 != nullptr);
-    TEST_CHECK(soldier2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
-    TEST_CHECK(old_pos2 == nullptr);
 
 }
 
@@ -192,10 +162,8 @@ void testMoveSoldierUpAtTheBeginningStaysInPlace() {
     }
 
     GameObject* soldier1 = map.get_object(3, 0);
-    GameObject* soldier2 = map.get_object(4, 0);
 
     TEST_CHECK(soldier1 != nullptr);
-    TEST_CHECK(soldier2 != nullptr);
 
 }
 
@@ -214,50 +182,40 @@ void testNotMoveSoldierUpForCompleteCollisionWithZombie(){
     }
 
     GameObject* soldier1 = map.get_object(3, 7);
-    GameObject* soldier2 = map.get_object(4, 7);
 
     GameObject* walker1 = map.get_object(3, 6);
-    GameObject* walker2 = map.get_object(4, 6);
 
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker2) != nullptr);
 }
 
 
-void testNotMoveSoldierUpForPartialCollisionWithZombie(){
+void testNotMoveSoldierUpForPartialCollisionWithZombie() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon *scout = new Scout;
 
-    Soldier soldier(scout, map, 3, 7);
-    map.add_soldier(&soldier, 3, 7);
+    Soldier soldier(scout, map, 4, 7);
+    map.add_soldier(&soldier, 4, 7);
 
-    Infected walker(4,6, map);
+    soldier.move_right();
+
+    Infected walker(4, 6, map);
     map.add_zombie(&walker, 4, 6);
 
-    for (float i = 0; i <  MOVEMENTS_PER_CELL; i++){
+    for (float i = 0; i < MOVEMENTS_PER_CELL; i++) {
         soldier.move_up();
     }
 
-    GameObject* soldier1 = map.get_object(3, 7);
-    GameObject* soldier2 = map.get_object(4, 7);
+    GameObject *soldier1 = map.get_object(4, 7);
 
-    GameObject* walker1 = map.get_object(4, 6);
-    GameObject* walker2 = map.get_object(5, 6);
+    GameObject *walker1 = map.get_object(4, 6);
 
-    GameObject* null_space1 = map.get_object(3, 6);
-    GameObject* null_space2 = map.get_object(5, 7);
 
     // Si casteo a a algo que no es, me tira nullptr
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker2) != nullptr);
+    TEST_CHECK(dynamic_cast<Soldier *>(soldier1) != nullptr);
+    TEST_CHECK(dynamic_cast<Infected *>(walker1) != nullptr);
 
-    TEST_CHECK(null_space1 == nullptr);
-    TEST_CHECK(null_space2 == nullptr);
 }
 
 void testNotMoveSoldierUpForPartialCollisionWithZombie2(){
@@ -267,6 +225,8 @@ void testNotMoveSoldierUpForPartialCollisionWithZombie2(){
     Soldier soldier(scout, map, 3, 7);
     map.add_soldier(&soldier, 3, 7);
 
+    soldier.move_left();
+
     Infected walker(2,6, map);
     map.add_zombie(&walker, 2, 6);
 
@@ -274,23 +234,16 @@ void testNotMoveSoldierUpForPartialCollisionWithZombie2(){
         soldier.move_up();
     }
 
-    GameObject* soldier1 = map.get_object(3, 7);
-    GameObject* soldier2 = map.get_object(4, 7);
+    GameObject* soldier1 = map.get_object(2, 7);
+    GameObject* soldier_old = map.get_object(3, 7);
 
     GameObject* walker1 = map.get_object(2, 6);
-    GameObject* walker2 = map.get_object(3, 6);
-
-    GameObject* null_space1 = map.get_object(2, 7);
-    GameObject* null_space2 = map.get_object(4, 6);
 
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker2) != nullptr);
 
-    TEST_CHECK(null_space1 == nullptr);
-    TEST_CHECK(null_space2 == nullptr);
+    TEST_CHECK(soldier_old == nullptr);
 }
 
 
@@ -311,12 +264,9 @@ void testMoveSoldierRightAndCheckMap(){
     }
 
     GameObject* soldier1 = map.get_object(4, 8);
-    GameObject* soldier2 = map.get_object(5, 8);
-
     GameObject* old_pos1= map.get_object(3, 8);
 
     TEST_CHECK(soldier1 != nullptr);
-    TEST_CHECK(soldier2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
 }
 
@@ -331,12 +281,11 @@ void testMoveSoldierRightEndOfMapAndCheckMap() {
         soldier.move_right();
     }
 
-    GameObject* soldier1 = map.get_object(MAP_SIZE_X - 2, 3);
-    GameObject* soldier2 = map.get_object(MAP_SIZE_X - 2, 3);
-
+    GameObject* soldier1 = map.get_object(MAP_SIZE_X - 1, 3);
+    GameObject* soldier1_old = map.get_object(MAP_SIZE_X - 2, 3);
 
     TEST_CHECK(soldier1 != nullptr);
-    TEST_CHECK(soldier2 != nullptr);
+    TEST_CHECK(soldier1_old == nullptr);
 }
 
 void testNotMoveSoldierRightForCollisionWithZombieAndCheckMap(){
@@ -346,24 +295,19 @@ void testNotMoveSoldierRightForCollisionWithZombieAndCheckMap(){
     Soldier soldier(scout, map, 3, 7);
     map.add_soldier(&soldier, 3, 7);
 
-    Infected walker(5,7, map);
-    map.add_zombie(&walker, 5, 7);
+    Infected walker(4,7, map);
+    map.add_zombie(&walker, 4, 7);
 
     for (float i = 0; i <  MOVEMENTS_PER_CELL + 5; i++){
         soldier.move_right();
     }
 
     GameObject* soldier1 = map.get_object(3, 7);
-    GameObject* soldier2 = map.get_object(4, 7);
-
-    GameObject* walker1 = map.get_object(5, 7);
-    GameObject* walker2 = map.get_object(6, 7);
+    GameObject* walker1 = map.get_object(4, 7);
 
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker2) != nullptr);
 }
 
 
@@ -377,21 +321,16 @@ void testMoveSoldierRightWithZombieCloseAndCheckMap(){
     Infected walker(4,9, map);
     map.add_zombie(&walker, 4, 9);
 
-    for (float i = 0; i < 15; i++){
+    for (float i = 0; i < MOVEMENTS_PER_CELL; i++){
         soldier.move_right();
     }
 
     GameObject* soldier1 = map.get_object(4, 8);
-    GameObject* soldier2 = map.get_object(5, 8);
-
     GameObject* walker1 = map.get_object(4, 9);
-    GameObject* walker2 = map.get_object(5, 9);
 
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker2) != nullptr);
 }
 
 //*********************************** Move Left ******************************************************8
@@ -403,17 +342,14 @@ void testMoveSoldierLeftAndCheckMap(){
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
 
-    for (float i = 0; i < 3; i++){
+    for (float i = 0; i < 1; i++){
         soldier.move_left();
     }
 
     GameObject* soldier1 = map.get_object(2, 8);
-    GameObject* soldier2 = map.get_object(3, 8);
-
-    GameObject* old_pos1= map.get_object(4, 8);
+    GameObject* old_pos1= map.get_object(3, 8);
 
     TEST_CHECK(soldier1 != nullptr);
-    TEST_CHECK(soldier2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
 }
 
@@ -429,11 +365,9 @@ void testMoveSoldierLeftBeginningOfMapAndCheckMap() {
     }
 
     GameObject* soldier1 = map.get_object(0, 3);
-    GameObject* soldier2 = map.get_object(1, 3);
-
 
     TEST_CHECK(soldier1 != nullptr);
-    TEST_CHECK(soldier2 != nullptr);
+
 }
 
 void testNotMoveSoldierLeftForCollisionWithZombieAndCheckMap(){
@@ -443,24 +377,19 @@ void testNotMoveSoldierLeftForCollisionWithZombieAndCheckMap(){
     Soldier soldier(scout, map, 3, 7);
     map.add_soldier(&soldier, 3, 7);
 
-    Infected walker(1,7, map);
-    map.add_zombie(&walker, 1, 7);
+    Infected walker(2,7, map);
+    map.add_zombie(&walker, 2, 7);
 
     for (float i = 0; i < 3; i++){
         soldier.move_left();
     }
 
     GameObject* soldier1 = map.get_object(3, 7);
-    GameObject* soldier2 = map.get_object(4, 7);
-
-    GameObject* walker1 = map.get_object(1, 7);
-    GameObject* walker2 = map.get_object(2, 7);
+    GameObject* walker1 = map.get_object(2, 7);
 
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker2) != nullptr);
 }
 
 
@@ -479,16 +408,12 @@ void testMoveSoldierLeftWithZombieCloseAndCheckMap(){
     }
 
     GameObject* soldier1 = map.get_object(5, 8);
-    GameObject* soldier2 = map.get_object(6, 8);
 
     GameObject* walker1 = map.get_object(4, 9);
-    GameObject* walker2 = map.get_object(5, 9);
 
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
-    TEST_CHECK(dynamic_cast<Soldier*>(soldier2) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-    TEST_CHECK(dynamic_cast<Infected*>(walker2) != nullptr);
 }
 
 

@@ -188,70 +188,6 @@ bool GameMap::check_free_position(std::int16_t x_pos,
     return map[y_pos][x_pos] == nullptr; // !map[y_sold_pos][x_sold_pos]
 }
 
-void GameMap::move_diagonally_up_right(std::int16_t x_zombie, std::int16_t y_zombie,
-                                       std::int16_t &x_new_zombie, std::int16_t &y_new_zombie,
-                                       bool &same_place) {
-    bool cond1 = check_free_position(x_zombie + 1, y_zombie - 1); // primera pos
-    bool cond2 = check_free_position(x_zombie + 2, y_zombie - 1); // seg pos
-    if (cond1 && cond2) {
-        x_new_zombie = x_zombie + 1;
-        y_new_zombie = y_zombie - 1;
-        move_object_diagonally(x_zombie, y_zombie, x_new_zombie, y_new_zombie);
-        same_place = false;
-    }
-}
-
-void GameMap::move_diagonally_up_left(std::int16_t x_zombie, std::int16_t y_zombie,
-                                      std::int16_t &x_new_zombie, std::int16_t &y_new_zombie,
-                                      bool &same_place) {
-    bool cond1 = check_free_position(x_zombie - 1, y_zombie - 1); // primera pos
-    bool cond2 = check_free_position(x_zombie, y_zombie - 1); // seg pos
-    if (cond1 && cond2) {
-        x_new_zombie = x_zombie - 1;
-        y_new_zombie = y_zombie - 1;
-        move_object_diagonally(x_zombie, y_zombie, x_new_zombie, y_new_zombie);
-        same_place = false;
-    }
-}
-
-void GameMap::move_diagonally_down_right(std::int16_t x_zombie, std::int16_t y_zombie,
-                                         std::int16_t &x_new_zombie, std::int16_t &y_new_zombie,
-                                         bool &same_place) {
-    bool cond1 = check_free_position(x_zombie + 1, y_zombie + 1); // primera pos
-    bool cond2 = check_free_position(x_zombie + 2, y_zombie + 1); // seg pos
-    if (cond1 && cond2) {
-        // muevo pos de walker diagonalmente
-        x_new_zombie = x_zombie + 1;
-        y_new_zombie = y_zombie + 1;
-        move_object_diagonally(x_zombie, y_zombie, x_new_zombie, y_new_zombie);
-        same_place = false;
-    }
-}
-
-void GameMap::move_diagonally_down_left(std::int16_t x_zombie, std::int16_t y_zombie,
-                                        std::int16_t &x_new_zombie, std::int16_t &y_new_zombie,
-                                        bool &same_place) {
-    bool cond1 = check_free_position(x_zombie - 1, y_zombie + 1); // primera pos
-    bool cond2 = check_free_position(x_zombie, y_zombie + 1); // seg pos
-    if (cond1 && cond2) {
-        // muevo pos de walker diagonalmente
-        x_new_zombie = x_zombie - 1;
-        y_new_zombie = y_zombie + 1;
-        move_object_diagonally(x_zombie, y_zombie, x_new_zombie, y_new_zombie);
-        same_place = false;
-    }
-}
-
-void GameMap::move_object_diagonally(std::int16_t& x_old_pos,
-                                     std::int16_t& y_old_pos,
-                                     std::int16_t& x_new_pos,
-                                     std::int16_t& y_new_pos) {
-    map[y_new_pos][x_new_pos] = map[y_old_pos][x_old_pos];
-    map[y_new_pos][x_new_pos + 1] = map[y_old_pos][x_old_pos];
-    map[y_old_pos][x_old_pos] = nullptr;
-    map[y_old_pos][x_old_pos + 1] = nullptr;
-}
-
 void GameMap::chase_soldiers(float time) {
     for (Zombie* zombie : zombies) {
         zombie->chase_closest_soldier(soldiers, time);
@@ -264,13 +200,6 @@ void GameMap::attack_soldiers(float time) {
     }
 }
 
-bool GameMap::check_entire_free_pos(std::int16_t x_pos, std::int16_t y_pos) {
-    bool free_pos1 = check_free_position(x_pos, y_pos);
-    bool free_pos2 = check_free_position(x_pos + 1, y_pos);
-    bool valid_pos = valid_entire_object_position(x_pos, y_pos);
-    return free_pos1 && free_pos2 && valid_pos;
-}
-
 void GameMap::get_position_for_object(std::vector<std::int16_t> &valid_pos) {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -280,7 +209,7 @@ void GameMap::get_position_for_object(std::vector<std::int16_t> &valid_pos) {
     for (int i = 0; i < 10; i++) {
         std::int16_t random_x_pos = dis_x(gen);
         std::int16_t random_y_pos = dis_y(gen);
-        if (check_entire_free_pos(random_x_pos, random_y_pos)) {
+        if (check_free_position(random_x_pos, random_y_pos)) {
             valid_pos.push_back(random_x_pos);
             valid_pos.push_back(random_y_pos);
         }
@@ -298,7 +227,7 @@ void GameMap::get_position_for_soldier(std::vector<std::int16_t> &valid_pos) {
 bool GameMap::valid_entire_object_position(std::int16_t x_pos, std::int16_t y_pos) {
     bool valid_x = false;
     bool valid_y = false;
-    if ( x_pos >= 0 && x_pos + 1 < x_size) { // +1 dado que en x tenemos un slot mas
+    if ( x_pos >= 0 && x_pos < x_size) {
         valid_x = true;
     }
     if (y_pos >= 0 && y_pos < y_size){
@@ -321,7 +250,7 @@ bool GameMap::add_soldier(GameObject* soldier,
                       std::uint16_t x_pos,
                       std::uint16_t y_pos) {
 
-    if (!check_entire_free_pos(x_pos, y_pos)) {
+    if (!check_free_position(x_pos, y_pos)) {
         return false;
     }
     map[y_pos][x_pos] = soldier;
@@ -331,13 +260,12 @@ bool GameMap::add_soldier(GameObject* soldier,
 }
 
 bool GameMap::add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos) {
-    if (!check_entire_free_pos(x_pos, y_pos)) {
+    if (!check_free_position(x_pos, y_pos)) {
         return false;
     }
     zombies.push_back(dynamic_cast<Zombie*>(walker)); // ya no necesito
 
     map[y_pos][x_pos] = walker;
-    map[y_pos][x_pos + 1] = walker;
 
     return true;
 }

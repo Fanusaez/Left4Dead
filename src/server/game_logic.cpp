@@ -28,7 +28,7 @@ void GameLogic::new_instruction(InstructionsDTO instruction) {
         reload(instruction.get_player_id());
         break;
     case SHOOT:
-                
+        shoot(instruction.get_player_id());
         break;
     case GRANEDE:
                 

@@ -52,6 +52,8 @@ void testSoldierShootsIdfCloseRangeUpNotSameLine(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
+    soldier.move_left();
+
     Infected walker(2,2,map);
     map.add_zombie(&walker, 2, 2);
 
@@ -115,6 +117,8 @@ void testSoldierShootsIdfLongRangeUpNotSameLine(void) {
 
     Soldier soldier(idf, map, 3, 6);
     map.add_soldier(&soldier, 3, 6);
+
+    soldier.move_left();
 
     Infected walker(2,1,map);
     map.add_zombie(&walker, 2, 1);

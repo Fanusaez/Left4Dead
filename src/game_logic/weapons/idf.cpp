@@ -7,6 +7,7 @@
 #define Y_POS 1
 
 void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t y_sold_pos, float time) {
+    bullets--;
     if (shooting_objects.empty()) return;
     std::int16_t y_matrix_enemy_pos = shooting_objects[0]->get_y_matrix_pos();
     if (bullets > 0) {
@@ -15,7 +16,6 @@ void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t y_sold
         } else {
             shooting_objects[0]->receive_damage(close_range_damage, time);
         }
-        bullets--;
     }
 }
 

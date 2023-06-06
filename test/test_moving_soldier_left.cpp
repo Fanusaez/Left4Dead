@@ -13,8 +13,8 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-#define MOVEMENTS_PER_CELL 15
-#define MOV_NEEDED_TO_WALK_ALL_CELL 14
+#define MOVEMENTS_PER_CELL 2
+#define MOV_NEEDED_TO_WALK_ALL_CELL 1
 #define SOLDIER_SPEED 1
 
 void testMoveSoldierLeft(){
@@ -58,10 +58,10 @@ void testNotMoveSoldierLeftForCollisionWithZombie(){
     Soldier soldier(scout, map, 3, 7);
     map.add_soldier(&soldier, 3, 7);
 
-    Infected walker(1,7, map);
-    map.add_zombie(&walker, 1, 7);
+    Infected walker(2,7, map);
+    map.add_zombie(&walker, 2, 7);
 
-    for (float i = 0; i < 20; i++){
+    for (float i = 0; i < MOVEMENTS_PER_CELL; i++){
         soldier.move_left();
     }
 

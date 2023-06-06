@@ -3,7 +3,7 @@
 #define Y_POS 1
 #define INVALID_POSITION -1
 #define WALLS_LIMITS 0.5
-#define MOVEMENTS_PER_CELL 1
+#define MOVEMENTS_PER_CELL 2
 #define UP -1
 #define DOWN 1
 
@@ -31,7 +31,31 @@ void Chaser::chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
      */
     std::int16_t x_new_pos = INVALID_POSITION;
     std::int16_t y_new_pos = INVALID_POSITION;
-
+    if (y_pos_chase > y_pos && same_place) { // movimiento para abajo
+        zombie->set_direction(DOWN);
+        std::int16_t y_new = y_pos + walker_speed;
+        if ((y_new % MOVEMENTS_PER_CELL) != 0) {
+            same_place = false;
+            y_pos += walker_speed;
+            return;
+        }
+        map.move_object_down(x_matrix_walker, y_matrix_walker, y_new_pos);
+        if (y_new_pos != INVALID_POSITION) {
+            y_pos += walker_speed;
+        }
+    } else if (y_pos_chase < y_pos && same_place) { // movimiento para arriba
+        zombie->set_direction(UP);
+        // if (y_pos <= WALLS_LIMITS) return nullptr;
+        if ((y_pos % MOVEMENTS_PER_CELL) != 0) {
+            y_pos -= walker_speed;
+            return;
+        }
+        map.move_object_up(x_matrix_walker, y_matrix_walker, y_new_pos);
+        if (y_new_pos != INVALID_POSITION) {
+            same_place = false;
+            y_pos -= walker_speed;
+        }
+    }
     if (x_pos_chase < x_pos && same_place) { // movimiento para izquierda
         //if (x_pos <= WALLS_LIMITS) return nullptr; por ahora no hay walls limit
         if ((x_pos % MOVEMENTS_PER_CELL) != 0) {
@@ -53,31 +77,6 @@ void Chaser::chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
         if (x_new_pos != INVALID_POSITION) {
             same_place = false;
             x_pos += walker_speed;
-        }
-    }
-    if (y_pos_chase > y_pos && same_place) { // movimiento para abajo
-        zombie->set_direction(DOWN);
-        std::int16_t y_new = y_pos + walker_speed;
-        if ((y_new % MOVEMENTS_PER_CELL) != 0) {
-            y_pos += walker_speed;
-            return;
-        }
-        map.move_object_down(x_matrix_walker, y_matrix_walker, y_new_pos);
-        if (y_new_pos != INVALID_POSITION) {
-            same_place = false;
-            y_pos += walker_speed;
-        }
-    } else if (y_pos_chase < y_pos && same_place) { // movimiento para arriba
-        zombie->set_direction(UP);
-        // if (y_pos <= WALLS_LIMITS) return nullptr;
-        if ((y_pos % MOVEMENTS_PER_CELL) != 0) {
-            y_pos -= walker_speed;
-            return;
-        }
-        map.move_object_up(x_matrix_walker, y_matrix_walker, y_new_pos);
-        if (y_new_pos != INVALID_POSITION) {
-            same_place = false;
-            y_pos -= walker_speed;
         }
     }
 

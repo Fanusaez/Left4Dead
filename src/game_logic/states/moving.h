@@ -4,7 +4,7 @@
 #include "idle.h"
 class Moving : public State {
 private:
-    float waiting_time_to_move = 0.2;
+    float waiting_time_to_move = 0.08;
     float start_time;
     Soldier& soldier;
 public:

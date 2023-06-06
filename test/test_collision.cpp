@@ -59,7 +59,7 @@ void testCollisionNotSameLineLeftUp(void) {
     Infected walker(7, 1, map);
     map.add_zombie(&walker, 7, 1);
 
-    TEST_ASSERT(map.collision(UP, 8, 8) == true);
+    TEST_ASSERT(map.collision(UP, 8, 8) == false);
     delete soldier;
 }
 
@@ -87,7 +87,7 @@ void testCollisionNotSameLineLeftDown(void) {
     Infected walker(0, 9, map);
     map.add_zombie(&walker, 0, 9);
 
-    TEST_ASSERT(map.collision(DOWN, 1, 2) == true);
+    TEST_ASSERT(map.collision(DOWN, 1, 2) == false);
     delete soldier;
 }
 
