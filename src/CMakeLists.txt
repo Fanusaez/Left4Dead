@@ -32,14 +32,16 @@ add_library(gameview
 		graphics/gameview.cpp
 		graphics/renderable_object.cpp
 		graphics/Player.cpp
+		graphics/infected.cpp
 		graphics/Animation.cpp
 		graphics/texture_loader.cpp
 		graphics/gameview_configs_loader.cpp
 		graphics/scene.cpp
+		graphics/object_creator.cpp
 		)
 
 target_include_directories(gameview PUBLIC ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)
-target_include_directories(gameview PUBLIC ${PROJECT_SOURCE_DIR}/src/graphics)
+target_include_directories(gameview PRIVATE ${PROJECT_SOURCE_DIR}/src/graphics)
 target_link_libraries(gameview PUBLIC SDL2pp)
 target_compile_definitions(gameview PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
 
@@ -135,6 +137,7 @@ if(CLIENT)
 		./client/lobby_receiver.cpp
 	)
 	target_link_libraries(main_client PUBLIC gameview)
+	target_include_directories(main_client PRIVATE ${PROJECT_SOURCE_DIR}/src)
 	target_include_directories(main_client PUBLIC ${PROJECT_SOURCE_DIR}/src/client)
 	set(CLIENT_OUTPUT_DIR ${CMAKE_BINARY_DIR}/src/client)
 	set_target_properties(main_client

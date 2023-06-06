@@ -1,14 +1,17 @@
 #include <iostream>
 #include "client.h"
 #include "lobby.h"
+
+/* Graphics */
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2pp/SDL2pp.hh>
-#include "gameview.h"
-#include "Player.h"
-#include "texture_loader.h"
-#include "gameview_configs_loader.h"
-#include "scene.h"
+//#include <SDL2pp/SDL2pp.hh>
+#include "graphics/gameview.h"
+#include "graphics/texture_loader.h"
+#include "graphics/gameview_configs_loader.h"
+#include "graphics/scene.h"
+#include "graphics/object_creator.h"
+
 #include <iostream>
 #include <exception>
 #include <unistd.h>
@@ -68,6 +71,7 @@ int main(int argc, char *argv[])
 	Client client(std::move(socket));
 	bool running = true;
 	GameDTO gameState;
+	ObjectCreator creator;
 	while (running) {
 		auto t1 = std::chrono::high_resolution_clock::now();
 		std::optional<GameDTO> game_optional = client.get_game();
@@ -77,8 +81,8 @@ int main(int argc, char *argv[])
 		std::vector<SoldierObjectDTO> soldiers = gameState.get_soldiers();
 		for (auto& soldier: soldiers){
 			if(objects.find(soldier.id) == objects.end()){
-				std::unique_ptr<RenderableObject> ptr1(new Player(soldier.id, soldier.position_x, soldier.position_y));
-				objects[ptr1->getID()] = std::move(ptr1);
+				std::unique_ptr<RenderableObject> ptr = std::move(creator.create(soldier));
+				objects[ptr->getID()] = std::move(ptr);
 				view.assignMainObject(soldier.id);
 			}
 			else {
