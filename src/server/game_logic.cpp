@@ -9,12 +9,12 @@ GameLogic::GameLogic() : game_map(200,200) {}
 void GameLogic::add_soldier(int* player_id) {
     Weapon* idf = new Idf;
     std::srand(std::time(0));
-    int16_t pos_x = std::rand() % 10 + 1;
-    while (!game_map.check_free_position(pos_x,5)){
-        int16_t pos_x = std::rand() % 10 + 1;
+    int16_t pos_x = std::rand() % 20 + 10;
+    while (!game_map.check_free_position(pos_x,15)){
+        int16_t pos_x = std::rand() % 20 + 10;
     }
-    Soldier* soldier = new Soldier(idf,game_map,pos_x,5);
-    game_map.add_soldier(soldier,pos_x,5);
+    Soldier* soldier = new Soldier(idf,game_map,pos_x,15);
+    game_map.add_soldier(soldier,pos_x,15);
     playerSoldierMap[*player_id] = soldier;
     timer = 0;
 }
@@ -41,6 +41,7 @@ GameDTO GameLogic::get_game() {
     for (const auto& piar: playerSoldierMap){
         SoldierObjectDTO soldier(piar.first, piar.second->get_x_pos(), piar.second->get_y_pos(), piar.second->get_state()->soldier_state , IDF, piar.second->facingLeft);
         game_dto.add_soldier(soldier);
+        //piar.second->set_idle();
         //std::cout<<piar.second->get_x_pos()<<","<<piar.second->get_y_pos()<<std::endl;
     }
     return game_dto;
@@ -81,10 +82,10 @@ void GameLogic::shoot (int player_id) {
 }
 
 void GameLogic::udpate_game(){
-    timer += 0.05;
     for (const auto& piar: playerSoldierMap){
         piar.second->update(timer);
     }
+    timer += 0.05;
 }
 
 void GameLogic::delete_soldier(int* player_id){

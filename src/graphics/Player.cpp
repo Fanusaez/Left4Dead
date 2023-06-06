@@ -23,6 +23,7 @@ void Player::updateState(const SoldierObjectDTO &soldierDTO)
 	this->facingLeft = soldierDTO.facingLeft;
 	this->setPositionX(soldierDTO.position_x);
 	this->setPositionY(soldierDTO.position_y);
+	//std::cout<<xPosition<<","<<yPosition<<std::endl;
 	this->changeState(soldierDTO.state);
 }
 

@@ -76,7 +76,7 @@ void Gameview::renderRelativeToMainObject() {
 		if (distance > 1110)
 			continue;
 		SDL2pp::Rect objDst(
-			960 + object.getPositionX() - mainObject.getPositionX(),
+			885 + object.getPositionX() - mainObject.getPositionX(),
 			object.getPositionY(), 150, 150);
 		object.render(this->renderer, objDst);
 	}

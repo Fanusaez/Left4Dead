@@ -79,6 +79,7 @@ int main(int argc, char *argv[])
 			gameState = game_optional.value();
 		}
 		std::vector<SoldierObjectDTO> soldiers = gameState.get_soldiers();
+		std::vector<ZombieObjectDTO> zombies = gameState.get_zombies();
 		for (auto& soldier: soldiers){
 			if(objects.find(soldier.id) == objects.end()){
 				std::unique_ptr<RenderableObject> ptr = std::move(creator.create(soldier));
@@ -90,6 +91,17 @@ int main(int argc, char *argv[])
 				object.updateState(soldier);
 			}
 		}
+/* 		for (auto& zombie: zombies){
+			if(objects.find(zombie.id) == objects.end()){
+				std::unique_ptr<RenderableObject> ptr = std::move(creator.create(zombie));
+				objects[ptr->getID()] = std::move(ptr);
+				view.assignMainObject(zombie.id);
+			}
+			else {
+				RenderableObject &object = *(objects.at(zombie.id));
+				object.updateState(zombie);
+			}
+		} */
 		for (auto &object : objects)
 			object.second->update(configs.FRAME_RATE);
 		view.render();
