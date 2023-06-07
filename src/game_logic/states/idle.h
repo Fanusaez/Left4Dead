@@ -12,6 +12,8 @@
 class Idle : public State {
 
 public:
+
+    Idle();
     State* update(float time) override;
     State* shoot(Soldier& soldier, Weapon* weapon, float time) override;
     State* move(Soldier& soldier, std::int16_t direction, float time) override;

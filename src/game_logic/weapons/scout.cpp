@@ -1,6 +1,6 @@
 #include "scout.h"
 
-void Scout::shoot(std::vector<GameObject *> &shooting_objects, std::uint16_t y_pos_sold, float time) {
+void Scout::shoot(std::vector<GameObject *> &shooting_objects, std::uint16_t x_pos_sold, float time) {
     if (bullets <= 0) return;
     std::uint16_t variant_damage = damage;
     for (const auto& shooting_object : shooting_objects) {
@@ -12,19 +12,19 @@ void Scout::shoot(std::vector<GameObject *> &shooting_objects, std::uint16_t y_p
 }
 
 void Scout::throw_explosive_grenade(GameMap& map,
-                                  std::int16_t x_matrix_sold,
-                                  std::int16_t y_matrix_explosion,
+                                  std::int16_t x_matrix_explosion,
+                                  std::int16_t y_matrix_sold,
                                   State*& current_state,
                                   float time) {
-    explosive_grenade.throw_grenade(map, x_matrix_sold, y_matrix_explosion, current_state, time);
+    explosive_grenade.throw_grenade(map, x_matrix_explosion, y_matrix_sold, current_state, time);
 }
 
 void Scout::throw_smoke_grenade(GameMap& map,
-                                    std::int16_t x_matrix_sold,
-                                    std::int16_t y_matrix_explosion,
-                                    State*& current_state,
-                                    float time) {
-    smoke_grenade.throw_grenade(map, x_matrix_sold, y_matrix_explosion, current_state, time);
+                                std::int16_t x_matrix_explosion,
+                                std::int16_t y_matrix_sold,
+                                State*& current_state,
+                                float time) {
+    smoke_grenade.throw_grenade(map, x_matrix_explosion, y_matrix_sold, current_state, time);
 }
 
 

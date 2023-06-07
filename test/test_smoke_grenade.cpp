@@ -23,13 +23,13 @@
 #define REACH_EXPLOSIVE_DAMAGE 3
 
 
-void testSoldierThrowsSmokeGrenadeUpAndDamages5Zombies(void) {
+void testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies(void) {
 
-    std::int16_t  x_throwing_place = 10;
-    std::int16_t  y_throwing_place = 15;
+    std::int16_t  x_throwing_place = 15;
+    std::int16_t  y_throwing_place = 10;
 
-    std::int16_t  x_explosion = x_throwing_place;
-    std::int16_t  y_explosion= y_throwing_place - DISTANCE_THROWN;
+    std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
+    std::int16_t  y_explosion= y_throwing_place;
 
     std::int16_t  x_limit_damage_left = x_explosion - REACH_EXPLOSIVE_DAMAGE;
     std::int16_t  x_limit_damage_right = x_explosion + REACH_EXPLOSIVE_DAMAGE;
@@ -43,7 +43,7 @@ void testSoldierThrowsSmokeGrenadeUpAndDamages5Zombies(void) {
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
 
-    soldier.set_direction(UP);
+    soldier.set_direction(LEFT);
 
     Infected walker1(x_explosion,y_explosion, map); // donde cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
@@ -87,13 +87,13 @@ void testSoldierThrowsSmokeGrenadeUpAndDamages5Zombies(void) {
     TEST_CHECK(zombie_state5 != nullptr);
 }
 
-void testSoldierThrowsSmokeGrenadeUpAndDamages1Zombies(void) {
+void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies(void) {
 
-    std::int16_t  x_throwing_place = 10;
-    std::int16_t  y_throwing_place = 15;
+    std::int16_t  x_throwing_place = 15;
+    std::int16_t  y_throwing_place = 10;
 
-    std::int16_t  x_explosion = x_throwing_place;
-    std::int16_t  y_explosion= y_throwing_place - DISTANCE_THROWN;
+    std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
+    std::int16_t  y_explosion= y_throwing_place;
 
     std::int16_t  x_limit_damage_left = x_explosion - REACH_EXPLOSIVE_DAMAGE;
     std::int16_t  x_limit_damage_right = x_explosion + REACH_EXPLOSIVE_DAMAGE;
@@ -107,7 +107,7 @@ void testSoldierThrowsSmokeGrenadeUpAndDamages1Zombies(void) {
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
 
-    soldier.set_direction(UP);
+    soldier.set_direction(LEFT);
 
     Infected walker1(x_explosion,y_explosion, map); // donde cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
@@ -139,18 +139,18 @@ void testSoldierThrowsSmokeGrenadeUpAndDamages1Zombies(void) {
     TEST_CHECK(zombie_state5 == nullptr);
 }
 
-void testSoldierThrowsSmokeGrenadeUpAndDamages1Zombies2(void) {
+void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2(void) {
 
     /*
      * los muevo arriba/abajo para que los 4 que estaban
      * en los limites, no sufran dano
      */
 
-    std::int16_t  x_throwing_place = 10;
-    std::int16_t  y_throwing_place = 15;
+    std::int16_t  x_throwing_place = 15;
+    std::int16_t  y_throwing_place = 10;
 
-    std::int16_t  x_explosion = x_throwing_place;
-    std::int16_t  y_explosion= y_throwing_place - DISTANCE_THROWN;
+    std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
+    std::int16_t  y_explosion= y_throwing_place;
 
     std::int16_t  x_limit_damage_left = x_explosion - REACH_EXPLOSIVE_DAMAGE;
     std::int16_t  x_limit_damage_right = x_explosion + REACH_EXPLOSIVE_DAMAGE;
@@ -164,7 +164,7 @@ void testSoldierThrowsSmokeGrenadeUpAndDamages1Zombies2(void) {
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
 
-    soldier.set_direction(UP);
+    soldier.set_direction(LEFT);
 
     Infected walker1(x_explosion,y_explosion, map); // donde cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
@@ -199,11 +199,11 @@ void testSoldierThrowsSmokeGrenadeUpAndDamages1Zombies2(void) {
 
 void testSoldierThrowsSmokeGrenadeToOtherSoldier(void) {
 
-    std::int16_t  x_throwing_place = 10;
-    std::int16_t  y_throwing_place = 15;
+    std::int16_t  x_throwing_place = 15;
+    std::int16_t  y_throwing_place = 10;
 
-    std::int16_t  x_explosion = x_throwing_place;
-    std::int16_t  y_explosion= y_throwing_place - DISTANCE_THROWN;
+    std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
+    std::int16_t  y_explosion= y_throwing_place;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout1 = new Scout;
@@ -215,7 +215,7 @@ void testSoldierThrowsSmokeGrenadeToOtherSoldier(void) {
     Soldier soldier2(scout2, map, x_explosion,y_explosion); // donde cae la granada
     map.add_soldier(&soldier2, x_explosion,y_explosion);
 
-    soldier1.set_direction(UP);
+    soldier1.set_direction(LEFT);
     soldier1.throw_smoke_grenade(100);
 
     Idle* soldier2_state = dynamic_cast<Idle*>(soldier2.get_state());
@@ -223,13 +223,13 @@ void testSoldierThrowsSmokeGrenadeToOtherSoldier(void) {
     TEST_CHECK(soldier2_state != nullptr);
 }
 
-void testSoldierThrowsSmokeGrenadeDownAndDamages5Zombies(void) {
+void testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies(void) {
 
     std::int16_t  x_throwing_place = 10;
     std::int16_t  y_throwing_place = 5;
 
-    std::int16_t  x_explosion = x_throwing_place;
-    std::int16_t  y_explosion= y_throwing_place + DISTANCE_THROWN;
+    std::int16_t  x_explosion = x_throwing_place + DISTANCE_THROWN;
+    std::int16_t  y_explosion= y_throwing_place;
 
     std::int16_t  x_limit_damage_left = x_explosion - REACH_EXPLOSIVE_DAMAGE;
     std::int16_t  x_limit_damage_right = x_explosion + REACH_EXPLOSIVE_DAMAGE;
@@ -243,7 +243,7 @@ void testSoldierThrowsSmokeGrenadeDownAndDamages5Zombies(void) {
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
 
-    soldier.set_direction(DOWN);
+    soldier.set_direction(RIGHT);
 
     Infected walker1(x_explosion,y_explosion, map); // donde cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
@@ -277,10 +277,10 @@ void testSoldierThrowsSmokeGrenadeDownAndDamages5Zombies(void) {
 
 
 TEST_LIST = {
-        {"Soldier throws granade up and damage 5 zombies", testSoldierThrowsSmokeGrenadeUpAndDamages5Zombies},
-        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsSmokeGrenadeUpAndDamages1Zombies},
-        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsSmokeGrenadeUpAndDamages1Zombies2},
+        {"Soldier throws granade up and damage 5 zombies", testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies},
+        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies},
+        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2},
         {"Soldier throws granade up and damages other soldier", testSoldierThrowsSmokeGrenadeToOtherSoldier},
-        {"Soldier throws granade Down and damage 5 zombies",testSoldierThrowsSmokeGrenadeDownAndDamages5Zombies},
+        {"Soldier throws granade Down and damage 5 zombies",testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies},
         {NULL, NULL}
 };

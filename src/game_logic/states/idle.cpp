@@ -1,4 +1,9 @@
 #include "idle.h"
+
+Idle::Idle() {
+    soldier_state = IDLE;
+}
+
 State* Idle::update(float time) {
     return nullptr;
 }

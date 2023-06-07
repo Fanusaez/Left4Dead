@@ -2,8 +2,11 @@
 #include <iostream>
 #include "map.h"
 
-#define UP -1
 #define DOWN 1
+#define UP -1
+#define LEFT 2
+#define RIGHT 3
+
 #define X_POS 0
 #define Y_POS 1
 #define INVALID_POSITION -1
@@ -27,10 +30,10 @@ void GameMap::shoot(std::vector<GameObject*>& game_objects,
 void GameMap::get_objects_in_explosion(std::vector<GameObject *> &game_objects,
                             std::uint16_t x_pos_grenade,
                             std::uint16_t y_pos_grenade) {
-    if (y_pos_grenade >= y_size) {
-        y_pos_grenade = y_size - 1;
-    } else if (y_pos_grenade < 0) {
-        y_pos_grenade = 0;
+    if (x_pos_grenade >= x_size) {
+        x_pos_grenade = x_size - 1;
+    } else if (x_pos_grenade < 0) {
+        x_pos_grenade = 0;
     }
     get_objects_in_distance(x_pos_grenade,
                             y_pos_grenade,
@@ -79,43 +82,30 @@ collision_with_zombie(std::vector<GameObject*>& game_objects,
                       std::uint16_t x_pos_sold,
                       std::uint16_t y_pos_sold,
                       std::int16_t direction) {
-    // las 3 columnas a revisar
-    std::vector<signed int> pos_soldier = {x_pos_sold, x_pos_sold + 1};
 
-    if (direction == UP) {
-        for (signed int i = 0; i < pos_soldier.size(); i++) {
-            collision_going_up(game_objects,pos_soldier[i], y_pos_sold);
-            if (!game_objects.empty()) {
-                return;
-            }
-        }
+    if (direction == LEFT) {
+        collision_going_left(game_objects, x_pos_sold, y_pos_sold);
         return;
     }
-    for (signed int i = 0; i < pos_soldier.size(); i++) {
-        collision_going_down(game_objects,pos_soldier[i], y_pos_sold);
-        if (!game_objects.empty()){
-            return;
-        }
-    }
+    collision_going_right(game_objects, x_pos_sold, y_pos_sold);
 }
 
-void GameMap::collision_going_up(std::vector<GameObject*>& game_objects,
+void GameMap::collision_going_left(std::vector<GameObject*>& game_objects,
                                  std::uint16_t x_pos,
                                  std::uint16_t y_pos) {
-    for (int j = y_pos - 1; j >= 0; j--) { // y_pos - 1 para no dispararme
-        if (map[j][x_pos] != nullptr) {
-            game_objects.push_back(map[j][x_pos]);
+    for (int i = x_pos - 1; i >= 0; i--) { // x_pos - 1 para no dispararme
+        if (map[y_pos][i] != nullptr) {
+            game_objects.push_back(map[y_pos][i]);
         }
     }
 }
 
-
-void GameMap::collision_going_down(std::vector<GameObject*>& game_objects,
+void GameMap::collision_going_right(std::vector<GameObject*>& game_objects,
                                           std::uint16_t x_pos,
                                           std::uint16_t y_pos) {
-    for (int j = y_pos + 1; j < y_size; j++) { // +1 para no autodispararme jeej
-        if (map[j][x_pos] != nullptr) {
-            game_objects.push_back(map[j][x_pos]);
+    for (int i = x_pos + 1; i < y_size; i++) { // +1 para no autodispararme
+        if (map[y_pos][i] != nullptr) {
+            game_objects.push_back(map[y_pos][i]);
         }
     }
 }

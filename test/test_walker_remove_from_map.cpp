@@ -23,10 +23,10 @@ void testSoldierShootsInfectedDiesAndIsRemovedFromMap(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Infected walker(3,2, map);
-    map.add_zombie(&walker, 3, 2);
+    Infected walker(2,3, map);
+    map.add_zombie(&walker, 2, 3);
 
-    soldier.set_direction(UP);
+    soldier.set_direction(LEFT);
 
     for (int i = 0; i < 20; i++) {
         soldier.shoot(i);

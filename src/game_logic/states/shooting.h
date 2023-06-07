@@ -8,9 +8,9 @@ private:
     Soldier& soldier;
     Weapon* weapon;
     float waiting_time_to_shoot = 0.10;
-    float start_time;
+    float start_time = -1;
 public:
-    Shooting(Soldier& sodlier, Weapon* weapon, float start_time);
+    Shooting(Soldier& soldier, Weapon* weapon, float start_time);
 
     State* update(float time) override;
     State* shoot(Soldier& soldier, Weapon* weapon, float time) override;

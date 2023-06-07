@@ -13,136 +13,140 @@
 #define CLOSE_RANGE_DAMAGE 30
 #define LONG_RANGE_DAMAGE 15
 
-void testSoldierShootsIdfCloseRangeUp(void) {
+void testSoldierShootsIdfCloseRangeLeft(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Infected walker(3,2, map);
-    map.add_zombie(&walker, 3, 2);
+    Infected walker(2,3, map);
+    map.add_zombie(&walker, 2, 3);
 
-    soldier.set_direction(UP);
+    soldier.set_direction(LEFT);
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
-    TEST_ASSERT(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
+    TEST_CHECK(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
 }
 
-void testSoldierShootsIdfCloseRangeDown(void) {
+void testSoldierShootsIdfCloseRangeRight(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Infected walker(3,7,map);
-    map.add_zombie(&walker, 3, 7);
+    Infected walker(7,3,map);
+    map.add_zombie(&walker, 7, 3);
 
-    soldier.set_direction(DOWN);
+    soldier.set_direction(RIGHT);
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
-    TEST_ASSERT(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
+    TEST_CHECK(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
 }
 
-void testSoldierShootsIdfCloseRangeUpNotSameLine(void) {
+void testSoldierShootsIdfCloseRangeLeftNotSameLine(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    soldier.move_left();
+    soldier.move_up();
 
     Infected walker(2,2,map);
     map.add_zombie(&walker, 2, 2);
 
-    soldier.set_direction(UP);
+    soldier.set_direction(LEFT);
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
-    TEST_ASSERT(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
+    TEST_CHECK(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
 }
 
-void testSoldierShootsIdfCloseRangeDownNotSameLine(void) {
+void testSoldierShootsIdfCloseRangeRightNotSameLine(void) {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* idf = new Idf;
+
+    Soldier soldier(idf, map, 3, 4);
+    map.add_soldier(&soldier, 3, 4);
+
+    soldier.move_down();
+
+    Infected walker(7,4,map);
+    map.add_zombie(&walker, 7, 4);
+
+    soldier.set_direction(RIGHT);
+    soldier.shoot(1);
+    std::uint16_t remaining_health = walker.get_health();
+    TEST_CHECK(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
+}
+
+void testSoldierShootsIdfLongRangeLeft(void) {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* idf = new Idf;
+
+    Soldier soldier(idf, map, 5, 3);
+    map.add_soldier(&soldier, 5, 3);
+
+    Infected walker(0,3,map);
+    map.add_zombie(&walker, 0, 3);
+
+    soldier.set_direction(LEFT);
+    soldier.shoot(1);
+    std::uint16_t remaining_health = walker.get_health();
+    TEST_CHECK(remaining_health == 100 - LONG_RANGE_DAMAGE);
+}
+
+void testSoldierShootsIdfLongRangeRight(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Infected walker(4,7,map);
-    map.add_zombie(&walker, 4, 7);
+    Infected walker(8,3,map);
+    map.add_zombie(&walker, 8, 3);
 
-    soldier.set_direction(DOWN);
+    soldier.set_direction(RIGHT);
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
-    TEST_ASSERT(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
+    TEST_CHECK(remaining_health == 100 - LONG_RANGE_DAMAGE);
 }
 
-void testSoldierShootsIdfLongRangeUp(void) {
+void testSoldierShootsIdfLongRangeLeftNotSameLine(void) {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* idf = new Idf;
+
+    Soldier soldier(idf, map, 6, 3);
+    map.add_soldier(&soldier, 6, 3);
+
+    soldier.move_up();
+
+    Infected walker(1,2,map);
+    map.add_zombie(&walker, 1, 2);
+
+    soldier.set_direction(LEFT);
+    soldier.shoot(1);
+    std::uint16_t remaining_health = walker.get_health();
+    TEST_CHECK(remaining_health == 100 - LONG_RANGE_DAMAGE);
+}
+
+void testSoldierShootsIdfLongRangeRightNotSameLine(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 5);
     map.add_soldier(&soldier, 3, 5);
 
-    Infected walker(3,0,map);
-    map.add_zombie(&walker, 3, 0);
+    soldier.move_up();
 
-    soldier.set_direction(UP);
+    Infected walker(8,4,map);
+    map.add_zombie(&walker, 8, 4);
+
+    soldier.set_direction(RIGHT);
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
-    TEST_ASSERT(remaining_health == 100 - LONG_RANGE_DAMAGE);
-}
-
-void testSoldierShootsIdfLongRangeDown(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* idf = new Idf;
-
-    Soldier soldier(idf, map, 3, 3);
-    map.add_soldier(&soldier, 3, 3);
-
-    Infected walker(3,8,map);
-    map.add_zombie(&walker, 3, 8);
-
-    soldier.set_direction(DOWN);
-    soldier.shoot(1);
-    std::uint16_t remaining_health = walker.get_health();
-    TEST_ASSERT(remaining_health == 100 - LONG_RANGE_DAMAGE);
-}
-
-void testSoldierShootsIdfLongRangeUpNotSameLine(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* idf = new Idf;
-
-    Soldier soldier(idf, map, 3, 6);
-    map.add_soldier(&soldier, 3, 6);
-
-    soldier.move_left();
-
-    Infected walker(2,1,map);
-    map.add_zombie(&walker, 2, 1);
-
-    soldier.set_direction(UP);
-    soldier.shoot(1);
-    std::uint16_t remaining_health = walker.get_health();
-    TEST_ASSERT(remaining_health == 100 - LONG_RANGE_DAMAGE);
-}
-
-void testSoldierShootsIdfLongRangeDownNotSameLine(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* idf = new Idf;
-
-    Soldier soldier(idf, map, 3, 3);
-    map.add_soldier(&soldier, 3, 3);
-
-    Infected walker(4,8,map);
-    map.add_zombie(&walker, 4, 8);
-
-    soldier.set_direction(DOWN);
-    soldier.shoot(1);
-    std::uint16_t remaining_health = walker.get_health();
-    TEST_ASSERT(remaining_health == 100 - LONG_RANGE_DAMAGE);
+    TEST_CHECK(remaining_health == 100 - LONG_RANGE_DAMAGE);
 }
 
 void testSoldierShootsIdfWith2InfectedsInLine(void) {
@@ -152,31 +156,31 @@ void testSoldierShootsIdfWith2InfectedsInLine(void) {
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
 
-    Infected walker1(4,8, map);
-    map.add_zombie(&walker1, 4, 8);
+    Infected walker1(8,3, map);
+    map.add_zombie(&walker1, 8, 3);
 
-    Infected walker2(4,9, map);
-    map.add_zombie(&walker2, 4, 9);
+    Infected walker2(8,4, map);
+    map.add_zombie(&walker2, 8, 4);
 
-    soldier.set_direction(DOWN);
+    soldier.set_direction(RIGHT);
     soldier.shoot(1);
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
-    TEST_ASSERT(remaining_health1 == 100 - LONG_RANGE_DAMAGE);
-    TEST_ASSERT(remaining_health2 == 100);
+    TEST_CHECK(remaining_health1 == 100 - LONG_RANGE_DAMAGE);
+    TEST_CHECK(remaining_health2 == 100);
 }
 
 
 
 TEST_LIST = {
-        {"Soldier shoots Idf close range up", testSoldierShootsIdfCloseRangeUp},
-        {"Soldier shoots Idf close range down",testSoldierShootsIdfCloseRangeDown},
-        {"Soldier shoots Idf close range up not same line", testSoldierShootsIdfCloseRangeUpNotSameLine},
-        {"Soldier shoots Idf close range down not same line",testSoldierShootsIdfCloseRangeDownNotSameLine},
-        {"Soldier shoots Idf long range up", testSoldierShootsIdfLongRangeUp},
-        {"Soldier shoots Idf long range down",testSoldierShootsIdfLongRangeDown},
-        {"Soldier shoots Idf long range up not same line", testSoldierShootsIdfLongRangeUpNotSameLine},
-        {"Soldier shoots Idf long range down not same line",testSoldierShootsIdfLongRangeDownNotSameLine},
+        {"Soldier shoots Idf close range left", testSoldierShootsIdfCloseRangeLeft},
+        {"Soldier shoots Idf close range right",testSoldierShootsIdfCloseRangeRight},
+        {"Soldier shoots Idf close range left not same line", testSoldierShootsIdfCloseRangeLeftNotSameLine},
+        {"Soldier shoots Idf close range right not same line",testSoldierShootsIdfCloseRangeRightNotSameLine},
+        {"Soldier shoots Idf long range left", testSoldierShootsIdfLongRangeLeft},
+        {"Soldier shoots Idf long range right",testSoldierShootsIdfLongRangeRight},
+        {"Soldier shoots Idf long range left not same line", testSoldierShootsIdfLongRangeLeftNotSameLine},
+        {"Soldier shoots Idf long range right not same line",testSoldierShootsIdfLongRangeRightNotSameLine},
         {"Soldier shoots idf with one walker behind another, only damages the first", testSoldierShootsIdfWith2InfectedsInLine},
         {NULL, NULL}
 };

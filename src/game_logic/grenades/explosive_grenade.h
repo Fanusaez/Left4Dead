@@ -12,8 +12,8 @@ private:
     float last_thrown_grenade = 0;
 public:
     void throw_grenade(GameMap& map,
-                       std::int16_t x_matrix_sold,
-                       std::int16_t y_matrix_explosion,
+                       std::int16_t x_matrix_explosion,
+                       std::int16_t y_matrix_sold,
                        State*& current_state,
                        float time);
 

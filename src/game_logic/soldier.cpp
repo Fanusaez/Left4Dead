@@ -4,10 +4,6 @@
 
 #define GRANADE_DISTANCE_REACH 4
 #define WALLS_LIMITS 0.5
-#define LEFT 2
-#define RIGHT 3
-
-
 
 Soldier::Soldier(Weapon* weapon, GameMap& map) : weapon(weapon), map(map), id(0){} // lo dejo por ahora
 
@@ -68,27 +64,27 @@ void Soldier::reload(float time) {
 }
 
 void Soldier::throw_explosive_grenade(float time) {
-    std::int16_t y_grenade_pos = y_pos / MOVEMENTS_PER_CELL;
+    std::int16_t x_grenade_pos = x_pos / MOVEMENTS_PER_CELL;
 
-    if (direction == UP) {
-         y_grenade_pos -= GRANADE_DISTANCE_REACH;
+    if (direction == LEFT) {
+         x_grenade_pos -= GRANADE_DISTANCE_REACH;
     } else {
-        y_grenade_pos += GRANADE_DISTANCE_REACH;
+        x_grenade_pos += GRANADE_DISTANCE_REACH;
     }
 
-    weapon->throw_explosive_grenade(map, get_x_matrix_pos(), y_grenade_pos, state, time);
+    weapon->throw_explosive_grenade(map, x_grenade_pos, get_y_matrix_pos(), state, time);
 }
 
 void Soldier::throw_smoke_grenade(float time) {
-    std::int16_t y_grenade_pos = y_pos / MOVEMENTS_PER_CELL;
+    std::int16_t x_grenade_pos = x_pos / MOVEMENTS_PER_CELL;
 
-    if (direction == UP) {
-        y_grenade_pos -= GRANADE_DISTANCE_REACH;
+    if (direction == LEFT) {
+        x_grenade_pos -= GRANADE_DISTANCE_REACH;
     } else {
-        y_grenade_pos += GRANADE_DISTANCE_REACH;
+        x_grenade_pos += GRANADE_DISTANCE_REACH;
     }
 
-    weapon->throw_smoke_grenade(map, get_x_matrix_pos(), y_grenade_pos, state, time);
+    weapon->throw_smoke_grenade(map, x_grenade_pos, get_y_matrix_pos(), state, time);
 }
 
 void Soldier::receive_damage(std::uint16_t damage, float time) {
@@ -159,7 +155,6 @@ void Soldier::move_up() {
 }
 
 void Soldier::move_down() {
-    direction = DOWN;
     std::int16_t y_new_pos = y_pos + 1;
     if ((y_new_pos % MOVEMENTS_PER_CELL) != 0) {
         y_pos += 1;
@@ -173,6 +168,7 @@ void Soldier::move_down() {
 }
 
 void Soldier::move_right() {
+    direction = RIGHT;
     std::int16_t x_new_pos = x_pos + 1;
     if ((x_new_pos % MOVEMENTS_PER_CELL) != 0) {
         x_pos += 1;
@@ -186,6 +182,7 @@ void Soldier::move_right() {
 }
 
 void Soldier::move_left() {
+    direction = LEFT;
     //if (x_pos <= WALLS_LIMITS) return;
     if ((x_pos % MOVEMENTS_PER_CELL) != 0) {
         x_pos -= 1;
@@ -199,11 +196,7 @@ void Soldier::move_left() {
 }
 
 void Soldier::set_direction(std::int16_t new_direction) {
-    if (new_direction == 1){
-        direction = DOWN;
-    } else if (new_direction == -1) {
-        direction = UP;
-    }
+    direction = new_direction;
 }
 
 bool Soldier::in_range_of_explosion(std::int16_t x_start,

@@ -520,8 +520,8 @@ void testSoldierThrows2GrenadeOnly1IsThrown(void) {
     map.add_soldier(&soldier, 2, 2);
     soldier.set_direction(DOWN);
 
-    Infected walker(2, 6, map);
-    map.add_zombie(&walker, 2, 6);
+    Infected walker(6, 2, map);
+    map.add_zombie(&walker, 6, 2);
 
     soldier.throw_explosive_grenade(100);
     soldier.throw_explosive_grenade(101);

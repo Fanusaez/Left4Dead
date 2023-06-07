@@ -10,6 +10,8 @@
 #define MOVEMENTS_PER_CELL 2
 #define DOWN 1
 #define UP -1
+#define LEFT 2
+#define RIGHT 3
 
 class Soldier : public GameObject {
  private:
@@ -18,7 +20,7 @@ class Soldier : public GameObject {
     GameMap &map;
     std::int16_t x_pos;
     std::int16_t y_pos;
-    std::int16_t direction = UP;
+    std::int16_t direction = LEFT;
     bool dead = false;
     std::int16_t health = 100;
     const std::int16_t id;

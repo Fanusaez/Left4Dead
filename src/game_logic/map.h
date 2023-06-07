@@ -48,10 +48,10 @@ void collision_with_zombie(std::vector<GameObject*>& game_objects,
                            std::uint16_t y_pos_sold,
                            std::int16_t direction);
 
-void collision_going_down(std::vector<GameObject*>& game_objects,
+void collision_going_right(std::vector<GameObject*>& game_objects,
                                               std::uint16_t x_pos,
                                               std::uint16_t y_pos);
-void collision_going_up(std::vector<GameObject*>& game_objects,
+void collision_going_left(std::vector<GameObject*>& game_objects,
                                             std::uint16_t x_pos,
                                             std::uint16_t y_pos);
 
