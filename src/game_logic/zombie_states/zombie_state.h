@@ -34,6 +34,8 @@ virtual ZombieState* die(float time) = 0;
 
 virtual ZombieState* get_stunned(float time) = 0;
 
+virtual ZombieState* scream(GameMap &map, std::int16_t zombies_to_create, float time) = 0;
+
 virtual void set_speed(float speed) = 0;
 };
 #endif  // MOVEMENT_H_

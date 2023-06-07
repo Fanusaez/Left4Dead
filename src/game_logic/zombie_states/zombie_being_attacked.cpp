@@ -54,6 +54,13 @@ ZombieState *ZombieBeingAttacked::get_stunned(float time) {
     return new Stunned(time);
 }
 
+ZombieState *ZombieBeingAttacked::scream(GameMap &map, std::int16_t zombies_to_create, float time) {
+    if (time_to_stop_being_attacked(time)) {
+        return new Screaming(map,zombies_to_create, time);
+    }
+    return nullptr;
+}
+
 bool ZombieBeingAttacked::time_to_stop_being_attacked(float time) {
     return (time - start_time >= time_stop_being_attacked);
 }

@@ -2,6 +2,7 @@
 #define ZOMBIE_H_
 
 #include <vector>
+#include <cstdint>
 
 #define MAX_DISTANCE 10000
 

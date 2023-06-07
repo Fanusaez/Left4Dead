@@ -1,19 +1,17 @@
-#ifndef STUNNED_H_
-#define STUNNED_H_
+#ifndef SCREAMING_H_
+#define SCREAMING_H_
 
+#include "zombie_state.h"
 #include "zombie_idle.h"
 
-class Stunned : public ZombieState {
-
+class Screaming : public ZombieState{
 private:
-    float waiting_time_to_walk = 0.2;
-    float waiting_time_to_normal = 10; // 10 segundos para dejar de estar stunneado
-    float start_time;
-    float last_time_moved = - 1;
+    float waiting_time_to_stop_screaming = 0.2;
+    float last_time_screamed = - 1;
 
 public:
 
-    Stunned(float time);
+    Screaming(GameMap& map, std::int16_t zombies_to_create, float time);
 
     ZombieState* chase_soldier(Chaser& chaser,
                                std::int16_t x_pos_chase,
@@ -38,14 +36,15 @@ public:
 
     ZombieState* get_stunned(float time) override;
 
-    bool time_to_walk(float time);
-
     ZombieState* scream(GameMap &map, std::int16_t zombies_to_create, float time) override;
 
-    bool time_stop_being_stunned(float time);
+    bool time_to_walk(float time);
+
+    bool time_stop_screaming(float time);
 
     void set_speed(float speed) override;
+
 };
 
 
-#endif  // STUNNED_H_
+#endif //SCREAMING_H_

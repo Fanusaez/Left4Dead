@@ -55,6 +55,10 @@ State *Reloading::throw_explosive_grenade(float time) {
     return nullptr;
 }
 
+State *Reloading::stop_action() {
+    return nullptr;
+}
+
 bool Reloading::time_to_relaod(float time) { // se deberia llamar de otra forma
     return (time - start_time >= waiting_time_to_reload);
 }

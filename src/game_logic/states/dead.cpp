@@ -38,6 +38,10 @@ State* Dead::revive(float time) {
     return nullptr;
 }
 
+State *Dead::stop_action() {
+    return nullptr;
+}
+
 bool Dead::able_to_revive(float time) {
     return time < time_to_revive + start_time;
 }

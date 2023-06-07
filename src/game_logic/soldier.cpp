@@ -255,7 +255,10 @@ State* Soldier::get_state() {
     return state;
 }
 
-void Soldier::set_idle() {
-    delete state;
-    state = new Idle;
+void Soldier::stop_action() {
+    State* new_state = state->stop_action();
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
 }

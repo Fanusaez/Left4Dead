@@ -83,10 +83,10 @@ std::int16_t Jumper::get_distance_to_soldier(GameObject* soldier) {
 
 
 void Jumper::set_direction(std::int16_t direction_to_set) {
-    if (direction_to_set == UP){
-        direction = UP;
-    } else if (direction_to_set == DOWN ){
-        direction = DOWN;
+    if (direction_to_set == LEFT){
+        direction = LEFT;
+    } else if (direction_to_set == RIGHT){
+        direction = RIGHT;
     } else {
         // lanzo error
     }

@@ -65,6 +65,10 @@ ZombieState *Attacking::get_stunned(float time) {
     return new Stunned(time);
 }
 
+ZombieState *Attacking::scream(GameMap &map, std::int16_t zombies_to_create, float time) {
+    return new Screaming(map, zombies_to_create, time);
+}
+
 bool Attacking::time_to_attack(float time) {
     return (time - start_time) >= waiting_time_to_attack;
 }

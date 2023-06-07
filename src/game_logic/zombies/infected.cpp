@@ -20,7 +20,8 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         chaser(this, map, x_pos, y_pos) {}
 
 void Infected::update(float time) {
-
+//atacar
+//moverse
 }
 
 void Infected::receive_damage(std::uint16_t damage, float time) {
@@ -93,10 +94,10 @@ std::int16_t Infected::get_distance_to_soldier(GameObject* soldier) {
 
 
 void Infected::set_direction(std::int16_t direction_to_set) {
-    if (direction_to_set == UP){
-        direction = UP;
-    } else if (direction_to_set == DOWN ){
-        direction = DOWN;
+    if (direction_to_set == LEFT){
+        direction = LEFT;
+    } else if (direction_to_set == RIGHT){
+        direction = RIGHT;
     } else {
         // lanzo error
     }

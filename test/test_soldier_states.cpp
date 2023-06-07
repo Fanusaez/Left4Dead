@@ -268,7 +268,7 @@ void testSoldierMovesAndThenItsToldToStopChangesToIdle(void) {
     map.add_soldier(&soldier, 2, 2);
 
     soldier.move_up(1);
-    soldier.set_idle();
+    soldier.stop_action();
 
     Moving* moving_state = dynamic_cast<Moving*>(soldier.get_state());
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());

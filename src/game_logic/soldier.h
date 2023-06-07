@@ -54,7 +54,7 @@ bool in_range_of_explosion(std::int16_t x_start,
 std::int16_t get_id() override;
 std::vector<GameObject*> get_targets();
 
-void set_idle();
+void stop_action();
 
 std::int16_t get_y_pos() override;
 std::int16_t get_x_pos() override;

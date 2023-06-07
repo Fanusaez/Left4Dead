@@ -4,6 +4,7 @@
 #include "attacking.h"
 #include "zombie_dead.h"
 #include "zombie_being_attacked.h"
+#include "screaming.h"
 #include "stunned.h"
 #include "../chaser.h"
 #include "jumping.h"
@@ -45,6 +46,8 @@ ZombieState* being_attacked(float time) override;
 ZombieState* die(float time) override;
 
 ZombieState* get_stunned(float time) override;
+
+ZombieState* scream(GameMap &map, std::int16_t zombies_to_create, float time) override;
 
 bool time_to_move(float time);
 

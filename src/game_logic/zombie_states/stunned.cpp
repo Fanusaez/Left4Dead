@@ -62,6 +62,10 @@ ZombieState *Stunned::get_stunned(float time) {
     return nullptr;
 }
 
+ZombieState *Stunned::scream(GameMap &map, std::int16_t zombies_to_create, float time) {
+    return new Screaming(map, zombies_to_create, time);
+}
+
 bool Stunned::time_to_walk(float time) {
     return (time - last_time_moved) >= waiting_time_to_walk;
 }

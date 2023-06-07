@@ -1,5 +1,5 @@
 #include "zombie_idle.h"
-
+#include "screaming.h"
 ZombieState *
 ZombieIdle::chase_soldier(Chaser& chaser,
                           std::int16_t x_pos_chase,
@@ -38,6 +38,10 @@ ZombieState *ZombieIdle::die(float time) {
 
 ZombieState *ZombieIdle::get_stunned(float time) {
     return new Stunned(time);
+}
+
+ZombieState *ZombieIdle::scream(GameMap &map, std::int16_t zombies_to_create, float time) {
+    return new Screaming(map, zombies_to_create, time);
 }
 
 void ZombieIdle::set_speed(float speed) {

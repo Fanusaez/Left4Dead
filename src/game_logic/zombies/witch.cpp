@@ -1,5 +1,8 @@
 #include "witch.h"
 #include "../zombie_states/chasing_states/chase_running.h"
+#include "../map.h"
+
+#include <math.h>
 
 Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
@@ -8,7 +11,12 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         map(map),
         chaser(this, map, x_pos, y_pos) {}
 
+// update va a tener que recibir los soldadods, en todos los zombies
 void Witch::update(float time) {
+    std::int16_t random_number = get_random_number();
+    if (random_number < probability_to_scream) {
+        scream(time);
+    }
 
 }
 
@@ -68,6 +76,14 @@ GameObject* Witch::get_closest_soldier(std::vector<GameObject*> soldiers) {
     return closest_soldier;
 }
 
+void Witch::scream(float time) {
+    ZombieState* new_state = state->scream(map, zombies_created, time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
+
 std::int16_t Witch::get_distance_to_soldier(GameObject* soldier) {
 
     std::int16_t x_matrix_sold = soldier->get_x_matrix_pos();
@@ -82,10 +98,10 @@ std::int16_t Witch::get_distance_to_soldier(GameObject* soldier) {
 
 
 void Witch::set_direction(std::int16_t direction_to_set) {
-    if (direction_to_set == UP){
-        direction = UP;
-    } else if (direction_to_set == DOWN ){
-        direction = DOWN;
+    if (direction_to_set == LEFT){
+        direction = LEFT;
+    } else if (direction_to_set == RIGHT){
+        direction = RIGHT;
     } else {
         // lanzo error
     }
@@ -130,6 +146,10 @@ std::int16_t Witch::get_y_matrix_pos() {
 
 std::int16_t Witch::get_x_matrix_pos() {
     return x_pos / MOVEMENTS_PER_CELL;
+}
+
+std::int16_t Witch::get_random_number() {
+    return std::random_device{}() % 101;
 }
 
 Witch::~Witch() {

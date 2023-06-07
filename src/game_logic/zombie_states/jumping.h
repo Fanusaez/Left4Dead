@@ -38,6 +38,8 @@ public:
 
     ZombieState* get_stunned(float time) override;
 
+    ZombieState* scream(GameMap &map, std::int16_t zombies_to_create, float time) override;
+
     bool time_to_move(float time);
 
     void set_speed(float speed) override;

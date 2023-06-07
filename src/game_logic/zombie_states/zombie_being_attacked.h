@@ -27,13 +27,15 @@ public:
                                        std::int16_t y_pos_chase,
                                        float time) override;
 
-     ZombieState* attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) override;
+    ZombieState* attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) override;
 
-     ZombieState* being_attacked(float time) override;
+    ZombieState* being_attacked(float time) override;
 
-     ZombieState* die(float time) override;
+    ZombieState* die(float time) override;
 
     ZombieState* get_stunned(float time) override;
+
+    ZombieState* scream(GameMap &map, std::int16_t zombies_to_create, float time) override;
 
      bool time_to_stop_being_attacked(float time);
 

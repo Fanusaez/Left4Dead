@@ -9,6 +9,7 @@
 #include "game_logic/weapons/weapon.h"
 #include "game_logic/states/idle.h"
 #include "game_logic/weapons/scout.h"
+#include "game_logic/zombies/witch.h"
 
 #define UP -1
 #define DOWN 1
@@ -274,6 +275,23 @@ void testSoldierThrowsSmokeGrenadeAndStunnedZombie(void) {
     TEST_CHECK(zombie_state1 != nullptr);
 }
 
+//************************************** SCREAM *****************************************************8//
+
+void testWitcherScreamsStatesChanges(void) {
+
+    GameMap map(10, 10);
+    Weapon* scout = new Scout;
+
+    Witch witch(5, 5,0, map); // donde cae la granada
+    map.add_zombie(&witch, 5,5);
+
+    witch.scream(1);
+
+    Screaming* zombie_state = dynamic_cast<Screaming*>(witch.get_state());
+
+    TEST_CHECK(zombie_state != nullptr);
+}
+
 TEST_LIST = {
         {"Infected start with Idle state", testInfectedStartsWithIdleState},
         {"Infected shoots and reloads state changes to Reloading", testInfectedChaseAndStateChangesToWalking},
@@ -287,5 +305,6 @@ TEST_LIST = {
         {"Infected gets killed", testInfectedgetsShotAndDie},
         {"Infected gets shot while attacking",testInfectedgetsShotWhileAttacking},
         {"Zombie gets stunned",testSoldierThrowsSmokeGrenadeAndStunnedZombie},
+        {"Witcher screams and state changes",testWitcherScreamsStatesChanges},
         {NULL, NULL},
 };

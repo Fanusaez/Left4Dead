@@ -42,6 +42,8 @@ ZombieState *ZombieDead::get_stunned(float time) {
     return nullptr;
 }
 
+ZombieState *ZombieDead::scream(GameMap &map, std::int16_t zombies_to_create, float time) { return nullptr;}
+
 void ZombieDead::set_speed(float speed) {
 
 }

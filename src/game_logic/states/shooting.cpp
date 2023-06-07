@@ -60,6 +60,10 @@ State *Shooting::throw_explosive_grenade(float time) {
     return nullptr;
 }
 
+State *Shooting::stop_action() {
+    return new Idle();
+}
+
 bool Shooting::time_to_shoot(float time) {
     return (time - start_time) > waiting_time_to_shoot;
 }

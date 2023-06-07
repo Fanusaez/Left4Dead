@@ -9,11 +9,10 @@
 
 class GameMap;
 
-
 class Witch : public GameObject, public Zombie {
 
 private:
-    std::int16_t health = 100;
+    std::int16_t health = 200;
     std::int16_t damage_attack = 20;
     std::int16_t x_pos;
     std::int16_t y_pos;
@@ -23,13 +22,15 @@ private:
 
     // se debera recibir por parametro, para que corra camine o salte
     ChaseState* chase_state = new ChaseWalking;
+    std::int16_t probability_to_scream = 30;
+    std::int16_t zombies_created = 4;
     const std::int16_t id;
     GameMap& map;
     Chaser chaser;
 
     GameObject* get_closest_soldier(std::vector<GameObject*> soldiers);
     std::int16_t get_distance_to_soldier(GameObject* soldier);
-
+    std::int16_t get_random_number();
 public:
     Witch(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
 
@@ -47,6 +48,7 @@ public:
     void attack(std::vector<GameObject*> soldiers, float time) override;
     void get_stunned(float time) override;
     void die(float time);
+    void scream(float time);
 
     std::int16_t get_id() override;
 

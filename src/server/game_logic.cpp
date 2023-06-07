@@ -78,7 +78,7 @@ void GameLogic::move (Move move, int player_id) {
         //std::cout<<"DOWN"<<std::endl;
         break;
     case 4:
-        soldier->set_idle();
+        soldier->stop_action();
         break;
     }
 }
