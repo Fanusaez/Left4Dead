@@ -214,7 +214,7 @@ void GameMap::get_position_for_soldier(std::vector<std::int16_t> &valid_pos) {
 }
 
 
-bool GameMap::valid_entire_object_position(std::int16_t x_pos, std::int16_t y_pos) {
+bool GameMap::valid_object_position(std::int16_t x_pos, std::int16_t y_pos) {
     bool valid_x = false;
     bool valid_y = false;
     if ( x_pos >= 0 && x_pos < x_size) {
@@ -229,9 +229,8 @@ bool GameMap::valid_entire_object_position(std::int16_t x_pos, std::int16_t y_po
 
 // Deberia tener solo un add object y listo;
 
-void GameMap::free_entire_position(std::int16_t x_pos, std::int16_t y_pos) {
+void GameMap::free_position(std::int16_t x_pos, std::int16_t y_pos) {
     map[y_pos][x_pos] = nullptr;
-    map[y_pos][x_pos + 1] = nullptr;
 }
 
 // ****************************** Metodos de Testeo ***********************************//
@@ -263,15 +262,14 @@ bool GameMap::add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t 
 void GameMap::add_obstacle(GameObject* obstacle,
                            std::uint16_t x_pos,
                            std::uint16_t y_pos) {
-    if (!valid_entire_object_position(x_pos, y_pos)){ // cambiar por validar_gameObject
+    if (!valid_object_position(x_pos, y_pos)){ // cambiar por validar_gameObject
         return; // excepcion
     }
     map[y_pos][x_pos] = obstacle;
-    map[y_pos][x_pos + 1] = obstacle;
 }
 
 bool GameMap::collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos) {
-    if (!valid_entire_object_position(x_pos, y_pos)) {
+    if (!valid_object_position(x_pos, y_pos)) {
         return false; // deberia levantar error.
     }
 

@@ -10,8 +10,6 @@ class GameMap {
     std::uint16_t y_size;
     std::uint16_t radius_damage_grenade = 3 ; // y_size / 6;
     std::vector<std::vector<GameObject*>> map;
-
-    //std::vector<GameObject*> zombies_object;
     std::vector<GameObject*> soldiers;
     std::vector<Zombie*> zombies;
 
@@ -30,8 +28,23 @@ void get_objects_in_distance(std::int16_t x_grenade_pos,
 
 void validate_position_for_explosion(std::int16_t& x_pos, std::int16_t& y_pos); // para granada, cambiar nombre, confunde
 
+void collision_with_zombie(std::vector<GameObject*>& game_objects,
+                           std::uint16_t x_pos_sold,
+                           std::uint16_t y_pos_sold,
+                           std::int16_t direction);
+
+void collision_going_right(std::vector<GameObject*>& game_objects,
+                           std::uint16_t x_pos,
+                           std::uint16_t y_pos);
+void collision_going_left(std::vector<GameObject*>& game_objects,
+                          std::uint16_t x_pos,
+                          std::uint16_t y_pos);
+
+bool valid_object_position(std::int16_t x_pos,
+                           std::int16_t y_pos);
 
 public:
+
 GameMap(std::uint16_t x_size, std::uint16_t y_size);
 
 void shoot(std::vector<GameObject*>& game_objects,
@@ -43,45 +56,26 @@ void get_objects_in_explosion(std::vector<GameObject*>& game_objects,
            std::uint16_t x_pos_grenade,
            std::uint16_t y_pos_grenade);
 
-void collision_with_zombie(std::vector<GameObject*>& game_objects,
-                           std::uint16_t x_pos_sold,
-                           std::uint16_t y_pos_sold,
-                           std::int16_t direction);
 
-void collision_going_right(std::vector<GameObject*>& game_objects,
-                                              std::uint16_t x_pos,
-                                              std::uint16_t y_pos);
-void collision_going_left(std::vector<GameObject*>& game_objects,
-                                            std::uint16_t x_pos,
-                                            std::uint16_t y_pos);
-
-bool valid_entire_object_position(std::int16_t x_pos,
-                                  std::int16_t y_pos);
-
-void move_object_up(std::int16_t x_sold_pos,
-                     std::int16_t y_sold_pos,
+void move_object_up(std::int16_t x_pos,
+                     std::int16_t y_pos,
                      std::int16_t& new_y_pos_ref);
 
 
-void move_object_down(std::int16_t x_sold_pos,
-                         std::int16_t y_sold_pos,
+void move_object_down(std::int16_t x_pos,
+                         std::int16_t y_pos,
                          std::int16_t& new_y_pos_ref);
 
-void move_object_right(std::int16_t x_sold_pos,
-                       std::int16_t y_sold_pos,
+void move_object_right(std::int16_t x_pos,
+                       std::int16_t y_pos,
                        std::int16_t& new_x_pos_ref);
 
-void move_object_left(std::int16_t x_sold_pos,
-                        std::int16_t y_sold_pos,
+void move_object_left(std::int16_t x_pos,
+                        std::int16_t y_pos,
                         std::int16_t& new_x_pos_ref);
 
 bool check_free_position(std::int16_t x_pos,
                          std::int16_t y_pos);
-
-void chase_soldier_walking(Zombie* zombie,
-                           std::int16_t& x_new_pos,
-                           std::int16_t& y_new_pos,
-                           GameObject* closest_soldier);
 
 
 void chase_soldiers(float time);
@@ -91,7 +85,7 @@ void get_position_for_object(std::vector<std::int16_t>& valid_pos);
 void get_position_for_soldier(std::vector<std::int16_t>& valid_pos);
 bool add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
 bool add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
-void free_entire_position(std::int16_t x_pos, std::int16_t y_pos);
+void free_position(std::int16_t x_pos, std::int16_t y_pos);
 // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);

@@ -104,7 +104,6 @@ void Soldier::get_stunned(float time) {}
 
 void Soldier::move_up(float time) {
     State* new_state = state->move(*this, UP, time);
-    //std::cout << x_pos << ","<< y_pos << std::endl;
     if (new_state != nullptr) {
         delete state;
         state = new_state;
@@ -113,7 +112,6 @@ void Soldier::move_up(float time) {
 
 void Soldier::move_down(float time) {
     State* new_state = state->move(*this, DOWN, time);
-    //std::cout << x_pos << ","<< y_pos << std::endl;
     if (new_state != nullptr) {
         delete state;
         state = new_state;
@@ -122,7 +120,6 @@ void Soldier::move_down(float time) {
 
 void Soldier::move_right(float time) {
     State* new_state = state->move(*this, RIGHT, time);
-    //std::cout << x_pos << ","<< y_pos << std::endl;
     if (new_state != nullptr) {
         delete state;
         state = new_state;
@@ -131,7 +128,6 @@ void Soldier::move_right(float time) {
 
 void Soldier::move_left(float time) {
     State* new_state = state->move(*this, LEFT, time);
-    //std::cout << x_pos << ","<< y_pos << std::endl;
     if (new_state != nullptr) {
         delete state;
         state = new_state;

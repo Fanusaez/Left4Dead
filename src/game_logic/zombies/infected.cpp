@@ -114,7 +114,7 @@ void Infected::attack(std::vector<GameObject *> soldiers, float time) {
 
 void Infected::die(float time) {
     dead = true;
-    map.free_entire_position(get_x_matrix_pos(), get_y_matrix_pos());
+    map.free_position(get_x_matrix_pos(), get_y_matrix_pos());
     ZombieState* new_state = state->die(time);
     if (new_state != nullptr) {
         delete state;
