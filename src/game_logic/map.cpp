@@ -29,26 +29,29 @@ void GameMap::shoot(std::vector<GameObject*>& game_objects,
 
 void GameMap::get_objects_in_explosion(std::vector<GameObject *> &game_objects,
                             std::uint16_t x_pos_grenade,
-                            std::uint16_t y_pos_grenade) {
+                            std::uint16_t y_pos_grenade,
+                            std::int16_t radius_explosion) {
     if (x_pos_grenade >= x_size) {
         x_pos_grenade = x_size - 1;
     } else if (x_pos_grenade < 0) {
         x_pos_grenade = 0;
     }
-    get_objects_in_distance(x_pos_grenade,
-                            y_pos_grenade,
-                            game_objects);
+    get_objects_in_radius(x_pos_grenade,
+                          y_pos_grenade,
+                          radius_explosion,
+                          game_objects);
 }
 
-void GameMap::get_objects_in_distance(std::int16_t x_grenade_pos,
+void GameMap::get_objects_in_radius(std::int16_t x_grenade_pos,
                                       std::int16_t y_grenade_pos,
+                                      std::int16_t radius_explosion,
                                       std::vector<GameObject*>& game_objects) {
-    std::int16_t x_start = x_grenade_pos - radius_damage_grenade;
-    std::int16_t y_start = y_grenade_pos - radius_damage_grenade;
+    std::int16_t x_start = x_grenade_pos - radius_explosion;
+    std::int16_t y_start = y_grenade_pos - radius_explosion;
     validate_position_for_explosion(x_start, y_start);
 
-    std::int16_t x_finish = x_grenade_pos + radius_damage_grenade;
-    std::int16_t y_finish = y_grenade_pos + radius_damage_grenade;
+    std::int16_t x_finish = x_grenade_pos + radius_explosion;
+    std::int16_t y_finish = y_grenade_pos + radius_explosion;
     validate_position_for_explosion(x_finish, y_finish);
 
     for (Zombie* object : zombies){

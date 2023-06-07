@@ -6,6 +6,7 @@
 class SmokeGrenade {
 private:
     const float time_to_throw_grenade = 30;
+    std::int16_t radius_range = 3;
     float last_thrown_grenade = 0;
 public:
     void throw_grenade(GameMap& map,

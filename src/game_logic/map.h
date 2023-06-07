@@ -3,12 +3,11 @@
 #include <random>
 #include <vector>
 #include "zombies/zombie.h"
-//#include "walker.h"
+
 class GameMap {
  private:
     std::uint16_t x_size;
     std::uint16_t y_size;
-    std::uint16_t radius_damage_grenade = 3 ; // y_size / 6;
     std::vector<std::vector<GameObject*>> map;
     std::vector<GameObject*> soldiers;
     std::vector<Zombie*> zombies;
@@ -22,8 +21,9 @@ void move_object_y(std::uint16_t x_pos,
                     std::uint16_t y_pos,
                     std::uint16_t y_new_pos);
 
-void get_objects_in_distance(std::int16_t x_grenade_pos,
+void get_objects_in_radius(std::int16_t x_grenade_pos,
                              std::int16_t y_grenade_pos,
+                             std::int16_t radius_explosion,
                              std::vector<GameObject*>& game_objects);
 
 void validate_position_for_explosion(std::int16_t& x_pos, std::int16_t& y_pos); // para granada, cambiar nombre, confunde
@@ -54,7 +54,8 @@ void shoot(std::vector<GameObject*>& game_objects,
 
 void get_objects_in_explosion(std::vector<GameObject*>& game_objects,
            std::uint16_t x_pos_grenade,
-           std::uint16_t y_pos_grenade);
+           std::uint16_t y_pos_grenade,
+           std::int16_t radius_explosion);
 
 
 void move_object_up(std::int16_t x_pos,

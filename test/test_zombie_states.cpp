@@ -252,6 +252,27 @@ void testInfectedgetsShotWhileAttacking(void) {
     TEST_CHECK(walker.get_health() < 100);
 }
 
+//********************************************** STUNNED *****************************************************//
+
+void testSoldierThrowsSmokeGrenadeAndStunnedZombie(void) {
+
+    GameMap map(10, 10);
+    Weapon* scout = new Scout;
+
+    Soldier soldier(scout, map, 9, 5);
+    map.add_soldier(&soldier, 9, 5);
+
+    soldier.set_direction(LEFT);
+
+    Infected walker1(5, 5, map); // donde cae la granada
+    map.add_zombie(&walker1, 5,5);
+
+    soldier.throw_smoke_grenade(100);
+
+    Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
+
+    TEST_CHECK(zombie_state1 != nullptr);
+}
 
 TEST_LIST = {
         {"Infected start with Idle state", testInfectedStartsWithIdleState},
@@ -265,5 +286,6 @@ TEST_LIST = {
         {"Infected gets attacked while walking",testInfectedWalkingAndGetsAttacked},
         {"Infected gets killed", testInfectedgetsShotAndDie},
         {"Infected gets shot while attacking",testInfectedgetsShotWhileAttacking},
+        {"Zombie gets stunned",testSoldierThrowsSmokeGrenadeAndStunnedZombie},
         {NULL, NULL},
 };
