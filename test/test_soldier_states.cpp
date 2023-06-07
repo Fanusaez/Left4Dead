@@ -260,7 +260,7 @@ void testSoldierMovesUpAndShootsImmediately(void) {
     TEST_CHECK(soldier_state != nullptr);
 }
 
-void testSoldiergetsUpdateAfterMovingChangesToIdle(void) {
+void testSoldierMovesAndThenItsToldToStopChangesToIdle(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
@@ -268,7 +268,7 @@ void testSoldiergetsUpdateAfterMovingChangesToIdle(void) {
     map.add_soldier(&soldier, 2, 2);
 
     soldier.move_up(1);
-    soldier.update(2);
+    soldier.set_idle();
 
     Moving* moving_state = dynamic_cast<Moving*>(soldier.get_state());
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
@@ -558,7 +558,7 @@ TEST_LIST = {
         {"Soldier moves up and immediately reloads state not change",         testSoldierMovesUpAndImmediatelyReloadStateStaysMoving},
         {"Soldier changes from Moving to Reloading",                          testSoldierMovesUpAndReload},
         {"Soldier tries to shoot while moving, state not change",             testSoldierMovesUpAndShootsImmediately},
-        {"Soldier moves and then gets updated, state changes to idle",        testSoldiergetsUpdateAfterMovingChangesToIdle},
+        {"Soldier moves and then gets updated, state changes to idle",        testSoldierMovesAndThenItsToldToStopChangesToIdle},
         {"Soldier gets updated immediately after moving, state still moving", testSoldiergetsUpdatedImmediatelyAfterMovingChangesToIdle},
         {"Soldier moves multiple times but too fast, only moves once",        testSoldierMoveUpTooFastOnlyMoveOnce},
         {"Soldier moves multiple times",                                      testSoldierMoveUpUntilEndOfMap},
