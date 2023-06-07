@@ -3,8 +3,6 @@
 
 #include <cstdint>
 #include "weapon.h"
-#include "../map.h"
-#include "../states/state.h"
 #include "../grenades/explosive_grenade.h"
 #include "../grenades/smoke_grenade.h"
 

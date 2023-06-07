@@ -2,9 +2,10 @@
 #define WEAPON_H_
 
 #include <vector>
-#include "../game_object.h"
-#include "../map.h"
+#include <cstdint>
 class State;
+class GameObject;
+class GameMap;
 
 class Weapon {
  private:

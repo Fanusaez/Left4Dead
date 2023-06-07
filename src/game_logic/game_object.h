@@ -2,6 +2,13 @@
 #define GAME_OBJECT_H_
 #include <vector>
 #include <cstdint>
+
+#define MOVEMENTS_PER_CELL 2
+#define DOWN 1
+#define UP -1
+#define LEFT 2
+#define RIGHT 3
+
 class GameObject {
  private:
 

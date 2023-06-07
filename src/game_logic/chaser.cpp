@@ -1,11 +1,11 @@
 #include "chaser.h"
-#define X_POS 0
-#define Y_POS 1
+#include "map.h"
+
 #define INVALID_POSITION -1
 #define WALLS_LIMITS 0.5
 #define MOVEMENTS_PER_CELL 2
-#define UP -1
-#define DOWN 1
+#define LEFT 2
+#define RIGHT 3
 
 
 Chaser::Chaser(Zombie *zombie, GameMap& map, std::int16_t& x_pos, std::int16_t& y_pos) :
@@ -32,7 +32,6 @@ void Chaser::chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
     std::int16_t x_new_pos = INVALID_POSITION;
     std::int16_t y_new_pos = INVALID_POSITION;
     if (y_pos_chase > y_pos && same_place) { // movimiento para abajo
-        zombie->set_direction(DOWN);
         std::int16_t y_new = y_pos + walker_speed;
         if ((y_new % MOVEMENTS_PER_CELL) != 0) {
             same_place = false;
@@ -44,7 +43,6 @@ void Chaser::chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
             y_pos += walker_speed;
         }
     } else if (y_pos_chase < y_pos && same_place) { // movimiento para arriba
-        zombie->set_direction(UP);
         // if (y_pos <= WALLS_LIMITS) return nullptr;
         if ((y_pos % MOVEMENTS_PER_CELL) != 0) {
             y_pos -= walker_speed;
@@ -57,6 +55,7 @@ void Chaser::chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
         }
     }
     if (x_pos_chase < x_pos && same_place) { // movimiento para izquierda
+        zombie->set_direction(LEFT);
         //if (x_pos <= WALLS_LIMITS) return nullptr; por ahora no hay walls limit
         if ((x_pos % MOVEMENTS_PER_CELL) != 0) {
             x_pos -= walker_speed;
@@ -68,6 +67,7 @@ void Chaser::chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
             x_pos -= walker_speed;
         }
     } else if (x_pos_chase > x_pos && same_place) { // movimiento para derecha
+        zombie->set_direction(RIGHT);
         std::int16_t x_new = x_pos + walker_speed;
         if ((x_new % MOVEMENTS_PER_CELL) != 0) {
             x_pos += walker_speed;

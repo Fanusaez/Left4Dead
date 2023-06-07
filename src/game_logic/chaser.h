@@ -1,8 +1,10 @@
 #ifndef CHASER_H
 #define CHASER_H
 
-//#include "zombie.h"
-#include "map.h"
+#include <cstdint>
+#include "zombies/zombie.h"
+class GameMap;
+
 
 class Chaser {
 private:

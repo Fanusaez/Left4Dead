@@ -1,17 +1,16 @@
-#ifndef JUMPER_H_
-#define JUMPER_H_
-
-#include <complex>
-#include <cstdint>
+#ifndef WITCH_H_
+#define WITCH_H_
 
 #include "zombie.h"
 #include "../game_object.h"
 #include "../zombie_states/zombie_idle.h"
-#include "../zombie_states/chasing_states/chase_jumping.h"
+#include "../zombie_states/chasing_states/chase_walking.h"
 
 
+class GameMap;
 
-class Jumper : public GameObject, public Zombie {
+
+class Witch : public GameObject, public Zombie {
 
 private:
     std::int16_t health = 100;
@@ -19,9 +18,11 @@ private:
     std::int16_t x_pos;
     std::int16_t y_pos;
     bool dead = false;
-    std::int16_t direction = -1;
+    std::int16_t direction = LEFT;
     ZombieState* state = new ZombieIdle;
-    ChaseState* chase_state = new ChaseJumping;
+
+    // se debera recibir por parametro, para que corra camine o salte
+    ChaseState* chase_state = new ChaseWalking;
     const std::int16_t id;
     GameMap& map;
     Chaser chaser;
@@ -30,8 +31,7 @@ private:
     std::int16_t get_distance_to_soldier(GameObject* soldier);
 
 public:
-
-    Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map);
+    Witch(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
 
     void update(float time) override;
 
@@ -55,12 +55,14 @@ public:
     std::int16_t get_y_matrix_pos() override;
     std::int16_t get_x_matrix_pos() override;
 
-    ~Jumper();
+    ~Witch();
 
 // ************************* Metodos de testeo ************************************************8//
     std::int16_t get_health();
     ZombieState* get_state() override;
+    void change_chase_state_to_running();
+    ChaseState* get_chasing_state();
 };
 
 
-#endif  // JUMPER_H_
+#endif //WITCH_H_

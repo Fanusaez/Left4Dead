@@ -1,19 +1,18 @@
-#include "jumper.h"
+#include "witch.h"
 #include "../zombie_states/chasing_states/chase_running.h"
-#include "../chaser.h"
 
-Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
+Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
         y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
         id(id),
         map(map),
         chaser(this, map, x_pos, y_pos) {}
 
-void Jumper::update(float time) {
+void Witch::update(float time) {
 
 }
 
-void Jumper::receive_damage(std::uint16_t damage, float time) {
+void Witch::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
     if (health <= 0) {
         die(time);
@@ -26,16 +25,7 @@ void Jumper::receive_damage(std::uint16_t damage, float time) {
     }
 }
 
-bool Jumper::in_range_of_explosion(std::int16_t x_start,
-                                   std::int16_t x_finish,
-                                   std::int16_t y_start,
-                                   std::int16_t y_finish) {
-    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
-    std::int16_t y_matrix_pos = y_pos / MOVEMENTS_PER_CELL;
-    return (x_start <= x_matrix_pos && x_matrix_pos <= x_finish && y_start <= y_matrix_pos && y_matrix_pos <= y_finish);
-}
-
-void Jumper::get_stunned(float time) {
+void Witch::get_stunned(float time) {
     ZombieState* new_state = state->get_stunned(time);
     if (new_state != nullptr) {
         delete state;
@@ -43,19 +33,28 @@ void Jumper::get_stunned(float time) {
     }
 }
 
-void Jumper::chase_closest_soldier(std::vector<GameObject*> soldiers, float time) {
+bool Witch::in_range_of_explosion(std::int16_t x_start,
+                                     std::int16_t x_finish,
+                                     std::int16_t y_start,
+                                     std::int16_t y_finish) {
+    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
+    std::int16_t y_matrix_pos = y_pos / MOVEMENTS_PER_CELL;
+    return (x_start <= x_matrix_pos && x_matrix_pos <= x_finish && y_start <= y_matrix_pos && y_matrix_pos <= y_finish);
+}
+
+void Witch::chase_closest_soldier(std::vector<GameObject*> soldiers, float time) {
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t x_sold_pos = closest_soldier->get_x_pos();
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
 
-    ZombieState* new_state = state->chase_soldier(chaser, x_sold_pos, y_sold_pos, time);
+    ZombieState* new_state = chase_state->chase(state, chaser, x_sold_pos, y_sold_pos, time);
     if (new_state != nullptr) {
         delete state;
         state = new_state;
     }
 }
 
-GameObject* Jumper::get_closest_soldier(std::vector<GameObject*> soldiers) {
+GameObject* Witch::get_closest_soldier(std::vector<GameObject*> soldiers) {
     GameObject* closest_soldier = nullptr;
     std::int16_t min_distance = MAX_DISTANCE;
 
@@ -69,7 +68,7 @@ GameObject* Jumper::get_closest_soldier(std::vector<GameObject*> soldiers) {
     return closest_soldier;
 }
 
-std::int16_t Jumper::get_distance_to_soldier(GameObject* soldier) {
+std::int16_t Witch::get_distance_to_soldier(GameObject* soldier) {
 
     std::int16_t x_matrix_sold = soldier->get_x_matrix_pos();
     std::int16_t y_matrix_sold = soldier->get_y_matrix_pos();
@@ -82,7 +81,7 @@ std::int16_t Jumper::get_distance_to_soldier(GameObject* soldier) {
 }
 
 
-void Jumper::set_direction(std::int16_t direction_to_set) {
+void Witch::set_direction(std::int16_t direction_to_set) {
     if (direction_to_set == UP){
         direction = UP;
     } else if (direction_to_set == DOWN ){
@@ -92,11 +91,7 @@ void Jumper::set_direction(std::int16_t direction_to_set) {
     }
 }
 
-void Jumper::attack(std::vector<GameObject *> soldiers, float time) {
-    /*
-     * Hay que ver como se ve cuando el zombi salta y lastima al soldado
-     * puede ser que haya que cambiar el "if (distance > 1) return; "
-     */
+void Witch::attack(std::vector<GameObject *> soldiers, float time) {
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
     if (distance > 1) return;
@@ -107,7 +102,7 @@ void Jumper::attack(std::vector<GameObject *> soldiers, float time) {
     }
 }
 
-void Jumper::die(float time) {
+void Witch::die(float time) {
     dead = true;
     map.free_position(get_x_matrix_pos(), get_y_matrix_pos());
     ZombieState* new_state = state->die(time);
@@ -117,36 +112,46 @@ void Jumper::die(float time) {
     }
 }
 
-std::int16_t Jumper::get_id() {
+std::int16_t Witch::get_id() {
     return id;
 }
 
-std::int16_t Jumper::get_y_pos() {
+std::int16_t Witch::get_y_pos() {
     return y_pos;
 }
 
-std::int16_t Jumper::get_x_pos() {
+std::int16_t Witch::get_x_pos() {
     return x_pos;
 }
 
-std::int16_t Jumper::get_y_matrix_pos() {
+std::int16_t Witch::get_y_matrix_pos() {
     return y_pos / MOVEMENTS_PER_CELL;
 }
 
-std::int16_t Jumper::get_x_matrix_pos() {
+std::int16_t Witch::get_x_matrix_pos() {
     return x_pos / MOVEMENTS_PER_CELL;
 }
 
-Jumper::~Jumper() {
+Witch::~Witch() {
     delete state;
+    delete chase_state;
 }
 
 // ************************* Metodos de testeo ************************************************8//
 
-std::int16_t Jumper::get_health() {
+std::int16_t Witch::get_health() {
     return health;
 }
 
-ZombieState* Jumper::get_state() {
+ZombieState* Witch::get_state() {
     return state;
+}
+
+void Witch::change_chase_state_to_running() {
+    delete chase_state;
+    chase_state = new ChaseRunning;
+}
+
+ChaseState* Witch::get_chasing_state() {
+    return chase_state;
 }

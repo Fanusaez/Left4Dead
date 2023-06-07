@@ -3,15 +3,8 @@
 
 #include <cstdint>
 #include "game_object.h"
-#include "map.h"
 #include "weapons/weapon.h"
 #include "states/idle.h"
-
-#define MOVEMENTS_PER_CELL 2
-#define DOWN 1
-#define UP -1
-#define LEFT 2
-#define RIGHT 3
 
 class Soldier : public GameObject {
  private:

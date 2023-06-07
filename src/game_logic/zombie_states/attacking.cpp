@@ -1,4 +1,5 @@
 #include "attacking.h"
+#include "../game_object.h"
 
 Attacking::Attacking(GameObject *closest_soldier, std::int16_t damage, float time)  : start_time(time) {
     /*

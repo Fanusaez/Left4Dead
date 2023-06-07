@@ -3,13 +3,11 @@
 
 #include <complex>
 #include <cstdint>
-#include "../map.h"
 #include "zombie.h"
+#include "../game_object.h"
 #include "../zombie_states/zombie_idle.h"
-#include "../chaser.h"
 #include "../zombie_states/chasing_states/chase_walking.h"
-#include "../zombie_states/chasing_states/chase_running.h"
-#define MOVEMENTS_PER_CELL 2
+
 
 class Infected : public GameObject, public Zombie {
  private:

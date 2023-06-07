@@ -1,6 +1,7 @@
 #include "moving.h"
 #include "../soldier.h"
 
+
 #define DOWN 1
 #define UP -1
 #define LEFT 2

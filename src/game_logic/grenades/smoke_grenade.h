@@ -1,7 +1,9 @@
 #ifndef SMOKE_GRENADE_H_
 #define SMOKE_GRENADE_H_
-#include "../map.h"
+
 #include "../states/state.h"
+
+class GameMap;
 
 class SmokeGrenade {
 private:

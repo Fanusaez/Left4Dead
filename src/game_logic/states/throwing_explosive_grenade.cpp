@@ -1,4 +1,6 @@
 #include "throwing_explosive_grenade.h"
+#include "../game_object.h"
+#include "../weapons/weapon.h"
 
 ThrowingExplosiveGrenade::ThrowingExplosiveGrenade(float time)  : start_time(time){}
 

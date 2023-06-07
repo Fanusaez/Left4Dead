@@ -1,4 +1,5 @@
 #include "p90.h"
+#include "../game_object.h"
 
 #define FIRST_ENEMY 0
 

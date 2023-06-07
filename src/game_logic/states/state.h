@@ -3,9 +3,9 @@
 
 
 #include <cstdint>
-#include "../weapons/weapon.h"
 #include "../../common/game_object_state.h"
 
+class Weapon;
 class Soldier;
 
 class State {

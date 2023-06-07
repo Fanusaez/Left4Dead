@@ -1,8 +1,9 @@
 #ifndef EXPLOSIVE_H_
 #define EXPLOSIVE_H_
 
-#include "../map.h"
 #include "../states/state.h"
+
+class GameMap;
 
 class ExplosiveGrenade {
 

@@ -1,6 +1,7 @@
 #include <cmath>
 #include <iostream>
 #include "soldier.h"
+#include "map.h"
 
 #define GRANADE_DISTANCE_REACH 4
 #define WALLS_LIMITS 0.5

@@ -1,5 +1,6 @@
 #include "explosive_grenade.h"
-
+#include "../map.h"
+#include "../game_object.h"
 void ExplosiveGrenade::throw_grenade(GameMap& map,
                                   std::int16_t x_matrix_explosion,
                                   std::int16_t y_matrix_sold,

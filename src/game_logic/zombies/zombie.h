@@ -2,9 +2,11 @@
 #define ZOMBIE_H_
 
 #include <vector>
-#include "../game_object.h"
+
+#define MAX_DISTANCE 10000
 
 class ZombieState;
+class GameObject;
 
 class Zombie {
 

@@ -1,7 +1,5 @@
 #include "obstacle.h"
 
-#define MOVEMENTS_PER_CELL 15
-
 Obstacle::Obstacle(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id) :
         x_pos(x_pos * MOVEMENTS_PER_CELL),
         y_pos(y_pos * MOVEMENTS_PER_CELL),

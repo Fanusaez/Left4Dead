@@ -1,4 +1,5 @@
 #include "idle.h"
+#include "../weapons/weapon.h"
 
 Idle::Idle() {
     soldier_state = IDLE;

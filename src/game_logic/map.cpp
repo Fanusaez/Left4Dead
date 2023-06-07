@@ -1,14 +1,14 @@
 #include <cstdint>
 #include <iostream>
+
 #include "map.h"
+#include "game_object.h"
 
 #define DOWN 1
 #define UP -1
 #define LEFT 2
 #define RIGHT 3
 
-#define X_POS 0
-#define Y_POS 1
 #define INVALID_POSITION -1
 
 GameMap::GameMap(std::uint16_t x_size, std::uint16_t y_size) :

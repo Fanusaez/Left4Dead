@@ -1,10 +1,9 @@
 #include "idf.h"
+#include "../game_object.h"
+
 #include <cmath>
-#include <iostream>
 
 #define DISTANCE_LONG_RANGE 5
-#define X_POS 0
-#define Y_POS 1
 
 void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold_pos, float time) {
     bullets--;
