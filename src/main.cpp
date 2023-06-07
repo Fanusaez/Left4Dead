@@ -91,17 +91,16 @@ int main(int argc, char *argv[])
 				object.updateState(soldier);
 			}
 		}
-/* 		for (auto& zombie: zombies){
+		for (auto& zombie: zombies){
 			if(objects.find(zombie.id) == objects.end()){
 				std::unique_ptr<RenderableObject> ptr = std::move(creator.create(zombie));
 				objects[ptr->getID()] = std::move(ptr);
-				view.assignMainObject(zombie.id);
 			}
 			else {
 				RenderableObject &object = *(objects.at(zombie.id));
 				object.updateState(zombie);
 			}
-		} */
+		}
 		for (auto &object : objects)
 			object.second->update(configs.FRAME_RATE);
 		view.render();
@@ -138,23 +137,35 @@ static bool handleEvents(Client* client)
 			switch (keyEvent.keysym.sym)
 			{
 			case SDLK_LEFT:
-				client->move(LEFT);
-				break;
+				if(event.key.repeat == 0){
+					client->move(LEFT);
+					break;
+				}
 			case SDLK_RIGHT:
-				client->move(RIGHT);
-				break;
+				if(event.key.repeat == 0){
+					client->move(RIGHT);
+					break;
+				}
 			case SDLK_UP:
-				client->move(UP);
-				break;
+				if(event.key.repeat == 0){
+					client->move(UP);
+					break;
+				}
 			case SDLK_DOWN:
-				client->move(DOWN);
-				break;
+				if(event.key.repeat == 0){
+					client->move(DOWN);
+					break;
+				}
 			case SDLK_r:
-				client->reload();
-				break;
+				if(event.key.repeat == 0){
+					client->reload();
+					break;
+				}
 			case SDLK_s:
-				client->shoot();
-				break;
+				if(event.key.repeat == 0){
+					client->shoot();
+					break;
+				}
 			}
 		} // Fin KEY_DOWN
 		break;
@@ -164,16 +175,19 @@ static bool handleEvents(Client* client)
 			switch (keyEvent.keysym.sym)
 			{
 			case SDLK_LEFT:
-				
+				client->move(STOP_MOVE);
 				break;
 			case SDLK_RIGHT:
-				
+				client->move(STOP_MOVE);
 				break;
 			case SDLK_UP:
-				
+				client->move(STOP_MOVE);
 				break;
 			case SDLK_DOWN:
-				
+				client->move(STOP_MOVE);
+				break;
+			case SDLK_s:
+				client->move(STOP_MOVE);
 				break;
 			}
 		} // Fin KEY_UP

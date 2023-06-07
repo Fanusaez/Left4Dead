@@ -1,10 +1,15 @@
 #include "game_logic.h"
 #include <iostream>
 #include "../game_logic/weapons/idf.h"
+#include "../game_logic/zombies/infected.h"
 #include "../common/move.h"
 #include <ctime>
 
-GameLogic::GameLogic() : game_map(200,200) {}
+GameLogic::GameLogic() : game_map(200,200) {
+    Infected* walker = new Infected(3,8, game_map);
+    zombies.push_back(walker);
+    game_map.add_zombie(walker, 3, 8);
+}
 
 void GameLogic::add_soldier(int* player_id) {
     Weapon* idf = new Idf;
@@ -44,6 +49,10 @@ GameDTO GameLogic::get_game() {
         //piar.second->set_idle();
         //std::cout<<piar.second->get_x_pos()<<","<<piar.second->get_y_pos()<<std::endl;
     }
+    for (const auto& zombie: zombies){
+        ZombieObjectDTO zombieDTO(1, zombie->get_x_pos(), zombie->get_y_pos(), RUNNING);
+        game_dto.add_zombie(zombieDTO);
+    }
     return game_dto;
 }
 
@@ -68,6 +77,9 @@ void GameLogic::move (Move move, int player_id) {
         soldier->move_down(timer);
         //std::cout<<"DOWN"<<std::endl;
         break;
+    case 4:
+        soldier->set_idle();
+        break;
     }
 }
 
@@ -84,6 +96,9 @@ void GameLogic::shoot (int player_id) {
 void GameLogic::udpate_game(){
     for (const auto& piar: playerSoldierMap){
         piar.second->update(timer);
+    }
+    for (const auto& zombie: zombies){
+        zombie->update(timer);
     }
     timer += 0.05;
 }

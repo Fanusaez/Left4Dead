@@ -6,6 +6,7 @@
 #include "../common/move.h"
 #include "../game_logic/map.h"
 #include "../game_logic/soldier.h"
+#include "../game_logic/zombies/zombie.h"
 #include <map>
 
 #define SIZE_X  10
@@ -18,6 +19,8 @@ private:
     GameMap game_map;
 
     std::map<int,Soldier*> playerSoldierMap;
+
+    std::vector<Zombie*> zombies;
 
     void move (Move move, int player_id);
 

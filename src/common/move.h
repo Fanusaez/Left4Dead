@@ -6,6 +6,7 @@ enum Move
     RIGHT,
     LEFT,
     UP,
-    DOWN
+    DOWN,
+    STOP_MOVE
 };
 #endif
