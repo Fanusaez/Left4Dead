@@ -3,6 +3,7 @@
 
 #include <random>
 #include "soldier.h"
+#include "map.h"
 #include "zombies/infected.h"
 #include "weapons/idf.h"
 #include "weapons/scout.h"

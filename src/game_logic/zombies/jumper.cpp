@@ -1,6 +1,7 @@
 #include "jumper.h"
 #include "../zombie_states/chasing_states/chase_running.h"
 #include "../chaser.h"
+#include "../map.h"
 
 Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
