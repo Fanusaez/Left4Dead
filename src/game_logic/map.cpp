@@ -3,7 +3,10 @@
 
 #include "map.h"
 #include "game_object.h"
+#include "soldier.h"
 
+#define X_POS 0
+#define Y_POS 1
 #define DOWN 1
 #define UP -1
 #define LEFT 2
@@ -14,7 +17,8 @@
 GameMap::GameMap(std::uint16_t x_size, std::uint16_t y_size) :
         x_size(x_size),
         y_size(y_size),
-        map(y_size, std::vector<GameObject*>(x_size, nullptr)) {}
+        map(y_size, std::vector<GameObject*>(x_size, nullptr)),
+        factory(*this) {}
 
 
 void GameMap::shoot(std::vector<GameObject*>& game_objects,
@@ -189,39 +193,69 @@ void GameMap::update(float time) {
     }
 }
 
-//solo tests
-void GameMap::chase_soldiers(float time) {
-    for (Zombie* zombie : zombies) {
-        zombie->chase_closest_soldier(soldiers, time);
-    }
+
+Soldier* GameMap::get_soldier_with_idf() {
+    std::vector<std::int16_t> soldier_pos;
+    get_position_for_object(soldier_pos);
+    Soldier* soldier = factory.get_soldier_with_idf(soldier_pos);
+    soldiers.push_back(dynamic_cast<GameObject*>(soldier));
+
+    std::int16_t x_pos = soldier_pos[X_POS];
+    std::int16_t y_pos = soldier_pos[Y_POS];
+    map[y_pos][x_pos] = soldier;
+    return soldier;
 }
-//solo tests
-void GameMap::attack_soldiers(float time) {
-    for (Zombie* zombie : zombies) {
-        zombie->attack(soldiers, time);
-    }
+
+Soldier* GameMap::get_soldier_with_p90() {
+    std::vector<std::int16_t> soldier_pos;
+    get_position_for_object(soldier_pos);
+    Soldier* soldier = factory.get_soldier_with_p90(soldier_pos);
+    soldiers.push_back(dynamic_cast<GameObject*>(soldier));
+
+    std::int16_t x_pos = soldier_pos[X_POS];
+    std::int16_t y_pos = soldier_pos[Y_POS];
+    map[y_pos][x_pos] = soldier;
+    return soldier;
 }
+
+Soldier* GameMap::get_soldier_with_scout() {
+    std::vector<std::int16_t> soldier_pos;
+    get_position_for_object(soldier_pos);
+    Soldier* soldier = factory.get_soldier_with_scout(soldier_pos);
+    soldiers.push_back(dynamic_cast<GameObject*>(soldier));
+
+    std::int16_t x_pos = soldier_pos[X_POS];
+    std::int16_t y_pos = soldier_pos[Y_POS];
+    map[y_pos][x_pos] = soldier;
+    return soldier;
+}
+
+void GameMap::add_random_zombie() {
+    std::vector<std::int16_t> zombie_pos;
+    get_position_for_object(zombie_pos);
+    Zombie* zombie = factory.create_random_zombie(zombie_pos);
+    zombies.push_back(zombie);
+
+    std::int16_t x_pos = zombie_pos[X_POS];
+    std::int16_t y_pos = zombie_pos[Y_POS];
+    map[y_pos][x_pos] = dynamic_cast<GameObject*>(zombie);
+}
+
 
 void GameMap::get_position_for_object(std::vector<std::int16_t> &valid_pos) {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis_x(0, x_size - 2);
+    std::uniform_int_distribution<> dis_x(0, x_size - 1);
     std::uniform_int_distribution<> dis_y(0, y_size - 1);
 
-    for (int i = 0; i < 10; i++) {
+    while (true) {
         std::int16_t random_x_pos = dis_x(gen);
         std::int16_t random_y_pos = dis_y(gen);
-        if (check_free_position(random_x_pos, random_y_pos)) {
+        if (check_free_position(random_x_pos, random_y_pos) && valid_object_position(random_x_pos, random_y_pos)) {
             valid_pos.push_back(random_x_pos);
             valid_pos.push_back(random_y_pos);
+            return;
         }
-    }
-}
-
-void GameMap::get_position_for_soldier(std::vector<std::int16_t> &valid_pos) {
-    while (true) {
-        get_position_for_object(valid_pos);
-        if (!valid_pos.empty()) return;
     }
 }
 
@@ -246,6 +280,19 @@ void GameMap::free_position(std::int16_t x_pos, std::int16_t y_pos) {
 }
 
 // ****************************** Metodos de Testeo ***********************************//
+
+//solo tests
+void GameMap::chase_soldiers(float time) {
+    for (Zombie* zombie : zombies) {
+        zombie->chase_closest_soldier(soldiers, time);
+    }
+}
+//solo tests
+void GameMap::attack_soldiers(float time) {
+    for (Zombie* zombie : zombies) {
+        zombie->attack(soldiers, time);
+    }
+}
 
 bool GameMap::add_soldier(GameObject* soldier,
                       std::uint16_t x_pos,
@@ -325,7 +372,7 @@ GameObject* GameMap::get_object(std::uint16_t x_pos, std::uint16_t y_pos) {
     return map[y_pos][x_pos];
 }
 
-void GameMap::objects_in_map() {
+std::int16_t GameMap::objects_in_map() {
     int contador = 0;
     for (int j = 0; j < y_size; j++) {
         for (int i = 0; i < x_size; i++) {
@@ -336,6 +383,7 @@ void GameMap::objects_in_map() {
         }
     }
     std::cout << "cant elem map: "<<contador << std::endl;
+    return contador;
 }
 int16_t GameMap::get_id() {
     return (soldiers.size() + zombies.size());

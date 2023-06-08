@@ -14,7 +14,6 @@
 #define UP -1
 #define DOWN 1
 #define SOLDIER_SPEED 0.2
-#define ERROR_BOUND 0.0001
 
 void testInfectedStartsWithIdleState(void) {
     GameMap map(10, 10);
@@ -84,12 +83,12 @@ void testInfectedChaseTwiceAndmoves2Times(void) {
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
-    float x_pos1 = walker.get_x_pos();
+    std::int16_t y_pos1 = walker.get_y_pos();
 
     map.chase_soldiers(3);
-    float x_pos2 = walker.get_x_pos();
+    std::int16_t y_pos2 = walker.get_y_pos();
 
-    TEST_CHECK(x_pos1 != x_pos2);
+    TEST_CHECK(y_pos1 != y_pos2);
 }
 
 //*********************************************** ATTACKING *************************************************//

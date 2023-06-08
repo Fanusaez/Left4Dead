@@ -1,5 +1,5 @@
 #include "screaming.h"
-
+#include "../map.h"
 
 Screaming::Screaming(GameMap &map, std::int16_t zombies_to_create, float time) {
     zombie_state = SCREAMING;    
@@ -60,7 +60,9 @@ ZombieState *Screaming::get_stunned(float time) {
 }
 
 ZombieState *Screaming::scream(GameMap &map, std::int16_t zombies_to_create, float time) {
-    // map.create_zombies(numero)
+   for(int i = 0; i < zombies_to_create; i++) {
+       map.add_random_zombie();
+   }
     return nullptr;
 }
 

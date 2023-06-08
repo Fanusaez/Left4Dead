@@ -2,7 +2,7 @@
 #define MOVEMENT_H_
 
 #include <cstdint>
-#include "../common/game_object_state.h"
+#include "../../common/game_object_state.h"
 
 class GameMap;
 class Zombie;

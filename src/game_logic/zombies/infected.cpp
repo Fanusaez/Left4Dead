@@ -5,6 +5,7 @@
 #include "../zombie_states/chasing_states/chase_running.h"
 
 #define INVALID_POSITION -1
+#define DISTANCE_TO_HIT 1
 
 Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, GameMap& map) :
                 x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
@@ -21,7 +22,7 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         chaser(this, map, x_pos, y_pos) {}
 
 void Infected::update(std::vector<GameObject*> soldiers, float time) {
-    //std::cout<< "vida: " << health << std::endl;
+    std::cout<< "vida: " << health << std::endl;
     std::cout<< "pos matriz: " << get_x_matrix_pos() << " "<< get_y_matrix_pos() <<  std::endl;
     attack(soldiers, time);
     chase_closest_soldier(soldiers, time);
@@ -109,7 +110,7 @@ void Infected::set_direction(std::int16_t direction_to_set) {
 void Infected::attack(std::vector<GameObject *> soldiers, float time) {
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > 1) return;
+    if (distance > DISTANCE_TO_HIT) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
     if (new_state != nullptr) {
         delete state;

@@ -112,6 +112,7 @@ if(SERVER)
 		./game_logic/zombies/witch.cpp
 		./game_logic/zombies/zombie.h
 		./game_logic/clear_the_zone.cpp
+		./game_logic/game_factory.cpp
 
 	)
 

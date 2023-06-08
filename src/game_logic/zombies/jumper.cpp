@@ -3,6 +3,8 @@
 #include "../chaser.h"
 #include "../map.h"
 
+#define DISTANCE_TO_HIT 1
+
 Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
         y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
@@ -101,7 +103,7 @@ void Jumper::attack(std::vector<GameObject *> soldiers, float time) {
      */
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > 1) return;
+    if (distance > DISTANCE_TO_HIT) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
     if (new_state != nullptr) {
         delete state;

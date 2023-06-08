@@ -1,8 +1,10 @@
 #include "witch.h"
 #include "../zombie_states/chasing_states/chase_running.h"
 #include "../map.h"
-
 #include <math.h>
+
+#define DISTANCE_TO_HIT 1
+
 
 Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
@@ -11,7 +13,7 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         map(map),
         chaser(this, map, x_pos, y_pos) {}
 
-// update va a tener que recibir los soldadods, en todos los zombies
+
 void Witch::update(std::vector<GameObject*> soldiers, float time) {
     std::int16_t random_number = get_random_number();
     if (random_number < probability_to_scream) {
@@ -78,7 +80,7 @@ GameObject* Witch::get_closest_soldier(std::vector<GameObject*> soldiers) {
 }
 
 void Witch::scream(float time) {
-    ZombieState* new_state = state->scream(map, zombies_created, time);
+    ZombieState* new_state = state->scream(map, zombies_created_for_screaming, time);
     if (new_state != nullptr) {
         delete state;
         state = new_state;
@@ -111,7 +113,7 @@ void Witch::set_direction(std::int16_t direction_to_set) {
 void Witch::attack(std::vector<GameObject *> soldiers, float time) {
     GameObject* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > 1) return;
+    if (distance > DISTANCE_TO_HIT) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
     if (new_state != nullptr) {
         delete state;

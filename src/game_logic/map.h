@@ -3,6 +3,7 @@
 #include <random>
 #include <vector>
 #include "zombies/zombie.h"
+#include "game_factory.h"
 
 class GameMap {
  private:
@@ -11,6 +12,7 @@ class GameMap {
     std::vector<std::vector<GameObject*>> map;
     std::vector<GameObject*> soldiers;
     std::vector<Zombie*> zombies;
+    GameFactory factory;
 
 void find_new_y_pos(std::int16_t& new_y_pos_ref,
                     std::uint16_t possible_new_y_pos,
@@ -85,7 +87,11 @@ void chase_soldiers(float time);
 void attack_soldiers(float time);
 
 void get_position_for_object(std::vector<std::int16_t>& valid_pos);
-void get_position_for_soldier(std::vector<std::int16_t>& valid_pos);
+Soldier* get_soldier_with_idf();
+Soldier* get_soldier_with_scout();
+Soldier* get_soldier_with_p90();
+void add_random_zombie();
+
 bool add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
 bool add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
 void free_position(std::int16_t x_pos, std::int16_t y_pos);
@@ -95,6 +101,6 @@ bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_down_test(std::uint16_t x_pos, std::uint16_t y_pos);
 void add_obstacle(GameObject* obstacle, std::uint16_t x_pos, std::uint16_t y_pos);
 GameObject* get_object(std::uint16_t x_pos, std::uint16_t y_pos);
-void objects_in_map();
+std::int16_t objects_in_map();
 };
 #endif  // MAP_H_
