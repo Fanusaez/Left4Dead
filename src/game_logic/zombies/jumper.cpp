@@ -10,8 +10,9 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         map(map),
         chaser(this, map, x_pos, y_pos) {}
 
-void Jumper::update(float time) {
-
+void Jumper::update(std::vector<GameObject*> soldiers, float time) {
+    attack(soldiers, time);
+    chase_closest_soldier(soldiers, time);
 }
 
 void Jumper::receive_damage(std::uint16_t damage, float time) {

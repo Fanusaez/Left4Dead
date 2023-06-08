@@ -12,12 +12,13 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         chaser(this, map, x_pos, y_pos) {}
 
 // update va a tener que recibir los soldadods, en todos los zombies
-void Witch::update(float time) {
+void Witch::update(std::vector<GameObject*> soldiers, float time) {
     std::int16_t random_number = get_random_number();
     if (random_number < probability_to_scream) {
         scream(time);
     }
-
+    attack(soldiers, time);
+    chase_closest_soldier(soldiers, time);
 }
 
 void Witch::receive_damage(std::uint16_t damage, float time) {

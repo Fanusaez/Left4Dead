@@ -181,12 +181,19 @@ bool GameMap::check_free_position(std::int16_t x_pos,
     return map[y_pos][x_pos] == nullptr; // !map[y_sold_pos][x_sold_pos]
 }
 
+void GameMap::update(float time) {
+    for (Zombie* zombie : zombies) {
+        zombie->update(soldiers, time);
+    }
+}
+
+//solo tests
 void GameMap::chase_soldiers(float time) {
     for (Zombie* zombie : zombies) {
         zombie->chase_closest_soldier(soldiers, time);
     }
 }
-
+//solo tests
 void GameMap::attack_soldiers(float time) {
     for (Zombie* zombie : zombies) {
         zombie->attack(soldiers, time);

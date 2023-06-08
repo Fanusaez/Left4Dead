@@ -34,7 +34,7 @@ private:
 public:
     Witch(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
 
-    void update(float time) override;
+    void update(std::vector<GameObject*> soldiers, float time) override;
 
     void receive_damage(std::uint16_t damage, float time) override;
 

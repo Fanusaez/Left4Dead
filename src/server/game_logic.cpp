@@ -97,9 +97,10 @@ void GameLogic::udpate_game(){
     for (const auto& piar: playerSoldierMap){
         piar.second->update(timer);
     }
-    for (const auto& zombie: zombies){
-        zombie->update(timer);
-    }
+    //for (const auto& zombie: zombies){
+       // zombie->update(timer);
+    //}
+    game_map.update(timer);
     timer += 0.05;
 }
 

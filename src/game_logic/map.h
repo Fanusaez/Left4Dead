@@ -78,7 +78,7 @@ void move_object_left(std::int16_t x_pos,
 bool check_free_position(std::int16_t x_pos,
                          std::int16_t y_pos);
 
-
+void update(float time);
 void chase_soldiers(float time);
 void attack_soldiers(float time);
 

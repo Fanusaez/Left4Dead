@@ -8,11 +8,11 @@
 
 class ZombieState;
 class GameObject;
-
+class Soldier;
 class Zombie {
 
 public:
-virtual void update(float time) = 0; // puede recibir los soldados tambien
+virtual void update(std::vector<GameObject*> soldiers, float time) = 0; // puede recibir los soldados tambien
 virtual void chase_closest_soldier(std::vector<GameObject*> soldiers, float time) = 0;
 virtual bool in_range_of_explosion(std::int16_t x_start,
                                    std::int16_t x_finish,
