@@ -20,7 +20,7 @@ void Player::updateState(const SoldierObjectDTO &soldierDTO)
 	if (soldierDTO.id != this->getID())
 		throw std::invalid_argument("Invalid ID");
 
-	this->facingLeft = soldierDTO.facingLeft;
+	this->facingLeft = soldierDTO.facing_left;
 	this->setPositionX(soldierDTO.position_x);
 	this->setPositionY(soldierDTO.position_y);
 	//std::cout<<xPosition<<","<<yPosition<<std::endl;

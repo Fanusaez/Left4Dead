@@ -11,6 +11,8 @@
 class Lobby
 {
 private:
+    int player_id;
+
     Socket socket;
 
     std::atomic<bool> keep_talking;
@@ -45,6 +47,8 @@ public:
     Socket move_socket();
 
     void update();
+
+    int get_player_id();
 
 };
 #endif

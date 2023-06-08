@@ -56,6 +56,8 @@ std::vector<GameObject*> get_targets();
 
 void stop_action();
 
+Weapon* get_weapon();
+
 std::int16_t get_y_pos() override;
 std::int16_t get_x_pos() override;
 std::int16_t get_y_matrix_pos() override;

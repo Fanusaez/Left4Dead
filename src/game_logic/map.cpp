@@ -337,3 +337,6 @@ void GameMap::objects_in_map() {
     }
     std::cout << "cant elem map: "<<contador << std::endl;
 }
+int16_t GameMap::get_id() {
+    return (soldiers.size() + zombies.size());
+}

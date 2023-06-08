@@ -45,6 +45,8 @@ bool valid_object_position(std::int16_t x_pos,
 
 public:
 
+int16_t get_id();
+
 GameMap(std::uint16_t x_size, std::uint16_t y_size);
 
 void shoot(std::vector<GameObject*>& game_objects,

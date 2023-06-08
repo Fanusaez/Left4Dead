@@ -10,6 +10,7 @@ PlayerSender::PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, Matc
 }
 
 void PlayerSender::run() {
+    server_serializer.send_player_id(*player_id, &was_closed);
     init_player_receiver();
     GameDTO game_dto;
     std::vector<char> bytes;

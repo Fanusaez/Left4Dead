@@ -27,6 +27,8 @@ public:
     void serialize_join_scenario(const bool &join, bool *was_closed);
 
     void serialize_start_game(bool *was_closed);
+
+    void send_player_id(int& player_id, bool* was_closed);
     
     std::vector<char> serialize_soldier_position(int16_t *pos_x, int16_t *pos_y);
 

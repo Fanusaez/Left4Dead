@@ -7,16 +7,22 @@
 #include "../common/soldier_type.h"
 
 struct SoldierObjectDTO {
-    int id;        // ID único del objeto
-    int position_x;     
-    int position_y;      
-    SoldierObjectState state; // Estado del objeto
-    SoldierType soldier_type;
-    bool facingLeft;
+    int player_id;      //ID del playe. Este es unico en el servidor
+    int16_t id;        // ID único del objeto en el juego
+    int16_t health;
+    int16_t position_x;     
+    int16_t position_y;      
+    int16_t bullets;
+    SoldierObjectState state;   //Estado del objeto
+    SoldierType soldier_type;   //Tipo de soldado
+    bool facing_left;
 
     // Constructor para inicializar los atributos
-    SoldierObjectDTO(int8_t id, int position_x, int position_y, SoldierObjectState state, SoldierType soldier_type, bool facingLeft)
-        : id(id), position_x(position_x), position_y(position_y), state(state), soldier_type(soldier_type), facingLeft(facingLeft) {}
+    SoldierObjectDTO(int player_id, int16_t id, int16_t health, int16_t position_x, int16_t position_y, 
+                    uint16_t bullets, SoldierObjectState state, SoldierType soldier_type, 
+                    bool facing_left) : player_id(player_id), id(id), health(health), 
+                    position_x(position_x), position_y(position_y), state(state), 
+                    soldier_type(soldier_type), facing_left(facing_left) {}
 };
 
 struct ZombieObjectDTO {

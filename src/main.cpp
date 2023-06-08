@@ -32,7 +32,8 @@ int main(int argc, char *argv[])
 	Gameloop donde estoy en el lobby. Todo el tiempo estoy chequeando nuevos mensajes de server ya sea por el create o el join o la lista de partidas o el chat
 	*/
 	Lobby lobby(argv[1], argv[2]);
-	
+	int player_id = lobby.get_player_id();
+	std::cout<<"Player id: "<<player_id<<std::endl;
 	while (lobby.running()) {
 		std::string input;
 		std::getline(std::cin, input);
@@ -84,7 +85,8 @@ int main(int argc, char *argv[])
 			if(objects.find(soldier.id) == objects.end()){
 				std::unique_ptr<RenderableObject> ptr = std::move(creator.create(soldier));
 				objects[ptr->getID()] = std::move(ptr);
-				view.assignMainObject(soldier.id);
+				if (soldier.player_id == player_id)
+					view.assignMainObject(soldier.id);
 			}
 			else {
 				RenderableObject &object = *(objects.at(soldier.id));

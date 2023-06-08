@@ -35,6 +35,13 @@ void ServerSerializer::serialize_start_game(bool *was_closed) {
     socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
 
+void ServerSerializer::send_player_id(int& player_id, bool* was_closed) {
+    std::vector<char> buffer;
+    unsigned char const * p = reinterpret_cast<unsigned char const *>(&player_id);
+    buffer.insert(buffer.end(), p, p + sizeof(int));
+    socket->sendall(buffer.data(), buffer.size(), was_closed);    
+}
+
 std::vector<char> ServerSerializer::serialize_soldier_position(int16_t *pos_x, int16_t *pos_y)
 {
     std::vector<char> buffer;
@@ -108,18 +115,28 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
     buffer.push_back(soldiers.size());
     buffer.push_back(zombies.size());
     for (const auto &obj : soldiers) {
-        buffer.push_back(obj.id);
+        unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.player_id);
+        buffer.insert(buffer.end(), p, p + sizeof(int));
+
+        p = reinterpret_cast<unsigned char const *>(&obj.id);
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
         buffer.push_back(obj.state);
         buffer.push_back(obj.soldier_type);
 
-        unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.position_x);
-        buffer.insert(buffer.end(), p, p + sizeof(int));
+        p = reinterpret_cast<unsigned char const *>(&obj.position_x);
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
         p = reinterpret_cast<unsigned char const *>(&obj.position_y);
-        buffer.insert(buffer.end(), p, p + sizeof(int));
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
-        buffer.push_back(obj.facingLeft);
+        buffer.push_back(obj.facing_left);
+        
+        p = reinterpret_cast<unsigned char const *>(&obj.bullets);
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
+
+        p = reinterpret_cast<unsigned char const *>(&obj.health);
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
     }
 
     for (const auto &obj : zombies) {

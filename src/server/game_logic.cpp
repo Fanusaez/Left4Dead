@@ -44,13 +44,16 @@ void GameLogic::new_instruction(InstructionsDTO instruction) {
 GameDTO GameLogic::get_game() {
     GameDTO game_dto;
     for (const auto& piar: playerSoldierMap){
-        SoldierObjectDTO soldier(piar.first, piar.second->get_x_pos(), piar.second->get_y_pos(), piar.second->get_state()->soldier_state , IDF, piar.second->facingLeft);
-        game_dto.add_soldier(soldier);
+        Soldier *soldier = piar.second;
+        SoldierObjectDTO soldier_dto(piar.first,soldier->get_id(), soldier->get_health(), soldier->get_x_pos(), 
+                                soldier->get_y_pos(), soldier->get_weapon()->get_bullets(),
+                                soldier->get_state()->soldier_state ,IDF, soldier->facingLeft);
+        game_dto.add_soldier(soldier_dto);
         //piar.second->set_idle();
         //std::cout<<piar.second->get_x_pos()<<","<<piar.second->get_y_pos()<<std::endl;
     }
     for (const auto& zombie: zombies){
-        ZombieObjectDTO zombieDTO(1, zombie->get_x_pos(), zombie->get_y_pos(), RUNNING);
+        ZombieObjectDTO zombieDTO(0, zombie->get_x_pos(), zombie->get_y_pos(), RUNNING);
         game_dto.add_zombie(zombieDTO);
     }
     return game_dto;

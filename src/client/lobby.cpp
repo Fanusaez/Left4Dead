@@ -4,6 +4,8 @@
 
 Lobby::Lobby(char *localhost, char *puerto) : socket(localhost,puerto), queue_sender(1000000), queue_receiver(1000000), keep_talking(true),
     lobby_sender(&socket,std::ref(keep_talking),&queue_sender), lobby_receiver(&socket,std::ref(keep_talking),&queue_receiver){
+    bool was_closed = false;
+    socket.recvall(&player_id,sizeof(int),&was_closed);
     lobby_sender.start();
     lobby_receiver.start();
 }
@@ -67,4 +69,8 @@ void Lobby::update(){
         could_pop = queue_receiver.try_pop(instruction);
         max_instructions++;
     }
+}
+
+int Lobby::get_player_id(){
+    return player_id;
 }
