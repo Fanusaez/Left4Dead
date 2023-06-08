@@ -93,5 +93,6 @@ bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_down_test(std::uint16_t x_pos, std::uint16_t y_pos);
 void add_obstacle(GameObject* obstacle, std::uint16_t x_pos, std::uint16_t y_pos);
 GameObject* get_object(std::uint16_t x_pos, std::uint16_t y_pos);
+void objects_in_map();
 };
 #endif  // MAP_H_

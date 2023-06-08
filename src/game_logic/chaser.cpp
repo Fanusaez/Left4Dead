@@ -34,13 +34,13 @@ void Chaser::chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
     if (y_pos_chase > y_pos && same_place) { // movimiento para abajo
         std::int16_t y_new = y_pos + walker_speed;
         if ((y_new % MOVEMENTS_PER_CELL) != 0) {
-            same_place = false;
             y_pos += walker_speed;
             return;
         }
         map.move_object_down(x_matrix_walker, y_matrix_walker, y_new_pos);
         if (y_new_pos != INVALID_POSITION) {
             y_pos += walker_speed;
+            same_place = false;
         }
     } else if (y_pos_chase < y_pos && same_place) { // movimiento para arriba
         // if (y_pos <= WALLS_LIMITS) return nullptr;

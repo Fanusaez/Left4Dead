@@ -164,6 +164,7 @@ void Soldier::move_down() {
 }
 
 void Soldier::move_right() {
+    std::cout << "pos matrix soldier: "<< get_x_matrix_pos()<< " " << get_y_matrix_pos() << std::endl;
     direction = RIGHT;
     std::int16_t x_new_pos = x_pos + 1;
     if ((x_new_pos % MOVEMENTS_PER_CELL) != 0) {

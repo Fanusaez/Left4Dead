@@ -85,9 +85,10 @@ collision_with_zombie(std::vector<GameObject*>& game_objects,
                       std::uint16_t x_pos_sold,
                       std::uint16_t y_pos_sold,
                       std::int16_t direction) {
-
+    std::cout << "entro a colision con zombie" << std::endl;
     if (direction == LEFT) {
         collision_going_left(game_objects, x_pos_sold, y_pos_sold);
+        std::cout << "zombies a disparar: "<< game_objects.size() << std::endl;
         return;
     }
     collision_going_right(game_objects, x_pos_sold, y_pos_sold);
@@ -182,6 +183,7 @@ bool GameMap::check_free_position(std::int16_t x_pos,
 }
 
 void GameMap::update(float time) {
+    objects_in_map();
     for (Zombie* zombie : zombies) {
         zombie->update(soldiers, time);
     }
@@ -321,4 +323,17 @@ bool GameMap::collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos) 
 
 GameObject* GameMap::get_object(std::uint16_t x_pos, std::uint16_t y_pos) {
     return map[y_pos][x_pos];
+}
+
+void GameMap::objects_in_map() {
+    int contador = 0;
+    for (int j = 0; j < y_size; j++) {
+        for (int i = 0; i < x_size; i++) {
+            if (map[j][i] != nullptr) {
+                std::cout << "pos elem encontrado : "<< i << ", " << j << std::endl;
+                contador++;
+            }
+        }
+    }
+    std::cout << "cant elem map: "<<contador << std::endl;
 }
