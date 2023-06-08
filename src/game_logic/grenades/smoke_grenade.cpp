@@ -11,10 +11,11 @@ void SmokeGrenade::throw_grenade(GameMap& map,
 
     std::vector<GameObject*> objects;
     map.get_objects_in_explosion(objects, x_matrix_explosion, y_matrix_sold, radius_range);
-    //State* new_state = current_state->throw_smoke_grenade(time);
-    //if (new_state == nullptr) return;
-    //delete current_state;
-    //current_state = new_state;
+    State* new_state = current_state->throw_smoke_grenade(time);
+    if (new_state != nullptr) {
+        delete current_state;
+        current_state = new_state;
+    }
     for (const auto& explosive_object : objects) {
         explosive_object->get_stunned(time);
     }

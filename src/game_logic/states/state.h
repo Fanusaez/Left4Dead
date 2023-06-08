@@ -19,6 +19,7 @@ public:
     virtual State* die(float time) = 0;
     virtual State* revive(float time) = 0;
     virtual State* throw_explosive_grenade(float time) = 0;
+    virtual State* throw_smoke_grenade(float time) = 0;
     virtual State* stop_action() = 0;
     SoldierObjectState soldier_state = IDLE_SOLDIER;
 };

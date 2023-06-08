@@ -1,31 +1,30 @@
-#ifndef DEAD_H_
-#define DEAD_H_
+#ifndef THROWING_SMOKE_GRENADE_H_
+#define THROWING_SMOKE_GRENADE_H_
 
+#include "state.h"
 #include "idle.h"
 
-class Dead : public State {
-
+class ThrowingSmokeGrenade : public State {
 private:
-    float time_to_revive = 10;
     float start_time;
+    float duration_of_throwing_granade = 0.2;
 
 public:
 
-    Dead(float time_of_death);
+    explicit ThrowingSmokeGrenade(float time);
 
     State* update(float time) override;
     State* shoot(Soldier& soldier, Weapon* weapon, float time) override;
     State* move(Soldier& soldier, std::int16_t direction, float time) override;
-    State* reload(Weapon* weapon, float time) override;
+    State* reload(Weapon* weapon, float start_time) override;
     State* being_attacked(float time) override;
     State* die(float time) override;
     State* revive(float time) override;
     State* throw_explosive_grenade(float time) override;
     State* throw_smoke_grenade(float time) override;
+    bool time_stop_throwing(float time);
     State* stop_action() override;
-    bool able_to_revive(float time);
-
 };
 
 
-#endif //DEAD_H_
+#endif //THROWING_SMOKE_GRENADE_H_

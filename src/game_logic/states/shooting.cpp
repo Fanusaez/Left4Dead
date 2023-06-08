@@ -52,6 +52,13 @@ State *Shooting::throw_explosive_grenade(float time) {
     return nullptr;
 }
 
+State *Shooting::throw_smoke_grenade(float time) {
+    if (time_to_shoot(time)) {
+        return new ThrowingSmokeGrenade(time);
+    }
+    return nullptr;
+}
+
 State *Shooting::stop_action() {
     return new Idle();
 }

@@ -84,6 +84,7 @@ if(SERVER)
 		./game_logic/states/shooting.cpp
 		./game_logic/states/state.h
 		./game_logic/states/throwing_explosive_grenade.cpp
+		./game_logic/states/throwing_smoke_grenade.cpp
 		./game_logic/weapons/idf.cpp
 		./game_logic/weapons/scout.cpp
 		./game_logic/weapons/p90.cpp

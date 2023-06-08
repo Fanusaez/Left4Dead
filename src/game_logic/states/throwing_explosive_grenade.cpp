@@ -39,6 +39,14 @@ State *ThrowingExplosiveGrenade::revive(float time) {
 }
 
 State *ThrowingExplosiveGrenade::throw_explosive_grenade(float time) {
+    start_time = time;
+    return nullptr;
+}
+
+State *ThrowingExplosiveGrenade::throw_smoke_grenade(float time) {
+   if (time_stop_throwing(time)) {
+       return new ThrowingSmokeGrenade(time);
+   }
     return nullptr;
 }
 

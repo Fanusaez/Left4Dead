@@ -543,6 +543,51 @@ void testSoldierThrowsGrenadeWithP90AndStateNotChanges(void) {
 
     TEST_CHECK(soldier_state != nullptr);
 }
+
+// *************************************** THROWING SMOKE GRENADE ********************************//
+
+void testSoldierThrowsSmokeGrenadeAndStateChanges(void) {
+    GameMap map(10, 10);
+    Weapon *idf = new Idf;
+
+    Soldier soldier(idf, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    soldier.throw_smoke_grenade(100);
+
+    ThrowingSmokeGrenade* soldier_state = dynamic_cast<ThrowingSmokeGrenade*>(soldier.get_state());
+
+    TEST_CHECK(soldier_state != nullptr);
+}
+
+void testSoldierThrowsSmokeGrenadeAndTenSecondsPasses(void) {
+    GameMap map(10, 10);
+    Weapon *idf = new Idf;
+
+    Soldier soldier(idf, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    soldier.throw_explosive_grenade(100);
+    soldier.update(110);
+
+    Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
+
+    TEST_CHECK(soldier_state != nullptr);
+}
+
+void testSoldierThrowsSmokeGrenadeWithP90AndStateNotChanges(void) {
+    GameMap map(10, 10);
+    Weapon *p90 = new P90;
+
+    Soldier soldier(p90, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    soldier.throw_smoke_grenade(100);
+
+    Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
+
+    TEST_CHECK(soldier_state != nullptr);
+}
 TEST_LIST = {
         {"Soldier start with Idle state",                                     testSoldierStartsWithIdleState},
         {"Soldier shoots and reloads state changes to Reloading",             testSoldierShootsReloadAndStateChangesToReloading},
@@ -573,5 +618,8 @@ TEST_LIST = {
         {"Soldier throws grenade time passes and state change to idle", testSoldierThrowsGrenadeAndTenSecondsPasses},
         {"Soldier tries to throw 2 grenade, only 1 succeed", testSoldierThrows2GrenadeOnly1IsThrown},
         {"Soldier tries throwing grenade with p90, not happening", testSoldierThrowsGrenadeWithP90AndStateNotChanges},
+        {"Soldier throws smoke grenade and state changes to Throwing...",testSoldierThrowsSmokeGrenadeAndStateChanges},
+        {"Soldier throws smoke grenade time passes and state change to idle", testSoldierThrowsSmokeGrenadeAndTenSecondsPasses},
+        {"Soldier tries throwing smoke grenade with p90, not happening", testSoldierThrowsSmokeGrenadeWithP90AndStateNotChanges},
         {NULL, NULL},
 };

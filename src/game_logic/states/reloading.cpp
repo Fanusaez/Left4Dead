@@ -55,6 +55,13 @@ State *Reloading::throw_explosive_grenade(float time) {
     return nullptr;
 }
 
+State *Reloading::throw_smoke_grenade(float time) {
+    if (time_to_relaod(time)) {
+        return new ThrowingSmokeGrenade(time);
+    }
+    return nullptr;
+}
+
 State *Reloading::stop_action() {
     return nullptr;
 }

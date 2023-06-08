@@ -39,6 +39,10 @@ State *Idle::throw_explosive_grenade(float time) {
     return new ThrowingExplosiveGrenade(time);
 }
 
+State *Idle::throw_smoke_grenade(float time) {
+    return new ThrowingSmokeGrenade(time);
+}
+
 State *Idle::stop_action() {
     return nullptr;
 }
