@@ -3,7 +3,7 @@
 
 enum SoldierObjectState
 {
-    IDLE,
+    IDLE_SOLDIER,
     SHOOTING,
     RELOADING,
     MOVING,
@@ -12,6 +12,9 @@ enum SoldierObjectState
 
 enum ZombieObjectState
 {
+    IDLE_ZOMBIE,
+    DEAD,
+    BEING_ATTACKED,
     WALKING,
     RUNNING,
     JUMPING,

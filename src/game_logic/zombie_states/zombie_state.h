@@ -2,6 +2,8 @@
 #define MOVEMENT_H_
 
 #include <cstdint>
+#include "../common/game_object_state.h"
+
 class GameMap;
 class Zombie;
 class GameObject;
@@ -10,6 +12,7 @@ class Chaser;
 class ZombieState {
 private:
 public:
+ZombieObjectState zombie_state = IDLE_ZOMBIE;
 // deberia ser chase_soldier_walking
 virtual ZombieState* chase_soldier(Chaser& chaser,
                                    std::int16_t x_pos_chase,

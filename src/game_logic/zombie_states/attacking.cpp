@@ -7,6 +7,7 @@ Attacking::Attacking(GameObject *closest_soldier, std::int16_t damage, float tim
      * a que pas el tiempo, y recien ahi danar al soldado
      */
     //attack_soldier(closest_soldier, damage, time);
+    zombie_state = ATTACKING;
     closest_soldier->receive_damage(damage, time); // lo ataco de una, despues vemos
 }
 

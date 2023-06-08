@@ -6,7 +6,7 @@ ZombieState* Stunned::chase_soldier(Chaser& chaser,
                                     std::int16_t x_pos_chase,
                                     std::int16_t y_pos_chase,
                                     float time) {
-
+    zombie_state = STUNNED;
     if (time_to_walk(time) && time_stop_being_stunned(time)) {
         return new Walking(chaser, x_pos_chase, y_pos_chase, time);
     } else if (time_to_walk(time)) {

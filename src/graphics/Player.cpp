@@ -6,7 +6,7 @@ Player::Player(int id, int initialX, int initialY) :
 	textureLoader(TextureLoader::getInstance()),
 	an(textureLoader.getTexture("Soldier_1/Idle.png")),
 	facingLeft(false),
-	state(IDLE)
+	state(IDLE_SOLDIER)
 {}
 
 Player::~Player() = default;
@@ -34,7 +34,7 @@ void Player::updateState(const ZombieObjectDTO &zombieDTO) {}
  * Esto les va a resultar muy util. 
  */
 void Player::update(unsigned dt) {
-	if (this->state != IDLE)
+	if (this->state != IDLE_SOLDIER)
 		this->an.update(dt);
 }
 

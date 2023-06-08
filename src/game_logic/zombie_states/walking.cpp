@@ -5,7 +5,7 @@ Walking::Walking(Chaser& chaser,
                  std::int16_t x_pos_chase,
                  std::int16_t y_pos_chase,
                  float time) {
-
+    zombie_state = WALKING;
     chase_soldier(chaser, x_pos_chase, y_pos_chase, time);
 }
 

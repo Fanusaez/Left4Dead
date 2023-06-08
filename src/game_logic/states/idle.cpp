@@ -2,7 +2,7 @@
 #include "../weapons/weapon.h"
 
 Idle::Idle() {
-    soldier_state = IDLE;
+    soldier_state = IDLE_SOLDIER;
 }
 
 State* Idle::update(float time) {

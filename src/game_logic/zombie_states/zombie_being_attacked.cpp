@@ -1,6 +1,8 @@
 #include "zombie_being_attacked.h"
 
-ZombieBeingAttacked::ZombieBeingAttacked(float time) : start_time(time) {}
+ZombieBeingAttacked::ZombieBeingAttacked(float time) : start_time(time) {
+    zombie_state = BEING_ATTACKED;
+}
 
 ZombieState *ZombieBeingAttacked::being_attacked(float time) {
     start_time = time;

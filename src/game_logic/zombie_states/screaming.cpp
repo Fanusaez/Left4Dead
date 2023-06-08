@@ -2,6 +2,7 @@
 
 
 Screaming::Screaming(GameMap &map, std::int16_t zombies_to_create, float time) {
+    zombie_state = SCREAMING;    
     scream(map, zombies_to_create, time);
 }
 

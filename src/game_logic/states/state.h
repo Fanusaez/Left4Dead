@@ -20,7 +20,7 @@ public:
     virtual State* revive(float time) = 0;
     virtual State* throw_explosive_grenade(float time) = 0;
     virtual State* stop_action() = 0;
-    SoldierObjectState soldier_state = IDLE;
+    SoldierObjectState soldier_state = IDLE_SOLDIER;
 };
 
 

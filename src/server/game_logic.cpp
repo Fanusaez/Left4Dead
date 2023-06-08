@@ -53,7 +53,7 @@ GameDTO GameLogic::get_game() {
         //std::cout<<piar.second->get_x_pos()<<","<<piar.second->get_y_pos()<<std::endl;
     }
     for (const auto& zombie: zombies){
-        ZombieObjectDTO zombieDTO(0, zombie->get_x_pos(), zombie->get_y_pos(), RUNNING);
+        ZombieObjectDTO zombieDTO(0, zombie->get_x_pos(), zombie->get_y_pos(), zombie->get_state()->zombie_state);
         game_dto.add_zombie(zombieDTO);
     }
     return game_dto;
