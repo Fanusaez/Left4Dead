@@ -12,7 +12,7 @@ class Weapon {
 
  public:
 virtual void shoot(std::vector<GameObject*>& shooting_objects,
-                   std::uint16_t y_pos_sold, float time) = 0;
+                   std::uint16_t x_pos_sold, float time) = 0;
 
 virtual void throw_explosive_grenade(GameMap& map,
                                      std::int16_t x_matrix_explosion,

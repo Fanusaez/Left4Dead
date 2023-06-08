@@ -1,3 +1,4 @@
+#include <iostream>
 #include "infected.h"
 #include "../map.h"
 #include "../chaser.h"
@@ -20,6 +21,7 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         chaser(this, map, x_pos, y_pos) {}
 
 void Infected::update(std::vector<GameObject*> soldiers, float time) {
+    std::cout << health << std::endl;
     attack(soldiers, time);
     chase_closest_soldier(soldiers, time);
 }

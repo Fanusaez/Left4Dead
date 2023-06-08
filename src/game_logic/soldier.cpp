@@ -136,7 +136,6 @@ void Soldier::move_left(float time) {
 }
 
 void Soldier::move_up() {
-    direction = UP;
     // ver si con la interfaz si lo saco o no
     if (y_pos <= WALLS_LIMITS) return;
 

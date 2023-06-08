@@ -13,7 +13,7 @@ class Soldier : public GameObject {
     GameMap &map;
     std::int16_t x_pos;
     std::int16_t y_pos;
-    std::int16_t direction = LEFT;
+    std::int16_t direction = RIGHT;
     bool dead = false;
     std::int16_t health = 100;
     const std::int16_t id;

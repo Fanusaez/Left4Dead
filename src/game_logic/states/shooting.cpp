@@ -9,15 +9,7 @@ Shooting::Shooting(Soldier& soldier, Weapon *weapon, float start_time) :
 }
 
 State *Shooting::update(float time) {
-    /*
-     * aca se tiene que decidir si update es para parar de disparar, o para seguir disparando.
-     */
-    std::vector<GameObject*> targets = soldier.get_targets();
-    weapon->shoot(targets, soldier.get_y_pos(), start_time);
-/*     if (time_to_shoot(time)) {
-        return new Idle;
-    } */
-    return nullptr;
+    return shoot(soldier, weapon, time);
 }
 
 State* Shooting::shoot(Soldier& soldier, Weapon* weapon, float time) {
