@@ -11,6 +11,8 @@ class P90 : public Weapon {
 
  public:
 
+void update(float time) override;
+
 void shoot(std::vector<GameObject*>& shooting_objects,
            std::uint16_t y_pos_sold, float time) override;
 

@@ -3,6 +3,10 @@
 
 #define FIRST_ENEMY 0
 
+void P90::update(float time) {
+
+}
+
 void P90::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold_pos, float time) {
     if (shooting_objects.empty()) return;
     if (bullets > 0) {

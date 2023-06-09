@@ -268,6 +268,7 @@ void testSoldierThrowsSmokeGrenadeAndStunnedZombie(void) {
     map.add_zombie(&walker1, 5,5);
 
     soldier.throw_smoke_grenade(100);
+    soldier.update(200);
 
     Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
 

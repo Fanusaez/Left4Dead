@@ -35,6 +35,7 @@ void Soldier::update(float time) {
         delete state;
         state = new_state;
     }
+    weapon -> update(time);
 }
 
 void Soldier::shoot(float time) {

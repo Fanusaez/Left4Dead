@@ -41,6 +41,9 @@ add_executable(testCollision
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -78,6 +81,9 @@ add_executable(testShooting
         ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -114,6 +120,9 @@ add_executable(testShootingIdf
         ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -150,6 +159,9 @@ add_executable(testShootingScout
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -187,6 +199,9 @@ add_executable(testMovingUpSoldier
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -223,6 +238,9 @@ add_executable(testMovingSoldierDown
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -259,6 +277,9 @@ add_executable(testMovingSoldierRight
         ../src/game_logic/weapons/idf.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -295,6 +316,9 @@ add_executable(testMoveSoldierLeft
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -330,6 +354,9 @@ add_executable(testMoveMap
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -366,6 +393,9 @@ add_executable(testExplosiveGrenade
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -402,6 +432,9 @@ add_executable(testChaseSoldierWalking
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -438,6 +471,9 @@ add_executable(testMapChaseSoldierWalking
         ../src/game_logic/weapons/idf.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -473,6 +509,9 @@ add_executable(testChaseSoldierWalkingObstacles
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
@@ -509,6 +548,9 @@ add_executable(testWalkerAttackSoldier
         ../src/game_logic/weapons/idf.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/states/idle.cpp
@@ -545,6 +587,9 @@ add_executable(testChangeInStatesSoldier
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/zombie_states/walking.cpp
         ../src/game_logic/zombie_states/walking.cpp
@@ -582,6 +627,9 @@ add_executable(testChangeInStatesZombie
         ../src/game_logic/weapons/idf.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/reloading.cpp
@@ -618,6 +666,9 @@ add_executable(testCollisionSoldier
         ../src/game_logic/weapons/scout.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/throwing_explosive_grenade.cpp
@@ -653,6 +704,9 @@ add_executable(testWalkerRemove
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/throwing_explosive_grenade.cpp
@@ -689,6 +743,9 @@ add_executable(testChasingStates
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/throwing_explosive_grenade.cpp
@@ -704,7 +761,6 @@ add_executable(testChasingStates
         ../src/game_logic/zombie_states/running.cpp
         ../src/game_logic/zombie_states/zombie_dead.cpp
         ../src/game_logic/zombie_states/screaming.cpp
-
         ../src/game_logic/zombie_states/zombie_being_attacked.cpp
         ../src/game_logic/zombie_states/stunned.cpp
         ../src/game_logic/zombie_states/jumping.cpp
@@ -726,6 +782,9 @@ add_executable(testSmokeGrenade
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/throwing_explosive_grenade.cpp
@@ -762,6 +821,9 @@ add_executable(testWitcher
         ../src/game_logic/weapons/p90.cpp
         ../src/game_logic/grenades/explosive_grenade.cpp
         ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
         ../src/game_logic/obstacle.cpp
         ../src/game_logic/states/idle.cpp
         ../src/game_logic/states/throwing_explosive_grenade.cpp
@@ -802,7 +864,7 @@ set(testTargets
         testMovingSoldierRight
         testMoveSoldierLeft
         testMoveMap
-        testExplosiveGrenade
+		testExplosiveGrenade
         testChaseSoldierWalking
         testMapChaseSoldierWalking
         testChaseSoldierWalkingObstacles
@@ -812,7 +874,7 @@ set(testTargets
         testCollisionSoldier
         testWalkerRemove
         testChasingStates
-        testSmokeGrenade
+		testSmokeGrenade
         testWitcher
 )
 

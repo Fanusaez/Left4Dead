@@ -525,6 +525,7 @@ void testSoldierThrows2GrenadeOnly1IsThrown(void) {
 
     soldier.throw_explosive_grenade(100);
     soldier.throw_explosive_grenade(101);
+    soldier.update(200);
 
     std::int16_t walker_health = walker.get_health();
     TEST_CHECK(walker_health == 100 - DAMAGE_GRENADE);

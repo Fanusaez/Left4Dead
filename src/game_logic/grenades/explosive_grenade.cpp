@@ -1,6 +1,16 @@
 #include "explosive_grenade.h"
 #include "../map.h"
 #include "../game_object.h"
+
+
+void ExplosiveGrenade::update(float time) {
+    GrenadeState* state = grenade_state -> update(time);
+    if (state) {
+        delete grenade_state;
+        grenade_state = state;
+    }
+}
+
 void ExplosiveGrenade::throw_grenade(GameMap& map,
                                   std::int16_t x_matrix_explosion,
                                   std::int16_t y_matrix_sold,
@@ -8,13 +18,20 @@ void ExplosiveGrenade::throw_grenade(GameMap& map,
                                   float time) {
     if (!time_throw_grenade(time)) return;
     last_thrown_grenade = time;
-
-    std::vector<GameObject*> objects;
-    map.get_objects_in_explosion(objects, x_matrix_explosion, y_matrix_sold, radius_range);
+    GrenadeState* new_grenade_state = grenade_state -> throw_grenade(time, x_matrix_explosion, y_matrix_sold, map, this);
+    if (new_grenade_state) {
+        delete grenade_state;
+        grenade_state = new_grenade_state;
+    }
     State* new_state = current_state->throw_explosive_grenade(time);
     if (new_state == nullptr) return;
     delete current_state;
     current_state = new_state;
+}
+
+void ExplosiveGrenade::explode(float time, std::int16_t x_explosion, std::int16_t y_explosion, GameMap& map) {
+    std::vector<GameObject*> objects;
+    map.get_objects_in_explosion(objects, x_explosion, y_explosion, radius_range);
     for (const auto& explosive_object : objects) {
         explosive_object->receive_damage(grenade_damage, time);
     }

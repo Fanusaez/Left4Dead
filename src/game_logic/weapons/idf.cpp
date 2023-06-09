@@ -5,6 +5,11 @@
 
 #define DISTANCE_LONG_RANGE 5
 
+void Idf::update(float time) {
+    explosive_grenade.update(time);
+    smoke_grenade.update(time);
+}
+
 void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold_pos, float time) {
     bullets--;
     if (shooting_objects.empty()) return;

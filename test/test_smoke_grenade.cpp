@@ -61,6 +61,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies(void) {
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
     soldier.throw_smoke_grenade(100);
+    soldier.update(200);
 
     std::uint16_t remaining_health1 = walker1.get_health();
     std::uint16_t remaining_health2 = walker2.get_health();
@@ -125,6 +126,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies(void) {
     map.add_zombie(&walker5, x_limit_damage_right + 1,y_limit_damage_down);
 
     soldier.throw_smoke_grenade(100);
+    soldier.update(200);
 
     Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
     Stunned* zombie_state2 = dynamic_cast<Stunned*>(walker2.get_state());
@@ -182,6 +184,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2(void) {
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down + 1);
 
     soldier.throw_smoke_grenade(100);
+    soldier.update(200);
 
     Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
     Stunned* zombie_state2 = dynamic_cast<Stunned*>(walker2.get_state());
@@ -217,6 +220,7 @@ void testSoldierThrowsSmokeGrenadeToOtherSoldier(void) {
 
     soldier1.set_direction(LEFT);
     soldier1.throw_smoke_grenade(100);
+    soldier1.update(200);
 
     Idle* soldier2_state = dynamic_cast<Idle*>(soldier2.get_state());
 
@@ -261,6 +265,7 @@ void testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies(void) {
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
     soldier.throw_smoke_grenade(100);
+    soldier.update(200);
 
     Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
     Stunned* zombie_state2 = dynamic_cast<Stunned*>(walker2.get_state());

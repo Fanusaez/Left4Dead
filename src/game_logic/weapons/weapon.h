@@ -11,6 +11,9 @@ class Weapon {
  private:
 
  public:
+
+virtual void update(float time) = 0;
+
 virtual void shoot(std::vector<GameObject*>& shooting_objects,
                    std::uint16_t x_pos_sold, float time) = 0;
 

@@ -1,6 +1,11 @@
 #include "scout.h"
 #include "../game_object.h"
 
+void Scout::update(float time) {
+    explosive_grenade.update(time);
+    smoke_grenade.update(time);
+}
+
 void Scout::shoot(std::vector<GameObject *> &shooting_objects, std::uint16_t x_pos_sold, float time) {
     if (bullets <= 0) return;
     std::uint16_t variant_damage = damage;

@@ -89,8 +89,12 @@ if(SERVER)
 		./game_logic/weapons/scout.cpp
 		./game_logic/weapons/p90.cpp
 		./game_logic/weapons/weapon.h
+		./game_logic/grenades/grenade.h
 		./game_logic/grenades/explosive_grenade.cpp
 		./game_logic/grenades/smoke_grenade.cpp
+		./game_logic/grenades/grenade_state/grenade_idle.cpp
+		./game_logic/grenades/grenade_state/exploding.cpp
+		./game_logic/grenades/grenade_state/thrown_grenade.cpp
 		./game_logic/zombie_states/attacking.cpp
 		./game_logic/zombie_states/running.cpp
 		./game_logic/zombie_states/jumping.cpp

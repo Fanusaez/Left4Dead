@@ -15,6 +15,9 @@ class Scout : public Weapon {
     SmokeGrenade smoke_grenade;
 
  public:
+
+void update(float time) override;
+
 void shoot(std::vector<GameObject*>& shooting_objects,
            std::uint16_t x_pos_sold, float time) override;
 
