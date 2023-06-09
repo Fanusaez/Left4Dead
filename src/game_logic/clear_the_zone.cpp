@@ -27,7 +27,7 @@ Soldier *ClearTheZone::get_soldier_with_p90() {
 
 Soldier *ClearTheZone::create_and_add_soldier(Weapon *weapon) {
     std::vector<std::int16_t> sold_pos;
-    map.get_position_for_soldier(sold_pos);
+    map.get_position_for_object(sold_pos);
 
     Soldier* soldier = new Soldier(weapon, map, sold_pos[X_POS], sold_pos[Y_POS], id++);
     bool added = map.add_soldier(soldier,sold_pos[X_POS], sold_pos[Y_POS]);

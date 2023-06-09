@@ -15,18 +15,6 @@ Moving::Moving(Soldier &soldier, std::int16_t direction, float start_time) :
 }
 
 State *Moving::update(float time) {
-    /*
-     * Aca deberia devolver un estado idle? dado que no se lo esta moviendo mas?
-     * o deberia mover el soldado a la ultima pos?
-
-    if (direction == UP) soldier.move_up();
-    else if (direction == DOWN) soldier.move_down();
-    else if (direction == RIGHT) soldier.move_right();
-    else if (direction == LEFT) soldier.move_left();
-/*     if (time_to_move(time)) {
-        return new Idle();
-    } */
-
     return move(soldier, direction, time);
 }
 
@@ -43,8 +31,6 @@ State *Moving::shoot(Soldier &soldier, Weapon *weapon, float time) {
 }
 
 State* Moving::move(Soldier& soldier, std::int16_t direction, float time) {
-    if (!time_to_move(time)) return nullptr;
-    last_time_moved = time; // actualizo utltima vez que me movi
     if (direction == UP) soldier.move_up();
     else if (direction == DOWN) soldier.move_down();
     else if (direction == RIGHT) soldier.move_right();

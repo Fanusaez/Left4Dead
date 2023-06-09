@@ -3,8 +3,8 @@
 
 #include "../states/state.h"
 #include "grenade.h"
-#include "game_logic/grenades/grenade_state/grenade_state.h"
-#include "game_logic/grenades/grenade_state/grenade_idle.h"
+#include "./grenade_state/grenade_state.h"
+#include "./grenade_state/grenade_idle.h"
 
 
 class GameMap;
