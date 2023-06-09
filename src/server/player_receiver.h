@@ -18,7 +18,7 @@ private:
 
     MatchMananger *match_manager;
 
-    Queue<InstructionsDTO> *queue_receiver;
+    Queue<InstructionsDTO*> *queue_receiver;
 
     std::atomic<bool>& keep_talking;
 
@@ -31,6 +31,6 @@ public:
 
     void run() override;
 
-    void setQueueReceiver(Queue<InstructionsDTO> *queue_receiver);
+    void setQueueReceiver(Queue<InstructionsDTO*> *queue_receiver);
 };
 #endif

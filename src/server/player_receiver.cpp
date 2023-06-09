@@ -18,6 +18,6 @@ void PlayerReceiver::run() {
     }
 }
 
-void PlayerReceiver::setQueueReceiver(Queue<InstructionsDTO> *queue_receiver){
+void PlayerReceiver::setQueueReceiver(Queue<InstructionsDTO*> *queue_receiver){
     this->queue_receiver = queue_receiver;
 }

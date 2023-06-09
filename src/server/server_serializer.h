@@ -5,7 +5,7 @@
 #include "../common/game_mode.h"
 #include "../common/game_dto.h"
 #include "../common/socket.h"
-#include "../common/move.h"
+#include "../common/move_type.h"
 #include "./game.h"
 
 #include <vector>

@@ -2,7 +2,7 @@
 #define CLIENT_H
 
 #include "../common/socket.h"
-#include "../common/move.h"
+#include "../common/move_type.h"
 #include "client_sender.h"
 #include "client_receiver.h"
 #include "client_serializer.h"
@@ -28,7 +28,7 @@ private:
 public:
     Client(Socket&& socket);
 
-    bool move(Move move);
+    bool move(MoveType move);
 
     bool reload();
 

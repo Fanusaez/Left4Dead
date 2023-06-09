@@ -1,5 +1,5 @@
 #include "client_serializer.h"
-#include "../common/instructions.h"
+#include "../common/instructions_type.h"
 #include <iostream>
 
 std::vector<char> ClientSerializer::serialize_start_playing(){
@@ -8,7 +8,7 @@ std::vector<char> ClientSerializer::serialize_start_playing(){
     return buffer;
 }
 
-std::vector<char> ClientSerializer::serialize_move(Move move)
+std::vector<char> ClientSerializer::serialize_move(MoveType move)
 {
     std::vector<char> buffer;
     buffer.push_back(MOVE);

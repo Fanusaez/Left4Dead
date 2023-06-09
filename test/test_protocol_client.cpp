@@ -5,8 +5,8 @@
 #include "../src/client/client_serializer.h"
 #include "../src/common/game_mode.h"
 #include "../src/common/soldier_type.h"
-#include "../src/common/move.h"
-#include "../src/common/instructions.h"
+#include "../src/common/move_type.h"
+#include "../src/common/instructions_type.h"
 
 /*----------------------Lobby message--------------------*/
 void testSerializeCreateScenario(void)

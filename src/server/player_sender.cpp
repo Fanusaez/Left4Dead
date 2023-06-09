@@ -1,4 +1,6 @@
 #include "player_sender.h"
+#include "../common/instructionsDTO/create_dto.h"
+#include "../common/instructionsDTO/join_dto.h"
 #include <string.h>
 
 PlayerSender::PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, MatchMananger *match_mananger, int* player_id) : 
@@ -37,25 +39,28 @@ void PlayerSender::init_player_receiver(){
     // Mientras no se le asigne partida
     int32_t game_code;
     while (keep_talking){
-        InstructionsDTO instruction = server_deserializer.obtener_instruccion(&was_closed,player_id);
+        InstructionsDTO* instruction = server_deserializer.obtener_instruccion(&was_closed,player_id);
         if(was_closed)
             return;
-        if (instruction.get_instruction() == CREATE) {
-            std::vector<char> parameters = instruction.get_parameters();
-            std::string game_name(parameters.begin(), parameters.end());
+        if (instruction->get_instruction() == CREATE) {
+            CreateDTO* create_dto = dynamic_cast<CreateDTO*>(instruction);
+            std::string game_name = create_dto->get_scenario_name();
             queue_receiver = match_mananger->create_game(&queue_sender, &game_name, player_id, &game_code);
             if (queue_receiver == nullptr)
                 server_serializer.send_error_create(&was_closed);
             else
                 server_serializer.serialize_create_scenario(game_code, &was_closed);
-        } else if (instruction.get_instruction() == JOIN){
-            game_code = *reinterpret_cast<int32_t*>(instruction.get_parameters().data());
+        } else if (instruction->get_instruction() == JOIN){
+            JoinDTO* join_dto = dynamic_cast<JoinDTO*>(instruction);
+            int32_t game_code = join_dto->get_game_code();
             queue_receiver = match_mananger->join(&queue_sender, &game_code, player_id);
             server_serializer.serialize_join_scenario((queue_receiver != nullptr), &was_closed);
-        } else if (instruction.get_instruction() == START){
+        } else if (instruction->get_instruction() == START){
             server_serializer.serialize_start_game(&was_closed);
+            delete instruction;
             break;
         }
+        delete instruction;
     }
     //Le digo al player receiver la queueu que tiene que usar
     player_receiver.setQueueReceiver(queue_receiver);

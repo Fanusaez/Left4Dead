@@ -1,7 +1,7 @@
 #ifndef CLIENTDESERIALIZER_H
 #define CLIENTDESERIALIZER_H
 
-#include "../common/instructions.h"
+#include "../common/instructions_type.h"
 #include "../common/game_dto.h"
 #include "../common/socket.h"
 

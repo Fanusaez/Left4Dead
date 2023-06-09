@@ -1,7 +1,7 @@
-#ifndef INSTRUCTIONS_H
-#define INSTRUCTIONS_H
+#ifndef INSTRUCTIONSTYPE_H
+#define INSTRUCTIONSTYPE_H
 
-enum Instructions {
+enum InstructionsType {
     CREATE,
     JOIN,
     GAME_MODE,

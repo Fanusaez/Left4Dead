@@ -1,5 +1,7 @@
 #include "lobby.h"
 #include <cstring>
+#include "../common/instructionsDTO/create_dto.h"
+#include "../common/instructionsDTO/join_dto.h"
 #include <sys/socket.h>
 
 Lobby::Lobby(char *localhost, char *puerto) : socket(localhost,puerto), queue_sender(1000000), queue_receiver(1000000), keep_talking(true),
@@ -46,29 +48,38 @@ Socket Lobby::move_socket(){
 
 void Lobby::update(){
     int max_instructions = 0;
-    InstructionsDTO instruction;
-    bool could_pop = queue_receiver.try_pop(instruction);
+    InstructionsDTO* instruction_dto;
+    bool could_pop = queue_receiver.try_pop(instruction_dto);
     while (could_pop && max_instructions < 10){
-        switch(instruction.get_instruction()){
+        switch(instruction_dto->get_instruction()){
             case CREATE:
-                int32_t code;
-                memcpy(&code, instruction.get_parameters().data(), sizeof(int32_t));
-                if(code != -1)
-                    std::cout<<"Partida creada con exito: "<<code<<std::endl;
-                else
-                    std::cout<<"Error al crear partida"<<std::endl;
+                get_create(instruction_dto);
                 break;
             case JOIN:
-                if(static_cast<bool>(instruction.get_parameters().front()))
-                    std::cout<<"Te has unido a una partida"<<std::endl;
-                else
-                    std::cout<<"Error al unirse a una partida"<<std::endl;
+                get_join(instruction_dto);
                 break;
                 
         }
-        could_pop = queue_receiver.try_pop(instruction);
+        delete instruction_dto;
+        could_pop = queue_receiver.try_pop(instruction_dto);
         max_instructions++;
     }
+}
+
+void Lobby::get_create(InstructionsDTO* instruction_dto) {
+    CreateDTO* create_dto = dynamic_cast<CreateDTO*>(instruction_dto);
+    if(create_dto->get_game_code() != -1)
+        std::cout<<"Partida creada con exito. El codigo es: "<<create_dto->get_game_code()<<std::endl;
+    else
+        std::cout<<"Error al crear partida"<<std::endl;
+}
+
+void Lobby::get_join(InstructionsDTO* instruction_dto) {
+    JoinDTO* join_dto = dynamic_cast<JoinDTO*>(instruction_dto);
+    if(join_dto->get_could_join())
+        std::cout<<"Te has unido a una partida"<<std::endl;
+    else
+        std::cout<<"Error al unirse a una partida"<<std::endl;
 }
 
 int Lobby::get_player_id(){

@@ -2,8 +2,8 @@
 #define GAMELOGIC_H
 
 #include "../common/game_dto.h"
-#include "../common/instructions_dto.h"
-#include "../common/move.h"
+#include "../common/instructionsDTO/instructions_dto.h"
+#include "../common/move_type.h"
 #include "../game_logic/map.h"
 #include "../game_logic/soldier.h"
 #include "../game_logic/zombies/zombie.h"
@@ -22,7 +22,7 @@ private:
 
     std::vector<Zombie*> zombies;
 
-    void move (Move move, int player_id);
+    void move (InstructionsDTO* instruction);
 
     void reload (int player_id);
 
@@ -33,7 +33,7 @@ public:
 
     void add_soldier(int* player_id);
 
-    void new_instruction(InstructionsDTO instruction);
+    void new_instruction(InstructionsDTO* instruction);
 
     GameDTO get_game();
 

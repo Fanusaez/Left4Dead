@@ -2,38 +2,39 @@
 #include <iostream>
 #include "../game_logic/weapons/idf.h"
 #include "../game_logic/zombies/infected.h"
-#include "../common/move.h"
+#include "../common/instructionsDTO/move_dto.h"
+#include "../common/move_type.h"
 #include <ctime>
 
 GameLogic::GameLogic() : game_map(200,200) {
-    Infected* walker = new Infected(3,8, game_map);
+    Infected* walker = new Infected(3,40, game_map);
     zombies.push_back(walker);
-    game_map.add_zombie(walker, 3, 8);
+    game_map.add_zombie(walker, 3, 40);
 }
 
 void GameLogic::add_soldier(int* player_id) {
     Weapon* idf = new Idf;
     std::srand(std::time(0));
     int16_t pos_x = std::rand() % 20 + 10;
-    while (!game_map.check_free_position(pos_x,15)){
+    while (!game_map.check_free_position(pos_x,40)){
         int16_t pos_x = std::rand() % 20 + 10;
     }
-    Soldier* soldier = new Soldier(idf,game_map,pos_x,15);
-    game_map.add_soldier(soldier,pos_x,15);
+    Soldier* soldier = new Soldier(idf,game_map,pos_x,40);
+    game_map.add_soldier(soldier,pos_x,40);
     playerSoldierMap[*player_id] = soldier;
     timer = 0;
 }
 
-void GameLogic::new_instruction(InstructionsDTO instruction) {
-    switch (instruction.get_instruction()) {
+void GameLogic::new_instruction(InstructionsDTO* instruction) {
+    switch (instruction->get_instruction()) {
     case MOVE:
-        move(static_cast<Move>(instruction.get_parameters().front()), instruction.get_player_id());
+        move(instruction);
         break;
     case RELOAD:
-        reload(instruction.get_player_id());
+        reload(instruction->get_player_id());
         break;
     case SHOOT:
-        shoot(instruction.get_player_id());
+        shoot(instruction->get_player_id());
         break;
     case GRANEDE:
                 
@@ -59,9 +60,10 @@ GameDTO GameLogic::get_game() {
     return game_dto;
 }
 
-void GameLogic::move (Move move, int player_id) {
-    Soldier* soldier = playerSoldierMap[player_id];
-    switch (move) {
+void GameLogic::move (InstructionsDTO* instruction) {
+    MoveDTO* move_dto = dynamic_cast<MoveDTO*>(instruction);
+    Soldier* soldier = playerSoldierMap[move_dto->get_player_id()];
+    switch (move_dto->get_move_type()) {
     case 0:
         soldier->move_right(timer);
         soldier->facingLeft = false;

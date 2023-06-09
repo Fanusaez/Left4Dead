@@ -5,7 +5,7 @@
 #include "../src/server/server_serializer.h"
 #include "../src/common/soldier_type.h"
 #include "../src/common/game_mode.h"
-#include "../src/common/move.h"
+#include "../src/common/move_type.h"
 
 void testSerializeCreateScenario(void)
 {

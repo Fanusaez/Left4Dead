@@ -6,7 +6,7 @@
 
 #include "../common/game_mode.h"
 #include "../common/soldier_type.h"
-#include "../common/move.h"
+#include "../common/move_type.h"
 
 class ClientSerializer{
 private:
@@ -17,7 +17,7 @@ public:
 
     std::vector<char> serialize_start_playing();
 
-    std::vector<char> serialize_move(Move move);
+    std::vector<char> serialize_move(MoveType move);
 
     std::vector<char> serialize_reloading();
 

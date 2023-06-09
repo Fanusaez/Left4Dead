@@ -65,7 +65,10 @@ if(SERVER)
 		./common/socket.cpp
 		./common/resolver.cpp
 		./common/game_dto.cpp
-		./common/instructions_dto.cpp
+		./common/instructionsDTO/instructions_dto.cpp
+		./common/instructionsDTO/join_dto.cpp
+		./common/instructionsDTO/create_dto.cpp
+		./common/instructionsDTO/move_dto.cpp
 		./server/acceptor.cpp
 		./server/server.cpp
 		./server/match_mananger.cpp
@@ -138,7 +141,10 @@ if(CLIENT)
 		./common/socket.cpp
 		./common/resolver.cpp
 		./common/game_dto.cpp
-		./common/instructions_dto.cpp
+		./common/instructionsDTO/instructions_dto.cpp
+		./common/instructionsDTO/join_dto.cpp
+		./common/instructionsDTO/create_dto.cpp
+		./common/instructionsDTO/move_dto.cpp
 		./client/lobby.cpp
 		./client/lobby_deserializer.cpp
 		./client/lobby_serializer.cpp

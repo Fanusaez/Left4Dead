@@ -1,5 +1,5 @@
 #include "game.h"
-#include "../common/move.h"
+#include "../common/move_type.h"
 #include <unistd.h>
 #include <chrono>
 
@@ -13,10 +13,12 @@ Game::Game(Queue<GameDTO> *queue_sender, int32_t *code, std::string *game_name, 
 }
 
 void Game::run(){   
-    InstructionsDTO instructionDTO;
-    InstructionsDTO start;
+    InstructionsDTO* instructionDTO;
+    InstructionsDTO* start;
     bool could_pop;
-    start = queue_entrante.pop();  //Espero a popoear la señal de start
+    for (int i = 0 ; i < queue_salientes.size() ; i++) {
+        start = queue_entrante.pop();  //Espero a popoear la señal de start
+    }
     while (keep_playing)
     {
         auto t_start = std::chrono::high_resolution_clock::now();
@@ -24,6 +26,7 @@ void Game::run(){
         int count = 0;
         while(could_pop){ //Controlar por cantidad y si no pudo popear mas
             game_logic.new_instruction(instructionDTO);
+            delete instructionDTO;
             could_pop = queue_entrante.try_pop(instructionDTO);
             count++;
         }
@@ -50,7 +53,7 @@ void Game::run(){
     }
 }
 
-Queue<InstructionsDTO> *Game::getQueue(){
+Queue<InstructionsDTO*> *Game::getQueue(){
     return &queue_entrante;
 }
 

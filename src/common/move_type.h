@@ -1,7 +1,7 @@
-#ifndef MOVE_H
-#define MOVE_H
+#ifndef MOVETYPE_H
+#define MOVETYPE_H
 
-enum Move
+enum MoveType
 {
     RIGHT,
     LEFT,

@@ -25,7 +25,11 @@ private:
     
     Queue<std::vector<char>> queue_sender;
 
-    Queue<InstructionsDTO> queue_receiver;
+    Queue<InstructionsDTO*> queue_receiver;
+
+    void get_create(InstructionsDTO* instruction_dto);
+
+    void get_join(InstructionsDTO* instruction_dto);
 
 public:
     Lobby(char *localhost, char *puerto);

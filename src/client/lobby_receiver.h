@@ -4,7 +4,7 @@
 #include "../common/thread.h"
 #include "../common/socket.h"
 #include "../common/queue.h"
-#include "../common/instructions_dto.h"
+#include "../common/instructionsDTO/instructions_dto.h"
 #include "lobby_deserializer.h"
 
 #include <atomic>
@@ -14,14 +14,14 @@
 class LobbyReceiver : public Thread
 {
 private:
-    Queue<InstructionsDTO> *queue_receiver;
+    Queue<InstructionsDTO*> *queue_receiver;
 
     std::atomic<bool> &keep_talking;
     
     LobbyDeserializer lobby_deserializer;
 
 public:
-    LobbyReceiver(Socket *socket, std::atomic<bool> &keep_talking, Queue<InstructionsDTO> *queue_receiver);
+    LobbyReceiver(Socket *socket, std::atomic<bool> &keep_talking, Queue<InstructionsDTO*> *queue_receiver);
 
     void run() override;
 

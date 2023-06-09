@@ -12,7 +12,7 @@ void Client::start_playing(){
     queue_sender.try_push(client_seializer.serialize_start_playing());
 }
 
-bool Client::move(Move move){
+bool Client::move(MoveType move){
     return (queue_sender.try_push(client_seializer.serialize_move(move)));
 }
 

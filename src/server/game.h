@@ -3,7 +3,7 @@
 
 #include "../common/queue.h"
 #include "../common/thread.h"
-#include "../common/instructions_dto.h"
+#include "../common/instructionsDTO/instructions_dto.h"
 #include "../common/game_dto.h"
 #include "game_logic.h"
 
@@ -21,7 +21,7 @@ private:
     std::string game_name;
     
     // La queue donde el player_receiver va a pushear es eta
-    Queue<InstructionsDTO> queue_entrante;
+    Queue<InstructionsDTO*> queue_entrante;
  
     // Tengo una referencia  a la queue del sender
     std::map<int,Queue<GameDTO> *> queue_salientes;
@@ -33,7 +33,7 @@ public:
 
     void run() override;
 
-    Queue<InstructionsDTO> *getQueue();
+    Queue<InstructionsDTO*> *getQueue();
 
     void addPlayer(Queue<GameDTO> *queue_sender, int *player_id);
 

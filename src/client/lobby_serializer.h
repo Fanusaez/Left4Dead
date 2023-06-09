@@ -6,7 +6,7 @@
 
 #include "../common/game_mode.h"
 #include "../common/soldier_type.h"
-#include "../common/move.h"
+#include "../common/move_type.h"
 
 class LobbySerializer{
 private:

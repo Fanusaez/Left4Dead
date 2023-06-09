@@ -1,5 +1,5 @@
 #include "lobby_serializer.h"
-#include "../common/instructions.h"
+#include "../common/instructions_type.h"
 #include <iostream>
 
 std::vector<char> LobbySerializer::serialize_create_scenario(const std::string& scenario_name){

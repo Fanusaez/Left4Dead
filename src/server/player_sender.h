@@ -8,7 +8,7 @@
 #include "player_receiver.h"
 #include "server_deserializer.h"
 #include "server_serializer.h"
-#include "../common/instructions.h"
+#include "../common/instructions_type.h"
 
 #include <atomic>
 #include <vector>
@@ -34,7 +34,7 @@ private:
     PlayerReceiver player_receiver;
 
     // Referencia a la queue que tendra el hilo de Game al cual le cargamos todo.
-    Queue<InstructionsDTO> *queue_receiver;
+    Queue<InstructionsDTO*> *queue_receiver;
 
     //Esta referencia es unicamente para el proceso inicial de create/join
     MatchMananger *match_mananger;
