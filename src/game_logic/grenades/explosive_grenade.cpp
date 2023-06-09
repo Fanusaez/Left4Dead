@@ -40,3 +40,7 @@ void ExplosiveGrenade::explode(float time, std::int16_t x_explosion, std::int16_
 bool ExplosiveGrenade::time_throw_grenade(float time) {
     return (time - last_thrown_grenade) >= time_to_throw_grenade;
 }
+
+GrenadeState *ExplosiveGrenade::get_state() {
+    return grenade_state;
+}

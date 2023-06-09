@@ -847,6 +847,46 @@ add_executable(testWitcher
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
         )
 
+add_executable(testStatesGrenades
+		test_grenade_states.cpp
+		../src/game_logic/soldier.cpp
+		../src/game_logic/game_factory.cpp
+		../src/game_logic/zombies/infected.cpp
+		../src/game_logic/zombies/witch.cpp
+		../src/game_logic/map.cpp
+		../src/game_logic/chaser.cpp
+		../src/game_logic/weapons/scout.cpp
+		../src/game_logic/weapons/idf.cpp
+		../src/game_logic/weapons/p90.cpp
+		../src/game_logic/grenades/explosive_grenade.cpp
+		../src/game_logic/grenades/smoke_grenade.cpp
+		../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
+		../src/game_logic/obstacle.cpp
+		../src/game_logic/states/idle.cpp
+		../src/game_logic/states/throwing_explosive_grenade.cpp
+		../src/game_logic/states/throwing_smoke_grenade.cpp
+		../src/game_logic/states/reloading.cpp
+		../src/game_logic/states/shooting.cpp
+		../src/game_logic/states/moving.cpp
+		../src/game_logic/states/dead.cpp
+		../src/game_logic/states/being_attacked.cpp
+		../src/game_logic/zombie_states/walking.cpp
+		../src/game_logic/zombie_states/zombie_idle.cpp
+		../src/game_logic/zombie_states/attacking.cpp
+		../src/game_logic/zombie_states/running.cpp
+		../src/game_logic/zombie_states/zombie_dead.cpp
+		../src/game_logic/zombie_states/screaming.cpp
+		../src/game_logic/zombie_states/zombie_being_attacked.cpp
+		../src/game_logic/zombie_states/stunned.cpp
+		../src/game_logic/zombie_states/jumping.cpp
+		../src/game_logic/zombie_states/chasing_states/chase_walking.cpp
+		../src/game_logic/zombie_states/chasing_states/chase_running.cpp
+		../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
+		)
+
+
 
 # target_link_libraries(testPrueba PRIVATE myLibrary)
 
@@ -876,6 +916,7 @@ set(testTargets
         testChasingStates
 		testSmokeGrenade
         testWitcher
+		testStatesGrenades
 )
 
 foreach(target ${testTargets})
