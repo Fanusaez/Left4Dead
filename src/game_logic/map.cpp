@@ -109,7 +109,7 @@ void GameMap::collision_going_left(std::vector<GameObject*>& game_objects,
 void GameMap::collision_going_right(std::vector<GameObject*>& game_objects,
                                           std::uint16_t x_pos,
                                           std::uint16_t y_pos) {
-    for (int i = x_pos + 1; i < y_size; i++) { // +1 para no autodispararme
+    for (int i = x_pos + 1; i < x_size; i++) { // +1 para no autodispararme
         if (map[y_pos][i] != nullptr) {
             game_objects.push_back(map[y_pos][i]);
         }
@@ -185,7 +185,7 @@ bool GameMap::check_free_position(std::int16_t x_pos,
 }
 
 void GameMap::update(float time) {
-    objects_in_map();
+    //objects_in_map();
     for (Zombie* zombie : zombies) {
         zombie->update(soldiers, time);
     }
@@ -200,6 +200,7 @@ Soldier* GameMap::get_soldier_with_idf() {
 
     std::int16_t x_pos = soldier_pos[X_POS];
     std::int16_t y_pos = soldier_pos[Y_POS];
+    std::cout<<x_pos<<","<<y_pos<<std::endl;
     map[y_pos][x_pos] = soldier;
     return soldier;
 }
@@ -275,6 +276,10 @@ bool GameMap::valid_object_position(std::int16_t x_pos, std::int16_t y_pos) {
 
 void GameMap::free_position(std::int16_t x_pos, std::int16_t y_pos) {
     map[y_pos][x_pos] = nullptr;
+}
+
+std::vector<Zombie*>* GameMap::get_zombies() {
+    return &zombies;
 }
 
 // ****************************** Metodos de Testeo ***********************************//
@@ -375,12 +380,11 @@ std::int16_t GameMap::objects_in_map() {
     for (int j = 0; j < y_size; j++) {
         for (int i = 0; i < x_size; i++) {
             if (map[j][i] != nullptr) {
+                std::cout << "pos elem encontrado : "<< i << ", " << j << std::endl;
                 contador++;
             }
         }
     }
+    std::cout << "cant elem map: "<<contador << std::endl;
     return contador;
-}
-int16_t GameMap::get_id() {
-    return (soldiers.size() + zombies.size());
 }

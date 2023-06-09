@@ -6,23 +6,17 @@
 #include "../common/move_type.h"
 #include <ctime>
 
-GameLogic::GameLogic() : game_map(200,200) {
-    Infected* walker = new Infected(3,40, game_map);
-    zombies.push_back(walker);
-    game_map.add_zombie(walker, 3, 40); 
+GameLogic::GameLogic() : game_map(100,30) {
+    game_map.add_random_zombie();
+    game_map.add_random_zombie();
+    game_map.add_random_zombie();
+    game_map.add_random_zombie();
 }
 
 void GameLogic::add_soldier(int* player_id) {
-    Weapon* idf = new Idf;
-    std::srand(std::time(0));
-    int16_t pos_x = std::rand() % 20 + 10;
-    while (!game_map.check_free_position(pos_x,40)){
-        int16_t pos_x = std::rand() % 20 + 10;
-    }
-    Soldier* soldier = new Soldier(idf,game_map,pos_x,40);
-    game_map.add_soldier(soldier,pos_x,40);
+    Soldier* soldier = game_map.get_soldier_with_idf();    
     playerSoldierMap[*player_id] = soldier;
-    timer = 0;
+    timer = 0;  //Esto va aca?
 }
 
 void GameLogic::new_instruction(InstructionsDTO* instruction) {
@@ -53,9 +47,12 @@ GameDTO GameLogic::get_game() {
         //piar.second->set_idle();
         //std::cout<<piar.second->get_x_pos()<<","<<piar.second->get_y_pos()<<std::endl;
     }
-    for (const auto& zombie: zombies){
-        ZombieObjectDTO zombieDTO(0, zombie->get_x_pos(), zombie->get_y_pos(), zombie->get_state()->zombie_state, zombie->facing_left());
+    std::vector<Zombie*>* zombies = game_map.get_zombies();
+    for (const auto& zombie: *zombies){
+        ZombieObjectDTO zombieDTO(zombie->get_id(), zombie->get_x_pos(), zombie->get_y_pos(), zombie->get_state()->zombie_state, zombie->facing_left());
         game_dto.add_zombie(zombieDTO);
+        //std::cout<<zombie->get_x_pos()<<","<<zombie->get_y_pos()<<std::endl;
+    
     }
     return game_dto;
 }

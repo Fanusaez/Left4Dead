@@ -126,10 +126,6 @@ void Infected::die(float time) {
     }
 }
 
-std::int16_t Infected::get_id() {
-    return id;
-}
-
 std::int16_t Infected::get_y_pos() {
     return y_pos;
 }
@@ -153,6 +149,10 @@ Infected::~Infected() {
 
 bool Infected::facing_left() {
     return (direction == LEFT);
+}
+
+std::int16_t Infected::get_id() {
+    return id;
 }
 
 // ************************* Metodos de testeo ************************************************8//

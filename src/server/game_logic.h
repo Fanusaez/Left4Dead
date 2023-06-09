@@ -20,8 +20,6 @@ private:
 
     std::map<int,Soldier*> playerSoldierMap;
 
-    std::vector<Zombie*> zombies;
-
     void move (InstructionsDTO* instruction);
 
     void reload (int player_id);

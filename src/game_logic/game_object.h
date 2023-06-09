@@ -3,7 +3,7 @@
 #include <vector>
 #include <cstdint>
 
-#define MOVEMENTS_PER_CELL 2
+#define MOVEMENTS_PER_CELL 5
 #define DOWN 1
 #define UP -1
 #define LEFT 2
