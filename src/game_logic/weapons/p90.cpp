@@ -15,17 +15,21 @@ void P90::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold
     }
 }
 
-void P90::throw_explosive_grenade(GameMap& map,
+State* P90::throw_explosive_grenade(GameMap& map,
                                   std::int16_t x_matrix_sold,
                                   std::int16_t y_matrix_explosion,
-                                  State*& current_state,
-                                  float time) {}
+                                  State* current_state,
+                                  float time) {
+    return nullptr;
+}
 
-void P90::throw_smoke_grenade(GameMap& map,
+State* P90::throw_smoke_grenade(GameMap& map,
                                   std::int16_t x_matrix_sold,
                                   std::int16_t y_matrix_explosion,
-                                  State*& current_state,
-                                  float time) {}
+                                  State* current_state,
+                                  float time) {
+    return nullptr;
+}
 
 void P90::reload() {
     bullets = mag_capacity;

@@ -23,20 +23,20 @@ void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold
     }
 }
 
-void Idf::throw_explosive_grenade(GameMap& map,
+State* Idf::throw_explosive_grenade(GameMap& map,
                                   std::int16_t x_matrix_explosion,
                                   std::int16_t y_matrix_sold,
-                                  State*& current_state,
+                                  State* current_state,
                                   float time) {
-    explosive_grenade.throw_grenade(map, x_matrix_explosion, y_matrix_sold, current_state, time);
+    return explosive_grenade.throw_grenade(map, x_matrix_explosion, y_matrix_sold, current_state, time);
 }
 
-void Idf::throw_smoke_grenade(GameMap& map,
+State* Idf::throw_smoke_grenade(GameMap& map,
                                   std::int16_t x_matrix_explosion,
                                   std::int16_t y_matrix_sold,
-                                  State*& current_state,
+                                  State* current_state,
                                   float time) {
-    smoke_grenade.throw_grenade(map, x_matrix_explosion, y_matrix_sold, current_state, time);
+    return smoke_grenade.throw_grenade(map, x_matrix_explosion, y_matrix_sold, current_state, time);
 }
 
 void Idf::reload() {

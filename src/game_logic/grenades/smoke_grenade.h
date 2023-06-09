@@ -20,10 +20,10 @@ public:
 
     void update(float time);
 
-    void throw_grenade(GameMap& map,
+    State* throw_grenade(GameMap& map,
                        std::int16_t x_matrix_explosion,
                        std::int16_t y_matrix_sold,
-                       State*& current_state,
+                       State* current_soldier_state,
                        float time);
 
     void explode(float time, std::int16_t x_explosion, std::int16_t y_explosion, GameMap& map) override;

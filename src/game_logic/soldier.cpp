@@ -74,7 +74,15 @@ void Soldier::throw_explosive_grenade(float time) {
         x_grenade_pos += GRANADE_DISTANCE_REACH;
     }
 
-    weapon->throw_explosive_grenade(map, x_grenade_pos, get_y_matrix_pos(), state, time);
+    State* new_state = weapon->throw_explosive_grenade(map,
+                                                       x_grenade_pos,
+                                                       get_y_matrix_pos(),
+                                                       state,
+                                                       time);
+    if (new_state) {
+        delete state;
+        state = new_state;
+    }
 }
 
 void Soldier::throw_smoke_grenade(float time) {
@@ -86,7 +94,15 @@ void Soldier::throw_smoke_grenade(float time) {
         x_grenade_pos += GRANADE_DISTANCE_REACH;
     }
 
-    weapon->throw_smoke_grenade(map, x_grenade_pos, get_y_matrix_pos(), state, time);
+    State* new_state = weapon->throw_smoke_grenade(map,
+                                                   x_grenade_pos,
+                                                   get_y_matrix_pos(),
+                                                   state,
+                                                   time);
+    if (new_state) {
+        delete state;
+        state = new_state;
+    }
 }
 
 void Soldier::receive_damage(std::uint16_t damage, float time) {

@@ -21,16 +21,16 @@ void update(float time) override;
 void shoot(std::vector<GameObject*>& shooting_objects,
            std::uint16_t x_pos_sold, float time) override;
 
-void throw_explosive_grenade(GameMap& map,
+    State* throw_explosive_grenade(GameMap& map,
                              std::int16_t x_matrix_explosion,
                              std::int16_t y_matrix_sold,
-                             State*& current_state,
+                             State* current_state,
                              float time) override;
 
-void throw_smoke_grenade(GameMap& map,
+    State* throw_smoke_grenade(GameMap& map,
                              std::int16_t x_matrix_explosion,
                              std::int16_t y_matrix_sold,
-                             State*& current_state,
+                             State* current_state,
                              float time) override;
 
 void reload() override;
