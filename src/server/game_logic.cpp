@@ -9,7 +9,7 @@
 GameLogic::GameLogic() : game_map(200,200) {
     Infected* walker = new Infected(3,40, game_map);
     zombies.push_back(walker);
-    game_map.add_zombie(walker, 3, 40);
+    game_map.add_zombie(walker, 3, 40); 
 }
 
 void GameLogic::add_soldier(int* player_id) {
@@ -48,13 +48,13 @@ GameDTO GameLogic::get_game() {
         Soldier *soldier = piar.second;
         SoldierObjectDTO soldier_dto(piar.first,soldier->get_id(), soldier->get_health(), soldier->get_x_pos(), 
                                 soldier->get_y_pos(), soldier->get_weapon()->get_bullets(),
-                                soldier->get_state()->soldier_state ,IDF, soldier->facingLeft);
+                                soldier->get_state()->soldier_state ,IDF, soldier->facing_left());
         game_dto.add_soldier(soldier_dto);
         //piar.second->set_idle();
         //std::cout<<piar.second->get_x_pos()<<","<<piar.second->get_y_pos()<<std::endl;
     }
     for (const auto& zombie: zombies){
-        ZombieObjectDTO zombieDTO(0, zombie->get_x_pos(), zombie->get_y_pos(), zombie->get_state()->zombie_state);
+        ZombieObjectDTO zombieDTO(0, zombie->get_x_pos(), zombie->get_y_pos(), zombie->get_state()->zombie_state, zombie->facing_left());
         game_dto.add_zombie(zombieDTO);
     }
     return game_dto;
@@ -66,12 +66,10 @@ void GameLogic::move (InstructionsDTO* instruction) {
     switch (move_dto->get_move_type()) {
     case 0:
         soldier->move_right(timer);
-        soldier->facingLeft = false;
         //std::cout<<"RIGTH"<<std::endl;
         break;
     case 1:
         soldier->move_left(timer);
-        soldier->facingLeft = true;
         //std::cout<<"LEFT"<<std::endl;
         break;
     case 2:

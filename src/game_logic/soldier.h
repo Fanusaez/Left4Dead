@@ -21,8 +21,6 @@ class Soldier : public GameObject {
 void die(float time);
 
  public:
-    bool facingLeft = false;
-
 Soldier(Weapon* weapon, GameMap& map); // lo dejo por ahora
 Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos);
 Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos, std::int16_t id);
@@ -62,6 +60,8 @@ std::int16_t get_y_pos() override;
 std::int16_t get_x_pos() override;
 std::int16_t get_y_matrix_pos() override;
 std::int16_t get_x_matrix_pos() override;
+
+bool facing_left();
 
 ~Soldier();
 

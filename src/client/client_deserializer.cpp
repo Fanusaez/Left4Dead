@@ -42,7 +42,8 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
         socket->recvall(&zobmie_state, 1, was_closed);
         socket->recvall(&position_x, 4, was_closed);
         socket->recvall(&position_y, 4, was_closed);
-        game_dto.add_zombie(ZombieObjectDTO(id, position_x, position_y, static_cast<ZombieObjectState>(zobmie_state)));
+        socket->recvall(&facingLeft, 1, was_closed);
+        game_dto.add_zombie(ZombieObjectDTO(id, position_x, position_y, static_cast<ZombieObjectState>(zobmie_state),facingLeft));
     }
     return game_dto;
 }

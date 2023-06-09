@@ -22,8 +22,6 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         chaser(this, map, x_pos, y_pos) {}
 
 void Infected::update(std::vector<GameObject*> soldiers, float time) {
-    std::cout<< "vida: " << health << std::endl;
-    std::cout<< "pos matriz: " << get_x_matrix_pos() << " "<< get_y_matrix_pos() <<  std::endl;
     attack(soldiers, time);
     chase_closest_soldier(soldiers, time);
 }
@@ -151,6 +149,10 @@ std::int16_t Infected::get_x_matrix_pos() {
 Infected::~Infected() {
     delete state;
     delete chase_state;
+}
+
+bool Infected::facing_left() {
+    return (direction == LEFT);
 }
 
 // ************************* Metodos de testeo ************************************************8//

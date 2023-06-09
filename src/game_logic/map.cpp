@@ -89,10 +89,8 @@ collision_with_zombie(std::vector<GameObject*>& game_objects,
                       std::uint16_t x_pos_sold,
                       std::uint16_t y_pos_sold,
                       std::int16_t direction) {
-    std::cout << "entro a colision con zombie" << std::endl;
     if (direction == LEFT) {
         collision_going_left(game_objects, x_pos_sold, y_pos_sold);
-        std::cout << "zombies a disparar: "<< game_objects.size() << std::endl;
         return;
     }
     collision_going_right(game_objects, x_pos_sold, y_pos_sold);
@@ -377,12 +375,10 @@ std::int16_t GameMap::objects_in_map() {
     for (int j = 0; j < y_size; j++) {
         for (int i = 0; i < x_size; i++) {
             if (map[j][i] != nullptr) {
-                std::cout << "pos elem encontrado : "<< i << ", " << j << std::endl;
                 contador++;
             }
         }
     }
-    std::cout << "cant elem map: "<<contador << std::endl;
     return contador;
 }
 int16_t GameMap::get_id() {

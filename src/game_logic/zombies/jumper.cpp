@@ -145,6 +145,10 @@ Jumper::~Jumper() {
     delete state;
 }
 
+bool Jumper::facing_left() {
+    return (direction == LEFT);
+}
+
 // ************************* Metodos de testeo ************************************************8//
 
 std::int16_t Jumper::get_health() {

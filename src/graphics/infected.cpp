@@ -18,6 +18,8 @@ void Infected::updateState(const ZombieObjectDTO &zombieDTO)
 	if (zombieDTO.id != this->getID())
 		throw std::invalid_argument("Invalid ID");
 
+	this->facingLeft = zombieDTO.facing_left; 
+
 	this->setPositionX(zombieDTO.position_x);
 	this->setPositionY(zombieDTO.position_y);
 	this->changeState(zombieDTO.state);

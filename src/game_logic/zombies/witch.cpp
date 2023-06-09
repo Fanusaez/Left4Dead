@@ -160,6 +160,10 @@ Witch::~Witch() {
     delete chase_state;
 }
 
+bool Witch::facing_left() {
+    return (direction == LEFT);
+}
+
 // ************************* Metodos de testeo ************************************************8//
 
 std::int16_t Witch::get_health() {

@@ -55,6 +55,8 @@ std::int16_t get_x_pos() override;
 std::int16_t get_y_matrix_pos() override;
 std::int16_t get_x_matrix_pos() override;
 
+bool facing_left() override;
+
 ~Infected();
 
 // ************************* Metodos de testeo ************************************************8//

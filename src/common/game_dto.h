@@ -30,10 +30,11 @@ struct ZombieObjectDTO {
     int position_x;     
     int position_y;      
     ZombieObjectState state; // Estado del objeto
+    bool facing_left;
 
     // Constructor para inicializar los atributos
-    ZombieObjectDTO(int8_t id, int position_x, int position_y, ZombieObjectState state)
-        : id(id), position_x(position_x), position_y(position_y), state(state) {}
+    ZombieObjectDTO(int8_t id, int position_x, int position_y, ZombieObjectState state, bool facing_left)
+        : id(id), position_x(position_x), position_y(position_y), state(state), facing_left(facing_left) {}
 };
 
 class GameDTO {
