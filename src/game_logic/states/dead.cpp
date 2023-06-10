@@ -33,6 +33,10 @@ State *Dead::throw_smoke_grenade(float time) {
     return nullptr;
 }
 
+State *Dead::call_air_strike(float time) {
+    return nullptr;
+}
+
 State* Dead::die(float time) {
     return nullptr;
 }

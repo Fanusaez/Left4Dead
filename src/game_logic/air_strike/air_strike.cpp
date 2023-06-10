@@ -1,6 +1,7 @@
 #include "air_strike.h"
 #include "../game_object.h"
 #include "../map.h"
+#include "../states/state.h"
 
 void AirStrike::update(float time) {
     AirStrikeState* state = air_strike_state -> update(time);
@@ -24,8 +25,7 @@ State* AirStrike::call_air_strike(GameMap& map,
         delete air_strike_state ;
         air_strike_state = new_state;
     }
-    return nullptr;
-    //return current_soldier_state->throw_explosive_grenade(time);
+    return current_soldier_state->call_air_strike(time);
 }
 
 void AirStrike::explode(float time, std::int16_t x_matrix_soldier, std::int16_t y_matrix_soldier, GameMap& map) {

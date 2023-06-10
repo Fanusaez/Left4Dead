@@ -1,5 +1,6 @@
 #include "moving.h"
 #include "../soldier.h"
+#include "calling_air_strike.h"
 
 
 #define DOWN 1
@@ -60,6 +61,13 @@ State *Moving::throw_explosive_grenade(float time) {
 State *Moving::throw_smoke_grenade(float time) {
     if (time_to_move(time)) {
         return new ThrowingSmokeGrenade(time);
+    }
+    return nullptr;
+}
+
+State *Moving::call_air_strike(float time) {
+    if (time_to_move(time)) {
+        return new CallingAirStrike(time);
     }
     return nullptr;
 }

@@ -24,6 +24,7 @@ public:
     State* revive(float time) override;
     State* throw_explosive_grenade(float time) override;
     State* throw_smoke_grenade(float time) override;
+    State* call_air_strike(float time) override;
     State* stop_action() override;
 };
 

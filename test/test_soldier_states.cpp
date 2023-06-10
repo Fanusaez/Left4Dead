@@ -11,6 +11,7 @@
 #include "game_logic/states/idle.h"
 #include "game_logic/weapons/scout.h"
 #include "game_logic/states/throwing_explosive_grenade.h"
+#include "game_logic/states/calling_air_strike.h"
 
 #define UP -1
 #define DOWN 1
@@ -589,6 +590,25 @@ void testSoldierThrowsSmokeGrenadeWithP90AndStateNotChanges(void) {
 
     TEST_CHECK(soldier_state != nullptr);
 }
+
+// ******************************************* CALLING AIR STRIKE *****************************************************//
+
+void testSoldierCallsAirStrikeWithP90AndStateChanges(void) {
+    GameMap map(10, 10);
+    Weapon *p90 = new P90;
+
+    Soldier soldier(p90, map, 2, 2);
+    map.add_soldier(&soldier, 2, 2);
+
+    soldier.call_air_strike(100);
+
+    CallingAirStrike* soldier_state = dynamic_cast<CallingAirStrike*>(soldier.get_state());
+
+    TEST_CHECK(soldier_state != nullptr);
+}
+
+
+
 TEST_LIST = {
         {"Soldier start with Idle state",                                     testSoldierStartsWithIdleState},
         {"Soldier shoots and reloads state changes to Reloading",             testSoldierShootsReloadAndStateChangesToReloading},
@@ -622,5 +642,6 @@ TEST_LIST = {
         {"Soldier throws smoke grenade and state changes to Throwing...",testSoldierThrowsSmokeGrenadeAndStateChanges},
         {"Soldier throws smoke grenade time passes and state change to idle", testSoldierThrowsSmokeGrenadeAndTenSecondsPasses},
         {"Soldier tries throwing smoke grenade with p90, not happening", testSoldierThrowsSmokeGrenadeWithP90AndStateNotChanges},
+        {"Soldier calls for an air strike and state changes",testSoldierCallsAirStrikeWithP90AndStateChanges},
         {NULL, NULL},
 };

@@ -1,5 +1,7 @@
 #include "reloading.h"
 #include "../soldier.h"
+#include "calling_air_strike.h"
+
 Reloading::Reloading(Weapon *weapon, float start_time) :
             weapon(weapon),
             start_time(start_time) {
@@ -58,6 +60,13 @@ State *Reloading::throw_explosive_grenade(float time) {
 State *Reloading::throw_smoke_grenade(float time) {
     if (time_to_relaod(time)) {
         return new ThrowingSmokeGrenade(time);
+    }
+    return nullptr;
+}
+
+State *Reloading::call_air_strike(float time) {
+    if (time_to_relaod(time)) {
+        return new CallingAirStrike(time);
     }
     return nullptr;
 }

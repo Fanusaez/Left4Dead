@@ -1,5 +1,6 @@
 #include "idle.h"
 #include "../weapons/weapon.h"
+#include "calling_air_strike.h"
 
 Idle::Idle() {
     soldier_state = IDLE_SOLDIER;
@@ -41,6 +42,10 @@ State *Idle::throw_explosive_grenade(float time) {
 
 State *Idle::throw_smoke_grenade(float time) {
     return new ThrowingSmokeGrenade(time);
+}
+
+State *Idle::call_air_strike(float time) {
+    return new CallingAirStrike(time);
 }
 
 State *Idle::stop_action() {

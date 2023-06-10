@@ -1,4 +1,5 @@
 #include "being_attacked.h"
+#include "calling_air_strike.h"
 
 BeingAttacked::BeingAttacked(float start_time) : start_time(start_time) {
     soldier_state  = SOLDIER_HURT;
@@ -57,6 +58,11 @@ State *BeingAttacked::throw_explosive_grenade(float time) {
 State *BeingAttacked::throw_smoke_grenade(float time) {
     if (!time_to_stop_being_attacked(time)) return nullptr;
     return new ThrowingSmokeGrenade(time);
+}
+
+State *BeingAttacked::call_air_strike(float time) {
+    if (!time_to_stop_being_attacked(time)) return nullptr;
+    return new CallingAirStrike(time);
 }
 
 bool BeingAttacked::time_to_stop_being_attacked(float time) {

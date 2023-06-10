@@ -1,14 +1,14 @@
-#ifndef BEINGATTACKED_H_
-#define BEINGATTACKED_H_
+#ifndef CALLING_AIR_STRIKE_H_
+#define CALLING_AIR_STRIKE_H_
 
+#include "state.h"
 #include "idle.h"
-
-class BeingAttacked : public State {
+class CallingAirStrike : public State{
 private:
-    float time_stop_being_attacked = 0.3; // cuanto tiempo dura la animacion
+    float time_stop_calling = 0.3; // cuanto tiempo dura la animacion
     float start_time;
 public:
-    BeingAttacked(float start_time);
+    CallingAirStrike(float start_time);
 
     State* update(float time) override;
     State* shoot(Soldier& soldier, Weapon* weapon, float time) override;
@@ -21,8 +21,8 @@ public:
     State* throw_smoke_grenade(float time) override;
     State* call_air_strike(float time) override;
     State* stop_action() override;
-    bool time_to_stop_being_attacked(float time);
+    bool time_to_stop_calling(float time);
 };
 
 
-#endif  // BEINGATTACKED_H_
+#endif //CALLING_AIR_STRIKE_H_

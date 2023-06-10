@@ -1,5 +1,6 @@
 #include "shooting.h"
 #include "../soldier.h"
+#include "calling_air_strike.h"
 
 Shooting::Shooting(Soldier& soldier, Weapon *weapon, float start_time) :
                     soldier(soldier),
@@ -55,6 +56,13 @@ State *Shooting::throw_explosive_grenade(float time) {
 State *Shooting::throw_smoke_grenade(float time) {
     if (time_to_shoot(time)) {
         return new ThrowingSmokeGrenade(time);
+    }
+    return nullptr;
+}
+
+State *Shooting::call_air_strike(float time) {
+    if (time_to_shoot(time)) {
+        return new CallingAirStrike(time);;
     }
     return nullptr;
 }

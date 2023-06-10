@@ -1,6 +1,7 @@
 #include "throwing_explosive_grenade.h"
 #include "../game_object.h"
 #include "../weapons/weapon.h"
+#include "calling_air_strike.h"
 
 ThrowingExplosiveGrenade::ThrowingExplosiveGrenade(float time)  : start_time(time){}
 
@@ -47,6 +48,13 @@ State *ThrowingExplosiveGrenade::throw_smoke_grenade(float time) {
    if (time_stop_throwing(time)) {
        return new ThrowingSmokeGrenade(time);
    }
+    return nullptr;
+}
+
+State *ThrowingExplosiveGrenade::call_air_strike(float time) {
+    if (time_stop_throwing(time)) {
+        return new CallingAirStrike(time);
+    }
     return nullptr;
 }
 
