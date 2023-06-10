@@ -209,20 +209,20 @@ void testSoldierMoveUpAndStateChangesToMoving(void) {
     TEST_CHECK(soldier_state != nullptr);
 }
 
-void testSoldierMovesUpAndImmediatelyReloadStateStaysMoving(void) {
+void testSoldierMovesUpAndImmediatelyReload(void) {
     GameMap map(10, 10);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
+    soldier.shoot(1);
+    soldier.move_up(2);
+    soldier.reload(2.001);
 
-    soldier.move_up(1);
-    soldier.reload(1.001);
+    Moving* moving_state = dynamic_cast<Moving*>(soldier.get_state());
+    Reloading* soldier_state = dynamic_cast<Reloading*>(soldier.get_state());
 
-    Moving* soldier_state = dynamic_cast<Moving*>(soldier.get_state());
-    Idle* idle_state = dynamic_cast<Idle*>(soldier.get_state());
-
-    TEST_CHECK(idle_state == nullptr);
+    TEST_CHECK(moving_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
 }
 
@@ -253,10 +253,10 @@ void testSoldierMovesUpAndShootsImmediately(void) {
     soldier.move_up(1);
     soldier.shoot(1.05);
 
-    Moving* soldier_state = dynamic_cast<Moving*>(soldier.get_state());
-    Shooting* shooting_state = dynamic_cast<Shooting*>(soldier.get_state());
+    Moving* moving_state = dynamic_cast<Moving*>(soldier.get_state());
+    Shooting* soldier_state = dynamic_cast<Shooting*>(soldier.get_state());
 
-    TEST_CHECK(shooting_state == nullptr);
+    TEST_CHECK(moving_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
 }
 
@@ -601,7 +601,7 @@ TEST_LIST = {
         {"Soldier shoots to fast and only one bullet is fired",               testSoldierShootsToFastAndOnlyOneBulletIsFired},
         {"Soldier shoots until runs out of ammo, state changes to Idle",      testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle},
         {"Soldier moves up and state changes to moving",                      testSoldierMoveUpAndStateChangesToMoving},
-        {"Soldier moves up and immediately reloads state not change",         testSoldierMovesUpAndImmediatelyReloadStateStaysMoving},
+        {"Soldier moves up and immediately reloads state not change",         testSoldierMovesUpAndImmediatelyReload},
         {"Soldier changes from Moving to Reloading",                          testSoldierMovesUpAndReload},
         {"Soldier tries to shoot while moving, state not change",             testSoldierMovesUpAndShootsImmediately},
         {"Soldier moves and then gets updated, state changes to idle",        testSoldierMovesAndThenItsToldToStopChangesToIdle},

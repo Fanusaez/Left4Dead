@@ -12,8 +12,8 @@
 #define MAP_SIZE_Y 10
 #define UP -1
 #define DOWN 1
-#define MOVEMENTS_PER_CELL 2
-#define MOV_NEEDED_TO_WALK_ALL_CELL 2
+#define MOVEMENTS_PER_CELL 5
+#define MOV_NEEDED_TO_WALK_ALL_CELL 4
 
 // ************************************ Colisiones eje Y *******************************************
 

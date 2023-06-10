@@ -8,8 +8,8 @@
 #include "game_logic/weapons/weapon.h"
 #define UP -1
 #define DOWN 1
-#define MOVEMENTS_PER_CELL 2
-#define MOV_NEEDED_TO_WALK_ALL_CELL 1
+#define MOVEMENTS_PER_CELL 5
+#define MOV_NEEDED_TO_WALK_ALL_CELL 4
 
 void testSoldierShootsInfectedSameLineLeft(void) {
     GameMap map(10, 10);

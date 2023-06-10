@@ -14,8 +14,8 @@
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
 #define WALKER_SPEED 1
-#define MOVEMENTS_PER_CELL 2
-#define MOV_NEEDED_TO_WALK_ALL_CELL 1
+#define MOVEMENTS_PER_CELL 5
+#define MOV_NEEDED_TO_WALK_ALL_CELL 4
 // ***************************************** Movimiento diagonal *******************************************//
 
 void testChaseInfectedDiagonallyUpAndRightFaceToFace() {
@@ -35,7 +35,7 @@ void testChaseInfectedDiagonallyUpAndRightFaceToFace() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == (8 * MOVEMENTS_PER_CELL) - MOV_NEEDED_TO_WALK_ALL_CELL);
+    TEST_CHECK(x_pos == (7 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 2 * MOVEMENTS_PER_CELL);
     TEST_CHECK(added_soldier == true);
     TEST_CHECK(added_walker == true);

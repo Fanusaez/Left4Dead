@@ -3,6 +3,7 @@
 #include "game_logic/map.h"
 #include "game_logic/grenades/grenade_state/thrown_grenade.h"
 #include "game_logic/states/idle.h"
+#include "game_logic/grenades/grenade_state/exploding.h"
 
 void testExplosiveGrenadeInitialStateIdle(void) {
     ExplosiveGrenade grenade;
@@ -19,7 +20,15 @@ void testExplisiveGrenadeIsThrownStateChanges(void) {
     TEST_CHECK(grenade_state != nullptr);
 }
 
-
+void testExplisiveGrenadeExplodeStateChanges(void) {
+    GameMap map(10,10);
+    ExplosiveGrenade grenade;
+    Idle idle;
+    grenade.throw_grenade(map, 0, 0, &idle, 100);
+    grenade.update(110);
+    Exploding* grenade_state = dynamic_cast<Exploding*>(grenade.get_state());
+    TEST_CHECK(grenade_state != nullptr);
+}
 TEST_LIST = {
         {"Explosive grenade starts with Idle state", testExplosiveGrenadeInitialStateIdle},
         {"Explosive grenade is thrown, state changes", testExplisiveGrenadeIsThrownStateChanges},

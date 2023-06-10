@@ -13,8 +13,8 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-#define MOVEMENTS_PER_CELL 2
-#define MOV_NEEDED_TO_WALK_ALL_CELL 1
+#define MOVEMENTS_PER_CELL 5
+#define MOV_NEEDED_TO_WALK_ALL_CELL 4
 
 void testMoveSoldierUp(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
@@ -59,8 +59,9 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
 
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
-
-    soldier.move_right();
+    for (int i = 0; i < MOV_NEEDED_TO_WALK_ALL_CELL; i++) {
+        soldier.move_right();
+    }
 
     Infected walker(3,7, map);
     map.add_zombie(&walker, 3, 7);
@@ -83,7 +84,9 @@ void testMoveSoldierWithZombieClose(){
     Soldier soldier(scout, map, 2, 8);
     map.add_soldier(&soldier, 2, 8);
 
-    soldier.move_right();
+    for (int i = 0; i < MOV_NEEDED_TO_WALK_ALL_CELL; i++) {
+        soldier.move_right();
+    }
 
     Infected walker(3,7, map);
     map.add_zombie(&walker, 3, 7);
