@@ -4,9 +4,9 @@
 Infected::Infected(int id, int initialX, int initialY) :
 	RenderableObject(id, initialX, initialY),
 	textureLoader(TextureLoader::getInstance()),
-	animation(textureLoader.getTexture("Zombie/Walk.png")),
+	animation(textureLoader.getTexture("Zombie/Idle.png")),
 	facingLeft(false),
-	state(WALKING)
+	state(IDLE_ZOMBIE)
 {}
 
 Infected::~Infected() {}
@@ -51,6 +51,10 @@ void Infected::changeState(const ZombieObjectState &state)
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Jump.png"));
 	else if (this->state == ATTACKING)
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Attack_1.png"));
+	else if (this->state == BEING_ATTACKED)
+		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Hurt.png"));
+	else if (this->state == DEAD)
+		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Dead.png"));
 	else
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Idle.png"));
 }
