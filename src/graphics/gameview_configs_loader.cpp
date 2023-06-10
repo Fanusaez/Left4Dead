@@ -15,6 +15,8 @@ GameviewConfigurationsLoader::GameviewConfigurationsLoader() :
 	this->spritesToLoad.push_back("Soldier_1/Idle.png");
 	this->spritesToLoad.push_back("Soldier_1/Shot_1.png");
 	this->spritesToLoad.push_back("Soldier_1/Recharge.png");
+	this->spritesToLoad.push_back("Soldier_1/Hurt.png");
+	this->spritesToLoad.push_back("Soldier_1/Dead.png");
 	this->spritesToLoad.push_back("backgrounds/War1/Pale/Full_Sky.png");
 	this->spritesToLoad.push_back("backgrounds/War1/Pale/Far_Background.png");
 	this->spritesToLoad.push_back("backgrounds/War1/Pale/Floor.png");
@@ -23,6 +25,8 @@ GameviewConfigurationsLoader::GameviewConfigurationsLoader() :
 	this->spritesToLoad.push_back("Zombie/Run.png");
 	this->spritesToLoad.push_back("Zombie/Jump.png");
 	this->spritesToLoad.push_back("Zombie/Attack_1.png");
+	this->spritesToLoad.push_back("Zombie/Hurt.png");
+	this->spritesToLoad.push_back("Zombie/Dead.png");
 }
 
 const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad() {
