@@ -15,7 +15,8 @@ void Acceptor::run() {
         }
         std::cout<<"Nuevo jugador"<<std::endl;
         //Le muevo el socket al cliente para que se maneje el en enviar y recibir mensajes
-        Player *new_player = new Player(std::move(socket_player), &match_mananger, int(players.size()));
+        Player *new_player = new Player(std::move(socket_player), 
+                            &match_mananger, int(players.size()));
 
         //Agergo mi jugador a mi lista de jugadores
         players.push_back(new_player);

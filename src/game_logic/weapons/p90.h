@@ -2,7 +2,7 @@
 #define P90_H_
 
 #include "weapon.h"
-#include "game_logic/air_strike/air_strike.h"
+#include "../air_strike/air_strike.h"
 
 class P90 : public Weapon {
  private:

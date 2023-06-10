@@ -24,5 +24,4 @@ enum ZombieObjectState
     SCREAMING,
     STUNNED
 };
-
 #endif

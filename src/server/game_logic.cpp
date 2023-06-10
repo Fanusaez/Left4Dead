@@ -5,6 +5,8 @@
 #include "../common/instructionsDTO/move_dto.h"
 #include "../common/move_type.h"
 #include <ctime>
+#include <vector>
+#include <utility>
 
 GameLogic::GameLogic() : game_map(100,30) {
     game_map.add_random_zombie();
@@ -40,24 +42,22 @@ GameDTO GameLogic::get_game() {
     GameDTO game_dto;
     for (const auto& piar: playerSoldierMap){
         Soldier *soldier = piar.second;
-        SoldierObjectDTO soldier_dto(piar.first,soldier->get_id(), soldier->get_health(), soldier->get_x_pos(), 
-                                soldier->get_y_pos(), soldier->get_weapon()->get_bullets(),
+        SoldierObjectDTO soldier_dto(piar.first,soldier->get_id(), soldier->get_health(), 
+                                soldier->get_x_pos(), soldier->get_y_pos(), 
+                                soldier->get_weapon()->get_bullets(),
                                 soldier->get_state()->soldier_state ,IDF, soldier->facing_left());
         game_dto.add_soldier(soldier_dto);
-        //piar.second->set_idle();
-        //std::cout<<piar.second->get_x_pos()<<","<<piar.second->get_y_pos()<<std::endl;
     }
     std::vector<Zombie*>* zombies = game_map.get_zombies();
     for (const auto& zombie: *zombies){
-        ZombieObjectDTO zombieDTO(zombie->get_id(), zombie->get_x_pos(), zombie->get_y_pos(), zombie->get_state()->zombie_state, zombie->facing_left());
+        ZombieObjectDTO zombieDTO(zombie->get_id(), zombie->get_x_pos(), zombie->get_y_pos(), 
+                                    zombie->get_state()->zombie_state, zombie->facing_left());
         game_dto.add_zombie(zombieDTO);
-        //std::cout<<zombie->get_x_pos()<<","<<zombie->get_y_pos()<<std::endl;
-    
     }
     return game_dto;
 }
 
-void GameLogic::move (InstructionsDTO* instruction) {
+void GameLogic::move(InstructionsDTO* instruction) {
     MoveDTO* move_dto = dynamic_cast<MoveDTO*>(instruction);
     Soldier* soldier = playerSoldierMap[move_dto->get_player_id()];
     switch (move_dto->get_move_type()) {
@@ -83,12 +83,12 @@ void GameLogic::move (InstructionsDTO* instruction) {
     }
 }
 
-void GameLogic::reload (int player_id) {
+void GameLogic::reload(int player_id) {
     Soldier* soldier = playerSoldierMap[player_id];
     soldier->reload(timer);
 }
 
-void GameLogic::shoot (int player_id) {
+void GameLogic::shoot(int player_id) {
     Soldier* soldier = playerSoldierMap[player_id];
     soldier->shoot(timer);
 }

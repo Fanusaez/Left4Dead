@@ -11,7 +11,6 @@
 #include <vector>
 
 class ServerDeserializer {
-
 private:
     Socket *socket;
 
@@ -30,9 +29,8 @@ private:
     InstructionsDTO* deserialize_start(bool *was_closed, int *player_id);
 
 public:
-    ServerDeserializer(Socket *socket);
+    explicit ServerDeserializer(Socket *socket);
 
     InstructionsDTO* obtener_instruccion(bool *was_closed, int* player_id);
-
 };
 #endif

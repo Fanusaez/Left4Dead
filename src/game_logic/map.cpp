@@ -225,7 +225,7 @@ Soldier* GameMap::get_soldier_with_idf() {
 
     std::int16_t x_pos = soldier_pos[X_POS];
     std::int16_t y_pos = soldier_pos[Y_POS];
-    std::cout<<x_pos<<","<<y_pos<<std::endl;
+    //std::cout<<x_pos<<","<<y_pos<<std::endl;
     map[y_pos][x_pos] = soldier;
     return soldier;
 }

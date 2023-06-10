@@ -10,9 +10,7 @@
 
 class ClientSerializer{
 private:
-
 public:
-
     /*----------------------Game message--------------------*/
 
     std::vector<char> serialize_start_playing();

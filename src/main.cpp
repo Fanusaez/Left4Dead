@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
 	*/
 	Lobby lobby(argv[1], argv[2]);
 	int player_id = lobby.get_player_id();
-	std::cout<<"Player id: "<<player_id<<std::endl;
 	while (lobby.running()) {
 		std::string input;
 		std::getline(std::cin, input);
@@ -95,7 +94,6 @@ int main(int argc, char *argv[])
 		}
 		for (auto& zombie: zombies){
 			if(objects.find(zombie.id) == objects.end()){
-				std::cout<<"Se creo zombie"<<std::endl;
 				std::unique_ptr<RenderableObject> ptr = std::move(creator.create(zombie));
 				objects[ptr->getID()] = std::move(ptr);
 			}

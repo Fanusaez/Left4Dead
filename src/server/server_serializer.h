@@ -18,7 +18,7 @@ private:
 public:
     ServerSerializer(); //Solo para testing
 
-    ServerSerializer(Socket *socket);
+    explicit ServerSerializer(Socket *socket);
 
     void serialize_create_scenario(int32_t &scenario_code, bool *was_closed);
 

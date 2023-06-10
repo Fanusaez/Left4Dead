@@ -8,10 +8,12 @@ InstructionsDTO::InstructionsDTO(InstructionsType instruction) : instruction_typ
 InstructionsDTO::InstructionsDTO(InstructionsType instruction, std::vector<char> parameters) : 
     instruction_type(instruction), parameters(parameters){}    
 
-InstructionsDTO::InstructionsDTO(int* player_id, InstructionsType instruction, std::vector<char> parameters) : 
-    player_id(player_id), instruction_type(instruction), parameters(parameters){}
+InstructionsDTO::InstructionsDTO(int* player_id, InstructionsType instruction, 
+    std::vector<char> parameters) : player_id(player_id), instruction_type(instruction), 
+    parameters(parameters){}
 
-InstructionsDTO::InstructionsDTO(int* player_id, InstructionsType instruction) : parameters(),player_id(player_id), instruction_type(instruction) {}
+InstructionsDTO::InstructionsDTO(int* player_id, InstructionsType instruction) : 
+            parameters(),player_id(player_id), instruction_type(instruction) {}
 
 InstructionsType InstructionsDTO::get_instruction() {
     return instruction_type;

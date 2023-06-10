@@ -15,7 +15,7 @@ private:
     Socket *socket;
 
 public:
-    LobbyDeserializer(Socket *socket);
+    explicit LobbyDeserializer(Socket *socket);
 
     InstructionsDTO* obtener_instruccion(bool *was_closed);
 
@@ -27,7 +27,6 @@ public:
     
     InstructionsDTO* deserialize_game_list(bool *was_closed);
 
-    InstructionsDTO* deserialize_start_game(bool *was_closed);
-    
+    InstructionsDTO* deserialize_start_game(bool *was_closed);    
 };
 #endif

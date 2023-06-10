@@ -1,12 +1,13 @@
 #include "player_sender.h"
 #include "../common/instructionsDTO/create_dto.h"
 #include "../common/instructionsDTO/join_dto.h"
-#include <string.h>
+#include <string>
 
-PlayerSender::PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, MatchMananger *match_mananger, int* player_id) : 
-    keep_talking(keep_talking),queue_sender(10000), player_receiver(socket,match_mananger,keep_talking, player_id),
-    match_mananger(match_mananger), server_deserializer(socket), server_serializer(socket), player_id(player_id)
-{
+PlayerSender::PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, 
+    MatchMananger *match_mananger, int* player_id) : keep_talking(keep_talking),
+    queue_sender(10000), player_receiver(socket,match_mananger,keep_talking, player_id),
+    match_mananger(match_mananger), server_deserializer(socket), server_serializer(socket), 
+    player_id(player_id) {
     queue_receiver = nullptr;
     keep_talking = true;
 }
@@ -25,7 +26,7 @@ void PlayerSender::run() {
 }
 
 void PlayerSender::join_player_receiver(){
-    if(queue_receiver != nullptr){
+    if (queue_receiver != nullptr){
         queue_receiver->close();
         player_receiver.join();  
     }
@@ -38,14 +39,16 @@ void PlayerSender::close_queue() {
 void PlayerSender::init_player_receiver(){
     // Mientras no se le asigne partida
     int32_t game_code;
-    while (keep_talking){
-        InstructionsDTO* instruction = server_deserializer.obtener_instruccion(&was_closed,player_id);
-        if(was_closed)
+    while (keep_talking) {
+        InstructionsDTO* instruction = server_deserializer.obtener_instruccion(&was_closed,
+                                                                                player_id);
+        if (was_closed)
             return;
         if (instruction->get_instruction() == CREATE) {
             CreateDTO* create_dto = dynamic_cast<CreateDTO*>(instruction);
             std::string game_name = create_dto->get_scenario_name();
-            queue_receiver = match_mananger->create_game(&queue_sender, &game_name, player_id, &game_code);
+            queue_receiver = match_mananger->create_game(&queue_sender, &game_name, 
+                                                            player_id, &game_code);
             if (queue_receiver == nullptr)
                 server_serializer.send_error_create(&was_closed);
             else

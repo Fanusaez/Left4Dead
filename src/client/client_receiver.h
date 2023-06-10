@@ -24,6 +24,5 @@ public:
     ClientReceiver(Socket *socket, std::atomic<bool> &keep_talking, Queue<GameDTO> *queue_receiver);
 
     void run() override;
-
 };
 #endif

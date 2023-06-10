@@ -7,6 +7,8 @@
 #include "client_receiver.h"
 #include "client_serializer.h"
 #include <optional>
+#include <utility>
+#include <vector>
 
 class Client
 {
@@ -26,7 +28,7 @@ private:
     Queue<GameDTO> queue_receiver;
 
 public:
-    Client(Socket&& socket);
+    explicit Client(Socket&& socket);
 
     bool move(MoveType move);
 
@@ -39,6 +41,5 @@ public:
     void join();
 
     void start_playing();
-
 };
 #endif

@@ -27,7 +27,8 @@ private:
     int* player_id;
 
 public:
-    PlayerReceiver(Socket *socket, MatchMananger *match_manager, std::atomic<bool> &keep_talking, int *player_id);
+    PlayerReceiver(Socket *socket, MatchMananger *match_manager, 
+                std::atomic<bool> &keep_talking, int *player_id);
 
     void run() override;
 

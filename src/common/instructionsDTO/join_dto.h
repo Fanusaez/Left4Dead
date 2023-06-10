@@ -13,7 +13,7 @@ private:
 public:
     JoinDTO(int* player_id, int32_t game_code); 
 
-    JoinDTO(bool could_join); 
+    explicit JoinDTO(bool could_join); 
     
     int32_t get_game_code();
 

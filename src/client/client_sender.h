@@ -19,7 +19,8 @@ private:
     std::atomic<bool> &keep_talking;
 
 public:
-    ClientSender(Socket *socket, std::atomic<bool> &keep_talking, Queue<std::vector<char>> *queue_sender);
+    ClientSender(Socket *socket, std::atomic<bool> &keep_talking, 
+                Queue<std::vector<char>> *queue_sender);
 
     void run() override;
 };

@@ -9,6 +9,7 @@
 
 #include <map>
 #include <atomic>
+#include <string>
 
 class Game : public Thread {
 private:

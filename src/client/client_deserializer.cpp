@@ -32,9 +32,9 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
         socket->recvall(&facingLeft, 1, was_closed);
         socket->recvall(&bullets, 2, was_closed);
         socket->recvall(&health, 2, was_closed);
-        game_dto.add_soldier(SoldierObjectDTO(player_id, id, health, position_x, position_y, bullets,
-            static_cast<SoldierObjectState>(soldier_state), static_cast<SoldierType>(soldier_type),facingLeft));
-        //std::cout<<"P_id: "<<player_id<<" Id: "<<id<<" Health: "<<health<<" X: "<<position_x<<" Y: "<<position_y<<" bullets: "<<bullets<<std::endl;s
+        game_dto.add_soldier(SoldierObjectDTO(player_id, id, health, position_x, position_y, 
+                                    bullets, static_cast<SoldierObjectState>(soldier_state),
+                                    static_cast<SoldierType>(soldier_type),facingLeft));
     }
     for (int i = 0; i < int(zombies_size); i++)
     {
@@ -43,7 +43,8 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
         socket->recvall(&position_x, 4, was_closed);
         socket->recvall(&position_y, 4, was_closed);
         socket->recvall(&facingLeft, 1, was_closed);
-        game_dto.add_zombie(ZombieObjectDTO(id, position_x, position_y, static_cast<ZombieObjectState>(zobmie_state),facingLeft));
+        game_dto.add_zombie(ZombieObjectDTO(id, position_x, position_y, 
+        static_cast<ZombieObjectState>(zobmie_state),facingLeft));
     }
     return game_dto;
 }

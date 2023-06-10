@@ -42,7 +42,8 @@ private:
     int *player_id;
 
 public:
-    PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, MatchMananger *matchMananger, int *player_id);
+    PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, 
+                    MatchMananger *matchMananger, int *player_id);
 
     void run() override;
 
@@ -51,6 +52,5 @@ public:
     void init_player_receiver();
 
     void close_queue();
-
 };
 #endif

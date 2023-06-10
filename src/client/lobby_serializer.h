@@ -10,7 +10,6 @@
 
 class LobbySerializer{
 private:
-
 public:
     /*----------------------Lobby message--------------------*/
 
@@ -25,6 +24,5 @@ public:
     std::vector<char> serialize_request_game_list();
 
     std::vector<char> serialize_start_playing();
-
 };
 #endif

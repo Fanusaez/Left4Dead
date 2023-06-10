@@ -2,6 +2,7 @@
 #include "../common/move_type.h"
 #include <unistd.h>
 #include <chrono>
+#include <string>
 
 double rate = 0.05;
 
@@ -24,7 +25,7 @@ void Game::run(){
         auto t_start = std::chrono::high_resolution_clock::now();
         could_pop = queue_entrante.try_pop(instructionDTO);
         int count = 0;
-        while(could_pop){ //Controlar por cantidad y si no pudo popear mas
+        while (could_pop) { //Controlar por cantidad y si no pudo popear mas
             game_logic.new_instruction(instructionDTO);
             delete instructionDTO;
             could_pop = queue_entrante.try_pop(instructionDTO);
@@ -44,10 +45,9 @@ void Game::run(){
 		if(rest < 0) {
 			double behind = -rest;
         	double lost = behind - std::fmod(behind, rate);
-        	t_start += std::chrono::duration_cast<std::chrono::high_resolution_clock::duration>(std::chrono::duration<double>(lost));
-
-		}
-		else {
+        	t_start += std::chrono::duration_cast<std::chrono::high_resolution_clock::duration>
+                                                        (std::chrono::duration<double>(lost));
+		} else {
 			std::this_thread::sleep_for(std::chrono::duration<double>(rest));
 		}
     }

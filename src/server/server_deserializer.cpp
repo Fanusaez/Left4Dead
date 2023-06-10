@@ -37,7 +37,6 @@ InstructionsDTO* ServerDeserializer::obtener_instruccion(bool *was_closed, int* 
             //return (deserialize_grenede(was_closed, player_id));
             break;
         }
-
 }
 
 CreateDTO* ServerDeserializer::deserialize_create(bool *was_closed, int* player_id)

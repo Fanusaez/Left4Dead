@@ -8,6 +8,7 @@
 #include "../game_logic/soldier.h"
 #include "../game_logic/zombies/zombie.h"
 #include <map>
+#include <utility>
 
 #define SIZE_X  10
 #define SIZE_Y  10
@@ -20,11 +21,11 @@ private:
 
     std::map<int,Soldier*> playerSoldierMap;
 
-    void move (InstructionsDTO* instruction);
+    void move(InstructionsDTO* instruction);
 
-    void reload (int player_id);
+    void reload(int player_id);
 
-    void shoot (int player_id);
+    void shoot(int player_id);
 
 public:
     GameLogic();

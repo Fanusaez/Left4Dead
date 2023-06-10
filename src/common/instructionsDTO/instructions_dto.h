@@ -18,7 +18,7 @@ public:
 
     InstructionsDTO(InstructionsType instruction, std::vector<char> parameters);
 
-    InstructionsDTO(InstructionsType instruction);
+    explicit InstructionsDTO(InstructionsType instruction);
     
     InstructionsDTO(int* player_id, InstructionsType instruction);
 

@@ -1,8 +1,10 @@
 #include "client.h"
 #include <sys/socket.h>
+#include <utility>
 
 Client::Client(Socket&& peer) : queue_sender(1000000), queue_receiver(1000000), keep_talking(true),
-    client_sender(&socket,std::ref(keep_talking),&queue_sender), client_receiver(&socket,std::ref(keep_talking),&queue_receiver), socket(std::move(peer)) {
+    client_sender(&socket,std::ref(keep_talking),&queue_sender), 
+    client_receiver(&socket,std::ref(keep_talking),&queue_receiver), socket(std::move(peer)) {
     client_sender.start();
     client_receiver.start();
     start_playing();
@@ -26,9 +28,9 @@ bool Client::shoot(){
 
 std::optional<GameDTO> Client::get_game(){
     GameDTO game_dto;
-    if(queue_receiver.try_pop(game_dto))
+    if (queue_receiver.try_pop(game_dto)) {
         return std::optional<GameDTO> (game_dto);
-    else{
+    } else {
         return std::optional<GameDTO> ();
     }
 }

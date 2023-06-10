@@ -21,9 +21,9 @@ private:
     LobbyDeserializer lobby_deserializer;
 
 public:
-    LobbyReceiver(Socket *socket, std::atomic<bool> &keep_talking, Queue<InstructionsDTO*> *queue_receiver);
+    LobbyReceiver(Socket *socket, std::atomic<bool> &keep_talking, 
+                    Queue<InstructionsDTO*> *queue_receiver);
 
     void run() override;
-
 };
 #endif

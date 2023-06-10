@@ -78,7 +78,8 @@ std::vector<char> ServerSerializer::serialize_soldier_health(int *health)
     return buffer;
 }
 
-std::vector<char> ServerSerializer::serialize_game_stats(int *infected, int16_t *ammo, int16_t *time)
+std::vector<char> ServerSerializer::serialize_game_stats(
+            int *infected, int16_t *ammo, int16_t *time)
 {
     std::vector<char> buffer;
 
@@ -100,7 +101,7 @@ std::vector<char> ServerSerializer::serialize_games_availables(const std::vector
     std::mutex m;
     m.lock();
     buffer.push_back(games.size());
-    for(auto &game: games){
+    for (auto &game: games){
         buffer.push_back(game->get_game_code());
         buffer.push_back(game->get_players());
     }
@@ -150,7 +151,6 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
         buffer.insert(buffer.end(), p, p + sizeof(int));
 
         buffer.push_back(obj.facing_left);
-
     }
     int sz = socket->sendall(buffer.data(), buffer.size(), was_closed);
 }

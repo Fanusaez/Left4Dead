@@ -14,7 +14,7 @@ private:
     Socket *socket;
 
 public:
-    ClientDeserializer(Socket *socket);
+    explicit ClientDeserializer(Socket *socket);
 
     /*----------------------Game message--------------------*/
 

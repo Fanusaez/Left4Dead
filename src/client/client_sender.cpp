@@ -6,7 +6,8 @@
 
 #include <arpa/inet.h>
 
-ClientSender::ClientSender(Socket *socket, std::atomic<bool> &keep_talking,Queue<std::vector<char>> *queue_sender) : 
+ClientSender::ClientSender(Socket *socket, std::atomic<bool> &keep_talking,
+                            Queue<std::vector<char>> *queue_sender) : 
     socket(socket), keep_talking(keep_talking), queue_sender(queue_sender){}
 
 void ClientSender::run() {

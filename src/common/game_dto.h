@@ -18,10 +18,10 @@ struct SoldierObjectDTO {
     bool facing_left;
 
     // Constructor para inicializar los atributos
-    SoldierObjectDTO(int player_id, int16_t id, int16_t health, int16_t position_x, int16_t position_y, 
-                    uint16_t bullets, SoldierObjectState state, SoldierType soldier_type, 
-                    bool facing_left) : player_id(player_id), id(id), health(health), 
-                    position_x(position_x), position_y(position_y), state(state), 
+    SoldierObjectDTO(int player_id, int16_t id, int16_t health, int16_t position_x, 
+                    int16_t position_y, uint16_t bullets, SoldierObjectState state, 
+                    SoldierType soldier_type, bool facing_left) : player_id(player_id), id(id),
+                    health(health), position_x(position_x), position_y(position_y), state(state),
                     soldier_type(soldier_type), facing_left(facing_left) {}
 };
 
@@ -33,13 +33,13 @@ struct ZombieObjectDTO {
     bool facing_left;
 
     // Constructor para inicializar los atributos
-    ZombieObjectDTO(int8_t id, int position_x, int position_y, ZombieObjectState state, bool facing_left)
-        : id(id), position_x(position_x), position_y(position_y), state(state), facing_left(facing_left) {}
+    ZombieObjectDTO(int8_t id, int position_x, int position_y, ZombieObjectState state, 
+                    bool facing_left) : id(id), position_x(position_x), position_y(position_y),
+                    state(state), facing_left(facing_left) {}
 };
 
 class GameDTO {
 private:
-
     std::vector<SoldierObjectDTO> soldiers;
 
     std::vector<ZombieObjectDTO> zombies;
@@ -58,6 +58,5 @@ public:
     std::vector<SoldierObjectDTO> get_soldiers();
 
     std::vector<ZombieObjectDTO> get_zombies();
-
 };
 #endif

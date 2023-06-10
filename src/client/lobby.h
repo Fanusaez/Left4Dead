@@ -7,6 +7,8 @@
 #include "lobby_serializer.h"
 #include "lobby_deserializer.h"
 #include <optional>
+#include <vector>
+#include <string>
 
 class Lobby
 {
@@ -53,6 +55,5 @@ public:
     void update();
 
     int get_player_id();
-
 };
 #endif
