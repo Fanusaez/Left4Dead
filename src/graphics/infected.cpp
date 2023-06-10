@@ -43,18 +43,21 @@ void Infected::changeState(const ZombieObjectState &state)
 
 	this->state = state;
 
-	if (this->state == WALKING)
+	if (this->state == WALKING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Walk.png"));
-	else if (this->state == RUNNING)
+	} else if (this->state == RUNNING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Run.png"));
-	else if (this->state == JUMPING)
+	} else if (this->state == JUMPING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Jump.png"));
-	else if (this->state == ATTACKING)
+	} else if (this->state == ATTACKING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Attack_1.png"));
-	else if (this->state == BEING_ATTACKED)
+	} else if (this->state == BEING_ATTACKED) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Hurt.png"));
-	else if (this->state == DEAD)
+	} else if (this->state == DEAD) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Dead.png"));
-	else
+		this->animation.noLoop();
+	} else {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Idle.png"));
+		this->animation.noLoop();
+	}
 }
