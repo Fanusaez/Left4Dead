@@ -93,6 +93,9 @@ Soldier* get_soldier_with_idf();
 Soldier* get_soldier_with_scout();
 Soldier* get_soldier_with_p90();
 void add_random_zombie();
+void add_infected();
+void add_jumper();
+void add_witch();
 
 bool add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
 bool add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);

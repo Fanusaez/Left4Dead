@@ -5,7 +5,8 @@
 #include "weapons/scout.h"
 #include "map.h"
 #include "zombies/infected.h"
-
+#include "zombies/jumper.h"
+#include "zombies/witch.h"
 #define X_POS 0
 #define Y_POS 1
 
@@ -38,4 +39,17 @@ Zombie* GameFactory::create_random_zombie(std::vector<std::int16_t>& zombie_pos)
         return infected;
     }
     return nullptr; // para que no tire waning por ahora
+}
+
+Zombie* GameFactory::create_infected(std::vector<std::int16_t>& zombie_pos) {
+    return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+
+}
+
+Zombie* GameFactory::create_jumper(std::vector<std::int16_t>& zombie_pos) {
+    return new Jumper(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+}
+
+Zombie* GameFactory::create_witch(std::vector<std::int16_t>& zombie_pos) {
+    return new Witch(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
 }
