@@ -30,7 +30,7 @@ public:
 
     bool time_to_call_air_strike(float time);
 
-    //AirAttackState* get_state();
+    AirStrikeState* get_state();
 };
 
 

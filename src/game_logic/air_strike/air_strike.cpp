@@ -36,7 +36,10 @@ void AirStrike::explode(float time, std::int16_t x_matrix_soldier, std::int16_t 
     }
 }
 
-
 bool AirStrike::time_to_call_air_strike(float time) {
     return (time - last_called_air_strike) >= _time_to_call_air_strike;
+}
+
+AirStrikeState *AirStrike::get_state() {
+    return air_strike_state;
 }
