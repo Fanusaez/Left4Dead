@@ -34,6 +34,13 @@ State* throw_smoke_grenade(GameMap& map,
                          State* current_state,
                          float time) override;
 
+State* call_air_strike(GameMap& map,
+                           std::int16_t x_matrix_explosion,
+                           std::int16_t y_matrix_sold,
+                           State* current_state,
+                           float time) override;
+
+
 void reload() override;
 bool isFullyLoaded() override;
 bool empty() override;

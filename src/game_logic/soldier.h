@@ -30,6 +30,7 @@ void reload(float time);
 void shoot(float time);
 void throw_explosive_grenade(float time);
 void throw_smoke_grenade(float time);
+void call_air_strike(float time);
 void move_up(float time);
 void move_down(float time);
 void move_right(float time);

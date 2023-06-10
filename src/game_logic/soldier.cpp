@@ -105,6 +105,18 @@ void Soldier::throw_smoke_grenade(float time) {
     }
 }
 
+void Soldier::call_air_strike(float time) {
+    State* new_state = weapon->call_air_strike(map,
+                                               get_x_matrix_pos(),
+                                               get_y_matrix_pos(),
+                                               state,
+                                               time);
+    if (new_state) {
+        delete state;
+        state = new_state;
+    }
+}
+
 void Soldier::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
     if (health <= 0) {

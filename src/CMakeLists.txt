@@ -113,6 +113,10 @@ if(SERVER)
 		./game_logic/zombie_states/zombie_state.h
 		./game_logic/chaser.cpp
 		./game_logic/map.cpp
+		./game_logic/air_strike/air_strike.cpp
+		./game_logic/air_strike/air_strike_states/air_strike_exploding.cpp
+		./game_logic/air_strike/air_strike_states/air_strike_idle.cpp
+		./game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
 		./game_logic/obstacle.cpp
 		./game_logic/soldier.cpp
 		./game_logic/zombies/infected.cpp

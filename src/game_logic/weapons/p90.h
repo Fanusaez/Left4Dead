@@ -2,12 +2,14 @@
 #define P90_H_
 
 #include "weapon.h"
+#include "game_logic/air_strike/air_strike.h"
 
 class P90 : public Weapon {
  private:
     std::int16_t bullets = 30;
     const std::int16_t mag_capacity = 30;
     std::int16_t damage = 15;
+    AirStrike air_strike;
 
  public:
 
@@ -27,6 +29,11 @@ void shoot(std::vector<GameObject*>& shooting_objects,
                              State* current_state,
                              float time) override;
 
+    State* call_air_strike(GameMap& map,
+                           std::int16_t x_matrix_explosion,
+                           std::int16_t y_matrix_sold,
+                           State* current_state,
+                           float time) override;
 
 void reload() override;
 bool isFullyLoaded() override;

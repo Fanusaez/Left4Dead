@@ -34,6 +34,15 @@ State* Scout::throw_smoke_grenade(GameMap& map,
 }
 
 
+State *
+Scout::call_air_strike(GameMap &map,
+                       std::int16_t x_soldier,
+                       std::int16_t y_soldier,
+                       State *current_state,
+                       float time) {
+    return nullptr;
+}
+
 void Scout::reload() {
     bullets = mag_capacity;
 }

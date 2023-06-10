@@ -39,6 +39,15 @@ State* Idf::throw_smoke_grenade(GameMap& map,
     return smoke_grenade.throw_grenade(map, x_matrix_explosion, y_matrix_sold, current_state, time);
 }
 
+State *
+Idf::call_air_strike(GameMap &map,
+                     std::int16_t x_soldier,
+                     std::int16_t y_soldier,
+                     State *current_state,
+                     float time) {
+    return nullptr;
+}
+
 void Idf::reload() {
     bullets = mag_capacity;
 }

@@ -4,7 +4,7 @@
 #define FIRST_ENEMY 0
 
 void P90::update(float time) {
-
+    air_strike.update(time);
 }
 
 void P90::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold_pos, float time) {
@@ -29,6 +29,15 @@ State* P90::throw_smoke_grenade(GameMap& map,
                                   State* current_state,
                                   float time) {
     return nullptr;
+}
+
+State *
+P90::call_air_strike(GameMap &map,
+                     std::int16_t x_soldier,
+                     std::int16_t y_soldier,
+                     State *current_state,
+                     float time) {
+    return air_strike.call_air_strike(map, x_soldier, y_soldier, current_state, time);
 }
 
 void P90::reload() {

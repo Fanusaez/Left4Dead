@@ -33,6 +33,12 @@ void shoot(std::vector<GameObject*>& shooting_objects,
                              State* current_state,
                              float time) override;
 
+    State* call_air_strike(GameMap& map,
+                           std::int16_t x_soldier,
+                           std::int16_t y_soldier,
+                           State* current_state,
+                           float time) override;
+
 void reload() override;
 bool isFullyLoaded() override;
 bool empty() override;

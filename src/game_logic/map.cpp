@@ -70,6 +70,31 @@ void GameMap::get_objects_in_radius(std::int16_t x_grenade_pos,
     }
 }
 
+void GameMap::get_objects_in_air_strike(std::vector<GameObject *> &game_objects_in_air_strike,
+                                        std::int16_t x_soldier,
+                                        std::int16_t y_soldier,
+                                        std::int16_t range_of_safe_space) {
+
+    std::int16_t x_start = x_soldier - range_of_safe_space;
+    std::int16_t y_start = y_soldier - range_of_safe_space;
+    validate_position_for_explosion(x_start, y_start);
+
+    std::int16_t x_finish = x_soldier + range_of_safe_space;
+    std::int16_t y_finish = y_soldier + range_of_safe_space;
+    validate_position_for_explosion(x_finish, y_finish);
+
+    for (Zombie* object : zombies){
+        if (!object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
+            game_objects_in_air_strike.push_back(dynamic_cast<GameObject*>(object));
+        }
+    }
+    for (GameObject* object : soldiers){
+        if (!object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
+            game_objects_in_air_strike.push_back(object);
+        }
+    }
+}
+
 void GameMap::validate_position_for_explosion(std::int16_t& x_pos,
                                 std::int16_t& y_pos) {
     if (x_pos > x_size - 1) {

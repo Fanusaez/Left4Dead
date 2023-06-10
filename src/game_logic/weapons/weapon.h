@@ -28,6 +28,12 @@ virtual State* throw_smoke_grenade(GameMap& map,
                                      State* current_state,
                                      float time) = 0;
 
+virtual State* call_air_strike(GameMap& map,
+                                   std::int16_t x_soldier,
+                                   std::int16_t y_soldier,
+                                   State* current_state,
+                                   float time) = 0;
+
 virtual void reload() = 0;
 virtual bool isFullyLoaded() = 0;
 virtual bool empty() = 0;
