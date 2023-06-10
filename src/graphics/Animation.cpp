@@ -23,6 +23,7 @@ Animation::Animation(std::shared_ptr<SDL2pp::Texture> texture) :
 	assert(this->size > 0);
 	GameviewConfigurationsLoader &configs = GameviewConfigurationsLoader::getInstance();
 	this->frameRate = configs.FRAME_RATE;
+	this->loop = true;
 }
 
 Animation::~Animation() {}
@@ -55,6 +56,8 @@ void Animation::render(SDL2pp::Renderer &renderer, const SDL2pp::Rect dst, SDL_R
 }
 
 void Animation::advanceFrame() {
+	if (not this->loop and this->currentFrame == this->numFrames - 1)
+		return;
 	this->currentFrame += 1;
 	this->currentFrame = this->currentFrame % this->numFrames;
 }
@@ -66,4 +69,10 @@ void Animation::changeTexture(std::shared_ptr<SDL2pp::Texture> texture)
 	this->numFrames = this->texture->GetWidth() / this->texture->GetHeight();
 	this->size = this->texture->GetHeight();
 	this->elapsed = 0;
+	this->loop = true;
+}
+
+void Animation::noLoop()
+{
+	this->loop = false;
 }

@@ -25,6 +25,8 @@ public:
 
 	void changeTexture(std::shared_ptr<SDL2pp::Texture> texture);
 
+	void noLoop();
+
 private:
 	void advanceFrame();
 
@@ -38,6 +40,8 @@ private:
 	int size;
 	/** Time elapsed since last update. */
 	unsigned elapsed;
+
+	bool loop;
 
 	unsigned frameRate;
 };
