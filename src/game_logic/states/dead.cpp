@@ -1,6 +1,8 @@
 #include "dead.h"
 
-Dead::Dead(float time_of_death) : start_time(time_of_death) {}
+Dead::Dead(float time_of_death) : start_time(time_of_death) {
+    soldier_state = SOLDIER_DEAD;
+}
 
 
 State *Dead::update(float time) {

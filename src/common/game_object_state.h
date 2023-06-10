@@ -7,6 +7,8 @@ enum SoldierObjectState
     SHOOTING,
     RELOADING,
     MOVING,
+    SOLDIER_DEAD,
+    SOLDIER_HURT,
     SHOOTING_AND_MOVING
 };
 
