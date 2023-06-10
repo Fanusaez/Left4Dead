@@ -38,3 +38,7 @@ void SmokeGrenade::explode(float time, std::int16_t x_explosion, std::int16_t y_
 bool SmokeGrenade::time_throw_grenade(float time) {
     return (time - last_thrown_grenade) >= time_to_throw_grenade;
 }
+
+GrenadeState *SmokeGrenade::get_state() {
+    return grenade_state;
+}

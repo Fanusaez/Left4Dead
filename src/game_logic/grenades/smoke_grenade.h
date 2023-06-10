@@ -29,6 +29,8 @@ public:
     void explode(float time, std::int16_t x_explosion, std::int16_t y_explosion, GameMap& map) override;
 
     bool time_throw_grenade(float time);
+
+    GrenadeState* get_state();
 };
 
 #endif //SMOKE_GRENADE_H_
