@@ -40,6 +40,10 @@ bool AirStrike::time_to_call_air_strike(float time) {
     return (time - last_called_air_strike) >= _time_to_call_air_strike;
 }
 
+AirStrike::~AirStrike() {
+    delete air_strike_state;
+}
+
 AirStrikeState *AirStrike::get_state() {
     return air_strike_state;
 }

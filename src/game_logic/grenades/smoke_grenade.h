@@ -30,6 +30,8 @@ public:
 
     bool time_throw_grenade(float time);
 
+    ~SmokeGrenade();
+
     GrenadeState* get_state();
 };
 

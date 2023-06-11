@@ -29,6 +29,8 @@ public:
 
     bool time_throw_grenade(float time);
 
+    ~ExplosiveGrenade();
+
     GrenadeState* get_state();
 };
 

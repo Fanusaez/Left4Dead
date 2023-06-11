@@ -39,6 +39,10 @@ bool SmokeGrenade::time_throw_grenade(float time) {
     return (time - last_thrown_grenade) >= time_to_throw_grenade;
 }
 
+SmokeGrenade::~SmokeGrenade() {
+    delete grenade_state;
+}
+
 GrenadeState *SmokeGrenade::get_state() {
     return grenade_state;
 }

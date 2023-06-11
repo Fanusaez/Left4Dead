@@ -41,6 +41,10 @@ bool ExplosiveGrenade::time_throw_grenade(float time) {
     return (time - last_thrown_grenade) >= time_to_throw_grenade;
 }
 
+ExplosiveGrenade::~ExplosiveGrenade() {
+    delete grenade_state;
+}
+
 GrenadeState *ExplosiveGrenade::get_state() {
     return grenade_state;
 }
