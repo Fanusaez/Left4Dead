@@ -2,6 +2,13 @@
 #include "../game_object.h"
 #include "../weapons/weapon.h"
 #include "calling_air_strike.h"
+#include "throwing_explosive_grenade.h"
+#include "dead.h"
+#include "being_attacked.h"
+#include "reloading.h"
+#include "moving.h"
+#include "shooting.h"
+#include "idle.h"
 
 ThrowingSmokeGrenade::ThrowingSmokeGrenade(float time)  : start_time(time){}
 

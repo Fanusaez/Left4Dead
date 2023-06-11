@@ -1,7 +1,7 @@
 #ifndef SHOOTING_H_
 #define SHOOTING_H_
 
-#include "reloading.h"
+#include "state.h"
 
 class Shooting  : public State {
 private:

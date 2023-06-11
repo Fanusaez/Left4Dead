@@ -2,7 +2,6 @@
 #define THROWING_SMOKE_GRENADE_H_
 
 #include "state.h"
-#include "idle.h"
 
 class ThrowingSmokeGrenade : public State {
 private:

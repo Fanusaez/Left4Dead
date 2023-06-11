@@ -1,6 +1,13 @@
 #include "idle.h"
 #include "../weapons/weapon.h"
 #include "calling_air_strike.h"
+#include "shooting.h"
+#include "moving.h"
+#include "being_attacked.h"
+#include "dead.h"
+#include "throwing_explosive_grenade.h"
+#include "throwing_smoke_grenade.h"
+#include "reloading.h"
 
 Idle::Idle() {
     soldier_state = IDLE_SOLDIER;

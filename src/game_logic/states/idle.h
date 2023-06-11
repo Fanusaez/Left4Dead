@@ -2,13 +2,6 @@
 #define IDLE_H_
 
 #include "state.h"
-#include "reloading.h"
-#include "shooting.h"
-#include "moving.h"
-#include "being_attacked.h"
-#include "throwing_explosive_grenade.h"
-#include "throwing_smoke_grenade.h"
-#include "dead.h"
 
 class Idle : public State {
 

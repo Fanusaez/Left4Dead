@@ -1,6 +1,12 @@
 #include "reloading.h"
 #include "../soldier.h"
 #include "calling_air_strike.h"
+#include "throwing_smoke_grenade.h"
+#include "throwing_explosive_grenade.h"
+#include "dead.h"
+#include "being_attacked.h"
+#include "moving.h"
+#include "shooting.h"
 
 Reloading::Reloading(Weapon *weapon, float start_time) :
             weapon(weapon),

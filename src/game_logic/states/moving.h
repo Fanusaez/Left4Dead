@@ -1,7 +1,8 @@
 #ifndef MOVING_H_
 #define MOVING_H_
 
-#include "idle.h"
+#include "state.h"
+
 class Moving : public State {
 private:
     float waiting_time_to_move = 0.1;

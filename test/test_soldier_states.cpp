@@ -12,6 +12,12 @@
 #include "game_logic/weapons/scout.h"
 #include "game_logic/states/throwing_explosive_grenade.h"
 #include "game_logic/states/calling_air_strike.h"
+#include "game_logic/states/throwing_smoke_grenade.h"
+#include "game_logic/states/dead.h"
+#include "game_logic/states/being_attacked.h"
+#include "game_logic/states/reloading.h"
+#include "game_logic/states/moving.h"
+#include "game_logic/states/shooting.h"
 
 #define UP -1
 #define DOWN 1

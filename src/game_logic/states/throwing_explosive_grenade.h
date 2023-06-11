@@ -1,7 +1,7 @@
 #ifndef THROWING_EXPLOSIVE_GRENADE_H_
 #define THROWING_EXPLOSIVE_GRENADE_H_
 
-#include "idle.h"
+#include "state.h"
 
 class ThrowingExplosiveGrenade : public State {
 private:

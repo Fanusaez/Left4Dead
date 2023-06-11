@@ -1,4 +1,12 @@
 #include "calling_air_strike.h"
+#include "throwing_explosive_grenade.h"
+#include "throwing_smoke_grenade.h"
+#include "shooting.h"
+#include "moving.h"
+#include "being_attacked.h"
+#include "dead.h"
+#include "reloading.h"
+#include "idle.h"
 
 CallingAirStrike::CallingAirStrike(float start_time) : start_time(start_time) {}
 

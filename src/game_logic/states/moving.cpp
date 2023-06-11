@@ -1,6 +1,12 @@
 #include "moving.h"
 #include "../soldier.h"
 #include "calling_air_strike.h"
+#include "reloading.h"
+#include "shooting.h"
+#include "being_attacked.h"
+#include "dead.h"
+#include "throwing_explosive_grenade.h"
+#include "throwing_smoke_grenade.h"
 
 
 #define DOWN 1

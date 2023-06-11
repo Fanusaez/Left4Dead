@@ -38,7 +38,7 @@ void ClearTheZone::respawn_zombies(float time) {
 }
 
 std::vector<Zombie*>* ClearTheZone::get_zombies() {
-    return map.get_zombies()
+    return map.get_zombies();
 }
 
 bool ClearTheZone::time_to_respawn_zombies(float time) {

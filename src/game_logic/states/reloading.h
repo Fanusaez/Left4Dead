@@ -1,7 +1,7 @@
 #ifndef RELOAD_H_
 #define RELOAD_H_
 
-#include "idle.h"
+#include "state.h"
 
 class Reloading : public State {
 private:

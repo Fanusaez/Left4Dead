@@ -1,7 +1,7 @@
 #ifndef BEINGATTACKED_H_
 #define BEINGATTACKED_H_
 
-#include "idle.h"
+#include "state.h"
 
 class BeingAttacked : public State {
 private:

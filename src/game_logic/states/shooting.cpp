@@ -1,6 +1,12 @@
 #include "shooting.h"
 #include "../soldier.h"
 #include "calling_air_strike.h"
+#include "throwing_smoke_grenade.h"
+#include "throwing_explosive_grenade.h"
+#include "dead.h"
+#include "being_attacked.h"
+#include "reloading.h"
+#include "moving.h"
 
 Shooting::Shooting(Soldier& soldier, Weapon *weapon, float start_time) :
                     soldier(soldier),

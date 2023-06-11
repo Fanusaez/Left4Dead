@@ -1,7 +1,7 @@
 #ifndef DEAD_H_
 #define DEAD_H_
 
-#include "idle.h"
+#include "state.h"
 
 class Dead : public State {
 

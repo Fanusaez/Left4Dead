@@ -1,4 +1,5 @@
 #include "dead.h"
+#include "idle.h"
 
 Dead::Dead(float time_of_death) : start_time(time_of_death) {
     soldier_state = SOLDIER_DEAD;

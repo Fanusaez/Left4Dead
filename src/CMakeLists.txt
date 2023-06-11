@@ -80,6 +80,7 @@ if(SERVER)
 		./server/server_deserializer.cpp
 		./server/game_logic.cpp
 		./game_logic/states/being_attacked.cpp
+		./game_logic/states/calling_air_strike.cpp
 		./game_logic/states/dead.cpp
 		./game_logic/states/idle.cpp
 		./game_logic/states/moving.cpp

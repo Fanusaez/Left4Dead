@@ -2,13 +2,14 @@
 #define CALLING_AIR_STRIKE_H_
 
 #include "state.h"
-#include "idle.h"
+
 class CallingAirStrike : public State{
 private:
     float time_stop_calling = 0.3; // cuanto tiempo dura la animacion
     float start_time;
+
 public:
-    CallingAirStrike(float start_time);
+    explicit CallingAirStrike(float start_time);
 
     State* update(float time) override;
     State* shoot(Soldier& soldier, Weapon* weapon, float time) override;
