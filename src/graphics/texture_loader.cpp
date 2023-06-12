@@ -18,6 +18,14 @@ void TextureLoader::load(SDL2pp::Renderer &renderer, const std::list <std::strin
 	}
 }
 
+void TextureLoader::loadMusic(const std::list <std::string> &musicNames)
+{
+	for (auto const &musicFile: musicNames) {
+		SDL2pp::Music mu(std::string(AssetsPath).append(musicFile));
+		this->music[musicFile] = std::make_shared<SDL2pp::Music>(std::move(mu));
+	}
+}
+
 /*
  * Note that this reference is not const and might be shared by
  * many objects.
@@ -27,6 +35,12 @@ void TextureLoader::load(SDL2pp::Renderer &renderer, const std::list <std::strin
 TexturePtr TextureLoader::getTexture(const std::string &spriteName)
 {
 	TexturePtr ptr = this->textures.at(spriteName);
+	return ptr;
+}
+
+int TextureLoader::getMusic(const std::string &musicName)
+{
+	MusicPtr ptr = this->music.at(musicName);
 	return ptr;
 }
 

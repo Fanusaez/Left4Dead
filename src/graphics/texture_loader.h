@@ -8,9 +8,12 @@
 #include <memory>
 
 typedef std::shared_ptr <SDL2pp::Texture> TexturePtr;
+typedef std::shared_ptr<SDL2pp::Music> MusicPtr;
 
 class TextureLoader {
 	std::map <std::string, TexturePtr> textures;
+
+	std::map<std::string, MusicPtr> music;
 
 public:
 	static TextureLoader &getInstance();
@@ -22,11 +25,15 @@ public:
 	 */
 	void load(SDL2pp::Renderer &renderer, const std::list <std::string> &spriteNames);
 
+	void loadMusic(const std::list <std::string> &musicNames);
+
 	/*
 	 * Return a smart pointer to the texture with name spriteName.
 	 * The sprite name should be relative to the assets directory.
 	 */
 	TexturePtr getTexture(const std::string &spriteName);
+
+	std::shared_ptr<SDL2pp::Music> getMusic(const std::string &musicName);
 
 private:
 	TextureLoader();
