@@ -3,7 +3,7 @@
 #include "../map.h"
 #include "../chaser.h"
 #include "../zombie_states/chasing_states/chase_running.h"
-
+#include "../soldier.h"
 #define INVALID_POSITION -1
 #define DISTANCE_TO_HIT 1
 
@@ -21,7 +21,12 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         map(map),
         chaser(this, map, x_pos, y_pos) {}
 
-void Infected::update(std::vector<GameObject*> soldiers, float time) {
+void Infected::update(std::vector<Soldier*> soldiers, float time) {
+    ZombieState* new_state = state->update(time);
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
     attack(soldiers, time);
     chase_closest_soldier(soldiers, time);
 }
@@ -56,8 +61,9 @@ bool Infected::in_range_of_explosion(std::int16_t x_start,
     return (x_start <= x_matrix_pos && x_matrix_pos <= x_finish && y_start <= y_matrix_pos && y_matrix_pos <= y_finish);
 }
 
-void Infected::chase_closest_soldier(std::vector<GameObject*> soldiers, float time) {
-    GameObject* closest_soldier = get_closest_soldier(soldiers);
+void Infected::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
+    Soldier* closest_soldier = get_closest_soldier(soldiers);
+    if (!closest_soldier) return;
     std::int16_t x_sold_pos = closest_soldier->get_x_pos();
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
 
@@ -68,13 +74,13 @@ void Infected::chase_closest_soldier(std::vector<GameObject*> soldiers, float ti
     }
 }
 
-GameObject* Infected::get_closest_soldier(std::vector<GameObject*> soldiers) {
-    GameObject* closest_soldier = nullptr;
+Soldier* Infected::get_closest_soldier(std::vector<Soldier*> soldiers) {
+    Soldier* closest_soldier = nullptr;
     std::int16_t min_distance = MAX_DISTANCE;
 
-    for (GameObject* soldier : soldiers) {
+    for (Soldier* soldier : soldiers) {
         std::int16_t new_distance = get_distance_to_soldier(soldier);
-        if (new_distance < min_distance) {
+        if (new_distance < min_distance && soldier->chaseable()) {
             min_distance = new_distance;
             closest_soldier = soldier;
         }
@@ -82,7 +88,7 @@ GameObject* Infected::get_closest_soldier(std::vector<GameObject*> soldiers) {
     return closest_soldier;
 }
 
-std::int16_t Infected::get_distance_to_soldier(GameObject* soldier) {
+std::int16_t Infected::get_distance_to_soldier(Soldier* soldier) {
 
     std::int16_t x_matrix_sold = soldier->get_x_matrix_pos();
     std::int16_t y_matrix_sold = soldier->get_y_matrix_pos();
@@ -105,10 +111,12 @@ void Infected::set_direction(std::int16_t direction_to_set) {
     }
 }
 
-void Infected::attack(std::vector<GameObject *> soldiers, float time) {
-    GameObject* closest_soldier = get_closest_soldier(soldiers);
+void Infected::attack(std::vector<Soldier*> soldiers, float time) {
+    Soldier* closest_soldier = get_closest_soldier(soldiers);
+    if (!closest_soldier) return;
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
     if (distance > DISTANCE_TO_HIT) return;
+    //despues cambiar que los estados reciban SOldier*
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
     if (new_state != nullptr) {
         delete state;

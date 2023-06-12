@@ -14,7 +14,7 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         chaser(this, map, x_pos, y_pos) {}
 
 
-void Witch::update(std::vector<GameObject*> soldiers, float time) {
+void Witch::update(std::vector<Soldier*> soldiers, float time) {
     std::int16_t random_number = get_random_number();
     if (random_number < probability_to_scream) {
         scream(time);
@@ -53,8 +53,8 @@ bool Witch::in_range_of_explosion(std::int16_t x_start,
     return (x_start <= x_matrix_pos && x_matrix_pos <= x_finish && y_start <= y_matrix_pos && y_matrix_pos <= y_finish);
 }
 
-void Witch::chase_closest_soldier(std::vector<GameObject*> soldiers, float time) {
-    GameObject* closest_soldier = get_closest_soldier(soldiers);
+void Witch::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
+    Soldier* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t x_sold_pos = closest_soldier->get_x_pos();
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
 
@@ -65,11 +65,11 @@ void Witch::chase_closest_soldier(std::vector<GameObject*> soldiers, float time)
     }
 }
 
-GameObject* Witch::get_closest_soldier(std::vector<GameObject*> soldiers) {
-    GameObject* closest_soldier = nullptr;
+Soldier* Witch::get_closest_soldier(std::vector<Soldier*> soldiers) {
+    Soldier* closest_soldier = nullptr;
     std::int16_t min_distance = MAX_DISTANCE;
 
-    for (GameObject* soldier : soldiers) {
+    for (Soldier* soldier : soldiers) {
         std::int16_t new_distance = get_distance_to_soldier(soldier);
         if (new_distance < min_distance) {
             min_distance = new_distance;
@@ -87,7 +87,7 @@ void Witch::scream(float time) {
     }
 }
 
-std::int16_t Witch::get_distance_to_soldier(GameObject* soldier) {
+std::int16_t Witch::get_distance_to_soldier(Soldier* soldier) {
 
     std::int16_t x_matrix_sold = soldier->get_x_matrix_pos();
     std::int16_t y_matrix_sold = soldier->get_y_matrix_pos();
@@ -110,8 +110,8 @@ void Witch::set_direction(std::int16_t direction_to_set) {
     }
 }
 
-void Witch::attack(std::vector<GameObject *> soldiers, float time) {
-    GameObject* closest_soldier = get_closest_soldier(soldiers);
+void Witch::attack(std::vector<Soldier*> soldiers, float time) {
+    Soldier* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
     if (distance > DISTANCE_TO_HIT) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);

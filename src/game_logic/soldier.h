@@ -63,6 +63,7 @@ std::int16_t get_y_matrix_pos() override;
 std::int16_t get_x_matrix_pos() override;
 
 bool facing_left();
+bool chaseable();
 
 ~Soldier();
 

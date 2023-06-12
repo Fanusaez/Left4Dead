@@ -25,7 +25,7 @@ void testCollisionSameLineUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* idf = new Idf;
 
-    GameObject* soldier = new Soldier(idf, map);
+    Soldier* soldier = new Soldier(idf, map);
     map.add_soldier(soldier, 8, 9);
 
     Infected walker(8, 1, map);

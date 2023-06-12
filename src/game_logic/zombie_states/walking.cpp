@@ -9,6 +9,10 @@ Walking::Walking(Chaser& chaser,
     chase_soldier(chaser, x_pos_chase, y_pos_chase, time);
 }
 
+ZombieState *Walking::update(float time) {
+    return nullptr;
+}
+
 ZombieState* Walking::chase_soldier(Chaser& chaser,
                                     std::int16_t x_pos_chase,
                                     std::int16_t y_pos_chase,
@@ -41,7 +45,7 @@ ZombieState* Walking::chase_soldier_jumping(Chaser& chaser,
     return nullptr;
 }
 
-ZombieState* Walking::attack_soldier(GameObject* closest_soldier, std::int16_t damage, float time) {
+ZombieState* Walking::attack_soldier(Soldier* closest_soldier, std::int16_t damage, float time) {
     if (!time_to_move(time)) return nullptr;
     return new Attacking(closest_soldier, damage, time);
 }

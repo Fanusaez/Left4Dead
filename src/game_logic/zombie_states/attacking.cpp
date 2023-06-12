@@ -1,7 +1,7 @@
 #include "attacking.h"
-#include "../game_object.h"
+#include "../soldier.h"
 
-Attacking::Attacking(GameObject *closest_soldier, std::int16_t damage, float time)  : start_time(time) {
+Attacking::Attacking(Soldier* closest_soldier, std::int16_t damage, float time)  : start_time(time) {
     /*
      * Me parece que al atacar no deberia inmediatamente atacar, sino esperar
      * a que pas el tiempo, y recien ahi danar al soldado
@@ -9,6 +9,13 @@ Attacking::Attacking(GameObject *closest_soldier, std::int16_t damage, float tim
     //attack_soldier(closest_soldier, damage, time);
     zombie_state = ATTACKING;
     closest_soldier->receive_damage(damage, time); // lo ataco de una, despues vemos
+}
+
+ZombieState *Attacking::update(float time) {
+   if (time_to_attack(time)) {
+       return new ZombieIdle;
+   }
+   return nullptr;
 }
 
 ZombieState *
@@ -44,7 +51,7 @@ Attacking::chase_soldier_jumping(Chaser& chaser,
     return nullptr;
 }
 
-ZombieState *Attacking::attack_soldier(GameObject *closest_soldier,
+ZombieState *Attacking::attack_soldier(Soldier* closest_soldier,
                                        std::int16_t damage,
                                        float time) {
     if (time_to_attack(time)) {

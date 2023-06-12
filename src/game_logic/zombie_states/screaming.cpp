@@ -7,12 +7,16 @@ Screaming::Screaming(GameMap &map, std::int16_t zombies_to_create, float time) {
 }
 
 
+ZombieState *Screaming::update(float time) {
+    return nullptr;
+}
+
 ZombieState *Screaming::being_attacked(float time) {
     return new ZombieBeingAttacked(time);
 }
 
 // atacara la witcher?
-ZombieState *Screaming::attack_soldier(GameObject *closest_soldier,
+ZombieState *Screaming::attack_soldier(Soldier *closest_soldier,
                                                  std::int16_t damage,
                                                  float time) {
     if (time_stop_screaming(time)) {

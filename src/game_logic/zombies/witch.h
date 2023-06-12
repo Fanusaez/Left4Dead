@@ -5,6 +5,7 @@
 #include "../game_object.h"
 #include "../zombie_states/zombie_idle.h"
 #include "../zombie_states/chasing_states/chase_walking.h"
+#include "../soldier.h"
 
 
 class GameMap;
@@ -28,13 +29,13 @@ private:
     GameMap& map;
     Chaser chaser;
 
-    GameObject* get_closest_soldier(std::vector<GameObject*> soldiers);
-    std::int16_t get_distance_to_soldier(GameObject* soldier);
+    Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
+    std::int16_t get_distance_to_soldier(Soldier* soldier);
     std::int16_t get_random_number();
 public:
     Witch(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
 
-    void update(std::vector<GameObject*> soldiers, float time) override;
+    void update(std::vector<Soldier*> soldiers, float time) override;
 
     void receive_damage(std::uint16_t damage, float time) override;
 
@@ -43,9 +44,9 @@ public:
                                std::int16_t y_start,
                                std::int16_t y_finish) override;
 
-    void chase_closest_soldier(std::vector<GameObject*> soldiers, float time) override;
+    void chase_closest_soldier(std::vector<Soldier*> soldiers, float time) override;
     void set_direction(std::int16_t direction) override;
-    void attack(std::vector<GameObject*> soldiers, float time) override;
+    void attack(std::vector<Soldier*> soldiers, float time) override;
     void get_stunned(float time) override;
     void die(float time);
     void scream(float time);

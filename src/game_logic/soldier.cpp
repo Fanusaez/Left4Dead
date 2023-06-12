@@ -242,6 +242,10 @@ void Soldier::die(float time) {
     }
 }
 
+bool Soldier::chaseable() {
+    return health > 0;
+}
+
 std::int16_t Soldier::get_id() {
     return id;
 }

@@ -1,5 +1,10 @@
 #include "zombie_idle.h"
 #include "screaming.h"
+
+ZombieState *ZombieIdle::update(float time) {
+    return nullptr;
+}
+
 ZombieState *
 ZombieIdle::chase_soldier(Chaser& chaser,
                           std::int16_t x_pos_chase,
@@ -24,7 +29,7 @@ ZombieIdle::chase_soldier_jumping(Chaser& chaser,
     return new Jumping(chaser, x_pos_chase, y_pos_chase, time);
 }
 
-ZombieState *ZombieIdle::attack_soldier(GameObject *closest_soldier, std::int16_t damage, float time) {
+ZombieState *ZombieIdle::attack_soldier(Soldier* closest_soldier, std::int16_t damage, float time) {
     return new Attacking(closest_soldier, damage, time);
 }
 

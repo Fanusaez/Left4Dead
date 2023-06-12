@@ -4,12 +4,16 @@ ZombieBeingAttacked::ZombieBeingAttacked(float time) : start_time(time) {
     zombie_state = BEING_ATTACKED;
 }
 
+ZombieState *ZombieBeingAttacked::update(float time) {
+    return nullptr;
+}
+
 ZombieState *ZombieBeingAttacked::being_attacked(float time) {
     start_time = time;
     return nullptr;
 }
 
-ZombieState *ZombieBeingAttacked::attack_soldier(GameObject *closest_soldier,
+ZombieState *ZombieBeingAttacked::attack_soldier(Soldier* closest_soldier,
                                                  std::int16_t damage,
                                                  float time) {
     if (time_to_stop_being_attacked(time)) {

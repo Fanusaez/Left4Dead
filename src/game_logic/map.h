@@ -10,7 +10,7 @@ class GameMap {
     std::uint16_t x_size;
     std::uint16_t y_size;
     std::vector<std::vector<GameObject*>> map;
-    std::vector<GameObject*> soldiers;
+    std::vector<Soldier*> soldiers;
     std::vector<Zombie*> zombies;
     GameFactory factory;
 
@@ -97,11 +97,13 @@ void add_infected();
 void add_jumper();
 void add_witch();
 
-bool add_soldier(GameObject* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
-bool add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos);
+bool add_soldier(Soldier* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
+bool add_zombie(Zombie* walker, std::uint16_t x_pos, std::uint16_t y_pos);
 void free_position(std::int16_t x_pos, std::int16_t y_pos);
 
 std::vector<Zombie*>* get_zombies();
+
+~GameMap();
 // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);

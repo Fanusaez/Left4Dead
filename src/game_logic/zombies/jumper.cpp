@@ -2,7 +2,7 @@
 #include "../zombie_states/chasing_states/chase_running.h"
 #include "../chaser.h"
 #include "../map.h"
-
+#include "../soldier.h"
 #define DISTANCE_TO_HIT 1
 
 Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
@@ -12,7 +12,7 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         map(map),
         chaser(this, map, x_pos, y_pos) {}
 
-void Jumper::update(std::vector<GameObject*> soldiers, float time) {
+void Jumper::update(std::vector<Soldier*> soldiers, float time) {
     attack(soldiers, time);
     chase_closest_soldier(soldiers, time);
 }
@@ -47,8 +47,8 @@ void Jumper::get_stunned(float time) {
     }
 }
 
-void Jumper::chase_closest_soldier(std::vector<GameObject*> soldiers, float time) {
-    GameObject* closest_soldier = get_closest_soldier(soldiers);
+void Jumper::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
+    Soldier* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t x_sold_pos = closest_soldier->get_x_pos();
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
 
@@ -59,11 +59,11 @@ void Jumper::chase_closest_soldier(std::vector<GameObject*> soldiers, float time
     }
 }
 
-GameObject* Jumper::get_closest_soldier(std::vector<GameObject*> soldiers) {
-    GameObject* closest_soldier = nullptr;
+Soldier* Jumper::get_closest_soldier(std::vector<Soldier*> soldiers) {
+    Soldier* closest_soldier = nullptr;
     std::int16_t min_distance = MAX_DISTANCE;
 
-    for (GameObject* soldier : soldiers) {
+    for (Soldier* soldier : soldiers) {
         std::int16_t new_distance = get_distance_to_soldier(soldier);
         if (new_distance < min_distance) {
             min_distance = new_distance;
@@ -73,7 +73,7 @@ GameObject* Jumper::get_closest_soldier(std::vector<GameObject*> soldiers) {
     return closest_soldier;
 }
 
-std::int16_t Jumper::get_distance_to_soldier(GameObject* soldier) {
+std::int16_t Jumper::get_distance_to_soldier(Soldier* soldier) {
 
     std::int16_t x_matrix_sold = soldier->get_x_matrix_pos();
     std::int16_t y_matrix_sold = soldier->get_y_matrix_pos();
@@ -96,12 +96,12 @@ void Jumper::set_direction(std::int16_t direction_to_set) {
     }
 }
 
-void Jumper::attack(std::vector<GameObject *> soldiers, float time) {
+void Jumper::attack(std::vector<Soldier *> soldiers, float time) {
     /*
      * Hay que ver como se ve cuando el zombi salta y lastima al soldado
      * puede ser que haya que cambiar el "if (distance > 1) return; "
      */
-    GameObject* closest_soldier = get_closest_soldier(soldiers);
+    Soldier* closest_soldier = get_closest_soldier(soldiers);
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
     if (distance > DISTANCE_TO_HIT) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);

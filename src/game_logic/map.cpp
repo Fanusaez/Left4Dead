@@ -83,7 +83,7 @@ void GameMap::get_objects_in_air_strike(std::vector<GameObject *> &game_objects_
     std::int16_t y_finish = y_soldier + range_of_safe_space;
     validate_position_for_explosion(x_finish, y_finish);
 
-    for (Zombie* object : zombies){
+    for (Zombie* object : zombies) {
         if (!object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
             game_objects_in_air_strike.push_back(dynamic_cast<GameObject*>(object));
         }
@@ -221,7 +221,7 @@ Soldier* GameMap::get_soldier_with_idf() {
     std::vector<std::int16_t> soldier_pos;
     get_position_for_object(soldier_pos);
     Soldier* soldier = factory.get_soldier_with_idf(soldier_pos);
-    soldiers.push_back(dynamic_cast<GameObject*>(soldier));
+    soldiers.push_back(soldier);
 
     std::int16_t x_pos = soldier_pos[X_POS];
     std::int16_t y_pos = soldier_pos[Y_POS];
@@ -234,7 +234,7 @@ Soldier* GameMap::get_soldier_with_p90() {
     std::vector<std::int16_t> soldier_pos;
     get_position_for_object(soldier_pos);
     Soldier* soldier = factory.get_soldier_with_p90(soldier_pos);
-    soldiers.push_back(dynamic_cast<GameObject*>(soldier));
+    soldiers.push_back(soldier);
 
     std::int16_t x_pos = soldier_pos[X_POS];
     std::int16_t y_pos = soldier_pos[Y_POS];
@@ -246,7 +246,7 @@ Soldier* GameMap::get_soldier_with_scout() {
     std::vector<std::int16_t> soldier_pos;
     get_position_for_object(soldier_pos);
     Soldier* soldier = factory.get_soldier_with_scout(soldier_pos);
-    soldiers.push_back(dynamic_cast<GameObject*>(soldier));
+    soldiers.push_back(soldier);
 
     std::int16_t x_pos = soldier_pos[X_POS];
     std::int16_t y_pos = soldier_pos[Y_POS];
@@ -339,6 +339,15 @@ std::vector<Zombie*>* GameMap::get_zombies() {
     return &zombies;
 }
 
+GameMap::~GameMap() {
+    for (auto* zombie : zombies) {
+        //delete zombie;
+    }
+    for (auto* soldier : soldiers) {
+        //delete soldier;
+    }
+}
+
 // ****************************** Metodos de Testeo ***********************************//
 
 //solo tests
@@ -354,7 +363,7 @@ void GameMap::attack_soldiers(float time) {
     }
 }
 
-bool GameMap::add_soldier(GameObject* soldier,
+bool GameMap::add_soldier(Soldier* soldier,
                       std::uint16_t x_pos,
                       std::uint16_t y_pos) {
 
@@ -363,17 +372,17 @@ bool GameMap::add_soldier(GameObject* soldier,
     }
     map[y_pos][x_pos] = soldier;
 
-    soldiers.push_back(soldier); // ya no necesito
+    soldiers.push_back(soldier);
     return true;
 }
 
-bool GameMap::add_zombie(GameObject* walker, std::uint16_t x_pos, std::uint16_t y_pos) {
+bool GameMap::add_zombie(Zombie* walker, std::uint16_t x_pos, std::uint16_t y_pos) {
     if (!check_free_position(x_pos, y_pos)) {
         return false;
     }
-    zombies.push_back(dynamic_cast<Zombie*>(walker)); // ya no necesito
+    zombies.push_back(walker);
 
-    map[y_pos][x_pos] = walker;
+    map[y_pos][x_pos] = dynamic_cast<GameObject*>(walker);
 
     return true;
 }

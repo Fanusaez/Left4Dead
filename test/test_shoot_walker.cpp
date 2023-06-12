@@ -73,7 +73,7 @@ void testSoldierShootsOtherSoldierNotSameLineRight(void) {
     map.add_soldier(&soldier, 1, 8);
 
     Soldier soldier2(idf2, map, 9, 8);
-    map.add_zombie(&soldier2, 9, 8);
+    map.add_soldier(&soldier2, 9, 8);
 
     soldier2.move_down();
 

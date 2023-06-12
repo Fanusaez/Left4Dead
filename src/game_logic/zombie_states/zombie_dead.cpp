@@ -4,6 +4,10 @@ ZombieDead::ZombieDead(float time) : start_time(time) {
     zombie_state = DEAD;
 }
 
+ZombieState *ZombieDead::update(float time) {
+    return nullptr;
+}
+
 ZombieState*
 ZombieDead::chase_soldier(Chaser& chaser,
                           std::int16_t x_pos_chase,
@@ -28,7 +32,7 @@ ZombieDead::chase_soldier_jumping(Chaser& chaser,
     return nullptr;
 }
 
-ZombieState* ZombieDead::attack_soldier(GameObject *closest_soldier, std::int16_t damage, float time) {
+ZombieState* ZombieDead::attack_soldier(Soldier* closest_soldier, std::int16_t damage, float time) {
     return nullptr;
 }
 
