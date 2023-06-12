@@ -20,6 +20,10 @@ public:
 
 	const std::list <std::string> &getSpritesToLoad();
 
+	const std::list <std::string> &getMusicToLoad();
+
+	const std::list <std::string> &getChunksToLoad();
+
 	const std::list<std::string> getSceneSprites() const;
 
 private:
@@ -28,6 +32,10 @@ private:
 	~GameviewConfigurationsLoader();
 
 	std::list <std::string> spritesToLoad;
+
+	std::list<std::string> musicToLoad;
+
+	std::list<std::string> chunksToLoad;
 };
 
 #endif //GAMEVIEW_CONFIGS_LOADER_H

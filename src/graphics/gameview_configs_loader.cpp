@@ -3,7 +3,8 @@
 // 25 fps
 #define FRAME_RATE_ 40000
 
-GameviewConfigurationsLoader &GameviewConfigurationsLoader::getInstance() {
+GameviewConfigurationsLoader &GameviewConfigurationsLoader::getInstance()
+{
 	static GameviewConfigurationsLoader instance;
 	return instance;
 }
@@ -35,9 +36,11 @@ GameviewConfigurationsLoader::GameviewConfigurationsLoader() :
 	this->spritesToLoad.push_back("Witch/Run.png");
 	this->spritesToLoad.push_back("Witch/Hurt.png");
 	this->spritesToLoad.push_back("Witch/Dead.png");
+	this->musicToLoad.push_back("Music/10. no way back.flac");
 }
 
-const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad() {
+const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad()
+{
 	return this->spritesToLoad;
 }
 
