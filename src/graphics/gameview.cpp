@@ -11,11 +11,13 @@ Gameview::Gameview(std::map<int, std::unique_ptr<RenderableObject>> &gameObjects
 	       SDL_WINDOW_RESIZABLE),
 	renderer(window, -1, SDL_RENDERER_ACCELERATED),
 	mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, CHUNK_SIZE),
-	objects(gameObjects) {
+	objects(gameObjects)
+{
 	this->renderer.SetLogicalSize(1920, 1080);
 }
 
-void Gameview::assignMainObject(int id) {
+void Gameview::assignMainObject(int id)
+{
 	if (this->objects.find(id) == this->objects.end())
 		return;
 
@@ -24,11 +26,13 @@ void Gameview::assignMainObject(int id) {
 	this->previousX = mainObject.getPositionX();
 }
 
-void Gameview::setScene(std::unique_ptr <Scene> &newScene) {
+void Gameview::setScene(std::unique_ptr <Scene> &newScene)
+{
 	this->scene = std::move(newScene);
 }
 
-void Gameview::render() {
+void Gameview::render()
+{
 	this->renderer.Clear();
 	if (not this->mainObjectID.has_value())
 		this->renderFixedCamera();
@@ -36,27 +40,32 @@ void Gameview::render() {
 		this->renderRelativeToMainObject();
 }
 
-void Gameview::lowerVolume() {
+void Gameview::lowerVolume()
+{
 	int volume = this->mixer.GetVolume(-1) - 10;
 	volume = volume < 0 ? 0 : volume;
 	this->mixer.SetVolume(-1, volume);
 }
 
-void Gameview::increaseVolume() {
+void Gameview::increaseVolume()
+{
 	int volume = this->mixer.GetVolume(-1) + 10;
 	volume = volume > MIX_MAX_VOLUME ? MIX_MAX_VOLUME : volume;
 	this->mixer.SetVolume(-1, volume);
 }
 
-void Gameview::pauseMusic() {
+void Gameview::pauseMusic()
+{
 	this->mixer.PauseMusic();
 }
 
-void Gameview::resumeMusic() {
+void Gameview::resumeMusic()
+{
 	this->mixer.ResumeMusic();
 }
 
-void Gameview::renderRelativeToMainObject() {
+void Gameview::renderRelativeToMainObject()
+{
 	RenderableObject &mainObject = *(this->objects.at(this->mainObjectID.value()));
 	if (mainObject.getPositionX() != this->previousX) {
 		int offset = mainObject.getPositionX() - this->previousX;
@@ -83,7 +92,8 @@ void Gameview::renderRelativeToMainObject() {
 	this->renderer.Present();
 }
 
-void Gameview::renderFixedCamera() {
+void Gameview::renderFixedCamera()
+{
 	this->scene->render(this->renderer);
 	for (auto &obj: this->objects) {
 		RenderableObject &object = *(obj.second);
@@ -96,7 +106,8 @@ void Gameview::renderFixedCamera() {
 	this->renderer.Present();
 }
 
-SDL2pp::Renderer &Gameview::getRenderer() {
+SDL2pp::Renderer &Gameview::getRenderer()
+{
 	return this->renderer;
 }
 
