@@ -23,8 +23,8 @@ private:
 
     // se debera recibir por parametro, para que corra camine o salte
     ChaseState* chase_state = new ChaseWalking;
-    std::int16_t probability_to_scream = 30;
-    std::int16_t zombies_created_for_screaming = 4;
+    std::int16_t probability_to_scream = 1;
+    std::int16_t zombies_created_for_screaming = 3;
     const std::int16_t id;
     GameMap& map;
     Chaser chaser;

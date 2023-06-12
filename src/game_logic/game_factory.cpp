@@ -33,7 +33,7 @@ Soldier *GameFactory::create_soldier(Weapon *weapon,std::vector<std::int16_t>& s
 }
 
 Zombie* GameFactory::create_random_zombie(std::vector<std::int16_t>& zombie_pos) {
-    int random_num = std::random_device{}() % 101;
+    int random_num = 30;
     if (random_num < infected_probability) {
         Zombie* infected = new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
         return infected;
@@ -43,7 +43,6 @@ Zombie* GameFactory::create_random_zombie(std::vector<std::int16_t>& zombie_pos)
 
 Zombie* GameFactory::create_infected(std::vector<std::int16_t>& zombie_pos) {
     return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
-
 }
 
 Zombie* GameFactory::create_jumper(std::vector<std::int16_t>& zombie_pos) {

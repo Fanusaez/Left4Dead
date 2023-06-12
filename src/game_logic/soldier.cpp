@@ -49,7 +49,7 @@ void Soldier::shoot(float time) {
 // despues deberia pasar el map a estado y que el se encargue
 std::vector<GameObject *> Soldier::get_targets() {
     std::vector<GameObject*> shooting_objects;
-    map.shoot(shooting_objects,
+    map.get_objects_in_shooting(shooting_objects,
               get_x_matrix_pos(),
               get_y_matrix_pos(),
               direction);

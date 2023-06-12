@@ -49,7 +49,7 @@ public:
 
 GameMap(std::uint16_t x_size, std::uint16_t y_size);
 
-void shoot(std::vector<GameObject*>& game_objects,
+void get_objects_in_shooting(std::vector<GameObject*>& game_objects,
            std::uint16_t x_pos_sold,
            std::uint16_t y_pos_sold,
            std::int16_t direction);

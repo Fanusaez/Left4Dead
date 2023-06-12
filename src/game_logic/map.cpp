@@ -20,8 +20,14 @@ GameMap::GameMap(std::uint16_t x_size, std::uint16_t y_size) :
         map(y_size, std::vector<GameObject*>(x_size, nullptr)),
         factory(*this) {}
 
+void GameMap::update(float time) {
+    std::vector<Zombie*> zombies_copy = zombies;
+    for (Zombie* zombie : zombies_copy) {
+        zombie->update(soldiers, time);
+    }
+}
 
-void GameMap::shoot(std::vector<GameObject*>& game_objects,
+void GameMap::get_objects_in_shooting(std::vector<GameObject*>& game_objects,
                     std::uint16_t x_pos_sold,
                     std::uint16_t y_pos_sold,
                     std::int16_t direction) {
@@ -95,8 +101,8 @@ void GameMap::get_objects_in_air_strike(std::vector<GameObject *> &game_objects_
     }
 }
 
-void GameMap::validate_position_for_explosion(std::int16_t& x_pos,
-                                std::int16_t& y_pos) {
+void GameMap::validate_position_for_explosion(  std::int16_t& x_pos,
+                                                std::int16_t& y_pos) {
     if (x_pos > x_size - 1) {
         x_pos = x_size - 1;
     } else if (x_pos < 0) {
@@ -208,14 +214,6 @@ bool GameMap::check_free_position(std::int16_t x_pos,
     }
     return map[y_pos][x_pos] == nullptr; // !map[y_sold_pos][x_sold_pos]
 }
-
-void GameMap::update(float time) {
-    //objects_in_map();
-    for (Zombie* zombie : zombies) {
-        zombie->update(soldiers, time);
-    }
-}
-
 
 Soldier* GameMap::get_soldier_with_idf() {
     std::vector<std::int16_t> soldier_pos;

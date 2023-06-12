@@ -64,6 +64,8 @@ ZombieState *Screaming::get_stunned(float time) {
 }
 
 ZombieState *Screaming::scream(GameMap &map, std::int16_t zombies_to_create, float time) {
+   if (!time_stop_screaming(time)) return nullptr;
+   last_time_screamed = time;
    for(int i = 0; i < zombies_to_create; i++) {
        map.add_random_zombie();
    }
@@ -71,7 +73,7 @@ ZombieState *Screaming::scream(GameMap &map, std::int16_t zombies_to_create, flo
 }
 
 bool Screaming::time_stop_screaming(float time) {
-    return (time - last_time_screamed >= waiting_time_to_stop_screaming);
+    return (time - last_time_screamed) >= waiting_time_to_stop_screaming;
 }
 
 void Screaming::set_speed(float speed) {}
