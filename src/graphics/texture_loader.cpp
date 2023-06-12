@@ -38,7 +38,7 @@ TexturePtr TextureLoader::getTexture(const std::string &spriteName)
 	return ptr;
 }
 
-int TextureLoader::getMusic(const std::string &musicName)
+MusicPtr TextureLoader::getMusic(const std::string &musicName)
 {
 	MusicPtr ptr = this->music.at(musicName);
 	return ptr;

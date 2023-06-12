@@ -44,6 +44,11 @@ const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad()
 	return this->spritesToLoad;
 }
 
+const std::list <std::string> &GameviewConfigurationsLoader::getMusicToLoad()
+{
+	return this->musicToLoad;
+}
+
 const std::list <std::string> GameviewConfigurationsLoader::getSceneSprites() const
 {
 	std::list<std::string> sceneSprites;

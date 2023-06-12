@@ -33,7 +33,7 @@ public:
 	 */
 	TexturePtr getTexture(const std::string &spriteName);
 
-	std::shared_ptr<SDL2pp::Music> getMusic(const std::string &musicName);
+	MusicPtr getMusic(const std::string &musicName);
 
 private:
 	TextureLoader();
