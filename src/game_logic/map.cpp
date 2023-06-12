@@ -11,7 +11,7 @@
 #define UP -1
 #define LEFT 2
 #define RIGHT 3
-
+#define Y_LIMIT_DOWN 40
 #define INVALID_POSITION -1
 
 GameMap::GameMap(std::uint16_t x_size, std::uint16_t y_size) :
@@ -110,8 +110,8 @@ void GameMap::validate_position_for_explosion(  std::int16_t& x_pos,
     }
     if (y_pos > y_size - 1) {
         y_pos = y_size - 1;
-    } else if (y_pos < 0) {
-        y_pos = 0;
+    } else if (y_pos < y_size) {
+        y_pos = y_size;
     }
 }
 
@@ -151,7 +151,7 @@ void GameMap::collision_going_right(std::vector<GameObject*>& game_objects,
 void GameMap::move_object_up(std::int16_t x_pos,
                               std::int16_t y_pos,
                               std::int16_t& new_y_pos_ref) {
-    if (y_pos > 0){
+    if (y_pos > Y_LIMIT_DOWN){ //PQ CHEQUEO ESTO>
         std::uint16_t new_y_pos = y_pos - 1;
         find_new_y_pos(new_y_pos_ref, new_y_pos, x_pos, y_pos);
         return;
@@ -161,7 +161,7 @@ void GameMap::move_object_up(std::int16_t x_pos,
 void GameMap::move_object_down(std::int16_t x_pos,
                                 std::int16_t y_pos,
                                 std::int16_t &new_y_pos_ref) {
-    if(y_pos < y_size - 1) {
+    if(y_pos < y_size) {
         std::uint16_t new_y_pos = y_pos + 1;
         find_new_y_pos(new_y_pos_ref, new_y_pos, x_pos, y_pos);
     }
@@ -300,7 +300,7 @@ void GameMap::get_position_for_object(std::vector<std::int16_t> &valid_pos) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis_x(0, x_size - 1);
-    std::uniform_int_distribution<> dis_y(0, y_size - 1);
+    std::uniform_int_distribution<> dis_y(Y_LIMIT_DOWN, y_size);
 
     while (true) {
         std::int16_t random_x_pos = dis_x(gen);
@@ -320,7 +320,7 @@ bool GameMap::valid_object_position(std::int16_t x_pos, std::int16_t y_pos) {
     if ( x_pos >= 0 && x_pos < x_size) {
         valid_x = true;
     }
-    if (y_pos >= 0 && y_pos < y_size){
+    if (y_pos >= Y_LIMIT_DOWN && y_pos < y_size){
         valid_y = true;
     }
     return valid_x && valid_y;
