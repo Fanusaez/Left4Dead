@@ -29,6 +29,7 @@ void Gameview::assignMainObject(int id)
 void Gameview::setScene(std::unique_ptr <Scene> &newScene)
 {
 	this->scene = std::move(newScene);
+	this->scene->playMusic(this->mixer);
 }
 
 void Gameview::render()

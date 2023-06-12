@@ -64,6 +64,7 @@ int main(int argc, char *argv[])
 	Gameview view(objects);
 	TextureLoader &textureLoader = TextureLoader::getInstance();
 	textureLoader.load(view.getRenderer(), configs.getSpritesToLoad());
+	textureLoader.loadMusic(configs.getMusicToLoad());
 	std::unique_ptr<Scene> scene(new Scene());
 	view.setScene(scene);
 

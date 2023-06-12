@@ -9,6 +9,7 @@ class Scene {
 	TexturePtr skyTexture;
 	TexturePtr backgroundTexture;
 	TexturePtr floorTexture;
+	MusicPtr backgroundMusic;
 	int offset;
 
 public:
@@ -17,6 +18,8 @@ public:
 	void increaseOffset(int newOffset);
 
 	void render(SDL2pp::Renderer &renderer);
+
+	void playMusic(SDL2pp::Mixer &mixer) const;
 
 	~Scene();
 

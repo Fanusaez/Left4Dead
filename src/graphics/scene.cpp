@@ -18,6 +18,7 @@ Scene::Scene()
 			break;
 		i++;
 	}
+	this->backgroundMusic = textureLoader.getMusic("Music/10. no way back.flac");
 }
 
 void Scene::increaseOffset(int newOffset) {
@@ -93,6 +94,11 @@ void Scene::renderMovedRight(SDL2pp::Renderer &renderer, SDL2pp::Texture &textur
 
 	renderer.Copy(texture, leftSrc, leftDst);
 	renderer.Copy(texture, rightSrc, rightDst);
+}
+
+void Scene::playMusic(SDL2pp::Mixer &mixer) const
+{
+	mixer.PlayMusic(*(this->backgroundMusic));
 }
 
 Scene::~Scene() = default;
