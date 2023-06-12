@@ -23,7 +23,7 @@
 #include <chrono>
 #include <sstream>
 
-static bool handleEvents(Client* client);
+static bool handleEvents(Client* client, Gameview &view);
 double rate = 0.04;
 
 int main(int argc, char *argv[])
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
 		for (auto &object : objects)
 			object.second->update(configs.FRAME_RATE);
 		view.render();
-		running = handleEvents(&client);
+		running = handleEvents(&client, view);
 		auto t_end = std::chrono::high_resolution_clock::now();
 		std::chrono::duration<double> duration = t_end - t_start;
 		double seconds = duration.count();
@@ -124,73 +124,92 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-static bool handleEvents(Client* client)
+static bool handleEvents(Client* client, Gameview &view)
 {
 	SDL_Event event;
-	// Para el alumno: Buscar diferencia entre waitEvent y pollEvent
-	while (SDL_PollEvent(&event))
-	{
-		switch (event.type)
-		{
-		case SDL_KEYDOWN:
-		{
-			// ¿Qué pasa si mantengo presionada la tecla?
-			SDL_KeyboardEvent &keyEvent = (SDL_KeyboardEvent &)event;
-			switch (keyEvent.keysym.sym)
-			{
-			case SDLK_LEFT:
-				if(event.key.repeat == 0){
-					client->move(LEFT);
+	while (SDL_PollEvent(&event) != 0) {
+		switch (event.type) {
+		case SDL_KEYDOWN: {
+			SDL_KeyboardEvent &keyEvent = event.key;
+			switch (keyEvent.keysym.sym) {
+				case SDLK_LEFT: {
+					if (keyEvent.repeat == 0) {
+						client->move(LEFT);
+					}
 					break;
 				}
-			case SDLK_RIGHT:
-				if(event.key.repeat == 0){
-					client->move(RIGHT);
+				case SDLK_RIGHT: {
+					if (keyEvent.repeat == 0) {
+						client->move(RIGHT);
+					}
 					break;
 				}
-			case SDLK_UP:
-				if(event.key.repeat == 0){
-					client->move(UP);
+				case SDLK_UP: {
+					if (keyEvent.repeat == 0) {
+						client->move(UP);
+					}
 					break;
 				}
-			case SDLK_DOWN:
-				if(event.key.repeat == 0){
-					client->move(DOWN);
+				case SDLK_DOWN: {
+					if (keyEvent.repeat == 0) {
+						client->move(DOWN);
+					}
 					break;
 				}
-			case SDLK_r:
-				if(event.key.repeat == 0){
-					client->reload();
+				case SDLK_r: {
+					if (keyEvent.repeat == 0) {
+						client->reload();
+					}
 					break;
 				}
-			case SDLK_s:
-				if(event.key.repeat == 0){
-					client->shoot();
+				case SDLK_s: {
+					if (keyEvent.repeat == 0) {
+						client->shoot();
+					}
 					break;
 				}
 			}
 		} // Fin KEY_DOWN
 		break;
-		case SDL_KEYUP:
-		{
-			SDL_KeyboardEvent &keyEvent = (SDL_KeyboardEvent &)event;
-			switch (keyEvent.keysym.sym)
-			{
-			case SDLK_LEFT:
-				client->move(STOP_MOVE);
-				break;
-			case SDLK_RIGHT:
-				client->move(STOP_MOVE);
-				break;
-			case SDLK_UP:
-				client->move(STOP_MOVE);
-				break;
-			case SDLK_DOWN:
-				client->move(STOP_MOVE);
-				break;
-			case SDLK_s:
-				client->move(STOP_MOVE);
-				break;
+		case SDL_KEYUP: {
+			SDL_KeyboardEvent &keyEvent = event.key;
+			switch (keyEvent.keysym.sym) {
+				case SDLK_LEFT: {
+					client->move(STOP_MOVE);
+					break;
+				}
+				case SDLK_RIGHT: {
+					client->move(STOP_MOVE);
+					break;
+				}
+				case SDLK_UP: {
+					client->move(STOP_MOVE);
+					break;
+				}
+				case SDLK_DOWN: {
+					client->move(STOP_MOVE);
+					break;
+				}
+				case SDLK_s: {
+					client->move(STOP_MOVE);
+					break;
+				}
+				case SDLK_PLUS: {
+					view.increaseVolume();
+					break;
+				}
+				case SDLK_MINUS: {
+					view.lowerVolume();
+					break;
+				}
+				case SDLK_p: {
+					view.pauseMusic();
+					break;
+				}
+				case SDLK_o: {
+					view.resumeMusic();
+					break;
+				}
 			}
 		} // Fin KEY_UP
 		break;

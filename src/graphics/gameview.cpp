@@ -46,6 +46,7 @@ void Gameview::lowerVolume()
 	int volume = this->mixer.GetVolume(-1) - 10;
 	volume = volume < 0 ? 0 : volume;
 	this->mixer.SetVolume(-1, volume);
+	this->mixer.SetMusicVolume(volume);
 }
 
 void Gameview::increaseVolume()
@@ -53,6 +54,7 @@ void Gameview::increaseVolume()
 	int volume = this->mixer.GetVolume(-1) + 10;
 	volume = volume > MIX_MAX_VOLUME ? MIX_MAX_VOLUME : volume;
 	this->mixer.SetVolume(-1, volume);
+	this->mixer.SetMusicVolume(volume);
 }
 
 void Gameview::pauseMusic()
