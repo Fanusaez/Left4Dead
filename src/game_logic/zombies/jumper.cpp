@@ -149,6 +149,10 @@ bool Jumper::facing_left() {
     return (direction == LEFT);
 }
 
+ZombieType Jumper::get_type() {
+    return JUMPER;
+}
+
 // ************************* Metodos de testeo ************************************************8//
 
 std::int16_t Jumper::get_health() {

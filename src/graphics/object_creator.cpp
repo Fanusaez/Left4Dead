@@ -11,6 +11,11 @@ std::unique_ptr<RenderableObject> ObjectCreator::create(const SoldierObjectDTO &
 
 std::unique_ptr<RenderableObject> ObjectCreator::create(const ZombieObjectDTO &zombieDTO) const
 {
-	return std::unique_ptr<RenderableObject>(
-		new Infected(zombieDTO.id, zombieDTO.position_x, zombieDTO.position_y));
+	if (zombieDTO.zombie_type == INFECTED)
+		return std::unique_ptr<RenderableObject>(
+			new Infected(zombieDTO.id, zombieDTO.position_x, zombieDTO.position_y));
+	else
+		return std::unique_ptr<RenderableObject>(
+			new Witch(zombieDTO.id, zombieDTO.position_x, zombieDTO.position_y));
+		
 }

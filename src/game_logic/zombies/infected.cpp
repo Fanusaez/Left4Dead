@@ -163,6 +163,10 @@ std::int16_t Infected::get_id() {
     return id;
 }
 
+ZombieType Infected::get_type(){
+    return INFECTED;
+}
+
 // ************************* Metodos de testeo ************************************************8//
 
 std::int16_t Infected::get_health() {

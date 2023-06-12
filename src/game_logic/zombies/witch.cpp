@@ -2,6 +2,7 @@
 #include "../zombie_states/chasing_states/chase_running.h"
 #include "../map.h"
 #include <math.h>
+#include <iostream>
 
 #define DISTANCE_TO_HIT 1
 
@@ -19,7 +20,7 @@ void Witch::update(std::vector<Soldier*> soldiers, float time) {
     if (random_number < probability_to_scream) {
         scream(time);
     }
-    attack(soldiers, time);
+    //attack(soldiers, time);
     chase_closest_soldier(soldiers, time);
 }
 
@@ -162,6 +163,10 @@ Witch::~Witch() {
 
 bool Witch::facing_left() {
     return (direction == LEFT);
+}
+
+ZombieType Witch::get_type(){
+    return WITCH;
 }
 
 // ************************* Metodos de testeo ************************************************8//

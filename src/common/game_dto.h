@@ -5,6 +5,7 @@
 #include <vector>
 #include "../common/game_object_state.h"
 #include "../common/soldier_type.h"
+#include "../common/zombie_type.h"
 
 struct SoldierObjectDTO {
     int player_id;      //ID del playe. Este es unico en el servidor
@@ -30,12 +31,14 @@ struct ZombieObjectDTO {
     int position_x;     
     int position_y;      
     ZombieObjectState state; // Estado del objeto
+    ZombieType zombie_type;
     bool facing_left;
 
     // Constructor para inicializar los atributos
     ZombieObjectDTO(int8_t id, int position_x, int position_y, ZombieObjectState state, 
-                    bool facing_left) : id(id), position_x(position_x), position_y(position_y),
-                    state(state), facing_left(facing_left) {}
+                    ZombieType zombie_type, bool facing_left) : id(id), position_x(position_x),
+                    position_y(position_y), state(state), zombie_type(zombie_type), 
+                    facing_left(facing_left) {}
 };
 
 class GameDTO {
@@ -44,7 +47,7 @@ private:
 
     std::vector<ZombieObjectDTO> zombies;
 
-    //std::vector<SoldierObjectDTO> elements;
+    //std::vector<ElementsObjectDTO> elements;
 
 public:
     GameDTO();  //Lo usamos nada mas para el player_sender y client_receiver

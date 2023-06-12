@@ -110,11 +110,17 @@ std::vector<char> ServerSerializer::serialize_games_availables(const std::vector
 
 void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
 {
-    std::vector<char> buffer;
     std::vector<SoldierObjectDTO> soldiers = game_dto.get_soldiers();
     std::vector<ZombieObjectDTO> zombies = game_dto.get_zombies();
-    buffer.push_back(soldiers.size());
-    buffer.push_back(zombies.size());
+
+    size_t num_soldiers = soldiers.size();
+    size_t num_zombies = zombies.size();
+
+    std::vector<char> buffer;
+    buffer.reserve(2 + (sizeof(SoldierObjectDTO) * num_soldiers) + (sizeof(ZombieObjectDTO) * num_zombies));
+    buffer.push_back(static_cast<char>(num_soldiers));
+    buffer.push_back(static_cast<char>(num_zombies));
+    
     for (const auto &obj : soldiers) {
         unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.player_id);
         buffer.insert(buffer.end(), p, p + sizeof(int));
@@ -143,6 +149,7 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
     for (const auto &obj : zombies) {
         buffer.push_back(obj.id);
         buffer.push_back(obj.state);
+        buffer.push_back(obj.zombie_type);
 
         unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.position_x);
         buffer.insert(buffer.end(), p, p + sizeof(int));
@@ -152,5 +159,5 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
 
         buffer.push_back(obj.facing_left);
     }
-    int sz = socket->sendall(buffer.data(), buffer.size(), was_closed);
+    socket->sendall(buffer.data(), buffer.size(), was_closed);
 }

@@ -1,6 +1,6 @@
 #include "game_dto.h"
 
-GameDTO::GameDTO(){}
+GameDTO::GameDTO() : soldiers(), zombies() {}
 
 GameDTO::GameDTO(std::vector<SoldierObjectDTO> soldiers, std::vector<ZombieObjectDTO> zombies)
  : soldiers(soldiers), zombies(zombies){}

@@ -18,6 +18,7 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
     char soldier_state; 
     char zobmie_state; 
     char soldier_type;
+    char zombie_type; 
     bool facingLeft;
     socket->recvall(&soldiers_size, 1, was_closed);
     socket->recvall(&zombies_size, 1, was_closed);
@@ -40,11 +41,13 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
     {
         socket->recvall(&id, 1, was_closed);
         socket->recvall(&zobmie_state, 1, was_closed);
+        socket->recvall(&zombie_type, 1, was_closed);
         socket->recvall(&position_x, 4, was_closed);
         socket->recvall(&position_y, 4, was_closed);
         socket->recvall(&facingLeft, 1, was_closed);
         game_dto.add_zombie(ZombieObjectDTO(id, position_x, position_y, 
-        static_cast<ZombieObjectState>(zobmie_state),facingLeft));
+        static_cast<ZombieObjectState>(zobmie_state),static_cast<ZombieType>(zombie_type),
+        facingLeft));
     }
     return game_dto;
 }
