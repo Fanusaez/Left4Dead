@@ -8,14 +8,7 @@
 #include <vector>
 #include <utility>
 
-GameLogic::GameLogic() : game_map(1000,19) {
-   // game_map.add_random_zombie();
-    //game_map.add_random_zombie();
-    //game_map.add_random_zombie();
-    //game_map.add_random_zombie();
-    //game_map.add_witch();
-   // game_map.add_witch();
-    game_map.add_witch();
+GameLogic::GameLogic() : game_map(400, 50, 0) {
 }
 
 void GameLogic::add_soldier(int* player_id) {

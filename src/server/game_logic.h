@@ -7,6 +7,7 @@
 #include "../game_logic/map.h"
 #include "../game_logic/soldier.h"
 #include "../game_logic/zombies/zombie.h"
+#include "../game_logic/clear_the_zone.h"
 #include <map>
 #include <utility>
 
@@ -17,7 +18,7 @@ class GameLogic {
 private:
     float timer;
 
-    GameMap game_map;
+    ClearTheZone game_map;
 
     std::map<int,Soldier*> playerSoldierMap;
 

@@ -21,7 +21,7 @@ private:
     std::vector<std::int16_t> witch_prob = {80, 100};
     float start_time;
     float last_time_updated = -1;
-    float time_respawn_zombies = 1; // aparece 1 zombi cada 1 segundo
+    float time_respawn_zombies = 5; // aparece 1 zombi cada 1 segundo
     bool game_over = false;
     GameMap map;
     std::int16_t x_size;

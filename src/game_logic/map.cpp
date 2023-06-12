@@ -11,7 +11,7 @@
 #define UP -1
 #define LEFT 2
 #define RIGHT 3
-#define Y_LIMIT_DOWN 15
+#define Y_LIMIT_DOWN 40
 #define INVALID_POSITION -1
 
 GameMap::GameMap(std::uint16_t x_size, std::uint16_t y_size) :
