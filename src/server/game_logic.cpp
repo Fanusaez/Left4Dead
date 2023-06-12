@@ -8,7 +8,7 @@
 #include <vector>
 #include <utility>
 
-GameLogic::GameLogic() : game_map(100,30) {
+GameLogic::GameLogic() : game_map(1000,19) {
    // game_map.add_random_zombie();
     //game_map.add_random_zombie();
     //game_map.add_random_zombie();
