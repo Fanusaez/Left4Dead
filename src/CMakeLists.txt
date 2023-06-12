@@ -33,6 +33,7 @@ add_library(gameview
 		graphics/renderable_object.cpp
 		graphics/Player.cpp
 		graphics/infected.cpp
+		graphics/witch.cpp
 		graphics/Animation.cpp
 		graphics/texture_loader.cpp
 		graphics/gameview_configs_loader.cpp

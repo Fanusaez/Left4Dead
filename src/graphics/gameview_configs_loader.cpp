@@ -27,6 +27,14 @@ GameviewConfigurationsLoader::GameviewConfigurationsLoader() :
 	this->spritesToLoad.push_back("Zombie/Attack_1.png");
 	this->spritesToLoad.push_back("Zombie/Hurt.png");
 	this->spritesToLoad.push_back("Zombie/Dead.png");
+	this->spritesToLoad.push_back("Witch/Attack_1.png");
+	this->spritesToLoad.push_back("Witch/Idle.png");
+	this->spritesToLoad.push_back("Witch/Jump.png");
+	this->spritesToLoad.push_back("Witch/Scream.png");
+	this->spritesToLoad.push_back("Witch/Walk.png");
+	this->spritesToLoad.push_back("Witch/Run.png");
+	this->spritesToLoad.push_back("Witch/Hurt.png");
+	this->spritesToLoad.push_back("Witch/Dead.png");
 }
 
 const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad() {

@@ -1,6 +1,7 @@
 #include "object_creator.h"
 #include "Player.h"
 #include "infected.h"
+#include "witch.h"
 
 std::unique_ptr<RenderableObject> ObjectCreator::create(const SoldierObjectDTO &soldierDTO) const
 {
