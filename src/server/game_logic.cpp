@@ -9,10 +9,13 @@
 #include <utility>
 
 GameLogic::GameLogic() : game_map(100,30) {
-    game_map.add_random_zombie();
-    game_map.add_random_zombie();
-    game_map.add_random_zombie();
-    game_map.add_random_zombie();
+   // game_map.add_random_zombie();
+    //game_map.add_random_zombie();
+    //game_map.add_random_zombie();
+    //game_map.add_random_zombie();
+    //game_map.add_witch();
+   // game_map.add_witch();
+    game_map.add_witch();
 }
 
 void GameLogic::add_soldier(int* player_id) {
@@ -51,7 +54,7 @@ GameDTO GameLogic::get_game() {
     std::vector<Zombie*>* zombies = game_map.get_zombies();
     for (const auto& zombie: *zombies){
         ZombieObjectDTO zombieDTO(zombie->get_id(), zombie->get_x_pos(), zombie->get_y_pos(), 
-                                    zombie->get_state()->zombie_state, zombie->facing_left());
+                                    zombie->get_state()->zombie_state, zombie->get_type(), zombie->facing_left());
         game_dto.add_zombie(zombieDTO);
     }
     return game_dto;

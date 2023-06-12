@@ -18,9 +18,9 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
 void Witch::update(std::vector<Soldier*> soldiers, float time) {
     std::int16_t random_number = get_random_number();
     if (random_number < probability_to_scream) {
-        scream(time);
-    }
-    //attack(soldiers, time);
+           scream(time);
+        }
+    attack(soldiers, time);
     chase_closest_soldier(soldiers, time);
 }
 
@@ -56,6 +56,7 @@ bool Witch::in_range_of_explosion(std::int16_t x_start,
 
 void Witch::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
+    if (!closest_soldier) return;
     std::int16_t x_sold_pos = closest_soldier->get_x_pos();
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
 
@@ -72,7 +73,7 @@ Soldier* Witch::get_closest_soldier(std::vector<Soldier*> soldiers) {
 
     for (Soldier* soldier : soldiers) {
         std::int16_t new_distance = get_distance_to_soldier(soldier);
-        if (new_distance < min_distance) {
+        if (new_distance < min_distance && soldier->chaseable()) {
             min_distance = new_distance;
             closest_soldier = soldier;
         }
@@ -113,6 +114,7 @@ void Witch::set_direction(std::int16_t direction_to_set) {
 
 void Witch::attack(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
+    if (!closest_soldier) return;
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
     if (distance > DISTANCE_TO_HIT) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
