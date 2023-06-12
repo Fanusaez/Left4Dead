@@ -268,6 +268,31 @@ void testChaseInfectedLeftSideToSide() {
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
 }
 
+void testInfectedKillsSoldierAndStartsChasingOtherSoldier() {
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    Weapon* scout1 = new Scout;
+    Weapon* scout2 = new Scout;
+
+    Soldier soldier1(scout1, map, 0 , 4);
+    map.add_soldier(&soldier1, 0, 4);
+
+    Soldier soldier2(scout2, map, 5 , 5);
+    map.add_soldier(&soldier2, 5, 5);
+
+    Infected walker(9 ,5 , map);
+    map.add_zombie(&walker, 9, 5);
+
+    for (int i = 0; i < 200; i++) { // enough to encounter the soldier face to face en 5 parara
+        map.update(i);
+    }
+
+    std::int16_t sold1_health = soldier1.get_health();
+    std::int16_t sold2_health = soldier2.get_health();
+
+    TEST_CHECK(sold1_health <= 0);
+    TEST_CHECK(sold2_health <= 0);
+}
+
 
 TEST_LIST = {
         {"Infected chase soldier diagonally up and right ends face to face", testChaseInfectedDiagonallyUpAndRightFaceToFace},
@@ -286,6 +311,7 @@ TEST_LIST = {
 
         {"Infected chase soldier right side to side", testChaseInfectedRightSideToSide},
         {"Infected chase soldier left side to side", testChaseInfectedLeftSideToSide},
+        {"Infected kill soldier1 and continue to chase soldier2", testInfectedKillsSoldierAndStartsChasingOtherSoldier},
         {NULL, NULL},
 
 };
