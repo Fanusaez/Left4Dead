@@ -30,7 +30,7 @@ virtual std::int16_t get_y_pos() = 0;
 virtual bool facing_left() = 0;
 virtual std::int16_t get_id() = 0;
 virtual ZombieType get_type() = 0;
-
+virtual ~Zombie() {};
 
 };
 #endif   // ZOMBIE_H_

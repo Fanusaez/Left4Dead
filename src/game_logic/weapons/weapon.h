@@ -38,6 +38,6 @@ virtual void reload() = 0;
 virtual bool isFullyLoaded() = 0;
 virtual bool empty() = 0;
 virtual std::int16_t get_bullets() = 0;
-
+virtual ~Weapon() {}
 };
 #endif  // WEAPON_H_
