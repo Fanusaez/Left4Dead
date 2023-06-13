@@ -15,6 +15,8 @@ class Lobby
 private:
     int player_id;
 
+    int32_t game_code;
+
     Socket socket;
 
     std::atomic<bool> keep_talking;
@@ -43,8 +45,6 @@ public:
     bool join_scenario(const int32_t& scenario_code);
 
     void start();
-
-    void set_game_code(const int32_t &game_code);
 
     void set_game_list();
 
