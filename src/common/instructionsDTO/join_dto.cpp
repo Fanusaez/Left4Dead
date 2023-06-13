@@ -1,6 +1,6 @@
 #include "join_dto.h"
 
-JoinDTO::JoinDTO(int* player_id, int32_t game_code) : 
+JoinDTO::JoinDTO(int& player_id, int32_t game_code) : 
 InstructionsDTO(player_id,JOIN), game_code(game_code){} 
 
 JoinDTO::JoinDTO(bool could_join) : InstructionsDTO(JOIN), could_join(could_join){} 

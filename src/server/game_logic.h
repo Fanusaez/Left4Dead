@@ -16,22 +16,23 @@
 
 class GameLogic {
 private:
-    float timer;
+    float timer;    //Usamos el timer para las animaciones y para los update del juego
 
-    ClearTheZone game_map;
+    ClearTheZone game_map;  //Estilo de juego
 
-    std::map<int,Soldier*> playerSoldierMap;
+    //Este mapa guardara los usuarios asociandolos a un soldado con la forma <player_id,soldier>
+    std::map<int,Soldier*> playerSoldierMap; 
 
-    void move(InstructionsDTO* instruction);
+    void move(InstructionsDTO* instruction);  
 
-    void reload(int player_id);
+    void reload(InstructionsDTO* instruction);
 
-    void shoot(int player_id);
+    void shoot(InstructionsDTO* instruction); 
 
 public:
     GameLogic();
 
-    void add_soldier(int* player_id);
+    void add_soldier(int& player_id);  
 
     void new_instruction(InstructionsDTO* instruction);
 
@@ -39,6 +40,5 @@ public:
 
     void udpate_game();
 
-    void delete_soldier(int* player_id);
 };
 #endif

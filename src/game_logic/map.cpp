@@ -345,11 +345,17 @@ std::vector<Zombie*>* GameMap::get_zombies() {
 
 GameMap::~GameMap() {
     for (auto* zombie : zombies) {
-        //delete zombie;
+        delete zombie;
     }
+    zombies.clear();
     for (auto* soldier : soldiers) {
-        //delete soldier;
+        delete soldier;
     }
+    soldiers.clear();
+    for(auto fila: map){
+        fila.clear();    
+    }
+    map.clear();
 }
 
 // ****************************** Metodos de Testeo ***********************************//

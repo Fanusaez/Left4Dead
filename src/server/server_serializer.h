@@ -30,16 +30,6 @@ public:
 
     void send_player_id(int& player_id, bool* was_closed);
     
-    std::vector<char> serialize_soldier_position(int16_t *pos_x, int16_t *pos_y);
-
-    std::vector<char> serialize_soldier_ammo(int *ammo);
-
-    std::vector<char> serialize_soldier_health(int *health);
-
-    std::vector<char> serialize_game_stats(int *infected, int16_t *ammo, int16_t *time);
-
-    std::vector<char> serialize_games_availables(const std::vector<Game*> &games);
-
     void send_game(GameDTO game_dto, bool *was_closed);
 };
 #endif

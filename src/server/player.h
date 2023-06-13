@@ -13,14 +13,14 @@
 
 class Player{
 private:
-    int player_id;
+    int player_id;  //Es el player_id unico dentro el servidor.
 
-    Socket peer;
+    Socket peer;    //Es el socket que tendra cada jugador dentro del servidor.
 
     //Hilo sender
-    PlayerSender player_sender;
+    PlayerSender player_sender; //Hilo que se encargara de enviar mensajes al cliente.
 
-    std::atomic<bool> keep_talking;
+    std::atomic<bool> keep_talking; //Para cortar el loop en el hilo sender y el hilo receiver.
 
 public:
     Player(Socket socket, MatchMananger *matchMananger, int player_id);

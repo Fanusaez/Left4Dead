@@ -13,7 +13,7 @@ class GameMap {
     std::vector<Soldier*> soldiers;
     std::vector<Zombie*> zombies;
     GameFactory factory;
-    std::int16_t y_limit_down = 40; // para interfaz
+    std::int16_t y_limit_down = 38; // para interfaz
 
 void find_new_y_pos(std::int16_t& new_y_pos_ref,
                     std::uint16_t possible_new_y_pos,

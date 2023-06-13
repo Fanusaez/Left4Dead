@@ -51,9 +51,7 @@ JoinDTO* LobbyDeserializer::deserialize_join_scenario(bool *was_closed)
     return instructionsDTO;
 } */
 
-InstructionsDTO* LobbyDeserializer::deserialize_start_game(bool *was_closed)
-{
-    std::vector<char> buffer;
-    InstructionsDTO* instructionsDTO = new InstructionsDTO(START,buffer);
+InstructionsDTO* LobbyDeserializer::deserialize_start_game(bool *was_closed) {
+    InstructionsDTO* instructionsDTO = new InstructionsDTO(START);
     return instructionsDTO; 
 }

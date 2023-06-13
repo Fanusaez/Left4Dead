@@ -2,6 +2,7 @@
 #define INSTRUCTIONSTYPE_H
 
 enum InstructionsType {
+    IDLE,
     CREATE,
     JOIN,
     GAME_MODE,

@@ -8,13 +8,12 @@
 #include <vector>
 #include <utility>
 
-GameLogic::GameLogic() : game_map(400, 50, 0) {
-}
+GameLogic::GameLogic() : game_map(400, 47, 0) {}
 
-void GameLogic::add_soldier(int* player_id) {
+void GameLogic::add_soldier(int& player_id) {
     Soldier* soldier = game_map.get_soldier_with_idf();    
-    playerSoldierMap[*player_id] = soldier;
-    timer = 0;  //Esto va aca?
+    playerSoldierMap[player_id] = soldier;
+    timer = 0;
 }
 
 void GameLogic::new_instruction(InstructionsDTO* instruction) {
@@ -23,19 +22,19 @@ void GameLogic::new_instruction(InstructionsDTO* instruction) {
         move(instruction);
         break;
     case RELOAD:
-        reload(instruction->get_player_id());
+        reload(instruction);
         break;
     case SHOOT:
-        shoot(instruction->get_player_id());
+        shoot(instruction);
         break;
-    case GRANEDE:
-                
+    default:
         break;
     }
 }
 
 GameDTO GameLogic::get_game() {
     GameDTO game_dto;
+    //Recorremos los soldados que hay dentro del mapa
     for (const auto& piar: playerSoldierMap){
         Soldier *soldier = piar.second;
         SoldierObjectDTO soldier_dto(piar.first,soldier->get_id(), soldier->get_health(), 
@@ -44,6 +43,7 @@ GameDTO GameLogic::get_game() {
                                 soldier->get_state()->soldier_state ,IDF, soldier->facing_left());
         game_dto.add_soldier(soldier_dto);
     }
+    //Obtenemos y recorremos los zombies del mapa
     std::vector<Zombie*>* zombies = game_map.get_zombies();
     for (const auto& zombie: *zombies){
         ZombieObjectDTO zombieDTO(zombie->get_id(), zombie->get_x_pos(), zombie->get_y_pos(), 
@@ -59,19 +59,15 @@ void GameLogic::move(InstructionsDTO* instruction) {
     switch (move_dto->get_move_type()) {
     case 0:
         soldier->move_right(timer);
-        //std::cout<<"RIGTH"<<std::endl;
         break;
     case 1:
         soldier->move_left(timer);
-        //std::cout<<"LEFT"<<std::endl;
         break;
     case 2:
         soldier->move_up(timer);
-        //std::cout<<"UP"<<std::endl;
         break;
     case 3:
         soldier->move_down(timer);
-        //std::cout<<"DOWN"<<std::endl;
         break;
     case 4:
         soldier->stop_action();
@@ -79,13 +75,13 @@ void GameLogic::move(InstructionsDTO* instruction) {
     }
 }
 
-void GameLogic::reload(int player_id) {
-    Soldier* soldier = playerSoldierMap[player_id];
+void GameLogic::reload(InstructionsDTO* instruction) {
+    Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
     soldier->reload(timer);
 }
 
-void GameLogic::shoot(int player_id) {
-    Soldier* soldier = playerSoldierMap[player_id];
+void GameLogic::shoot(InstructionsDTO* instruction) {
+    Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
     soldier->shoot(timer);
 }
 
@@ -93,18 +89,6 @@ void GameLogic::udpate_game(){
     for (const auto& piar: playerSoldierMap){
         piar.second->update(timer);
     }
-    //for (const auto& zombie: zombies){
-       // zombie->update(timer);
-    //}
     game_map.update(timer);
-    timer += 0.05;
+    timer += 0.05; //Rate del server loop
 }
-
-void GameLogic::delete_soldier(int* player_id){
-    auto it = playerSoldierMap.find(*player_id);
-    if (it != playerSoldierMap.end()) {
-        delete it->second;
-        playerSoldierMap.erase(it);
-    }
-}
-

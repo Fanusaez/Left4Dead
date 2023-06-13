@@ -10,11 +10,11 @@
 
 class Acceptor : public Thread{
 private:
-    Socket* server;
+    Socket* server; //Socket que usamos para aceptar clientes. Es el socket del servidor.
 
-    std::list <Player *> players;
+    std::list <Player *> players;   //Lista de jugadores dentro de todo el servidor.
 
-    MatchMananger match_mananger;
+    MatchMananger match_mananger;   //Lo usaremos para manejar las distintas partidas que se crean.
 
 public:
     explicit Acceptor(Socket* server);

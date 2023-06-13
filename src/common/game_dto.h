@@ -27,15 +27,15 @@ struct SoldierObjectDTO {
 };
 
 struct ZombieObjectDTO {
-    int id;        // ID único del objeto
-    int position_x;     
-    int position_y;      
+    int16_t id;        // ID único del objeto
+    int16_t position_x;     
+    int16_t position_y;      
     ZombieObjectState state; // Estado del objeto
     ZombieType zombie_type;
     bool facing_left;
 
     // Constructor para inicializar los atributos
-    ZombieObjectDTO(int8_t id, int position_x, int position_y, ZombieObjectState state, 
+    ZombieObjectDTO(int16_t id, int16_t position_x, int16_t position_y, ZombieObjectState state, 
                     ZombieType zombie_type, bool facing_left) : id(id), position_x(position_x),
                     position_y(position_y), state(state), zombie_type(zombie_type), 
                     facing_left(facing_left) {}

@@ -14,23 +14,23 @@ class ServerDeserializer {
 private:
     Socket *socket;
 
-    CreateDTO* deserialize_create(bool *was_closed, int *player_id);
+    CreateDTO* deserialize_create(bool *was_closed, int& player_id);
 
-    JoinDTO* deserialize_join(bool *was_closed, int *player_id);
+    JoinDTO* deserialize_join(bool *was_closed, int& player_id);
 
-    MoveDTO* deserialize_move(bool *was_closed, int *player_id);
+    MoveDTO* deserialize_move(bool *was_closed, int& player_id);
 
-    InstructionsDTO* deserialize_reloading(bool *was_closed, int *player_id);
+    InstructionsDTO* deserialize_reloading(bool *was_closed, int& player_id);
 
-    InstructionsDTO* deserialize_shooting(bool *was_closed, int *player_id);
+    InstructionsDTO* deserialize_shooting(bool *was_closed, int& player_id);
 
-    InstructionsDTO* deserialize_grenede(bool *was_closed, int *player_id);
+    InstructionsDTO* deserialize_grenede(bool *was_closed, int& player_id);
 
-    InstructionsDTO* deserialize_start(bool *was_closed, int *player_id);
+    InstructionsDTO* deserialize_start(bool *was_closed, int& player_id);
 
 public:
     explicit ServerDeserializer(Socket *socket);
 
-    InstructionsDTO* obtener_instruccion(bool *was_closed, int* player_id);
+    InstructionsDTO* obtener_instruccion(bool *was_closed, int& player_id);
 };
 #endif

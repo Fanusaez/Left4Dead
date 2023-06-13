@@ -6,39 +6,46 @@
 
 double rate = 0.05;
 
-Game::Game(Queue<GameDTO> *queue_sender, int32_t *code, std::string *game_name, int* player_id) : 
-    queue_entrante(10000), code(*code), game_name(*game_name), game_logic(), keep_playing(true)
+Game::Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, int& player_id) : 
+    queue_entrante(10000), code(code), game_name(game_name), game_logic(), keep_playing(true)
 {
     game_logic.add_soldier(player_id);
-    queue_salientes[*player_id] = queue_sender;
+    queue_salientes[player_id] = queue_sender;
 }
 
 void Game::run(){   
     InstructionsDTO* instructionDTO;
-    InstructionsDTO* start;
     bool could_pop;
-    for (int i = 0 ; i < queue_salientes.size() ; i++) {
-        start = queue_entrante.pop();  //Espero a popoear la señal de start
+    int start_players = 0;
+    //Espero a popoear la señal de start de todos los jugadores
+    while (start_players < queue_salientes.size()) {
+        instructionDTO = queue_entrante.pop();  
+        if (instructionDTO->get_instruction() == START)
+            start_players++;
+        delete instructionDTO;
     }
+    //Comienza el juego
     while (keep_playing)
     {
-        auto t_start = std::chrono::high_resolution_clock::now();
-        could_pop = queue_entrante.try_pop(instructionDTO);
-        int count = 0;
-        while (could_pop) { //Controlar por cantidad y si no pudo popear mas
-            game_logic.new_instruction(instructionDTO);
-            delete instructionDTO;
-            could_pop = queue_entrante.try_pop(instructionDTO);
-            count++;
+        auto t_start = std::chrono::high_resolution_clock::now();   //Comienzo el timer
+        could_pop = queue_entrante.try_pop(instructionDTO); //
+        int instructions_count = 0;
+        while (could_pop && instructions_count < 10) { //Controlar: cantidad y si no hay mas
+            game_logic.new_instruction(instructionDTO); //La logica analiza la instruccion
+            delete instructionDTO;  //Elimino la instruccion ya que no la necesito mas
+            could_pop = queue_entrante.try_pop(instructionDTO); //Busco la proxima
+            instructions_count++;
         }
-        game_logic.udpate_game();
-        GameDTO game_dto = game_logic.get_game();
-        m.lock();   
+        game_logic.udpate_game(); //Una vez que analize las instrucciones actualizo el juego.
+        GameDTO game_dto = game_logic.get_game(); //Obtengo el "screen" del juego
+        //Comienzo a mandarlo a todas las queue de los clientes del juego
+        m.lock();
         for (const auto &queue : queue_salientes) {
             queue.second->try_push(game_dto);
         }
         m.unlock();
-        auto t_end = std::chrono::high_resolution_clock::now();
+        //Me fijo cuanto tardo y calculo cuanto dormir o si seguir corriendo para mantener el rate.
+        auto t_end = std::chrono::high_resolution_clock::now(); 
         std::chrono::duration<double> duration = t_end - t_start;
 		double seconds = duration.count();
 		double rest = rate - seconds;
@@ -57,25 +64,24 @@ Queue<InstructionsDTO*> *Game::getQueue(){
     return &queue_entrante;
 }
 
-void Game::addPlayer(Queue<GameDTO> *queue_sender,int* player_id){
+void Game::addPlayer(Queue<GameDTO> *queue_sender,int& player_id){
     m.lock();
     game_logic.add_soldier(player_id);
-    queue_salientes[*player_id] = queue_sender;
+    queue_salientes[player_id] = queue_sender;
     m.unlock();
 }
 
-bool Game::compare_code(int32_t *code_to_compare){
-    return (code == (*code_to_compare));
+bool Game::compare_code(const int32_t& code_to_compare){
+    return (code == code_to_compare);
 }
 
-bool Game::compare_game_name(std::string *game_name_to_compare){
-    return (game_name == (*game_name_to_compare));
+bool Game::compare_game_name(const std::string& game_name_to_compare){
+    return (game_name == game_name_to_compare);
 }
 
-bool Game::find_player(int* player_id){
-    auto it = queue_salientes.find(*player_id);
+bool Game::find_player(int& player_id){
+    auto it = queue_salientes.find(player_id);
     if (it != queue_salientes.end()){
-        game_logic.delete_soldier(player_id);
         queue_salientes.erase(it);
         return true;    
     }
@@ -84,7 +90,7 @@ bool Game::find_player(int* player_id){
 
 bool Game::is_empty(){
     if (queue_salientes.empty()){
-        keep_playing = false;
+        stop_playing();   //Si esta vacio el juego no hago que se corra mas.
         return true;
     }
     return false;

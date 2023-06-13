@@ -15,35 +15,38 @@
 
 class PlayerSender : public Thread{
 private:
+    //Tendra un serializador para envier mensajes al cliente.
+    //El serializador tendra el socket y enviara los datos.
     ServerSerializer server_serializer;
 
-    //Usamos esto para que el hilo sender serialize los mensajes que recibe en la parte sincronica
-    //y para mandar los screen del juego.
+    //El hilo sender tiene que deserializar los mensajes que recibe en la parte sincronica.
     ServerDeserializer server_deserializer;
     
-    //Con esta variable manejamos el ciclo while de los hilos
+    //Referencia del booleano que se encuentra dentro de Player.
     std::atomic<bool>& keep_talking;
 
-    //Usamos esta variable para el manejo del sockets
+    //Usamos esta variable para el manejo del socket
     bool was_closed = false;
 
-    // Queue de la cual vamos a sacar mensajes a senviarle a nuestro cliente
+    // Queue de la cual vamos a sacar mensajes a enviarle a nuestro cliente
     Queue<GameDTO> queue_sender;
 
-    // Hilo receiver
+    // Hilo receiver. Lo tiene e PlayerSender ya que este se encargara de lanzarlo y manejarlo
+    // debido a que en principio tenemos una parte sincronica.
     PlayerReceiver player_receiver;
 
-    // Referencia a la queue que tendra el hilo de Game al cual le cargamos todo.
+    // Referencia a la queue que tendra el hilo Game al cual le mandamos todas las instrucciones.
     Queue<InstructionsDTO*> *queue_receiver;
 
-    //Esta referencia es unicamente para el proceso inicial de create/join
+    //Esta referencia es unicamente para el proceso inicial de create/join.
     MatchMananger *match_mananger;
 
-    int *player_id;
+    //Necesito del id para la creacion o union de partidas.
+    int player_id;
 
 public:
     PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, 
-                    MatchMananger *matchMananger, int *player_id);
+                    MatchMananger *matchMananger, int& player_id);
 
     void run() override;
 

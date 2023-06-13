@@ -14,9 +14,6 @@ class Cliente;
 
 class PlayerReceiver : public Thread{
 private:
-    Socket *socket;
-
-    MatchMananger *match_manager;
 
     Queue<InstructionsDTO*> *queue_receiver;
 
@@ -24,11 +21,10 @@ private:
 
     ServerDeserializer server_deserializer;
 
-    int* player_id;
+    int player_id;
 
 public:
-    PlayerReceiver(Socket *socket, MatchMananger *match_manager, 
-                std::atomic<bool> &keep_talking, int *player_id);
+    PlayerReceiver(Socket *socket, std::atomic<bool> &keep_talking, int& player_id);
 
     void run() override;
 

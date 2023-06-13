@@ -1,18 +1,18 @@
 #include "server_deserializer.h"
 #include "../common/instructions_type.h"
-
+#include <exception>
 #include <iostream>
 
 ServerDeserializer::ServerDeserializer(Socket *socket) : socket(socket) {}
 
-InstructionsDTO* ServerDeserializer::obtener_instruccion(bool *was_closed, int* player_id)
+InstructionsDTO* ServerDeserializer::obtener_instruccion(bool *was_closed, int& player_id)
 {
     char code = 0;
     socket->recvall(&code, 1, was_closed);
-/*     if (*was_closed){
-        InstructionsDTO instruction;
-        return instruction;
-    } */
+    //Que pasa si se cierra el socket mientras espero la proxima instruccion?
+    if (*was_closed){
+        throw std::runtime_error("Se cerro el socket esperando una instruccion");
+    }
     InstructionsType instruction = static_cast<InstructionsType>(code);
     switch (instruction) {
         case CREATE:
@@ -33,13 +33,10 @@ InstructionsDTO* ServerDeserializer::obtener_instruccion(bool *was_closed, int* 
         case SHOOT:
             return (deserialize_shooting(was_closed, player_id));
             break;
-        case GRANEDE:
-            //return (deserialize_grenede(was_closed, player_id));
-            break;
         }
 }
 
-CreateDTO* ServerDeserializer::deserialize_create(bool *was_closed, int* player_id)
+CreateDTO* ServerDeserializer::deserialize_create(bool *was_closed, int& player_id)
 {
     int longitud = 0;
     socket->recvall(&longitud, 1, was_closed);
@@ -49,7 +46,7 @@ CreateDTO* ServerDeserializer::deserialize_create(bool *was_closed, int* player_
     return create_dto;
 }
 
-JoinDTO* ServerDeserializer::deserialize_join(bool *was_closed, int* player_id)
+JoinDTO* ServerDeserializer::deserialize_join(bool *was_closed, int& player_id)
 {
     int32_t game_code;
     socket->recvall(&game_code, 4, was_closed);
@@ -57,7 +54,7 @@ JoinDTO* ServerDeserializer::deserialize_join(bool *was_closed, int* player_id)
     return join_dto;
 }
 
-MoveDTO* ServerDeserializer::deserialize_move(bool *was_closed, int* player_id)
+MoveDTO* ServerDeserializer::deserialize_move(bool *was_closed, int& player_id)
 {
     MoveType move_type;
     socket->recvall(&move_type, 1, was_closed);
@@ -65,13 +62,13 @@ MoveDTO* ServerDeserializer::deserialize_move(bool *was_closed, int* player_id)
     return move_dto;
 }
 
-InstructionsDTO* ServerDeserializer::deserialize_reloading(bool *was_closed, int* player_id)
+InstructionsDTO* ServerDeserializer::deserialize_reloading(bool *was_closed, int& player_id)
 {
     InstructionsDTO* instructionDTO = new InstructionsDTO(player_id, RELOAD);
     return instructionDTO;
 }
 
-InstructionsDTO* ServerDeserializer::deserialize_shooting(bool *was_closed, int* player_id)
+InstructionsDTO* ServerDeserializer::deserialize_shooting(bool *was_closed, int& player_id)
 {
     InstructionsDTO* instructionDTO = new InstructionsDTO(player_id, SHOOT);
     return instructionDTO;
@@ -83,10 +80,9 @@ InstructionsDTO* ServerDeserializer::deserialize_shooting(bool *was_closed, int*
     socket->recvall(bytes.data(), 1, was_closed);
     InstructionsDTO instructionDTO(player_id, GRANEDE, bytes);
     return instructionDTO;
-} */
+}*/
 
-InstructionsDTO* ServerDeserializer::deserialize_start(bool *was_closed, int* player_id)
-{
+InstructionsDTO* ServerDeserializer::deserialize_start(bool *was_closed, int& player_id) {
     InstructionsDTO* instructionDTO = new InstructionsDTO(player_id, START);
     return instructionDTO;
 }

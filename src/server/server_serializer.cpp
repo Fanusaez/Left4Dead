@@ -42,60 +42,7 @@ void ServerSerializer::send_player_id(int& player_id, bool* was_closed) {
     socket->sendall(buffer.data(), buffer.size(), was_closed);    
 }
 
-std::vector<char> ServerSerializer::serialize_soldier_position(int16_t *pos_x, int16_t *pos_y)
-{
-    std::vector<char> buffer;
-    buffer.push_back(0x01);
-
-    buffer.push_back((*pos_x >> 8) & 0xFF);
-    buffer.push_back(*pos_x & 0xFF);
-
-    buffer.push_back((*pos_y >> 8) & 0xFF);
-    buffer.push_back(*pos_y & 0xFF);
-
-    return buffer;
-}
-
-std::vector<char> ServerSerializer::serialize_soldier_ammo(int *ammo)
-{
-    std::vector<char> buffer;
-    buffer.push_back(0x02);
-
-    buffer.push_back(0x01); // <msg lem>
-    buffer.push_back(*ammo);
-
-    return buffer;
-}
-
-std::vector<char> ServerSerializer::serialize_soldier_health(int *health)
-{
-    std::vector<char> buffer;
-    buffer.push_back(0x03);
-
-    buffer.push_back(0x01); // <msg lem>
-    buffer.push_back(*health);
-
-    return buffer;
-}
-
-std::vector<char> ServerSerializer::serialize_game_stats(
-            int *infected, int16_t *ammo, int16_t *time)
-{
-    std::vector<char> buffer;
-
-    buffer.push_back(0x04);
-    buffer.push_back(*infected);
-
-    buffer.push_back((*ammo >> 8) & 0xFF);
-    buffer.push_back(*ammo & 0xFF);
-
-    buffer.push_back((*time >> 8) & 0xFF);
-    buffer.push_back(*time & 0xFF);
-
-    return buffer;
-}
-
-std::vector<char> ServerSerializer::serialize_games_availables(const std::vector<Game*> &games){
+/* std::vector<char> ServerSerializer::serialize_games_availables(const std::vector<Game*> &games){
     std::vector<char> buffer;
 
     std::mutex m;
@@ -106,7 +53,7 @@ std::vector<char> ServerSerializer::serialize_games_availables(const std::vector
         buffer.push_back(game->get_players());
     }
     return buffer;
-}
+} */
 
 void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
 {
@@ -147,15 +94,17 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
     }
 
     for (const auto &obj : zombies) {
-        buffer.push_back(obj.id);
+        unsigned char const *p = reinterpret_cast<unsigned char const *>(&obj.id);
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
+
         buffer.push_back(obj.state);
         buffer.push_back(obj.zombie_type);
 
-        unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.position_x);
-        buffer.insert(buffer.end(), p, p + sizeof(int));
+        p = reinterpret_cast<unsigned char const *>(&obj.position_x);
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
         p = reinterpret_cast<unsigned char const *>(&obj.position_y);
-        buffer.insert(buffer.end(), p, p + sizeof(int));
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
         buffer.push_back(obj.facing_left);
     }
