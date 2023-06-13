@@ -27,7 +27,7 @@ void testAirStrikeStateIdle(void) {
 }
 
 void testAirStrikeAndStateChangesToIncoming(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
     State* idle= new Idle;
 
     AirStrike air_strike;
@@ -39,8 +39,8 @@ void testAirStrikeAndStateChangesToIncoming(void) {
 }
 
 void testAirStrikeAndStateChangesToExploding(void) {
-    GameMap map(10, 10);
-    State* idle= new Idle;
+    GameMap map(10, 10, 0);
+    State* idle = new Idle;
     AirStrike air_strike;
     air_strike.call_air_strike(map, 0, 0, idle, 0);
     air_strike.update(10);
@@ -52,7 +52,7 @@ void testAirStrikeAndStateChangesToExploding(void) {
 }
 
 void testAirStrikeAndStateChangesToIdle(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
     State* idle= new Idle;
     AirStrike air_strike;
     air_strike.call_air_strike(map, 0, 0, idle, 0);

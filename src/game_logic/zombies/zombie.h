@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <cstdint>
-#include "../common/zombie_type.h"
+#include "../../common/zombie_type.h"
 
 #define MAX_DISTANCE 10000
 

@@ -8,7 +8,7 @@
 #include "game_logic/weapons/weapon.h"
 
 void testWitcherScreamsAndAttractsZombies(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
 
     Witch witch(1,8, 0, map);
     witch.scream(1);

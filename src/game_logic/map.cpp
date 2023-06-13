@@ -11,7 +11,6 @@
 #define UP -1
 #define LEFT 2
 #define RIGHT 3
-#define Y_LIMIT_DOWN 40
 #define INVALID_POSITION -1
 
 GameMap::GameMap(std::uint16_t x_size, std::uint16_t y_size) :
@@ -19,6 +18,13 @@ GameMap::GameMap(std::uint16_t x_size, std::uint16_t y_size) :
         y_size(y_size),
         map(y_size, std::vector<GameObject*>(x_size, nullptr)),
         factory(*this) {}
+
+GameMap::GameMap(std::uint16_t x_size, std::uint16_t y_size, std::int16_t y_limit_down) :
+        x_size(x_size),
+        y_size(y_size),
+        map(y_size, std::vector<GameObject*>(x_size, nullptr)),
+        factory(*this),
+        y_limit_down(y_limit_down){}
 
 void GameMap::update(float time) {
     std::vector<Zombie*> zombies_copy = zombies;
@@ -94,7 +100,7 @@ void GameMap::get_objects_in_air_strike(std::vector<GameObject *> &game_objects_
             game_objects_in_air_strike.push_back(dynamic_cast<GameObject*>(object));
         }
     }
-    for (GameObject* object : soldiers){
+    for (Soldier* object : soldiers){
         if (!object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
             game_objects_in_air_strike.push_back(object);
         }
@@ -110,8 +116,8 @@ void GameMap::validate_position_for_explosion(  std::int16_t& x_pos,
     }
     if (y_pos > y_size - 1) {
         y_pos = y_size - 1;
-    } else if (y_pos < y_size) {
-        y_pos = y_size;
+    } else if (y_pos < 0) {
+        y_pos = y_limit_down;
     }
 }
 
@@ -151,7 +157,7 @@ void GameMap::collision_going_right(std::vector<GameObject*>& game_objects,
 void GameMap::move_object_up(std::int16_t x_pos,
                               std::int16_t y_pos,
                               std::int16_t& new_y_pos_ref) {
-    if (y_pos > Y_LIMIT_DOWN){ //PQ CHEQUEO ESTO>
+    if (y_pos > y_limit_down){ //PQ CHEQUEO ESTO>
         std::uint16_t new_y_pos = y_pos - 1;
         find_new_y_pos(new_y_pos_ref, new_y_pos, x_pos, y_pos);
         return;
@@ -300,7 +306,7 @@ void GameMap::get_position_for_object(std::vector<std::int16_t> &valid_pos) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis_x(0, x_size - 1);
-    std::uniform_int_distribution<> dis_y(Y_LIMIT_DOWN, y_size);
+    std::uniform_int_distribution<> dis_y(y_limit_down, y_size);
 
     while (true) {
         std::int16_t random_x_pos = dis_x(gen);
@@ -320,7 +326,7 @@ bool GameMap::valid_object_position(std::int16_t x_pos, std::int16_t y_pos) {
     if ( x_pos >= 0 && x_pos < x_size) {
         valid_x = true;
     }
-    if (y_pos >= Y_LIMIT_DOWN && y_pos < y_size){
+    if (y_pos >= y_limit_down && y_pos < y_size){
         valid_y = true;
     }
     return valid_x && valid_y;

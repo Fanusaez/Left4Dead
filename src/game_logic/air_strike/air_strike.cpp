@@ -20,7 +20,7 @@ State* AirStrike::call_air_strike(GameMap& map,
         return nullptr;
     }
     last_called_air_strike = time;
-    AirStrikeState* new_state = air_strike_state  -> call_air_strike(time, x_matrix_soldier, y_matrix_soldier, map, this);
+    AirStrikeState* new_state = air_strike_state -> call_air_strike(time, x_matrix_soldier, y_matrix_soldier, map, this);
     if (new_state) {
         delete air_strike_state ;
         air_strike_state = new_state;

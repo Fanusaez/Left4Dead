@@ -13,11 +13,11 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-#define MOVEMENTS_PER_CELL 5
-#define MOV_NEEDED_TO_WALK_ALL_CELL 4
+#define MOVEMENTS_PER_CELL 2
+#define MOV_NEEDED_TO_WALK_ALL_CELL 1
 
 void testMoveSoldierUp(){
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3, 8);
@@ -33,7 +33,7 @@ void testMoveSoldierUp(){
 }
 
 void testNotMoveSoldierUp(){
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, (3), (8));
@@ -54,7 +54,7 @@ void testNotMoveSoldierUp(){
 }
 
 void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3, 8);
@@ -78,7 +78,7 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
 }
 
 void testMoveSoldierWithZombieClose(){
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 2, 8);
@@ -104,7 +104,7 @@ void testMoveSoldierWithZombieClose(){
 }
 
 void testMoveSoldierUpUntilEndOfTheMap(){
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 3, 2);
@@ -122,7 +122,7 @@ void testMoveSoldierUpUntilEndOfTheMap(){
 }
 
 void testMoveSoldierUpUntilEndOfTheMap2(){
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, 8, 9);

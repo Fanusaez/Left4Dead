@@ -37,7 +37,7 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages5Zombies(void) {
     std::int16_t  y_limit_damage_up = y_explosion - REACH_EXPLOSIVE_DAMAGE;
     std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
 
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
@@ -90,7 +90,7 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies(void) {
     std::int16_t  y_limit_damage_up = y_explosion - REACH_EXPLOSIVE_DAMAGE;
     std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
 
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
@@ -148,7 +148,7 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies2(void) {
     std::int16_t  y_limit_damage_up = y_explosion - REACH_EXPLOSIVE_DAMAGE;
     std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
 
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
@@ -196,7 +196,7 @@ void testSoldierThrowsExplosiveGrenadeToOtherSoldier(void) {
     std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
     std::int16_t  y_explosion= y_throwing_place;
 
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout1 = new Scout;
     Weapon* scout2 = new Scout;
 
@@ -231,7 +231,7 @@ void testSoldierThrowsExplosiveGrenadeRightAndDamages5Zombies(void) {
     std::int16_t  y_limit_damage_up = y_explosion - REACH_EXPLOSIVE_DAMAGE;
     std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
 
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout;
 
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);

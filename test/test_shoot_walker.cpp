@@ -8,11 +8,11 @@
 #include "game_logic/weapons/weapon.h"
 #define UP -1
 #define DOWN 1
-#define MOVEMENTS_PER_CELL 5
-#define MOV_NEEDED_TO_WALK_ALL_CELL 4
+#define MOVEMENTS_PER_CELL 2
+#define MOV_NEEDED_TO_WALK_ALL_CELL 1
 
 void testSoldierShootsInfectedSameLineLeft(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 9, 8);
@@ -28,7 +28,7 @@ void testSoldierShootsInfectedSameLineLeft(void) {
 }
 
 void testSoldierShootsInfectedSameLineRight(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
@@ -46,7 +46,7 @@ void testSoldierShootsInfectedSameLineRight(void) {
 }
 
 void testSoldierShootsInfectedNotSameLineLeft(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 9, 8);
@@ -64,7 +64,7 @@ void testSoldierShootsInfectedNotSameLineLeft(void) {
 }
 
 void testSoldierShootsOtherSoldierNotSameLineRight(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
 
     Weapon* idf = new Idf;
     Weapon* idf2 = new Idf;
@@ -88,7 +88,7 @@ void testSoldierShootsOtherSoldierNotSameLineRight(void) {
  * Digamos la "verdadera" posicion
  */
 void testSoldierShootsOnly1InfectedOutOf2AimingLeft(){
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 7, 6);
@@ -109,7 +109,7 @@ void testSoldierShootsOnly1InfectedOutOf2AimingLeft(){
 }
 
 void testSoldierShootsAndMissInfectedOutOfRangeLeft(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 9, 8);
@@ -125,7 +125,7 @@ void testSoldierShootsAndMissInfectedOutOfRangeLeft(void) {
 }
 
 void testSoldierShootsAndMissInfectedOutOfRangeRight(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);
@@ -141,7 +141,7 @@ void testSoldierShootsAndMissInfectedOutOfRangeRight(void) {
 }
 
 void testSoldierShootsAndMissAimingRightTurnedAroundToInfected(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 9, 8);
@@ -157,7 +157,7 @@ void testSoldierShootsAndMissAimingRightTurnedAroundToInfected(void) {
 }
 
 void testSoldierShootsAndMissAimingUpTurnedAroundToInfected(void) {
-    GameMap map(10, 10);
+    GameMap map(10, 10, 0);
     Weapon* idf = new Idf;
 
     Soldier soldier(idf, map, 3, 3);

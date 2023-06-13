@@ -22,7 +22,7 @@
 
 
 void testCollisionSameLineUp(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf;
 
     Soldier* soldier = new Soldier(idf, map);
@@ -36,7 +36,7 @@ void testCollisionSameLineUp(void) {
 }
 
 void testCollisionSameLineDown(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf;
 
     Soldier* soldier = new Soldier(idf, map);
@@ -50,7 +50,7 @@ void testCollisionSameLineDown(void) {
 }
 
 void testCollisionNotSameLineLeftUp(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf;
 
     Soldier* soldier = new Soldier(idf, map);
@@ -64,7 +64,7 @@ void testCollisionNotSameLineLeftUp(void) {
 }
 
 void testCollisionNotSameLineRightUp(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf;
 
     Soldier* soldier = new Soldier(idf, map);
@@ -78,7 +78,7 @@ void testCollisionNotSameLineRightUp(void) {
 }
 
 void testCollisionNotSameLineLeftDown(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf;
 
     Soldier* soldier = new Soldier(idf, map);
@@ -92,7 +92,7 @@ void testCollisionNotSameLineLeftDown(void) {
 }
 
 void testCollisionNotSameLineRightDown(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf;
 
     Soldier* soldier = new Soldier(idf, map);
@@ -106,7 +106,7 @@ void testCollisionNotSameLineRightDown(void) {
 }
 
 void testNoCollisionUp(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf;
 
     Soldier* soldier = new Soldier(idf, map);
@@ -120,7 +120,7 @@ void testNoCollisionUp(void) {
 }
 
 void testNoCollisionDown(void) {
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf;
 
     Soldier* soldier = new Soldier(idf, map);
