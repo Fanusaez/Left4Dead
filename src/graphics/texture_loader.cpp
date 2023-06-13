@@ -26,6 +26,14 @@ void TextureLoader::loadMusic(const std::list <std::string> &musicNames)
 	}
 }
 
+void TextureLoader::loadSFX(const std::list <std::string> &sfxNames)
+{
+	for (auto const &chunkFile: sfxNames) {
+		SDL2pp::Chunk sfx(std::string(AssetsPath).append(chunkFile));
+		this->chunks[chunkFile] = std::make_shared<SDL2pp::Chunk>(std::move(sfx));
+	}
+}
+
 /*
  * Note that this reference is not const and might be shared by
  * many objects.
@@ -41,6 +49,12 @@ TexturePtr TextureLoader::getTexture(const std::string &spriteName)
 MusicPtr TextureLoader::getMusic(const std::string &musicName)
 {
 	MusicPtr ptr = this->music.at(musicName);
+	return ptr;
+}
+
+ChunkPtr TextureLoader::getChunk(const std::string &chunkName)
+{
+	ChunkPtr ptr = this->chunks.at(chunkName);
 	return ptr;
 }
 
