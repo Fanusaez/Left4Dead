@@ -1,13 +1,25 @@
 # Left4Dead
 
-## Como ejecutar el juego
+## Instalación
+
+Desde el root del proyecto:
+
+`mkdir build`
+
+`cd build`
+
+`cmake .. & make`
+
+Esto generará dos binarios: el cliente y el servidor.
+
+## Ejecución
 
 Para correr el juego se tiene que ejecutar primero el servidor:
 * `./server <puerto>`
 El servidor se cierra apretando q
 
 Luego se ejecuta la ccantidad de clientes que se quiera de la siguiente forma:
-* `./main_client localhost <puerto>`
+* `./l4dclient localhost <puerto>`
 
 Dentro del lobby se podran ejecutar las siguientes instrucciones:
 * `create <nombre del escenario>`: para crear una partida
