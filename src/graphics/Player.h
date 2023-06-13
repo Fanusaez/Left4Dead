@@ -13,6 +13,9 @@ class Player : public RenderableObject {
 	Animation an;
 	bool facingLeft;
 	SoldierObjectState state;
+	std::shared_ptr<SDL2pp::Chunk> sfx;
+	int sfxLoops;
+	bool playSFX;
 
 public:
 	Player(int id, int initialX, int initialY);
@@ -26,6 +29,8 @@ public:
 	virtual void update(unsigned dt) override;
 
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) override;
+
+	virtual void renderAudio(SDL2pp::Mixer &mixer) override;
 
 private:
 	bool isMoving() const;

@@ -36,6 +36,8 @@ void Witch::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 	this->animation.render(renderer, dst, flip);
 }
 
+void Witch::renderAudio(SDL2pp::Mixer &mixer) {}
+
 void Witch::changeState(const ZombieObjectState &state)
 {
 	if (this->state == state)

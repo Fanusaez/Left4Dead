@@ -36,6 +36,8 @@ void Infected::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 	this->animation.render(renderer, dst, flip);
 }
 
+void Infected::renderAudio(SDL2pp::Mixer &mixer) {}
+
 void Infected::changeState(const ZombieObjectState &state)
 {
 	if (this->state == state)

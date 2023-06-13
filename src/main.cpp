@@ -65,6 +65,7 @@ int main(int argc, char *argv[])
 	TextureLoader &textureLoader = TextureLoader::getInstance();
 	textureLoader.load(view.getRenderer(), configs.getSpritesToLoad());
 	textureLoader.loadMusic(configs.getMusicToLoad());
+	textureLoader.loadSFX(configs.getChunksToLoad());
 	std::unique_ptr<Scene> scene(new Scene());
 	view.setScene(scene);
 
@@ -134,24 +135,28 @@ static bool handleEvents(Client* client, Gameview &view)
 			switch (keyEvent.keysym.sym) {
 				case SDLK_LEFT: {
 					if (keyEvent.repeat == 0) {
+						std::cout << "Left\n";
 						client->move(LEFT);
 					}
 					break;
 				}
 				case SDLK_RIGHT: {
 					if (keyEvent.repeat == 0) {
+						std::cout << "Right\n";
 						client->move(RIGHT);
 					}
 					break;
 				}
 				case SDLK_UP: {
 					if (keyEvent.repeat == 0) {
+						std::cout << "Up\n";
 						client->move(UP);
 					}
 					break;
 				}
 				case SDLK_DOWN: {
 					if (keyEvent.repeat == 0) {
+						std::cout << "Down\n";
 						client->move(DOWN);
 					}
 					break;
@@ -164,6 +169,7 @@ static bool handleEvents(Client* client, Gameview &view)
 				}
 				case SDLK_s: {
 					if (keyEvent.repeat == 0) {
+						std::cout << "Shoot\n";
 						client->shoot();
 					}
 					break;

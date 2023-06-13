@@ -25,6 +25,8 @@ public:
 
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) override;
 
+	virtual void renderAudio(SDL2pp::Mixer &mixer) override;
+
 private:
 	bool isMoving() const;
 

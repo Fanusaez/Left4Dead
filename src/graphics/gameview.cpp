@@ -79,6 +79,7 @@ void Gameview::renderRelativeToMainObject()
 	this->scene->render(this->renderer);
 	SDL2pp::Rect mainObjectDst(885, mainObject.getPositionY(), 150, 150);
 	mainObject.render(this->renderer, mainObjectDst);
+	mainObject.renderAudio(this->mixer);
 
 	for (auto &obj: this->objects) {
 		if (obj.first == mainObject.getID())
@@ -91,6 +92,7 @@ void Gameview::renderRelativeToMainObject()
 			885 + object.getPositionX() - mainObject.getPositionX(),
 			object.getPositionY(), 150, 150);
 		object.render(this->renderer, objDst);
+		object.renderAudio(this->mixer);
 	}
 	this->renderer.Present();
 }
@@ -105,6 +107,7 @@ void Gameview::renderFixedCamera()
 			object.getPositionY(),
 			150, 150);
 		object.render(this->renderer, objDst);
+		object.renderAudio(this->mixer);
 	}
 	this->renderer.Present();
 }

@@ -26,7 +26,7 @@ public:
 
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) = 0;
 
-	//virtual void renderAudio(SDL2pp::Mixer &mixer) = 0;
+	virtual void renderAudio(SDL2pp::Mixer &mixer) = 0;
 
 	int getID() const;
 
