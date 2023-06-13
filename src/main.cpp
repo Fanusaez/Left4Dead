@@ -29,7 +29,8 @@ double rate = 0.04;
 int main(int argc, char *argv[])
 {
 	/*
-	Gameloop donde estoy en el lobby. Todo el tiempo estoy chequeando nuevos mensajes de server ya sea por el create o el join o la lista de partidas o el chat
+	Gameloop donde estoy en el lobby. Todo el tiempo estoy chequeando nuevos mensajes de server 
+	ya sea por el create o el join o la lista de partidas o el chat
 	*/
 	Lobby lobby(argv[1], argv[2]);
 	int player_id = lobby.get_player_id();
@@ -46,6 +47,10 @@ int main(int argc, char *argv[])
 			iss >> map;
 			lobby.create_scenario(map);
 		} else if (mode == "join") {
+			if (iss.eof()) {
+				std::cout<<"Error: se requiere un código para unirse a un escenario."<<std::endl;
+				continue;  // Vuelve al inicio del bucle
+        	}
 			int32_t code;
 			iss >> code;
 			lobby.join_scenario(code);
