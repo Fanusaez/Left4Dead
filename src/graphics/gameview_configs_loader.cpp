@@ -37,6 +37,7 @@ GameviewConfigurationsLoader::GameviewConfigurationsLoader() :
 	this->spritesToLoad.push_back("Witch/Hurt.png");
 	this->spritesToLoad.push_back("Witch/Dead.png");
 	this->musicToLoad.push_back("Music/10. no way back.flac");
+	this->chunksToLoad.push_back("Soldier_1/Death.mp3");
 }
 
 const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad()
@@ -47,6 +48,11 @@ const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad()
 const std::list <std::string> &GameviewConfigurationsLoader::getMusicToLoad()
 {
 	return this->musicToLoad;
+}
+
+const std::list <std::string> &GameviewConfigurationsLoader::getChunksToLoad()
+{
+	return this->chunksToLoad;
 }
 
 const std::list <std::string> GameviewConfigurationsLoader::getSceneSprites() const
