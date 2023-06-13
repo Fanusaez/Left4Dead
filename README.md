@@ -2,6 +2,13 @@
 
 ## Instalación
 
+### Dependencias
+
+* SDL2 (desarrollado con la version 2.26.5)
+* SDL2_image y SDL2_mixer
+
+### Comandos
+
 Desde el root del proyecto:
 
 `mkdir build`
