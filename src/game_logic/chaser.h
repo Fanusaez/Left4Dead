@@ -12,7 +12,7 @@ private:
     std::int16_t& y_pos;
     Zombie* zombie;
     GameMap& map;
-    const std::int16_t walker_speed = 1;
+    const std::int16_t zombie_speed = 1;
 
 public:
 

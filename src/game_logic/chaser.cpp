@@ -32,51 +32,51 @@ void Chaser::chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
     std::int16_t x_new_pos = INVALID_POSITION;
     std::int16_t y_new_pos = INVALID_POSITION;
     if (y_pos_chase > y_pos && same_place) { // movimiento para abajo
-        std::int16_t y_new = y_pos + walker_speed;
+        std::int16_t y_new = y_pos + zombie_speed;
         if ((y_new % MOVEMENTS_PER_CELL) != 0) {
-            y_pos += walker_speed;
+            y_pos += zombie_speed;
             return;
         }
         map.move_object_down(x_matrix_walker, y_matrix_walker, y_new_pos);
         if (y_new_pos != INVALID_POSITION) {
-            y_pos += walker_speed;
+            y_pos += zombie_speed;
             same_place = false;
         }
     } else if (y_pos_chase < y_pos && same_place) { // movimiento para arriba
         // if (y_pos <= WALLS_LIMITS) return nullptr;
         if ((y_pos % MOVEMENTS_PER_CELL) != 0) {
-            y_pos -= walker_speed;
+            y_pos -= zombie_speed;
             return;
         }
         map.move_object_up(x_matrix_walker, y_matrix_walker, y_new_pos);
         if (y_new_pos != INVALID_POSITION) {
             same_place = false;
-            y_pos -= walker_speed;
+            y_pos -= zombie_speed;
         }
     }
     if (x_pos_chase < x_pos && same_place) { // movimiento para izquierda
         zombie->set_direction(LEFT);
         //if (x_pos <= WALLS_LIMITS) return nullptr; por ahora no hay walls limit
         if ((x_pos % MOVEMENTS_PER_CELL) != 0) {
-            x_pos -= walker_speed;
+            x_pos -= zombie_speed;
             return;
         }
         map.move_object_left(x_matrix_walker, y_matrix_walker, x_new_pos);
         if (x_new_pos != INVALID_POSITION) {
             same_place = false;
-            x_pos -= walker_speed;
+            x_pos -= zombie_speed;
         }
     } else if (x_pos_chase > x_pos && same_place) { // movimiento para derecha
         zombie->set_direction(RIGHT);
-        std::int16_t x_new = x_pos + walker_speed;
+        std::int16_t x_new = x_pos + zombie_speed;
         if ((x_new % MOVEMENTS_PER_CELL) != 0) {
-            x_pos += walker_speed;
+            x_pos += zombie_speed;
             return;
         }
         map.move_object_right(x_matrix_walker, y_matrix_walker, x_new_pos);
         if (x_new_pos != INVALID_POSITION) {
             same_place = false;
-            x_pos += walker_speed;
+            x_pos += zombie_speed;
         }
     }
 

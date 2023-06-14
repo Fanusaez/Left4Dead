@@ -28,6 +28,7 @@ class Infected : public GameObject, public Zombie {
 
 Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
 std::int16_t get_distance_to_soldier(Soldier* soldier);
+void change_state(ZombieState* new_state);
 
  public:
 Infected(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
