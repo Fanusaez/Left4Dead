@@ -30,7 +30,6 @@ Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
 std::int16_t get_distance_to_soldier(Soldier* soldier);
 
  public:
-Infected(std::int16_t x_pos, std::int16_t y_pos, GameMap& map);
 Infected(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
 
 void update(std::vector<Soldier*> soldiers, float time) override;

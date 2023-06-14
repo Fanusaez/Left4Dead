@@ -7,13 +7,6 @@
 #define INVALID_POSITION -1
 #define DISTANCE_TO_HIT 1
 
-Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, GameMap& map) :
-                x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
-                y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
-                id(0),
-                map(map),
-                chaser(this, map, x_pos, y_pos) {}
-
 Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
         y_pos(y_pos_wal * MOVEMENTS_PER_CELL),

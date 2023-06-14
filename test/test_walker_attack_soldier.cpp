@@ -25,7 +25,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange() {
     Soldier soldier(scout, map, 8, 2, 0);
     map.add_soldier(&soldier, 8, 2);
 
-    Infected walker(5 ,5 , map);
+    Infected walker(5 , 5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) {
@@ -44,7 +44,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange2() {
     Soldier soldier(scout, map, 7 , 4, 0);
     map.add_soldier(&soldier, 7, 4);
 
-    Infected walker(6 ,6 , map);
+    Infected walker(6 , 6, 0, map);
     map.add_zombie(&walker, 6, 6);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -63,7 +63,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange3() {
     Soldier soldier(scout, map, 3 , 4, 0);
     map.add_soldier(&soldier, 3, 4);
 
-    Infected walker(5 ,5 , map);
+    Infected walker(5 , 5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -82,7 +82,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange4() {
     Soldier soldier(scout, map, 7 , 6, 0);
     map.add_soldier(&soldier, 7, 6);
 
-    Infected walker(5 ,5 , map);
+    Infected walker(5 , 5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -101,7 +101,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange5() {
     Soldier soldier(scout, map, 3 , 6, 0);
     map.add_soldier(&soldier, 3, 6);
 
-    Infected walker(5 ,5 , map);
+    Infected walker(5 , 5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -122,7 +122,7 @@ void testInfectedDamagesSoldier() {
     Soldier soldier(scout, map, 5 , 6, 0);
     map.add_soldier(&soldier, 5, 6);
 
-    Infected walker(5 ,5 , map);
+    Infected walker(5 , 5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -141,7 +141,7 @@ void testInfectedDamagesSoldier2() {
     Soldier soldier(scout, map, 5 , 4, 0);
     map.add_soldier(&soldier, 5, 4);
 
-    Infected walker(5 ,5 , map);
+    Infected walker(5 , 5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -160,7 +160,7 @@ void testInfectedDamagesSoldier3() {
     Soldier soldier(scout, map, 4 , 4, 0);
     map.add_soldier(&soldier, 4, 4);
 
-    Infected walker(5 ,5 , map);
+    Infected walker(5 , 5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -179,7 +179,7 @@ void testInfectedDamagesSoldier4() {
     Soldier soldier(scout, map, 6 , 4, 0);
     map.add_soldier(&soldier, 6, 4);
 
-    Infected walker(5 ,5 , map);
+    Infected walker(5 , 5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face
@@ -198,7 +198,7 @@ void testInfectedDamagesSoldier5() {
     Soldier soldier(scout, map, 5 , 6, 0);
     map.add_soldier(&soldier, 5, 6);
 
-    Infected walker(6 ,6 , map);
+    Infected walker(6 , 6, 0, map);
     map.add_zombie(&walker, 6, 6);
 
     for (int i = 0; i < 10; i++) { // enough to encounter the soldier face to face

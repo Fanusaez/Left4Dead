@@ -25,7 +25,7 @@ void testMapChaseInfectedDiagonallyUpAndRight() {
     Soldier soldier(scout, map, 8, 2, 0);
     map.add_soldier(&soldier, 8, 2);
 
-    Infected walker(5,5,  map);
+    Infected walker(5, 5,0,  map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 3; i++) {
@@ -51,7 +51,7 @@ void testMapChaseInfectedDiagonallyUpAndLeft() {
     Soldier soldier(scout, map, 1, 3, 0);
     map.add_soldier(&soldier, 1, 3);
 
-    Infected walker(5,5, map);
+    Infected walker(5,5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -75,7 +75,7 @@ void testMapChaseInfectedDiagonallyDownAndRight() {
     Soldier soldier(scout, map, 8, 8, 0);
     map.add_soldier(&soldier, 8, 8);
 
-    Infected walker(5,5, map);
+    Infected walker(5,5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -99,7 +99,7 @@ void testMapChaseInfectedDiagonallyDownAndLeft() {
     Soldier soldier(scout, map, 2, 8, 0);
     map.add_soldier(&soldier, 2, 8);
 
-    Infected walker(5,5, map);
+    Infected walker(5,5, 0, map);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -125,7 +125,7 @@ void testMapChaseInfectedUp() {
     Soldier soldier(scout, map, 5, 5, 0);
     map.add_soldier(&soldier, 5, 5);
 
-    Infected walker(5,8,  map);
+    Infected walker(5,8, 0,  map);
     map.add_zombie(&walker, 5, 8);
 
     for (int i = 0; i < 1; i++) {
@@ -145,7 +145,7 @@ void testMapChaseInfectedDown() {
     Soldier soldier(scout, map, 5, 5, 0);
     map.add_soldier(&soldier, 5, 5);
 
-    Infected walker(5,1,  map);
+    Infected walker(5,1, 0,  map);
     map.add_zombie(&walker, 5, 1);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) {
@@ -168,7 +168,7 @@ void testMapChaseInfectedRight() {
     Soldier soldier(scout, map, 5, 5, 0);
     map.add_soldier(&soldier, 5, 5);
 
-    Infected walker(2,5,  map);
+    Infected walker(2, 5, 0,  map);
     map.add_zombie(&walker, 2, 5);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) {
@@ -189,7 +189,7 @@ void testMapChaseInfectedLeft() {
     Soldier soldier(scout, map, 5, 5, 0);
     map.add_soldier(&soldier, 5, 5);
 
-    Infected walker(8,5, map);
+    Infected walker(8,5, 0, map);
     map.add_zombie(&walker, 8, 5);
 
     map.chase_soldiers(1);

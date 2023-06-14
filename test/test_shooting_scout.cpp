@@ -20,10 +20,10 @@ void testSoldierShootsScoutWith2InfectedsInLineRight(void) {
     Soldier soldier(scout, map, 3, 3, 0);
     map.add_soldier(&soldier, 3, 3);
 
-    Infected walker1(8,3, map);
+    Infected walker1(8, 3, 0, map);
     map.add_zombie(&walker1, 8, 3);
 
-    Infected walker2(9,3, map);
+    Infected walker2(9, 3, 0, map);
     map.add_zombie(&walker2, 9, 3);
 
     soldier.set_direction(RIGHT);
@@ -41,13 +41,13 @@ void testSoldierShootsScoutWith3InfectedsInLineRight(void) {
     Soldier soldier(scout, map, 3, 4, 0);
     map.add_soldier(&soldier, 3, 4);
 
-    Infected walker1(7,4, map);
+    Infected walker1(7, 4, 0, map);
     map.add_zombie(&walker1, 7, 4);
 
-    Infected walker2(8,4, map);
+    Infected walker2(8, 4, 0, map);
     map.add_zombie(&walker2, 8, 4);
 
-    Infected walker3(9,4, map);
+    Infected walker3(9, 4, 0, map);
     map.add_zombie(&walker3, 9, 4);
 
     soldier.set_direction(RIGHT);
@@ -67,10 +67,10 @@ void testSoldierShootsScoutWith2InfectedsInLineLeft(void) {
     Soldier soldier(scout, map, 8, 3, 0);
     map.add_soldier(&soldier, 8, 3);
 
-    Infected walker2(0,3, map);
+    Infected walker2(0, 3, 0, map);
     map.add_zombie(&walker2, 0, 3);
 
-    Infected walker1(1,3, map);
+    Infected walker1(1, 3, 0, map);
     map.add_zombie(&walker1, 1, 3);
 
     soldier.set_direction(LEFT);
@@ -88,13 +88,13 @@ void testSoldierShootsScoutWith3InfectedsInLineLeft(void) {
     Soldier soldier(scout, map, 8, 3, 0);
     map.add_soldier(&soldier, 8, 3);
 
-    Infected walker3(0,3, map);
+    Infected walker3(0, 3, 0, map);
     map.add_zombie(&walker3, 0, 3);
 
-    Infected walker2(1,3, map);
+    Infected walker2(1, 3, 0, map);
     map.add_zombie(&walker2, 1, 3);
 
-    Infected walker1(2,3, map);
+    Infected walker1(2, 3, 0, map);
     map.add_zombie(&walker1, 2, 3);
 
     soldier.set_direction(LEFT);

@@ -59,7 +59,7 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie() {
     Soldier soldier(scout, map, 3, 7, 0);
     map.add_soldier(&soldier, 3, 7);
 
-    Infected walker(3,8, map);
+    Infected walker(3, 8, 0, map);
     map.add_zombie(&walker, 3, 8);
 
     for (float i = 0; i < 60; i++){
@@ -85,7 +85,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
     }
 
 
-    Infected walker(3,9, map);
+    Infected walker(3, 9, 0, map);
     map.add_zombie(&walker, 3, 9);
 
     for (float i = 0; i < MOVEMENTS_PER_CELL; i++){
@@ -111,7 +111,7 @@ void testMoveSoldierDownWithCloseInfected(){
     }
 
 
-    Infected walker(4,9, map);
+    Infected walker(4, 9, 0, map);
     map.add_zombie(&walker, 4, 9);
 
     for (float i = 0; i < MOVEMENTS_PER_CELL; i++){
