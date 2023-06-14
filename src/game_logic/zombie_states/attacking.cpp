@@ -42,11 +42,13 @@ Attacking::chase_soldier_running(Chaser& chaser,
 
 ZombieState *
 Attacking::chase_soldier_jumping(Chaser& chaser,
+                                 Soldier* soldier,
+                                 std::int16_t damage,
                                  std::int16_t x_pos_chase,
                                  std::int16_t y_pos_chase,
                                  float time) {
     if (time_to_attack(time)) {
-        return new Jumping(chaser, x_pos_chase, y_pos_chase, time);
+        return new Jumping(chaser, soldier, damage, x_pos_chase, y_pos_chase, time);
     }
     return nullptr;
 }

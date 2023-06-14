@@ -1,9 +1,10 @@
 #include "jumper.h"
-#include "../zombie_states/chasing_states/chase_running.h"
 #include "../chaser.h"
 #include "../map.h"
 #include "../soldier.h"
+
 #define DISTANCE_TO_HIT 1
+#define DISTANCE_TO_JUMP 2
 
 Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
@@ -89,13 +90,24 @@ void Jumper::set_direction(std::int16_t direction_to_set) {
     }
 }
 
-void Jumper::attack(std::vector<Soldier *> soldiers, float time) {
+void Jumper::attack(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
     if (!closest_soldier) return;
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > DISTANCE_TO_HIT) return;
-    ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
-    change_state(new_state);
+    if (distance > DISTANCE_TO_JUMP) return;
+
+    if (distance == DISTANCE_TO_JUMP) {
+        ZombieState* new_state = state->chase_soldier_jumping(chaser,
+                                                              closest_soldier,
+                                                              damage_attack,
+                                                              closest_soldier->get_x_pos(),
+                                                              closest_soldier->get_y_pos(),
+                                                              time);
+        change_state(new_state);
+    } else {
+        ZombieState *new_state = state->attack_soldier(closest_soldier, damage_attack, time);
+        change_state(new_state);
+    }
 }
 
 void Jumper::die(float time) {
