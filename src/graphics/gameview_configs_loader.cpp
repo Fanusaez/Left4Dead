@@ -36,6 +36,13 @@ GameviewConfigurationsLoader::GameviewConfigurationsLoader() :
 	this->spritesToLoad.push_back("Witch/Run.png");
 	this->spritesToLoad.push_back("Witch/Hurt.png");
 	this->spritesToLoad.push_back("Witch/Dead.png");
+	this->spritesToLoad.push_back("Jumper/Idle.png");
+	this->spritesToLoad.push_back("Jumper/Walk.png");
+	this->spritesToLoad.push_back("Jumper/Run.png");
+	this->spritesToLoad.push_back("Jumper/Jump.png");
+	this->spritesToLoad.push_back("Jumper/Hurt.png");
+	this->spritesToLoad.push_back("Jumper/Dead.png");
+	this->spritesToLoad.push_back("Jumper/Attack_1.png");
 	this->musicToLoad.push_back("Music/10. no way back.flac");
 	this->chunksToLoad.push_back("Soldier_1/Death.mp3");
 }
