@@ -15,7 +15,7 @@ void testSoldierShootsInfectedSameLineLeft(void) {
     GameMap map(10, 10, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier soldier(idf, map, 9, 8);
+    Soldier soldier(idf, map, 9, 8, 0);
     map.add_soldier(&soldier, 9, 8);
 
     Infected walker(1,8, map);
@@ -31,7 +31,7 @@ void testSoldierShootsInfectedSameLineRight(void) {
     GameMap map(10, 10, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier soldier(idf, map, 3, 3);
+    Soldier soldier(idf, map, 3, 3, 0);
     map.add_soldier(&soldier, 3, 3);
 
     Infected walker(8,3, map);
@@ -49,7 +49,7 @@ void testSoldierShootsInfectedNotSameLineLeft(void) {
     GameMap map(10, 10, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier soldier(idf, map, 9, 8);
+    Soldier soldier(idf, map, 9, 8, 0);
     map.add_soldier(&soldier, 9, 8);
 
     soldier.move_up();
@@ -69,10 +69,10 @@ void testSoldierShootsOtherSoldierNotSameLineRight(void) {
     Weapon* idf = new Idf(0, 0);
     Weapon* idf2 = new Idf(0, 0);
 
-    Soldier soldier(idf, map, 1, 8);
+    Soldier soldier(idf, map, 1, 8, 0);
     map.add_soldier(&soldier, 1, 8);
 
-    Soldier soldier2(idf2, map, 9, 8);
+    Soldier soldier2(idf2, map, 9, 8, 0);
     map.add_soldier(&soldier2, 9, 8);
 
     soldier2.move_down();
@@ -91,7 +91,7 @@ void testSoldierShootsOnly1InfectedOutOf2AimingLeft(){
     GameMap map(10, 10, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier soldier(idf, map, 7, 6);
+    Soldier soldier(idf, map, 7, 6, 0);
     map.add_soldier(&soldier, 7, 6);
 
     Infected walker1(3,6, map);
@@ -112,7 +112,7 @@ void testSoldierShootsAndMissInfectedOutOfRangeLeft(void) {
     GameMap map(10, 10, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier soldier(idf, map, 9, 8);
+    Soldier soldier(idf, map, 9, 8, 0);
     map.add_soldier(&soldier, 9, 8);
 
     Infected walker(2,7, map);
@@ -128,7 +128,7 @@ void testSoldierShootsAndMissInfectedOutOfRangeRight(void) {
     GameMap map(10, 10, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier soldier(idf, map, 3, 3);
+    Soldier soldier(idf, map, 3, 3, 0);
     map.add_soldier(&soldier, 3, 3);
 
     Infected walker(5,4, map);
@@ -144,7 +144,7 @@ void testSoldierShootsAndMissAimingRightTurnedAroundToInfected(void) {
     GameMap map(10, 10, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier soldier(idf, map, 9, 8);
+    Soldier soldier(idf, map, 9, 8, 0);
     map.add_soldier(&soldier, 9, 8);
 
     Infected walker(1,8, map);
@@ -160,7 +160,7 @@ void testSoldierShootsAndMissAimingUpTurnedAroundToInfected(void) {
     GameMap map(10, 10, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier soldier(idf, map, 3, 3);
+    Soldier soldier(idf, map, 3, 3, 0);
     map.add_soldier(&soldier, 3, 3);
 
     Infected walker(8,3, map);

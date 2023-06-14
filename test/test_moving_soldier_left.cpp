@@ -21,7 +21,7 @@ void testMoveSoldierLeft(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3, 8);
+    Soldier soldier(scout, map, 3, 8, 0);
     map.add_soldier(&soldier, 3, 8);
 
     soldier.move_left();
@@ -37,7 +37,7 @@ void testMoveSoldierLeftBeginningOfMap() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 1, 3);
+    Soldier soldier(scout, map, 1, 3, 0);
     map.add_soldier(&soldier, 1, 3);
 
     for (float i = 0; i < 20; i++){
@@ -55,7 +55,7 @@ void testNotMoveSoldierLeftForCollisionWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3, 7);
+    Soldier soldier(scout, map, 3, 7, 0);
     map.add_soldier(&soldier, 3, 7);
 
     Infected walker(2,7, map);
@@ -77,7 +77,7 @@ void testMoveSoldierLeftAllTheWay(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 5, 5);
+    Soldier soldier(scout, map, 5, 5, 0);
     map.add_soldier(&soldier, 5, 5);
 
     for (int i = 0; i < 100; i++) {

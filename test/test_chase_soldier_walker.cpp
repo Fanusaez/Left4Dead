@@ -22,7 +22,7 @@ void testChaseInfectedDiagonallyUpAndRightFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 8, 2);
+    Soldier soldier(scout, map, 8, 2, 0);
      bool added_soldier = map.add_soldier(&soldier, 8, 2);
 
     Infected walker(5,5, map);
@@ -46,7 +46,7 @@ void testChaseInfectedDiagonallyUpAndLeftFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 1 , 3 );
+    Soldier soldier(scout, map, 1 , 3, 0 );
     map.add_soldier(&soldier, 1, 3);
 
     Infected walker(5 ,7 , map);
@@ -67,7 +67,7 @@ void testChaseInfectedDiagonallyDownAndRightFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 8, 8);
+    Soldier soldier(scout, map, 8, 8, 0);
     map.add_soldier(&soldier, 8, 8);
 
     Infected walker(5,5, map);
@@ -89,7 +89,7 @@ void testChaseInfectedDiagonallyDownAndLeftFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 2 , 8 );
+    Soldier soldier(scout, map, 2 , 8, 0 );
     map.add_soldier(&soldier, 2, 8);
 
     Infected walker(5 ,5 , map);
@@ -112,7 +112,7 @@ void testChaseInfectedUp() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 5 , 5 );
+    Soldier soldier(scout, map, 5 , 5, 0 );
     map.add_soldier(&soldier, 5, 5);
 
     Infected walker(5 ,8 , map);
@@ -131,7 +131,7 @@ void testChaseInfectedUpFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 5 , 5 );
+    Soldier soldier(scout, map, 5 , 5, 0 );
     map.add_soldier(&soldier, 5, 5);
 
     Infected walker(5 ,8 , map);
@@ -151,7 +151,7 @@ void testChaseInfectedDown() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 5 , 5 );
+    Soldier soldier(scout, map, 5 , 5, 0 );
     map.add_soldier(&soldier, 5, 5);
 
     Infected walker(5 ,1 , map);
@@ -170,7 +170,7 @@ void testChaseInfectedDownFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 5 , 5 );
+    Soldier soldier(scout, map, 5 , 5, 0 );
     map.add_soldier(&soldier, 5, 5);
 
     Infected walker(5 ,1 , map);
@@ -193,7 +193,7 @@ void testChaseInfectedRight() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 5 , 5 );
+    Soldier soldier(scout, map, 5 , 5, 0 );
     map.add_soldier(&soldier, 5, 5);
 
     Infected walker(2 ,5 , map);
@@ -212,7 +212,7 @@ void testChaseInfectedRightSideToSide() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 8 , 5 );
+    Soldier soldier(scout, map, 8 , 5, 0 );
     map.add_soldier(&soldier, 8, 5);
 
     Infected walker(2 ,5 , map);
@@ -233,7 +233,7 @@ void testChaseInfectedLeft() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 5 , 5 );
+    Soldier soldier(scout, map, 5 , 5, 0 );
     map.add_soldier(&soldier, 5, 5);
 
     Infected walker(8 ,5 , map);
@@ -252,7 +252,7 @@ void testChaseInfectedLeftSideToSide() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 1 , 5 );
+    Soldier soldier(scout, map, 1 , 5, 0 );
     map.add_soldier(&soldier, 1, 5);
 
     Infected walker(8 ,5 , map);
@@ -273,10 +273,10 @@ void testInfectedKillsSoldierAndStartsChasingOtherSoldier() {
     Weapon* scout1 = new Scout(0, 0);
     Weapon* scout2 = new Scout(0, 0);
 
-    Soldier soldier1(scout1, map, 0 , 4);
+    Soldier soldier1(scout1, map, 0, 4, 0);
     map.add_soldier(&soldier1, 0, 4);
 
-    Soldier soldier2(scout2, map, 5 , 5);
+    Soldier soldier2(scout2, map, 5 , 5, 0);
     map.add_soldier(&soldier2, 5, 5);
 
     Infected walker(9 ,5 , map);

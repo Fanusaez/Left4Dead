@@ -6,18 +6,6 @@
 #define GRANADE_DISTANCE_REACH 4
 #define WALLS_LIMITS 0.5
 
-Soldier::Soldier(Weapon* weapon, GameMap& map) : weapon(weapon), map(map), id(0){} // lo dejo por ahora
-
-Soldier::Soldier(Weapon* weapon,
-                 GameMap& map,
-                 std::int16_t x_pos,
-                 std::int16_t y_pos) :
-        weapon(weapon),
-        map(map),
-        x_pos(x_pos * MOVEMENTS_PER_CELL),
-        y_pos(y_pos * MOVEMENTS_PER_CELL),
-        id(0) {}
-
 Soldier::Soldier(Weapon* weapon,
                  GameMap& map,
                  std::int16_t x_pos,

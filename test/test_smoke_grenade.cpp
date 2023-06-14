@@ -40,7 +40,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
+    Soldier soldier(scout, map, x_throwing_place, y_throwing_place, 0);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
 
     soldier.set_direction(LEFT);
@@ -105,7 +105,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
+    Soldier soldier(scout, map, x_throwing_place, y_throwing_place, 0);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
 
     soldier.set_direction(LEFT);
@@ -163,7 +163,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
+    Soldier soldier(scout, map, x_throwing_place, y_throwing_place, 0);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
 
     soldier.set_direction(LEFT);
@@ -212,10 +212,10 @@ void testSoldierThrowsSmokeGrenadeToOtherSoldier(void) {
     Weapon* scout1 = new Scout(0, 0);
     Weapon* scout2 = new Scout(0, 0);
 
-    Soldier soldier1(scout1, map, x_throwing_place, y_throwing_place);
+    Soldier soldier1(scout1, map, x_throwing_place, y_throwing_place, 0);
     map.add_soldier(&soldier1, x_throwing_place, y_throwing_place);
 
-    Soldier soldier2(scout2, map, x_explosion,y_explosion); // donde cae la granada
+    Soldier soldier2(scout2, map, x_explosion,y_explosion, 0); // donde cae la granada
     map.add_soldier(&soldier2, x_explosion,y_explosion);
 
     soldier1.set_direction(LEFT);
@@ -244,7 +244,7 @@ void testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
+    Soldier soldier(scout, map, x_throwing_place, y_throwing_place, 0);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
 
     soldier.set_direction(RIGHT);

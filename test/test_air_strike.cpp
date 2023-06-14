@@ -30,7 +30,7 @@ void testSoldierCallsAirStrikeAndDamages4Zombies(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* p90 = new P90(0);
 
-    Soldier soldier(p90, map, x_called_place, y_called_place);
+    Soldier soldier(p90, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier, x_called_place, y_called_place);
 
     Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, map); // donde cae la granada
@@ -73,7 +73,7 @@ void testSoldierCallsAirStrikeAndDamages4Zombies2(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* p90 = new P90(0);
 
-    Soldier soldier(p90, map, x_called_place, y_called_place);
+    Soldier soldier(p90, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier, x_called_place, y_called_place);
 
     Infected walker1(MAP_SIZE_X - 1,MAP_SIZE_Y - 1, map); // donde cae la granada
@@ -118,13 +118,13 @@ void testSoldierCallsAirStrikeWith2ExtraSoldiersByHisSideAndDamages4Zombies(void
     Weapon* idf = new Idf(0, 0);
     Weapon* idf2 = new Idf(0, 0);
 
-    Soldier soldier1(p90, map, x_called_place, y_called_place);
+    Soldier soldier1(p90, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier1, x_called_place, y_called_place);
 
-    Soldier soldier2(idf, map, x_limit_safe_right, y_limit_safe_up);
+    Soldier soldier2(idf, map, x_limit_safe_right, y_limit_safe_up, 0);
     map.add_soldier(&soldier2, x_limit_safe_right, y_limit_safe_up);
 
-    Soldier soldier3(idf2, map, x_limit_safe_left, y_limit_safe_down);
+    Soldier soldier3(idf2, map, x_limit_safe_left, y_limit_safe_down, 0);
     map.add_soldier(&soldier3, x_limit_safe_left, y_limit_safe_down);
 
     Infected walker1(MAP_SIZE_X - 1,MAP_SIZE_Y - 1, map); // donde cae la granada
@@ -175,7 +175,7 @@ void testSoldierCallsAirStrikeWithIDFButNothingHappen(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier soldier(idf, map, x_called_place, y_called_place);
+    Soldier soldier(idf, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier, x_called_place, y_called_place);
 
     Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, map); // donde cae la granada
@@ -218,7 +218,7 @@ void testSoldierCallsAirStrikeWithScoutButNothingHappen(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, x_called_place, y_called_place);
+    Soldier soldier(scout, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier, x_called_place, y_called_place);
 
     Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, map); // donde cae la granada
@@ -261,7 +261,7 @@ void testSoldierCalls2AirStrikeOnlyCallsOne(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* p90 = new P90(0);
 
-    Soldier soldier(p90, map, x_called_place, y_called_place);
+    Soldier soldier(p90, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier, x_called_place, y_called_place);
 
     Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, map); // donde cae la granada

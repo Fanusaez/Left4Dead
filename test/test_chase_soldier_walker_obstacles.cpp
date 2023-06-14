@@ -21,7 +21,7 @@ void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacle() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 8, 2);
+    Soldier soldier(scout, map, 8, 2, 0);
     map.add_soldier(&soldier, 8, 2);
 
     Obstacle obstacle(5, 5, 0);
@@ -45,7 +45,7 @@ void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 8 , 2);
+    Soldier soldier(scout, map, 8, 2, 0);
     map.add_soldier(&soldier, 8, 2);
 
     Obstacle obstacle(5 , 5 , 0);
@@ -69,7 +69,7 @@ void testInfectedChaseSoldierdiagonallyUpAndLeftWithObstacle() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 1, 2);
+    Soldier soldier(scout, map, 1, 2, 0);
     map.add_soldier(&soldier, 1, 2);
 
     Obstacle osbtacle(6, 4, 0);
@@ -92,7 +92,7 @@ void testInfectedChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 2, 2);
+    Soldier soldier(scout, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
     Obstacle osbtacle(5, 5, 0);
@@ -117,7 +117,7 @@ void testInfectedChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 2, 8);
+    Soldier soldier(scout, map, 2, 8, 0);
     map.add_soldier(&soldier, 2, 8);
 
     Obstacle osbtacle(5, 5, 0);

@@ -22,10 +22,10 @@ void testCollisionAmongSoldiers(void) {
     Weapon* scout1 = new Scout(0, 0);
     Weapon* scout2 = new Scout(0, 0);
 
-    Soldier soldier1(scout1, map, 5, 5);
+    Soldier soldier1(scout1, map, 5, 5, 0);
     map.add_soldier(&soldier1, 5, 5);
 
-    Soldier soldier2(scout2, map, 5, 6);
+    Soldier soldier2(scout2, map, 5, 6, 0);
     map.add_soldier(&soldier2, 5, 6);
 
     for (int i = 0; i < 50; i++) {
@@ -44,12 +44,12 @@ void testCollisionAmongSoldiers2(void) {
     Weapon* scout1 = new Scout(0, 0);
     Weapon* scout2 = new Scout(0, 0);
 
-    Soldier soldier1(scout1, map, 5, 5);
+    Soldier soldier1(scout1, map, 5, 5, 0);
     map.add_soldier(&soldier1, 5, 5);
 
     soldier1.move_right();
 
-    Soldier soldier2(scout2, map, 5, 6);
+    Soldier soldier2(scout2, map, 5, 6, 0);
     map.add_soldier(&soldier2, 5, 6);
 
     for (int i = 0; i < 50; i++) {
@@ -68,10 +68,10 @@ void testCollisionAmongSoldiers3(void) {
     Weapon* scout1 = new Scout(0, 0);
     Weapon* scout2 = new Scout(0, 0);
 
-    Soldier soldier1(scout1, map, 4, 5);
+    Soldier soldier1(scout1, map, 4, 5, 0);
     map.add_soldier(&soldier1, 4, 5);
 
-    Soldier soldier2(scout2, map, 4, 6);
+    Soldier soldier2(scout2, map, 4, 6, 0);
     map.add_soldier(&soldier2, 4, 6);
 
     soldier2.move_right();
@@ -102,10 +102,10 @@ void testCollisionAmongSoldiers4(void) {
     Weapon* scout1 = new Scout(0, 0);
     Weapon* scout2 = new Scout(0, 0);
 
-    Soldier soldier1(scout1, map, 4, 5);
+    Soldier soldier1(scout1, map, 4, 5, 0);
     map.add_soldier(&soldier1, 4, 5);
 
-    Soldier soldier2(scout2, map, 5, 5);
+    Soldier soldier2(scout2, map, 5, 5, 0);
     map.add_soldier(&soldier2, 5, 5);
 
     for (int i = 0; i < 50; i++) {
@@ -124,11 +124,11 @@ void testCollisionAmongSoldiers5(void) {
     Weapon* scout1 = new Scout(0, 0);
     Weapon* scout2 = new Scout(0, 0);
 
-    Soldier soldier1(scout1, map, 4, 5);
+    Soldier soldier1(scout1, map, 4, 5, 0);
     map.add_soldier(&soldier1, 4, 5);
 
 
-    Soldier soldier2(scout2, map, 5, 5);
+    Soldier soldier2(scout2, map, 5, 5, 0);
     map.add_soldier(&soldier2, 5, 5);
 
     for (int i = 0; i < 50; i++) {
@@ -147,10 +147,10 @@ void testCollisionAmongSoldiers6(void) {
     Weapon* scout1 = new Scout(0, 0);
     Weapon* scout2 = new Scout(0, 0);
 
-    Soldier soldier1(scout1, map, 4, 5);
+    Soldier soldier1(scout1, map, 4, 5, 0);
     map.add_soldier(&soldier1, 4, 5);
 
-    Soldier soldier2(scout2, map, 5, 5);
+    Soldier soldier2(scout2, map, 5, 5, 0);
     map.add_soldier(&soldier2, 5, 5);
 
 

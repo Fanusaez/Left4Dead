@@ -20,7 +20,7 @@ void testMoveSoldierUp(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3, 8);
+    Soldier soldier(scout, map, 3, 8, 0);
     map.add_soldier(&soldier, 3, 8);
 
     soldier.move_up();
@@ -36,7 +36,7 @@ void testNotMoveSoldierUp(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, (3), (8));
+    Soldier soldier(scout, map, 3, 8, 0);
     map.add_soldier(&soldier, 3, 8);
 
     Infected walker(3 ,7, map);
@@ -57,7 +57,7 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3, 8);
+    Soldier soldier(scout, map, 3, 8, 0);
     map.add_soldier(&soldier, 3, 8);
     for (int i = 0; i < MOV_NEEDED_TO_WALK_ALL_CELL; i++) {
         soldier.move_right();
@@ -81,7 +81,7 @@ void testMoveSoldierWithZombieClose(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 2, 8);
+    Soldier soldier(scout, map, 2, 8, 0);
     map.add_soldier(&soldier, 2, 8);
 
     for (int i = 0; i < MOV_NEEDED_TO_WALK_ALL_CELL; i++) {
@@ -107,7 +107,7 @@ void testMoveSoldierUpUntilEndOfTheMap(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3, 2);
+    Soldier soldier(scout, map, 3, 2, 0);
     map.add_soldier(&soldier, 3, 2);
 
     for (float i = 0; i < 1000; i++) {
@@ -125,7 +125,7 @@ void testMoveSoldierUpUntilEndOfTheMap2(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 8, 9);
+    Soldier soldier(scout, map, 8, 9, 0);
     map.add_soldier(&soldier, 8, 9);
 
     for (int i = 0; i < 1000; i++) {

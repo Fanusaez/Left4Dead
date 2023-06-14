@@ -25,7 +25,7 @@ void testCollisionSameLineUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier* soldier = new Soldier(idf, map);
+    Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 8, 9);
 
     Infected walker(8, 1, map);
@@ -39,7 +39,7 @@ void testCollisionSameLineDown(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier* soldier = new Soldier(idf, map);
+    Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 7, 0);
 
     Infected walker(7, 5, map);
@@ -53,7 +53,7 @@ void testCollisionNotSameLineLeftUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier* soldier = new Soldier(idf, map);
+    Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 8, 9);
 
     Infected walker(7, 1, map);
@@ -67,7 +67,7 @@ void testCollisionNotSameLineRightUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier* soldier = new Soldier(idf, map);
+    Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 7, 9);
 
     Infected walker(8, 1, map);
@@ -81,7 +81,7 @@ void testCollisionNotSameLineLeftDown(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier* soldier = new Soldier(idf, map);
+    Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 1, 1);
 
     Infected walker(0, 9, map);
@@ -95,7 +95,7 @@ void testCollisionNotSameLineRightDown(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier* soldier = new Soldier(idf, map);
+    Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 1, 1);
 
     Infected walker(2, 9, map);
@@ -109,7 +109,7 @@ void testNoCollisionUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier* soldier = new Soldier(idf, map);
+    Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 8, 9);
 
     Infected walker(1,1, map);
@@ -123,7 +123,7 @@ void testNoCollisionDown(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* idf = new Idf(0, 0);
 
-    Soldier* soldier = new Soldier(idf, map);
+    Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 1, 1);
 
     Infected walker(8, 9, map);

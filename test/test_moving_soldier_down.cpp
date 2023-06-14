@@ -20,7 +20,7 @@ void testMoveSoldierDown(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3, 8);
+    Soldier soldier(scout, map, 3, 8, 0);
     map.add_soldier(&soldier, 3, 8);
 
     for (int i = 0; i < MOV_NEEDED_TO_WALK_ALL_CELL; i++){
@@ -38,7 +38,7 @@ void testMoveSoldierDownAtTheEndDoesNotMove() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3, (MAP_SIZE_Y - 1));
+    Soldier soldier(scout, map, 3, (MAP_SIZE_Y - 1), 0);
     map.add_soldier(&soldier, 3, MAP_SIZE_Y - 1);
 
     for (int i = 0; i < 30; i++){
@@ -56,7 +56,7 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3, 7);
+    Soldier soldier(scout, map, 3, 7, 0);
     map.add_soldier(&soldier, 3, 7);
 
     Infected walker(3,8, map);
@@ -77,7 +77,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3, 8);
+    Soldier soldier(scout, map, 3, 8, 0);
     map.add_soldier(&soldier, 3, 8);
 
     for (int i = 0; i < MOV_NEEDED_TO_WALK_ALL_CELL; i++) {
@@ -103,7 +103,7 @@ void testMoveSoldierDownWithCloseInfected(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3, 8);
+    Soldier soldier(scout, map, 3, 8, 0);
     map.add_soldier(&soldier, 3, 8);
 
     for (int i = 0; i < MOV_NEEDED_TO_WALK_ALL_CELL; i++) {
@@ -129,7 +129,7 @@ void testMoveSoldierDownUntilTheEnd() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 3 , 8);
+    Soldier soldier(scout, map, 3, 8, 0);
     map.add_soldier(&soldier, 3, 8);
 
     for (int i = 0; i < 150; i++){
@@ -147,7 +147,7 @@ void testMoveSoldierDownUntilTheEnd2() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 0, 0);
+    Soldier soldier(scout, map, 0, 0, 0);
     map.add_soldier(&soldier, 0, 0);
 
     for (int i = 0; i < 150; i++){
