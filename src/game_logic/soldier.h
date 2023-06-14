@@ -20,6 +20,7 @@ class Soldier : public GameObject {
 
 void die(float time);
 void change_state(State* new_state);
+void adjust_position_grenade(std::int16_t& x_grenade_pos);
 
  public:
 Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos, std::int16_t id);

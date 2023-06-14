@@ -4,7 +4,6 @@
 #include "map.h"
 
 #define GRANADE_DISTANCE_REACH 4
-#define WALLS_LIMITS 0.5
 
 Soldier::Soldier(Weapon* weapon,
                  GameMap& map,
@@ -29,7 +28,7 @@ void Soldier::shoot(float time) {
 }
 
 // despues deberia pasar el map a estado y que el se encargue
-std::vector<GameObject *> Soldier::get_targets() {
+std::vector<GameObject*> Soldier::get_targets() {
     std::vector<GameObject*> shooting_objects;
     map.get_objects_in_shooting(shooting_objects,
               get_x_matrix_pos(),
@@ -45,13 +44,8 @@ void Soldier::reload(float time) {
 }
 
 void Soldier::throw_explosive_grenade(float time) {
-    std::int16_t x_grenade_pos = x_pos / MOVEMENTS_PER_CELL;
-
-    if (direction == LEFT) {
-         x_grenade_pos -= GRANADE_DISTANCE_REACH;
-    } else {
-        x_grenade_pos += GRANADE_DISTANCE_REACH;
-    }
+    std::int16_t x_grenade_pos = get_x_matrix_pos();
+    adjust_position_grenade(x_grenade_pos);
 
     State* new_state = weapon->throw_explosive_grenade(map,
                                                        x_grenade_pos,
@@ -62,13 +56,8 @@ void Soldier::throw_explosive_grenade(float time) {
 }
 
 void Soldier::throw_smoke_grenade(float time) {
-    std::int16_t x_grenade_pos = x_pos / MOVEMENTS_PER_CELL;
-
-    if (direction == LEFT) {
-        x_grenade_pos -= GRANADE_DISTANCE_REACH;
-    } else {
-        x_grenade_pos += GRANADE_DISTANCE_REACH;
-    }
+    std::int16_t x_grenade_pos = get_x_matrix_pos();
+    adjust_position_grenade(x_grenade_pos);
 
     State* new_state = weapon->throw_smoke_grenade(map,
                                                    x_grenade_pos,
@@ -120,9 +109,6 @@ void Soldier::move_left(float time) {
 }
 
 void Soldier::move_up() {
-    // ver si con la interfaz si lo saco o no
-    if (y_pos <= WALLS_LIMITS) return;
-
     if ((y_pos % MOVEMENTS_PER_CELL) != 0) {
         y_pos -= 1;
         return;
@@ -163,7 +149,6 @@ void Soldier::move_right() {
 
 void Soldier::move_left() {
     direction = LEFT;
-    //if (x_pos <= WALLS_LIMITS) return;
     if ((x_pos % MOVEMENTS_PER_CELL) != 0) {
         x_pos -= 1;
         return;
@@ -183,8 +168,8 @@ bool Soldier::in_range_of_explosion(std::int16_t x_start,
                                    std::int16_t x_finish,
                                    std::int16_t y_start,
                                    std::int16_t y_finish) {
-    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
-    std::int16_t y_matrix_pos = y_pos / MOVEMENTS_PER_CELL;
+    std::int16_t x_matrix_pos = get_x_matrix_pos();
+    std::int16_t y_matrix_pos = get_y_matrix_pos();
     return (x_start <= x_matrix_pos && x_matrix_pos <= x_finish && y_start <= y_matrix_pos && y_matrix_pos <= y_finish);
 }
 
@@ -201,7 +186,6 @@ bool Soldier::chaseable() {
 std::int16_t Soldier::get_id() {
     return id;
 }
-
 
 std::int16_t Soldier::get_y_pos() {
     return y_pos;
@@ -230,14 +214,23 @@ void Soldier::change_state(State *new_state) {
     }
 }
 
+void Soldier::adjust_position_grenade(std::int16_t& x_grenade_pos) {
+    if (direction == LEFT) {
+        x_grenade_pos -= GRANADE_DISTANCE_REACH;
+    } else {
+        x_grenade_pos += GRANADE_DISTANCE_REACH;
+    }
+
+}
+
 Soldier::~Soldier(){
     delete weapon;
     delete state;
 }
 
-//************************* Metodo de testeo *********************************************
 
 
+//************************* Metodo de testeo *********************************************//
 
 std::int16_t Soldier::get_direction() {
     return direction;
