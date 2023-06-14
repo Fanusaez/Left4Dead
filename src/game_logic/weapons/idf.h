@@ -18,6 +18,8 @@ class Idf : public Weapon {
 
  public:
 
+Idf(std::int16_t id_explosive_grenade, std::int16_t id_smoke_grenade);
+
 void update(float time) override;
 
 void shoot(std::vector<GameObject*>& shooting_objects,

@@ -20,7 +20,7 @@
 
 void testAirStrikeStateIdle(void) {
 
-    AirStrike air_strike;
+    AirStrike air_strike(0);
     AirStrikeIdle* state = dynamic_cast<AirStrikeIdle*>(air_strike.get_state());
 
     TEST_CHECK(state != nullptr);
@@ -30,7 +30,7 @@ void testAirStrikeAndStateChangesToIncoming(void) {
     GameMap map(10, 10, 0);
     State* idle= new Idle;
 
-    AirStrike air_strike;
+    AirStrike air_strike(0);
     air_strike.call_air_strike(map, 0, 0, idle, 0);
     AirStrikeIncoming* state = dynamic_cast<AirStrikeIncoming*>(air_strike.get_state());
 
@@ -41,7 +41,7 @@ void testAirStrikeAndStateChangesToIncoming(void) {
 void testAirStrikeAndStateChangesToExploding(void) {
     GameMap map(10, 10, 0);
     State* idle = new Idle;
-    AirStrike air_strike;
+    AirStrike air_strike(0);
     air_strike.call_air_strike(map, 0, 0, idle, 0);
     air_strike.update(10);
     AirStrikeExploding* state = dynamic_cast<AirStrikeExploding*>(air_strike.get_state());
@@ -54,7 +54,7 @@ void testAirStrikeAndStateChangesToExploding(void) {
 void testAirStrikeAndStateChangesToIdle(void) {
     GameMap map(10, 10, 0);
     State* idle= new Idle;
-    AirStrike air_strike;
+    AirStrike air_strike(0);
     air_strike.call_air_strike(map, 0, 0, idle, 0);
     air_strike.update(10);
     air_strike.update(20);

@@ -16,7 +16,7 @@
 
 void testInfectedStartsWithIdleState(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -33,7 +33,7 @@ void testInfectedStartsWithIdleState(void) {
 
 void testInfectedChaseAndStateChangesToWalking(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -51,7 +51,7 @@ void testInfectedChaseAndStateChangesToWalking(void) {
 }
 void testInfectedChaseTwiceTooFastAndmoves1Time(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -73,7 +73,7 @@ void testInfectedChaseTwiceTooFastAndmoves1Time(void) {
 
 void testInfectedChaseTwiceAndmoves2Times(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -94,7 +94,7 @@ void testInfectedChaseTwiceAndmoves2Times(void) {
 
 void testInfectedAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierYet(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5, 6);
     map.add_soldier(&soldier, 5, 6);
@@ -116,7 +116,7 @@ void testInfectedAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldie
 
 void testInfectedAttacks2TimesToFastOnlyAttacksOnce(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5, 6);
     map.add_soldier(&soldier, 5, 6);
@@ -134,7 +134,7 @@ void testInfectedAttacks2TimesToFastOnlyAttacksOnce(void) {
 
 void testInfectedAttacks2Times(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5, 6);
     map.add_soldier(&soldier, 5, 6);
@@ -155,7 +155,7 @@ void testInfectedAttacks2Times(void) {
 
 void testInfectedGetsAttacked(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 6, 5);
     map.add_soldier(&soldier, 6, 5);
@@ -176,7 +176,7 @@ void testInfectedGetsAttacked(void) {
 
 void testInfectedWalkingAndGetsAttacked(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 6, 5);
     map.add_soldier(&soldier, 6, 5);
@@ -199,7 +199,7 @@ void testInfectedWalkingAndGetsAttacked(void) {
 
 void testInfectedgetsShotAndDie(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 6, 5);
     map.add_soldier(&soldier, 6, 5);
@@ -224,8 +224,8 @@ void testInfectedgetsShotAndDie(void) {
 
 void testInfectedgetsShotWhileAttacking(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
-    Weapon* scout2 = new Scout;
+    Weapon* scout = new Scout(0, 0);
+    Weapon* scout2 = new Scout(0, 0);
 
     Soldier soldier(scout, map, 4, 5);
     map.add_soldier(&soldier, 4, 5);
@@ -256,7 +256,7 @@ void testInfectedgetsShotWhileAttacking(void) {
 void testSoldierThrowsSmokeGrenadeAndStunnedZombie(void) {
 
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 9, 5);
     map.add_soldier(&soldier, 9, 5);
@@ -279,7 +279,7 @@ void testSoldierThrowsSmokeGrenadeAndStunnedZombie(void) {
 void testWitcherScreamsStatesChanges(void) {
 
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Witch witch(5, 5,0, map); // donde cae la granada
     map.add_zombie(&witch, 5,5);

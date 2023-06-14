@@ -16,8 +16,12 @@ private:
     const std::int16_t damage_air_strike = 30;
     const float _time_to_call_air_strike = 120;
     float last_called_air_strike = - 120;
+    std::int16_t id;
 
 public:
+
+    explicit AirStrike(std::int16_t id);
+
     void update(float time);
 
     State* call_air_strike(GameMap& map,

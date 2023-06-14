@@ -18,7 +18,7 @@
 
 void testMoveSoldierUp(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
@@ -34,7 +34,7 @@ void testMoveSoldierUp(){
 
 void testNotMoveSoldierUp(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, (3), (8));
     map.add_soldier(&soldier, 3, 8);
@@ -55,7 +55,7 @@ void testNotMoveSoldierUp(){
 
 void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
@@ -79,7 +79,7 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
 
 void testMoveSoldierWithZombieClose(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 8);
     map.add_soldier(&soldier, 2, 8);
@@ -105,7 +105,7 @@ void testMoveSoldierWithZombieClose(){
 
 void testMoveSoldierUpUntilEndOfTheMap(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 2);
     map.add_soldier(&soldier, 3, 2);
@@ -123,7 +123,7 @@ void testMoveSoldierUpUntilEndOfTheMap(){
 
 void testMoveSoldierUpUntilEndOfTheMap2(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);

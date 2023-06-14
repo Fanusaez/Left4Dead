@@ -3,6 +3,8 @@
 
 #define FIRST_ENEMY 0
 
+P90::P90(std::int16_t id_air_strike) : air_strike(id_air_strike) {}
+
 void P90::update(float time) {
     air_strike.update(time);
 }

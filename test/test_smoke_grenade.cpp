@@ -38,7 +38,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies(void) {
     std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
@@ -103,7 +103,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies(void) {
     std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
@@ -161,7 +161,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2(void) {
     std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
@@ -209,8 +209,8 @@ void testSoldierThrowsSmokeGrenadeToOtherSoldier(void) {
     std::int16_t  y_explosion= y_throwing_place;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout1 = new Scout;
-    Weapon* scout2 = new Scout;
+    Weapon* scout1 = new Scout(0, 0);
+    Weapon* scout2 = new Scout(0, 0);
 
     Soldier soldier1(scout1, map, x_throwing_place, y_throwing_place);
     map.add_soldier(&soldier1, x_throwing_place, y_throwing_place);
@@ -242,7 +242,7 @@ void testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies(void) {
     std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, x_throwing_place, y_throwing_place);
     map.add_soldier(&soldier, x_throwing_place, y_throwing_place);

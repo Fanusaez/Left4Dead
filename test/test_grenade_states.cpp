@@ -7,14 +7,14 @@
 #include "game_logic/grenades/smoke_grenade.h"
 
 void testExplosiveGrenadeInitialStateIdle(void) {
-    ExplosiveGrenade grenade;
+    ExplosiveGrenade grenade(0);
     GrenadeIdle* grenade_state = dynamic_cast<GrenadeIdle*>(grenade.get_state());
     TEST_CHECK(grenade_state != nullptr);
 }
 
 void testExplosiveGrenadeIsThrownStateChanges(void) {
     GameMap map(10,10);
-    ExplosiveGrenade grenade;
+    ExplosiveGrenade grenade(0);
     Idle idle;
     grenade.throw_grenade(map, 0, 0, &idle, 100);
     ThrownGrenade* grenade_state = dynamic_cast<ThrownGrenade*>(grenade.get_state());
@@ -23,7 +23,7 @@ void testExplosiveGrenadeIsThrownStateChanges(void) {
 
 void testExplosiveGrenadeExplodeStateChanges(void) {
     GameMap map(10,10);
-    ExplosiveGrenade grenade;
+    ExplosiveGrenade grenade(0);
     Idle idle;
     grenade.throw_grenade(map, 0, 0, &idle, 100);
     grenade.update(110);
@@ -32,14 +32,14 @@ void testExplosiveGrenadeExplodeStateChanges(void) {
 }
 
 void testSmokeGrenadeInitialStateIdle(void) {
-    SmokeGrenade grenade;
+    SmokeGrenade grenade(0);
     GrenadeIdle* grenade_state = dynamic_cast<GrenadeIdle*>(grenade.get_state());
     TEST_CHECK(grenade_state != nullptr);
 }
 
 void testSmokeGrenadeIsThrownStateChanges(void) {
     GameMap map(10,10);
-    SmokeGrenade grenade;
+    SmokeGrenade grenade(0);
     Idle idle;
     grenade.throw_grenade(map, 0, 0, &idle, 100);
     ThrownGrenade* grenade_state = dynamic_cast<ThrownGrenade*>(grenade.get_state());
@@ -48,7 +48,7 @@ void testSmokeGrenadeIsThrownStateChanges(void) {
 
 void testSmokeGrenadeExplodeStateChanges(void) {
     GameMap map(10,10);
-    SmokeGrenade grenade;
+    SmokeGrenade grenade(0);
     Idle idle;
     grenade.throw_grenade(map, 0, 0, &idle, 100);
     grenade.update(110);

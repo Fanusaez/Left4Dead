@@ -28,7 +28,7 @@ void testSoldierCallsAirStrikeAndDamages4Zombies(void) {
     std::int16_t  y_limit_safe_down = y_called_place + REACH_SAFE_AREA;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* p90 = new P90;
+    Weapon* p90 = new P90(0);
 
     Soldier soldier(p90, map, x_called_place, y_called_place);
     map.add_soldier(&soldier, x_called_place, y_called_place);
@@ -71,7 +71,7 @@ void testSoldierCallsAirStrikeAndDamages4Zombies2(void) {
     std::int16_t  y_limit_safe_down = y_called_place + REACH_SAFE_AREA;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* p90 = new P90;
+    Weapon* p90 = new P90(0);
 
     Soldier soldier(p90, map, x_called_place, y_called_place);
     map.add_soldier(&soldier, x_called_place, y_called_place);
@@ -114,9 +114,9 @@ void testSoldierCallsAirStrikeWith2ExtraSoldiersByHisSideAndDamages4Zombies(void
     std::int16_t  y_limit_safe_down = y_called_place + REACH_SAFE_AREA;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* p90 = new P90;
-    Weapon* idf = new Idf;
-    Weapon* idf2 = new Idf;
+    Weapon* p90 = new P90(0);
+    Weapon* idf = new Idf(0, 0);
+    Weapon* idf2 = new Idf(0, 0);
 
     Soldier soldier1(p90, map, x_called_place, y_called_place);
     map.add_soldier(&soldier1, x_called_place, y_called_place);
@@ -173,7 +173,7 @@ void testSoldierCallsAirStrikeWithIDFButNothingHappen(void) {
     std::int16_t  y_limit_safe_down = y_called_place + REACH_SAFE_AREA;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, x_called_place, y_called_place);
     map.add_soldier(&soldier, x_called_place, y_called_place);
@@ -216,7 +216,7 @@ void testSoldierCallsAirStrikeWithScoutButNothingHappen(void) {
     std::int16_t  y_limit_safe_down = y_called_place + REACH_SAFE_AREA;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, x_called_place, y_called_place);
     map.add_soldier(&soldier, x_called_place, y_called_place);
@@ -259,7 +259,7 @@ void testSoldierCalls2AirStrikeOnlyCallsOne(void) {
     std::int16_t  y_limit_safe_down = y_called_place + REACH_SAFE_AREA;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* p90 = new P90;
+    Weapon* p90 = new P90(0);
 
     Soldier soldier(p90, map, x_called_place, y_called_place);
     map.add_soldier(&soldier, x_called_place, y_called_place);

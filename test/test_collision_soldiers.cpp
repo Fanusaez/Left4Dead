@@ -19,8 +19,8 @@
 
 void testCollisionAmongSoldiers(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout1 = new Scout;
-    Weapon* scout2 = new Scout;
+    Weapon* scout1 = new Scout(0, 0);
+    Weapon* scout2 = new Scout(0, 0);
 
     Soldier soldier1(scout1, map, 5, 5);
     map.add_soldier(&soldier1, 5, 5);
@@ -41,8 +41,8 @@ void testCollisionAmongSoldiers(void) {
 
 void testCollisionAmongSoldiers2(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout1 = new Scout;
-    Weapon* scout2 = new Scout;
+    Weapon* scout1 = new Scout(0, 0);
+    Weapon* scout2 = new Scout(0, 0);
 
     Soldier soldier1(scout1, map, 5, 5);
     map.add_soldier(&soldier1, 5, 5);
@@ -65,8 +65,8 @@ void testCollisionAmongSoldiers2(void) {
 
 void testCollisionAmongSoldiers3(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout1 = new Scout;
-    Weapon* scout2 = new Scout;
+    Weapon* scout1 = new Scout(0, 0);
+    Weapon* scout2 = new Scout(0, 0);
 
     Soldier soldier1(scout1, map, 4, 5);
     map.add_soldier(&soldier1, 4, 5);
@@ -99,8 +99,8 @@ void testCollisionAmongSoldiers3(void) {
 
 void testCollisionAmongSoldiers4(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout1 = new Scout;
-    Weapon* scout2 = new Scout;
+    Weapon* scout1 = new Scout(0, 0);
+    Weapon* scout2 = new Scout(0, 0);
 
     Soldier soldier1(scout1, map, 4, 5);
     map.add_soldier(&soldier1, 4, 5);
@@ -121,8 +121,8 @@ void testCollisionAmongSoldiers4(void) {
 
 void testCollisionAmongSoldiers5(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout1 = new Scout;
-    Weapon* scout2 = new Scout;
+    Weapon* scout1 = new Scout(0, 0);
+    Weapon* scout2 = new Scout(0, 0);
 
     Soldier soldier1(scout1, map, 4, 5);
     map.add_soldier(&soldier1, 4, 5);
@@ -144,8 +144,8 @@ void testCollisionAmongSoldiers5(void) {
 
 void testCollisionAmongSoldiers6(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout1 = new Scout;
-    Weapon* scout2 = new Scout;
+    Weapon* scout1 = new Scout(0, 0);
+    Weapon* scout2 = new Scout(0, 0);
 
     Soldier soldier1(scout1, map, 4, 5);
     map.add_soldier(&soldier1, 4, 5);

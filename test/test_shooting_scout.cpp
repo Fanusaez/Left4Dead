@@ -15,7 +15,7 @@
 
 void testSoldierShootsScoutWith2InfectedsInLineRight(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
@@ -36,7 +36,7 @@ void testSoldierShootsScoutWith2InfectedsInLineRight(void) {
 
 void testSoldierShootsScoutWith3InfectedsInLineRight(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 4);
     map.add_soldier(&soldier, 3, 4);
@@ -62,7 +62,7 @@ void testSoldierShootsScoutWith3InfectedsInLineRight(void) {
 
 void testSoldierShootsScoutWith2InfectedsInLineLeft(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 3);
     map.add_soldier(&soldier, 8, 3);
@@ -83,7 +83,7 @@ void testSoldierShootsScoutWith2InfectedsInLineLeft(void) {
 
 void testSoldierShootsScoutWith3InfectedsInLineLeft(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 3);
     map.add_soldier(&soldier, 8, 3);

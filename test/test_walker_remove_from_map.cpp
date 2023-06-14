@@ -18,7 +18,7 @@
 
 void testSoldierShootsInfectedDiesAndIsRemovedFromMap(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* idf = new Scout;
+    Weapon* idf = new Scout(0, 0);
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);

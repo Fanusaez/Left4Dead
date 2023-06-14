@@ -20,7 +20,7 @@
 
 void testInfectedtriesToAttackSoldierButOutOfRange() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 2);
     map.add_soldier(&soldier, 8, 2);
@@ -39,7 +39,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange() {
 
 void testInfectedtriesToAttackSoldierButOutOfRange2() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 7 , 4 );
     map.add_soldier(&soldier, 7, 4);
@@ -58,7 +58,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange2() {
 
 void testInfectedtriesToAttackSoldierButOutOfRange3() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3 , 4 );
     map.add_soldier(&soldier, 3, 4);
@@ -77,7 +77,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange3() {
 
 void testInfectedtriesToAttackSoldierButOutOfRange4() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 7 , 6 );
     map.add_soldier(&soldier, 7, 6);
@@ -96,7 +96,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange4() {
 
 void testInfectedtriesToAttackSoldierButOutOfRange5() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3 , 6 );
     map.add_soldier(&soldier, 3, 6);
@@ -117,7 +117,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange5() {
 
 void testInfectedDamagesSoldier() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5 , 6 );
     map.add_soldier(&soldier, 5, 6);
@@ -136,7 +136,7 @@ void testInfectedDamagesSoldier() {
 
 void testInfectedDamagesSoldier2() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5 , 4 );
     map.add_soldier(&soldier, 5, 4);
@@ -155,7 +155,7 @@ void testInfectedDamagesSoldier2() {
 
 void testInfectedDamagesSoldier3() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 4 , 4 );
     map.add_soldier(&soldier, 4, 4);
@@ -174,7 +174,7 @@ void testInfectedDamagesSoldier3() {
 
 void testInfectedDamagesSoldier4() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 6 , 4 );
     map.add_soldier(&soldier, 6, 4);
@@ -193,7 +193,7 @@ void testInfectedDamagesSoldier4() {
 
 void testInfectedDamagesSoldier5() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5 , 6 );
     map.add_soldier(&soldier, 5, 6);

@@ -3,6 +3,8 @@
 #include "../game_object.h"
 
 
+ExplosiveGrenade::ExplosiveGrenade(std::int16_t id) : id(id) {}
+
 void ExplosiveGrenade::update(float time) {
     GrenadeState* state = grenade_state -> update(time);
     if (state) {

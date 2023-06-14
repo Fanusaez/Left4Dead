@@ -2,6 +2,9 @@
 #include "../map.h"
 #include "../game_object.h"
 
+
+SmokeGrenade::SmokeGrenade(std::int16_t id) : id(id){}
+
 void SmokeGrenade::update(float time) {
     GrenadeState* state = grenade_state -> update(time);
     if (state) {

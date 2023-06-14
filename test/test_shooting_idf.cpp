@@ -15,7 +15,7 @@
 
 void testSoldierShootsIdfCloseRangeLeft(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
@@ -31,7 +31,7 @@ void testSoldierShootsIdfCloseRangeLeft(void) {
 
 void testSoldierShootsIdfCloseRangeRight(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
@@ -47,7 +47,7 @@ void testSoldierShootsIdfCloseRangeRight(void) {
 
 void testSoldierShootsIdfCloseRangeLeftNotSameLine(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
@@ -65,7 +65,7 @@ void testSoldierShootsIdfCloseRangeLeftNotSameLine(void) {
 
 void testSoldierShootsIdfCloseRangeRightNotSameLine(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 3, 4);
     map.add_soldier(&soldier, 3, 4);
@@ -83,7 +83,7 @@ void testSoldierShootsIdfCloseRangeRightNotSameLine(void) {
 
 void testSoldierShootsIdfLongRangeLeft(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 5, 3);
     map.add_soldier(&soldier, 5, 3);
@@ -99,7 +99,7 @@ void testSoldierShootsIdfLongRangeLeft(void) {
 
 void testSoldierShootsIdfLongRangeRight(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);
@@ -115,7 +115,7 @@ void testSoldierShootsIdfLongRangeRight(void) {
 
 void testSoldierShootsIdfLongRangeLeftNotSameLine(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 6, 3);
     map.add_soldier(&soldier, 6, 3);
@@ -133,7 +133,7 @@ void testSoldierShootsIdfLongRangeLeftNotSameLine(void) {
 
 void testSoldierShootsIdfLongRangeRightNotSameLine(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 3, 5);
     map.add_soldier(&soldier, 3, 5);
@@ -151,7 +151,7 @@ void testSoldierShootsIdfLongRangeRightNotSameLine(void) {
 
 void testSoldierShootsIdfWith2InfectedsInLine(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 3, 3);
     map.add_soldier(&soldier, 3, 3);

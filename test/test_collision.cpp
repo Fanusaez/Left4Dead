@@ -23,7 +23,7 @@
 
 void testCollisionSameLineUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier* soldier = new Soldier(idf, map);
     map.add_soldier(soldier, 8, 9);
@@ -37,7 +37,7 @@ void testCollisionSameLineUp(void) {
 
 void testCollisionSameLineDown(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier* soldier = new Soldier(idf, map);
     map.add_soldier(soldier, 7, 0);
@@ -51,7 +51,7 @@ void testCollisionSameLineDown(void) {
 
 void testCollisionNotSameLineLeftUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier* soldier = new Soldier(idf, map);
     map.add_soldier(soldier, 8, 9);
@@ -65,7 +65,7 @@ void testCollisionNotSameLineLeftUp(void) {
 
 void testCollisionNotSameLineRightUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier* soldier = new Soldier(idf, map);
     map.add_soldier(soldier, 7, 9);
@@ -79,7 +79,7 @@ void testCollisionNotSameLineRightUp(void) {
 
 void testCollisionNotSameLineLeftDown(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier* soldier = new Soldier(idf, map);
     map.add_soldier(soldier, 1, 1);
@@ -93,7 +93,7 @@ void testCollisionNotSameLineLeftDown(void) {
 
 void testCollisionNotSameLineRightDown(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier* soldier = new Soldier(idf, map);
     map.add_soldier(soldier, 1, 1);
@@ -107,7 +107,7 @@ void testCollisionNotSameLineRightDown(void) {
 
 void testNoCollisionUp(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier* soldier = new Soldier(idf, map);
     map.add_soldier(soldier, 8, 9);
@@ -121,7 +121,7 @@ void testNoCollisionUp(void) {
 
 void testNoCollisionDown(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* idf = new Idf;
+    Weapon* idf = new Idf(0, 0);
 
     Soldier* soldier = new Soldier(idf, map);
     map.add_soldier(soldier, 1, 1);

@@ -3,11 +3,6 @@ add_custom_target(test COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 
 include_directories("../src")
 
-# Para agregar tests hacer asi
-add_executable(testPrueba
-        test_prueba.cpp
-)
-
 add_executable(testProtocolClient
         test_protocol_client.cpp
         ../src/client/client_serializer.cpp
@@ -1113,7 +1108,6 @@ add_executable(testAirStrikeStates
 
 # Despues agregar el target aca y listo
 set(testTargets
-        #testPrueba
         #testProtocolClient
         #testProtocolServer
         testCollision

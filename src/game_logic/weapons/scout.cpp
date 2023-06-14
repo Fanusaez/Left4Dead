@@ -1,6 +1,11 @@
 #include "scout.h"
 #include "../game_object.h"
 
+Scout::Scout(std::int16_t id_explosive_grenade,
+            std::int16_t id_smoke_grenade) :
+            explosive_grenade(id_explosive_grenade),
+            smoke_grenade(id_smoke_grenade) {}
+
 void Scout::update(float time) {
     explosive_grenade.update(time);
     smoke_grenade.update(time);

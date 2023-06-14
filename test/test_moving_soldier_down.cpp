@@ -18,7 +18,7 @@
 
 void testMoveSoldierDown(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
@@ -36,7 +36,7 @@ void testMoveSoldierDown(){
 
 void testMoveSoldierDownAtTheEndDoesNotMove() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, (MAP_SIZE_Y - 1));
     map.add_soldier(&soldier, 3, MAP_SIZE_Y - 1);
@@ -54,7 +54,7 @@ void testMoveSoldierDownAtTheEndDoesNotMove() {
 
 void testNotMoveSoldierDownForCompleteCollisionWithZombie() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 7);
     map.add_soldier(&soldier, 3, 7);
@@ -75,7 +75,7 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie() {
 
 void testNotMoveSoldierDownForPartialCollisionWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
@@ -101,7 +101,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
 
 void testMoveSoldierDownWithCloseInfected(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
@@ -127,7 +127,7 @@ void testMoveSoldierDownWithCloseInfected(){
 
 void testMoveSoldierDownUntilTheEnd() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3 , 8);
     map.add_soldier(&soldier, 3, 8);
@@ -145,7 +145,7 @@ void testMoveSoldierDownUntilTheEnd() {
 
 void testMoveSoldierDownUntilTheEnd2() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 0, 0);
     map.add_soldier(&soldier, 0, 0);

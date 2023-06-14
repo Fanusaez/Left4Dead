@@ -25,7 +25,7 @@
 
 void testSoldierStartsWithIdleState(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -39,7 +39,7 @@ void testSoldierStartsWithIdleState(void) {
 
 void testSoldierShootsReloadAndStateChangesToReloading(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -56,7 +56,7 @@ void testSoldierShootsReloadAndStateChangesToReloading(void) {
 
 void testSoldierTryToReloadWithFullMagazineSameState(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -72,7 +72,7 @@ void testSoldierTryToReloadWithFullMagazineSameState(void) {
 
 void testSoldierShootsWhileReloadingAndStateNotChange(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -90,7 +90,7 @@ void testSoldierShootsWhileReloadingAndStateNotChange(void) {
 
 void testSoldierUpdatesAfterReloadingAndStateChangesToIdle(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -108,7 +108,7 @@ void testSoldierUpdatesAfterReloadingAndStateChangesToIdle(void) {
 
 void testSoldierUpdatesDuringReloadingAndStateChanges(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -128,7 +128,7 @@ void testSoldierUpdatesDuringReloadingAndStateChanges(void) {
 
 void testSoldierShootsAndStateChangesToShooting(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -144,7 +144,7 @@ void testSoldierShootsAndStateChangesToShooting(void) {
 
 void testSoldierShootsAfterReloadingAndStateChangesToShooting(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -162,7 +162,7 @@ void testSoldierShootsAfterReloadingAndStateChangesToShooting(void) {
 
 void testSoldierShootsToFastAndOnlyOneBulletIsFired(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -177,7 +177,7 @@ void testSoldierShootsToFastAndOnlyOneBulletIsFired(void) {
 
 void testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 9);
     map.add_soldier(&soldier, 8, 9);
@@ -200,7 +200,7 @@ void testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle(void) {
 
 void testSoldierMoveUpAndStateChangesToMoving(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -217,7 +217,7 @@ void testSoldierMoveUpAndStateChangesToMoving(void) {
 
 void testSoldierMovesUpAndImmediatelyReload(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -234,7 +234,7 @@ void testSoldierMovesUpAndImmediatelyReload(void) {
 
 void testSoldierMovesUpAndReload(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -251,7 +251,7 @@ void testSoldierMovesUpAndReload(void) {
 
 void testSoldierMovesUpAndShootsImmediately(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -268,7 +268,7 @@ void testSoldierMovesUpAndShootsImmediately(void) {
 
 void testSoldierMovesAndThenItsToldToStopChangesToIdle(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -285,7 +285,7 @@ void testSoldierMovesAndThenItsToldToStopChangesToIdle(void) {
 
 void testSoldiergetsUpdatedImmediatelyAfterMovingChangesToIdle(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -302,7 +302,7 @@ void testSoldiergetsUpdatedImmediatelyAfterMovingChangesToIdle(void) {
 
 void testSoldierMoveUpTooFastOnlyMoveOnce(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -320,7 +320,7 @@ void testSoldierMoveUpTooFastOnlyMoveOnce(void) {
 
 void testSoldierMoveUpUntilEndOfMap(void) {
     GameMap map(10, 10, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2.3, 2.3); /// si los pongo en 2 falla
     map.add_soldier(&soldier, 2, 2);
@@ -341,7 +341,7 @@ void testSoldierMoveUpUntilEndOfMap(void) {
 
 void testSoldierStartsIdleAndIsAttacked(void) {
     GameMap map(10, 10, 0);
-    Weapon *scout = new Scout;
+    Weapon *scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -361,7 +361,7 @@ void testSoldierStartsIdleAndIsAttacked(void) {
 
 void testSoldierShootingAndIsAttacked(void) {
     GameMap map(10, 10, 0);
-    Weapon *scout = new Scout;
+    Weapon *scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -383,7 +383,7 @@ void testSoldierShootingAndIsAttacked(void) {
 
 void testSoldierReloadingAndIsAttacked(void) {
     GameMap map(10, 10, 0);
-    Weapon *scout = new Scout;
+    Weapon *scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -410,7 +410,7 @@ void testSoldierReloadingAndIsAttacked(void) {
 
 void testSoldierGetsKilledAndStateChanges(void) {
     GameMap map(10, 10, 0);
-    Weapon *scout = new Scout;
+    Weapon *scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -429,7 +429,7 @@ void testSoldierGetsKilledAndStateChanges(void) {
 
 void testSoldierGetsKilledAndTryToMove(void) {
     GameMap map(10, 10, 0);
-    Weapon *scout = new Scout;
+    Weapon *scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -449,7 +449,7 @@ void testSoldierGetsKilledAndTryToMove(void) {
 
 void testSoldierGetsKilledAndTryToShoot(void) {
     GameMap map(10, 10, 0);
-    Weapon *scout = new Scout;
+    Weapon *scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -469,7 +469,7 @@ void testSoldierGetsKilledAndTryToShoot(void) {
 
 void testSoldierGetsKilledAndTryToReload(void) {
     GameMap map(10, 10, 0);
-    Weapon *scout = new Scout;
+    Weapon *scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -491,7 +491,7 @@ void testSoldierGetsKilledAndTryToReload(void) {
 
 void testSoldierThrowsGrenadeAndStateChanges(void) {
     GameMap map(10, 10, 0);
-    Weapon *idf = new Idf;
+    Weapon *idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -505,7 +505,7 @@ void testSoldierThrowsGrenadeAndStateChanges(void) {
 
 void testSoldierThrowsGrenadeAndTenSecondsPasses(void) {
     GameMap map(10, 10, 0);
-    Weapon *idf = new Idf;
+    Weapon *idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -520,7 +520,7 @@ void testSoldierThrowsGrenadeAndTenSecondsPasses(void) {
 
 void testSoldierThrows2GrenadeOnly1IsThrown(void) {
     GameMap map(10, 10, 0);
-    Weapon *idf = new Scout;
+    Weapon *idf = new Scout(0, 0);
 
     Soldier soldier(idf, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -539,7 +539,7 @@ void testSoldierThrows2GrenadeOnly1IsThrown(void) {
 
 void testSoldierThrowsGrenadeWithP90AndStateNotChanges(void) {
     GameMap map(10, 10, 0);
-    Weapon *p90 = new P90;
+    Weapon *p90 = new P90(0);
 
     Soldier soldier(p90, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -555,7 +555,7 @@ void testSoldierThrowsGrenadeWithP90AndStateNotChanges(void) {
 
 void testSoldierThrowsSmokeGrenadeAndStateChanges(void) {
     GameMap map(10, 10, 0);
-    Weapon *idf = new Idf;
+    Weapon *idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -569,7 +569,7 @@ void testSoldierThrowsSmokeGrenadeAndStateChanges(void) {
 
 void testSoldierThrowsSmokeGrenadeAndTenSecondsPasses(void) {
     GameMap map(10, 10, 0);
-    Weapon *idf = new Idf;
+    Weapon *idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -584,7 +584,7 @@ void testSoldierThrowsSmokeGrenadeAndTenSecondsPasses(void) {
 
 void testSoldierThrowsSmokeGrenadeWithP90AndStateNotChanges(void) {
     GameMap map(10, 10, 0);
-    Weapon *p90 = new P90;
+    Weapon *p90 = new P90(0);
 
     Soldier soldier(p90, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -600,7 +600,7 @@ void testSoldierThrowsSmokeGrenadeWithP90AndStateNotChanges(void) {
 
 void testSoldierCallsAirStrikeWithP90AndStateChanges(void) {
     GameMap map(10, 10, 0);
-    Weapon *p90 = new P90;
+    Weapon *p90 = new P90(0);
 
     Soldier soldier(p90, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);

@@ -15,7 +15,7 @@
 
 void testWalkerChangeChaseStateToRunning(void) {
     GameMap map(10, 10);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Infected walker(5,5, map);
     map.add_zombie(&walker, 5, 5);

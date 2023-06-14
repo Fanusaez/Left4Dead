@@ -3,6 +3,8 @@
 #include "../map.h"
 #include "../states/state.h"
 
+AirStrike::AirStrike(std::int16_t id) : id(id) {}
+
 void AirStrike::update(float time) {
     AirStrikeState* state = air_strike_state -> update(time);
     if (state) {

@@ -13,6 +13,8 @@ class P90 : public Weapon {
 
  public:
 
+explicit P90(std::int16_t id_air_strike);
+
 void update(float time) override;
 
 void shoot(std::vector<GameObject*>& shooting_objects,

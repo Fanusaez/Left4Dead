@@ -19,7 +19,7 @@
 
 void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacle() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 2);
     map.add_soldier(&soldier, 8, 2);
@@ -43,7 +43,7 @@ void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacle() {
 
 void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8 , 2);
     map.add_soldier(&soldier, 8, 2);
@@ -67,7 +67,7 @@ void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
 
 void testInfectedChaseSoldierdiagonallyUpAndLeftWithObstacle() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 1, 2);
     map.add_soldier(&soldier, 1, 2);
@@ -90,7 +90,7 @@ void testInfectedChaseSoldierdiagonallyUpAndLeftWithObstacle() {
 
 void testInfectedChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 2);
     map.add_soldier(&soldier, 2, 2);
@@ -115,7 +115,7 @@ void testInfectedChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
 
 void testInfectedChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 8);
     map.add_soldier(&soldier, 2, 8);

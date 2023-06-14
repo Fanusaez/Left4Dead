@@ -20,7 +20,7 @@
 
 void testMapChaseInfectedDiagonallyUpAndRight() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 2);
     map.add_soldier(&soldier, 8, 2);
@@ -46,7 +46,7 @@ void testMapChaseInfectedDiagonallyUpAndRight() {
 
 void testMapChaseInfectedDiagonallyUpAndLeft() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 1, 3);
     map.add_soldier(&soldier, 1, 3);
@@ -70,7 +70,7 @@ void testMapChaseInfectedDiagonallyUpAndLeft() {
 
 void testMapChaseInfectedDiagonallyDownAndRight() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 8, 8);
     map.add_soldier(&soldier, 8, 8);
@@ -94,7 +94,7 @@ void testMapChaseInfectedDiagonallyDownAndRight() {
 
 void testMapChaseInfectedDiagonallyDownAndLeft() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 2, 8);
     map.add_soldier(&soldier, 2, 8);
@@ -120,7 +120,7 @@ void testMapChaseInfectedDiagonallyDownAndLeft() {
 
 void testMapChaseInfectedUp() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5, 5);
     map.add_soldier(&soldier, 5, 5);
@@ -140,7 +140,7 @@ void testMapChaseInfectedUp() {
 
 void testMapChaseInfectedDown() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5, 5);
     map.add_soldier(&soldier, 5, 5);
@@ -163,7 +163,7 @@ void testMapChaseInfectedDown() {
 
 void testMapChaseInfectedRight() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5, 5);
     map.add_soldier(&soldier, 5, 5);
@@ -184,7 +184,7 @@ void testMapChaseInfectedRight() {
 
 void testMapChaseInfectedLeft() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5, 5);
     map.add_soldier(&soldier, 5, 5);

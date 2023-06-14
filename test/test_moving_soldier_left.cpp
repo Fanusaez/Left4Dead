@@ -19,7 +19,7 @@
 
 void testMoveSoldierLeft(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 8);
     map.add_soldier(&soldier, 3, 8);
@@ -35,7 +35,7 @@ void testMoveSoldierLeft(){
 
 void testMoveSoldierLeftBeginningOfMap() {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 1, 3);
     map.add_soldier(&soldier, 1, 3);
@@ -53,7 +53,7 @@ void testMoveSoldierLeftBeginningOfMap() {
 
 void testNotMoveSoldierLeftForCollisionWithZombie(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 3, 7);
     map.add_soldier(&soldier, 3, 7);
@@ -75,7 +75,7 @@ void testNotMoveSoldierLeftForCollisionWithZombie(){
 
 void testMoveSoldierLeftAllTheWay(){
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y);
-    Weapon* scout = new Scout;
+    Weapon* scout = new Scout(0, 0);
 
     Soldier soldier(scout, map, 5, 5);
     map.add_soldier(&soldier, 5, 5);

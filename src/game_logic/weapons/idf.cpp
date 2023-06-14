@@ -5,6 +5,12 @@
 
 #define DISTANCE_LONG_RANGE 5
 
+
+Idf::Idf(std::int16_t id_explosive_grenade,
+         std::int16_t id_smoke_grenade) :
+         explosive_grenade(id_explosive_grenade),
+         smoke_grenade(id_smoke_grenade) {}
+
 void Idf::update(float time) {
     explosive_grenade.update(time);
     smoke_grenade.update(time);

@@ -15,7 +15,11 @@ private:
     std::int16_t radius_range = 3;
     float last_thrown_grenade = 0;
     GrenadeState* grenade_state = new GrenadeIdle;
+    std::int16_t id;
+
 public:
+
+    explicit ExplosiveGrenade(std::int16_t id);
 
     void update(float time);
 
