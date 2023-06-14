@@ -17,9 +17,9 @@ private:
      * Cada tipo de zombi tiene una probabilidad
      * Suma de todas las probabilidades tiene que ser 100;
      */
-    std::vector<std::int16_t> infected_prob = {0, 0};
-    std::vector<std::int16_t> witch_prob = {0, 0};
-    std::vector<std::int16_t> jumper_prob = {0, 100};
+    std::vector<std::int16_t> infected_prob = {0, 40};
+    std::vector<std::int16_t> witch_prob = {40, 70};
+    std::vector<std::int16_t> jumper_prob = {70, 100};
     float start_time;
     float last_time_updated = -1;
     float time_respawn_zombies = 5; // aparece 1 zombi cada 1 segundo

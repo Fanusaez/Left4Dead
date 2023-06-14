@@ -12,7 +12,9 @@ class GameMap;
 class GameFactory {
 private:
     GameMap& map;
-    std::int16_t infected_probability = 100;
+    std::vector<std::int16_t> infected_prob = {0, 50};
+    std::vector<std::int16_t> witch_prob = {50, 50};
+    std::vector<std::int16_t> jumper_prob = {55, 100};
     std::int16_t id = 0;
 
     Soldier* create_soldier(Weapon* weapon, std::vector<std::int16_t>& soldier_pos);

@@ -33,12 +33,15 @@ Soldier *GameFactory::create_soldier(Weapon *weapon,std::vector<std::int16_t>& s
 }
 
 Zombie* GameFactory::create_random_zombie(std::vector<std::int16_t>& zombie_pos) {
-    int random_num = 30;
-    if (random_num < infected_probability) {
-        Zombie* infected = new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
-        return infected;
+    int random_num = std::rand() % 101;
+    if (random_num >= infected_prob[0] && random_num <= infected_prob[1]) {
+        return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+    } else if (random_num >= witch_prob[0] && random_num <= witch_prob[1]) {
+         return new Witch(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+    } else if (random_num >= jumper_prob[0] && random_num <= jumper_prob[1]) {
+        return new Jumper(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
     }
-    return nullptr; // para que no tire waning por ahora
+    return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map); // porlas
 }
 
 Zombie* GameFactory::create_infected(std::vector<std::int16_t>& zombie_pos) {
