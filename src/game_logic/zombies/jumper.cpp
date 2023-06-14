@@ -52,7 +52,7 @@ void Jumper::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
     std::int16_t x_sold_pos = closest_soldier->get_x_pos();
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
 
-    ZombieState* new_state = state->chase_soldier(chaser, x_sold_pos, y_sold_pos, time);
+    ZombieState* new_state = chase_state->chase(state, chaser, x_sold_pos, y_sold_pos, time);
     if (new_state != nullptr) {
         delete state;
         state = new_state;

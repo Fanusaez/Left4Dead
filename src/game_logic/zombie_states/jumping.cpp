@@ -41,7 +41,7 @@ Jumping::chase_soldier_jumping(Chaser &chaser,
                                float time) {
     if (time_to_move(time)) {
         last_time_moved = time;
-        chase_soldier_jumping(chaser, x_pos_chase, y_pos_chase, time);
+        chaser.chase(x_pos_chase, y_pos_chase);
     }
     return nullptr;
 }
