@@ -19,19 +19,13 @@ Soldier::Soldier(Weapon* weapon,
 
 void Soldier::update(float time) {
     State* new_state = state->update(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
     weapon -> update(time);
 }
 
 void Soldier::shoot(float time) {
     State* new_state = state->shoot(*this, weapon, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 // despues deberia pasar el map a estado y que el se encargue
@@ -47,10 +41,7 @@ std::vector<GameObject *> Soldier::get_targets() {
 
 void Soldier::reload(float time) {
     State* new_state = state->reload(weapon, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Soldier::throw_explosive_grenade(float time) {
@@ -67,10 +58,7 @@ void Soldier::throw_explosive_grenade(float time) {
                                                        get_y_matrix_pos(),
                                                        state,
                                                        time);
-    if (new_state) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Soldier::throw_smoke_grenade(float time) {
@@ -87,10 +75,7 @@ void Soldier::throw_smoke_grenade(float time) {
                                                    get_y_matrix_pos(),
                                                    state,
                                                    time);
-    if (new_state) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Soldier::call_air_strike(float time) {
@@ -99,10 +84,7 @@ void Soldier::call_air_strike(float time) {
                                                get_y_matrix_pos(),
                                                state,
                                                time);
-    if (new_state) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Soldier::receive_damage(std::uint16_t damage, float time) {
@@ -111,10 +93,7 @@ void Soldier::receive_damage(std::uint16_t damage, float time) {
         die(time);
     } else {
         State *new_state = state->being_attacked(time);
-        if (new_state != nullptr) {
-            delete state;
-            state = new_state;
-        }
+        change_state(new_state);
     }
 }
 
@@ -122,34 +101,22 @@ void Soldier::get_stunned(float time) {}
 
 void Soldier::move_up(float time) {
     State* new_state = state->move(*this, UP, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Soldier::move_down(float time) {
     State* new_state = state->move(*this, DOWN, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Soldier::move_right(float time) {
     State* new_state = state->move(*this, RIGHT, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Soldier::move_left(float time) {
     State* new_state = state->move(*this, LEFT, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Soldier::move_up() {
@@ -224,10 +191,7 @@ bool Soldier::in_range_of_explosion(std::int16_t x_start,
 void Soldier::die(float time) {
     dead = true;
     State* new_state = state->die(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 bool Soldier::chaseable() {
@@ -238,10 +202,6 @@ std::int16_t Soldier::get_id() {
     return id;
 }
 
-Soldier::~Soldier(){
-    delete weapon;
-    delete state;
-}
 
 std::int16_t Soldier::get_y_pos() {
     return y_pos;
@@ -261,6 +221,18 @@ std::int16_t Soldier::get_x_matrix_pos() {
 
 bool Soldier::facing_left() {
     return (direction == LEFT);
+}
+
+void Soldier::change_state(State *new_state) {
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
+
+Soldier::~Soldier(){
+    delete weapon;
+    delete state;
 }
 
 //************************* Metodo de testeo *********************************************

@@ -19,6 +19,7 @@ class Soldier : public GameObject {
     const std::int16_t id;
 
 void die(float time);
+void change_state(State* new_state);
 
  public:
 Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos, std::int16_t id);
