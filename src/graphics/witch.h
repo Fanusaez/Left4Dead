@@ -11,6 +11,9 @@ class Witch : public RenderableObject {
 	Animation animation;
 	bool facingLeft;
 	ZombieObjectState state;
+	std::shared_ptr<SDL2pp::Chunk> sfx;
+	int sfxLoops;
+	bool playSFX;
 
 public:
 	Witch(int id, int initialX, int initialY);

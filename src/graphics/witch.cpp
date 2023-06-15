@@ -6,7 +6,8 @@ Witch::Witch(int id, int initialX, int initialY) :
 	textureLoader(TextureLoader::getInstance()),
 	animation(textureLoader.getTexture("Witch/Idle.png")),
 	facingLeft(false),
-	state(IDLE_ZOMBIE)
+	state(IDLE_ZOMBIE),
+	playSFX(false)
 {}
 
 Witch::~Witch() {}
@@ -36,7 +37,13 @@ void Witch::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 	this->animation.render(renderer, dst, flip);
 }
 
-void Witch::renderAudio(SDL2pp::Mixer &mixer) {}
+void Witch::renderAudio(SDL2pp::Mixer &mixer)
+{
+	if (not this->sfx or not this->playSFX)
+		return;
+	mixer.PlayChannel(-1, *(this->sfx), this->sfxLoops);
+	this->playSFX = false;
+}
 
 void Witch::changeState(const ZombieObjectState &state)
 {
@@ -53,13 +60,25 @@ void Witch::changeState(const ZombieObjectState &state)
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Jump.png"));
 	} else if (this->state == ATTACKING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Attack_1.png"));
+		this->sfx = this->textureLoader.getChunk("Witch/Attack_1.mp3");
+		this->sfxLoops = 0;
+		this->playSFX = true;
 	} else if (this->state == BEING_ATTACKED) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Hurt.png"));
+		this->sfx = this->textureLoader.getChunk("Witch/Hurt.mp3");
+		this->sfxLoops = 0;
+		this->playSFX = true;
 	} else if (this->state == DEAD) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Dead.png"));
 		this->animation.noLoop();
+		this->sfx = this->textureLoader.getChunk("Witch/Dead.mp3");
+		this->sfxLoops = 0;
+		this->playSFX = true;
 	} else if (this->state == SCREAMING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Scream.png"));
+		this->sfx = this->textureLoader.getChunk("Witch/Scream.mp3");
+		this->sfxLoops = 0;
+		this->playSFX = true;
 	} else {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Idle.png"));
 		this->animation.noLoop();
