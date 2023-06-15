@@ -16,6 +16,7 @@ class Player : public RenderableObject {
 	std::shared_ptr<SDL2pp::Chunk> sfx;
 	int sfxLoops;
 	bool playSFX;
+	int lastChannel;
 
 public:
 	Player(int id, int initialX, int initialY);

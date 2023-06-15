@@ -7,7 +7,8 @@ Player::Player(int id, int initialX, int initialY) :
 	an(textureLoader.getTexture("Soldier_1/Idle.png")),
 	facingLeft(false),
 	state(IDLE_SOLDIER),
-	playSFX(false)
+	playSFX(false),
+	lastChannel(-1)
 {}
 
 Player::~Player() = default;
@@ -48,9 +49,17 @@ void Player::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 
 void Player::renderAudio(SDL2pp::Mixer &mixer)
 {
-	if (not this->sfx or not this->playSFX)
+	if (not this->playSFX)
 		return;
-	mixer.PlayChannel(-1, *(this->sfx), this->sfxLoops);
+
+	if (this->lastChannel != -1) // This object is playing something
+		mixer.HaltChannel(this->lastChannel); // Stop playing
+
+	if (this->sfx)
+		this->lastChannel = mixer.PlayChannel(-1, *(this->sfx), this->sfxLoops);
+	else
+		this->lastChannel = -1;
+
 	this->playSFX = false;
 }
 
@@ -63,20 +72,22 @@ void Player::changeState(const SoldierObjectState &state)
 
 	if (this->state == SHOOTING) {
 		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Shot_1.png"));
-		this->sfx = nullptr;
+		this->sfx = this->textureLoader.getChunk("Soldier_1/Shot_1.mp3");
+		this->sfxLoops = -1;
 	} else if (this->state == RELOADING) {
 		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Recharge.png"));
 		this->an.noLoop();
-		this->sfx = nullptr;
+		this->sfx = this->textureLoader.getChunk("Soldier_1/Recharge.mp3");
+		this->sfxLoops = 0;
 	} else if (this->state == MOVING) {
 		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Walk.png"));
-		this->sfx = nullptr;
+		this->sfx = this->textureLoader.getChunk("Soldier_1/Walk.mp3");
+		this->sfxLoops = -1;
 	} else if (this->state == SOLDIER_DEAD) {
 		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Dead.png"));
 		this->an.noLoop();
 		this->sfx = this->textureLoader.getChunk("Soldier_1/Dead.mp3");
 		this->sfxLoops = 0;
-		this->playSFX = true;
 	} else if (this->state == SOLDIER_HURT) {
 		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Hurt.png"));
 		this->sfx = nullptr;
@@ -85,4 +96,5 @@ void Player::changeState(const SoldierObjectState &state)
 		this->an.noLoop();
 		this->sfx = nullptr;
 	}
+	this->playSFX = true;
 }
