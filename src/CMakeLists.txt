@@ -19,6 +19,7 @@ if(SERVER)
 		./server/player_sender.cpp
 		./server/player.cpp
 		./server/game.cpp
+		./server/protected_outputs_queue.cpp
 		./server/server_serializer.cpp
 		./server/server_deserializer.cpp
 		./server/game_logic.cpp

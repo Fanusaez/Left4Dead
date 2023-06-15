@@ -5,6 +5,7 @@
 #include <sys/socket.h>
 #include <utility>
 #include <string>
+#include <arpa/inet.h>
 
 Lobby::Lobby(char *localhost, char *puerto) : socket(localhost,puerto), queue_sender(1000000), 
             queue_receiver(1000000), keep_talking(true), 
@@ -12,6 +13,7 @@ Lobby::Lobby(char *localhost, char *puerto) : socket(localhost,puerto), queue_se
             lobby_receiver(&socket,std::ref(keep_talking),&queue_receiver){
     bool was_closed = false;
     socket.recvall(&player_id,sizeof(int),&was_closed);
+    player_id = ntohl(player_id);
     lobby_sender.start();
     lobby_receiver.start();
     game_code = -1;

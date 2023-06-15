@@ -10,7 +10,8 @@ Game::Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, 
     queue_entrante(10000), code(code), game_name(game_name), game_logic(), keep_playing(true)
 {
     game_logic.add_soldier(player_id);
-    queue_salientes[player_id] = queue_sender;
+    //queue_salientes[player_id] = queue_sender;
+    protected_outputs_queue.add_queue(queue_sender,player_id);
 }
 
 void Game::run(){   
@@ -18,7 +19,7 @@ void Game::run(){
     bool could_pop;
     int start_players = 0;
     //Espero a popoear la señal de start de todos los jugadores
-    while (start_players < queue_salientes.size()) {
+    while (start_players < protected_outputs_queue.number_of_players()) {
         instructionDTO = queue_entrante.pop();  
         if (instructionDTO->get_instruction() == START)
             start_players++;
@@ -39,11 +40,7 @@ void Game::run(){
         game_logic.udpate_game(); //Una vez que analize las instrucciones actualizo el juego.
         GameDTO game_dto = game_logic.get_game(); //Obtengo el "screen" del juego
         //Comienzo a mandarlo a todas las queue de los clientes del juego
-        m.lock();
-        for (const auto &queue : queue_salientes) {
-            queue.second->try_push(game_dto);
-        }
-        m.unlock();
+        protected_outputs_queue.push_game(game_dto);
         //Me fijo cuanto tardo y calculo cuanto dormir o si seguir corriendo para mantener el rate.
         auto t_end = std::chrono::high_resolution_clock::now(); 
         std::chrono::duration<double> duration = t_end - t_start;
@@ -65,10 +62,8 @@ Queue<InstructionsDTO*> *Game::getQueue(){
 }
 
 void Game::addPlayer(Queue<GameDTO> *queue_sender,int32_t& player_id){
-    m.lock();
     game_logic.add_soldier(player_id);
-    queue_salientes[player_id] = queue_sender;
-    m.unlock();
+    protected_outputs_queue.add_queue(queue_sender,player_id);
 }
 
 bool Game::compare_code(const int32_t& code_to_compare){
@@ -79,18 +74,13 @@ bool Game::compare_game_name(const std::string& game_name_to_compare){
     return (game_name == game_name_to_compare);
 }
 
-bool Game::find_player(int32_t& player_id){
-    auto it = queue_salientes.find(player_id);
-    if (it != queue_salientes.end()){
-        queue_salientes.erase(it);
-        return true;    
-    }
-    return false;
+bool Game::delete_player(int32_t& player_id){
+    return protected_outputs_queue.delete_player(player_id);
 }
 
 bool Game::is_empty(){
-    if (queue_salientes.empty()){
-        stop_playing();   //Si esta vacio el juego no hago que se corra mas.
+    if (protected_outputs_queue.number_of_players() == 0){
+        stop_playing();
         return true;
     }
     return false;
@@ -102,8 +92,4 @@ void Game::stop_playing(){
 
 int32_t Game::get_game_code(){
     return code;
-}
-
-int Game::get_players(){
-    return queue_salientes.size();
 }

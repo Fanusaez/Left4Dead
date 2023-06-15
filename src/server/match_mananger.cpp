@@ -72,7 +72,7 @@ void MatchMananger::joinGames(){
 void MatchMananger::delete_player(int32_t& player_id) {
     m.lock();
     for (Game *game: games){
-        if (game->find_player(player_id)){
+        if (game->delete_player(player_id)){
             if (game->is_empty()){  //Chequeo si no hay mas jugadores en la partida.
                 game->join();
                 delete game;
