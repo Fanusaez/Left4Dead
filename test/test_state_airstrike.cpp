@@ -36,6 +36,7 @@ void testAirStrikeAndStateChangesToIncoming(void) {
 
     TEST_CHECK(state != nullptr);
     delete idle;
+     map.empty_vectors();
 }
 
 void testAirStrikeAndStateChangesToExploding(void) {
@@ -49,6 +50,7 @@ void testAirStrikeAndStateChangesToExploding(void) {
     TEST_CHECK(state != nullptr);
 
     delete idle;
+     map.empty_vectors();
 }
 
 void testAirStrikeAndStateChangesToIdle(void) {
@@ -62,6 +64,7 @@ void testAirStrikeAndStateChangesToIdle(void) {
 
     TEST_CHECK(state != nullptr);
     delete idle;
+     map.empty_vectors();
 }
 
 TEST_LIST = {

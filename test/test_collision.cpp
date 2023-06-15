@@ -33,6 +33,7 @@ void testCollisionSameLineUp(void) {
 
     TEST_ASSERT(map.collision(UP, 8, 8) == true);
     delete soldier;
+     map.empty_vectors();
 }
 
 void testCollisionSameLineDown(void) {
@@ -47,6 +48,7 @@ void testCollisionSameLineDown(void) {
 
     TEST_ASSERT(map.collision(DOWN, 7, 1) == true);
     delete soldier;
+     map.empty_vectors();
 }
 
 void testCollisionNotSameLineLeftUp(void) {
@@ -61,6 +63,7 @@ void testCollisionNotSameLineLeftUp(void) {
 
     TEST_ASSERT(map.collision(UP, 8, 8) == false);
     delete soldier;
+     map.empty_vectors();
 }
 
 void testCollisionNotSameLineRightUp(void) {
@@ -75,6 +78,7 @@ void testCollisionNotSameLineRightUp(void) {
 
     TEST_ASSERT(map.collision(UP, 7, 8) == true);
     delete soldier;
+     map.empty_vectors();
 }
 
 void testCollisionNotSameLineLeftDown(void) {
@@ -89,6 +93,7 @@ void testCollisionNotSameLineLeftDown(void) {
 
     TEST_ASSERT(map.collision(DOWN, 1, 2) == false);
     delete soldier;
+     map.empty_vectors();
 }
 
 void testCollisionNotSameLineRightDown(void) {
@@ -103,6 +108,7 @@ void testCollisionNotSameLineRightDown(void) {
 
     TEST_ASSERT(map.collision(DOWN, 1, 2) == true);
     delete soldier;
+     map.empty_vectors();
 }
 
 void testNoCollisionUp(void) {
@@ -117,6 +123,7 @@ void testNoCollisionUp(void) {
 
     TEST_ASSERT(map.collision(UP, 8, 8) == false);
     delete soldier;
+     map.empty_vectors();
 }
 
 void testNoCollisionDown(void) {
@@ -131,6 +138,7 @@ void testNoCollisionDown(void) {
 
     TEST_ASSERT(map.collision(DOWN, 5, 2) == false);
     delete soldier;
+     map.empty_vectors();
 }
 
 

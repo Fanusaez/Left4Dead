@@ -464,3 +464,12 @@ std::int16_t GameMap::objects_in_map() {
     std::cout << "cant elem map: "<<contador << std::endl;
     return contador;
 }
+
+void GameMap::empty_vectors() {
+    zombies.clear();
+    soldiers.clear();
+    for(auto fila: map){
+        fila.clear();
+    }
+    map.clear();
+}

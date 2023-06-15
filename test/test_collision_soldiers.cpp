@@ -37,6 +37,7 @@ void testCollisionAmongSoldiers(void) {
 
     TEST_CHECK(x_matrix_pos == 5);
     TEST_CHECK(y_matrix_pos == 6);
+     map.empty_vectors();
 }
 
 void testCollisionAmongSoldiers2(void) {
@@ -61,6 +62,7 @@ void testCollisionAmongSoldiers2(void) {
 
     TEST_CHECK(x_matrix_pos == 5);
     TEST_CHECK(y_matrix_pos == 6);
+     map.empty_vectors();
 }
 
 void testCollisionAmongSoldiers3(void) {
@@ -93,6 +95,7 @@ void testCollisionAmongSoldiers3(void) {
     std::int16_t y_matrix_pos2 = soldier2.get_y_matrix_pos();
     TEST_CHECK(x_matrix_pos2 == 4);
     TEST_CHECK(y_matrix_pos2 == 6);
+     map.empty_vectors();
 }
 
 // ************************************ Colisiones eje X *******************************************
@@ -117,6 +120,7 @@ void testCollisionAmongSoldiers4(void) {
 
     TEST_CHECK(x_matrix_pos == 5);
     TEST_CHECK(y_matrix_pos == 5);
+     map.empty_vectors();
 }
 
 void testCollisionAmongSoldiers5(void) {
@@ -140,6 +144,7 @@ void testCollisionAmongSoldiers5(void) {
 
     TEST_CHECK(x_matrix_pos == 5);
     TEST_CHECK(y_matrix_pos == 5);
+     map.empty_vectors();
 }
 
 void testCollisionAmongSoldiers6(void) {
@@ -171,6 +176,7 @@ void testCollisionAmongSoldiers6(void) {
     std::int16_t y_matrix_pos2 = soldier2.get_y_matrix_pos();
     TEST_CHECK(x_matrix_pos2 == 5);
     TEST_CHECK(y_matrix_pos2 == 5);
+     map.empty_vectors();
 }
 
 

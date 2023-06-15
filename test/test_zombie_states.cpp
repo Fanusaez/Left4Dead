@@ -27,6 +27,7 @@ void testInfectedStartsWithIdleState(void) {
     ZombieIdle* walker_state = dynamic_cast<ZombieIdle*>(walker.get_state());
 
     TEST_ASSERT(walker_state != nullptr);
+     map.empty_vectors();
 }
 
 //****************************************** Moving ****************************************************//
@@ -48,6 +49,7 @@ void testInfectedChaseAndStateChangesToWalking(void) {
 
     TEST_ASSERT(walker_state != nullptr);
     TEST_ASSERT(old_state == nullptr);
+     map.empty_vectors();
 }
 void testInfectedChaseTwiceTooFastAndmoves1Time(void) {
     GameMap map(10, 10, 0);
@@ -69,6 +71,7 @@ void testInfectedChaseTwiceTooFastAndmoves1Time(void) {
 
     TEST_ASSERT(x_pos1 == x_pos2);
     TEST_ASSERT(y_pos1 == y_pos2);
+     map.empty_vectors();
 }
 
 void testInfectedChaseTwiceAndmoves2Times(void) {
@@ -88,6 +91,7 @@ void testInfectedChaseTwiceAndmoves2Times(void) {
     std::int16_t y_pos2 = walker.get_y_pos();
 
     TEST_CHECK(y_pos1 != y_pos2);
+     map.empty_vectors();
 }
 
 //*********************************************** ATTACKING *************************************************//
@@ -112,6 +116,7 @@ void testInfectedAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldie
     TEST_ASSERT(walker_state != nullptr);
     TEST_ASSERT(idle_state == nullptr);
     TEST_CHECK(health == 100);
+     map.empty_vectors();
 }
 
 void testInfectedAttacks2TimesToFastOnlyAttacksOnce(void) {
@@ -130,6 +135,7 @@ void testInfectedAttacks2TimesToFastOnlyAttacksOnce(void) {
     std::int16_t health2 = soldier.get_health();
 
     TEST_CHECK(health == health2);
+     map.empty_vectors();
 }
 
 void testInfectedAttacks2Times(void) {
@@ -148,6 +154,7 @@ void testInfectedAttacks2Times(void) {
     std::int16_t health2 = soldier.get_health();
 
     TEST_CHECK(health != health2);
+     map.empty_vectors();
 }
 
 //************************************************** BEING ATTACKED *****************************************//
@@ -172,6 +179,7 @@ void testInfectedGetsAttacked(void) {
     TEST_ASSERT(walker_state != nullptr);
     TEST_ASSERT(idle_state == nullptr);
     TEST_CHECK(walker.get_health() < 100);
+     map.empty_vectors();
 }
 
 void testInfectedWalkingAndGetsAttacked(void) {
@@ -195,6 +203,7 @@ void testInfectedWalkingAndGetsAttacked(void) {
     TEST_ASSERT(walker_state != nullptr);
     TEST_ASSERT(old_state != nullptr);
     TEST_CHECK(walker.get_health() < 100);
+     map.empty_vectors();
 }
 
 void testInfectedgetsShotAndDie(void) {
@@ -220,6 +229,7 @@ void testInfectedgetsShotAndDie(void) {
     TEST_ASSERT(walker_state != nullptr);
     TEST_ASSERT(old_state != nullptr);
     TEST_CHECK(walker.get_health() < 100);
+     map.empty_vectors();
 }
 
 void testInfectedgetsShotWhileAttacking(void) {
@@ -249,6 +259,7 @@ void testInfectedgetsShotWhileAttacking(void) {
     TEST_ASSERT(walker_state != nullptr);
     TEST_ASSERT(old_state != nullptr);
     TEST_CHECK(walker.get_health() < 100);
+     map.empty_vectors();
 }
 
 //********************************************** STUNNED *****************************************************//
@@ -272,6 +283,7 @@ void testSoldierThrowsSmokeGrenadeAndStunnedZombie(void) {
     Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
 
     TEST_CHECK(zombie_state1 != nullptr);
+     map.empty_vectors();
 }
 
 //************************************** SCREAM *****************************************************8//
@@ -289,6 +301,7 @@ void testWitcherScreamsStatesChanges(void) {
     Screaming* zombie_state = dynamic_cast<Screaming*>(witch.get_state());
 
     TEST_CHECK(zombie_state != nullptr);
+     map.empty_vectors();
 }
 
 TEST_LIST = {

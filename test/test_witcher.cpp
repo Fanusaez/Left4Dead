@@ -14,6 +14,7 @@ void testWitcherScreamsAndAttractsZombies(void) {
     witch.scream(1);
     std::int16_t objects_in_map = map.objects_in_map();
     TEST_CHECK(objects_in_map > 0);
+    map.empty_vectors();
 }
 
 TEST_LIST = {

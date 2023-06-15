@@ -37,6 +37,7 @@ void testSoldierShootsInfectedDiesAndIsRemovedFromMap(void) {
 
     TEST_CHECK(remaining_health <= 0);
     TEST_CHECK(free_pos == true);
+    map.empty_vectors();
 }
 
 TEST_LIST = {

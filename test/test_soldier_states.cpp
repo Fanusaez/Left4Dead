@@ -33,6 +33,7 @@ void testSoldierStartsWithIdleState(void) {
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
 
     TEST_ASSERT(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 //****************************************** RELOADING ****************************************************//
@@ -52,6 +53,7 @@ void testSoldierShootsReloadAndStateChangesToReloading(void) {
 
     TEST_ASSERT(soldier_state != nullptr);
     TEST_ASSERT(old_state == nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierTryToReloadWithFullMagazineSameState(void) {
@@ -68,6 +70,7 @@ void testSoldierTryToReloadWithFullMagazineSameState(void) {
 
     TEST_ASSERT(reloading_state == nullptr);
     TEST_ASSERT(old_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierShootsWhileReloadingAndStateNotChange(void) {
@@ -86,6 +89,7 @@ void testSoldierShootsWhileReloadingAndStateNotChange(void) {
 
     TEST_ASSERT(soldier_state != nullptr);
     TEST_ASSERT(shooting_state == nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierUpdatesAfterReloadingAndStateChangesToIdle(void) {
@@ -104,6 +108,7 @@ void testSoldierUpdatesAfterReloadingAndStateChangesToIdle(void) {
 
     TEST_ASSERT(soldier_state != nullptr);
     TEST_ASSERT(reloading_state == nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierUpdatesDuringReloadingAndStateChanges(void) {
@@ -122,6 +127,7 @@ void testSoldierUpdatesDuringReloadingAndStateChanges(void) {
 
     TEST_ASSERT(soldier_state != nullptr);
     TEST_ASSERT(idle_state == nullptr);
+     map.empty_vectors();
 }
 
 //****************************************** SHOOTING ****************************************************//
@@ -140,6 +146,7 @@ void testSoldierShootsAndStateChangesToShooting(void) {
 
     TEST_ASSERT(soldier_state != nullptr);
     TEST_ASSERT(old_state == nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierShootsAfterReloadingAndStateChangesToShooting(void) {
@@ -158,6 +165,7 @@ void testSoldierShootsAfterReloadingAndStateChangesToShooting(void) {
 
     TEST_ASSERT(soldier_state != nullptr);
     TEST_ASSERT(reloading_state == nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierShootsToFastAndOnlyOneBulletIsFired(void) {
@@ -173,6 +181,7 @@ void testSoldierShootsToFastAndOnlyOneBulletIsFired(void) {
     std::int16_t bullets2 = scout->get_bullets();
 
     TEST_ASSERT(bullets1 == bullets2);
+     map.empty_vectors();
 }
 
 void testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle(void) {
@@ -194,6 +203,7 @@ void testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle(void) {
     TEST_CHECK(bullets1 == 0);
     TEST_CHECK(shooting_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 //**************************************** MOOVING ********************************************************//
@@ -213,6 +223,7 @@ void testSoldierMoveUpAndStateChangesToMoving(void) {
 
     TEST_CHECK(idle_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierMovesUpAndImmediatelyReload(void) {
@@ -230,6 +241,7 @@ void testSoldierMovesUpAndImmediatelyReload(void) {
 
     TEST_CHECK(moving_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierMovesUpAndReload(void) {
@@ -247,6 +259,7 @@ void testSoldierMovesUpAndReload(void) {
 
     TEST_CHECK(moving_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierMovesUpAndShootsImmediately(void) {
@@ -264,6 +277,7 @@ void testSoldierMovesUpAndShootsImmediately(void) {
 
     TEST_CHECK(moving_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierMovesAndThenItsToldToStopChangesToIdle(void) {
@@ -281,6 +295,7 @@ void testSoldierMovesAndThenItsToldToStopChangesToIdle(void) {
 
     TEST_CHECK(moving_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldiergetsUpdatedImmediatelyAfterMovingChangesToIdle(void) {
@@ -298,6 +313,7 @@ void testSoldiergetsUpdatedImmediatelyAfterMovingChangesToIdle(void) {
 
     TEST_CHECK(idle_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierMoveUpTooFastOnlyMoveOnce(void) {
@@ -316,6 +332,7 @@ void testSoldierMoveUpTooFastOnlyMoveOnce(void) {
 
     TEST_CHECK(idle_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierMoveUpUntilEndOfMap(void) {
@@ -335,6 +352,7 @@ void testSoldierMoveUpUntilEndOfMap(void) {
 
     TEST_CHECK(idle_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 //**************************************** BEING ATTACKED *************************************************//
@@ -357,6 +375,7 @@ void testSoldierStartsIdleAndIsAttacked(void) {
 
     TEST_CHECK(idle_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierShootingAndIsAttacked(void) {
@@ -379,6 +398,7 @@ void testSoldierShootingAndIsAttacked(void) {
 
     TEST_CHECK(shooting_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierReloadingAndIsAttacked(void) {
@@ -404,6 +424,7 @@ void testSoldierReloadingAndIsAttacked(void) {
 
     TEST_CHECK(rel_state != nullptr);
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 //************************************************ DEAD *******************************************//
@@ -425,6 +446,7 @@ void testSoldierGetsKilledAndStateChanges(void) {
     Dead* soldier_state = dynamic_cast<Dead*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierGetsKilledAndTryToMove(void) {
@@ -445,6 +467,7 @@ void testSoldierGetsKilledAndTryToMove(void) {
     Dead* soldier_state = dynamic_cast<Dead*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierGetsKilledAndTryToShoot(void) {
@@ -465,6 +488,7 @@ void testSoldierGetsKilledAndTryToShoot(void) {
     Dead* soldier_state = dynamic_cast<Dead*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierGetsKilledAndTryToReload(void) {
@@ -485,6 +509,7 @@ void testSoldierGetsKilledAndTryToReload(void) {
     Dead* soldier_state = dynamic_cast<Dead*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 // *************************************** THROWING GRENADE ********************************//
@@ -501,6 +526,7 @@ void testSoldierThrowsGrenadeAndStateChanges(void) {
     ThrowingExplosiveGrenade* soldier_state = dynamic_cast<ThrowingExplosiveGrenade*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierThrowsGrenadeAndTenSecondsPasses(void) {
@@ -516,6 +542,7 @@ void testSoldierThrowsGrenadeAndTenSecondsPasses(void) {
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierThrows2GrenadeOnly1IsThrown(void) {
@@ -535,6 +562,7 @@ void testSoldierThrows2GrenadeOnly1IsThrown(void) {
 
     std::int16_t walker_health = walker.get_health();
     TEST_CHECK(walker_health == 100 - DAMAGE_GRENADE);
+     map.empty_vectors();
 }
 
 void testSoldierThrowsGrenadeWithP90AndStateNotChanges(void) {
@@ -549,6 +577,7 @@ void testSoldierThrowsGrenadeWithP90AndStateNotChanges(void) {
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 // *************************************** THROWING SMOKE GRENADE ********************************//
@@ -565,6 +594,7 @@ void testSoldierThrowsSmokeGrenadeAndStateChanges(void) {
     ThrowingSmokeGrenade* soldier_state = dynamic_cast<ThrowingSmokeGrenade*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierThrowsSmokeGrenadeAndTenSecondsPasses(void) {
@@ -580,6 +610,7 @@ void testSoldierThrowsSmokeGrenadeAndTenSecondsPasses(void) {
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierThrowsSmokeGrenadeWithP90AndStateNotChanges(void) {
@@ -594,6 +625,7 @@ void testSoldierThrowsSmokeGrenadeWithP90AndStateNotChanges(void) {
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 // ******************************************* CALLING AIR STRIKE *****************************************************//
@@ -610,6 +642,7 @@ void testSoldierCallsAirStrikeWithP90AndStateChanges(void) {
     CallingAirStrike* soldier_state = dynamic_cast<CallingAirStrike*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
+     map.empty_vectors();
 }
 
 

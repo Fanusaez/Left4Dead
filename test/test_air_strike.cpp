@@ -57,6 +57,7 @@ void testSoldierCallsAirStrikeAndDamages4Zombies(void) {
     TEST_CHECK(remaining_health2 < 100);
     TEST_CHECK(remaining_health3 < 100);
     TEST_CHECK(remaining_health4 < 100);
+    map.empty_vectors();
 }
 
 void testSoldierCallsAirStrikeAndDamages4Zombies2(void) {
@@ -100,6 +101,7 @@ void testSoldierCallsAirStrikeAndDamages4Zombies2(void) {
     TEST_CHECK(remaining_health2 < 100);
     TEST_CHECK(remaining_health3 < 100);
     TEST_CHECK(remaining_health4 < 100);
+    map.empty_vectors();
 }
 
 void testSoldierCallsAirStrikeWith2ExtraSoldiersByHisSideAndDamages4Zombies(void) {
@@ -159,6 +161,7 @@ void testSoldierCallsAirStrikeWith2ExtraSoldiersByHisSideAndDamages4Zombies(void
     TEST_CHECK(remaining_health2 < 100);
     TEST_CHECK(remaining_health3 < 100);
     TEST_CHECK(remaining_health4 < 100);
+    map.empty_vectors();
 }
 
 void testSoldierCallsAirStrikeWithIDFButNothingHappen(void) {
@@ -202,6 +205,7 @@ void testSoldierCallsAirStrikeWithIDFButNothingHappen(void) {
     TEST_CHECK(remaining_health2 == 100);
     TEST_CHECK(remaining_health3 == 100);
     TEST_CHECK(remaining_health4 == 100);
+    map.empty_vectors();
 }
 
 void testSoldierCallsAirStrikeWithScoutButNothingHappen(void) {
@@ -245,6 +249,7 @@ void testSoldierCallsAirStrikeWithScoutButNothingHappen(void) {
     TEST_CHECK(remaining_health2 == 100);
     TEST_CHECK(remaining_health3 == 100);
     TEST_CHECK(remaining_health4 == 100);
+    map.empty_vectors();
 }
 
 void testSoldierCalls2AirStrikeOnlyCallsOne(void) {
@@ -291,6 +296,7 @@ void testSoldierCalls2AirStrikeOnlyCallsOne(void) {
     TEST_CHECK(remaining_health2 == 100 - AIR_DAMAGE);
     TEST_CHECK(remaining_health3 == 100 - AIR_DAMAGE);
     TEST_CHECK(remaining_health4 == 100 - AIR_DAMAGE);
+    map.empty_vectors();
 }
 
 
