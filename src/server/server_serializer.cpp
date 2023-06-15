@@ -33,19 +33,6 @@ void ServerSerializer::send_player_id(int32_t& player_id, bool* was_closed) {
     socket->sendall(buffer.data(), buffer.size(), was_closed);    
 }
 
-/* std::vector<char> ServerSerializer::serialize_games_availables(const std::vector<Game*> &games){
-    std::vector<char> buffer;
-
-    std::mutex m;
-    m.lock();
-    buffer.push_back(games.size());
-    for (auto &game: games){
-        buffer.push_back(game->get_game_code());
-        buffer.push_back(game->get_players());
-    }
-    return buffer;
-} */
-
 void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed) {
     std::vector<char> buffer = serialize_game(game_dto);
     socket->sendall(buffer.data(), buffer.size(), was_closed);

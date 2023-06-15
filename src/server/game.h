@@ -5,6 +5,7 @@
 #include "../common/thread.h"
 #include "../common/instructionsDTO/instructions_dto.h"
 #include "../common/game_dto.h"
+#include "./protected_outputs_queue.h"
 #include "game_logic.h"
 
 #include <map>
@@ -15,7 +16,9 @@ class Game : public Thread {
 private:
     GameLogic game_logic; //Aca esta la conexión entre el hilo y el modelo logico
 
-    std::mutex m;   //Para proteger el map de las queue_salientes
+    ProtectedOutputsQueue protected_outputs_queue;
+    
+    //std::mutex m;   //Para proteger el map de las queue_salientes
 
     int32_t code;   //El codigo que tendra la partida 
 
@@ -25,7 +28,7 @@ private:
     Queue<InstructionsDTO*> queue_entrante;
  
     // Este map almacena <player_id,queue_saliente>. Voy a mandar por toda las queue el GameDTO.
-    std::map<int,Queue<GameDTO> *> queue_salientes;
+    //std::map<int,Queue<GameDTO> *> queue_salientes;
 
     bool keep_playing;  //Para controlar el gamme loop del server.
 
@@ -42,11 +45,9 @@ public:
 
     int32_t get_game_code();
 
-    int get_players();
-
     bool compare_game_name(const std::string& game_name_to_compare);
 
-    bool find_player(int32_t& player_id);
+    bool delete_player(int32_t& player_id);
 
     void stop_playing();
 

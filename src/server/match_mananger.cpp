@@ -15,7 +15,7 @@ Queue<InstructionsDTO*> *MatchMananger::create_game(Queue<GameDTO> *queue_sender
         //Tambien es necesario el game_counter que sera el codigo que tendra junto con el nombre
         //y el primer jugador que tendra.
         Game *new_game = new Game(queue_sender,game_counter,escenario, player_id);
-        games.push_back(new_game);
+        protected_game_list.add_new_game(new_game);
         game_code = game_counter;
         game_counter++;
         Queue<InstructionsDTO*> *aux = new_game->getQueue();
@@ -23,31 +23,17 @@ Queue<InstructionsDTO*> *MatchMananger::create_game(Queue<GameDTO> *queue_sender
         return (aux);
     } else {
         //Podria ser una excepcion esto
-        std::cout<<"Existe la partida"<<games.size()<<std::endl;
+        std::cout<<"Existe la partida"<<protected_game_list.games_size()<<std::endl;
         return nullptr;
     }
 }
 
 bool MatchMananger::game_name_exist(const std::string& game_name){
-    bool exist = false;
-    m.lock();
-    for (Game *game : games){
-        if (game->compare_game_name(game_name))
-            exist = true;
-    }
-    m.unlock();
-    return exist;
+    return protected_game_list.game_name_exist(game_name);
 }
 
 Game* MatchMananger::game_code_exist(const int32_t& codigo){
-    Game* return_game = NULL;
-    m.lock();
-    for (Game *game: games){
-        if (game->compare_code(codigo))
-            return_game = game;
-    }
-    m.unlock();
-    return return_game;
+    return protected_game_list.game_code_exist(codigo);
 }
 
 Queue<InstructionsDTO*> *MatchMananger::join(Queue<GameDTO> *queue_sender, 
@@ -61,26 +47,11 @@ Queue<InstructionsDTO*> *MatchMananger::join(Queue<GameDTO> *queue_sender,
 }
 
 void MatchMananger::joinGames(){
-    for (Game *game : games){
-        game->stop_playing();
-        game->join();
-        delete game;
-    }
-    games.clear();
+    protected_game_list.join_games();
 }
 
 void MatchMananger::delete_player(int32_t& player_id) {
-    m.lock();
-    for (Game *game: games){
-        if (game->find_player(player_id)){
-            if (game->is_empty()){  //Chequeo si no hay mas jugadores en la partida.
-                game->join();
-                delete game;
-                games.remove(game);
-                game_counter--;
-            }
-            break;
-        }
-    }
-    m.unlock();
+    //Si al alimintar me qeude sin jugadores elimino el juego
+    if (protected_game_list.delete_player(player_id)) 
+        game_counter--;
 }
