@@ -1054,7 +1054,7 @@ add_executable(testStatesGrenades
 
 
 add_executable(testAirStrike
-        protocol_testing/test_air_strike.cpp
+		game_logic_testing/test_air_strike.cpp
 		../src/game_logic/soldier.cpp
 		../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
