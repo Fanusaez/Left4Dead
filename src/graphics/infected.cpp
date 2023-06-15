@@ -6,7 +6,8 @@ Infected::Infected(int id, int initialX, int initialY) :
 	textureLoader(TextureLoader::getInstance()),
 	animation(textureLoader.getTexture("Zombie/Idle.png")),
 	facingLeft(false),
-	state(IDLE_ZOMBIE)
+	state(IDLE_ZOMBIE),
+	playSFX(false)
 {}
 
 Infected::~Infected() {}
@@ -36,7 +37,13 @@ void Infected::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 	this->animation.render(renderer, dst, flip);
 }
 
-void Infected::renderAudio(SDL2pp::Mixer &mixer) {}
+void Infected::renderAudio(SDL2pp::Mixer &mixer)
+{
+	if (not this->sfx or not this->playSFX)
+		return;
+	mixer.PlayChannel(-1, *(this->sfx), this->sfxLoops);
+	this->playSFX = false;
+}
 
 void Infected::changeState(const ZombieObjectState &state)
 {
@@ -55,9 +62,15 @@ void Infected::changeState(const ZombieObjectState &state)
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Attack_1.png"));
 	} else if (this->state == BEING_ATTACKED) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Hurt.png"));
+		this->sfx = this->textureLoader.getChunk("Zombie/Hurt.mp3");
+		this->sfxLoops = 0;
+		this->playSFX = true;
 	} else if (this->state == DEAD) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Dead.png"));
 		this->animation.noLoop();
+		this->sfx = this->textureLoader.getChunk("Zombie/Dead.mp3");
+		this->sfxLoops = 0;
+		this->playSFX = true;
 	} else {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Idle.png"));
 		this->animation.noLoop();
