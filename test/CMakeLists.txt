@@ -3,6 +3,11 @@ add_custom_target(test COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 
 include_directories("../src")
 
+add_executable(testProtocolLobby
+        test_protocol_lobby.cpp
+        ../src/client/lobby_serializer.cpp
+)
+
 add_executable(testProtocolClient
         test_protocol_client.cpp
         ../src/client/client_serializer.cpp
@@ -14,14 +19,47 @@ add_executable(testProtocolServer
         ../src/common/game_dto.cpp
         ../src/common/socket.cpp
         ../src/common/resolver.cpp
+        ../src/game_logic/soldier.cpp
+        ../src/game_logic/game_factory.cpp
+		../src/game_logic/air_strike/air_strike.cpp
+		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
+		../src/game_logic/air_strike/air_strike_states/air_strike_idle.cpp
+		../src/game_logic/air_strike/air_strike_states/air_strike_exploding.cpp
+        ../src/game_logic/zombies/infected.cpp
+        ../src/game_logic/zombies/witch.cpp
+		../src/game_logic/zombies/jumper.cpp
+        ../src/game_logic/map.cpp
+        ../src/game_logic/chaser.cpp
+        ../src/game_logic/weapons/scout.cpp
+        ../src/game_logic/weapons/idf.cpp
+        ../src/game_logic/weapons/p90.cpp
+        ../src/game_logic/grenades/explosive_grenade.cpp
+        ../src/game_logic/grenades/smoke_grenade.cpp
+        ../src/game_logic/grenades/grenade_state/grenade_idle.cpp
+		../src/game_logic/grenades/grenade_state/exploding.cpp
+		../src/game_logic/grenades/grenade_state/thrown_grenade.cpp
+        ../src/game_logic/obstacle.cpp
         ../src/game_logic/states/idle.cpp
+        ../src/game_logic/states/throwing_explosive_grenade.cpp
+        ../src/game_logic/states/throwing_smoke_grenade.cpp
         ../src/game_logic/states/reloading.cpp
         ../src/game_logic/states/shooting.cpp
         ../src/game_logic/states/moving.cpp
         ../src/game_logic/states/dead.cpp
         ../src/game_logic/states/being_attacked.cpp
 		../src/game_logic/states/calling_air_strike.cpp
-        ../src/game_logic/states/dead.cpp
+        ../src/game_logic/zombie_states/walking.cpp
+        ../src/game_logic/zombie_states/zombie_idle.cpp
+        ../src/game_logic/zombie_states/attacking.cpp
+        ../src/game_logic/zombie_states/running.cpp
+        ../src/game_logic/zombie_states/zombie_dead.cpp
+        ../src/game_logic/zombie_states/screaming.cpp
+        ../src/game_logic/zombie_states/zombie_being_attacked.cpp
+        ../src/game_logic/zombie_states/stunned.cpp
+        ../src/game_logic/zombie_states/jumping.cpp
+        ../src/game_logic/zombie_states/chasing_states/chase_walking.cpp
+        ../src/game_logic/zombie_states/chasing_states/chase_running.cpp
+        ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
 )
 
 add_executable(testCollision
@@ -1108,8 +1146,9 @@ add_executable(testAirStrikeStates
 
 # Despues agregar el target aca y listo
 set(testTargets
-        #testProtocolClient
-        #testProtocolServer
+        testProtocolLobby
+        testProtocolClient
+        testProtocolServer
         testCollision
         testShooting
         testShootingIdf

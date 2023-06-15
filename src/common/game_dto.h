@@ -23,8 +23,9 @@ struct SoldierObjectDTO {
     SoldierObjectDTO(int32_t player_id, int16_t id, int16_t health, int16_t position_x, 
                     int16_t position_y, uint16_t bullets, SoldierObjectState state, 
                     SoldierType soldier_type, bool facing_left) : player_id(player_id), id(id),
-                    health(health), position_x(position_x), position_y(position_y), state(state),
-                    soldier_type(soldier_type), facing_left(facing_left) {}
+                    health(health), position_x(position_x), position_y(position_y), 
+                    bullets(bullets), state(state), soldier_type(soldier_type), 
+                    facing_left(facing_left) {}
 };
 
 struct ZombieObjectDTO {

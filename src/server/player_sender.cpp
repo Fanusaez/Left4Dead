@@ -60,18 +60,18 @@ void PlayerSender::init_player_receiver(){
                 if (queue_receiver == nullptr)
                     server_serializer.send_error_create(&was_closed);
                 else
-                    server_serializer.serialize_create_scenario(game_code, &was_closed);
+                    server_serializer.send_create_scenario(game_code, &was_closed);
             } else if (instruction->get_instruction() == JOIN){
                 //Casteo a un JoinDTO para obtener el codigo del escenario
                 JoinDTO* join_dto = dynamic_cast<JoinDTO*>(instruction);
                 game_code = join_dto->get_game_code();
                 queue_receiver = match_mananger->join(&queue_sender, game_code, player_id);
                 //No hace falta ejecutar un if ya que es la misma instruccion pero cambia un byte
-                server_serializer.serialize_join_scenario((queue_receiver != nullptr), &was_closed);
+                server_serializer.send_join_scenario((queue_receiver != nullptr), &was_closed);
             } else if (instruction->get_instruction() == START){
                 //Espero a que el cliente le de start para comenzar a jugar y salir del loop
                 //Le envio al cliente que puede salir del lobby.
-                server_serializer.serialize_start_game(&was_closed);
+                server_serializer.send_start_game(&was_closed);
                 delete instruction;
                 break;
             }

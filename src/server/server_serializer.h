@@ -20,16 +20,33 @@ public:
 
     explicit ServerSerializer(Socket *socket);
 
-    void serialize_create_scenario(int32_t &scenario_code, bool *was_closed);
+    void send_create_scenario(int32_t &scenario_code, bool *was_closed);
 
     void send_error_create(bool *was_closed);
 
-    void serialize_join_scenario(const bool &join, bool *was_closed);
+    void send_join_scenario(const bool &join, bool *was_closed);
 
-    void serialize_start_game(bool *was_closed);
+    void send_start_game(bool *was_closed);
 
     void send_player_id(int32_t& player_id, bool* was_closed);
     
     void send_game(GameDTO game_dto, bool *was_closed);
+
+    /*
+    Metodos para testing que usaremos dentro de los metodos de arriba para no copiar codigo
+    Deberian ser privados pero para los tests los ponemos publicos.
+    */
+
+    std::vector<char> serialize_create_scenario(int32_t &scenario_code);
+
+    std::vector<char> serialize_error_create();
+
+    std::vector<char> serialize_join_scenario(const bool &join);
+
+    std::vector<char> serialize_start_game();
+
+    std::vector<char> serialize_player_id(int32_t& player_id);
+    
+    std::vector<char> serialize_game(GameDTO game_dto);
 };
 #endif

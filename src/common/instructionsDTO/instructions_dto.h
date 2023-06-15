@@ -1,7 +1,7 @@
 #ifndef INSTRUCTIONSDTO_H
 #define INSTRUCTIONSDTO_H
 
-#include "../common/instructions_type.h"
+#include "../instructions_type.h"
 #include <vector>
 #include <cstdint>
 
