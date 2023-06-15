@@ -1,5 +1,6 @@
 #include "lobby_deserializer.h"
 #include <iostream>
+#include <arpa/inet.h>
 
 LobbyDeserializer::LobbyDeserializer(Socket *socket) : socket(socket) {}
 
@@ -30,6 +31,7 @@ CreateDTO* LobbyDeserializer::deserialize_create_scenario(bool *was_closed)
 {
     int32_t game_code;
     socket->recvall(&game_code, 4, was_closed);
+    game_code = ntohl(game_code);
     CreateDTO* create_dto = new CreateDTO(game_code);
     return create_dto;
 }
