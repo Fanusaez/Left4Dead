@@ -177,3 +177,8 @@ void Infected::change_chase_state_to_running() {
 ChaseState* Infected::get_chasing_state() {
     return chase_state;
 }
+
+void Infected::set_walking() {
+    delete chase_state;
+    chase_state = new ChaseWalking;
+}

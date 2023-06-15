@@ -41,6 +41,7 @@ void testInfectedChaseAndStateChangesToWalking(void) {
 
     Infected walker(5, 5, 0, map);
     map.add_zombie(&walker, 5, 5);
+    walker.set_walking();
 
     map.chase_soldiers(1);
 
@@ -191,6 +192,7 @@ void testInfectedWalkingAndGetsAttacked(void) {
     soldier.set_direction(LEFT);
 
     Infected walker(5, 5, 0, map);
+    walker.set_walking();
     map.add_zombie(&walker, 5, 5);
     map.chase_soldiers(1);
 
@@ -215,6 +217,7 @@ void testInfectedgetsShotAndDie(void) {
     soldier.set_direction(LEFT);
 
     Infected walker(5, 5, 0, map);
+    walker.set_walking();
     map.add_zombie(&walker, 5, 5);
     map.chase_soldiers(1);
 
@@ -226,8 +229,8 @@ void testInfectedgetsShotAndDie(void) {
 
     ZombieDead* walker_state = dynamic_cast<ZombieDead*>(walker.get_state());
 
-    TEST_ASSERT(walker_state != nullptr);
-    TEST_ASSERT(old_state != nullptr);
+    TEST_CHECK(walker_state != nullptr);
+    TEST_CHECK(old_state != nullptr);
     TEST_CHECK(walker.get_health() < 100);
      map.empty_vectors();
 }
