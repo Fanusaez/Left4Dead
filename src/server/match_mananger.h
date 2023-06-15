@@ -2,6 +2,7 @@
 #define MATCHMANANGER_H
 
 #include "../common/queue.h"
+#include "./protected_game_list.h"
 #include "game.h"
 
 #include <map>
@@ -16,10 +17,8 @@ class MatchMananger{
 private:    
     int32_t game_counter;   //Lleva la cuenta de las partidas creadas. Corresponde con el game_code.
 
-    std::mutex m;   //Lo usamos para controlar la lista de games. Podria ser un objeto.
-
-    std::list<Game* > games;    //Lista con todas las partidas que tendra el servidor.
-
+    ProtectedGameList protected_game_list;
+    
     Game *game_code_exist(const int& codigo);
 
     bool game_name_exist(const std::string& escenario);
