@@ -17,11 +17,17 @@ class Player : public RenderableObject {
 	int sfxLoops;
 	bool playSFX;
 	int lastChannel;
+	int health_;
+	int bullets_;
 
 public:
-	Player(int id, int initialX, int initialY);
+	Player(int id, int initialX, int initialY, int health, int bullets);
 
 	virtual ~Player();
+
+	int getHealth() const;
+
+	int getBullets() const;
 
 	virtual void updateState(const SoldierObjectDTO &soldierDTO) override;
 

@@ -13,6 +13,8 @@
 class Gameview {
 	SDL2pp::SDL sdl;
 
+	SDL2pp::SDLTTF ttf;
+
 	SDL2pp::Window window;
 
 	SDL2pp::Renderer renderer;
@@ -20,6 +22,8 @@ class Gameview {
 	SDL2pp::Mixer mixer;
 
 	std::unique_ptr <Scene> scene;
+
+	std::shared_ptr<SDL2pp::Font> hudFont;
 
 	std::optional<int> mainObjectID;
 
@@ -55,6 +59,8 @@ private:
 	void renderRelativeToMainObject();
 
 	void renderFixedCamera();
+
+	void renderHud(int health, int bullets);
 };
 
 #endif //GAMEVIEW_H

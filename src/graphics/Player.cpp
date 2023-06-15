@@ -1,14 +1,16 @@
 #include "Player.h"
 #include <stdexcept>
 
-Player::Player(int id, int initialX, int initialY) :
+Player::Player(int id, int initialX, int initialY, int health, int bullets) :
 	RenderableObject(id, initialX, initialY),
 	textureLoader(TextureLoader::getInstance()),
 	an(textureLoader.getTexture("Soldier_1/Idle.png")),
 	facingLeft(false),
 	state(IDLE_SOLDIER),
 	playSFX(false),
-	lastChannel(-1)
+	lastChannel(-1),
+	health_(health),
+	bullets_(bullets)
 {}
 
 Player::~Player() = default;
@@ -16,6 +18,16 @@ Player::~Player() = default;
 bool Player::isMoving() const
 {
 	return this->state == MOVING;
+}
+
+int Player::getHealth() const
+{
+	return this->health_;
+}
+
+int Player::getBullets() const
+{
+	return this->bullets_;
 }
 
 void Player::updateState(const SoldierObjectDTO &soldierDTO)
@@ -26,6 +38,8 @@ void Player::updateState(const SoldierObjectDTO &soldierDTO)
 	this->facingLeft = soldierDTO.facing_left;
 	this->setPositionX(soldierDTO.position_x);
 	this->setPositionY(soldierDTO.position_y);
+	this->health_ = soldierDTO.health;
+	this->bullets_ = soldierDTO.bullets;
 	this->changeState(soldierDTO.state);
 }
 

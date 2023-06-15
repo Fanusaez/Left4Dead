@@ -15,6 +15,7 @@ GameviewConfigurationsLoader::GameviewConfigurationsLoader() :
 	this->setSpritesToLoad();
 	this->setMusicToLoad();
 	this->setChunksToLoad();
+	this->setFontsToLoad();
 }
 
 const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad()
@@ -30,6 +31,11 @@ const std::list <std::string> &GameviewConfigurationsLoader::getMusicToLoad()
 const std::list <std::string> &GameviewConfigurationsLoader::getChunksToLoad()
 {
 	return this->chunksToLoad;
+}
+
+const std::list <std::string> &GameviewConfigurationsLoader::getFontsToLoad()
+{
+	return this->fontsToLoad;
 }
 
 const std::list <std::string> GameviewConfigurationsLoader::getSceneSprites() const
@@ -97,6 +103,11 @@ void GameviewConfigurationsLoader::setChunksToLoad()
 	this->chunksToLoad.push_back("Witch/Scream.mp3");
 	this->chunksToLoad.push_back("Zombie/Dead.mp3");
 	this->chunksToLoad.push_back("Zombie/Hurt.mp3");
+}
+
+void GameviewConfigurationsLoader::setFontsToLoad()
+{
+	this->fontsToLoad.push_back("Fonts/Vera.ttf");
 }
 
 GameviewConfigurationsLoader::~GameviewConfigurationsLoader() = default;

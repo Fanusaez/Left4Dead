@@ -1,11 +1,14 @@
 #include "gameview.h"
 #include <cstdlib>
 #include <utility>
+// TODO: sacar esto
+#include "Player.h"
 
 #define CHUNK_SIZE 4096
 
 Gameview::Gameview(std::map<int, std::unique_ptr<RenderableObject>> &gameObjects) :
 	sdl(SDL_INIT_VIDEO | SDL_INIT_AUDIO),
+	ttf(),
 	window("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 	       1280, 720,
 	       SDL_WINDOW_RESIZABLE),
@@ -24,6 +27,8 @@ void Gameview::assignMainObject(int id)
 	RenderableObject &mainObject = *(this->objects.at(id));
 	this->mainObjectID = id;
 	this->previousX = mainObject.getPositionX();
+
+	this->hudFont = TextureLoader::getInstance().getFont("Fonts/Vera.ttf");
 }
 
 void Gameview::setScene(std::unique_ptr <Scene> &newScene)
@@ -94,6 +99,11 @@ void Gameview::renderRelativeToMainObject()
 		object.render(this->renderer, objDst);
 		object.renderAudio(this->mixer);
 	}
+
+	// TODO: Arreglar esto. Exorcisar este cast horrible
+	int health = static_cast<Player &>(mainObject).getHealth();
+	int bullets = static_cast<Player &>(mainObject).getBullets();
+	this->renderHud(health, bullets);
 	this->renderer.Present();
 }
 
@@ -110,6 +120,23 @@ void Gameview::renderFixedCamera()
 		object.renderAudio(this->mixer);
 	}
 	this->renderer.Present();
+}
+
+void Gameview::renderHud(int health, int bullets)
+{
+	std::string text =
+		"Health : "
+		+ std::to_string(health)
+		+ "     Ammo: "
+		+ std::to_string(bullets);
+
+	SDL2pp::Texture textSprite(
+		this->renderer,
+		this->hudFont->RenderText_Blended(text, SDL_Color{255, 255, 255, 255}));
+	this->renderer.Copy(
+		textSprite,
+		SDL2pp::NullOpt,
+		SDL2pp::Rect(0, 0, textSprite.GetWidth(), textSprite.GetHeight()));
 }
 
 SDL2pp::Renderer &Gameview::getRenderer()

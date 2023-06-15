@@ -24,6 +24,8 @@ public:
 
 	const std::list <std::string> &getChunksToLoad();
 
+	const std::list <std::string> &getFontsToLoad();
+
 	const std::list<std::string> getSceneSprites() const;
 
 private:
@@ -37,11 +39,15 @@ private:
 
 	std::list<std::string> chunksToLoad;
 
+	std::list<std::string> fontsToLoad;
+
 	void setSpritesToLoad();
 
 	void setMusicToLoad();
 
 	void setChunksToLoad();
+
+	void setFontsToLoad();
 };
 
 #endif //GAMEVIEW_CONFIGS_LOADER_H

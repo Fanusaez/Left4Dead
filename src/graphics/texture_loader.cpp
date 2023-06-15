@@ -34,6 +34,14 @@ void TextureLoader::loadSFX(const std::list <std::string> &sfxNames)
 	}
 }
 
+void TextureLoader::loadFonts(const std::list <std::string> &fontNames)
+{
+	for (auto const &fontFile: fontNames) {
+		SDL2pp::Font font(std::string(AssetsPath).append(fontFile), 48);
+		this->fonts[fontFile] = std::make_shared<SDL2pp::Font>(std::move(font));
+	}
+}
+
 /*
  * Note that this reference is not const and might be shared by
  * many objects.
@@ -55,6 +63,12 @@ MusicPtr TextureLoader::getMusic(const std::string &musicName)
 ChunkPtr TextureLoader::getChunk(const std::string &chunkName)
 {
 	ChunkPtr ptr = this->chunks.at(chunkName);
+	return ptr;
+}
+
+FontPtr TextureLoader::getFont(const std::string &fontName)
+{
+	FontPtr ptr = this->fonts.at(fontName);
 	return ptr;
 }
 
