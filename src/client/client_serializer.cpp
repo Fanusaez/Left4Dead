@@ -8,7 +8,7 @@ std::vector<char> ClientSerializer::serialize_start_playing(){
     return buffer;
 }
 
-std::vector<char> ClientSerializer::serialize_move(MoveType move) {
+std::vector<char> ClientSerializer::serialize_move(const MoveType move) {
     std::vector<char> buffer;
     buffer.push_back(MOVE);
     buffer.push_back(move);

@@ -1,9 +1,9 @@
-#include "acutest.h"
+#include "../acutest.h"
 #include <vector>
 #include <string>
 
-#include "../src/server/server_serializer.h"
-#include "../src/common/game_dto.h"
+#include "server/server_serializer.h"
+#include "common/game_dto.h"
 
 void testSerializeCreateScenario(void)
 {

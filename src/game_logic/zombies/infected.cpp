@@ -12,7 +12,9 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
         id(id),
         map(map),
-        chaser(this, map, x_pos, y_pos) {}
+        chaser(this, map, x_pos, y_pos) {
+    random_chase_state();
+}
 
 void Infected::update(std::vector<Soldier*> soldiers, float time) {
     ZombieState* new_state = state->update(time);
@@ -140,6 +142,16 @@ void Infected::change_state(ZombieState *new_state) {
     if (new_state != nullptr) {
         delete state;
         state = new_state;
+    }
+}
+
+void Infected::random_chase_state() {
+    int random_num = std::rand() % 101;
+    if (random_num < 50) {
+        chase_state = new ChaseRunning;
+    }
+    else {
+        chase_state = new ChaseWalking;
     }
 }
 

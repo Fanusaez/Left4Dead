@@ -4,17 +4,17 @@ add_custom_target(test COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 include_directories("../src")
 
 add_executable(testProtocolLobby
-        test_protocol_lobby.cpp
+        protocol_testing/test_protocol_lobby.cpp
         ../src/client/lobby_serializer.cpp
 )
 
 add_executable(testProtocolClient
-        test_protocol_client.cpp
+        protocol_testing/test_protocol_client.cpp
         ../src/client/client_serializer.cpp
 )
 
 add_executable(testProtocolServer
-        test_protocol_server.cpp
+        protocol_testing/test_protocol_server.cpp
         ../src/server/server_serializer.cpp
         ../src/common/game_dto.cpp
         ../src/common/socket.cpp
@@ -63,7 +63,7 @@ add_executable(testProtocolServer
 )
 
 add_executable(testCollision
-        test_collision.cpp
+		game_logic_testing/test_collision.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -109,7 +109,7 @@ add_executable(testCollision
 )
 
 add_executable(testShooting
-        test_shoot_walker.cpp
+		game_logic_testing/test_shoot_walker.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -154,7 +154,7 @@ add_executable(testShooting
         )
 
 add_executable(testShootingIdf
-        test_shooting_idf.cpp
+		game_logic_testing/test_shooting_idf.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -199,7 +199,7 @@ add_executable(testShootingIdf
         )
 
 add_executable(testShootingScout
-        test_shooting_scout.cpp
+		game_logic_testing/test_shooting_scout.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -245,7 +245,7 @@ add_executable(testShootingScout
         )
 
 add_executable(testMovingUpSoldier
-        test_moving_soldier_up.cpp
+		game_logic_testing/test_moving_soldier_up.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -290,7 +290,7 @@ add_executable(testMovingUpSoldier
         )
 
 add_executable(testMovingSoldierDown
-        test_moving_soldier_down.cpp
+		game_logic_testing/test_moving_soldier_down.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -335,7 +335,7 @@ add_executable(testMovingSoldierDown
         )
 
 add_executable(testMovingSoldierRight
-        test_moving_soldier_right.cpp
+		game_logic_testing/test_moving_soldier_right.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -380,7 +380,7 @@ add_executable(testMovingSoldierRight
         )
 
 add_executable(testMoveSoldierLeft
-        test_moving_soldier_left.cpp
+		game_logic_testing/test_moving_soldier_left.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -424,7 +424,7 @@ add_executable(testMoveSoldierLeft
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
 add_executable(testMoveMap
-        test_move_map.cpp
+		game_logic_testing/test_move_map.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -469,7 +469,7 @@ add_executable(testMoveMap
         )
 
 add_executable(testExplosiveGrenade
-        test_explosive_grenade.cpp
+		game_logic_testing/test_explosive_grenade.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -514,7 +514,7 @@ add_executable(testExplosiveGrenade
         )
 
 add_executable(testChaseSoldierWalking
-        test_chase_soldier_walker.cpp
+		game_logic_testing/test_chase_soldier_walker.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -559,7 +559,7 @@ add_executable(testChaseSoldierWalking
         )
 
 add_executable(testMapChaseSoldierWalking
-        test_map_chase_soldier_walker.cpp
+		game_logic_testing/test_map_chase_soldier_walker.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -603,7 +603,7 @@ add_executable(testMapChaseSoldierWalking
         )
 
 add_executable(testChaseSoldierWalkingObstacles
-        test_chase_soldier_walker_obstacles.cpp
+		game_logic_testing/test_chase_soldier_walker_obstacles.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -648,7 +648,7 @@ add_executable(testChaseSoldierWalkingObstacles
         )
 
 add_executable(testWalkerAttackSoldier
-        test_walker_attack_soldier.cpp
+		game_logic_testing/test_walker_attack_soldier.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -693,7 +693,7 @@ add_executable(testWalkerAttackSoldier
         )
 
 add_executable(testChangeInStatesSoldier
-        test_soldier_states.cpp
+		game_logic_testing/test_soldier_states.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -739,7 +739,7 @@ add_executable(testChangeInStatesSoldier
         )
 
 add_executable(testChangeInStatesZombie
-        test_zombie_states.cpp
+		game_logic_testing/test_zombie_states.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -783,7 +783,7 @@ add_executable(testChangeInStatesZombie
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
         )
 add_executable(testCollisionSoldier
-        test_collision_soldiers.cpp
+		game_logic_testing/test_collision_soldiers.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -828,7 +828,7 @@ add_executable(testCollisionSoldier
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
         )
 add_executable(testWalkerRemove
-        test_walker_remove_from_map.cpp
+		game_logic_testing/test_walker_remove_from_map.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -873,7 +873,7 @@ add_executable(testWalkerRemove
         )
 
 add_executable(testChasingStates
-        test_chasing_states.cpp
+		game_logic_testing/test_chasing_states.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -918,7 +918,7 @@ add_executable(testChasingStates
         )
 
 add_executable(testSmokeGrenade
-        test_smoke_grenade.cpp
+		game_logic_testing/test_smoke_grenade.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -963,7 +963,7 @@ add_executable(testSmokeGrenade
         )
 
 add_executable(testWitcher
-        test_witcher.cpp
+		game_logic_testing/test_witcher.cpp
         ../src/game_logic/soldier.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -1008,7 +1008,7 @@ add_executable(testWitcher
         )
 
 add_executable(testStatesGrenades
-		test_grenade_states.cpp
+		game_logic_testing/test_grenade_states.cpp
 		../src/game_logic/soldier.cpp
 		../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -1054,7 +1054,7 @@ add_executable(testStatesGrenades
 
 
 add_executable(testAirStrike
-		test_air_strike.cpp
+		game_logic_testing/test_air_strike.cpp
 		../src/game_logic/soldier.cpp
 		../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
@@ -1099,7 +1099,7 @@ add_executable(testAirStrike
 		)
 
 add_executable(testAirStrikeStates
-		test_state_airstrike.cpp
+		game_logic_testing/test_state_airstrike.cpp
 		../src/game_logic/soldier.cpp
 		../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp

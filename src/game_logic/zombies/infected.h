@@ -20,7 +20,7 @@ class Infected : public GameObject, public Zombie {
     ZombieState* state = new ZombieIdle;
 
     // se debera recibir por parametro, para que corra camine o salte
-    ChaseState* chase_state = new ChaseWalking;
+    ChaseState* chase_state;
     const std::int16_t id;
     GameMap& map;
     Chaser chaser;
@@ -29,6 +29,7 @@ class Infected : public GameObject, public Zombie {
 Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
 std::int16_t get_distance_to_soldier(Soldier* soldier);
 void change_state(ZombieState* new_state);
+void random_chase_state();
 
  public:
 Infected(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);

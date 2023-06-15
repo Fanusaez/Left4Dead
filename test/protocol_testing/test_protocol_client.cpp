@@ -1,12 +1,12 @@
-#include "acutest.h"
+#include "../acutest.h"
 #include <vector>
 #include <string>
 
-#include "../src/client/client_serializer.h"
-#include "../src/common/game_mode.h"
-#include "../src/common/soldier_type.h"
-#include "../src/common/move_type.h"
-#include "../src/common/instructions_type.h"
+#include "client/client_serializer.h"
+#include "common/game_mode.h"
+#include "common/soldier_type.h"
+#include "common/move_type.h"
+#include "common/instructions_type.h"
 
 /*----------------------Game message--------------------*/
 

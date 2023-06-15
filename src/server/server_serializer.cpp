@@ -8,7 +8,7 @@ ServerSerializer::ServerSerializer() {}
 
 ServerSerializer::ServerSerializer(Socket *socket) : socket(socket){}
 
-void ServerSerializer::send_create_scenario(int32_t &scenario_code, bool *was_closed) {
+void ServerSerializer::send_create_scenario(const int32_t &scenario_code, bool *was_closed) {
     std::vector<char> buffer = serialize_create_scenario(scenario_code);
     socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
@@ -28,17 +28,17 @@ void ServerSerializer::send_start_game(bool *was_closed) {
     socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
 
-void ServerSerializer::send_player_id(int32_t& player_id, bool* was_closed) {
+void ServerSerializer::send_player_id(const int32_t& player_id, bool* was_closed) {
     std::vector<char> buffer = serialize_player_id(player_id);
     socket->sendall(buffer.data(), buffer.size(), was_closed);    
 }
 
-void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed) {
+void ServerSerializer::send_game(const GameDTO game_dto, bool *was_closed) {
     std::vector<char> buffer = serialize_game(game_dto);
     socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
 
-std::vector<char> ServerSerializer::serialize_create_scenario(int32_t &scenario_code) {
+std::vector<char> ServerSerializer::serialize_create_scenario(const int32_t &scenario_code) {
     std::vector<char> buffer;
     buffer.push_back(CREATE);
     int32_t transformed_scenario_code = htonl(scenario_code);
@@ -67,7 +67,7 @@ std::vector<char> ServerSerializer::serialize_start_game() {
     return buffer;
 }
 
-std::vector<char> ServerSerializer::serialize_player_id(int32_t& player_id) {
+std::vector<char> ServerSerializer::serialize_player_id(const int32_t& player_id) {
     std::vector<char> buffer;
     int32_t transformed_player_id = htonl(player_id);
     unsigned char const * p = reinterpret_cast<unsigned char const *>(&transformed_player_id);
