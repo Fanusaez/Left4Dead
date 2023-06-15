@@ -64,6 +64,15 @@ int main(int argc, char *argv[])
 	}
 	std::cout<<"start playing"<<std::endl;
 
+	// TODO: probar algo mejor
+	/*
+	 * Antes tenia el ttf en el gameview pero se destruia antes que el textureloader,
+	 * entonces el texture loader no podia destruir fonts, porque la clase Font
+	 * depende de que la libreria SDLTTF este inicializada.
+	 * Un quilombo.
+	 * La hago static para que dure durante el programa.
+	 */
+	static SDL2pp::SDLTTF ttf;
 	GameviewConfigurationsLoader &configs = GameviewConfigurationsLoader::getInstance();
 	std::map<int, std::unique_ptr<RenderableObject>> objects;
 	Gameview view(objects);

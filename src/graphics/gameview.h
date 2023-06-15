@@ -13,7 +13,7 @@
 class Gameview {
 	SDL2pp::SDL sdl;
 
-	SDL2pp::SDLTTF ttf;
+	// SDL2pp::SDLTTF ttf;
 
 	SDL2pp::Window window;
 

@@ -8,7 +8,7 @@
 
 Gameview::Gameview(std::map<int, std::unique_ptr<RenderableObject>> &gameObjects) :
 	sdl(SDL_INIT_VIDEO | SDL_INIT_AUDIO),
-	ttf(),
+	//ttf(),
 	window("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 	       1280, 720,
 	       SDL_WINDOW_RESIZABLE),
