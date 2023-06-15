@@ -1,5 +1,5 @@
 #include <cstdint>
-#include "acutest.h"
+#include "../acutest.h"
 #include "game_logic/soldier.h"
 #include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"
@@ -23,7 +23,7 @@
 #define REACH_EXPLOSIVE_DAMAGE 3
 
 
-void testSoldierThrowsExplosiveGrenadeLeftAndDamages5Zombies(void) {
+void testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies(void) {
 
     std::int16_t  x_throwing_place = 15;
     std::int16_t  y_throwing_place = 10;
@@ -45,22 +45,22 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages5Zombies(void) {
 
     soldier.set_direction(LEFT);
 
-    Infected walker1(x_explosion,y_explosion, 0, map); // donde0, cae la granada
-    map.add_zombie(&walker1, x_explosion,y_explosion);
+    Infected walker1(x_explosion, y_explosion, 0, map); // donde cae la granada
+    map.add_zombie(&walker1, x_explosion, y_explosion);
 
-    Infected walker2(x_limit_damage_left,y_limit_damage_up, 0,map);
-    map.add_zombie(&walker2, x_limit_damage_left,y_limit_damage_up);
+    Infected walker2(x_limit_damage_left, y_limit_damage_up, 0, map);
+    map.add_zombie(&walker2, x_limit_damage_left, y_limit_damage_up);
 
-    Infected walker3(x_limit_damage_right,y_limit_damage_up,0, map);
-    map.add_zombie(&walker3, x_limit_damage_right,y_limit_damage_up);
+    Infected walker3(x_limit_damage_right, y_limit_damage_up, 0, map);
+    map.add_zombie(&walker3, x_limit_damage_right, y_limit_damage_up);
 
     Infected walker4(x_limit_damage_left, y_limit_damage_down, 0, map);
-    map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down);
+    map.add_zombie(&walker4, x_limit_damage_left, y_limit_damage_down);
 
-    Infected walker5(x_limit_damage_right,y_limit_damage_down, 0, map);
-    map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
+    Infected walker5(x_limit_damage_right, y_limit_damage_down, 0, map);
+    map.add_zombie(&walker5, x_limit_damage_right, y_limit_damage_down);
 
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_smoke_grenade(100);
     soldier.update(200);
 
     std::uint16_t remaining_health1 = walker1.get_health();
@@ -69,69 +69,81 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages5Zombies(void) {
     std::uint16_t remaining_health4 = walker4.get_health();
     std::uint16_t remaining_health5 = walker5.get_health();
 
-    TEST_CHECK(remaining_health1 < 100);
-    TEST_CHECK(remaining_health2 < 100);
-    TEST_CHECK(remaining_health3 < 100);
-    TEST_CHECK(remaining_health4 < 100);
-    TEST_CHECK(remaining_health5 < 100);
-     map.empty_vectors();
-}
-
-void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies(void) {
-
-    std::int16_t  x_throwing_place = 15;
-    std::int16_t  y_throwing_place = 10;
-
-    std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
-    std::int16_t  y_explosion= y_throwing_place;
-
-    std::int16_t  x_limit_damage_left = x_explosion - REACH_EXPLOSIVE_DAMAGE;
-    std::int16_t  x_limit_damage_right = x_explosion + REACH_EXPLOSIVE_DAMAGE;
-
-    std::int16_t  y_limit_damage_up = y_explosion - REACH_EXPLOSIVE_DAMAGE;
-    std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
-
-    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* scout = new Scout(0, 0);
-
-    Soldier soldier(scout, map, x_throwing_place, y_throwing_place, 0);
-    map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
-
-    soldier.set_direction(LEFT);
-
-    Infected walker1(x_explosion, y_explosion, 0, map); // donde0, cae la granada
-    map.add_zombie(&walker1, x_explosion,y_explosion);
-
-    Infected walker2(x_limit_damage_left - 1, y_limit_damage_up, 0, map);
-    map.add_zombie(&walker2, x_limit_damage_left - 1,y_limit_damage_up);
-
-    Infected walker3(x_limit_damage_right + 1, y_limit_damage_up, 0, map);
-    map.add_zombie(&walker3, x_limit_damage_right + 1 ,y_limit_damage_up);
-
-    Infected walker4(x_limit_damage_left, y_limit_damage_down + 1, 0, map);
-    map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down + 1);
-
-    Infected walker5(x_limit_damage_right, y_limit_damage_down + 1, 0, map);
-    map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down + 1);
-
-    soldier.throw_explosive_grenade(100);
-    soldier.update(200);
-
-    std::uint16_t remaining_health1 = walker1.get_health();
-    std::uint16_t remaining_health2 = walker2.get_health();
-    std::uint16_t remaining_health3 = walker3.get_health();
-    std::uint16_t remaining_health4 = walker4.get_health();
-    std::uint16_t remaining_health5 = walker5.get_health();
-
-    TEST_CHECK(remaining_health1 < 100);
+    TEST_CHECK(remaining_health1 == 100);
     TEST_CHECK(remaining_health2 == 100);
     TEST_CHECK(remaining_health3 == 100);
     TEST_CHECK(remaining_health4 == 100);
     TEST_CHECK(remaining_health5 == 100);
+
+    Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
+    Stunned* zombie_state2 = dynamic_cast<Stunned*>(walker2.get_state());
+    Stunned* zombie_state3 = dynamic_cast<Stunned*>(walker3.get_state());
+    Stunned* zombie_state4 = dynamic_cast<Stunned*>(walker4.get_state());
+    Stunned* zombie_state5 = dynamic_cast<Stunned*>(walker5.get_state());
+
+    TEST_CHECK(zombie_state1 != nullptr);
+    TEST_CHECK(zombie_state2 != nullptr);
+    TEST_CHECK(zombie_state3 != nullptr);
+    TEST_CHECK(zombie_state4 != nullptr);
+    TEST_CHECK(zombie_state5 != nullptr);
      map.empty_vectors();
 }
 
-void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies2(void) {
+void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies(void) {
+
+    std::int16_t  x_throwing_place = 15;
+    std::int16_t  y_throwing_place = 10;
+
+    std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
+    std::int16_t  y_explosion= y_throwing_place;
+
+    std::int16_t  x_limit_damage_left = x_explosion - REACH_EXPLOSIVE_DAMAGE;
+    std::int16_t  x_limit_damage_right = x_explosion + REACH_EXPLOSIVE_DAMAGE;
+
+    std::int16_t  y_limit_damage_up = y_explosion - REACH_EXPLOSIVE_DAMAGE;
+    std::int16_t  y_limit_damage_down = y_explosion + REACH_EXPLOSIVE_DAMAGE;
+
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
+    Weapon* scout = new Scout(0, 0);
+
+    Soldier soldier(scout, map, x_throwing_place, y_throwing_place, 0);
+    map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
+
+    soldier.set_direction(LEFT);
+
+    Infected walker1(x_explosion, y_explosion, 0, map); // donde cae la granada
+    map.add_zombie(&walker1, x_explosion, y_explosion);
+
+    Infected walker2(x_limit_damage_left - 1, y_limit_damage_up, 0, map); //falla
+    map.add_zombie(&walker2, x_limit_damage_left - 2, y_limit_damage_up);
+
+    Infected walker3(x_limit_damage_right + 1, y_limit_damage_up, 0, map);
+    map.add_zombie(&walker3, x_limit_damage_right + 1, y_limit_damage_up);
+
+    Infected walker4(x_limit_damage_left - 1, y_limit_damage_down, 0, map); // falla
+    map.add_zombie(&walker4, x_limit_damage_left - 1, y_limit_damage_down);
+
+    Infected walker5(x_limit_damage_right + 1, y_limit_damage_down, 0, map);
+    map.add_zombie(&walker5, x_limit_damage_right + 1, y_limit_damage_down);
+
+    soldier.throw_smoke_grenade(100);
+    soldier.update(200);
+
+    Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
+    Stunned* zombie_state2 = dynamic_cast<Stunned*>(walker2.get_state());
+    Stunned* zombie_state3 = dynamic_cast<Stunned*>(walker3.get_state());
+    Stunned* zombie_state4 = dynamic_cast<Stunned*>(walker4.get_state());
+    Stunned* zombie_state5 = dynamic_cast<Stunned*>(walker5.get_state());
+
+    TEST_CHECK(zombie_state1 != nullptr);
+    TEST_CHECK(zombie_state2 == nullptr);
+    TEST_CHECK(zombie_state3 == nullptr);
+    TEST_CHECK(zombie_state4 == nullptr);
+    TEST_CHECK(zombie_state5 == nullptr);
+     map.empty_vectors();
+}
+
+void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2(void) {
 
     /*
      * los muevo arriba/abajo para que los 4 que estaban
@@ -158,8 +170,8 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies2(void) {
 
     soldier.set_direction(LEFT);
 
-    Infected walker1(x_explosion,y_explosion, 0,map); // donde0, cae la granada
-    map.add_zombie(&walker1, x_explosion,y_explosion);
+    Infected walker1(x_explosion, y_explosion, 0, map); // donde cae la granada
+    map.add_zombie(&walker1, x_explosion, y_explosion);
 
     Infected walker2(x_limit_damage_left,y_limit_damage_up - 1, 0, map);
     map.add_zombie(&walker2, x_limit_damage_left,y_limit_damage_up - 1);
@@ -173,25 +185,25 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies2(void) {
     Infected walker5(x_limit_damage_right,y_limit_damage_down + 1, 0, map);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down + 1);
 
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_smoke_grenade(100);
     soldier.update(200);
 
-    std::uint16_t remaining_health1 = walker1.get_health();
-    std::uint16_t remaining_health2 = walker2.get_health();
-    std::uint16_t remaining_health3 = walker3.get_health();
-    std::uint16_t remaining_health4 = walker4.get_health();
-    std::uint16_t remaining_health5 = walker5.get_health();
+    Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
+    Stunned* zombie_state2 = dynamic_cast<Stunned*>(walker2.get_state());
+    Stunned* zombie_state3 = dynamic_cast<Stunned*>(walker3.get_state());
+    Stunned* zombie_state4 = dynamic_cast<Stunned*>(walker4.get_state());
+    Stunned* zombie_state5 = dynamic_cast<Stunned*>(walker5.get_state());
 
-    TEST_CHECK(remaining_health1 < 100);
-    TEST_CHECK(remaining_health2 == 100);
-    TEST_CHECK(remaining_health3 == 100);
-    TEST_CHECK(remaining_health4 == 100);
-    TEST_CHECK(remaining_health5 == 100);
+    TEST_CHECK(zombie_state1 != nullptr);
+    TEST_CHECK(zombie_state2 == nullptr);
+    TEST_CHECK(zombie_state3 == nullptr);
+    TEST_CHECK(zombie_state4 == nullptr);
+    TEST_CHECK(zombie_state5 == nullptr);
      map.empty_vectors();
 }
 
 
-void testSoldierThrowsExplosiveGrenadeToOtherSoldier(void) {
+void testSoldierThrowsSmokeGrenadeToOtherSoldier(void) {
 
     std::int16_t  x_throwing_place = 15;
     std::int16_t  y_throwing_place = 10;
@@ -210,18 +222,16 @@ void testSoldierThrowsExplosiveGrenadeToOtherSoldier(void) {
     map.add_soldier(&soldier2, x_explosion,y_explosion);
 
     soldier1.set_direction(LEFT);
-    soldier1.throw_explosive_grenade(100);
+    soldier1.throw_smoke_grenade(100);
     soldier1.update(200);
 
-    std::int16_t remaining_health1 = soldier1.get_health();
-    std::int16_t remaining_health2 = soldier2.get_health();
+    Idle* soldier2_state = dynamic_cast<Idle*>(soldier2.get_state());
 
-    TEST_CHECK(remaining_health1 == 100);
-    TEST_CHECK(remaining_health2 != 100);
+    TEST_CHECK(soldier2_state != nullptr);
      map.empty_vectors();
 }
 
-void testSoldierThrowsExplosiveGrenadeRightAndDamages5Zombies(void) {
+void testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies(void) {
 
     std::int16_t  x_throwing_place = 10;
     std::int16_t  y_throwing_place = 5;
@@ -243,44 +253,44 @@ void testSoldierThrowsExplosiveGrenadeRightAndDamages5Zombies(void) {
 
     soldier.set_direction(RIGHT);
 
-    Infected walker1(x_explosion,y_explosion, 0,map); // donde0, cae la granada
+    Infected walker1(x_explosion, y_explosion, 0, map); // donde cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    Infected walker2(x_limit_damage_left,y_limit_damage_up, 0,map);
+    Infected walker2(x_limit_damage_left,y_limit_damage_up, 0, map);
     map.add_zombie(&walker2, x_limit_damage_left,y_limit_damage_up);
 
-    Infected walker3(x_limit_damage_right, y_limit_damage_up, 0, map);
-    map.add_zombie(&walker3, x_limit_damage_right, y_limit_damage_up);
+    Infected walker3(x_limit_damage_right,y_limit_damage_up, 0, map);
+    map.add_zombie(&walker3, x_limit_damage_right,y_limit_damage_up);
 
-    Infected walker4(x_limit_damage_left,y_limit_damage_down, 0,map);
+    Infected walker4(x_limit_damage_left,y_limit_damage_down, 0, map);
     map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down);
 
-    Infected walker5(x_limit_damage_right, y_limit_damage_down, 0, map);
+    Infected walker5(x_limit_damage_right,y_limit_damage_down, 0, map);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_smoke_grenade(100);
     soldier.update(200);
 
-    std::uint16_t remaining_health1 = walker1.get_health();
-    std::uint16_t remaining_health2 = walker2.get_health();
-    std::uint16_t remaining_health3 = walker3.get_health();
-    std::uint16_t remaining_health4 = walker4.get_health();
-    std::uint16_t remaining_health5 = walker5.get_health();
+    Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
+    Stunned* zombie_state2 = dynamic_cast<Stunned*>(walker2.get_state());
+    Stunned* zombie_state3 = dynamic_cast<Stunned*>(walker3.get_state());
+    Stunned* zombie_state4 = dynamic_cast<Stunned*>(walker4.get_state());
+    Stunned* zombie_state5 = dynamic_cast<Stunned*>(walker5.get_state());
 
-    TEST_CHECK(remaining_health1 < 100);
-    TEST_CHECK(remaining_health2 < 100);
-    TEST_CHECK(remaining_health3 < 100);
-    TEST_CHECK(remaining_health4 < 100);
-    TEST_CHECK(remaining_health5 < 100);
+    TEST_CHECK(zombie_state1 != nullptr);
+    TEST_CHECK(zombie_state2 != nullptr);
+    TEST_CHECK(zombie_state3 != nullptr);
+    TEST_CHECK(zombie_state4 != nullptr);
+    TEST_CHECK(zombie_state5 != nullptr);
      map.empty_vectors();
 }
 
 
 TEST_LIST = {
-        {"Soldier throws granade up and damage 5 zombies", testSoldierThrowsExplosiveGrenadeLeftAndDamages5Zombies},
-        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies},
-        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies2},
-        {"Soldier throws granade up and damages other soldier", testSoldierThrowsExplosiveGrenadeToOtherSoldier},
-        {"Soldier throws granade Down and damage 5 zombies",testSoldierThrowsExplosiveGrenadeRightAndDamages5Zombies},
+        {"Soldier throws granade up and damage 5 zombies", testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies},
+        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies},
+        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2},
+        {"Soldier throws granade up and damages other soldier", testSoldierThrowsSmokeGrenadeToOtherSoldier},
+        {"Soldier throws granade Down and damage 5 zombies",testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies},
         {NULL, NULL}
 };

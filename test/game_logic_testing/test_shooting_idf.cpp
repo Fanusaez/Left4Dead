@@ -1,5 +1,5 @@
 #include <cstdint>
-#include "acutest.h"
+#include "../acutest.h"
 #include "game_logic/soldier.h"
 #include "game_logic/zombies/infected.h"
 #include "game_logic/map.h"

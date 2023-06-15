@@ -1,4 +1,4 @@
-#include "acutest.h"
+#include "../acutest.h"
 #include "game_logic/grenades/explosive_grenade.h"
 #include "game_logic/map.h"
 #include "game_logic/grenades/grenade_state/thrown_grenade.h"
