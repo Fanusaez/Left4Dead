@@ -148,7 +148,10 @@ void testChaseInfectedUpFaceToFace() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL);
+    std::cout << x_pos << std::endl;
+    std::cout << y_pos << std::endl;
+
+    TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL + 1);
     TEST_CHECK(y_pos == 6 * MOVEMENTS_PER_CELL);
      map.empty_vectors();
 }
@@ -212,9 +215,9 @@ void testChaseInfectedRight() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL + 1);
+    TEST_CHECK(x_pos == (2 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
-     map.empty_vectors();
+    map.empty_vectors();
 }
 
 void testChaseInfectedRightSideToSide() {

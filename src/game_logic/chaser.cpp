@@ -16,7 +16,6 @@ Chaser::Chaser(Zombie *zombie, GameMap& map, std::int16_t& x_pos, std::int16_t& 
 
 void Chaser::chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
     bool same_place = true;
-
     if (y_pos_chase > y_pos && same_place) { // movimiento para abajo
         move_down(same_place);
     } else if (y_pos_chase < y_pos && same_place) { // movimiento para arriba
@@ -29,15 +28,19 @@ void Chaser::chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
         move_right(same_place);
     }
 
+    if (too_close_to_move(x_pos_chase, y_pos_chase)) {
+        return;
+    }
+
     if (same_place) { // para escapar de pos bloqueada
-        if (y_pos % MOVEMENTS_PER_CELL == 0) { // mov para arriba
+        if (y_pos % MOVEMENTS_PER_CELL == 0) {
             move_up(same_place);
         } else {
             move_down(same_place);
         }
-        if (x_pos_chase < x_pos) { // movimiento para izquierda
+        if (x_pos_chase < x_pos) {
             move_left(same_place);
-        } else { // movimiento para derecha
+        } else {
             move_right(same_place);
         }
     }
@@ -113,4 +116,9 @@ void Chaser::move_left(bool &same_place) {
         same_place = false;
         x_pos -= zombie_speed;
     }
+}
+
+bool Chaser::too_close_to_move(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
+    if (abs(x_pos_chase - x_pos) <= MOVEMENTS_PER_CELL && abs(y_pos_chase - y_pos) == 0) return true;
+    return false;
 }
