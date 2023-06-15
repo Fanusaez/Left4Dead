@@ -30,7 +30,7 @@ private:
 public:
     explicit Client(Socket&& socket);
 
-    bool move(MoveType move);
+    bool move(const MoveType move);
 
     bool reload();
 

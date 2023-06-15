@@ -21,7 +21,7 @@ std::vector<char> LobbySerializer::serialize_join_scenario(const int32_t& scenar
     return buffer;
 }
 
-std::vector<char> LobbySerializer::serialize_game_mode(GameMode game_mode) {
+std::vector<char> LobbySerializer::serialize_game_mode(const GameMode game_mode) {
     std::vector<char> buffer;
     buffer.push_back(GAME_MODE);
     if (game_mode == CLEAR_THE_ZONE || game_mode == SURVIVAL)
@@ -31,7 +31,7 @@ std::vector<char> LobbySerializer::serialize_game_mode(GameMode game_mode) {
     return buffer;
 }
 
-std::vector<char> LobbySerializer::serialize_soldier(SoldierType soldier_type) {
+std::vector<char> LobbySerializer::serialize_soldier(const SoldierType soldier_type) {
     std::vector<char> buffer;
     buffer.push_back(SOLDIER_TYPE);
     if (soldier_type == IDF || soldier_type == P90 || soldier_type == SCOUT)

@@ -15,7 +15,7 @@ public:
 
     std::vector<char> serialize_start_playing();
 
-    std::vector<char> serialize_move(MoveType move);
+    std::vector<char> serialize_move(const MoveType move);
 
     std::vector<char> serialize_reloading();
 

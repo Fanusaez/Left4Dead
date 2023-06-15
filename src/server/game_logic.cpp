@@ -10,7 +10,7 @@
 
 GameLogic::GameLogic() : game_map(400, 47, 0) {}
 
-void GameLogic::add_soldier(int32_t& player_id) {
+void GameLogic::add_soldier(const int32_t& player_id) {
     Soldier* soldier = game_map.get_soldier_with_idf();    
     playerSoldierMap[player_id] = soldier;
     timer = 0;
