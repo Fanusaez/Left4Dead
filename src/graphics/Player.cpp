@@ -74,7 +74,7 @@ void Player::changeState(const SoldierObjectState &state)
 	} else if (this->state == SOLDIER_DEAD) {
 		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Dead.png"));
 		this->an.noLoop();
-		this->sfx = this->textureLoader.getChunk("Soldier_1/Death.mp3");
+		this->sfx = this->textureLoader.getChunk("Soldier_1/Dead.mp3");
 		this->sfxLoops = 0;
 		this->playSFX = true;
 	} else if (this->state == SOLDIER_HURT) {

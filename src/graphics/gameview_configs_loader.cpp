@@ -12,6 +12,37 @@ GameviewConfigurationsLoader &GameviewConfigurationsLoader::getInstance()
 GameviewConfigurationsLoader::GameviewConfigurationsLoader() :
 	FRAME_RATE(FRAME_RATE_)
 {
+	this->setSpritesToLoad();
+	this->setMusicToLoad();
+	this->setChunksToLoad();
+}
+
+const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad()
+{
+	return this->spritesToLoad;
+}
+
+const std::list <std::string> &GameviewConfigurationsLoader::getMusicToLoad()
+{
+	return this->musicToLoad;
+}
+
+const std::list <std::string> &GameviewConfigurationsLoader::getChunksToLoad()
+{
+	return this->chunksToLoad;
+}
+
+const std::list <std::string> GameviewConfigurationsLoader::getSceneSprites() const
+{
+	std::list<std::string> sceneSprites;
+	sceneSprites.push_back("backgrounds/War1/Pale/Full_Sky.png");
+	sceneSprites.push_back("backgrounds/War1/Pale/Far_Background.png");
+	sceneSprites.push_back("backgrounds/War1/Pale/Floor.png");
+	return sceneSprites;
+}
+
+void GameviewConfigurationsLoader::setSpritesToLoad()
+{
 	this->spritesToLoad.push_back("Soldier_1/Walk.png");
 	this->spritesToLoad.push_back("Soldier_1/Idle.png");
 	this->spritesToLoad.push_back("Soldier_1/Shot_1.png");
@@ -43,32 +74,16 @@ GameviewConfigurationsLoader::GameviewConfigurationsLoader() :
 	this->spritesToLoad.push_back("Jumper/Hurt.png");
 	this->spritesToLoad.push_back("Jumper/Dead.png");
 	this->spritesToLoad.push_back("Jumper/Attack_1.png");
+}
+
+void GameviewConfigurationsLoader::setMusicToLoad()
+{
 	this->musicToLoad.push_back("Music/10. no way back.flac");
-	this->chunksToLoad.push_back("Soldier_1/Death.mp3");
 }
 
-const std::list <std::string> &GameviewConfigurationsLoader::getSpritesToLoad()
+void GameviewConfigurationsLoader::setChunksToLoad()
 {
-	return this->spritesToLoad;
-}
-
-const std::list <std::string> &GameviewConfigurationsLoader::getMusicToLoad()
-{
-	return this->musicToLoad;
-}
-
-const std::list <std::string> &GameviewConfigurationsLoader::getChunksToLoad()
-{
-	return this->chunksToLoad;
-}
-
-const std::list <std::string> GameviewConfigurationsLoader::getSceneSprites() const
-{
-	std::list<std::string> sceneSprites;
-	sceneSprites.push_back("backgrounds/War1/Pale/Full_Sky.png");
-	sceneSprites.push_back("backgrounds/War1/Pale/Far_Background.png");
-	sceneSprites.push_back("backgrounds/War1/Pale/Floor.png");
-	return sceneSprites;
+	this->chunksToLoad.push_back("Soldier_1/Dead.mp3");
 }
 
 GameviewConfigurationsLoader::~GameviewConfigurationsLoader() = default;

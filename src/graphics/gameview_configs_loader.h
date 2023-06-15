@@ -36,6 +36,12 @@ private:
 	std::list<std::string> musicToLoad;
 
 	std::list<std::string> chunksToLoad;
+
+	void setSpritesToLoad();
+
+	void setMusicToLoad();
+
+	void setChunksToLoad();
 };
 
 #endif //GAMEVIEW_CONFIGS_LOADER_H
