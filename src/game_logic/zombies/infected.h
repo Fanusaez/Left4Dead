@@ -66,6 +66,7 @@ std::int16_t get_health();
 ZombieState* get_state() override;
 void change_chase_state_to_running();
 ChaseState* get_chasing_state();
+void set_walking();
 };
 
 #endif  // WALKER_H_
