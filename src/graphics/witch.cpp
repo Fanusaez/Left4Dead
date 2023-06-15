@@ -7,7 +7,8 @@ Witch::Witch(int id, int initialX, int initialY) :
 	animation(textureLoader.getTexture("Witch/Idle.png")),
 	facingLeft(false),
 	state(IDLE_ZOMBIE),
-	playSFX(false)
+	playSFX(false),
+	lastChannel(-1)
 {}
 
 Witch::~Witch() {}
@@ -39,9 +40,17 @@ void Witch::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 
 void Witch::renderAudio(SDL2pp::Mixer &mixer)
 {
-	if (not this->sfx or not this->playSFX)
+	if (not this->playSFX)
 		return;
-	mixer.PlayChannel(-1, *(this->sfx), this->sfxLoops);
+
+	if (this->lastChannel != -1) // This object is playing something
+		mixer.HaltChannel(this->lastChannel); // Stop playing
+
+	if (this->sfx)
+		this->lastChannel = mixer.PlayChannel(-1, *(this->sfx), this->sfxLoops);
+	else
+		this->lastChannel = -1;
+
 	this->playSFX = false;
 }
 
@@ -54,33 +63,34 @@ void Witch::changeState(const ZombieObjectState &state)
 
 	if (this->state == WALKING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Walk.png"));
+		this->sfx = nullptr;
 	} else if (this->state == RUNNING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Run.png"));
+		this->sfx = nullptr;
 	} else if (this->state == JUMPING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Jump.png"));
+		this->sfx = nullptr;
 	} else if (this->state == ATTACKING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Attack_1.png"));
 		this->sfx = this->textureLoader.getChunk("Witch/Attack_1.mp3");
 		this->sfxLoops = 0;
-		this->playSFX = true;
 	} else if (this->state == BEING_ATTACKED) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Hurt.png"));
 		this->sfx = this->textureLoader.getChunk("Witch/Hurt.mp3");
 		this->sfxLoops = 0;
-		this->playSFX = true;
 	} else if (this->state == DEAD) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Dead.png"));
 		this->animation.noLoop();
 		this->sfx = this->textureLoader.getChunk("Witch/Dead.mp3");
 		this->sfxLoops = 0;
-		this->playSFX = true;
 	} else if (this->state == SCREAMING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Scream.png"));
 		this->sfx = this->textureLoader.getChunk("Witch/Scream.mp3");
 		this->sfxLoops = 0;
-		this->playSFX = true;
 	} else {
 		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Idle.png"));
 		this->animation.noLoop();
+		this->sfx = nullptr;
 	}
+	this->playSFX = true;
 }

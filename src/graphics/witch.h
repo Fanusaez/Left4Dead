@@ -14,6 +14,7 @@ class Witch : public RenderableObject {
 	std::shared_ptr<SDL2pp::Chunk> sfx;
 	int sfxLoops;
 	bool playSFX;
+	int lastChannel;
 
 public:
 	Witch(int id, int initialX, int initialY);

@@ -14,6 +14,7 @@ class Infected : public RenderableObject {
 	std::shared_ptr<SDL2pp::Chunk> sfx;
 	int sfxLoops;
 	bool playSFX;
+	int lastChannel;
 
 public:
 	Infected(int id, int initialX, int initialY);

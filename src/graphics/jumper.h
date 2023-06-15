@@ -14,6 +14,7 @@ class Jumper : public RenderableObject {
 	std::shared_ptr<SDL2pp::Chunk> sfx;
 	int sfxLoops;
 	bool playSFX;
+	int lastChannel;
 
 public:
 	Jumper(int id, int initialX, int initialY);

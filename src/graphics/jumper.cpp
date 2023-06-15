@@ -7,7 +7,8 @@ Jumper::Jumper(int id, int initialX, int initialY) :
 	animation(textureLoader.getTexture("Jumper/Idle.png")),
 	facingLeft(false),
 	state(IDLE_ZOMBIE),
-	playSFX(false)
+	playSFX(false),
+	lastChannel(-1)
 {}
 
 Jumper::~Jumper() {}
@@ -39,9 +40,17 @@ void Jumper::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 
 void Jumper::renderAudio(SDL2pp::Mixer &mixer)
 {
-	if (not this->sfx or not this->playSFX)
+	if (not this->playSFX)
 		return;
-	mixer.PlayChannel(-1, *(this->sfx), this->sfxLoops);
+
+	if (this->lastChannel != -1) // This object is playing something
+		mixer.HaltChannel(this->lastChannel); // Stop playing
+
+	if (this->sfx)
+		this->lastChannel = mixer.PlayChannel(-1, *(this->sfx), this->sfxLoops);
+	else
+		this->lastChannel = -1;
+
 	this->playSFX = false;
 }
 
@@ -62,25 +71,23 @@ void Jumper::changeState(const ZombieObjectState &state)
 		this->animation.changeTexture(this->textureLoader.getTexture("Jumper/Jump.png"));
 		this->sfx = this->textureLoader.getChunk("Jumper/Jump.mp3");
 		this->sfxLoops = 0;
-		this->playSFX = true;
 	} else if (this->state == ATTACKING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Jumper/Attack_1.png"));
 		this->sfx = this->textureLoader.getChunk("Jumper/Attack_1.mp3");
 		this->sfxLoops = 0;
-		this->playSFX = true;
 	} else if (this->state == BEING_ATTACKED) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Jumper/Hurt.png"));
 		this->sfx = this->textureLoader.getChunk("Jumper/Hurt.mp3");
 		this->sfxLoops = 0;
-		this->playSFX = true;
 	} else if (this->state == DEAD) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Jumper/Dead.png"));
 		this->animation.noLoop();
 		this->sfx = this->textureLoader.getChunk("Jumper/Dead.mp3");
 		this->sfxLoops = 0;
-		this->playSFX = true;
 	} else {
 		this->animation.changeTexture(this->textureLoader.getTexture("Jumper/Idle.png"));
 		this->animation.noLoop();
+		this->sfx = nullptr;
 	}
+	this->playSFX = true;
 }
