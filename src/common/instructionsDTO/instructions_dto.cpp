@@ -10,7 +10,7 @@ InstructionsDTO::InstructionsDTO(InstructionsType instruction) : instruction_typ
     player_id = -1;
 }    
 
-InstructionsDTO::InstructionsDTO(int& player_id, InstructionsType instruction) : 
+InstructionsDTO::InstructionsDTO(int32_t& player_id, InstructionsType instruction) : 
                             player_id(player_id), instruction_type(instruction) {}
 
 InstructionsType InstructionsDTO::get_instruction() {

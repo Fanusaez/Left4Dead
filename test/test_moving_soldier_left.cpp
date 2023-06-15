@@ -31,6 +31,7 @@ void testMoveSoldierLeft(){
 
     TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 void testMoveSoldierLeftBeginningOfMap() {
@@ -49,6 +50,7 @@ void testMoveSoldierLeftBeginningOfMap() {
 
     TEST_CHECK(x_pos == 0);
     TEST_CHECK(y_pos == 3 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 void testNotMoveSoldierLeftForCollisionWithZombie(){
@@ -70,6 +72,7 @@ void testNotMoveSoldierLeftForCollisionWithZombie(){
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 
@@ -89,6 +92,7 @@ void testMoveSoldierLeftAllTheWay(){
 
     TEST_CHECK(x_pos == 0);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 TEST_LIST = {

@@ -36,6 +36,8 @@ void ClearTheZone::respawn_zombies(float time) {
        map.add_infected();
     } else if (random_num >= witch_prob[0] && random_num <= witch_prob[1]) {
         map.add_witch();
+    } else if (random_num >= jumper_prob[0] && random_num <= jumper_prob[1]) {
+        map.add_jumper();
     }
 }
 

@@ -32,6 +32,7 @@ void testMoveSoldierDown(){
 
     TEST_CHECK(x_pos == 3*MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == (9*MOVEMENTS_PER_CELL - 1));
+     map.empty_vectors();
 }
 
 void testMoveSoldierDownAtTheEndDoesNotMove() {
@@ -50,6 +51,7 @@ void testMoveSoldierDownAtTheEndDoesNotMove() {
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == (10 * MOVEMENTS_PER_CELL) - 1);
+     map.empty_vectors();
 }
 
 void testNotMoveSoldierDownForCompleteCollisionWithZombie() {
@@ -71,6 +73,7 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie() {
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+     map.empty_vectors();
 }
 
 void testNotMoveSoldierDownForPartialCollisionWithZombie(){
@@ -97,6 +100,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+     map.empty_vectors();
 }
 
 void testMoveSoldierDownWithCloseInfected(){
@@ -123,6 +127,7 @@ void testMoveSoldierDownWithCloseInfected(){
 
     TEST_CHECK(x_pos == (3 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL );
     TEST_CHECK(y_pos == 9 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 void testMoveSoldierDownUntilTheEnd() {
@@ -141,6 +146,7 @@ void testMoveSoldierDownUntilTheEnd() {
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 9 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+     map.empty_vectors();
 }
 
 void testMoveSoldierDownUntilTheEnd2() {
@@ -159,6 +165,7 @@ void testMoveSoldierDownUntilTheEnd2() {
 
     TEST_CHECK(x_pos == 0 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 9 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+     map.empty_vectors();
 }
 TEST_LIST = {
         {"Move soldier 1 position down",testMoveSoldierDown},

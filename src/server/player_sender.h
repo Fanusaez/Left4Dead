@@ -42,11 +42,11 @@ private:
     MatchMananger *match_mananger;
 
     //Necesito del id para la creacion o union de partidas.
-    int player_id;
+    int32_t player_id;
 
 public:
     PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, 
-                    MatchMananger *matchMananger, int& player_id);
+                    MatchMananger *matchMananger, int32_t& player_id);
 
     void run() override;
 

@@ -25,6 +25,7 @@ void testSoldierShootsInfectedSameLineLeft(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_CHECK(remaining_health < 100);
+     map.empty_vectors();
 }
 
 void testSoldierShootsInfectedSameLineRight(void) {
@@ -43,6 +44,7 @@ void testSoldierShootsInfectedSameLineRight(void) {
     std::uint16_t remaining_health = walker.get_health();
 
     TEST_CHECK(remaining_health < 100);
+     map.empty_vectors();
 }
 
 void testSoldierShootsInfectedNotSameLineLeft(void) {
@@ -61,6 +63,7 @@ void testSoldierShootsInfectedNotSameLineLeft(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_CHECK(remaining_health < 100);
+     map.empty_vectors();
 }
 
 void testSoldierShootsOtherSoldierNotSameLineRight(void) {
@@ -81,6 +84,7 @@ void testSoldierShootsOtherSoldierNotSameLineRight(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = soldier2.get_health();
     TEST_CHECK(remaining_health < 100);
+     map.empty_vectors();
 }
 /*
  * Caso donde el soldado tiene dos zombies para disparar.
@@ -106,6 +110,7 @@ void testSoldierShootsOnly1InfectedOutOf2AimingLeft(){
     std::uint16_t remaining_health2 = walker2.get_health();
     TEST_CHECK(remaining_health1 < 100);
     TEST_CHECK(remaining_health2 == 100);
+     map.empty_vectors();
 }
 
 void testSoldierShootsAndMissInfectedOutOfRangeLeft(void) {
@@ -122,6 +127,7 @@ void testSoldierShootsAndMissInfectedOutOfRangeLeft(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100);
+     map.empty_vectors();
 }
 
 void testSoldierShootsAndMissInfectedOutOfRangeRight(void) {
@@ -138,6 +144,7 @@ void testSoldierShootsAndMissInfectedOutOfRangeRight(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100);
+     map.empty_vectors();
 }
 
 void testSoldierShootsAndMissAimingRightTurnedAroundToInfected(void) {
@@ -154,6 +161,7 @@ void testSoldierShootsAndMissAimingRightTurnedAroundToInfected(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100);
+     map.empty_vectors();
 }
 
 void testSoldierShootsAndMissAimingUpTurnedAroundToInfected(void) {
@@ -170,6 +178,7 @@ void testSoldierShootsAndMissAimingUpTurnedAroundToInfected(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_ASSERT(remaining_health == 100);
+     map.empty_vectors();
 }
 
 

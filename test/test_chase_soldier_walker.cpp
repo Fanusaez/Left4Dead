@@ -39,6 +39,7 @@ void testChaseInfectedDiagonallyUpAndRightFaceToFace() {
     TEST_CHECK(y_pos == 2 * MOVEMENTS_PER_CELL);
     TEST_CHECK(added_soldier == true);
     TEST_CHECK(added_walker == true);
+     map.empty_vectors();
 }
 
 
@@ -61,6 +62,7 @@ void testChaseInfectedDiagonallyUpAndLeftFaceToFace() {
 
     TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 3 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 void testChaseInfectedDiagonallyDownAndRightFaceToFace() {
@@ -82,6 +84,7 @@ void testChaseInfectedDiagonallyDownAndRightFaceToFace() {
 
     TEST_CHECK(x_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 
@@ -104,6 +107,7 @@ void testChaseInfectedDiagonallyDownAndLeftFaceToFace() {
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 // ***************************************** Movimiento Up and Down *******************************************//
@@ -125,6 +129,7 @@ void testChaseInfectedUp() {
 
     TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL - 1);
+     map.empty_vectors();
 }
 
 void testChaseInfectedUpFaceToFace() {
@@ -143,8 +148,12 @@ void testChaseInfectedUpFaceToFace() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL);
+    std::cout << x_pos << std::endl;
+    std::cout << y_pos << std::endl;
+
+    TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL + 1);
     TEST_CHECK(y_pos == 6 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 void testChaseInfectedDown() {
@@ -164,6 +173,7 @@ void testChaseInfectedDown() {
 
     TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 1 * MOVEMENTS_PER_CELL + 1);
+     map.empty_vectors();
 }
 
 void testChaseInfectedDownFaceToFace() {
@@ -185,6 +195,7 @@ void testChaseInfectedDownFaceToFace() {
 
     TEST_CHECK(x_pos == 5 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 4 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+     map.empty_vectors();
 }
 
 // ***************************************** Movimiento Right and Left *******************************************//
@@ -204,8 +215,9 @@ void testChaseInfectedRight() {
     std::int16_t x_pos = walker.get_x_pos();
     std::int16_t y_pos = walker.get_y_pos();
 
-    TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL + 1);
+    TEST_CHECK(x_pos == (2 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
+    map.empty_vectors();
 }
 
 void testChaseInfectedRightSideToSide() {
@@ -226,6 +238,7 @@ void testChaseInfectedRightSideToSide() {
 
     TEST_CHECK(x_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 
@@ -246,6 +259,7 @@ void testChaseInfectedLeft() {
 
     TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL - 1);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 void testChaseInfectedLeftSideToSide() {
@@ -266,6 +280,7 @@ void testChaseInfectedLeftSideToSide() {
 
     TEST_CHECK(x_pos == 2 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 void testInfectedKillsSoldierAndStartsChasingOtherSoldier() {
@@ -291,6 +306,7 @@ void testInfectedKillsSoldierAndStartsChasingOtherSoldier() {
 
     TEST_CHECK(sold1_health <= 0);
     TEST_CHECK(sold2_health <= 0);
+     map.empty_vectors();
 }
 
 

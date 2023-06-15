@@ -19,6 +19,7 @@ void testExplosiveGrenadeIsThrownStateChanges(void) {
     grenade.throw_grenade(map, 0, 0, &idle, 100);
     ThrownGrenade* grenade_state = dynamic_cast<ThrownGrenade*>(grenade.get_state());
     TEST_CHECK(grenade_state != nullptr);
+     map.empty_vectors();
 }
 
 void testExplosiveGrenadeExplodeStateChanges(void) {
@@ -29,6 +30,7 @@ void testExplosiveGrenadeExplodeStateChanges(void) {
     grenade.update(110);
     Exploding* grenade_state = dynamic_cast<Exploding*>(grenade.get_state());
     TEST_CHECK(grenade_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSmokeGrenadeInitialStateIdle(void) {
@@ -44,6 +46,7 @@ void testSmokeGrenadeIsThrownStateChanges(void) {
     grenade.throw_grenade(map, 0, 0, &idle, 100);
     ThrownGrenade* grenade_state = dynamic_cast<ThrownGrenade*>(grenade.get_state());
     TEST_CHECK(grenade_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSmokeGrenadeExplodeStateChanges(void) {
@@ -54,6 +57,7 @@ void testSmokeGrenadeExplodeStateChanges(void) {
     grenade.update(110);
     Exploding* grenade_state = dynamic_cast<Exploding*>(grenade.get_state());
     TEST_CHECK(grenade_state != nullptr);
+     map.empty_vectors();
 }
 TEST_LIST = {
         {"Explosive grenade starts with Idle state", testExplosiveGrenadeInitialStateIdle},

@@ -1,8 +1,7 @@
 #ifndef ZOMBIETYPE_H
 #define ZOMBIETYPE_H
 
-enum ZombieType
-{
+enum ZombieType : char {
     INFECTED,
     JUMPER,
     WITCH

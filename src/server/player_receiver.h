@@ -21,10 +21,10 @@ private:
 
     ServerDeserializer server_deserializer;
 
-    int player_id;
+    int32_t player_id;
 
 public:
-    PlayerReceiver(Socket *socket, std::atomic<bool> &keep_talking, int& player_id);
+    PlayerReceiver(Socket *socket, std::atomic<bool> &keep_talking, int32_t& player_id);
 
     void run() override;
 

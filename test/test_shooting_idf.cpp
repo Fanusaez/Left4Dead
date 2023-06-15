@@ -27,6 +27,7 @@ void testSoldierShootsIdfCloseRangeLeft(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_CHECK(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
+     map.empty_vectors();
 }
 
 void testSoldierShootsIdfCloseRangeRight(void) {
@@ -43,6 +44,7 @@ void testSoldierShootsIdfCloseRangeRight(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_CHECK(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
+     map.empty_vectors();
 }
 
 void testSoldierShootsIdfCloseRangeLeftNotSameLine(void) {
@@ -61,6 +63,7 @@ void testSoldierShootsIdfCloseRangeLeftNotSameLine(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_CHECK(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
+     map.empty_vectors();
 }
 
 void testSoldierShootsIdfCloseRangeRightNotSameLine(void) {
@@ -79,6 +82,7 @@ void testSoldierShootsIdfCloseRangeRightNotSameLine(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_CHECK(remaining_health == 100 - CLOSE_RANGE_DAMAGE);
+     map.empty_vectors();
 }
 
 void testSoldierShootsIdfLongRangeLeft(void) {
@@ -95,6 +99,7 @@ void testSoldierShootsIdfLongRangeLeft(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_CHECK(remaining_health == 100 - LONG_RANGE_DAMAGE);
+     map.empty_vectors();
 }
 
 void testSoldierShootsIdfLongRangeRight(void) {
@@ -111,6 +116,7 @@ void testSoldierShootsIdfLongRangeRight(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_CHECK(remaining_health == 100 - LONG_RANGE_DAMAGE);
+     map.empty_vectors();
 }
 
 void testSoldierShootsIdfLongRangeLeftNotSameLine(void) {
@@ -129,6 +135,7 @@ void testSoldierShootsIdfLongRangeLeftNotSameLine(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_CHECK(remaining_health == 100 - LONG_RANGE_DAMAGE);
+     map.empty_vectors();
 }
 
 void testSoldierShootsIdfLongRangeRightNotSameLine(void) {
@@ -147,6 +154,7 @@ void testSoldierShootsIdfLongRangeRightNotSameLine(void) {
     soldier.shoot(1);
     std::uint16_t remaining_health = walker.get_health();
     TEST_CHECK(remaining_health == 100 - LONG_RANGE_DAMAGE);
+     map.empty_vectors();
 }
 
 void testSoldierShootsIdfWith2InfectedsInLine(void) {
@@ -168,6 +176,7 @@ void testSoldierShootsIdfWith2InfectedsInLine(void) {
     std::uint16_t remaining_health2 = walker2.get_health();
     TEST_CHECK(remaining_health1 == 100 - LONG_RANGE_DAMAGE);
     TEST_CHECK(remaining_health2 == 100);
+     map.empty_vectors();
 }
 
 

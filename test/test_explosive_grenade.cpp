@@ -74,6 +74,7 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages5Zombies(void) {
     TEST_CHECK(remaining_health3 < 100);
     TEST_CHECK(remaining_health4 < 100);
     TEST_CHECK(remaining_health5 < 100);
+     map.empty_vectors();
 }
 
 void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies(void) {
@@ -127,6 +128,7 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies(void) {
     TEST_CHECK(remaining_health3 == 100);
     TEST_CHECK(remaining_health4 == 100);
     TEST_CHECK(remaining_health5 == 100);
+     map.empty_vectors();
 }
 
 void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies2(void) {
@@ -185,6 +187,7 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies2(void) {
     TEST_CHECK(remaining_health3 == 100);
     TEST_CHECK(remaining_health4 == 100);
     TEST_CHECK(remaining_health5 == 100);
+     map.empty_vectors();
 }
 
 
@@ -215,6 +218,7 @@ void testSoldierThrowsExplosiveGrenadeToOtherSoldier(void) {
 
     TEST_CHECK(remaining_health1 == 100);
     TEST_CHECK(remaining_health2 != 100);
+     map.empty_vectors();
 }
 
 void testSoldierThrowsExplosiveGrenadeRightAndDamages5Zombies(void) {
@@ -268,6 +272,7 @@ void testSoldierThrowsExplosiveGrenadeRightAndDamages5Zombies(void) {
     TEST_CHECK(remaining_health3 < 100);
     TEST_CHECK(remaining_health4 < 100);
     TEST_CHECK(remaining_health5 < 100);
+     map.empty_vectors();
 }
 
 

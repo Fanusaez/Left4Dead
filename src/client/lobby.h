@@ -13,7 +13,7 @@
 class Lobby
 {
 private:
-    int player_id;
+    int32_t player_id;
 
     int32_t game_code;
 

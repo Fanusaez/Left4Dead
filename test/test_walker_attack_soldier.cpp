@@ -35,6 +35,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange() {
     std::int16_t soldier_health = soldier.get_health();
 
     TEST_CHECK(soldier_health == 100);
+     map.empty_vectors();
 }
 
 void testInfectedtriesToAttackSoldierButOutOfRange2() {
@@ -54,6 +55,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange2() {
     std::int16_t soldier_health = soldier.get_health();
 
     TEST_CHECK(soldier_health == 100);
+     map.empty_vectors();
 }
 
 void testInfectedtriesToAttackSoldierButOutOfRange3() {
@@ -73,6 +75,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange3() {
     std::int16_t soldier_health = soldier.get_health();
 
     TEST_CHECK(soldier_health == 100);
+     map.empty_vectors();
 }
 
 void testInfectedtriesToAttackSoldierButOutOfRange4() {
@@ -92,6 +95,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange4() {
     std::int16_t soldier_health = soldier.get_health();
 
     TEST_CHECK(soldier_health == 100);
+     map.empty_vectors();
 }
 
 void testInfectedtriesToAttackSoldierButOutOfRange5() {
@@ -111,6 +115,7 @@ void testInfectedtriesToAttackSoldierButOutOfRange5() {
     std::int16_t soldier_health = soldier.get_health();
 
     TEST_CHECK(soldier_health == 100);
+     map.empty_vectors();
 }
 
 //****************************************************** DAMAGE ************************************************
@@ -132,6 +137,7 @@ void testInfectedDamagesSoldier() {
     std::int16_t soldier_health = soldier.get_health();
 
     TEST_CHECK(soldier_health < 100);
+     map.empty_vectors();
 }
 
 void testInfectedDamagesSoldier2() {
@@ -151,6 +157,7 @@ void testInfectedDamagesSoldier2() {
     std::int16_t soldier_health = soldier.get_health();
 
     TEST_CHECK(soldier_health < 100);
+     map.empty_vectors();
 }
 
 void testInfectedDamagesSoldier3() {
@@ -170,6 +177,7 @@ void testInfectedDamagesSoldier3() {
     std::int16_t soldier_health = soldier.get_health();
 
     TEST_CHECK(soldier_health < 100);
+     map.empty_vectors();
 }
 
 void testInfectedDamagesSoldier4() {
@@ -189,6 +197,7 @@ void testInfectedDamagesSoldier4() {
     std::int16_t soldier_health = soldier.get_health();
 
     TEST_CHECK(soldier_health < 100);
+     map.empty_vectors();
 }
 
 void testInfectedDamagesSoldier5() {
@@ -208,6 +217,7 @@ void testInfectedDamagesSoldier5() {
     std::int16_t soldier_health = soldier.get_health();
 
     TEST_CHECK(soldier_health < 100);
+     map.empty_vectors();
 }
 
 TEST_LIST = {

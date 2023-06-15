@@ -28,13 +28,13 @@ public:
     MatchMananger();
 
     Queue<InstructionsDTO*> *create_game(Queue<GameDTO> *queue_sender, std::string& escenario, 
-                                        int& player_id, int32_t& game_code);
+                                        int32_t& player_id, int32_t& game_code);
 
-    Queue<InstructionsDTO*> *join(Queue<GameDTO> *queue_sender, int32_t& codigo, int& player_id);
+    Queue<InstructionsDTO*> *join(Queue<GameDTO> *queue_sender, int32_t& codigo, int32_t& player_id);
 
     void joinGames();
 
-    void delete_player(int& player_id);
+    void delete_player(int32_t& player_id);
 };
 #endif
 

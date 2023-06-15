@@ -1,7 +1,7 @@
 #ifndef INSTRUCTIONSTYPE_H
 #define INSTRUCTIONSTYPE_H
 
-enum InstructionsType {
+enum InstructionsType : char {
     IDLE,
     CREATE,
     JOIN,
@@ -12,6 +12,6 @@ enum InstructionsType {
     MOVE,
     RELOAD,
     SHOOT,
-    GRANEDE
+    GRENADE
 };
 #endif

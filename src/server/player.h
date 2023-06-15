@@ -13,7 +13,7 @@
 
 class Player{
 private:
-    int player_id;  //Es el player_id unico dentro el servidor.
+    int32_t player_id;  //Es el player_id unico dentro el servidor.
 
     Socket peer;    //Es el socket que tendra cada jugador dentro del servidor.
 
@@ -23,7 +23,7 @@ private:
     std::atomic<bool> keep_talking; //Para cortar el loop en el hilo sender y el hilo receiver.
 
 public:
-    Player(Socket socket, MatchMananger *matchMananger, int player_id);
+    Player(Socket socket, MatchMananger *matchMananger, int32_t player_id);
 
     bool is_dead();
 

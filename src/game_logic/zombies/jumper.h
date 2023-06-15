@@ -7,8 +7,8 @@
 #include "zombie.h"
 #include "../game_object.h"
 #include "../zombie_states/zombie_idle.h"
-#include "../zombie_states/chasing_states/chase_jumping.h"
-
+#include "../zombie_states/chasing_states/chase_walking.h"
+#include "../zombie_states/chasing_states/chase_running.h"
 
 
 class Jumper : public GameObject, public Zombie {
@@ -21,13 +21,14 @@ private:
     bool dead = false;
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;
-    ChaseState* chase_state = new ChaseJumping;
+    ChaseState* chase_state = new ChaseRunning;
     const std::int16_t id;
     GameMap& map;
     Chaser chaser;
 
     Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
     std::int16_t get_distance_to_soldier(Soldier* soldier);
+    void change_state(ZombieState* new_state);
 
 public:
 

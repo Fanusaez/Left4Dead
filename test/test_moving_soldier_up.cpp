@@ -30,6 +30,7 @@ void testMoveSoldierUp(){
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 7 * MOVEMENTS_PER_CELL + MOV_NEEDED_TO_WALK_ALL_CELL);
+     map.empty_vectors();
 }
 
 void testNotMoveSoldierUp(){
@@ -51,6 +52,7 @@ void testNotMoveSoldierUp(){
 
     TEST_CHECK(x_pos == (3 * MOVEMENTS_PER_CELL));
     TEST_CHECK(y_pos == (8 * MOVEMENTS_PER_CELL));
+     map.empty_vectors();
 }
 
 void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
@@ -75,6 +77,7 @@ void testNotMoveSoldierUpCrashesPartiallyWithZombie(){
 
     TEST_CHECK(x_pos == ((3 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL));
     TEST_CHECK(y_pos == (8 * MOVEMENTS_PER_CELL));
+     map.empty_vectors();
 }
 
 void testMoveSoldierWithZombieClose(){
@@ -101,6 +104,7 @@ void testMoveSoldierWithZombieClose(){
 
     TEST_CHECK(x_pos == (2 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL);
     TEST_CHECK(y_pos == (7 * MOVEMENTS_PER_CELL) + MOV_NEEDED_TO_WALK_ALL_CELL);
+     map.empty_vectors();
 }
 
 void testMoveSoldierUpUntilEndOfTheMap(){
@@ -119,6 +123,7 @@ void testMoveSoldierUpUntilEndOfTheMap(){
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 0);
+     map.empty_vectors();
 }
 
 void testMoveSoldierUpUntilEndOfTheMap2(){
@@ -137,6 +142,7 @@ void testMoveSoldierUpUntilEndOfTheMap2(){
     std::cout << y_pos;
     TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 0);
+     map.empty_vectors();
 }
 
 TEST_LIST = {

@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	ya sea por el create o el join o la lista de partidas o el chat
 	*/
 	Lobby lobby(argv[1], argv[2]);
-	int player_id = lobby.get_player_id();
+	int32_t player_id = lobby.get_player_id();
 	while (lobby.running()) {
 		std::string input;
 		std::getline(std::cin, input);

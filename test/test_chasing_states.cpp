@@ -25,6 +25,7 @@ void testWalkerChangeChaseStateToRunning(void) {
     ChaseRunning* walker_chase_state = dynamic_cast<ChaseRunning*>(walker.get_chasing_state());
 
     TEST_ASSERT(walker_chase_state != nullptr);
+    map.empty_vectors();
 }
 
 TEST_LIST = {

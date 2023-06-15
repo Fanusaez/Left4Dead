@@ -16,10 +16,7 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
 
 void Infected::update(std::vector<Soldier*> soldiers, float time) {
     ZombieState* new_state = state->update(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
     attack(soldiers, time);
     chase_closest_soldier(soldiers, time);
 }
@@ -31,18 +28,12 @@ void Infected::receive_damage(std::uint16_t damage, float time) {
         return;
     }
     ZombieState* new_state = state->being_attacked(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Infected::get_stunned(float time) {
     ZombieState* new_state = state->get_stunned(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 bool Infected::in_range_of_explosion(std::int16_t x_start,
@@ -61,10 +52,7 @@ void Infected::chase_closest_soldier(std::vector<Soldier*> soldiers, float time)
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
 
     ZombieState* new_state = chase_state->chase(state, chaser, x_sold_pos, y_sold_pos, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 Soldier* Infected::get_closest_soldier(std::vector<Soldier*> soldiers) {
@@ -109,22 +97,15 @@ void Infected::attack(std::vector<Soldier*> soldiers, float time) {
     if (!closest_soldier) return;
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
     if (distance > DISTANCE_TO_HIT) return;
-    //despues cambiar que los estados reciban SOldier*
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Infected::die(float time) {
     dead = true;
     map.free_position(get_x_matrix_pos(), get_y_matrix_pos());
     ZombieState* new_state = state->die(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 std::int16_t Infected::get_y_pos() {
@@ -143,11 +124,6 @@ std::int16_t Infected::get_x_matrix_pos() {
     return x_pos / MOVEMENTS_PER_CELL;
 }
 
-Infected::~Infected() {
-    delete state;
-    delete chase_state;
-}
-
 bool Infected::facing_left() {
     return (direction == LEFT);
 }
@@ -160,6 +136,17 @@ ZombieType Infected::get_type(){
     return INFECTED;
 }
 
+void Infected::change_state(ZombieState *new_state) {
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
+
+Infected::~Infected() {
+    delete state;
+    delete chase_state;
+}
 // ************************* Metodos de testeo ************************************************8//
 
 std::int16_t Infected::get_health() {

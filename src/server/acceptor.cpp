@@ -17,7 +17,7 @@ void Acceptor::run() {
         //Le muevo el socket al cliente para que se maneje el en enviar y recibir mensajes
         //Le pasamos la cantidad de jugadores que hay y ese sera su id.
         Player *new_player = new Player(std::move(socket_player), 
-                            &match_mananger, int(players.size()));
+                            &match_mananger, int32_t(players.size()));
 
         //Agergo mi jugador a mi lista de jugadores
         players.push_back(new_player);

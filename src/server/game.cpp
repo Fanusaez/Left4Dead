@@ -6,7 +6,7 @@
 
 double rate = 0.05;
 
-Game::Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, int& player_id) : 
+Game::Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, int32_t& player_id) : 
     queue_entrante(10000), code(code), game_name(game_name), game_logic(), keep_playing(true)
 {
     game_logic.add_soldier(player_id);
@@ -64,7 +64,7 @@ Queue<InstructionsDTO*> *Game::getQueue(){
     return &queue_entrante;
 }
 
-void Game::addPlayer(Queue<GameDTO> *queue_sender,int& player_id){
+void Game::addPlayer(Queue<GameDTO> *queue_sender,int32_t& player_id){
     m.lock();
     game_logic.add_soldier(player_id);
     queue_salientes[player_id] = queue_sender;
@@ -79,7 +79,7 @@ bool Game::compare_game_name(const std::string& game_name_to_compare){
     return (game_name == game_name_to_compare);
 }
 
-bool Game::find_player(int& player_id){
+bool Game::find_player(int32_t& player_id){
     auto it = queue_salientes.find(player_id);
     if (it != queue_salientes.end()){
         queue_salientes.erase(it);

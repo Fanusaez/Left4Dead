@@ -42,6 +42,7 @@ void testMapChaseInfectedDiagonallyUpAndRight() {
     TEST_CHECK(walker2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
     TEST_CHECK(old_pos2 == nullptr);
+     map.empty_vectors();
 }
 
 void testMapChaseInfectedDiagonallyUpAndLeft() {
@@ -66,6 +67,7 @@ void testMapChaseInfectedDiagonallyUpAndLeft() {
     TEST_CHECK(walker2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
     TEST_CHECK(old_pos2 == nullptr);
+     map.empty_vectors();
 }
 
 void testMapChaseInfectedDiagonallyDownAndRight() {
@@ -90,6 +92,7 @@ void testMapChaseInfectedDiagonallyDownAndRight() {
     TEST_CHECK(walker2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
     TEST_CHECK(old_pos2 == nullptr);
+     map.empty_vectors();
 }
 
 void testMapChaseInfectedDiagonallyDownAndLeft() {
@@ -114,6 +117,7 @@ void testMapChaseInfectedDiagonallyDownAndLeft() {
     TEST_CHECK(walker2 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
     TEST_CHECK(old_pos2 == nullptr);
+     map.empty_vectors();
 }
 
 //*********************************** Up and Down **************************************//
@@ -136,6 +140,7 @@ void testMapChaseInfectedUp() {
 
     TEST_CHECK(walker1 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
+     map.empty_vectors();
 }
 
 void testMapChaseInfectedDown() {
@@ -157,6 +162,7 @@ void testMapChaseInfectedDown() {
 
     TEST_CHECK(walker1 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
+     map.empty_vectors();
 }
 
 //********************************** Right and Left **********************************************//
@@ -180,6 +186,7 @@ void testMapChaseInfectedRight() {
 
     TEST_CHECK(walker1 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
+     map.empty_vectors();
 }
 
 void testMapChaseInfectedLeft() {
@@ -200,6 +207,7 @@ void testMapChaseInfectedLeft() {
 
     TEST_CHECK(walker1 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
+     map.empty_vectors();
 }
 
 TEST_LIST = {

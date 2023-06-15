@@ -1,8 +1,7 @@
 #ifndef GAMEOBJECTSTATE_H
 #define GAMEOBJECTSTATE_H
 
-enum SoldierObjectState
-{
+enum SoldierObjectState : char {
     IDLE_SOLDIER,
     SHOOTING,
     RELOADING,
@@ -12,8 +11,7 @@ enum SoldierObjectState
     SHOOTING_AND_MOVING
 };
 
-enum ZombieObjectState
-{
+enum ZombieObjectState : char {
     IDLE_ZOMBIE,
     DEAD,
     BEING_ATTACKED,

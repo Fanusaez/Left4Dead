@@ -39,6 +39,7 @@ void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacle() {
 
     TEST_CHECK(x_pos == 6 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 6 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
@@ -63,6 +64,7 @@ void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
 
     TEST_CHECK(x_pos == 8 * MOVEMENTS_PER_CELL - 1);
     TEST_CHECK(y_pos == 2 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 void testInfectedChaseSoldierdiagonallyUpAndLeftWithObstacle() {
@@ -86,6 +88,7 @@ void testInfectedChaseSoldierdiagonallyUpAndLeftWithObstacle() {
 
     TEST_CHECK(x_pos == 6 * MOVEMENTS_PER_CELL - 1);
     TEST_CHECK(y_pos == 5 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 void testInfectedChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
@@ -110,6 +113,7 @@ void testInfectedChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 2 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 
@@ -134,6 +138,7 @@ void testInfectedChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace() {
 
     TEST_CHECK(x_pos == 3 * MOVEMENTS_PER_CELL);
     TEST_CHECK(y_pos == 8 * MOVEMENTS_PER_CELL);
+     map.empty_vectors();
 }
 
 TEST_LIST = {

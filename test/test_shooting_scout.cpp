@@ -32,6 +32,7 @@ void testSoldierShootsScoutWith2InfectedsInLineRight(void) {
     std::uint16_t remaining_health2 = walker2.get_health();
     TEST_CHECK(remaining_health1 == (100 - STARTING_DAMAGE));
     TEST_CHECK(remaining_health2 == (100 - (STARTING_DAMAGE - DAMAGE_REDUCTION)));
+     map.empty_vectors();
 }
 
 void testSoldierShootsScoutWith3InfectedsInLineRight(void) {
@@ -58,6 +59,7 @@ void testSoldierShootsScoutWith3InfectedsInLineRight(void) {
     TEST_CHECK(remaining_health1 == (100 - STARTING_DAMAGE));
     TEST_CHECK(remaining_health2 == (100 - (STARTING_DAMAGE - DAMAGE_REDUCTION)));
     TEST_CHECK(remaining_health3 == (100 - (STARTING_DAMAGE - 2*DAMAGE_REDUCTION)));
+     map.empty_vectors();
 }
 
 void testSoldierShootsScoutWith2InfectedsInLineLeft(void) {
@@ -79,6 +81,7 @@ void testSoldierShootsScoutWith2InfectedsInLineLeft(void) {
     std::uint16_t remaining_health2 = walker2.get_health();
     TEST_CHECK(remaining_health1 == 100 - STARTING_DAMAGE);
     TEST_CHECK(remaining_health2 == 100 - (STARTING_DAMAGE - DAMAGE_REDUCTION));
+     map.empty_vectors();
 }
 
 void testSoldierShootsScoutWith3InfectedsInLineLeft(void) {
@@ -105,6 +108,7 @@ void testSoldierShootsScoutWith3InfectedsInLineLeft(void) {
     TEST_CHECK(remaining_health1 == 100 - STARTING_DAMAGE);
     TEST_CHECK(remaining_health2 == 100 - (STARTING_DAMAGE - DAMAGE_REDUCTION));
     TEST_CHECK(remaining_health3 == 100 - (STARTING_DAMAGE - 2*DAMAGE_REDUCTION));
+     map.empty_vectors();
 }
 
 TEST_LIST = {

@@ -86,6 +86,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies(void) {
     TEST_CHECK(zombie_state3 != nullptr);
     TEST_CHECK(zombie_state4 != nullptr);
     TEST_CHECK(zombie_state5 != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies(void) {
@@ -139,6 +140,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies(void) {
     TEST_CHECK(zombie_state3 == nullptr);
     TEST_CHECK(zombie_state4 == nullptr);
     TEST_CHECK(zombie_state5 == nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2(void) {
@@ -197,6 +199,7 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2(void) {
     TEST_CHECK(zombie_state3 == nullptr);
     TEST_CHECK(zombie_state4 == nullptr);
     TEST_CHECK(zombie_state5 == nullptr);
+     map.empty_vectors();
 }
 
 
@@ -225,6 +228,7 @@ void testSoldierThrowsSmokeGrenadeToOtherSoldier(void) {
     Idle* soldier2_state = dynamic_cast<Idle*>(soldier2.get_state());
 
     TEST_CHECK(soldier2_state != nullptr);
+     map.empty_vectors();
 }
 
 void testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies(void) {
@@ -278,6 +282,7 @@ void testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies(void) {
     TEST_CHECK(zombie_state3 != nullptr);
     TEST_CHECK(zombie_state4 != nullptr);
     TEST_CHECK(zombie_state5 != nullptr);
+     map.empty_vectors();
 }
 
 

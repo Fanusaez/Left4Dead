@@ -5,15 +5,17 @@
 
 class Jumping : public ZombieState{
 private:
-    float waiting_time_to_move = 0.05;
+    float waiting_time_to_move = 0.2;
     float last_time_moved = -1;
 
 public:
 
     Jumping(Chaser& chaser,
-    std::int16_t x_pos_chase,
+            Soldier* soldier,
+            std::int16_t damage,
+            std::int16_t x_pos_chase,
             std::int16_t y_pos_chase,
-    float time);
+            float time);
 
     ZombieState* update(float time) override;
 
@@ -28,6 +30,8 @@ public:
                                        float time) override;
 
     ZombieState* chase_soldier_jumping(Chaser& chaser,
+                                       Soldier* soldier,
+                                       std::int16_t damage,
                                        std::int16_t x_pos_chase,
                                        std::int16_t y_pos_chase,
                                        float time) override;

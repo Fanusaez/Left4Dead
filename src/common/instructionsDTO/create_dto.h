@@ -11,7 +11,7 @@ private:
     int32_t game_code;
 
 public:
-    CreateDTO(int& player_id, std::string scenario_name); 
+    CreateDTO(int32_t& player_id, std::string scenario_name); 
 
     explicit CreateDTO(int32_t game_code); 
 

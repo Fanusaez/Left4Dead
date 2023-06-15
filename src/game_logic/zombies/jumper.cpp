@@ -1,9 +1,10 @@
 #include "jumper.h"
-#include "../zombie_states/chasing_states/chase_running.h"
 #include "../chaser.h"
 #include "../map.h"
 #include "../soldier.h"
+
 #define DISTANCE_TO_HIT 1
+#define DISTANCE_TO_JUMP 2
 
 Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
@@ -13,6 +14,8 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         chaser(this, map, x_pos, y_pos) {}
 
 void Jumper::update(std::vector<Soldier*> soldiers, float time) {
+    ZombieState* new_state = state->update(time);
+    change_state(new_state);
     attack(soldiers, time);
     chase_closest_soldier(soldiers, time);
 }
@@ -24,10 +27,7 @@ void Jumper::receive_damage(std::uint16_t damage, float time) {
         return;
     }
     ZombieState* new_state = state->being_attacked(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 bool Jumper::in_range_of_explosion(std::int16_t x_start,
@@ -41,22 +41,16 @@ bool Jumper::in_range_of_explosion(std::int16_t x_start,
 
 void Jumper::get_stunned(float time) {
     ZombieState* new_state = state->get_stunned(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Jumper::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
+    if (!closest_soldier) return;
     std::int16_t x_sold_pos = closest_soldier->get_x_pos();
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
-
-    ZombieState* new_state = state->chase_soldier(chaser, x_sold_pos, y_sold_pos, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    ZombieState* new_state = chase_state->chase(state, chaser, x_sold_pos, y_sold_pos, time);
+    change_state(new_state);
 }
 
 Soldier* Jumper::get_closest_soldier(std::vector<Soldier*> soldiers) {
@@ -65,7 +59,7 @@ Soldier* Jumper::get_closest_soldier(std::vector<Soldier*> soldiers) {
 
     for (Soldier* soldier : soldiers) {
         std::int16_t new_distance = get_distance_to_soldier(soldier);
-        if (new_distance < min_distance) {
+        if (new_distance < min_distance && soldier->chaseable()) {
             min_distance = new_distance;
             closest_soldier = soldier;
         }
@@ -96,18 +90,23 @@ void Jumper::set_direction(std::int16_t direction_to_set) {
     }
 }
 
-void Jumper::attack(std::vector<Soldier *> soldiers, float time) {
-    /*
-     * Hay que ver como se ve cuando el zombi salta y lastima al soldado
-     * puede ser que haya que cambiar el "if (distance > 1) return; "
-     */
+void Jumper::attack(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
+    if (!closest_soldier) return;
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > DISTANCE_TO_HIT) return;
-    ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
+    if (distance > DISTANCE_TO_JUMP) return;
+
+    if (distance == DISTANCE_TO_JUMP) {
+        ZombieState* new_state = state->chase_soldier_jumping(chaser,
+                                                              closest_soldier,
+                                                              damage_attack,
+                                                              closest_soldier->get_x_pos(),
+                                                              closest_soldier->get_y_pos(),
+                                                              time);
+        change_state(new_state);
+    } else {
+        ZombieState *new_state = state->attack_soldier(closest_soldier, damage_attack, time);
+        change_state(new_state);
     }
 }
 
@@ -115,10 +114,7 @@ void Jumper::die(float time) {
     dead = true;
     map.free_position(get_x_matrix_pos(), get_y_matrix_pos());
     ZombieState* new_state = state->die(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 std::int16_t Jumper::get_id() {
@@ -141,10 +137,6 @@ std::int16_t Jumper::get_x_matrix_pos() {
     return x_pos / MOVEMENTS_PER_CELL;
 }
 
-Jumper::~Jumper() {
-    delete state;
-}
-
 bool Jumper::facing_left() {
     return (direction == LEFT);
 }
@@ -153,6 +145,17 @@ ZombieType Jumper::get_type() {
     return JUMPER;
 }
 
+void Jumper::change_state(ZombieState *new_state) {
+    if (new_state != nullptr) {
+        delete state;
+        state = new_state;
+    }
+}
+
+Jumper::~Jumper() {
+    delete state;
+    delete chase_state;
+}
 // ************************* Metodos de testeo ************************************************8//
 
 std::int16_t Jumper::get_health() {

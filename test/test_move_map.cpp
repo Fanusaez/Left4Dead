@@ -33,7 +33,7 @@ void testMoveSoldierDownAndCheckPositions(){
 
     TEST_CHECK(soldier1 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
-
+     map.empty_vectors();
 }
 
 void testMoveSoldierDownAtTheEndStaysInPlace() {
@@ -50,6 +50,7 @@ void testMoveSoldierDownAtTheEndStaysInPlace() {
     GameObject* soldier1= map.get_object(3, MAP_SIZE_Y - 1);
 
     TEST_CHECK(soldier1 != nullptr);
+     map.empty_vectors();
 }
 
 
@@ -73,6 +74,7 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie(){
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
+     map.empty_vectors();
 }
 
 
@@ -98,7 +100,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
-
+    map.empty_vectors();
 }
 
 void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
@@ -126,6 +128,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
     TEST_CHECK(dynamic_cast<Soldier*>(soldier_old) == nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
+     map.empty_vectors();
 }
 
 //**************************************** Move UP *************************************//
@@ -147,7 +150,7 @@ void testMoveSoldierUpAndCheckPositions(){
 
     TEST_CHECK(soldier1 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
-
+    map.empty_vectors();
 }
 
 void testMoveSoldierUpAtTheBeginningStaysInPlace() {
@@ -164,7 +167,7 @@ void testMoveSoldierUpAtTheBeginningStaysInPlace() {
     GameObject* soldier1 = map.get_object(3, 0);
 
     TEST_CHECK(soldier1 != nullptr);
-
+    map.empty_vectors();
 }
 
 void testNotMoveSoldierUpForCompleteCollisionWithZombie(){
@@ -188,6 +191,7 @@ void testNotMoveSoldierUpForCompleteCollisionWithZombie(){
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
+     map.empty_vectors();
 }
 
 
@@ -215,7 +219,7 @@ void testNotMoveSoldierUpForPartialCollisionWithZombie() {
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier *>(soldier1) != nullptr);
     TEST_CHECK(dynamic_cast<Infected *>(walker1) != nullptr);
-
+    map.empty_vectors();
 }
 
 void testNotMoveSoldierUpForPartialCollisionWithZombie2(){
@@ -244,6 +248,7 @@ void testNotMoveSoldierUpForPartialCollisionWithZombie2(){
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
 
     TEST_CHECK(soldier_old == nullptr);
+     map.empty_vectors();
 }
 
 
@@ -268,6 +273,7 @@ void testMoveSoldierRightAndCheckMap(){
 
     TEST_CHECK(soldier1 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
+     map.empty_vectors();
 }
 
 void testMoveSoldierRightEndOfMapAndCheckMap() {
@@ -286,6 +292,7 @@ void testMoveSoldierRightEndOfMapAndCheckMap() {
 
     TEST_CHECK(soldier1 != nullptr);
     TEST_CHECK(soldier1_old == nullptr);
+     map.empty_vectors();
 }
 
 void testNotMoveSoldierRightForCollisionWithZombieAndCheckMap(){
@@ -308,6 +315,7 @@ void testNotMoveSoldierRightForCollisionWithZombieAndCheckMap(){
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
+     map.empty_vectors();
 }
 
 
@@ -331,6 +339,7 @@ void testMoveSoldierRightWithZombieCloseAndCheckMap(){
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
+     map.empty_vectors();
 }
 
 //*********************************** Move Left ******************************************************8
@@ -351,6 +360,7 @@ void testMoveSoldierLeftAndCheckMap(){
 
     TEST_CHECK(soldier1 != nullptr);
     TEST_CHECK(old_pos1 == nullptr);
+     map.empty_vectors();
 }
 
 void testMoveSoldierLeftBeginningOfMapAndCheckMap() {
@@ -367,7 +377,7 @@ void testMoveSoldierLeftBeginningOfMapAndCheckMap() {
     GameObject* soldier1 = map.get_object(0, 3);
 
     TEST_CHECK(soldier1 != nullptr);
-
+    map.empty_vectors();
 }
 
 void testNotMoveSoldierLeftForCollisionWithZombieAndCheckMap(){
@@ -390,6 +400,7 @@ void testNotMoveSoldierLeftForCollisionWithZombieAndCheckMap(){
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
+     map.empty_vectors();
 }
 
 
@@ -414,6 +425,7 @@ void testMoveSoldierLeftWithZombieCloseAndCheckMap(){
     // Si casteo a a algo que no es, me tira nullptr
     TEST_CHECK(dynamic_cast<Soldier*>(soldier1) != nullptr);
     TEST_CHECK(dynamic_cast<Infected*>(walker1) != nullptr);
+     map.empty_vectors();
 }
 
 
