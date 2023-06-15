@@ -8,7 +8,7 @@ MatchMananger::MatchMananger() {
 }
 
 Queue<InstructionsDTO*> *MatchMananger::create_game(Queue<GameDTO> *queue_sender, 
-                    std::string& escenario, int& player_id, int32_t& game_code)
+                    std::string& escenario, int32_t& player_id, int32_t& game_code)
 {
     if (!game_name_exist(escenario)){   //Si el escenario no existe crearlo
         //Le paso la queue a la cual va a tener que pushear el game
@@ -51,7 +51,7 @@ Game* MatchMananger::game_code_exist(const int32_t& codigo){
 }
 
 Queue<InstructionsDTO*> *MatchMananger::join(Queue<GameDTO> *queue_sender, 
-                                            int& codigo, int& player_id) {
+                                            int32_t& codigo, int32_t& player_id) {
     Game* game = game_code_exist(codigo);
     if (game){
         game->addPlayer(queue_sender, player_id);
@@ -69,7 +69,7 @@ void MatchMananger::joinGames(){
     games.clear();
 }
 
-void MatchMananger::delete_player(int& player_id) {
+void MatchMananger::delete_player(int32_t& player_id) {
     m.lock();
     for (Game *game: games){
         if (game->find_player(player_id)){

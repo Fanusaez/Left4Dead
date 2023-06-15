@@ -3,20 +3,21 @@
 
 #include "../common/instructions_type.h"
 #include <vector>
-//Podria ser polimorfico
+#include <cstdint>
+
 class InstructionsDTO
 {
 private:
     InstructionsType instruction_type;
     
-    int player_id;
+    int32_t player_id;
 
 public:
     InstructionsDTO(); //Solo para el try_pop del hilo main
 
     explicit InstructionsDTO(InstructionsType instruction);
     
-    InstructionsDTO(int& player_id, InstructionsType instruction);
+    InstructionsDTO(int32_t& player_id, InstructionsType instruction);
 
     InstructionsType get_instruction();
 

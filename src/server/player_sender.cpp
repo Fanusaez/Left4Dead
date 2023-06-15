@@ -4,7 +4,7 @@
 #include <string>
 
 PlayerSender::PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, 
-    MatchMananger *match_mananger, int& player_id) : keep_talking(keep_talking),
+    MatchMananger *match_mananger, int32_t& player_id) : keep_talking(keep_talking),
     queue_sender(10000), player_receiver(socket,keep_talking, player_id),
     match_mananger(match_mananger), server_deserializer(socket), server_serializer(socket), 
     player_id(player_id) {

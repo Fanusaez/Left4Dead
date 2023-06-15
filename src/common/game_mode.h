@@ -1,7 +1,7 @@
 #ifndef GAMEMODE_H
 #define GAMEMODE_H
 
-enum GameMode {
+enum GameMode : char {
     CLEAR_THE_ZONE,
     SURVIVAL
 };

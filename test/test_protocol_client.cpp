@@ -112,7 +112,7 @@ void testThrowGrenede(void){
     std::vector<char> buffer = client_serializer.serialize_throw_grenede(time);
     //- shooting: 0x09 <time>
     TEST_CHECK(buffer.size() == 2);
-    TEST_CHECK(buffer.at(0) == GRANEDE);
+    TEST_CHECK(buffer.at(0) == GRENADE);
     TEST_CHECK(buffer.at(1) == 0x05);
 }
 

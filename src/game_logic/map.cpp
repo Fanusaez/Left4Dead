@@ -352,6 +352,9 @@ GameMap::~GameMap() {
         delete soldier;
     }
     soldiers.clear();
+    for(auto fila: map){
+        fila.clear();    
+    }
     map.clear();
 }
 

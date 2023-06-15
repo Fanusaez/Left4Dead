@@ -9,7 +9,7 @@ private:
     MoveType move_type;
 
 public:
-    MoveDTO(int& player_id, MoveType move_type); 
+    MoveDTO(int32_t& player_id, MoveType move_type); 
 
     MoveType get_move_type();
 };

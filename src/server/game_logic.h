@@ -32,7 +32,7 @@ private:
 public:
     GameLogic();
 
-    void add_soldier(int& player_id);  
+    void add_soldier(int32_t& player_id);  
 
     void new_instruction(InstructionsDTO* instruction);
 

@@ -30,13 +30,13 @@ private:
     bool keep_playing;  //Para controlar el gamme loop del server.
 
 public:
-    Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, int& player_id);
+    Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, int32_t& player_id);
 
     void run() override;
 
     Queue<InstructionsDTO*> *getQueue();
 
-    void addPlayer(Queue<GameDTO> *queue_sender, int& player_id);
+    void addPlayer(Queue<GameDTO> *queue_sender, int32_t& player_id);
 
     bool compare_code(const int32_t& code_to_compare);
 
@@ -46,7 +46,7 @@ public:
 
     bool compare_game_name(const std::string& game_name_to_compare);
 
-    bool find_player(int& player_id);
+    bool find_player(int32_t& player_id);
 
     void stop_playing();
 

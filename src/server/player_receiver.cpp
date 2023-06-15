@@ -7,7 +7,7 @@
 
 #include <arpa/inet.h>
 
-PlayerReceiver::PlayerReceiver(Socket *socket, std::atomic<bool> &keep_talking, int& player_id) 
+PlayerReceiver::PlayerReceiver(Socket *socket, std::atomic<bool> &keep_talking, int32_t& player_id) 
     : player_id(player_id), keep_talking(keep_talking), 
     server_deserializer(socket) {
         queue_receiver = nullptr;   //Comienza en nullptr. El player_sender le va a setear la queue

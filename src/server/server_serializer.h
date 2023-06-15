@@ -28,7 +28,7 @@ public:
 
     void serialize_start_game(bool *was_closed);
 
-    void send_player_id(int& player_id, bool* was_closed);
+    void send_player_id(int32_t& player_id, bool* was_closed);
     
     void send_game(GameDTO game_dto, bool *was_closed);
 };

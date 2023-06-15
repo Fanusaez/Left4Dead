@@ -1,7 +1,8 @@
 #include "server_serializer.h"
-
 #include <iostream>
 #include <cstring>
+#include <arpa/inet.h>
+
 
 ServerSerializer::ServerSerializer() {}
 
@@ -10,12 +11,13 @@ ServerSerializer::ServerSerializer(Socket *socket) : socket(socket){}
 void ServerSerializer::serialize_create_scenario(int32_t &scenario_code, bool *was_closed) {
     std::vector<char> buffer;
     buffer.push_back(CREATE);
-    unsigned char const * p = reinterpret_cast<unsigned char const *>(&scenario_code);
+    int32_t transformed_scenario_code = htonl(scenario_code);
+    unsigned char const * p = reinterpret_cast<unsigned char const *>(&transformed_scenario_code);
     buffer.insert(buffer.end(), p, p + sizeof(int32_t));
     socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
 
-void ServerSerializer::send_error_create(bool *was_closed){
+void ServerSerializer::send_error_create(bool *was_closed) {
     std::vector<char> buffer;
     buffer.push_back(CREATE);
     buffer.push_back(0x01);
@@ -35,9 +37,10 @@ void ServerSerializer::serialize_start_game(bool *was_closed) {
     socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
 
-void ServerSerializer::send_player_id(int& player_id, bool* was_closed) {
+void ServerSerializer::send_player_id(int32_t& player_id, bool* was_closed) {
     std::vector<char> buffer;
-    unsigned char const * p = reinterpret_cast<unsigned char const *>(&player_id);
+    int transformed_player_id = htonl(player_id);
+    unsigned char const * p = reinterpret_cast<unsigned char const *>(&transformed_player_id);
     buffer.insert(buffer.end(), p, p + sizeof(int));
     socket->sendall(buffer.data(), buffer.size(), was_closed);    
 }
@@ -60,8 +63,8 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
     std::vector<SoldierObjectDTO> soldiers = game_dto.get_soldiers();
     std::vector<ZombieObjectDTO> zombies = game_dto.get_zombies();
 
-    size_t num_soldiers = soldiers.size();
-    size_t num_zombies = zombies.size();
+    uint8_t num_soldiers = soldiers.size();
+    uint8_t num_zombies = zombies.size();
 
     std::vector<char> buffer;
     buffer.reserve(2 + (sizeof(SoldierObjectDTO) * num_soldiers) + (sizeof(ZombieObjectDTO) * num_zombies));
@@ -69,41 +72,51 @@ void ServerSerializer::send_game(GameDTO game_dto, bool *was_closed)
     buffer.push_back(static_cast<char>(num_zombies));
     
     for (const auto &obj : soldiers) {
-        unsigned char const * p = reinterpret_cast<unsigned char const *>(&obj.player_id);
+        int transformed_player_id = htonl(obj.player_id);
+        unsigned char const * p = reinterpret_cast<unsigned char const *>(&transformed_player_id);
         buffer.insert(buffer.end(), p, p + sizeof(int));
 
-        p = reinterpret_cast<unsigned char const *>(&obj.id);
+        int16_t transformed_id = htons(obj.id);
+        p = reinterpret_cast<unsigned char const *>(&transformed_id);
         buffer.insert(buffer.end(), p, p + sizeof(int16_t));
+
 
         buffer.push_back(obj.state);
         buffer.push_back(obj.soldier_type);
 
-        p = reinterpret_cast<unsigned char const *>(&obj.position_x);
+        int16_t transformed_position_x = htons(obj.position_x);
+        p = reinterpret_cast<unsigned char const *>(&transformed_position_x);
         buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
-        p = reinterpret_cast<unsigned char const *>(&obj.position_y);
+        int16_t transformed_position_y = htons(obj.position_y);
+        p = reinterpret_cast<unsigned char const *>(&transformed_position_y);
         buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
         buffer.push_back(obj.facing_left);
         
-        p = reinterpret_cast<unsigned char const *>(&obj.bullets);
+        int16_t transformed_bullets = htons(obj.bullets);
+        p = reinterpret_cast<unsigned char const *>(&transformed_bullets);
         buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
-        p = reinterpret_cast<unsigned char const *>(&obj.health);
+        int16_t transformed_health = htons(obj.health);
+        p = reinterpret_cast<unsigned char const *>(&transformed_health);
         buffer.insert(buffer.end(), p, p + sizeof(int16_t));
     }
 
     for (const auto &obj : zombies) {
-        unsigned char const *p = reinterpret_cast<unsigned char const *>(&obj.id);
+        int16_t transformed_id = htons(obj.id);
+        unsigned char const * p = reinterpret_cast<unsigned char const *>(&transformed_id);
         buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
         buffer.push_back(obj.state);
         buffer.push_back(obj.zombie_type);
 
-        p = reinterpret_cast<unsigned char const *>(&obj.position_x);
+        int16_t transformed_position_x = htons(obj.position_x);
+        p = reinterpret_cast<unsigned char const *>(&transformed_position_x);
         buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
-        p = reinterpret_cast<unsigned char const *>(&obj.position_y);
+        int16_t transformed_position_y = htons(obj.position_y);
+        p = reinterpret_cast<unsigned char const *>(&transformed_position_y);
         buffer.insert(buffer.end(), p, p + sizeof(int16_t));
 
         buffer.push_back(obj.facing_left);

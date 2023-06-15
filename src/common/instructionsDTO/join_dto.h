@@ -11,7 +11,7 @@ private:
     bool could_join;
 
 public:
-    JoinDTO(int& player_id, int32_t game_code); 
+    JoinDTO(int32_t& player_id, int32_t game_code); 
 
     explicit JoinDTO(bool could_join); 
     

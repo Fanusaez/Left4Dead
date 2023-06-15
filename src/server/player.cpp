@@ -4,7 +4,7 @@
 #include <iostream>
 #include <utility>
 
-Player::Player(Socket socket,MatchMananger *matchMananger, int player_id) : player_id(player_id),
+Player::Player(Socket socket,MatchMananger *matchMananger, int32_t player_id) : player_id(player_id),
         player_sender(&peer, std::ref(keep_talking),matchMananger, player_id)
 {
     this->peer = std::move(socket);

@@ -1,8 +1,7 @@
 #ifndef MOVETYPE_H
 #define MOVETYPE_H
 
-enum MoveType
-{
+enum MoveType : char {
     RIGHT,
     LEFT,
     UP,
