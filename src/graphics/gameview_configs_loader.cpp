@@ -84,6 +84,16 @@ void GameviewConfigurationsLoader::setMusicToLoad()
 void GameviewConfigurationsLoader::setChunksToLoad()
 {
 	this->chunksToLoad.push_back("Soldier_1/Dead.mp3");
+	this->chunksToLoad.push_back("Jumper/Attack_1.mp3");
+	this->chunksToLoad.push_back("Jumper/Dead.mp3");
+	this->chunksToLoad.push_back("Jumper/Hurt.mp3");
+	this->chunksToLoad.push_back("Jumper/Jump.mp3");
+	this->chunksToLoad.push_back("Witch/Attack_1.mp3");
+	this->chunksToLoad.push_back("Witch/Dead.mp3");
+	this->chunksToLoad.push_back("Witch/Hurt.mp3");
+	this->chunksToLoad.push_back("Witch/Scream.mp3");
+	this->chunksToLoad.push_back("Zombie/Dead.mp3");
+	this->chunksToLoad.push_back("Zombie/Hurt.mp3");
 }
 
 GameviewConfigurationsLoader::~GameviewConfigurationsLoader() = default;
