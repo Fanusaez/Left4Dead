@@ -5,6 +5,9 @@ ZombieBeingAttacked::ZombieBeingAttacked(float time) : start_time(time) {
 }
 
 ZombieState *ZombieBeingAttacked::update(float time) {
+   if (time_to_stop_being_attacked(time)) {
+       return new ZombieIdle;
+   }
     return nullptr;
 }
 

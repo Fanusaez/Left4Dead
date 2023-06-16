@@ -15,7 +15,7 @@ class Jumper : public GameObject, public Zombie {
 
 private:
     std::int16_t health = 100;
-    std::int16_t damage_attack = 20;
+    std::int16_t damage_attack = 10;
     std::int16_t x_pos;
     std::int16_t y_pos;
     bool dead = false;

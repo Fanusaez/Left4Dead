@@ -5,7 +5,7 @@
 #include <cstdint>
 #include "../../common/zombie_type.h"
 
-#define MAX_DISTANCE 10000
+#define MAX_DISTANCE 30
 
 class ZombieState;
 class GameObject;

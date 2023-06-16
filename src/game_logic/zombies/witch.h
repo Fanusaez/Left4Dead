@@ -14,7 +14,7 @@ class Witch : public GameObject, public Zombie {
 
 private:
     std::int16_t health = 200;
-    std::int16_t damage_attack = 20;
+    std::int16_t damage_attack = 30;
     std::int16_t x_pos;
     std::int16_t y_pos;
     bool dead = false;
