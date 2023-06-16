@@ -14,7 +14,7 @@ class Soldier : public GameObject {
     std::int16_t x_pos;
     std::int16_t y_pos;
     std::int16_t direction = RIGHT;
-    bool dead = false;
+    bool _dead = false;
     std::int16_t health = 100;
     const std::int16_t id;
 
@@ -64,7 +64,7 @@ std::int16_t get_x_matrix_pos() override;
 
 bool facing_left();
 bool chaseable();
-
+bool dead();
 ~Soldier();
 
 //******************************* Metodos de testeo ***************************************************

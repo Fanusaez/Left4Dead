@@ -7,7 +7,7 @@
 #include "../game_logic/map.h"
 #include "../game_logic/soldier.h"
 #include "../game_logic/zombies/zombie.h"
-#include "../game_logic/clear_the_zone.h"
+#include "../game_logic/playing_modes/clear_the_zone.h"
 #include <map>
 #include <utility>
 

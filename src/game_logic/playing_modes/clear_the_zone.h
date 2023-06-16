@@ -2,37 +2,37 @@
 #define CLEAR_THE_ZONE_H_
 
 #include <random>
-#include "soldier.h"
-#include "map.h"
-#include "zombies/infected.h"
-#include "weapons/idf.h"
-#include "weapons/scout.h"
-#include "weapons/p90.h"
+#include "../soldier.h"
+#include "../map.h"
+#include "../zombies/infected.h"
+#include "../weapons/idf.h"
+#include "../weapons/scout.h"
+#include "../weapons/p90.h"
 
 class ClearTheZone {
 
 private:
-    std::int16_t quantity_total_zombies = 50;
-    /*
-     * Cada tipo de zombi tiene una probabilidad
-     * Suma de todas las probabilidades tiene que ser 100;
-     */
+    std::int16_t quantity_total_zombies = 80;
+
     std::vector<std::int16_t> infected_prob = {0, 40};
     std::vector<std::int16_t> witch_prob = {40, 70};
     std::vector<std::int16_t> jumper_prob = {70, 100};
+
     float start_time;
     float last_time_updated = -1;
     float time_respawn_zombies = 5; // aparece 1 zombi cada 1 segundo
-    bool game_over = false;
-    GameMap map;
-    std::int16_t x_size;
-    std::int16_t y_size;
 
+    bool game_over = false;
+    bool level_cleared = false;
+
+    GameMap map;
+    std::vector<Soldier*> players;
 
 void respawn_zombies(float time);
 void place_obstacles();
 bool time_to_respawn_zombies(float time);
-
+void game_state_update();
+bool still_in_game();
 public:
 
     ClearTheZone(std::int16_t x_size, std::int16_t y_size, float time);
