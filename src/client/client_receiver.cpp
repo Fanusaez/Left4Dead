@@ -14,12 +14,12 @@ void ClientReceiver::run() {
     bool was_closed = false;
     InstructionsType instruction;
     std::vector<char> bytes;
-    while (!was_closed && keep_talking) {
-        GameDTO game_dto = client_deserializer.deserialize_game_dto(&was_closed);
-        try {
+    try {
+        while (!was_closed && keep_talking) {
+            GameDTO game_dto = client_deserializer.deserialize_game_dto(&was_closed);
             queue_receiver->push(game_dto); //Podemos pasarle los bytes o generar una estructura
-        } catch (const ClosedQueue& e){
-            std::cout<<"Se cerro la cola correctamente"<<std::endl;
         }
+    } catch (const ClosedQueue& e){
+        std::cout<<"Se cerro la cola correctamente"<<std::endl;
     }
 }

@@ -13,13 +13,13 @@ ClientSender::ClientSender(Socket *socket, std::atomic<bool> &keep_talking,
 void ClientSender::run() {
     bool was_closed = false;
     std::vector<char> bytes;
-    while (!was_closed  && keep_talking){
-        try {
+    try {
+    	while (!was_closed  && keep_talking){
             bytes = queue_sender->pop();   
-        } catch (const ClosedQueue& e){
-            std::cout<<"Se cerro la cola correctamente"<<std::endl;
-        }
-        socket->sendall(bytes.data(), bytes.size(), &was_closed);
+        	socket->sendall(bytes.data(), bytes.size(), &was_closed);
+    	}
+    } catch (const ClosedQueue& e){
+        std::cout<<"Se cerro la cola correctamente"<<std::endl;
     }
     keep_talking = false;
 }
