@@ -52,5 +52,7 @@ public:
     void stop_playing();
 
     bool is_empty();
+
+    bool is_playing();
 };
 #endif

@@ -39,7 +39,7 @@ Game* MatchMananger::game_code_exist(const int32_t& codigo){
 Queue<InstructionsDTO*> *MatchMananger::join(Queue<GameDTO> *queue_sender, 
                                             int32_t& codigo, int32_t& player_id) {
     Game* game = game_code_exist(codigo);
-    if (game){
+    if (game && !game->is_playing()){
         game->addPlayer(queue_sender, player_id);
         return game->getQueue();
     }

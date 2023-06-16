@@ -93,3 +93,7 @@ void Game::stop_playing(){
 int32_t Game::get_game_code(){
     return code;
 }
+
+bool Game::is_playing() {
+    return keep_playing;
+}
