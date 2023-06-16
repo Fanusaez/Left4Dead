@@ -6,7 +6,7 @@
 
 class Screaming : public ZombieState{
 private:
-    float waiting_time_to_stop_screaming = 0.2;
+    float waiting_time_to_stop_screaming = 1;
     float last_time_screamed = - 1;
 
 public:

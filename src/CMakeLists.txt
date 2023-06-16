@@ -69,9 +69,12 @@ if(SERVER)
 		./game_logic/zombies/jumper.cpp
 		./game_logic/zombies/witch.cpp
 		./game_logic/zombies/zombie.h
+		./game_logic/zombies/venom.cpp
 		./game_logic/clear_the_zone.cpp
 		./game_logic/game_factory.cpp
-
+		./game_logic/zombies_attack/zombie_attack.h
+		./game_logic/zombies_attack/venom_close_range_attack.cpp
+		./game_logic/zombies_attack/venom_long_range_attack.cpp
 	)
 
 	target_include_directories(server PUBLIC ${PROJECT_SOURCE_DIR}/src/game_logic)
