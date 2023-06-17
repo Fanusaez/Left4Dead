@@ -20,3 +20,8 @@ std::vector<SoldierObjectDTO> GameDTO::get_soldiers(){
 std::vector<ZombieObjectDTO> GameDTO::get_zombies(){
     return zombies;
 }
+
+std::vector <GrenadeObjectDTO> GameDTO::get_elements()
+{
+	return this->elements;
+}
