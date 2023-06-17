@@ -28,11 +28,13 @@ Soldier *ClearTheZone::get_soldier_with_p90() {
 
 void ClearTheZone::update(float time) {
     game_state_update();
-    if (time_to_respawn_zombies(time) && quantity_total_zombies > 0) {
+    if (time_to_respawn_zombies(time) && quantity_total_zombies > 0 && still_in_game()) {
         respawn_zombies(time);
         last_time_updated = time;
     }
-    map.update(time);
+    if (still_in_game()) {
+        map.update(time);
+    }
 }
 
 void ClearTheZone::respawn_zombies(float time) {
