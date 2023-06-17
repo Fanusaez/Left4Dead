@@ -72,3 +72,7 @@ bool Survival::still_in_game() {
     game_over = true;
     return false;
 }
+
+bool Survival::is_game_over() {
+    return game_over;
+}

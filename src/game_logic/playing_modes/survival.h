@@ -44,6 +44,8 @@ public:
     Soldier* get_soldier_with_p90();
 
     std::vector<Zombie*>* get_zombies();
+
+    bool is_game_over();
 };
 
 
