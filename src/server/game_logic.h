@@ -7,7 +7,8 @@
 #include "../game_logic/map.h"
 #include "../game_logic/soldier.h"
 #include "../game_logic/zombies/zombie.h"
-#include "../game_logic/clear_the_zone.h"
+#include "../game_logic/playing_modes/clear_the_zone.h"
+#include "../game_logic/playing_modes/survival.h"
 #include <map>
 #include <utility>
 
@@ -18,7 +19,7 @@ class GameLogic {
 private:
     float timer;    //Usamos el timer para las animaciones y para los update del juego
 
-    ClearTheZone game_map;  //Estilo de juego
+    Survival game_map;  //Estilo de juego
 
     //Este mapa guardara los usuarios asociandolos a un soldado con la forma <player_id,soldier>
     std::map<int,Soldier*> playerSoldierMap; 

@@ -7,7 +7,8 @@
 double rate = 0.05;
 
 Game::Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, int32_t& player_id) : 
-    queue_entrante(10000), code(code), game_name(game_name), game_logic(), keep_playing(true)
+    queue_entrante(10000), code(code), game_name(game_name), game_logic(), keep_playing(true),
+    admit_players(true)
 {
     game_logic.add_soldier(player_id);
     //queue_salientes[player_id] = queue_sender;
@@ -19,13 +20,14 @@ void Game::run(){
     bool could_pop;
     int start_players = 0;
     //Espero a popoear la señal de start de todos los jugadores
-    while (start_players < protected_outputs_queue.number_of_players()) {
+    while (start_players < protected_outputs_queue.number_of_players() && keep_playing) {
         instructionDTO = queue_entrante.pop();  
         if (instructionDTO->get_instruction() == START)
             start_players++;
         delete instructionDTO;
     }
     //Comienza el juego
+    admit_players = false;
     while (keep_playing)
     {
         auto t_start = std::chrono::high_resolution_clock::now();   //Comienzo el timer
@@ -92,4 +94,8 @@ void Game::stop_playing(){
 
 int32_t Game::get_game_code(){
     return code;
+}
+
+bool Game::can_join() {
+    return admit_players;
 }

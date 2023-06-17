@@ -4,6 +4,7 @@
 enum GrenadeType : char {
     SMOKE_GRENADE,
     EXPLOSIVE_GRENADE,
-    AIR_STRIKE  //Son unas serie de de granadas en principio
+    AIR_STRIKE,  //Son unas serie de de granadas en principio
+    VENOM_GRENADE
 };
 #endif

@@ -32,6 +32,8 @@ private:
 
     bool keep_playing;  //Para controlar el gamme loop del server.
 
+    bool admit_players; //Para controlar si se pueden unir jugadores o no
+
 public:
     Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, int32_t& player_id);
 
@@ -52,5 +54,7 @@ public:
     void stop_playing();
 
     bool is_empty();
+
+    bool can_join();
 };
 #endif

@@ -174,7 +174,7 @@ bool Soldier::in_range_of_explosion(std::int16_t x_start,
 }
 
 void Soldier::die(float time) {
-    dead = true;
+    _dead = true;
     State* new_state = state->die(time);
     change_state(new_state);
 }
@@ -221,6 +221,10 @@ void Soldier::adjust_position_grenade(std::int16_t& x_grenade_pos) {
         x_grenade_pos += GRANADE_DISTANCE_REACH;
     }
 
+}
+
+bool Soldier::dead() {
+    return _dead;
 }
 
 Soldier::~Soldier(){

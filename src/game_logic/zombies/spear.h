@@ -1,5 +1,5 @@
-#ifndef WALKER_H_
-#define WALKER_H_
+#ifndef SPEAR_H
+#define SPEAR_H
 
 #include <complex>
 #include <cstdint>
@@ -9,7 +9,7 @@
 #include "../zombie_states/chasing_states/chase_walking.h"
 
 
-class Infected : public GameObject, public Zombie {
+class Spear : public GameObject, public Zombie {
  private:
     std::int16_t health = 100;
     std::int16_t damage_attack = 10;
@@ -18,8 +18,6 @@ class Infected : public GameObject, public Zombie {
     bool dead = false;
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;
-
-    // se debera recibir por parametro, para que corra camine o salte
     ChaseState* chase_state;
     const std::int16_t id;
     GameMap& map;
@@ -32,8 +30,7 @@ void change_state(ZombieState* new_state);
 void random_chase_state();
 
  public:
-Infected(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
-Infected(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map, std::int16_t extra_health);
+Spear(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
 
 void update(std::vector<Soldier*> soldiers, float time) override;
 
@@ -60,7 +57,7 @@ std::int16_t get_x_matrix_pos() override;
 bool facing_left() override;
 ZombieType get_type() override;
 
-~Infected();
+~Spear();
 
 // ************************* Metodos de testeo ************************************************8//
 std::int16_t get_health();

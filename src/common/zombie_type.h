@@ -4,6 +4,8 @@
 enum ZombieType : char {
     INFECTED,
     JUMPER,
-    WITCH
+    WITCH,
+    SPEAR,
+    VENOM
 };
 #endif
