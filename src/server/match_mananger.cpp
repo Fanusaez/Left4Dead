@@ -10,6 +10,8 @@ MatchMananger::MatchMananger() {
 Queue<InstructionsDTO*> *MatchMananger::create_game(Queue<GameDTO> *queue_sender, 
                     std::string& escenario, int32_t& player_id, int32_t& game_code)
 {
+    //Me fijo si algun juego dejo de existir
+    reap_dead();
     if (!game_name_exist(escenario)){   //Si el escenario no existe crearlo
         //Le paso la queue a la cual va a tener que pushear el game
         //Tambien es necesario el game_counter que sera el codigo que tendra junto con el nombre
@@ -54,4 +56,8 @@ void MatchMananger::delete_player(int32_t& player_id) {
     //Si al alimintar me qeude sin jugadores elimino el juego
     if (protected_game_list.delete_player(player_id)) 
         game_counter--;
+}
+
+void MatchMananger::reap_dead() {
+    protected_game_list.reap_dead();
 }

@@ -16,7 +16,6 @@ Lobby::Lobby(char *localhost, char *puerto) : socket(localhost,puerto), queue_se
     player_id = ntohl(player_id);
     lobby_sender.start();
     lobby_receiver.start();
-    game_code = -1;
 }
 
 bool Lobby::running(){
@@ -28,30 +27,27 @@ bool Lobby::create_scenario(const std::string& scenario_name){
 }
 
 bool Lobby::join_scenario(const int32_t& scenario_code) {
-    game_code = scenario_code;
     return (queue_sender.try_push(lobby_seializer.serialize_join_scenario(scenario_code)));
 }
 
 void Lobby::start() {
-    if (game_code != -1){
-        queue_sender.try_push(lobby_seializer.serialize_start_playing());
-        keep_talking = false;
-        queue_sender.close(); // Es correcto hacer eso?
-        lobby_sender.join();
-        lobby_receiver.join(); 
-    }
-    else {
-        std::cout<<"No estas en ninguna partida"<<std::endl;
-    }
+    queue_sender.try_push(lobby_seializer.serialize_start_playing());
+}
+
+void Lobby::exit_lobby() {
+    keep_talking = false;
+    queue_sender.close();
+    lobby_sender.join();
+    lobby_receiver.join(); 
 }
 
 void Lobby::close() {
     keep_talking = false;
     socket.shutdown(SHUT_RDWR);
     socket.close();
-    queue_sender.close(); // Es correcto hacer eso?
+    queue_sender.close();
     lobby_sender.join();
-    queue_receiver.close(); // Es correcto hacer eso?
+    queue_receiver.close();
     lobby_receiver.join(); 
 }
 
@@ -74,7 +70,10 @@ void Lobby::update(){
                 break;
             case JOIN:
                 get_join(instruction_dto);
-                break;                
+                break;   
+            case START:
+                get_start(instruction_dto);
+                break;             
         }
         delete instruction_dto;
         could_pop = queue_receiver.try_pop(instruction_dto);
@@ -84,8 +83,7 @@ void Lobby::update(){
 
 void Lobby::get_create(InstructionsDTO* instruction_dto) {
     CreateDTO* create_dto = dynamic_cast<CreateDTO*>(instruction_dto);
-    game_code = create_dto->get_game_code();
-    if (game_code != -1)
+    if (create_dto->get_game_code() != -1)
         std::cout<<"Partida creada. El codigo es: "<<create_dto->get_game_code()<<std::endl;
     else
         std::cout<<"Error al crear partida"<<std::endl;
@@ -97,7 +95,16 @@ void Lobby::get_join(InstructionsDTO* instruction_dto) {
         std::cout<<"Te has unido a una partida"<<std::endl;
     else{
         std::cout<<"Error al unirse a una partida"<<std::endl;
-        game_code = -1;
+    }
+}
+
+void Lobby::get_start(InstructionsDTO* instruction_dto) {
+    StartDTO* start_dto = dynamic_cast<StartDTO*>(instruction_dto);
+    if (start_dto->get_could_start()) {
+        std::cout<<"Comienza la partida"<<std::endl;
+        exit_lobby();
+    } else {
+        std::cout<<"Error al querer comenzar la partida"<<std::endl;
     }
 }
 

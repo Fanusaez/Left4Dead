@@ -21,7 +21,14 @@ void Game::run(){
     int start_players = 0;
     //Espero a popoear la señal de start de todos los jugadores
     while (start_players < protected_outputs_queue.number_of_players() && keep_playing) {
-        instructionDTO = queue_entrante.pop();  
+        try {
+            instructionDTO = queue_entrante.pop();  
+        }
+        catch (const ClosedQueue& e) {
+            std::cout<<"Juego finalizado"<<std::endl;
+            keep_playing = false;
+            return;
+        }
         if (instructionDTO->get_instruction() == START)
             start_players++;
         delete instructionDTO;
@@ -41,6 +48,7 @@ void Game::run(){
         }
         game_logic.udpate_game(); //Una vez que analize las instrucciones actualizo el juego.
         GameDTO game_dto = game_logic.get_game(); //Obtengo el "screen" del juego
+        keep_playing = !game_logic.game_over();
         //Comienzo a mandarlo a todas las queue de los clientes del juego
         protected_outputs_queue.push_game(game_dto);
         //Me fijo cuanto tardo y calculo cuanto dormir o si seguir corriendo para mantener el rate.
@@ -57,6 +65,7 @@ void Game::run(){
 			std::this_thread::sleep_for(std::chrono::duration<double>(rest));
 		}
     }
+    queue_entrante.close();
 }
 
 Queue<InstructionsDTO*> *Game::getQueue(){
@@ -98,4 +107,8 @@ int32_t Game::get_game_code(){
 
 bool Game::can_join() {
     return admit_players;
+}
+
+bool Game::is_not_playing() {
+    return keep_playing;
 }

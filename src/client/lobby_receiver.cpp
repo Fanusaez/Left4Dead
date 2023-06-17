@@ -12,6 +12,11 @@ void LobbyReceiver::run() {
     bool was_closed = false;
     while (keep_talking && was_closed == false) {
         InstructionsDTO* instruction = lobby_deserializer.obtener_instruccion(&was_closed);
+        if (instruction->get_instruction() == START){
+            StartDTO* start_dto = dynamic_cast<StartDTO*>(instruction);
+            if (start_dto->get_could_start())
+                keep_talking = false;
+        }
         queue_receiver->push(instruction);
     }
 }

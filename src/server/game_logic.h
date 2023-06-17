@@ -41,5 +41,7 @@ public:
 
     void udpate_game();
 
+    bool game_over();
+
 };
 #endif

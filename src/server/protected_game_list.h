@@ -23,5 +23,7 @@ public:
     void join_games();
 
     bool delete_player(int32_t& player_id);
+
+    void reap_dead();
 };
 #endif

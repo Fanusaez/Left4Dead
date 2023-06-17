@@ -15,8 +15,6 @@ class Lobby
 private:
     int32_t player_id;
 
-    int32_t game_code;
-
     Socket socket;
 
     std::atomic<bool> keep_talking;
@@ -34,6 +32,10 @@ private:
     void get_create(InstructionsDTO* instruction_dto);
 
     void get_join(InstructionsDTO* instruction_dto);
+
+    void get_start(InstructionsDTO* instruction_dto);
+
+    void exit_lobby();
 
 public:
     Lobby(char *localhost, char *puerto);

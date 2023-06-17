@@ -7,23 +7,31 @@
 
 #include <arpa/inet.h>
 
-PlayerReceiver::PlayerReceiver(Socket *socket, std::atomic<bool> &keep_talking, int32_t& player_id) 
-    : player_id(player_id), keep_talking(keep_talking), 
+PlayerReceiver::PlayerReceiver(Socket *socket, std::atomic<bool> &stay_in_match,
+                             std::atomic<bool> &keep_playing, int32_t& player_id) 
+    : player_id(player_id), stay_in_match(stay_in_match), keep_playing(keep_playing),
     server_deserializer(socket) {
         queue_receiver = nullptr;   //Comienza en nullptr. El player_sender le va a setear la queue
     }
 
 void PlayerReceiver::run() {
     bool was_closed = false;
-    while (keep_talking && was_closed == false) {
+    while (stay_in_match && was_closed == false) {
         try {
-            queue_receiver->push(server_deserializer.obtener_instruccion(&was_closed,player_id));
-        } 
-        catch (const std::runtime_error& e) {
-            keep_talking = false;
+            InstructionsDTO* new_instructionsDTO = server_deserializer.obtener_instruccion(&was_closed,player_id);
+            try {
+                queue_receiver->push(new_instructionsDTO);
+            } catch (const ClosedQueue& e){
+                std::cout<<"Juego finalizado"<<std::endl;
+                break;
+            }
+        } catch (const std::runtime_error& e) {
+            keep_playing = false;
+            std::cout<<"Se desconecto el cliente"<<std::endl;
             break;
         }
     }
+    stay_in_match = false;
 }
 
 void PlayerReceiver::setQueueReceiver(Queue<InstructionsDTO*> *queue_receiver){

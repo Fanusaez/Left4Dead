@@ -23,8 +23,8 @@ void ServerSerializer::send_join_scenario(const bool &join, bool *was_closed){
     socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
 
-void ServerSerializer::send_start_game(bool *was_closed) {
-    std::vector<char> buffer = serialize_start_game();
+void ServerSerializer::send_start_game(const bool &start, bool *was_closed) {
+    std::vector<char> buffer = serialize_start_game(start);
     socket->sendall(buffer.data(), buffer.size(), was_closed);
 }
 
@@ -61,9 +61,10 @@ std::vector<char> ServerSerializer::serialize_join_scenario(const bool &join) {
     return buffer;
 }
 
-std::vector<char> ServerSerializer::serialize_start_game() {
+std::vector<char> ServerSerializer::serialize_start_game(const bool &start) {
     std::vector<char> buffer;
     buffer.push_back(START);
+    buffer.push_back(start);
     return buffer;
 }
 

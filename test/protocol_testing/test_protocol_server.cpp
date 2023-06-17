@@ -43,10 +43,11 @@ void testSerializeJoinScenario(void)
 void testSerializeStart(void)
 {
     ServerSerializer server_serializer;
-    std::vector<char> buffer = server_serializer.serialize_start_game();
-    //- join: <join>
+    std::vector<char> buffer = server_serializer.serialize_start_game(true);
+    //- start: <start> <could_start>
     TEST_CHECK(buffer.size() == 1);
     TEST_CHECK(buffer.at(0) == START);
+    TEST_CHECK(buffer.at(1) == 1);
 }
 
 void testSerializePlayerId(void)

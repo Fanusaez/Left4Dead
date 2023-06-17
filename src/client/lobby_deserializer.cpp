@@ -53,7 +53,9 @@ JoinDTO* LobbyDeserializer::deserialize_join_scenario(bool *was_closed)
     return instructionsDTO;
 } */
 
-InstructionsDTO* LobbyDeserializer::deserialize_start_game(bool *was_closed) {
-    InstructionsDTO* instructionsDTO = new InstructionsDTO(START);
-    return instructionsDTO; 
+StartDTO* LobbyDeserializer::deserialize_start_game(bool *was_closed) {
+    bool could_start;
+    socket->recvall(&could_start, 1, was_closed);
+    StartDTO* startDTO = new StartDTO(could_start);
+    return startDTO; 
 }

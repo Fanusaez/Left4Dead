@@ -23,6 +23,8 @@ private:
 
     bool game_name_exist(const std::string& escenario);
 
+    void reap_dead();
+
 public:
     MatchMananger();
 

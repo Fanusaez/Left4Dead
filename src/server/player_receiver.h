@@ -17,14 +17,17 @@ private:
 
     Queue<InstructionsDTO*> *queue_receiver;
 
-    std::atomic<bool>& keep_talking;
+    std::atomic<bool>& stay_in_match;
 
+    std::atomic<bool>& keep_playing;
+    
     ServerDeserializer server_deserializer;
 
     int32_t player_id;
 
 public:
-    PlayerReceiver(Socket *socket, std::atomic<bool> &keep_talking, int32_t& player_id);
+    PlayerReceiver(Socket *socket, std::atomic<bool> &stay_in_match, 
+                std::atomic<bool> &keep_playing, int32_t& player_id);
 
     void run() override;
 

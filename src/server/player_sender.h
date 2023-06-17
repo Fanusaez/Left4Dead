@@ -23,7 +23,10 @@ private:
     ServerDeserializer server_deserializer;
     
     //Referencia del booleano que se encuentra dentro de Player.
-    std::atomic<bool>& keep_talking;
+    std::atomic<bool>& stay_in_match;
+
+    //Referencia del booleano que se encuentra dentro de Player.
+    std::atomic<bool>& keep_playing;
 
     //Usamos esta variable para el manejo del socket
     bool was_closed = false;
@@ -45,7 +48,7 @@ private:
     int32_t player_id;
 
 public:
-    PlayerSender(Socket *socket, std::atomic<bool> &keep_talking, 
+    PlayerSender(Socket *socket, std::atomic<bool> &stay_in_match, std::atomic<bool> &keep_playing,
                     MatchMananger *matchMananger, int32_t& player_id);
 
     void run() override;

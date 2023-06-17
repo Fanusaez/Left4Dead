@@ -20,7 +20,11 @@ private:
     //Hilo sender
     PlayerSender player_sender; //Hilo que se encargara de enviar mensajes al cliente.
 
-    std::atomic<bool> keep_talking; //Para cortar el loop en el hilo sender y el hilo receiver.
+    std::atomic<bool> stay_in_match; //Con este booleano nos vamos del juego pero podemos seguir
+                                    //en el server para conectarnos a otra partida.
+
+    std::atomic<bool> keep_playing; //Para cortar el loop en el hilo sender y el hilo receiver.
+                                    //Se pone en false cuando queremos desconectar al jugador.
 
 public:
     Player(Socket socket, MatchMananger *matchMananger, int32_t player_id);

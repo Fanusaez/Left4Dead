@@ -92,3 +92,7 @@ void GameLogic::udpate_game(){
     game_map.update(timer);
     timer += 0.05; //Rate del server loop
 }
+
+bool GameLogic::game_over() {
+    return game_map.is_game_over();
+}

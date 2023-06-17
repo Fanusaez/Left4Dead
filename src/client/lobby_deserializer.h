@@ -4,6 +4,7 @@
 #include "../common/instructionsDTO/instructions_dto.h"
 #include "../common/instructionsDTO/create_dto.h"
 #include "../common/instructionsDTO/join_dto.h"
+#include "../common/instructionsDTO/start_dto.h"
 #include "../common/socket.h"
 
 #include <vector>
@@ -27,6 +28,6 @@ public:
     
     InstructionsDTO* deserialize_game_list(bool *was_closed);
 
-    InstructionsDTO* deserialize_start_game(bool *was_closed);    
+    StartDTO* deserialize_start_game(bool *was_closed);    
 };
 #endif

@@ -62,8 +62,6 @@ int main(int argc, char *argv[])
 		}
 		lobby.update();
 	}
-	std::cout<<"start playing"<<std::endl;
-
 	// TODO: probar algo mejor
 	/*
 	 * Antes tenia el ttf en el gameview pero se destruia antes que el textureloader,

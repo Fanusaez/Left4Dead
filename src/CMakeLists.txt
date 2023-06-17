@@ -72,6 +72,8 @@ if(SERVER)
 		./game_logic/zombies/venom.cpp
 		./game_logic/playing_modes/clear_the_zone.cpp
 		./game_logic/playing_modes/survival.cpp
+		./game_logic/zombies/spear.cpp
+        ./game_logic/playing_modes/clear_the_zone.cpp
 		./game_logic/game_factory.cpp
 		./game_logic/zombies_attack/zombie_attack.h
 		./game_logic/zombies_attack/venom_close_range_attack.cpp
@@ -128,6 +130,7 @@ if(CLIENT)
 		./common/instructionsDTO/instructions_dto.cpp
 		./common/instructionsDTO/join_dto.cpp
 		./common/instructionsDTO/create_dto.cpp
+		./common/instructionsDTO/start_dto.cpp
 		./common/instructionsDTO/move_dto.cpp
 		./client/lobby.cpp
 		./client/lobby_deserializer.cpp

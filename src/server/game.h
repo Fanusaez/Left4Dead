@@ -56,5 +56,7 @@ public:
     bool is_empty();
 
     bool can_join();
+
+    bool is_not_playing();
 };
 #endif

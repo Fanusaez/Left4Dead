@@ -26,7 +26,7 @@ public:
 
     void send_join_scenario(const bool &join, bool *was_closed);
 
-    void send_start_game(bool *was_closed);
+    void send_start_game(const bool &start, bool *was_closed);
 
     void send_player_id(const int32_t& player_id, bool* was_closed);
     
@@ -43,7 +43,7 @@ public:
 
     std::vector<char> serialize_join_scenario(const bool &join);
 
-    std::vector<char> serialize_start_game();
+    std::vector<char> serialize_start_game(const bool &start);
 
     std::vector<char> serialize_player_id(const int32_t& player_id);
     
