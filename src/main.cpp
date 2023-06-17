@@ -119,6 +119,13 @@ int main(int argc, char *argv[])
 				object.updateState(zombie);
 			}
 		}
+		std::vector<GrenadeObjectDTO> elements = gameState.get_elements();
+		for (auto &element: elements) {
+			if (objects.find(element.id) == objects.end()) {
+				std::unique_ptr <RenderableObject> ptr = std::move(creator.create(element));
+				objects[ptr->getID()] = std::move(ptr);
+			}
+		}
 		for (auto &object : objects)
 			object.second->update(configs.FRAME_RATE);
 		view.render();

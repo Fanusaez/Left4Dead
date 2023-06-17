@@ -27,6 +27,8 @@ void Jumper::updateState(const ZombieObjectDTO &zombieDTO)
 	this->changeState(zombieDTO.state);
 }
 
+void Jumper::updateState(const GrenadeObjectDTO &grenadeDTO) {}
+
 void Jumper::update(unsigned int dt)
 {
 	this->animation.update(dt);

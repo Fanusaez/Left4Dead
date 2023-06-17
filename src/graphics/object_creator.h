@@ -9,6 +9,7 @@ class ObjectCreator {
 public:
 	std::unique_ptr<RenderableObject> create(const SoldierObjectDTO &soldierDTO) const;
 	std::unique_ptr<RenderableObject> create(const ZombieObjectDTO &zombieDTO) const;
+	std::unique_ptr<RenderableObject> create(const GrenadeObjectDTO &grenadeDTO) const;
 };
 
 #endif //CLIENT_CREATOR_H

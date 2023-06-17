@@ -22,6 +22,8 @@ public:
 
 	virtual void updateState(const ZombieObjectDTO &zombieDTO) = 0;
 
+	virtual void updateState(const GrenadeObjectDTO &grenadeDTO) = 0;
+
 	virtual void update(unsigned dt) = 0;
 
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) = 0;

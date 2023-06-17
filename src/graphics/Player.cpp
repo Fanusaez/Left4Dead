@@ -45,6 +45,7 @@ void Player::updateState(const SoldierObjectDTO &soldierDTO)
 
 void Player::updateState(const ZombieObjectDTO &zombieDTO) {}
 
+void Player::updateState(const GrenadeObjectDTO &grenadeDTO) {}
 /**
  * Notar que el manejo de eventos y la actualización de modelo ocurren en momentos distintos.
  * Esto les va a resultar muy util. 

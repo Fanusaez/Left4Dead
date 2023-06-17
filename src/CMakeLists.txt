@@ -98,6 +98,7 @@ if(CLIENT)
 			graphics/infected.cpp
 			graphics/witch.cpp
 			graphics/jumper.cpp
+			graphics/grenade.cpp
 			graphics/Animation.cpp
 			graphics/texture_loader.cpp
 			graphics/gameview_configs_loader.cpp

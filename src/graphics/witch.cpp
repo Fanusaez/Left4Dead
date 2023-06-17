@@ -27,6 +27,8 @@ void Witch::updateState(const ZombieObjectDTO &zombieDTO)
 	this->changeState(zombieDTO.state);
 }
 
+void Witch::updateState(const GrenadeObjectDTO &grenadeDTO) {}
+
 void Witch::update(unsigned int dt)
 {
 	this->animation.update(dt);

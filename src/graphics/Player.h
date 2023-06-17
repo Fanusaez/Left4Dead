@@ -33,6 +33,8 @@ public:
 
 	virtual void updateState(const ZombieObjectDTO &zombieDTO) override;
 
+	virtual void updateState(const GrenadeObjectDTO &grenadeDTO) override;
+
 	virtual void update(unsigned dt) override;
 
 	virtual void render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst) override;

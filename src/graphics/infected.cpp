@@ -27,6 +27,8 @@ void Infected::updateState(const ZombieObjectDTO &zombieDTO)
 	this->changeState(zombieDTO.state);
 }
 
+void Infected::updateState(const GrenadeObjectDTO &grenadeDTO) {}
+
 void Infected::update(unsigned int dt)
 {
 	this->animation.update(dt);
