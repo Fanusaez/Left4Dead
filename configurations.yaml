@@ -2,7 +2,7 @@ soldier:
   health: 100
 
 infected:
-  health: 10000
+  health: 100
   damage: 10
 
 jumper:
@@ -12,3 +12,9 @@ jumper:
 witch:
   health: 200
   damage: 30
+  probability_scream: 1
+  zombies_created_for_screaming: 2
+
+spear:
+  health: 100
+  damage: 10

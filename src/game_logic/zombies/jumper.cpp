@@ -2,9 +2,12 @@
 #include "../chaser.h"
 #include "../map.h"
 #include "../soldier.h"
+#include "../configuration.h"
 
 #define DISTANCE_TO_HIT 1
 #define DISTANCE_TO_JUMP 2
+
+#define CONFIGURATION Configuration::getInstance()
 
 Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
@@ -18,7 +21,9 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
         id(id),
         map(map),
-        chaser(this, map, x_pos, y_pos) {
+        chaser(this, map, x_pos, y_pos),
+        health(CONFIGURATION.get_jumper_health()),
+        damage_attack(CONFIGURATION.get_jumper_damage()) {
     health += extra_health;
 }
 

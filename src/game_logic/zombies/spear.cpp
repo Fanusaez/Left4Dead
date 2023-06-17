@@ -4,8 +4,11 @@
 #include "../chaser.h"
 #include "../zombie_states/chasing_states/chase_running.h"
 #include "../soldier.h"
+#include "../configuration.h"
+
 #define INVALID_POSITION -1
 #define DISTANCE_TO_HIT 2
+#define CONFIGURATION Configuration::getInstance()
 
 Spear::Spear(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
@@ -13,6 +16,18 @@ Spear::Spear(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         id(id),
         map(map),
         chaser(this, map, x_pos, y_pos) {
+    random_chase_state();
+}
+
+Spear::Spear(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health) :
+        x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
+        y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
+        id(id),
+        map(map),
+        chaser(this, map, x_pos, y_pos),
+        health(CONFIGURATION.get_spear_health()),
+        damage_attack(CONFIGURATION.get_spear_damage()) {
+    health += extra_health;
     random_chase_state();
 }
 

@@ -3,9 +3,10 @@
 #include "../map.h"
 #include <math.h>
 #include <iostream>
+#include "../configuration.h"
 
 #define DISTANCE_TO_HIT 1
-
+#define CONFIGURATION Configuration::getInstance()
 
 Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
@@ -19,7 +20,11 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
         id(id),
         map(map),
-        chaser(this, map, x_pos, y_pos) {
+        chaser(this, map, x_pos, y_pos),
+        health(CONFIGURATION.get_witch_health()),
+        damage_attack(CONFIGURATION.get_witch_damage()),
+        probability_to_scream(CONFIGURATION.get_witch_prob_scream()),
+        zombies_created_for_screaming(CONFIGURATION.get_witch_zombies_created_screaming()) {
     health += extra_health;
 }
 
