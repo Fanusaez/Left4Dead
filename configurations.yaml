@@ -1,0 +1,14 @@
+soldier:
+  health: 100
+
+infected:
+  health: 10000
+  damage: 10
+
+jumper:
+  health: 100
+  damage: 10
+
+witch:
+  health: 200
+  damage: 30

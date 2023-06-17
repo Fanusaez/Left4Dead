@@ -4,8 +4,12 @@
 #include "../chaser.h"
 #include "../zombie_states/chasing_states/chase_running.h"
 #include "../soldier.h"
+#include "../configuration.h"
+
 #define INVALID_POSITION -1
 #define DISTANCE_TO_HIT 1
+
+#define CONFIGURATION Configuration::getInstance()
 
 Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
@@ -21,7 +25,8 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
         id(id),
         map(map),
-        chaser(this, map, x_pos, y_pos) {
+        chaser(this, map, x_pos, y_pos),
+        health(CONFIGURATION.get_infected_health()){
     random_chase_state();
     health += extra_health;
 }
