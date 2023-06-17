@@ -5,6 +5,7 @@
 #include "../common/instructionsDTO/create_dto.h"
 #include "../common/instructionsDTO/join_dto.h"
 #include "../common/instructionsDTO/move_dto.h"
+#include "../common/instructionsDTO/grenade_dto.h"
 #include "../common/instructions_type.h"
 #include "../common/socket.h"
 #include <string>
@@ -24,7 +25,7 @@ private:
 
     InstructionsDTO* deserialize_shooting(bool *was_closed, int32_t& player_id);
 
-    InstructionsDTO* deserialize_grenede(bool *was_closed, int32_t& player_id);
+    GrenadeDTO* deserialize_grenede(bool *was_closed, int32_t& player_id);
 
     InstructionsDTO* deserialize_start(bool *was_closed, int32_t& player_id);
 

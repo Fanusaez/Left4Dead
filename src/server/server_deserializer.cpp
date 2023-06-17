@@ -78,8 +78,10 @@ InstructionsDTO* ServerDeserializer::deserialize_shooting(bool *was_closed, int3
     return instructionDTO;
 }
 
-InstructionsDTO* ServerDeserializer::deserialize_grenede(bool *was_closed, int32_t& player_id) {
-    InstructionsDTO* instructionDTO = new InstructionsDTO(player_id, GRENADE);
+GrenadeDTO* ServerDeserializer::deserialize_grenede(bool *was_closed, int32_t& player_id) {
+    uint8_t time;
+    socket->recvall(&time, 1, was_closed);
+    GrenadeDTO* instructionDTO = new GrenadeDTO(player_id, time);
     return instructionDTO;
 }
 

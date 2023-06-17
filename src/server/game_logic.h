@@ -30,6 +30,8 @@ private:
 
     void shoot(InstructionsDTO* instruction); 
 
+    void grenade(InstructionsDTO* instruction); 
+
 public:
     GameLogic();
 

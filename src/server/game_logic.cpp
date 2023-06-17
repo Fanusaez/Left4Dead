@@ -3,6 +3,7 @@
 #include "../game_logic/weapons/idf.h"
 #include "../game_logic/zombies/infected.h"
 #include "../common/instructionsDTO/move_dto.h"
+#include "../common/instructionsDTO/grenade_dto.h"
 #include "../common/move_type.h"
 #include <ctime>
 #include <vector>
@@ -27,6 +28,8 @@ void GameLogic::new_instruction(InstructionsDTO* instruction) {
     case SHOOT:
         shoot(instruction);
         break;
+    case GRENADE:
+        grenade(instruction);
     default:
         break;
     }
@@ -83,6 +86,12 @@ void GameLogic::reload(InstructionsDTO* instruction) {
 void GameLogic::shoot(InstructionsDTO* instruction) {
     Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
     soldier->shoot(timer);
+}
+
+void GameLogic::grenade(InstructionsDTO* instruction) {
+    GrenadeDTO* grenade_dto = dynamic_cast<GrenadeDTO*>(instruction);
+    Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
+    soldier->throw_explosive_grenade(grenade_dto->get_time());
 }
 
 void GameLogic::udpate_game(){
