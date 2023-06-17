@@ -1,11 +1,13 @@
 #include "jumping.h"
 #include "../soldier.h"
+#include "../configuration.h"
+
 Jumping::Jumping(Chaser& chaser,
                  Soldier* soldier,
                  std::int16_t damage,
                  std::int16_t x_pos_chase,
                  std::int16_t y_pos_chase,
-                 float time) {
+                 float time) : waiting_time_to_jump(CONFIGURATION.get_zombieState_jumping_time()) {
     zombie_state = JUMPING;
     chase_soldier_jumping(chaser, soldier, damage, x_pos_chase, y_pos_chase, time);
 }
@@ -44,7 +46,7 @@ Jumping::chase_soldier_jumping(Chaser& chaser,
                                std::int16_t y_pos_chase,
                                float time) {
     if (time_to_move(time)) {
-        last_time_moved = time;
+        last_time_jumped = time;
         chaser.chase(x_pos_chase, y_pos_chase);
         soldier->receive_damage(damage, time);
     }
@@ -73,10 +75,10 @@ ZombieState* Jumping::scream(GameMap &map, std::int16_t zombies_to_create, float
 }
 
 bool Jumping::time_to_move(float time) {
-    return (time - last_time_moved) >= waiting_time_to_move;
+    return (time - last_time_jumped) >= waiting_time_to_jump;
 }
 
 void Jumping::set_speed(float speed) {
-    waiting_time_to_move = speed;
+    waiting_time_to_jump = speed;
 }
 

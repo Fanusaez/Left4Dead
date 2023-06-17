@@ -1,6 +1,10 @@
 #include "zombie_being_attacked.h"
+#include "../configuration.h"
 
-ZombieBeingAttacked::ZombieBeingAttacked(float time) : start_time(time) {
+ZombieBeingAttacked::ZombieBeingAttacked(float time) :
+                        start_time(time),
+                        time_stop_being_attacked(CONFIGURATION.get_zombieState_being_attacked_time())
+{
     zombie_state = BEING_ATTACKED;
 }
 

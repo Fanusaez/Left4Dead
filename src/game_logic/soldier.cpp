@@ -2,8 +2,11 @@
 #include <iostream>
 #include "soldier.h"
 #include "map.h"
+#include "configuration.h"
 
 #define GRANADE_DISTANCE_REACH 4
+#define CONFIGURATION Configuration::getInstance()
+
 
 Soldier::Soldier(Weapon* weapon,
                  GameMap& map,
@@ -14,7 +17,8 @@ Soldier::Soldier(Weapon* weapon,
         map(map),
         x_pos(x_pos * MOVEMENTS_PER_CELL),
         y_pos(y_pos * MOVEMENTS_PER_CELL),
-        id(id) {}
+        id(id),
+        health(CONFIGURATION.get_soldier_health()) {}
 
 void Soldier::update(float time) {
     State* new_state = state->update(time);

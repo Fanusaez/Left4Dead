@@ -7,7 +7,6 @@
 #define DISTANCE_TO_HIT 1
 #define DISTANCE_TO_JUMP 2
 
-#define CONFIGURATION Configuration::getInstance()
 
 Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         x_pos(x_pos_wal * MOVEMENTS_PER_CELL),

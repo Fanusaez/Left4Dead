@@ -7,7 +7,6 @@
 class Attacking : public ZombieState {
 
 private:
-    float attack_speed = 0.3;
     float waiting_time_to_attack = 0.2;
     float start_time;
 

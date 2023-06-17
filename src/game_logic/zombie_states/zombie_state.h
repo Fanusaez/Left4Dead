@@ -9,6 +9,8 @@ class Zombie;
 class Soldier;
 class Chaser;
 
+#define CONFIGURATION Configuration::getInstance()
+
 class ZombieState {
 private:
 public:

@@ -1,6 +1,9 @@
 #include "stunned.h"
+#include "../configuration.h"
 
-Stunned::Stunned(float time) : start_time(time) {}
+Stunned::Stunned(float time) :  start_time(time),
+                                waiting_time_to_normal(CONFIGURATION.get_zombieState_stunned_time()),
+                                waiting_time_to_walk(CONFIGURATION.get_zombieState_walking_time()){}
 
 ZombieState *Stunned::update(float time) {
     return nullptr;
@@ -14,7 +17,6 @@ ZombieState* Stunned::chase_soldier(Chaser& chaser,
     if (time_to_walk(time) && time_stop_being_stunned(time)) {
         return new Walking(chaser, x_pos_chase, y_pos_chase, time);
     } else if (time_to_walk(time)) {
-        last_time_moved = time;
         chaser.chase(x_pos_chase, y_pos_chase);
     }
     return nullptr;

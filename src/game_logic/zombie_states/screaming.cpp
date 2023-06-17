@@ -1,7 +1,10 @@
 #include "screaming.h"
 #include "../map.h"
+#include "../configuration.h"
 
-Screaming::Screaming(GameMap &map, std::int16_t zombies_to_create, float time) {
+Screaming::Screaming(GameMap &map, std::int16_t zombies_to_create, float time) :
+    waiting_time_to_stop_screaming(CONFIGURATION.get_zombieState_screaming_time())
+{
     zombie_state = SCREAMING;    
     scream(map, zombies_to_create, time);
 }

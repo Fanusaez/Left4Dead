@@ -5,8 +5,8 @@
 
 class Running : public ZombieState {
 private:
-    float waiting_time_to_move = 0.01;
-    float last_time_moved = -1;
+    float waiting_time_to_run = 0.01;
+    float last_time_run = -1;
 
 public:
 

@@ -1,10 +1,11 @@
 #include <cmath>
 #include "walking.h"
+#include "../configuration.h"
 
 Walking::Walking(Chaser& chaser,
                  std::int16_t x_pos_chase,
                  std::int16_t y_pos_chase,
-                 float time) {
+                 float time) : waiting_time_to_walk(CONFIGURATION.get_zombieState_walking_time()) {
     zombie_state = WALKING;
     chase_soldier(chaser, x_pos_chase, y_pos_chase, time);
 }
@@ -73,7 +74,5 @@ bool Walking::time_to_move(float time) {
 }
 
 void Walking::set_speed(float speed) {
-    walker_speed = speed;
-    // se puede usar para setear que tan frecuentemente se puede mover
-    // de otra manera no sirve
+    waiting_time_to_walk = speed;
 }

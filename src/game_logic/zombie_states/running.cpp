@@ -1,9 +1,11 @@
 #include "running.h"
+#include "../configuration.h"
+
 
 Running::Running(Chaser& chaser,
                  std::int16_t x_pos_chase,
                  std::int16_t y_pos_chase,
-                 float time)  {
+                 float time) : waiting_time_to_run(CONFIGURATION.get_zombieState_running_time()) {
     zombie_state = RUNNING;
     chase_soldier_running(chaser, x_pos_chase, y_pos_chase, time);
 }
@@ -32,7 +34,7 @@ ZombieState* Running::chase_soldier_running(Chaser& chaser,
                                     float time) {
 
     if (time_to_move(time)) {
-        last_time_moved = time;
+        last_time_run = time;
         chaser.chase(x_pos_chase, y_pos_chase);
     }
     return nullptr;
@@ -73,9 +75,9 @@ ZombieState *Running::scream(GameMap &map, std::int16_t zombies_to_create, float
 }
 
 bool Running::time_to_move(float time) {
-    return (time - last_time_moved) >= waiting_time_to_move;
+    return (time - last_time_run) >= waiting_time_to_run;
 }
 
 void Running::set_speed(float speed) {
-     waiting_time_to_move = speed;
+     waiting_time_to_run = speed;
 }

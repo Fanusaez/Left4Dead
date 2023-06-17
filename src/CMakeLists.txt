@@ -12,6 +12,7 @@ if(SERVER)
 		./common/instructionsDTO/join_dto.cpp
 		./common/instructionsDTO/create_dto.cpp
 		./common/instructionsDTO/move_dto.cpp
+		./common/instructionsDTO/grenade_dto.cpp
 		./server/acceptor.cpp
 		./server/server.cpp
 		./server/match_mananger.cpp

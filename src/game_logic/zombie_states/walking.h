@@ -13,7 +13,6 @@
 class Walking : public ZombieState {
 
 private:
-    std::int16_t walker_speed = 1;
     float waiting_time_to_walk = 0.2;
     float last_time_moved = - 1;
 
