@@ -36,6 +36,8 @@ public:
 
     bool shoot();
 
+    bool throw_grenade(const uint8_t& time);
+
     std::optional<GameDTO> get_game();
 
     void join();

@@ -26,6 +26,10 @@ bool Client::shoot(){
     return (queue_sender.try_push(client_seializer.serialize_shooting()));
 }
 
+bool Client::throw_grenade(const uint8_t& time){
+    return (queue_sender.try_push(client_seializer.serialize_throw_grenede(time)));
+}
+
 std::optional<GameDTO> Client::get_game(){
     GameDTO game_dto;
     if (queue_receiver.try_pop(game_dto)) {

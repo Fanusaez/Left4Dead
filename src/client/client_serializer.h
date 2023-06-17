@@ -21,6 +21,6 @@ public:
 
     std::vector<char> serialize_shooting();
 
-    std::vector<char> serialize_throw_grenede(const int& time);
+    std::vector<char> serialize_throw_grenede(const uint8_t& time);
 };
 #endif
