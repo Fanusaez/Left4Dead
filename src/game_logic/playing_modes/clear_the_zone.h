@@ -45,6 +45,8 @@ public:
 
     std::vector<Zombie*>* get_zombies();
 
+    bool is_game_over();
+
 };
 
 

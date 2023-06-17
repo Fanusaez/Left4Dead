@@ -35,6 +35,8 @@ void ClearTheZone::update(float time) {
     }
     if (still_in_game()) {
         map.update(time);
+    } else {
+        game_over = true;
     }
 }
 
@@ -64,7 +66,6 @@ void ClearTheZone::game_state_update() {
         level_cleared = true;
         return;
     }
-    game_over = true;
 }
 
 bool ClearTheZone::still_in_game() {
@@ -72,4 +73,8 @@ bool ClearTheZone::still_in_game() {
         if (!player->dead()) return true;
     }
     return false;
+}
+
+bool ClearTheZone::is_game_over(){
+    return game_over;
 }
