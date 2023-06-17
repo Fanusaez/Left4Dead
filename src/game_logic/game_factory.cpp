@@ -44,14 +44,14 @@ Zombie* GameFactory::create_random_zombie(std::vector<std::int16_t>& zombie_pos)
     return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map); // porlas
 }
 
-Zombie* GameFactory::create_infected(std::vector<std::int16_t>& zombie_pos) {
-    return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+Zombie* GameFactory::create_infected(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health) {
+    return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, extra_health);
 }
 
-Zombie* GameFactory::create_jumper(std::vector<std::int16_t>& zombie_pos) {
-    return new Jumper(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+Zombie* GameFactory::create_jumper(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health) {
+    return new Jumper(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, extra_health);
 }
 
-Zombie* GameFactory::create_witch(std::vector<std::int16_t>& zombie_pos) {
-    return new Witch(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+Zombie* GameFactory::create_witch(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health) {
+    return new Witch(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, extra_health);
 }

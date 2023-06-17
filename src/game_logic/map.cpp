@@ -269,10 +269,10 @@ void GameMap::add_random_zombie() {
     map[y_pos][x_pos] = dynamic_cast<GameObject*>(zombie);
 }
 
-void GameMap::add_infected() {
+void GameMap::add_infected(std::int16_t infected_health) {
     std::vector<std::int16_t> zombie_pos;
     get_position_for_object(zombie_pos);
-    Zombie* zombie = factory.create_infected(zombie_pos);
+    Zombie* zombie = factory.create_infected(zombie_pos, infected_health);
     zombies.push_back(zombie);
 
     std::int16_t x_pos = zombie_pos[X_POS];
@@ -280,10 +280,10 @@ void GameMap::add_infected() {
     map[y_pos][x_pos] = dynamic_cast<GameObject*>(zombie);
 }
 
-void GameMap::add_jumper() {
+void GameMap::add_jumper(std::int16_t extra_health) {
     std::vector<std::int16_t> zombie_pos;
     get_position_for_object(zombie_pos);
-    Zombie* zombie = factory.create_jumper(zombie_pos);
+    Zombie* zombie = factory.create_jumper(zombie_pos, extra_health);
     zombies.push_back(zombie);
 
     std::int16_t x_pos = zombie_pos[X_POS];
@@ -291,10 +291,10 @@ void GameMap::add_jumper() {
     map[y_pos][x_pos] = dynamic_cast<GameObject*>(zombie);
 }
 
-void GameMap::add_witch() {
+void GameMap::add_witch(std::int16_t extra_health) {
     std::vector<std::int16_t> zombie_pos;
     get_position_for_object(zombie_pos);
-    Zombie* zombie = factory.create_witch(zombie_pos);
+    Zombie* zombie = factory.create_witch(zombie_pos, extra_health);
     zombies.push_back(zombie);
 
     std::int16_t x_pos = zombie_pos[X_POS];

@@ -33,6 +33,7 @@ private:
 public:
 
     Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map);
+    Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health);
 
     void update(std::vector<Soldier*> soldiers, float time) override;
 

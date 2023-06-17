@@ -13,6 +13,15 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         map(map),
         chaser(this, map, x_pos, y_pos) {}
 
+Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health) :
+        x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
+        y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
+        id(id),
+        map(map),
+        chaser(this, map, x_pos, y_pos) {
+    health += extra_health;
+}
+
 void Jumper::update(std::vector<Soldier*> soldiers, float time) {
     ZombieState* new_state = state->update(time);
     change_state(new_state);

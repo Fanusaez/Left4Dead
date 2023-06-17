@@ -16,6 +16,17 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
     random_chase_state();
 }
 
+Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health) :
+        x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
+        y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
+        id(id),
+        map(map),
+        chaser(this, map, x_pos, y_pos) {
+    random_chase_state();
+    health += extra_health;
+}
+
+
 void Infected::update(std::vector<Soldier*> soldiers, float time) {
     ZombieState* new_state = state->update(time);
     change_state(new_state);

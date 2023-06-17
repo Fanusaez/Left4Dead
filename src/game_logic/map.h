@@ -97,17 +97,16 @@ Soldier* get_soldier_with_idf();
 Soldier* get_soldier_with_scout();
 Soldier* get_soldier_with_p90();
 void add_random_zombie();
-void add_infected();
-void add_jumper();
-void add_witch();
+void add_infected(std::int16_t extra_health);
+void add_jumper(std::int16_t extra_health);
+void add_witch(std::int16_t extra_health);
 
-bool add_soldier(Soldier* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
-bool add_zombie(Zombie* walker, std::uint16_t x_pos, std::uint16_t y_pos);
 void free_position(std::int16_t x_pos, std::int16_t y_pos);
 
 std::vector<Zombie*>* get_zombies();
 
 ~GameMap();
+
 // ***************************************** Metodos de testeo **********************************************************//
 bool collision(std::int16_t direction, std::uint16_t x_pos, std::uint16_t y_pos);
 bool collision_going_up_test(std::uint16_t x_pos, std::uint16_t y_pos);
@@ -116,5 +115,7 @@ void add_obstacle(GameObject* obstacle, std::uint16_t x_pos, std::uint16_t y_pos
 GameObject* get_object(std::uint16_t x_pos, std::uint16_t y_pos);
 std::int16_t objects_in_map();
 void empty_vectors();
+bool add_soldier(Soldier* soldier, std::uint16_t x_pos, std::uint16_t y_pos);
+bool add_zombie(Zombie* walker, std::uint16_t x_pos, std::uint16_t y_pos);
 };
 #endif  // MAP_H_

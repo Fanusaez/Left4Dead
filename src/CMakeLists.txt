@@ -70,7 +70,8 @@ if(SERVER)
 		./game_logic/zombies/witch.cpp
 		./game_logic/zombies/zombie.h
 		./game_logic/zombies/venom.cpp
-            game_logic/playing_modes/clear_the_zone.cpp
+		./game_logic/playing_modes/clear_the_zone.cpp
+		./game_logic/playing_modes/survival.cpp
 		./game_logic/game_factory.cpp
 		./game_logic/zombies_attack/zombie_attack.h
 		./game_logic/zombies_attack/venom_close_range_attack.cpp
