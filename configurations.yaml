@@ -1,5 +1,6 @@
 soldier:
   health: 100
+  grenade_distance_reach: 4
 
 soldierStates:
   time_being_attacked: 0.1

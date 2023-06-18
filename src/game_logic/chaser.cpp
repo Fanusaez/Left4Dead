@@ -2,7 +2,6 @@
 #include "map.h"
 
 #define INVALID_POSITION -1
-#define WALLS_LIMITS 0.5
 #define MOVEMENTS_PER_CELL 2
 #define LEFT 2
 #define RIGHT 3

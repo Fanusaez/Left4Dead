@@ -9,6 +9,7 @@ Configuration& Configuration::getInstance() {
 
 Configuration::Configuration(const YAML::Node& node) :
                             soldier_health(node["soldier"]["health"].as<std::int16_t>()),
+                            soldierGrenade_distance_reach(node["soldier"]["grenade_distance_reach"].as<std::int16_t>()),
                             soldierState_time_being_attacked(node["soldierStates"]["time_being_attacked"].as<float>()),
                             soldierState_time_calling_air_strike(node["soldierStates"]["time_calling_air_strike"].as<float>()),
                             soldierState_time_moving(node["soldierStates"]["time_moving"].as<float>()),
@@ -51,6 +52,10 @@ Configuration::Configuration(const YAML::Node& node) :
 
 std::int16_t Configuration::get_soldier_health() {
     return soldier_health;
+}
+
+std::int16_t Configuration::get_soldier_grenade_distance_reach() {
+    return soldierGrenade_distance_reach;
 }
 
 float Configuration::get_soldierState_time_being_attacked() {

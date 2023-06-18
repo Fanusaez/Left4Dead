@@ -4,7 +4,6 @@
 #include "map.h"
 #include "configuration.h"
 
-#define GRANADE_DISTANCE_REACH 4
 #define CONFIGURATION Configuration::getInstance()
 
 
@@ -18,7 +17,8 @@ Soldier::Soldier(Weapon* weapon,
         x_pos(x_pos * MOVEMENTS_PER_CELL),
         y_pos(y_pos * MOVEMENTS_PER_CELL),
         id(id),
-        health(CONFIGURATION.get_soldier_health()) {}
+        health(CONFIGURATION.get_soldier_health()),
+        grenade_distance_reach(CONFIGURATION.get_soldier_grenade_distance_reach()) {}
 
 void Soldier::update(float time) {
     State* new_state = state->update(time);
@@ -220,9 +220,9 @@ void Soldier::change_state(State *new_state) {
 
 void Soldier::adjust_position_grenade(std::int16_t& x_grenade_pos) {
     if (direction == LEFT) {
-        x_grenade_pos -= GRANADE_DISTANCE_REACH;
+        x_grenade_pos -= grenade_distance_reach;
     } else {
-        x_grenade_pos += GRANADE_DISTANCE_REACH;
+        x_grenade_pos += grenade_distance_reach;
     }
 
 }

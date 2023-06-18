@@ -16,6 +16,7 @@ class Soldier : public GameObject {
     std::int16_t direction = RIGHT;
     bool _dead = false;
     std::int16_t health = 100;
+    std::int16_t grenade_distance_reach = 4;
     const std::int16_t id;
 
 void die(float time);
