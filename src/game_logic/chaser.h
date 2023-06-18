@@ -13,6 +13,7 @@ private:
     Zombie* zombie;
     GameMap& map;
     const std::int16_t zombie_speed = 1;
+    std::int16_t movements_per_cell = 2;
 
     void move_right(bool& same_place);
     void move_left(bool& same_place);

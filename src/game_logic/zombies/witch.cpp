@@ -8,15 +8,16 @@
 #define DISTANCE_TO_HIT 1
 
 Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
-        x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
-        y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
+        x_pos(x_pos_wal * movements_per_cell),
+        y_pos(y_pos_wal * movements_per_cell),
         id(id),
         map(map),
         chaser(this, map, x_pos, y_pos) {}
 
 Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health) :
-        x_pos(x_pos_wal * MOVEMENTS_PER_CELL),
-        y_pos(y_pos_wal * MOVEMENTS_PER_CELL),
+        movements_per_cell(CONFIGURATION.get_movements_per_cell()),
+        x_pos(x_pos_wal * movements_per_cell),
+        y_pos(y_pos_wal * movements_per_cell),
         id(id),
         map(map),
         chaser(this, map, x_pos, y_pos),
@@ -63,8 +64,8 @@ bool Witch::in_range_of_explosion(std::int16_t x_start,
                                      std::int16_t x_finish,
                                      std::int16_t y_start,
                                      std::int16_t y_finish) {
-    std::int16_t x_matrix_pos = x_pos / MOVEMENTS_PER_CELL;
-    std::int16_t y_matrix_pos = y_pos / MOVEMENTS_PER_CELL;
+    std::int16_t x_matrix_pos = x_pos / movements_per_cell;
+    std::int16_t y_matrix_pos = y_pos / movements_per_cell;
     return (x_start <= x_matrix_pos && x_matrix_pos <= x_finish && y_start <= y_matrix_pos && y_matrix_pos <= y_finish);
 }
 
@@ -161,11 +162,11 @@ std::int16_t Witch::get_x_pos() {
 }
 
 std::int16_t Witch::get_y_matrix_pos() {
-    return y_pos / MOVEMENTS_PER_CELL;
+    return y_pos / movements_per_cell;
 }
 
 std::int16_t Witch::get_x_matrix_pos() {
-    return x_pos / MOVEMENTS_PER_CELL;
+    return x_pos / movements_per_cell;
 }
 
 std::int16_t Witch::get_random_number() {

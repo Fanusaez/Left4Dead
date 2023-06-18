@@ -14,8 +14,9 @@ Soldier::Soldier(Weapon* weapon,
                  std::int16_t id) :
         weapon(weapon),
         map(map),
-        x_pos(x_pos * MOVEMENTS_PER_CELL),
-        y_pos(y_pos * MOVEMENTS_PER_CELL),
+        movements_per_cell(CONFIGURATION.get_movements_per_cell()),
+        x_pos(x_pos * movements_per_cell),
+        y_pos(y_pos * movements_per_cell),
         id(id),
         health(CONFIGURATION.get_soldier_health()),
         grenade_distance_reach(CONFIGURATION.get_soldier_grenade_distance_reach()) {}
@@ -113,7 +114,7 @@ void Soldier::move_left(float time) {
 }
 
 void Soldier::move_up() {
-    if ((y_pos % MOVEMENTS_PER_CELL) != 0) {
+    if ((y_pos % movements_per_cell) != 0) {
         y_pos -= 1;
         return;
     }
@@ -126,7 +127,7 @@ void Soldier::move_up() {
 
 void Soldier::move_down() {
     std::int16_t y_new_pos = y_pos + 1;
-    if ((y_new_pos % MOVEMENTS_PER_CELL) != 0) {
+    if ((y_new_pos % movements_per_cell) != 0) {
         y_pos += 1;
         return;
     }
@@ -140,7 +141,7 @@ void Soldier::move_down() {
 void Soldier::move_right() {
     direction = RIGHT;
     std::int16_t x_new_pos = x_pos + 1;
-    if ((x_new_pos % MOVEMENTS_PER_CELL) != 0) {
+    if ((x_new_pos % movements_per_cell) != 0) {
         x_pos += 1;
         return;
     }
@@ -153,7 +154,7 @@ void Soldier::move_right() {
 
 void Soldier::move_left() {
     direction = LEFT;
-    if ((x_pos % MOVEMENTS_PER_CELL) != 0) {
+    if ((x_pos % movements_per_cell) != 0) {
         x_pos -= 1;
         return;
     }
@@ -200,11 +201,11 @@ std::int16_t Soldier::get_x_pos() {
 }
 
 std::int16_t Soldier::get_y_matrix_pos() {
-    return y_pos / MOVEMENTS_PER_CELL;
+    return y_pos / movements_per_cell;
 }
 
 std::int16_t Soldier::get_x_matrix_pos() {
-    return x_pos / MOVEMENTS_PER_CELL;
+    return x_pos / movements_per_cell;
 }
 
 bool Soldier::facing_left() {

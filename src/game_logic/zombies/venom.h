@@ -12,6 +12,7 @@
 
 class Venom : public GameObject, public Zombie {
 private:
+    std::int16_t movements_per_cell = 2;
     std::int16_t health = 100;
     std::int16_t damage_attack = 20;
     std::int16_t x_pos;

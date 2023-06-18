@@ -48,7 +48,8 @@ Configuration::Configuration(const YAML::Node& node) :
                             zombieState_time_screaming(node["zombieStates"]["time_screaming"].as<float>()),
                             zombieState_time_stunned(node["zombieStates"]["time_stunned"].as<float>()),
                             zombieState_time_walking(node["zombieStates"]["time_walking"].as<float>()),
-                            zombieState_time_being_attacked(node["zombieStates"]["time_being_attacked"].as<float>()) {}
+                            zombieState_time_being_attacked(node["zombieStates"]["time_being_attacked"].as<float>()),
+                            matrix_movements_per_cell(node["mapLogic"]["matrix_movements_per_cell"].as<std::int16_t>()) {}
 
 std::int16_t Configuration::get_soldier_health() {
     return soldier_health;
@@ -212,6 +213,10 @@ float Configuration::get_zombieState_walking_time() {
 
 float Configuration::get_zombieState_being_attacked_time() {
     return zombieState_time_being_attacked;
+}
+
+std::int16_t Configuration::get_movements_per_cell() {
+    return matrix_movements_per_cell;
 }
 
 Configuration::~Configuration() {}

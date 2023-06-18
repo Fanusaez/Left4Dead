@@ -60,6 +60,7 @@ private:
     float zombieState_time_walking;
     float zombieState_time_being_attacked;
 
+    std::int16_t matrix_movements_per_cell;
 
     Configuration(const YAML::Node& node);
     void parse_configurations(const YAML::Node& configNode);
@@ -124,6 +125,8 @@ public:
     float get_zombieState_stunned_time();
     float get_zombieState_walking_time();
     float get_zombieState_being_attacked_time();
+
+    std::int16_t get_movements_per_cell();
 };
 
 

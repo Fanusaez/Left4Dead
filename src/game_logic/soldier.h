@@ -8,6 +8,7 @@
 
 class Soldier : public GameObject {
  private:
+    std::int16_t movements_per_cell = 2;
     Weapon* weapon = nullptr;
     State* state = new Idle;
     GameMap &map;

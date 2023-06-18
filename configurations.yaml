@@ -65,3 +65,6 @@ zombieStates:
   time_stunned: 10
   time_walking: 0.2
   time_being_attacked: 0.3
+
+mapLogic:
+  matrix_movements_per_cell: 2

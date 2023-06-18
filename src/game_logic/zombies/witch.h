@@ -13,6 +13,7 @@ class GameMap;
 class Witch : public GameObject, public Zombie {
 
 private:
+    std::int16_t movements_per_cell = 2;
     std::int16_t health = 200;
     std::int16_t damage_attack = 30;
     std::int16_t x_pos;

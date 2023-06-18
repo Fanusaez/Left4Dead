@@ -1,8 +1,12 @@
 #include "obstacle.h"
+#include "configuration.h"
+
+#define CONFIGURATION Configuration::getInstance()
 
 Obstacle::Obstacle(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id) :
-        x_pos(x_pos * MOVEMENTS_PER_CELL),
-        y_pos(y_pos * MOVEMENTS_PER_CELL),
+        movements_per_cell(CONFIGURATION.get_movements_per_cell()),
+        x_pos(x_pos * movements_per_cell),
+        y_pos(y_pos * movements_per_cell),
         id(id) {}
 
 
@@ -38,9 +42,9 @@ std::int16_t Obstacle::get_x_pos() {
 }
 
 std::int16_t Obstacle::get_y_matrix_pos() {
-    return y_pos / MOVEMENTS_PER_CELL;
+    return y_pos / movements_per_cell;
 }
 
 std::int16_t Obstacle::get_x_matrix_pos() {
-    return x_pos / MOVEMENTS_PER_CELL;
+    return x_pos / movements_per_cell;
 }

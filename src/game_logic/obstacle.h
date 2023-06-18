@@ -8,6 +8,7 @@ class Obstacle : public GameObject{
 private:
     std::int16_t x_pos;
     std::int16_t y_pos;
+    std::int16_t movements_per_cell = 2;
     const std::int16_t id;
 
 public:
