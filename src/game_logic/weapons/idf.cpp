@@ -9,7 +9,11 @@
 Idf::Idf(std::int16_t id_explosive_grenade,
          std::int16_t id_smoke_grenade) :
          explosive_grenade(id_explosive_grenade),
-         smoke_grenade(id_smoke_grenade) {}
+         smoke_grenade(id_smoke_grenade),
+         bullets(CONFIGURATION.get_weaponIdf_mag_capacity()),
+         mag_capacity(CONFIGURATION.get_weaponIdf_mag_capacity()),
+         close_range_damage(CONFIGURATION.get_weaponIdf_close_range_damage()),
+         long_range_damage(CONFIGURATION.get_weaponIdf_long_range_damage()) {}
 
 void Idf::update(float time) {
     explosive_grenade.update(time);

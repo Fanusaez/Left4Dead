@@ -10,7 +10,9 @@
 #include "shooting.h"
 #include "idle.h"
 
-ThrowingExplosiveGrenade::ThrowingExplosiveGrenade(float time)  : start_time(time){}
+ThrowingExplosiveGrenade::ThrowingExplosiveGrenade(float time)  :
+start_time(time),
+duration_of_throwing_granade(CONFIGURATION.get_soldierState_time_throwing_explosive_grenade()) {}
 
 State* ThrowingExplosiveGrenade::update(float time) {
     if (time_stop_throwing(time)) {

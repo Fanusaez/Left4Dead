@@ -8,7 +8,9 @@
 #include "reloading.h"
 #include "idle.h"
 
-CallingAirStrike::CallingAirStrike(float start_time) : start_time(start_time) {}
+CallingAirStrike::CallingAirStrike(float start_time) :
+        start_time(start_time),
+        time_stop_calling(CONFIGURATION.get_soldierState_time_calling_air_strike()) {}
 
 State *CallingAirStrike::update(float time) {
     if (time_to_stop_calling(time)) {

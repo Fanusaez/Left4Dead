@@ -1,6 +1,30 @@
 soldier:
   health: 100
 
+soldierStates:
+  time_being_attacked: 0.1
+  time_calling_air_strike: 0.3
+  time_moving: 0.1
+  time_reloading: 0.5
+  time_shooting: 0.1
+  time_throwing_explosive_g: 0.2
+  time_throwing_smoke_g: 0.2
+
+weapons:
+  idf:
+    mag_capacity: 50
+    close_range_damage: 30
+    long_range_damage: 15
+
+  p90:
+    mag_capacity: 30
+    damage: 15
+
+  scout:
+    mag_capacity: 20
+    damage: 40
+    damage_reduction_per_hit: 10
+
 infected:
   health: 100
   damage: 10

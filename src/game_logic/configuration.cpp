@@ -9,6 +9,21 @@ Configuration& Configuration::getInstance() {
 
 Configuration::Configuration(const YAML::Node& node) :
                             soldier_health(node["soldier"]["health"].as<std::int16_t>()),
+                            soldierState_time_being_attacked(node["soldierStates"]["time_being_attacked"].as<float>()),
+                            soldierState_time_calling_air_strike(node["soldierStates"]["time_calling_air_strike"].as<float>()),
+                            soldierState_time_moving(node["soldierStates"]["time_moving"].as<float>()),
+                            soldierState_time_reloading(node["soldierStates"]["time_reloading"].as<float>()),
+                            soldierState_time_shooting(node["soldierStates"]["time_shooting"].as<float>()),
+                            soldierState_time_throwing_explosive_g(node["soldierStates"]["time_throwing_explosive_g"].as<float>()),
+                            soldierState_time_throwing_smoke_g(node["soldierStates"]["time_throwing_smoke_g"].as<float>()),
+                            weaponIdf_mag_capacity(node["weapons"]["idf"]["mag_capacity"].as<std::int16_t>()),
+                            weaponIdf_close_range_damage(node["weapons"]["idf"]["close_range_damage"].as<std::int16_t>()),
+                            weaponIdf_long_range_damage(node["weapons"]["idf"]["long_range_damage"].as<std::int16_t>()),
+                            weaponP90_mag_capacity(node["weapons"]["p90"]["mag_capacity"].as<std::int16_t>()),
+                            weaponP90_damage(node["weapons"]["p90"]["damage"].as<std::int16_t>()),
+                            weaponScout_mag_capacity(node["weapons"]["scout"]["mag_capacity"].as<std::int16_t>()),
+                            weaponScout_damage(node["weapons"]["scout"]["damage"].as<std::int16_t>()),
+                            weaponScout_damage_reduction_per_hit(node["weapons"]["scout"]["damage_reduction_per_hit"].as<std::int16_t>()),
                             infected_health(node["infected"]["health"].as<std::int16_t>()),
                             infected_damage(node["infected"]["damage"].as<std::int16_t>()),
                             jumper_health(node["jumper"]["health"].as<std::int16_t>()),
@@ -29,6 +44,66 @@ Configuration::Configuration(const YAML::Node& node) :
 
 std::int16_t Configuration::get_soldier_health() {
     return soldier_health;
+}
+
+float Configuration::get_soldierState_time_being_attacked() {
+    return soldierState_time_being_attacked;
+}
+
+float Configuration::get_soldierState_time_calling_air_strike() {
+    return soldierState_time_calling_air_strike;
+}
+
+float Configuration::get_soldierState_time_moving() {
+    return soldierState_time_moving;
+}
+
+float Configuration::get_soldierState_time_reloading() {
+    return soldierState_time_reloading;
+}
+
+float Configuration::get_soldierState_time_shooting() {
+    return soldierState_time_shooting;
+}
+
+float Configuration::get_soldierState_time_throwing_explosive_grenade() {
+    return soldierState_time_throwing_explosive_g;
+}
+
+float Configuration::get_soldierState_time_throwing_smoke_grenade() {
+    return soldierState_time_throwing_smoke_g;
+}
+
+std::int16_t Configuration::get_weaponIdf_mag_capacity() {
+    return weaponIdf_mag_capacity;
+}
+
+std::int16_t Configuration::get_weaponIdf_close_range_damage() {
+    return weaponIdf_close_range_damage;
+}
+
+std::int16_t Configuration::get_weaponIdf_long_range_damage() {
+    return weaponIdf_long_range_damage;
+}
+
+std::int16_t Configuration::get_weaponP90_mag_capacity() {
+    return weaponP90_mag_capacity;
+}
+
+std::int16_t Configuration::get_weaponP90_damage() {
+    return weaponP90_damage;
+}
+
+std::int16_t Configuration::get_weaponScout_mag_capacity() {
+    return weaponScout_mag_capacity;
+}
+
+std::int16_t Configuration::get_weaponScout_damage() {
+    return weaponScout_damage;
+}
+
+std::int16_t Configuration::get_weaponScout_reduction_per_hit() {
+    return weaponScout_damage_reduction_per_hit;
 }
 
 std::int16_t Configuration::get_infected_health() {

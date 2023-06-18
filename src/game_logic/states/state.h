@@ -4,6 +4,9 @@
 
 #include <cstdint>
 #include "../../common/game_object_state.h"
+#include "../configuration.h"
+
+#define CONFIGURATION Configuration::getInstance()
 
 class Weapon;
 class Soldier;

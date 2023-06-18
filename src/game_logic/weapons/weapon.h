@@ -3,6 +3,9 @@
 
 #include <vector>
 #include <cstdint>
+
+#define CONFIGURATION Configuration::getInstance()
+
 class State;
 class GameObject;
 class GameMap;

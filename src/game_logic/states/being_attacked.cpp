@@ -8,7 +8,10 @@
 #include "idle.h"
 #include "calling_air_strike.h"
 
-BeingAttacked::BeingAttacked(float start_time) : start_time(start_time) {
+BeingAttacked::BeingAttacked(float start_time) :
+        start_time(start_time),
+        time_stop_being_attacked(CONFIGURATION.get_soldierState_time_being_attacked())
+{
     soldier_state  = SOLDIER_HURT;
 }
 

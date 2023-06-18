@@ -1,9 +1,14 @@
 #include "p90.h"
 #include "../game_object.h"
+#include "../configuration.h"
 
 #define FIRST_ENEMY 0
 
-P90::P90(std::int16_t id_air_strike) : air_strike(id_air_strike) {}
+P90::P90(std::int16_t id_air_strike) :
+air_strike(id_air_strike),
+bullets(CONFIGURATION.get_weaponP90_mag_capacity()),
+mag_capacity(CONFIGURATION.get_weaponP90_mag_capacity()),
+damage(CONFIGURATION.get_weaponP90_damage()) {}
 
 void P90::update(float time) {
     air_strike.update(time);

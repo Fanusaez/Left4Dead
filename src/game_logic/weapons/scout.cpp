@@ -4,7 +4,11 @@
 Scout::Scout(std::int16_t id_explosive_grenade,
             std::int16_t id_smoke_grenade) :
             explosive_grenade(id_explosive_grenade),
-            smoke_grenade(id_smoke_grenade) {}
+            smoke_grenade(id_smoke_grenade),
+            bullets(CONFIGURATION.get_weaponScout_mag_capacity()),
+            mag_capacity(CONFIGURATION.get_weaponScout_mag_capacity()),
+            damage(CONFIGURATION.get_weaponScout_damage()),
+            damage_reduction_hit(CONFIGURATION.get_weaponScout_reduction_per_hit()) {}
 
 void Scout::update(float time) {
     explosive_grenade.update(time);

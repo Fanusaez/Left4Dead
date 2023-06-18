@@ -16,7 +16,8 @@
 
 Moving::Moving(Soldier &soldier, std::int16_t direction, float start_time) :
                 soldier(soldier),
-                direction(direction) {
+                direction(direction),
+                waiting_time_to_move(CONFIGURATION.get_soldierState_time_moving()) {
     soldier_state = MOVING;
     move(soldier, direction, start_time);
 }

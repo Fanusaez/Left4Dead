@@ -10,7 +10,8 @@
 
 Reloading::Reloading(Weapon *weapon, float start_time) :
             weapon(weapon),
-            start_time(start_time) {
+            start_time(start_time),
+            waiting_time_to_reload(CONFIGURATION.get_soldierState_time_reloading()) {
     soldier_state = RELOADING;
 }
 
