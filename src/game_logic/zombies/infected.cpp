@@ -10,11 +10,14 @@
 #define DISTANCE_TO_HIT 1
 
 Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
+        movements_per_cell(CONFIGURATION.get_movements_per_cell()),
         x_pos(x_pos_wal * movements_per_cell),
         y_pos(y_pos_wal * movements_per_cell),
         id(id),
         map(map),
-        chaser(this, map, x_pos, y_pos){
+        chaser(this, map, x_pos, y_pos),
+        health(CONFIGURATION.get_infected_health()),
+        damage_attack(CONFIGURATION.get_infected_damage()) {
     random_chase_state();
 }
 

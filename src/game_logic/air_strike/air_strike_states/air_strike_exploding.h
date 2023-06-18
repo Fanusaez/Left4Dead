@@ -6,7 +6,7 @@
 class AirStrikeExploding : public AirStrikeState {
 private:
     float start_time;
-    float time_stop_exploding = 0.08; // lo que dure la animacion
+    float time_stop_exploding;
 public:
     AirStrikeExploding(float time, std::int16_t x_soldier, std::int16_t y_soldier, GameMap& map, AirStrike* air_strike);
 

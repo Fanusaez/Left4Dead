@@ -102,3 +102,7 @@ airStrike:
   radius_range_safe_space: 2
   damage: 30
   time_reCall_air_strike: 120
+
+airStrikeStates:
+  time_exploding: 0.08
+  time_incoming: 1

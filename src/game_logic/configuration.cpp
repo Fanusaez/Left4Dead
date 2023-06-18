@@ -72,7 +72,9 @@ Configuration::Configuration(const YAML::Node& node) :
                             GF_venom_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["venom"].as<std::vector<std::int16_t>>()),
                             air_strike_radius_range_safe_space(node["airStrike"]["radius_range_safe_space"].as<std::int16_t>()),
                             air_strike_damage(node["airStrike"]["damage"].as<std::int16_t>()),
-                            air_strike_time_to_reCall(node["airStrike"]["time_reCall_air_strike"].as<std::int16_t>()) {}
+                            air_strike_time_to_reCall(node["airStrike"]["time_reCall_air_strike"].as<std::int16_t>()),
+                            air_strike_state_exploding(node["airStrikeStates"]["time_exploding"].as<float>()),
+                            air_strike_state_incoming(node["airStrikeStates"]["time_incoming"].as<float>()) {}
 
 std::int16_t Configuration::get_soldier_health() {
     return soldier_health;
@@ -332,6 +334,14 @@ std::int16_t Configuration::get_air_strike_damage() {
 
 std::int16_t Configuration::get_air_strike_time_reCall() {
     return air_strike_time_to_reCall;
+}
+
+float Configuration::get_air_strike_state_time_exploding() {
+    return air_strike_state_exploding;
+}
+
+float Configuration::get_air_strike_state_time_incoming() {
+    return air_strike_state_incoming;
 }
 
 Configuration::~Configuration() {}

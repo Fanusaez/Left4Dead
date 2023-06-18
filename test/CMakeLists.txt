@@ -20,6 +20,7 @@ add_executable(testProtocolServer
         ../src/common/socket.cpp
         ../src/common/resolver.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -65,6 +66,7 @@ add_executable(testProtocolServer
 add_executable(testCollision
 		game_logic_testing/test_collision.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -111,6 +113,7 @@ add_executable(testCollision
 add_executable(testShooting
 		game_logic_testing/test_shoot_walker.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -156,6 +159,7 @@ add_executable(testShooting
 add_executable(testShootingIdf
 		game_logic_testing/test_shooting_idf.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -201,6 +205,7 @@ add_executable(testShootingIdf
 add_executable(testShootingScout
 		game_logic_testing/test_shooting_scout.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -247,6 +252,7 @@ add_executable(testShootingScout
 add_executable(testMovingUpSoldier
 		game_logic_testing/test_moving_soldier_up.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -292,6 +298,7 @@ add_executable(testMovingUpSoldier
 add_executable(testMovingSoldierDown
 		game_logic_testing/test_moving_soldier_down.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -337,6 +344,7 @@ add_executable(testMovingSoldierDown
 add_executable(testMovingSoldierRight
 		game_logic_testing/test_moving_soldier_right.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -382,6 +390,7 @@ add_executable(testMovingSoldierRight
 add_executable(testMoveSoldierLeft
 		game_logic_testing/test_moving_soldier_left.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -426,6 +435,7 @@ add_executable(testMoveSoldierLeft
 add_executable(testMoveMap
 		game_logic_testing/test_move_map.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -471,6 +481,7 @@ add_executable(testMoveMap
 add_executable(testExplosiveGrenade
 		game_logic_testing/test_explosive_grenade.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -516,6 +527,7 @@ add_executable(testExplosiveGrenade
 add_executable(testChaseSoldierWalking
 		game_logic_testing/test_chase_soldier_walker.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -561,6 +573,7 @@ add_executable(testChaseSoldierWalking
 add_executable(testMapChaseSoldierWalking
 		game_logic_testing/test_map_chase_soldier_walker.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -605,6 +618,7 @@ add_executable(testMapChaseSoldierWalking
 add_executable(testChaseSoldierWalkingObstacles
 		game_logic_testing/test_chase_soldier_walker_obstacles.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -650,6 +664,7 @@ add_executable(testChaseSoldierWalkingObstacles
 add_executable(testWalkerAttackSoldier
 		game_logic_testing/test_walker_attack_soldier.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -695,6 +710,7 @@ add_executable(testWalkerAttackSoldier
 add_executable(testChangeInStatesSoldier
 		game_logic_testing/test_soldier_states.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -741,6 +757,7 @@ add_executable(testChangeInStatesSoldier
 add_executable(testChangeInStatesZombie
 		game_logic_testing/test_zombie_states.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -785,6 +802,7 @@ add_executable(testChangeInStatesZombie
 add_executable(testCollisionSoldier
 		game_logic_testing/test_collision_soldiers.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -830,6 +848,7 @@ add_executable(testCollisionSoldier
 add_executable(testWalkerRemove
 		game_logic_testing/test_walker_remove_from_map.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -875,6 +894,7 @@ add_executable(testWalkerRemove
 add_executable(testChasingStates
 		game_logic_testing/test_chasing_states.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -920,6 +940,7 @@ add_executable(testChasingStates
 add_executable(testSmokeGrenade
 		game_logic_testing/test_smoke_grenade.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -965,6 +986,7 @@ add_executable(testSmokeGrenade
 add_executable(testWitcher
 		game_logic_testing/test_witcher.cpp
         ../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
         ../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -1010,6 +1032,7 @@ add_executable(testWitcher
 add_executable(testStatesGrenades
 		game_logic_testing/test_grenade_states.cpp
 		../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
 		../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -1056,6 +1079,7 @@ add_executable(testStatesGrenades
 add_executable(testAirStrike
 		game_logic_testing/test_air_strike.cpp
 		../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
 		../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -1101,6 +1125,7 @@ add_executable(testAirStrike
 add_executable(testAirStrikeStates
 		game_logic_testing/test_state_airstrike.cpp
 		../src/game_logic/soldier.cpp
+		../src/game_logic/configuration.cpp
 		../src/game_logic/game_factory.cpp
 		../src/game_logic/air_strike/air_strike.cpp
 		../src/game_logic/air_strike/air_strike_states/air_strike_incoming.cpp
@@ -1143,7 +1168,6 @@ add_executable(testAirStrikeStates
 		../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
 		)
 # target_link_libraries(testPrueba PRIVATE myLibrary)
-
 # Despues agregar el target aca y listo
 set(testTargets
         testProtocolLobby

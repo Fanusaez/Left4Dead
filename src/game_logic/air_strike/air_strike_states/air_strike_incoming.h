@@ -5,7 +5,7 @@
 
 class AirStrikeIncoming : public AirStrikeState {
 private:
-    float _time_to_explode = 1;
+    float _time_to_explode;
     float start_time;
     std::int16_t x_soldier;
     std::int16_t y_soldier;

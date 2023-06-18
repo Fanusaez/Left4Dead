@@ -89,6 +89,8 @@ private:
     std::int16_t air_strike_damage;
     std::int16_t air_strike_time_to_reCall;
 
+    float air_strike_state_exploding;
+    float air_strike_state_incoming;
 
     Configuration(const YAML::Node& node);
     void parse_configurations(const YAML::Node& configNode);
@@ -183,6 +185,8 @@ public:
     std::int16_t get_air_strike_damage();
     std::int16_t get_air_strike_time_reCall();
 
+    float get_air_strike_state_time_exploding();
+    float get_air_strike_state_time_incoming();
 };
 
 
