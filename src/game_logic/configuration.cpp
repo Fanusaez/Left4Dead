@@ -24,6 +24,13 @@ Configuration::Configuration(const YAML::Node& node) :
                             weaponScout_mag_capacity(node["weapons"]["scout"]["mag_capacity"].as<std::int16_t>()),
                             weaponScout_damage(node["weapons"]["scout"]["damage"].as<std::int16_t>()),
                             weaponScout_damage_reduction_per_hit(node["weapons"]["scout"]["damage_reduction_per_hit"].as<std::int16_t>()),
+                            explosiveGrenade_damage(node["explosiveGrenade"]["damage"].as<std::int16_t>()),
+                            explosiveGrenade_time_to_reThrow(node["explosiveGrenade"]["time_to_reThrow_grenade"].as<std::int16_t>()),
+                            explosiveGrenade_radius_range(node["explosiveGrenade"]["radius_range"].as<std::int16_t>()),
+                            smokeGrenade_time_to_reThrow(node["smokeGrenade"]["time_to_reThrow_grenade"].as<std::int16_t>()),
+                            smokeGrenade_radius_range(node["smokeGrenade"]["radius_range"].as<std::int16_t>()),
+                            grenadeState_time_exploding(node["grenadeStates"]["time_exploding"].as<float>()),
+                            grenadeState_time_thrown_grenade(node["grenadeStates"]["time_thrown_grenade"].as<float>()),
                             infected_health(node["infected"]["health"].as<std::int16_t>()),
                             infected_damage(node["infected"]["damage"].as<std::int16_t>()),
                             jumper_health(node["jumper"]["health"].as<std::int16_t>()),
@@ -104,6 +111,34 @@ std::int16_t Configuration::get_weaponScout_damage() {
 
 std::int16_t Configuration::get_weaponScout_reduction_per_hit() {
     return weaponScout_damage_reduction_per_hit;
+}
+
+std::int16_t Configuration::get_explosiveGrenade_damage() {
+    return explosiveGrenade_damage;
+}
+
+std::int16_t Configuration::get_explosiveGrenade_time_to_reThrow() {
+    return explosiveGrenade_time_to_reThrow;
+}
+
+std::int16_t Configuration::get_explosiveGrenade_radius_range() {
+    return explosiveGrenade_radius_range;
+}
+
+std::int16_t Configuration::get_smokeGrenade_time_to_reThrow() {
+    return smokeGrenade_time_to_reThrow;
+}
+
+std::int16_t Configuration::get_smokeGrenade_radius_range() {
+    return smokeGrenade_radius_range;
+}
+
+float Configuration::get_grenadeState_time_exploding() {
+    return grenadeState_time_exploding;
+}
+
+float Configuration::get_grenadeState_time_thrown_grenade() {
+    return grenadeState_time_thrown_grenade;
 }
 
 std::int16_t Configuration::get_infected_health() {

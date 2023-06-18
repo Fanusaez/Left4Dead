@@ -2,6 +2,7 @@
 #define GRENADE_H_
 
 #include <cstdint>
+#define CONFIGURATION Configuration::getInstance()
 
 class GameMap;
 

@@ -1,5 +1,6 @@
 #include "thrown_grenade.h"
 #include "exploding.h"
+#include "../../configuration.h"
 
 ThrownGrenade::ThrownGrenade(float time,
                              std::int16_t x_explosion,
@@ -10,7 +11,8 @@ ThrownGrenade::ThrownGrenade(float time,
                              grenade(grenade),
                              x_explosion(x_explosion),
                              y_explosion(y_explosion),
-                             start_time(time) {}
+                             start_time(time),
+                             _time_to_explode(CONFIGURATION.get_grenadeState_time_thrown_grenade()){}
 
 GrenadeState *ThrownGrenade::update(float time) {
     if (time_to_explode(time)) {

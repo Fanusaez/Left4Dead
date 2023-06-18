@@ -1,6 +1,7 @@
 #include "exploding.h"
 #include "grenade_idle.h"
 #include "../grenade.h"
+#include "../../configuration.h"
 
 Exploding::Exploding(float start_time,
                      std::int16_t x_explosion,
@@ -8,7 +9,8 @@ Exploding::Exploding(float start_time,
                      GameMap &map,
                      Grenade* grenade) :    start_time(start_time),
                                             x_explosion(x_explosion),
-                                            y_explosion(y_explosion) {
+                                            y_explosion(y_explosion),
+                                            time_to_stop_exploding(CONFIGURATION.get_grenadeState_time_exploding()){
     explode(start_time, x_explosion, y_explosion, map, grenade);
 }
 

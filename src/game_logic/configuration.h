@@ -27,6 +27,16 @@ private:
     std::int16_t weaponScout_damage;
     std::int16_t weaponScout_damage_reduction_per_hit;
 
+    std::int16_t explosiveGrenade_damage;
+    std::int16_t explosiveGrenade_time_to_reThrow;
+    std::int16_t explosiveGrenade_radius_range;
+
+    std::int16_t smokeGrenade_time_to_reThrow;
+    std::int16_t smokeGrenade_radius_range;
+
+    float grenadeState_time_exploding;
+    float grenadeState_time_thrown_grenade;
+
     std::int16_t infected_health;
     std::int16_t infected_damage;
 
@@ -80,6 +90,16 @@ public:
     std::int16_t get_weaponScout_mag_capacity();
     std::int16_t get_weaponScout_damage();
     std::int16_t get_weaponScout_reduction_per_hit();
+
+    std::int16_t get_explosiveGrenade_damage();
+    std::int16_t get_explosiveGrenade_time_to_reThrow();
+    std::int16_t get_explosiveGrenade_radius_range();
+
+    std::int16_t get_smokeGrenade_time_to_reThrow();
+    std::int16_t get_smokeGrenade_radius_range();
+
+    float get_grenadeState_time_exploding();
+    float get_grenadeState_time_thrown_grenade();
 
     std::int16_t get_infected_health();
     std::int16_t get_infected_damage();

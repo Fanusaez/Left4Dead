@@ -25,6 +25,19 @@ weapons:
     damage: 40
     damage_reduction_per_hit: 10
 
+explosiveGrenade:
+  damage: 40
+  time_to_reThrow_grenade: 30
+  radius_range: 3
+
+smokeGrenade:
+  time_to_reThrow_grenade: 30
+  radius_range: 3
+
+grenadeStates:
+  time_exploding: 0.08
+  time_thrown_grenade: 1
+
 infected:
   health: 100
   damage: 10
