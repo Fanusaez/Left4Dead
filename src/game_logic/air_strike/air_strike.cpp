@@ -2,8 +2,16 @@
 #include "../game_object.h"
 #include "../map.h"
 #include "../states/state.h"
+#include "../configuration.h"
 
-AirStrike::AirStrike(std::int16_t id) : id(id) {}
+#define CONFIGURATION Configuration::getInstance()
+
+
+AirStrike::AirStrike(std::int16_t id) :
+    id(id),
+    range_of_safe_space(CONFIGURATION.get_air_strike_radius_range_safe_space()),
+    damage_air_strike(CONFIGURATION.get_air_strike_damage()),
+    _time_to_call_air_strike(CONFIGURATION.get_air_strike_time_reCall()) {}
 
 void AirStrike::update(float time) {
     AirStrikeState* state = air_strike_state -> update(time);

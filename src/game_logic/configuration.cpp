@@ -69,7 +69,10 @@ Configuration::Configuration(const YAML::Node& node) :
                             GF_witch_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["witch"].as<std::vector<std::int16_t>>()),
                             GF_jumper_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["jumper"].as<std::vector<std::int16_t>>()),
                             GF_spear_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["spear"].as<std::vector<std::int16_t>>()),
-                            GF_venom_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["venom"].as<std::vector<std::int16_t>>()) {}
+                            GF_venom_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["venom"].as<std::vector<std::int16_t>>()),
+                            air_strike_radius_range_safe_space(node["airStrike"]["radius_range_safe_space"].as<std::int16_t>()),
+                            air_strike_damage(node["airStrike"]["damage"].as<std::int16_t>()),
+                            air_strike_time_to_reCall(node["airStrike"]["time_reCall_air_strike"].as<std::int16_t>()) {}
 
 std::int16_t Configuration::get_soldier_health() {
     return soldier_health;
@@ -317,6 +320,18 @@ std::vector<std::int16_t> Configuration::get_GF_spear_prob_to_respawn() {
 
 std::vector<std::int16_t> Configuration::get_GF_venom_prob_to_respawn() {
     return GF_venom_prob_respawn;
+}
+
+std::int16_t Configuration::get_air_strike_radius_range_safe_space() {
+    return air_strike_radius_range_safe_space;
+}
+
+std::int16_t Configuration::get_air_strike_damage() {
+    return air_strike_damage;
+}
+
+std::int16_t Configuration::get_air_strike_time_reCall() {
+    return air_strike_time_to_reCall;
 }
 
 Configuration::~Configuration() {}

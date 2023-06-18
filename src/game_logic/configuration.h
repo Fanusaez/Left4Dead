@@ -85,6 +85,11 @@ private:
     std::vector<std::int16_t> GF_spear_prob_respawn;
     std::vector<std::int16_t> GF_venom_prob_respawn;
 
+    std::int16_t air_strike_radius_range_safe_space;
+    std::int16_t air_strike_damage;
+    std::int16_t air_strike_time_to_reCall;
+
+
     Configuration(const YAML::Node& node);
     void parse_configurations(const YAML::Node& configNode);
 
@@ -173,6 +178,11 @@ public:
     std::vector<std::int16_t> get_GF_jumper_prob_to_respawn();
     std::vector<std::int16_t> get_GF_spear_prob_to_respawn();
     std::vector<std::int16_t> get_GF_venom_prob_to_respawn();
+
+    std::int16_t get_air_strike_radius_range_safe_space();
+    std::int16_t get_air_strike_damage();
+    std::int16_t get_air_strike_time_reCall();
+
 };
 
 

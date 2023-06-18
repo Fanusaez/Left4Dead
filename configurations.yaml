@@ -97,3 +97,8 @@ gameFactory:
     jumper: [50, 100]
     spear: [0, 0]
     venom: [0, 0]
+
+airStrike:
+  radius_range_safe_space: 2
+  damage: 30
+  time_reCall_air_strike: 120
