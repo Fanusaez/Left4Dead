@@ -79,6 +79,11 @@ private:
     std::vector<std::int16_t> survival_spear_prob_respawn;
     std::vector<std::int16_t> survival_venom_prob_respawn;
 
+    std::vector<std::int16_t> GF_infected_prob_respawn;
+    std::vector<std::int16_t> GF_witch_prob_respawn;
+    std::vector<std::int16_t> GF_jumper_prob_respawn;
+    std::vector<std::int16_t> GF_spear_prob_respawn;
+    std::vector<std::int16_t> GF_venom_prob_respawn;
 
     Configuration(const YAML::Node& node);
     void parse_configurations(const YAML::Node& configNode);
@@ -162,6 +167,12 @@ public:
     std::vector<std::int16_t> get_survival_jumper_prob_to_respawn();
     std::vector<std::int16_t> get_survival_spear_prob_to_respawn();
     std::vector<std::int16_t> get_survival_venom_prob_to_respawn();
+
+    std::vector<std::int16_t> get_GF_infected_prob_to_respawn();
+    std::vector<std::int16_t> get_GF_witch_prob_to_respawn();
+    std::vector<std::int16_t> get_GF_jumper_prob_to_respawn();
+    std::vector<std::int16_t> get_GF_spear_prob_to_respawn();
+    std::vector<std::int16_t> get_GF_venom_prob_to_respawn();
 };
 
 

@@ -84,8 +84,16 @@ survival:
   time_zombies_getting_stronger: 10
   health_power_up: 10
   zombies_probability_respawn:
-    infected: [ 0, 40]
-    witch: [ 40, 70]
-    jumper: [ 70, 100]
+    infected: [0, 40]
+    witch: [40, 70]
+    jumper: [70, 100]
+    spear: [0, 0]
+    venom: [0, 0]
+
+gameFactory:
+  zombies_probability_respawn:
+    infected: [0, 40]
+    witch: [40, 50]
+    jumper: [50, 100]
     spear: [0, 0]
     venom: [0, 0]

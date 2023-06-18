@@ -64,7 +64,12 @@ Configuration::Configuration(const YAML::Node& node) :
                             survival_witch_prob_respawn(node["survival"]["zombies_probability_respawn"]["witch"].as<std::vector<std::int16_t>>()),
                             survival_jumper_prob_respawn(node["survival"]["zombies_probability_respawn"]["jumper"].as<std::vector<std::int16_t>>()),
                             survival_spear_prob_respawn(node["survival"]["zombies_probability_respawn"]["spear"].as<std::vector<std::int16_t>>()),
-                            survival_venom_prob_respawn(node["survival"]["zombies_probability_respawn"]["venom"].as<std::vector<std::int16_t>>()){}
+                            survival_venom_prob_respawn(node["survival"]["zombies_probability_respawn"]["venom"].as<std::vector<std::int16_t>>()),
+                            GF_infected_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["infected"].as<std::vector<std::int16_t>>()),
+                            GF_witch_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["witch"].as<std::vector<std::int16_t>>()),
+                            GF_jumper_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["jumper"].as<std::vector<std::int16_t>>()),
+                            GF_spear_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["spear"].as<std::vector<std::int16_t>>()),
+                            GF_venom_prob_respawn(node["gameFactory"]["zombies_probability_respawn"]["venom"].as<std::vector<std::int16_t>>()) {}
 
 std::int16_t Configuration::get_soldier_health() {
     return soldier_health;
@@ -294,5 +299,24 @@ std::vector<std::int16_t> Configuration::get_survival_venom_prob_to_respawn() {
     return survival_venom_prob_respawn;
 }
 
+std::vector<std::int16_t> Configuration::get_GF_infected_prob_to_respawn() {
+    return GF_infected_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_GF_witch_prob_to_respawn() {
+    return GF_witch_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_GF_jumper_prob_to_respawn() {
+    return GF_jumper_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_GF_spear_prob_to_respawn() {
+    return GF_spear_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_GF_venom_prob_to_respawn() {
+    return GF_venom_prob_respawn;
+}
 
 Configuration::~Configuration() {}

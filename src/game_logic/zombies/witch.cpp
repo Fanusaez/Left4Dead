@@ -34,7 +34,7 @@ void Witch::update(std::vector<Soldier*> soldiers, float time) {
     std::int16_t random_number = get_random_number();
     if (random_number < probability_to_scream) {
            scream(time);
-        }
+    }
     attack(soldiers, time);
     chase_closest_soldier(soldiers, time);
 }

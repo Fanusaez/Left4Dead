@@ -7,10 +7,17 @@
 #include "zombies/infected.h"
 #include "zombies/jumper.h"
 #include "zombies/witch.h"
+#include "configuration.h"
 #define X_POS 0
 #define Y_POS 1
 
-GameFactory::GameFactory(GameMap &map) : map(map) {}
+#define CONFIGURATION Configuration::getInstance()
+
+GameFactory::GameFactory(GameMap &map) :
+    map(map),
+    infected_prob(CONFIGURATION.get_GF_infected_prob_to_respawn()),
+    witch_prob(CONFIGURATION.get_GF_witch_prob_to_respawn()),
+    jumper_prob(CONFIGURATION.get_GF_jumper_prob_to_respawn()) {}
 
 Soldier* GameFactory::get_soldier_with_idf(std::vector<std::int16_t>& soldier_pos) {
     Weapon* idf = new Idf(id++, id++);
