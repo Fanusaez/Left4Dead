@@ -11,21 +11,18 @@
 
 class Survival {
 private:
-
-    std::vector<std::int16_t> infected_prob = {0, 40};
-    std::vector<std::int16_t> witch_prob = {40, 70};
-    std::vector<std::int16_t> jumper_prob = {70, 100};
-    std::int16_t extra_life_zombies = 0;
-    std::int16_t time_increase_zombie_life = 10;
-
     float start_time;
+    GameMap map;
+    std::int16_t time_respawn_zombies;
+    std::int16_t time_increase_zombie_life;
+    std::int16_t health_power_up;
+    std::vector<std::int16_t> infected_prob;
+    std::vector<std::int16_t> witch_prob;
+    std::vector<std::int16_t> jumper_prob;
+    std::int16_t accumulative_extra_health_zombies = 0;
     float last_time_respawned_zombies = -1;
     float last_time_increase_zombies_life = -1;
-    std::int16_t time_respawn_zombies = 5;
-
     bool game_over = false;
-
-    GameMap map;
     std::vector<Soldier*> players;
 
     void respawn_zombies(float time);

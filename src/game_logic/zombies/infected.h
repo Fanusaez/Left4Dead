@@ -11,20 +11,22 @@
 
 class Infected : public GameObject, public Zombie {
  private:
-    std::int16_t movements_per_cell = 2;
-    std::int16_t health = 100;
-    std::int16_t damage_attack = 10;
+    std::int16_t movements_per_cell;
     std::int16_t x_pos;
     std::int16_t y_pos;
+    const std::int16_t id;
+    GameMap& map;
+    Chaser chaser;
+    std::int16_t health;
+    std::int16_t damage_attack;
     bool dead = false;
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;
 
     // se debera recibir por parametro, para que corra camine o salte
     ChaseState* chase_state;
-    const std::int16_t id;
-    GameMap& map;
-    Chaser chaser;
+
+
 
 
 Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);

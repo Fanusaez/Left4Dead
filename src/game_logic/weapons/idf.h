@@ -8,10 +8,10 @@
 
 class Idf : public Weapon {
  private:
-    std::int16_t bullets = 50;
-    const std::int16_t mag_capacity = 50;
-    const std::int16_t close_range_damage = 30;
-    const std::int16_t long_range_damage = 15;
+    std::int16_t bullets;
+    const std::int16_t mag_capacity;
+    const std::int16_t close_range_damage;
+    const std::int16_t long_range_damage;
     ExplosiveGrenade explosive_grenade;
     SmokeGrenade smoke_grenade;
 

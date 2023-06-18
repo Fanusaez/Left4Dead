@@ -49,7 +49,22 @@ Configuration::Configuration(const YAML::Node& node) :
                             zombieState_time_stunned(node["zombieStates"]["time_stunned"].as<float>()),
                             zombieState_time_walking(node["zombieStates"]["time_walking"].as<float>()),
                             zombieState_time_being_attacked(node["zombieStates"]["time_being_attacked"].as<float>()),
-                            matrix_movements_per_cell(node["mapLogic"]["matrix_movements_per_cell"].as<std::int16_t>()) {}
+                            matrix_movements_per_cell(node["mapLogic"]["matrix_movements_per_cell"].as<std::int16_t>()),
+                            CTZ_time_respawn_zombies(node["clearTheZone"]["time_respawn_zombies"].as<std::int16_t>()),
+                            CTZ_total_quantity_zombies(node["clearTheZone"]["total_quantity_zombies"].as<std::int16_t>()),
+                            CTZ_infected_prob_respawn(node["clearTheZone"]["zombies_probability_respawn"]["infected"].as<std::vector<std::int16_t>>()),
+                            CTZ_witch_prob_respawn(node["clearTheZone"]["zombies_probability_respawn"]["witch"].as<std::vector<std::int16_t>>()),
+                            CTZ_jumper_prob_respawn(node["clearTheZone"]["zombies_probability_respawn"]["jumper"].as<std::vector<std::int16_t>>()),
+                            CTZ_spear_prob_respawn(node["clearTheZone"]["zombies_probability_respawn"]["spear"].as<std::vector<std::int16_t>>()),
+                            CTZ_venom_prob_respawn(node["clearTheZone"]["zombies_probability_respawn"]["venom"].as<std::vector<std::int16_t>>()),
+                            survival_time_respawn_zombies(node["survival"]["time_respawn_zombies"].as<std::int16_t>()),
+                            survival_time_zombies_getting_stronger(node["survival"]["time_zombies_getting_stronger"].as<std::int16_t>()),
+                            survival_zombies_health_power_up(node["survival"]["health_power_up"].as<std::int16_t>()),
+                            survival_infected_prob_respawn(node["survival"]["zombies_probability_respawn"]["infected"].as<std::vector<std::int16_t>>()),
+                            survival_witch_prob_respawn(node["survival"]["zombies_probability_respawn"]["witch"].as<std::vector<std::int16_t>>()),
+                            survival_jumper_prob_respawn(node["survival"]["zombies_probability_respawn"]["jumper"].as<std::vector<std::int16_t>>()),
+                            survival_spear_prob_respawn(node["survival"]["zombies_probability_respawn"]["spear"].as<std::vector<std::int16_t>>()),
+                            survival_venom_prob_respawn(node["survival"]["zombies_probability_respawn"]["venom"].as<std::vector<std::int16_t>>()){}
 
 std::int16_t Configuration::get_soldier_health() {
     return soldier_health;
@@ -218,5 +233,66 @@ float Configuration::get_zombieState_being_attacked_time() {
 std::int16_t Configuration::get_movements_per_cell() {
     return matrix_movements_per_cell;
 }
+
+std::int16_t Configuration::get_CTZ_time_respawn_zombies() {
+    return CTZ_time_respawn_zombies;
+}
+
+std::int16_t Configuration::get_CTZ_total_quantity_zombies() {
+    return CTZ_total_quantity_zombies;
+}
+
+std::vector<std::int16_t> Configuration::get_CTZ_infected_prob_to_respawn() {
+    return CTZ_infected_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_CTZ_witch_prob_to_respawn() {
+    return CTZ_witch_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_CTZ_jumper_prob_to_respawn() {
+    return CTZ_jumper_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_CTZ_spear_prob_to_respawn() {
+    return CTZ_spear_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_CTZ_venom_prob_to_respawn() {
+    return CTZ_venom_prob_respawn;
+}
+
+std::int16_t Configuration::get_survival_time_respawn_zombies() {
+    return survival_time_respawn_zombies;
+}
+
+std::int16_t Configuration::get_survival_time_zombies_getting_stronger() {
+    return survival_time_zombies_getting_stronger;
+}
+
+std::int16_t Configuration::get_survival_health_power_up() {
+    return survival_zombies_health_power_up;
+}
+
+std::vector<std::int16_t> Configuration::get_survival_infected_prob_to_respawn() {
+    return survival_infected_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_survival_witch_prob_to_respawn() {
+    return survival_witch_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_survival_jumper_prob_to_respawn() {
+    return survival_jumper_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_survival_spear_prob_to_respawn() {
+    return survival_spear_prob_respawn;
+}
+
+std::vector<std::int16_t> Configuration::get_survival_venom_prob_to_respawn() {
+    return survival_venom_prob_respawn;
+}
+
 
 Configuration::~Configuration() {}

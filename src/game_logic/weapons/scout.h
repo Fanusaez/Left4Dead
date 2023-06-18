@@ -7,10 +7,10 @@
 
 class Scout : public Weapon {
  private:
-    std::uint16_t bullets = 20;
-    const std::uint16_t mag_capacity = 20;
-    const std::uint16_t damage = 40;
-    const std::uint16_t damage_reduction_hit = 10;
+    std::uint16_t bullets;
+    const std::uint16_t mag_capacity;
+    const std::uint16_t damage;
+    const std::uint16_t damage_reduction_hit;
     ExplosiveGrenade explosive_grenade;
     SmokeGrenade smoke_grenade;
 

@@ -13,21 +13,25 @@ class GameMap;
 class Witch : public GameObject, public Zombie {
 
 private:
-    std::int16_t movements_per_cell = 2;
-    std::int16_t health = 200;
-    std::int16_t damage_attack = 30;
+    std::int16_t movements_per_cell;
     std::int16_t x_pos;
     std::int16_t y_pos;
+    const std::int16_t id;
+    GameMap& map;
+    ChaseState* chase_state = new ChaseWalking;
+    std::int16_t health;
+    std::int16_t damage_attack;
+    std::int16_t probability_to_scream = 1;
+    std::int16_t zombies_created_for_screaming = 2;
     bool dead = false;
     std::int16_t direction = LEFT;
     ZombieState* state = new ZombieIdle;
 
     // se debera recibir por parametro, para que corra camine o salte
-    ChaseState* chase_state = new ChaseWalking;
-    std::int16_t probability_to_scream = 1;
-    std::int16_t zombies_created_for_screaming = 2;
-    const std::int16_t id;
-    GameMap& map;
+
+
+
+
     Chaser chaser;
 
     Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);

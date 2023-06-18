@@ -61,10 +61,31 @@ zombieStates:
   time_attacking: 0.2
   time_jumping: 0.2
   time_running: 0.01
-  time_screaming: 1
+  time_screaming: 0.9
   time_stunned: 10
   time_walking: 0.2
   time_being_attacked: 0.3
 
 mapLogic:
   matrix_movements_per_cell: 2
+
+clearTheZone:
+  time_respawn_zombies: 5
+  total_quantity_zombies: 80
+  zombies_probability_respawn:
+    infected: [0, 40]
+    witch: [40, 70]
+    jumper: [70, 100]
+    spear: [0, 0]
+    venom: [0, 0]
+
+survival:
+  time_respawn_zombies: 5
+  time_zombies_getting_stronger: 10
+  health_power_up: 10
+  zombies_probability_respawn:
+    infected: [ 0, 40]
+    witch: [ 40, 70]
+    jumper: [ 70, 100]
+    spear: [0, 0]
+    venom: [0, 0]

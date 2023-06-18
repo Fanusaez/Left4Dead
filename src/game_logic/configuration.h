@@ -62,6 +62,24 @@ private:
 
     std::int16_t matrix_movements_per_cell;
 
+    std::int16_t CTZ_time_respawn_zombies;
+    std::int16_t CTZ_total_quantity_zombies;
+    std::vector<std::int16_t> CTZ_infected_prob_respawn;
+    std::vector<std::int16_t> CTZ_witch_prob_respawn;
+    std::vector<std::int16_t> CTZ_jumper_prob_respawn;
+    std::vector<std::int16_t> CTZ_spear_prob_respawn;
+    std::vector<std::int16_t> CTZ_venom_prob_respawn;
+
+    std::int16_t survival_time_respawn_zombies;
+    std::int16_t survival_time_zombies_getting_stronger;
+    std::int16_t survival_zombies_health_power_up;
+    std::vector<std::int16_t> survival_infected_prob_respawn;
+    std::vector<std::int16_t> survival_witch_prob_respawn;
+    std::vector<std::int16_t> survival_jumper_prob_respawn;
+    std::vector<std::int16_t> survival_spear_prob_respawn;
+    std::vector<std::int16_t> survival_venom_prob_respawn;
+
+
     Configuration(const YAML::Node& node);
     void parse_configurations(const YAML::Node& configNode);
 
@@ -127,6 +145,23 @@ public:
     float get_zombieState_being_attacked_time();
 
     std::int16_t get_movements_per_cell();
+
+    std::int16_t get_CTZ_time_respawn_zombies();
+    std::int16_t get_CTZ_total_quantity_zombies();
+    std::vector<std::int16_t> get_CTZ_infected_prob_to_respawn();
+    std::vector<std::int16_t> get_CTZ_witch_prob_to_respawn();
+    std::vector<std::int16_t> get_CTZ_jumper_prob_to_respawn();
+    std::vector<std::int16_t> get_CTZ_spear_prob_to_respawn();
+    std::vector<std::int16_t> get_CTZ_venom_prob_to_respawn();
+
+    std::int16_t get_survival_time_respawn_zombies();
+    std::int16_t get_survival_time_zombies_getting_stronger();
+    std::int16_t get_survival_health_power_up();
+    std::vector<std::int16_t> get_survival_infected_prob_to_respawn();
+    std::vector<std::int16_t> get_survival_witch_prob_to_respawn();
+    std::vector<std::int16_t> get_survival_jumper_prob_to_respawn();
+    std::vector<std::int16_t> get_survival_spear_prob_to_respawn();
+    std::vector<std::int16_t> get_survival_venom_prob_to_respawn();
 };
 
 

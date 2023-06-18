@@ -8,17 +8,17 @@
 
 class Soldier : public GameObject {
  private:
-    std::int16_t movements_per_cell = 2;
     Weapon* weapon = nullptr;
-    State* state = new Idle;
     GameMap &map;
+    std::int16_t movements_per_cell;
     std::int16_t x_pos;
     std::int16_t y_pos;
+    const std::int16_t id;
+    std::int16_t health;
+    std::int16_t grenade_distance_reach;
+    State* state = new Idle;
     std::int16_t direction = RIGHT;
     bool _dead = false;
-    std::int16_t health = 100;
-    std::int16_t grenade_distance_reach = 4;
-    const std::int16_t id;
 
 void die(float time);
 void change_state(State* new_state);

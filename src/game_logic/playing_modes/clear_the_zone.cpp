@@ -1,4 +1,7 @@
 #include "clear_the_zone.h"
+#include "../configuration.h"
+
+#define CONFIGURATION Configuration::getInstance()
 
 #define X_POS 0
 #define Y_POS 1
@@ -7,7 +10,12 @@
 ClearTheZone::ClearTheZone(std::int16_t x_size,
                            std::int16_t y_size,
                            float time) :    start_time(time),
-                                            map(x_size, y_size) {}
+                                            map(x_size, y_size),
+                                            time_respawn_zombies(CONFIGURATION.get_CTZ_time_respawn_zombies()),
+                                            quantity_total_zombies(CONFIGURATION.get_CTZ_total_quantity_zombies()),
+                                            infected_prob(CONFIGURATION.get_CTZ_infected_prob_to_respawn()),
+                                            witch_prob(CONFIGURATION.get_CTZ_witch_prob_to_respawn()),
+                                            jumper_prob(CONFIGURATION.get_CTZ_jumper_prob_to_respawn()) {}
 
 Soldier *ClearTheZone::get_soldier_with_idf() {
     Soldier* new_soldier = map.get_soldier_with_idf();

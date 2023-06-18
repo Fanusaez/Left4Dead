@@ -12,20 +12,16 @@
 class ClearTheZone {
 
 private:
-    std::int16_t quantity_total_zombies = 80;
-
-    std::vector<std::int16_t> infected_prob = {0, 40};
-    std::vector<std::int16_t> witch_prob = {40, 70};
-    std::vector<std::int16_t> jumper_prob = {70, 100};
-
     float start_time;
+    GameMap map;
+    float time_respawn_zombies;
+    std::int16_t quantity_total_zombies;
+    std::vector<std::int16_t> infected_prob;
+    std::vector<std::int16_t> witch_prob;
+    std::vector<std::int16_t> jumper_prob;
     float last_time_updated = -1;
-    float time_respawn_zombies = 5; // aparece 1 zombi cada 1 segundo
-
     bool game_over = false;
     bool level_cleared = false;
-
-    GameMap map;
     std::vector<Soldier*> players;
 
 void respawn_zombies(float time);

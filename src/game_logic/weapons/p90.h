@@ -6,9 +6,9 @@
 
 class P90 : public Weapon {
  private:
-    std::int16_t bullets = 30;
-    const std::int16_t mag_capacity = 30;
-    std::int16_t damage = 15;
+    std::int16_t bullets;
+    const std::int16_t mag_capacity;
+    std::int16_t damage;
     AirStrike air_strike;
 
  public:
