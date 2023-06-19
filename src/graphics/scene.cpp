@@ -2,7 +2,8 @@
 #include <cstdlib>
 #include "gameview_configs_loader.h"
 
-Scene::Scene()
+Scene::Scene() :
+	offset(0)
 {
 	std::list<std::string> sprites = GameviewConfigurationsLoader::getInstance().getSceneSprites();
 	TextureLoader &textureLoader = TextureLoader::getInstance();
