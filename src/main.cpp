@@ -185,6 +185,7 @@ static bool handleEvents(Client* client, Gameview &view)
 				}
 				case SDLK_s: {
 					if (keyEvent.repeat == 0) {
+						std::cout << "S preesed: " << keyEvent.timestamp << std::endl;
 						client->shoot();
 					}
 					break;
@@ -212,6 +213,7 @@ static bool handleEvents(Client* client, Gameview &view)
 					break;
 				}
 				case SDLK_s: {
+					std::cout << "S released: " << keyEvent.timestamp << std::endl;
 					client->move(STOP_MOVE);
 					break;
 				}
@@ -231,6 +233,13 @@ static bool handleEvents(Client* client, Gameview &view)
 					view.resumeMusic();
 					break;
 				}
+				/*
+				case SDLK_q: {
+					uint8_t delta = 100;
+					client->throw_grenade(delta);
+					break;
+				}
+				 */
 			}
 		} // Fin KEY_UP
 		break;
