@@ -2,6 +2,7 @@
 #define CONFIGURATION_H_
 
 #include <yaml-cpp/yaml.h>
+#include <cstdint>
 
 class Configuration {
 

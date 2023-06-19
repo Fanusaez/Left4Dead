@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <cstdint>
 
 #include "../common/game_mode.h"
 #include "../common/soldier_type.h"
