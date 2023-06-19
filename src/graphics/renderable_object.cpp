@@ -2,8 +2,8 @@
 
 RenderableObject::RenderableObject(int id, int initialX, int initialY) {
 	this->id_ = id;
-	this->xPosition = initialX;
-	this->yPosition = initialY;
+	this->setPositionX(initialX);
+	this->setPositionY(initialY);
 }
 
 int RenderableObject::getID() const {
