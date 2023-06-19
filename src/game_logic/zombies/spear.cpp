@@ -7,7 +7,6 @@
 #include "../configuration.h"
 
 #define INVALID_POSITION -1
-#define DISTANCE_TO_HIT 2
 
 Spear::Spear(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         movements_per_cell(CONFIGURATION.get_movements_per_cell()),
@@ -29,7 +28,9 @@ Spear::Spear(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         map(map),
         chaser(this, map, x_pos, y_pos),
         health(CONFIGURATION.get_spear_health()),
-        damage_attack(CONFIGURATION.get_spear_damage()) {
+        damage_attack(CONFIGURATION.get_spear_damage()),
+        distance_to_hit(CONFIGURATION.get_spear_distance_to_hit()),
+        sight_distance(CONFIGURATION.get_spear_sight_distance()) {
     health += extra_health;
     random_chase_state();
 }
@@ -77,7 +78,7 @@ void Spear::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
 
 Soldier* Spear::get_closest_soldier(std::vector<Soldier*> soldiers) {
     Soldier* closest_soldier = nullptr;
-    std::int16_t min_distance = MAX_DISTANCE;
+    std::int16_t min_distance = sight_distance;
 
     for (Soldier* soldier : soldiers) {
         std::int16_t new_distance = get_distance_to_soldier(soldier);
@@ -116,7 +117,7 @@ void Spear::attack(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
     if (!closest_soldier) return;
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > DISTANCE_TO_HIT) return;
+    if (distance > distance_to_hit) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
     change_state(new_state);
 }

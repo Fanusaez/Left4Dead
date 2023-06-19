@@ -5,8 +5,6 @@
 #include <iostream>
 #include "../configuration.h"
 
-#define DISTANCE_TO_HIT 1
-
 Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
         movements_per_cell(CONFIGURATION.get_movements_per_cell()),
         x_pos(x_pos_wal * movements_per_cell),
@@ -29,11 +27,11 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         health(CONFIGURATION.get_witch_health()),
         damage_attack(CONFIGURATION.get_witch_damage()),
         probability_to_scream(CONFIGURATION.get_witch_prob_scream()),
-        zombies_created_for_screaming(CONFIGURATION.get_witch_zombies_created_screaming()) {
+        zombies_created_for_screaming(CONFIGURATION.get_witch_zombies_created_screaming()),
+        distance_to_hit(CONFIGURATION.get_witch_distance_to_hit()),
+        sight_distance(CONFIGURATION.get_witch_sight_distance()) {
     health += extra_health;
 }
-
-
 
 void Witch::update(std::vector<Soldier*> soldiers, float time) {
     std::int16_t random_number = get_random_number();
@@ -89,7 +87,7 @@ void Witch::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
 
 Soldier* Witch::get_closest_soldier(std::vector<Soldier*> soldiers) {
     Soldier* closest_soldier = nullptr;
-    std::int16_t min_distance = MAX_DISTANCE;
+    std::int16_t min_distance = sight_distance;
 
     for (Soldier* soldier : soldiers) {
         std::int16_t new_distance = get_distance_to_soldier(soldier);
@@ -136,7 +134,7 @@ void Witch::attack(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
     if (!closest_soldier) return;
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > DISTANCE_TO_HIT) return;
+    if (distance > distance_to_hit) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
     if (new_state != nullptr) {
         delete state;

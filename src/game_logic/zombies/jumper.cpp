@@ -4,7 +4,6 @@
 #include "../soldier.h"
 #include "../configuration.h"
 
-#define DISTANCE_TO_HIT 1
 #define DISTANCE_TO_JUMP 2
 
 
@@ -26,7 +25,9 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         map(map),
         chaser(this, map, x_pos, y_pos),
         health(CONFIGURATION.get_jumper_health()),
-        damage_attack(CONFIGURATION.get_jumper_damage()) {
+        damage_attack(CONFIGURATION.get_jumper_damage()),
+        distance_to_hit(CONFIGURATION.get_jumper_distance_to_hit()),
+        sight_distance(CONFIGURATION.get_jumper_sight_distance()) {
     health += extra_health;
 }
 
@@ -72,7 +73,7 @@ void Jumper::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
 
 Soldier* Jumper::get_closest_soldier(std::vector<Soldier*> soldiers) {
     Soldier* closest_soldier = nullptr;
-    std::int16_t min_distance = MAX_DISTANCE;
+    std::int16_t min_distance = sight_distance;
 
     for (Soldier* soldier : soldiers) {
         std::int16_t new_distance = get_distance_to_soldier(soldier);

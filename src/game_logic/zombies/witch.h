@@ -23,6 +23,8 @@ private:
     std::int16_t damage_attack;
     std::int16_t probability_to_scream;
     std::int16_t zombies_created_for_screaming;
+    std::int16_t distance_to_hit;
+    std::int16_t sight_distance;
     bool dead = false;
     std::int16_t direction = LEFT;
     ZombieState* state = new ZombieIdle;

@@ -19,6 +19,8 @@ class Infected : public GameObject, public Zombie {
     Chaser chaser;
     std::int16_t health;
     std::int16_t damage_attack;
+    std::int16_t distance_to_hit;
+    std::int16_t sight_distance;
     bool dead = false;
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;

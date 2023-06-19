@@ -42,20 +42,28 @@ grenadeStates:
 infected:
   health: 100
   damage: 10
+  distance_to_hit: 1
+  sight_distance: 30
 
 jumper:
   health: 100
   damage: 10
+  distance_to_hit: 1
+  sight_distance: 30
 
 witch:
   health: 200
   damage: 30
   probability_scream: 1
   zombies_created_for_screaming: 2
+  distance_to_hit: 1
+  sight_distance: 30
 
 spear:
   health: 100
   damage: 10
+  distance_to_hit: 2
+  sight_distance: 30
 
 zombieStates:
   time_attacking: 0.2
