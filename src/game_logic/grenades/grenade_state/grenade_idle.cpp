@@ -14,9 +14,13 @@ GrenadeState *GrenadeIdle::explode(float time, std::int16_t x_explosion, std::in
 }
 
 std::int16_t GrenadeIdle::get_x_explosion() {
-    return -1;
+    return 0;
 }
 
 std::int16_t GrenadeIdle::get_y_explosion() {
-    return -1;
+    return 0;
+}
+
+bool GrenadeIdle::exploting() {
+    return false;
 }

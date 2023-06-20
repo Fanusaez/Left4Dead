@@ -51,3 +51,7 @@ std::int16_t ThrownGrenade::get_x_explosion() {
 std::int16_t ThrownGrenade::get_y_explosion() {
     return y_explosion;
 }
+
+bool ThrownGrenade::exploting() {
+    return false;
+}

@@ -32,6 +32,8 @@ public:
 
     std::int16_t get_x_explosion() override;
     std::int16_t get_y_explosion() override;
+
+    bool exploting() override;
 };
 
 

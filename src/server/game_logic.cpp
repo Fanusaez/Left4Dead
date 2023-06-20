@@ -45,6 +45,11 @@ GameDTO GameLogic::get_game() {
                                 soldier->get_weapon()->get_bullets(),
                                 soldier->get_state()->soldier_state ,IDF, soldier->facing_left());
         game_dto.add_soldier(soldier_dto);
+        if (ExplosiveGrenade* grenade = soldier->get_explosive_grenade()){
+            GrenadeObjectDTO grenade_dto(grenade->id,grenade->get_state()->get_x_explosion(),
+            grenade->get_state()->get_y_explosion(),EXPLOSIVE_GRENADE,grenade->get_state()->exploting());
+            game_dto.add_element(grenade_dto);
+        }
     }
     //Obtenemos y recorremos los zombies del mapa
     std::vector<Zombie*>* zombies = game_map.get_zombies();

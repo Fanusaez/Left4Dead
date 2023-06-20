@@ -11,7 +11,7 @@ class Grenade : public RenderableObject {
 	std::shared_ptr<SDL2pp::Chunk> sfx;
 	bool playSFX;
 	int lastChannel;
-	bool exploiting;
+	bool exploting;
 
 public:
 	Grenade(int id, int initialX, int initialY);

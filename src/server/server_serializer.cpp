@@ -79,14 +79,17 @@ std::vector<char> ServerSerializer::serialize_player_id(const int32_t& player_id
 std::vector<char> ServerSerializer::serialize_game(GameDTO game_dto) {
     std::vector<SoldierObjectDTO> soldiers = game_dto.get_soldiers();
     std::vector<ZombieObjectDTO> zombies = game_dto.get_zombies();
+    std::vector<GrenadeObjectDTO> grenades = game_dto.get_elements();
 
     uint8_t num_soldiers = soldiers.size();
     uint8_t num_zombies = zombies.size();
+    uint8_t num_grenades = grenades.size();
 
     std::vector<char> buffer;
-    buffer.reserve(2 + (sizeof(SoldierObjectDTO) * num_soldiers) + (sizeof(ZombieObjectDTO) * num_zombies));
+    buffer.reserve(3 + (sizeof(SoldierObjectDTO) * num_soldiers) + (sizeof(ZombieObjectDTO) * num_zombies) + (sizeof(GrenadeObjectDTO) * num_grenades));
     buffer.push_back(static_cast<char>(num_soldiers));
     buffer.push_back(static_cast<char>(num_zombies));
+    buffer.push_back(static_cast<char>(num_grenades));
     
     for (const auto &obj : soldiers) {
         int32_t transformed_player_id = htonl(obj.player_id);
@@ -138,5 +141,24 @@ std::vector<char> ServerSerializer::serialize_game(GameDTO game_dto) {
 
         buffer.push_back(obj.facing_left);
     }
+
+    for (const auto &obj : grenades) {
+        int16_t transformed_id = htons(obj.id);
+        unsigned char const * p = reinterpret_cast<unsigned char const *>(&transformed_id);
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
+
+        int16_t transformed_position_x = htons(obj.position_x);
+        p = reinterpret_cast<unsigned char const *>(&transformed_position_x);
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
+
+        int16_t transformed_position_y = htons(obj.position_y);
+        p = reinterpret_cast<unsigned char const *>(&transformed_position_y);
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
+
+        buffer.push_back(obj.grenade_type);
+        
+        buffer.push_back(obj.exploting);
+    }
+
     return buffer;
 }

@@ -50,3 +50,7 @@ std::int16_t Exploding::get_x_explosion() {
 std::int16_t Exploding::get_y_explosion() {
     return y_explosion;
 }
+
+bool Exploding::exploting() {
+    return true;
+}
