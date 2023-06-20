@@ -81,11 +81,11 @@ clearTheZone:
   time_respawn_zombies: 5
   total_quantity_zombies: 80
   zombies_probability_respawn:
-    infected: [0, 40]
-    witch: [40, 70]
-    jumper: [70, 100]
-    spear: [0, 0]
-    venom: [0, 0]
+    infected: [ 0, 30 ]
+    witch: [ 30, 50 ]
+    jumper: [ 50, 60 ]
+    spear: [ 60, 100 ]
+    venom: [ 0, 0 ]
 
 survival:
   time_respawn_zombies: 5
@@ -93,19 +93,19 @@ survival:
   health_power_up: 10
   damage_power_up: 5
   zombies_probability_respawn:
-    infected: [0, 40]
-    witch: [40, 70]
-    jumper: [70, 90]
-    spear: [0, 0]
+    infected: [0, 30]
+    witch: [30, 50]
+    jumper: [50, 60]
+    spear: [60, 100]
     venom: [0, 0]
 
 gameFactory:
   zombies_probability_respawn:
-    infected: [0, 40]
-    witch: [40, 50]
-    jumper: [50, 100]
-    spear: [0, 0]
-    venom: [0, 0]
+    infected: [ 0, 30 ]
+    witch: [ 30, 50 ]
+    jumper: [ 50, 60 ]
+    spear: [ 60, 100 ]
+    venom: [ 0, 0 ]
 
 airStrike:
   radius_range_safe_space: 2

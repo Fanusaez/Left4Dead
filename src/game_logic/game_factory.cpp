@@ -18,7 +18,8 @@ GameFactory::GameFactory(GameMap &map) :
     map(map),
     infected_prob(CONFIGURATION.get_GF_infected_prob_to_respawn()),
     witch_prob(CONFIGURATION.get_GF_witch_prob_to_respawn()),
-    jumper_prob(CONFIGURATION.get_GF_jumper_prob_to_respawn()) {}
+    jumper_prob(CONFIGURATION.get_GF_jumper_prob_to_respawn()),
+    spear_prob(CONFIGURATION.get_GF_spear_prob_to_respawn()){}
 
 Soldier* GameFactory::get_soldier_with_idf(std::vector<std::int16_t>& soldier_pos) {
     Weapon* idf = new Idf(id++, id++);
@@ -48,6 +49,8 @@ Zombie* GameFactory::create_random_zombie(std::vector<std::int16_t>& zombie_pos)
          return new Witch(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
     } else if (random_num >= jumper_prob[0] && random_num <= jumper_prob[1]) {
         return new Jumper(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+    } else if (random_num >= spear_prob[0] && random_num <= spear_prob[1]) {
+        return new Spear(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
     }
     return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map); // porlas
 }

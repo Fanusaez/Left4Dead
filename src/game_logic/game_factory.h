@@ -15,6 +15,7 @@ private:
     std::vector<std::int16_t> infected_prob;
     std::vector<std::int16_t> witch_prob;
     std::vector<std::int16_t> jumper_prob;
+    std::vector<std::int16_t> spear_prob;
     std::int16_t id = 0;
 
     Soldier* create_soldier(Weapon* weapon, std::vector<std::int16_t>& soldier_pos);
