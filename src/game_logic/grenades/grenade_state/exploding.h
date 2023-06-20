@@ -7,10 +7,11 @@ class Exploding : public GrenadeState {
 private:
     float start_time;
     float time_to_stop_exploding;
+    std::int16_t movements_per_cell;
 
 public:
-    std::int16_t x_explosion;
-    std::int16_t y_explosion;
+    std::int16_t x_matrix_explosion;
+    std::int16_t y_matrix_explosion;
 
     Exploding(float start_time, std::int16_t x_explosion, std::int16_t y_explosion, GameMap& map, Grenade* grenade);
 

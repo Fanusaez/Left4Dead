@@ -8,9 +8,10 @@ Exploding::Exploding(float start_time,
                      std::int16_t y_explosion,
                      GameMap &map,
                      Grenade* grenade) :    start_time(start_time),
-                                            x_explosion(x_explosion),
-                                            y_explosion(y_explosion),
-                                            time_to_stop_exploding(CONFIGURATION.get_grenadeState_time_exploding()){
+                                            x_matrix_explosion(x_explosion),
+                                            y_matrix_explosion(y_explosion),
+                                            time_to_stop_exploding(CONFIGURATION.get_grenadeState_time_exploding()),
+                                            movements_per_cell(CONFIGURATION.get_movements_per_cell()) {
     explode(start_time, x_explosion, y_explosion, map, grenade);
 }
 
@@ -44,11 +45,11 @@ bool Exploding::time_stop_explosion(float time) {
 }
 
 std::int16_t Exploding::get_x_explosion() {
-    return x_explosion;
+    return x_matrix_explosion * movements_per_cell;
 }
 
 std::int16_t Exploding::get_y_explosion() {
-    return y_explosion;
+    return y_matrix_explosion * movements_per_cell;
 }
 
 bool Exploding::exploting() {
