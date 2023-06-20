@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <string>
 #include <list>
+#include <set>
 #include <map>
 #include <memory>
 #include <optional>
@@ -93,41 +94,51 @@ int main(int argc, char *argv[])
 		if (game_optional.has_value()){
 			gameState = game_optional.value();
 		}
+		std::set<int> idsToKeep;
 		std::vector<SoldierObjectDTO> soldiers = gameState.get_soldiers();
-		std::vector<ZombieObjectDTO> zombies = gameState.get_zombies();
 		for (auto& soldier: soldiers){
-			if(objects.find(soldier.id) == objects.end()){
+			idsToKeep.insert(soldier.id);
+			if(objects.find(soldier.id) == objects.end()) {
 				std::unique_ptr<RenderableObject> ptr = std::move(creator.create(soldier));
 				objects[ptr->getID()] = std::move(ptr);
 				if (soldier.player_id == player_id)
 					view.assignMainObject(soldier.id);
-			}
-			else {
+			} else {
 				RenderableObject &object = *(objects.at(soldier.id));
 				object.updateState(soldier);
 			}
 		}
+		std::vector<ZombieObjectDTO> zombies = gameState.get_zombies();
 		for (auto& zombie: zombies){
-			if(objects.find(zombie.id) == objects.end()){
+			idsToKeep.insert(zombie.id);
+			if(objects.find(zombie.id) == objects.end()) {
 				std::unique_ptr<RenderableObject> ptr = std::move(creator.create(zombie));
 				objects[ptr->getID()] = std::move(ptr);
-			}
-			else {
+			} else {
 				RenderableObject &object = *(objects.at(zombie.id));
 				object.updateState(zombie);
 			}
 		}
 		std::vector<GrenadeObjectDTO> elements = gameState.get_elements();
 		for (auto &element: elements) {
+			idsToKeep.insert(element.id);
 			if (objects.find(element.id) == objects.end()) {
 				std::unique_ptr <RenderableObject> ptr = std::move(creator.create(element));
 				objects[ptr->getID()] = std::move(ptr);
 			}
 		}
-		for (auto &object : objects)
-			object.second->update(configs.FRAME_RATE);
+
+		for (auto it = objects.begin(); it != objects.end(); ) {
+			if (idsToKeep.count(it->first) == 0) {
+				it = objects.erase(it);
+			} else {
+				it->second->update(configs.FRAME_RATE);
+				++it;
+			}
+		}
 		view.render();
 		running = handleEvents(&client, view);
+
 		auto t_end = std::chrono::high_resolution_clock::now();
 		std::chrono::duration<double> duration = t_end - t_start;
 		double seconds = duration.count();
