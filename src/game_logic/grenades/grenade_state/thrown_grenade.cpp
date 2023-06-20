@@ -18,6 +18,7 @@ GrenadeState *ThrownGrenade::update(float time) {
     if (time_to_explode(time)) {
         return new Exploding(time, x_explosion, y_explosion, map, grenade);
     }
+    return nullptr;
 }
 
 GrenadeState *ThrownGrenade::throw_grenade(float time,

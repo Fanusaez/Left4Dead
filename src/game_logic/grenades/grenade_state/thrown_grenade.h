@@ -11,7 +11,7 @@ private:
     std::int16_t x_explosion;
     std::int16_t y_explosion;
     float start_time;
-    float _time_to_explode = 1;
+    float _time_to_explode;
 
 public:
     ThrownGrenade(float time, std::int16_t x_explosion, std::int16_t y_explosion, GameMap& map, Grenade* grenade);

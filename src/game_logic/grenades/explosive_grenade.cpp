@@ -22,6 +22,7 @@ State* ExplosiveGrenade::throw_grenade(GameMap& map,
                                   std::int16_t y_matrix_sold,
                                   State* current_soldier_state,
                                   float time) {
+
     if (!time_throw_grenade(time)) {
         return nullptr;
     }

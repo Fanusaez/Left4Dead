@@ -91,7 +91,7 @@ void GameLogic::shoot(InstructionsDTO* instruction) {
 void GameLogic::grenade(InstructionsDTO* instruction) {
     GrenadeDTO* grenade_dto = dynamic_cast<GrenadeDTO*>(instruction);
     Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
-    soldier->throw_explosive_grenade(grenade_dto->get_time());
+    soldier->throw_explosive_grenade(timer);
 }
 
 void GameLogic::udpate_game(){
