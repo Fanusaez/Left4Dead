@@ -26,7 +26,7 @@ bool Client::shoot(){
     return (queue_sender.try_push(client_seializer.serialize_shooting()));
 }
 
-bool Client::throw_grenade(const uint8_t& time){
+bool Client::throw_grenade(const int8_t& time){
     return (queue_sender.try_push(client_seializer.serialize_throw_grenede(time)));
 }
 

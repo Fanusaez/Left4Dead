@@ -28,7 +28,7 @@ std::vector<char> ClientSerializer::serialize_shooting(){
     return buffer;
 }
 
-std::vector<char> ClientSerializer::serialize_throw_grenede(const uint8_t& time){
+std::vector<char> ClientSerializer::serialize_throw_grenede(const int8_t& time){
     std::vector<char> buffer;
     buffer.push_back(GRENADE);
     buffer.push_back(time);

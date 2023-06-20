@@ -233,13 +233,11 @@ static bool handleEvents(Client* client, Gameview &view)
 					view.resumeMusic();
 					break;
 				}
-				/*
 				case SDLK_q: {
-					uint8_t delta = 100;
+					int8_t delta = 10;
 					client->throw_grenade(delta);
 					break;
 				}
-				 */
 			}
 		} // Fin KEY_UP
 		break;
