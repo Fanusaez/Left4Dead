@@ -22,7 +22,7 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
     random_chase_state();
 }
 
-Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health) :
+Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health, std::int16_t extra_damage) :
         movements_per_cell(CONFIGURATION.get_movements_per_cell()),
         x_pos(x_pos_wal * movements_per_cell),
         y_pos(y_pos_wal * movements_per_cell),
@@ -35,6 +35,7 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         sight_distance(CONFIGURATION.get_infected_sight_distance()) {
     random_chase_state();
     health += extra_health;
+    damage_attack += extra_damage;
 }
 
 

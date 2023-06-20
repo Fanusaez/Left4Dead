@@ -83,6 +83,7 @@ private:
     std::int16_t survival_time_respawn_zombies;
     std::int16_t survival_time_zombies_getting_stronger;
     std::int16_t survival_zombies_health_power_up;
+    std::int16_t survival_zombies_damage_power_up;
     std::vector<std::int16_t> survival_infected_prob_respawn;
     std::vector<std::int16_t> survival_witch_prob_respawn;
     std::vector<std::int16_t> survival_jumper_prob_respawn;
@@ -187,6 +188,7 @@ public:
     std::int16_t get_survival_time_respawn_zombies();
     std::int16_t get_survival_time_zombies_getting_stronger();
     std::int16_t get_survival_health_power_up();
+    std::int16_t get_survival_damage_power_up();
     std::vector<std::int16_t> get_survival_infected_prob_to_respawn();
     std::vector<std::int16_t> get_survival_witch_prob_to_respawn();
     std::vector<std::int16_t> get_survival_jumper_prob_to_respawn();

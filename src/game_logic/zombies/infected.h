@@ -38,7 +38,7 @@ void random_chase_state();
 
  public:
 Infected(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
-Infected(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map, std::int16_t extra_health);
+Infected(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map, std::int16_t extra_health, std::int16_t extra_damage);
 
 void update(std::vector<Soldier*> soldiers, float time) override;
 

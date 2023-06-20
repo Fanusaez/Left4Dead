@@ -269,10 +269,10 @@ void GameMap::add_random_zombie() {
     map[y_pos][x_pos] = dynamic_cast<GameObject*>(zombie);
 }
 
-void GameMap::add_infected(std::int16_t infected_health) {
+void GameMap::add_infected(std::int16_t extra_health, std::int16_t extra_damage) {
     std::vector<std::int16_t> zombie_pos;
     get_position_for_object(zombie_pos);
-    Zombie* zombie = factory.create_infected(zombie_pos, infected_health);
+    Zombie* zombie = factory.create_infected(zombie_pos,  extra_health, extra_damage);
     zombies.push_back(zombie);
 
     std::int16_t x_pos = zombie_pos[X_POS];
@@ -280,10 +280,10 @@ void GameMap::add_infected(std::int16_t infected_health) {
     map[y_pos][x_pos] = dynamic_cast<GameObject*>(zombie);
 }
 
-void GameMap::add_jumper(std::int16_t extra_health) {
+void GameMap::add_jumper(std::int16_t extra_health, std::int16_t extra_damage) {
     std::vector<std::int16_t> zombie_pos;
     get_position_for_object(zombie_pos);
-    Zombie* zombie = factory.create_jumper(zombie_pos, extra_health);
+    Zombie* zombie = factory.create_jumper(zombie_pos, extra_health, extra_damage);
     zombies.push_back(zombie);
 
     std::int16_t x_pos = zombie_pos[X_POS];
@@ -291,10 +291,10 @@ void GameMap::add_jumper(std::int16_t extra_health) {
     map[y_pos][x_pos] = dynamic_cast<GameObject*>(zombie);
 }
 
-void GameMap::add_witch(std::int16_t extra_health) {
+void GameMap::add_witch(std::int16_t extra_health, std::int16_t extra_damage) {
     std::vector<std::int16_t> zombie_pos;
     get_position_for_object(zombie_pos);
-    Zombie* zombie = factory.create_witch(zombie_pos, extra_health);
+    Zombie* zombie = factory.create_witch(zombie_pos, extra_health, extra_damage);
     zombies.push_back(zombie);
 
     std::int16_t x_pos = zombie_pos[X_POS];
@@ -302,10 +302,10 @@ void GameMap::add_witch(std::int16_t extra_health) {
     map[y_pos][x_pos] = dynamic_cast<GameObject*>(zombie);
 }
 
-void GameMap::add_spear(std::int16_t extra_health) {
+void GameMap::add_spear(std::int16_t extra_health, std::int16_t extra_damage) {
     std::vector<std::int16_t> zombie_pos;
     get_position_for_object(zombie_pos);
-    Zombie* zombie = factory.create_spear(zombie_pos, extra_health);
+    Zombie* zombie = factory.create_spear(zombie_pos, extra_health, extra_damage);
     zombies.push_back(zombie);
 
     std::int16_t x_pos = zombie_pos[X_POS];

@@ -68,6 +68,7 @@ Configuration::Configuration(const YAML::Node& node) :
                             survival_time_respawn_zombies(node["survival"]["time_respawn_zombies"].as<std::int16_t>()),
                             survival_time_zombies_getting_stronger(node["survival"]["time_zombies_getting_stronger"].as<std::int16_t>()),
                             survival_zombies_health_power_up(node["survival"]["health_power_up"].as<std::int16_t>()),
+                            survival_zombies_damage_power_up(node["survival"]["damage_power_up"].as<std::int16_t>()),
                             survival_infected_prob_respawn(node["survival"]["zombies_probability_respawn"]["infected"].as<std::vector<std::int16_t>>()),
                             survival_witch_prob_respawn(node["survival"]["zombies_probability_respawn"]["witch"].as<std::vector<std::int16_t>>()),
                             survival_jumper_prob_respawn(node["survival"]["zombies_probability_respawn"]["jumper"].as<std::vector<std::int16_t>>()),
@@ -322,6 +323,10 @@ std::int16_t Configuration::get_survival_time_zombies_getting_stronger() {
 
 std::int16_t Configuration::get_survival_health_power_up() {
     return survival_zombies_health_power_up;
+}
+
+std::int16_t Configuration::get_survival_damage_power_up() {
+    return survival_zombies_damage_power_up;
 }
 
 std::vector<std::int16_t> Configuration::get_survival_infected_prob_to_respawn() {
