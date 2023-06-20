@@ -48,13 +48,12 @@ struct GrenadeObjectDTO {
     int16_t position_x;     
     int16_t position_y;      
     GrenadeType grenade_type;
-    bool exploting;
 
     // Constructor para inicializar los atributos
     GrenadeObjectDTO(int16_t id, int16_t position_x, int16_t position_y,
-                        GrenadeType grenade_type, bool exploting) 
+                        GrenadeType grenade_type) 
                     : id(id), position_x(position_x), position_y(position_y), 
-                    grenade_type(grenade_type), exploting(exploting){}
+                    grenade_type(grenade_type){}
 };
 
 class GameDTO {

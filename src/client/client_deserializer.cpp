@@ -62,9 +62,8 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
         socket->recvall(&position_x, sizeof(int16_t), was_closed);
         socket->recvall(&position_y, sizeof(int16_t), was_closed);
         socket->recvall(&grenade_type, sizeof(char), was_closed);
-        socket->recvall(&facingLeft, sizeof(bool), was_closed);
         game_dto.add_element(GrenadeObjectDTO(ntohs(id), ntohs(position_x), ntohs(position_y), 
-        static_cast<GrenadeType>(grenade_type), facingLeft));
+        static_cast<GrenadeType>(grenade_type)));
     }
     return game_dto;
 }

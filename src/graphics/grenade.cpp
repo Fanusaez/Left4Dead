@@ -7,7 +7,7 @@ Grenade::Grenade(int id, int initialX, int initialY) :
 	animation(textureLoader.getTexture("Soldier_1/Explosion.png")),
 	playSFX(false),
 	lastChannel(-1),
-	exploting(true)
+	exploiting(true)
 {
 	this->animation.noLoop();
 	this->sfx = this->textureLoader.getChunk("Soldier_1/Explosion.mp3");
@@ -27,7 +27,6 @@ void Grenade::updateState(const GrenadeObjectDTO &grenadeDTO)
 
 	this->setPositionX(grenadeDTO.position_x);
 	this->setPositionY(grenadeDTO.position_y);
-	this->exploting = grenadeDTO.exploting;
 }
 
 void Grenade::update(unsigned int dt)
@@ -37,7 +36,7 @@ void Grenade::update(unsigned int dt)
 
 void Grenade::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 {
-	if (this->exploting) {
+	if (this->exploiting) {
 		SDL_RendererFlip flip = SDL_FLIP_NONE;
 		this->animation.render(renderer, dst, flip);
 	}
@@ -45,7 +44,7 @@ void Grenade::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 
 void Grenade::renderAudio(SDL2pp::Mixer &mixer)
 {
-	if (not this->playSFX or not this->exploting)
+	if (not this->playSFX or not this->exploiting)
 		return;
 
 	if (this->lastChannel != -1) // This object is playing something

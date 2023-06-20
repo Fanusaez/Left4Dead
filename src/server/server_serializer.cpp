@@ -157,7 +157,6 @@ std::vector<char> ServerSerializer::serialize_game(GameDTO game_dto) {
 
         buffer.push_back(obj.grenade_type);
         
-        buffer.push_back(obj.exploting);
     }
 
     return buffer;
