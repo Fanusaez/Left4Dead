@@ -1,6 +1,6 @@
 soldier:
   health: 100
-  grenade_distance_reach: 4
+  grenade_distance_reach: 15
 
 soldierStates:
   time_being_attacked: 0.1
@@ -36,7 +36,7 @@ smokeGrenade:
   radius_range: 3
 
 grenadeStates:
-  time_exploding: 0.08
+  time_exploding: 3
   time_thrown_grenade: 1
 
 infected:
