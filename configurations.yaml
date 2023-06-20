@@ -28,7 +28,7 @@ weapons:
 
 explosiveGrenade:
   damage: 40
-  time_to_reThrow_grenade: 30
+  time_to_reThrow_grenade: 1
   radius_range: 3
 
 smokeGrenade:
