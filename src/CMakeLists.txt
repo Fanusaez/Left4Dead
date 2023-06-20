@@ -107,6 +107,7 @@ if(CLIENT)
 			graphics/infected.cpp
 			graphics/witch.cpp
 			graphics/jumper.cpp
+			graphics/lancer.cpp
 			graphics/grenade.cpp
 			graphics/Animation.cpp
 			graphics/texture_loader.cpp
