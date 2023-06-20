@@ -90,7 +90,7 @@ void Witch::changeState(const ZombieObjectState &state)
 		this->sfx = this->textureLoader.getChunk("Witch/Scream.mp3");
 		this->sfxLoops = 0;
 	} else {
-		this->animation.changeTexture(this->textureLoader.getTexture("Zombie/Idle.png"));
+		this->animation.changeTexture(this->textureLoader.getTexture("Witch/Idle.png"));
 		this->animation.noLoop();
 		this->sfx = nullptr;
 	}
