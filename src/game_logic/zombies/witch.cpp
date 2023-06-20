@@ -15,7 +15,9 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         health(CONFIGURATION.get_witch_health()),
         damage_attack(CONFIGURATION.get_witch_damage()),
         probability_to_scream(CONFIGURATION.get_witch_prob_scream()),
-        zombies_created_for_screaming(CONFIGURATION.get_witch_zombies_created_screaming()) {}
+        zombies_created_for_screaming(CONFIGURATION.get_witch_zombies_created_screaming()),
+        distance_to_hit(CONFIGURATION.get_witch_distance_to_hit()),
+        sight_distance(CONFIGURATION.get_witch_sight_distance()) {}
 
 Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health, std::int16_t extra_damage) :
         movements_per_cell(CONFIGURATION.get_movements_per_cell()),
