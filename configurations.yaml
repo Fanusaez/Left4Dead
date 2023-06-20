@@ -69,7 +69,7 @@ zombieStates:
   time_attacking: 0.2
   time_jumping: 0.2
   time_running: 0.01
-  time_screaming: 0.9
+  time_screaming: 1.2
   time_stunned: 10
   time_walking: 0.2
   time_being_attacked: 0.3
