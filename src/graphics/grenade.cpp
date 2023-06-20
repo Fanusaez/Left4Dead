@@ -6,8 +6,7 @@ Grenade::Grenade(int id, int initialX, int initialY) :
 	textureLoader(TextureLoader::getInstance()),
 	animation(textureLoader.getTexture("Soldier_1/Explosion.png")),
 	playSFX(false),
-	lastChannel(-1),
-	exploiting(true)
+	lastChannel(-1)
 {
 	this->animation.noLoop();
 	this->sfx = this->textureLoader.getChunk("Soldier_1/Explosion.mp3");
@@ -36,15 +35,13 @@ void Grenade::update(unsigned int dt)
 
 void Grenade::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 {
-	if (this->exploiting) {
-		SDL_RendererFlip flip = SDL_FLIP_NONE;
-		this->animation.render(renderer, dst, flip);
-	}
+	SDL_RendererFlip flip = SDL_FLIP_NONE;
+	this->animation.render(renderer, dst, flip);
 }
 
 void Grenade::renderAudio(SDL2pp::Mixer &mixer)
 {
-	if (not this->playSFX or not this->exploiting)
+	if (not this->playSFX)
 		return;
 
 	if (this->lastChannel != -1) // This object is playing something
