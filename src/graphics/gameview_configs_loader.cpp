@@ -82,6 +82,11 @@ void GameviewConfigurationsLoader::setSpritesToLoad()
 	this->spritesToLoad.push_back("Jumper/Hurt.png");
 	this->spritesToLoad.push_back("Jumper/Dead.png");
 	this->spritesToLoad.push_back("Jumper/Attack_1.png");
+	this->spritesToLoad.push_back("Spear/Attack_1.png");
+	this->spritesToLoad.push_back("Spear/Dead.png");
+	this->spritesToLoad.push_back("Spear/Hurt.png");
+	this->spritesToLoad.push_back("Spear/Idle.png");
+	this->spritesToLoad.push_back("Spear/Walk.png");
 }
 
 void GameviewConfigurationsLoader::setMusicToLoad()
