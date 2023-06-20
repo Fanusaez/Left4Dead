@@ -43,3 +43,11 @@ GrenadeState *ThrownGrenade::explode(float time,
 bool ThrownGrenade::time_to_explode(float time) {
     return (time - start_time) >= _time_to_explode;
 }
+
+std::int16_t ThrownGrenade::get_x_explosion() {
+    return x_explosion;
+}
+
+std::int16_t ThrownGrenade::get_y_explosion() {
+    return y_explosion;
+}

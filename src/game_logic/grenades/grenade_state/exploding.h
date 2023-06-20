@@ -29,6 +29,9 @@ public:
                           Grenade* grenade) override;
 
     bool time_stop_explosion(float time);
+
+    std::int16_t get_x_explosion() override;
+    std::int16_t get_y_explosion() override;
 };
 
 

@@ -42,3 +42,11 @@ GrenadeState* Exploding::explode(float time,
 bool Exploding::time_stop_explosion(float time) {
     return (time - start_time) >= time_to_stop_exploding;
 }
+
+std::int16_t Exploding::get_x_explosion() {
+    return x_explosion;
+}
+
+std::int16_t Exploding::get_y_explosion() {
+    return y_explosion;
+}

@@ -12,3 +12,11 @@ GrenadeState *GrenadeIdle::throw_grenade(float time, std::int16_t x_explosion, s
 GrenadeState *GrenadeIdle::explode(float time, std::int16_t x_explosion, std::int16_t y_explosion, GameMap& map, Grenade* grenade) {
     return nullptr;
 }
+
+std::int16_t GrenadeIdle::get_x_explosion() {
+    return -1;
+}
+
+std::int16_t GrenadeIdle::get_y_explosion() {
+    return -1;
+}
