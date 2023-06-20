@@ -16,7 +16,9 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         map(map),
         chaser(this, map, x_pos, y_pos),
         health(CONFIGURATION.get_infected_health()),
-        damage_attack(CONFIGURATION.get_infected_damage()) {
+        damage_attack(CONFIGURATION.get_infected_damage()),
+        distance_to_hit(CONFIGURATION.get_infected_distance_to_hit()),
+        sight_distance(CONFIGURATION.get_infected_sight_distance()){
     random_chase_state();
 }
 

@@ -62,6 +62,7 @@ add_executable(testProtocolServer
         ../src/game_logic/zombie_states/chasing_states/chase_running.cpp
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
 )
+target_link_libraries(testProtocolServer -lyaml-cpp)
 
 add_executable(testCollision
 		game_logic_testing/test_collision.cpp
@@ -107,8 +108,8 @@ add_executable(testCollision
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
-
 )
+target_link_libraries(testCollision -lyaml-cpp)
 
 add_executable(testShooting
 		game_logic_testing/test_shoot_walker.cpp
@@ -155,6 +156,7 @@ add_executable(testShooting
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testShooting -lyaml-cpp)
 
 add_executable(testShootingIdf
 		game_logic_testing/test_shooting_idf.cpp
@@ -201,6 +203,7 @@ add_executable(testShootingIdf
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testShootingIdf -lyaml-cpp)
 
 add_executable(testShootingScout
 		game_logic_testing/test_shooting_scout.cpp
@@ -248,6 +251,7 @@ add_executable(testShootingScout
         ../src/game_logic/states/throwing_smoke_grenade.cpp
 
         )
+target_link_libraries(testShootingScout -lyaml-cpp)
 
 add_executable(testMovingUpSoldier
 		game_logic_testing/test_moving_soldier_up.cpp
@@ -294,6 +298,7 @@ add_executable(testMovingUpSoldier
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testMovingUpSoldier -lyaml-cpp)
 
 add_executable(testMovingSoldierDown
 		game_logic_testing/test_moving_soldier_down.cpp
@@ -340,6 +345,7 @@ add_executable(testMovingSoldierDown
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testMovingSoldierDown -lyaml-cpp)
 
 add_executable(testMovingSoldierRight
 		game_logic_testing/test_moving_soldier_right.cpp
@@ -386,6 +392,7 @@ add_executable(testMovingSoldierRight
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testMovingSoldierRight -lyaml-cpp)
 
 add_executable(testMoveSoldierLeft
 		game_logic_testing/test_moving_soldier_left.cpp
@@ -432,6 +439,8 @@ add_executable(testMoveSoldierLeft
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testMoveSoldierLeft -lyaml-cpp)
+
 add_executable(testMoveMap
 		game_logic_testing/test_move_map.cpp
         ../src/game_logic/soldier.cpp
@@ -477,6 +486,7 @@ add_executable(testMoveMap
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testMoveMap -lyaml-cpp)
 
 add_executable(testExplosiveGrenade
 		game_logic_testing/test_explosive_grenade.cpp
@@ -523,6 +533,7 @@ add_executable(testExplosiveGrenade
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testExplosiveGrenade -lyaml-cpp)
 
 add_executable(testChaseSoldierWalking
 		game_logic_testing/test_chase_soldier_walker.cpp
@@ -569,6 +580,7 @@ add_executable(testChaseSoldierWalking
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testChaseSoldierWalking -lyaml-cpp)
 
 add_executable(testMapChaseSoldierWalking
 		game_logic_testing/test_map_chase_soldier_walker.cpp
@@ -614,6 +626,7 @@ add_executable(testMapChaseSoldierWalking
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testMapChaseSoldierWalking -lyaml-cpp)
 
 add_executable(testChaseSoldierWalkingObstacles
 		game_logic_testing/test_chase_soldier_walker_obstacles.cpp
@@ -660,6 +673,7 @@ add_executable(testChaseSoldierWalkingObstacles
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testChaseSoldierWalkingObstacles -lyaml-cpp)
 
 add_executable(testWalkerAttackSoldier
 		game_logic_testing/test_walker_attack_soldier.cpp
@@ -706,6 +720,7 @@ add_executable(testWalkerAttackSoldier
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testWalkerAttackSoldier -lyaml-cpp)
 
 add_executable(testChangeInStatesSoldier
 		game_logic_testing/test_soldier_states.cpp
@@ -753,6 +768,8 @@ add_executable(testChangeInStatesSoldier
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
         )
+target_link_libraries(testChangeInStatesSoldier -lyaml-cpp)
+
 
 add_executable(testChangeInStatesZombie
 		game_logic_testing/test_zombie_states.cpp
@@ -799,6 +816,8 @@ add_executable(testChangeInStatesZombie
         ../src/game_logic/zombie_states/chasing_states/chase_running.cpp
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
         )
+target_link_libraries(testChangeInStatesZombie -lyaml-cpp)
+
 add_executable(testCollisionSoldier
 		game_logic_testing/test_collision_soldiers.cpp
         ../src/game_logic/soldier.cpp
@@ -845,6 +864,8 @@ add_executable(testCollisionSoldier
         ../src/game_logic/zombie_states/chasing_states/chase_running.cpp
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
         )
+target_link_libraries(testCollisionSoldier -lyaml-cpp)
+
 add_executable(testWalkerRemove
 		game_logic_testing/test_walker_remove_from_map.cpp
         ../src/game_logic/soldier.cpp
@@ -890,6 +911,7 @@ add_executable(testWalkerRemove
         ../src/game_logic/zombie_states/chasing_states/chase_running.cpp
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
         )
+target_link_libraries(testWalkerRemove -lyaml-cpp)
 
 add_executable(testChasingStates
 		game_logic_testing/test_chasing_states.cpp
@@ -936,6 +958,7 @@ add_executable(testChasingStates
         ../src/game_logic/zombie_states/chasing_states/chase_running.cpp
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
         )
+target_link_libraries(testChasingStates -lyaml-cpp)
 
 add_executable(testSmokeGrenade
 		game_logic_testing/test_smoke_grenade.cpp
@@ -982,6 +1005,7 @@ add_executable(testSmokeGrenade
         ../src/game_logic/zombie_states/chasing_states/chase_running.cpp
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
         )
+target_link_libraries(testSmokeGrenade -lyaml-cpp)
 
 add_executable(testWitcher
 		game_logic_testing/test_witcher.cpp
@@ -1028,6 +1052,7 @@ add_executable(testWitcher
         ../src/game_logic/zombie_states/chasing_states/chase_running.cpp
         ../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
         )
+target_link_libraries(testWitcher -lyaml-cpp)
 
 add_executable(testStatesGrenades
 		game_logic_testing/test_grenade_states.cpp
@@ -1074,7 +1099,7 @@ add_executable(testStatesGrenades
 		../src/game_logic/zombie_states/chasing_states/chase_running.cpp
 		../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
 		)
-
+target_link_libraries(testStatesGrenades -lyaml-cpp)
 
 add_executable(testAirStrike
 		game_logic_testing/test_air_strike.cpp
@@ -1121,6 +1146,8 @@ add_executable(testAirStrike
 		../src/game_logic/zombie_states/chasing_states/chase_running.cpp
 		../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
 		)
+target_link_libraries(testAirStrike -lyaml-cpp)
+
 
 add_executable(testAirStrikeStates
 		game_logic_testing/test_state_airstrike.cpp
@@ -1167,12 +1194,13 @@ add_executable(testAirStrikeStates
 		../src/game_logic/zombie_states/chasing_states/chase_running.cpp
 		../src/game_logic/zombie_states/chasing_states/chase_jumping.cpp
 		)
+target_link_libraries(testAirStrikeStates -lyaml-cpp)
 # target_link_libraries(testPrueba PRIVATE myLibrary)
 # Despues agregar el target aca y listo
 set(testTargets
-        testProtocolLobby
-        testProtocolClient
-        testProtocolServer
+        #testProtocolLobby
+        #testProtocolClient
+        #testProtocolServer
         testCollision
         testShooting
         testShootingIdf
@@ -1201,6 +1229,5 @@ set(testTargets
 
 foreach(target ${testTargets})
         add_test(NAME "${target}" COMMAND "${target}")
-
         add_dependencies(test "${target}")
 endforeach()

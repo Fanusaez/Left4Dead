@@ -26,7 +26,7 @@ void testChaseInfectedDiagonallyUpAndRightFaceToFace() {
      bool added_soldier = map.add_soldier(&soldier, 8, 2);
 
     Infected walker(5, 5, 0, map);
-     bool added_walker = map.add_zombie(&walker, 5, 5);
+     bool added_walker =map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 1000; i++) { // enough to encounter the soldier face to face
         map.chase_soldiers(i);
@@ -72,7 +72,7 @@ void testChaseInfectedDiagonallyDownAndRightFaceToFace() {
     Soldier soldier(scout, map, 8, 8, 0);
     map.add_soldier(&soldier, 8, 8);
 
-     Infected walker(5, 5, 0,map);
+    Infected walker(5, 5, 0,map);
     map.add_zombie(&walker, 5, 5);
 
     for (int i = 0; i < 100; i++) { // enough to encounter the soldier face to face en 5 parara
