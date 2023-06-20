@@ -49,6 +49,7 @@ void Witch::update(std::vector<Soldier*> soldiers, float time) {
 
 void Witch::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
+    sight_distance = 100; // podria hacer que el estado idle lo modifique
     if (health <= 0) {
         die(time);
         return;
