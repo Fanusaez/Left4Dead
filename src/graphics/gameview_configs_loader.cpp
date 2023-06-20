@@ -86,6 +86,7 @@ void GameviewConfigurationsLoader::setSpritesToLoad()
 	this->spritesToLoad.push_back("Spear/Dead.png");
 	this->spritesToLoad.push_back("Spear/Hurt.png");
 	this->spritesToLoad.push_back("Spear/Idle.png");
+	this->spritesToLoad.push_back("Spear/Run.png");
 	this->spritesToLoad.push_back("Spear/Walk.png");
 }
 
