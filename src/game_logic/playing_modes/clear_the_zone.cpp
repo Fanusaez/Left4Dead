@@ -15,7 +15,8 @@ ClearTheZone::ClearTheZone(std::int16_t x_size,
                                             quantity_total_zombies(CONFIGURATION.get_CTZ_total_quantity_zombies()),
                                             infected_prob(CONFIGURATION.get_CTZ_infected_prob_to_respawn()),
                                             witch_prob(CONFIGURATION.get_CTZ_witch_prob_to_respawn()),
-                                            jumper_prob(CONFIGURATION.get_CTZ_jumper_prob_to_respawn()) {}
+                                            jumper_prob(CONFIGURATION.get_CTZ_jumper_prob_to_respawn()),
+                                            spear_prob(CONFIGURATION.get_CTZ_spear_prob_to_respawn()) {}
 
 Soldier *ClearTheZone::get_soldier_with_idf() {
     Soldier* new_soldier = map.get_soldier_with_idf();
@@ -57,6 +58,8 @@ void ClearTheZone::respawn_zombies(float time) {
         map.add_witch(NO_EXTRA_HEALTH);
     } else if (random_num >= jumper_prob[0] && random_num <= jumper_prob[1]) {
         map.add_jumper(NO_EXTRA_HEALTH);
+    } else if (random_num >= spear_prob[0] && random_num <= spear_prob[1]) {
+        map.add_spear(NO_EXTRA_HEALTH);
     }
 }
 

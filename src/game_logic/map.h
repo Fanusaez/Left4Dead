@@ -100,6 +100,7 @@ void add_random_zombie();
 void add_infected(std::int16_t extra_health);
 void add_jumper(std::int16_t extra_health);
 void add_witch(std::int16_t extra_health);
+void add_spear(std::int16_t extra_health);
 
 void free_position(std::int16_t x_pos, std::int16_t y_pos);
 

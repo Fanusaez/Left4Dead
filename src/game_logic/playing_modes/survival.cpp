@@ -14,7 +14,8 @@ Survival::Survival(std::int16_t x_size,
                                             health_power_up(CONFIGURATION.get_survival_health_power_up()),
                                             infected_prob(CONFIGURATION.get_survival_infected_prob_to_respawn()),
                                             witch_prob(CONFIGURATION.get_survival_witch_prob_to_respawn()),
-                                            jumper_prob(CONFIGURATION.get_survival_jumper_prob_to_respawn()) {}
+                                            jumper_prob(CONFIGURATION.get_survival_jumper_prob_to_respawn()),
+                                            spear_prob(CONFIGURATION.get_survival_spear_prob_to_respawn()){}
 
 Soldier *Survival::get_soldier_with_idf() {
     Soldier* new_soldier = map.get_soldier_with_idf();
@@ -55,7 +56,9 @@ void Survival::respawn_zombies(float time) {
     } else if (random_num >= witch_prob[0] && random_num <= witch_prob[1]) {
         map.add_witch(accumulative_extra_health_zombies);
     } else if (random_num >= jumper_prob[0] && random_num <= jumper_prob[1]) {
-        map.add_jumper(accumulative_extra_health_zombies);
+        map.add_spear(accumulative_extra_health_zombies);
+    } else if (random_num >= spear_prob[0] && random_num <= spear_prob[1]) {
+        map.add_spear(accumulative_extra_health_zombies);
     }
 }
 

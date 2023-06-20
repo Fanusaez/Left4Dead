@@ -19,6 +19,8 @@ private:
     std::vector<std::int16_t> infected_prob;
     std::vector<std::int16_t> witch_prob;
     std::vector<std::int16_t> jumper_prob;
+    std::vector<std::int16_t> spear_prob;
+
     std::int16_t accumulative_extra_health_zombies = 0;
     float last_time_respawned_zombies = -1;
     float last_time_increase_zombies_life = -1;

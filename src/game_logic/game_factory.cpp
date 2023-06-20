@@ -7,6 +7,7 @@
 #include "zombies/infected.h"
 #include "zombies/jumper.h"
 #include "zombies/witch.h"
+#include "zombies/spear.h"
 #include "configuration.h"
 #define X_POS 0
 #define Y_POS 1
@@ -61,4 +62,8 @@ Zombie* GameFactory::create_jumper(std::vector<std::int16_t>& zombie_pos, std::i
 
 Zombie* GameFactory::create_witch(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health) {
     return new Witch(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, extra_health);
+}
+
+Zombie* GameFactory::create_spear(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health) {
+    return new Spear(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, extra_health);
 }
