@@ -52,6 +52,10 @@ Scout::call_air_strike(GameMap &map,
     return nullptr;
 }
 
+ExplosiveGrenade* Scout::get_explosive_grenade() {
+    return &explosive_grenade;
+}
+
 void Scout::reload() {
     bullets = mag_capacity;
 }

@@ -232,6 +232,10 @@ bool Soldier::dead() {
     return _dead;
 }
 
+ExplosiveGrenade* Soldier::get_explosive_grenade() {
+    return weapon->get_explosive_grenade();
+}
+
 Soldier::~Soldier(){
     delete weapon;
     delete state;

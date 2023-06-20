@@ -58,6 +58,10 @@ Idf::call_air_strike(GameMap &map,
     return nullptr;
 }
 
+ExplosiveGrenade* Idf::get_explosive_grenade() {
+    return &explosive_grenade;
+}
+
 void Idf::reload() {
     bullets = mag_capacity;
 }

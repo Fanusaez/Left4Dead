@@ -15,9 +15,9 @@ private:
     std::int16_t radius_range;
     float last_thrown_grenade = -10;
     GrenadeState* grenade_state = new GrenadeIdle;
-    std::int16_t id;
 
 public:
+    std::int16_t id;
 
     explicit ExplosiveGrenade(std::int16_t id);
 

@@ -37,6 +37,7 @@ void shoot(std::vector<GameObject*>& shooting_objects,
                            State* current_state,
                            float time) override;
 
+ExplosiveGrenade* get_explosive_grenade() override;
 void reload() override;
 bool isFullyLoaded() override;
 bool empty() override;

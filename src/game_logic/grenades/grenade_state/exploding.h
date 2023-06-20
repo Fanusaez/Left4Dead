@@ -5,12 +5,13 @@
 
 class Exploding : public GrenadeState {
 private:
-    std::int16_t x_explosion;
-    std::int16_t y_explosion;
     float start_time;
-    float time_to_stop_exploding = 0.08; // lo que dure la animacion
+    float time_to_stop_exploding;
 
 public:
+    std::int16_t x_explosion;
+    std::int16_t y_explosion;
+
     Exploding(float start_time, std::int16_t x_explosion, std::int16_t y_explosion, GameMap& map, Grenade* grenade);
 
     GrenadeState* update(float time) override;

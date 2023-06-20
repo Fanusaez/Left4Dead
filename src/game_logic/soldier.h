@@ -6,6 +6,8 @@
 #include "weapons/weapon.h"
 #include "states/idle.h"
 
+class ExplosiveGrenade;
+
 class Soldier : public GameObject {
  private:
     Weapon* weapon = nullptr;
@@ -67,6 +69,9 @@ std::int16_t get_x_matrix_pos() override;
 bool facing_left();
 bool chaseable();
 bool dead();
+
+ExplosiveGrenade* get_explosive_grenade();
+
 ~Soldier();
 
 //******************************* Metodos de testeo ***************************************************

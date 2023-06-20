@@ -47,6 +47,10 @@ P90::call_air_strike(GameMap &map,
     return air_strike.call_air_strike(map, x_soldier, y_soldier, current_state, time);
 }
 
+ExplosiveGrenade* P90::get_explosive_grenade() {
+    return nullptr;
+}
+
 void P90::reload() {
     bullets = mag_capacity;
 }
