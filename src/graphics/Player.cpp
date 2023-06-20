@@ -108,6 +108,7 @@ void Player::changeState(const SoldierObjectState &state)
 		this->sfx = nullptr;
 	} else if(this->state == THROWING_GRENADE) {
 		this->an.changeTexture(this->textureLoader.getTexture("Soldier_1/Grenade.png"));
+		this->an.noLoop();
 		this->sfx = this->textureLoader.getChunk("Soldier_1/Grenade.mp3");
 		this->sfxLoops = 0;
 	} else {
