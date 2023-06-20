@@ -6,6 +6,7 @@
 #define X_POS 0
 #define Y_POS 1
 #define NO_EXTRA_HEALTH 0
+#define NO_EXTRA_DAMAGE 0
 
 ClearTheZone::ClearTheZone(std::int16_t x_size,
                            std::int16_t y_size,
@@ -53,13 +54,13 @@ void ClearTheZone::respawn_zombies(float time) {
     quantity_total_zombies--;
     int random_num = std::random_device{}() % 101;
     if (random_num >= infected_prob[0] && random_num <= infected_prob[1]) {
-       map.add_infected(NO_EXTRA_HEALTH);
+       map.add_infected(NO_EXTRA_HEALTH, NO_EXTRA_HEALTH);
     } else if (random_num >= witch_prob[0] && random_num <= witch_prob[1]) {
-        map.add_witch(NO_EXTRA_HEALTH);
+        map.add_witch(NO_EXTRA_HEALTH, NO_EXTRA_HEALTH);
     } else if (random_num >= jumper_prob[0] && random_num <= jumper_prob[1]) {
-        map.add_jumper(NO_EXTRA_HEALTH);
+        map.add_jumper(NO_EXTRA_HEALTH, NO_EXTRA_HEALTH);
     } else if (random_num >= spear_prob[0] && random_num <= spear_prob[1]) {
-        map.add_spear(NO_EXTRA_HEALTH);
+        map.add_spear(NO_EXTRA_HEALTH, NO_EXTRA_HEALTH);
     }
 }
 

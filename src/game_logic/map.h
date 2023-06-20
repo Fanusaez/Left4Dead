@@ -97,10 +97,10 @@ Soldier* get_soldier_with_idf();
 Soldier* get_soldier_with_scout();
 Soldier* get_soldier_with_p90();
 void add_random_zombie();
-void add_infected(std::int16_t extra_health);
-void add_jumper(std::int16_t extra_health);
-void add_witch(std::int16_t extra_health);
-void add_spear(std::int16_t extra_health);
+void add_infected(std::int16_t extra_health, std::int16_t extra_damage);
+void add_jumper(std::int16_t extra_health, std::int16_t extra_damage);
+void add_witch(std::int16_t extra_health, std::int16_t extra_damage);
+void add_spear(std::int16_t extra_health, std::int16_t extra_damage);
 
 void free_position(std::int16_t x_pos, std::int16_t y_pos);
 

@@ -1,6 +1,6 @@
 soldier:
   health: 100
-  grenade_distance_reach: 15
+  grenade_distance_reach: 40
 
 soldierStates:
   time_being_attacked: 0.1
@@ -8,7 +8,7 @@ soldierStates:
   time_moving: 0.1
   time_reloading: 0.5
   time_shooting: 0.1
-  time_throwing_explosive_g: 0.2
+  time_throwing_explosive_g: 1
   time_throwing_smoke_g: 0.2
 
 weapons:
@@ -27,16 +27,16 @@ weapons:
     damage_reduction_per_hit: 10
 
 explosiveGrenade:
-  damage: 40
-  time_to_reThrow_grenade: 10
-  radius_range: 3
+  damage: 50
+  time_to_reThrow_grenade: 1
+  radius_range: 8
 
 smokeGrenade:
   time_to_reThrow_grenade: 30
   radius_range: 3
 
 grenadeStates:
-  time_exploding: 3
+  time_exploding: 0.4
   time_thrown_grenade: 1
 
 infected:
@@ -91,11 +91,12 @@ survival:
   time_respawn_zombies: 5
   time_zombies_getting_stronger: 10
   health_power_up: 10
+  damage_power_up: 5
   zombies_probability_respawn:
     infected: [0, 40]
     witch: [40, 70]
-    jumper: [70, 100]
-    spear: [0, 0]
+    jumper: [70, 90]
+    spear: [90, 100]
     venom: [0, 0]
 
 gameFactory:

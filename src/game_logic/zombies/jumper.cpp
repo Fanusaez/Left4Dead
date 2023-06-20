@@ -17,7 +17,7 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         health(CONFIGURATION.get_jumper_health()),
         damage_attack(CONFIGURATION.get_jumper_damage()) {}
 
-Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health) :
+Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health, std::int16_t extra_damage) :
         movements_per_cell(CONFIGURATION.get_movements_per_cell()),
         x_pos(x_pos_wal * movements_per_cell),
         y_pos(y_pos_wal * movements_per_cell),
@@ -29,6 +29,7 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         distance_to_hit(CONFIGURATION.get_jumper_distance_to_hit()),
         sight_distance(CONFIGURATION.get_jumper_sight_distance()) {
     health += extra_health;
+    health+= extra_damage;
 }
 
 void Jumper::update(std::vector<Soldier*> soldiers, float time) {
