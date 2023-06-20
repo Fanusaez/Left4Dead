@@ -11,6 +11,9 @@ Screaming::Screaming(GameMap &map, std::int16_t zombies_to_create, float time) :
 
 
 ZombieState *Screaming::update(float time) {
+    if (time_stop_screaming(time)) {
+        return new ZombieIdle;
+    }
     return nullptr;
 }
 

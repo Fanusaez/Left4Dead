@@ -37,6 +37,8 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
 }
 
 void Witch::update(std::vector<Soldier*> soldiers, float time) {
+    ZombieState* new_state = state->update(time);
+    change_state(new_state);
     std::int16_t random_number = get_random_number();
     if (random_number < probability_to_scream) {
            scream(time);
@@ -47,23 +49,18 @@ void Witch::update(std::vector<Soldier*> soldiers, float time) {
 
 void Witch::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
+    sight_distance = 100; // podria hacer que el estado idle lo modifique
     if (health <= 0) {
         die(time);
         return;
     }
     ZombieState* new_state = state->being_attacked(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Witch::get_stunned(float time) {
     ZombieState* new_state = state->get_stunned(time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 bool Witch::in_range_of_explosion(std::int16_t x_start,
@@ -82,10 +79,7 @@ void Witch::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
 
     ZombieState* new_state = chase_state->chase(state, chaser, x_sold_pos, y_sold_pos, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 Soldier* Witch::get_closest_soldier(std::vector<Soldier*> soldiers) {
@@ -104,10 +98,7 @@ Soldier* Witch::get_closest_soldier(std::vector<Soldier*> soldiers) {
 
 void Witch::scream(float time) {
     ZombieState* new_state = state->scream(map, zombies_created_for_screaming, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 std::int16_t Witch::get_distance_to_soldier(Soldier* soldier) {
@@ -139,16 +130,17 @@ void Witch::attack(std::vector<Soldier*> soldiers, float time) {
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
     if (distance > distance_to_hit) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
-    if (new_state != nullptr) {
-        delete state;
-        state = new_state;
-    }
+    change_state(new_state);
 }
 
 void Witch::die(float time) {
     dead = true;
     map.free_position(get_x_matrix_pos(), get_y_matrix_pos());
     ZombieState* new_state = state->die(time);
+    change_state(new_state);
+}
+
+void Witch::change_state(ZombieState *new_state) {
     if (new_state != nullptr) {
         delete state;
         state = new_state;

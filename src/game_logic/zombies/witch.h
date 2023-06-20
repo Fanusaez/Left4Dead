@@ -28,12 +28,6 @@ private:
     bool dead = false;
     std::int16_t direction = LEFT;
     ZombieState* state = new ZombieIdle;
-
-    // se debera recibir por parametro, para que corra camine o salte
-
-
-
-
     Chaser chaser;
 
     Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
@@ -68,6 +62,8 @@ public:
 
     bool facing_left() override;
     ZombieType get_type() override;
+
+    void change_state(ZombieState* new_state);
 
     ~Witch();
 

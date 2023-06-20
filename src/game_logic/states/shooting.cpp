@@ -27,7 +27,7 @@ State* Shooting::shoot(Soldier& soldier, Weapon* weapon, float time) {
         std::int16_t x_pos = soldier.get_x_matrix_pos();
         weapon->shoot(targets, x_pos, time);
     } else if (weapon->empty()) {
-        return new Idle();
+        return new Reloading(weapon, time);
     }
     return nullptr;
 }
