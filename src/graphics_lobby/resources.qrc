@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>assets/background.jpg</file>
-        <file>assets/AmazMegaGrungeOne.ttf</file>
-    </qresource>
-</RCC>
