@@ -6,6 +6,7 @@ enum SoldierObjectState : char {
     SHOOTING,
     RELOADING,
     MOVING,
+    THROWING_GRENADE,
     SOLDIER_DEAD,
     SOLDIER_HURT,
     SHOOTING_AND_MOVING

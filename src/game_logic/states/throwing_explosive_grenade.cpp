@@ -12,7 +12,9 @@
 
 ThrowingExplosiveGrenade::ThrowingExplosiveGrenade(float time)  :
 start_time(time),
-duration_of_throwing_granade(CONFIGURATION.get_soldierState_time_throwing_explosive_grenade()) {}
+duration_of_throwing_granade(CONFIGURATION.get_soldierState_time_throwing_explosive_grenade()) {
+    soldier_state = THROWING_GRENADE;
+}
 
 State* ThrowingExplosiveGrenade::update(float time) {
     if (time_stop_throwing(time)) {
