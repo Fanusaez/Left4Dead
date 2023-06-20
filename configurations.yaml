@@ -96,7 +96,7 @@ survival:
     infected: [0, 40]
     witch: [40, 70]
     jumper: [70, 90]
-    spear: [90, 100]
+    spear: [0, 0]
     venom: [0, 0]
 
 gameFactory:

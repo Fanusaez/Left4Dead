@@ -15,7 +15,9 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         map(map),
         chaser(this, map, x_pos, y_pos),
         health(CONFIGURATION.get_jumper_health()),
-        damage_attack(CONFIGURATION.get_jumper_damage()) {}
+        damage_attack(CONFIGURATION.get_jumper_damage()),
+        distance_to_hit(CONFIGURATION.get_jumper_distance_to_hit()),
+        sight_distance(CONFIGURATION.get_jumper_sight_distance()){}
 
 Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health, std::int16_t extra_damage) :
         movements_per_cell(CONFIGURATION.get_movements_per_cell()),
