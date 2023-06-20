@@ -45,7 +45,7 @@ void Grenade::render(SDL2pp::Renderer &renderer, SDL2pp::Rect &dst)
 
 void Grenade::renderAudio(SDL2pp::Mixer &mixer)
 {
-	if (not this->playSFX)
+	if (not this->playSFX or not this->exploting)
 		return;
 
 	if (this->lastChannel != -1) // This object is playing something
