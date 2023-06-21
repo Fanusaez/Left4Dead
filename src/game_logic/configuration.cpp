@@ -22,6 +22,7 @@ Configuration::Configuration(const YAML::Node& node) :
                             weaponIdf_burst_capacity(node["weapons"]["idf"]["burst_capacity"].as<std::int16_t>()),
                             weaponIdf_close_range_damage(node["weapons"]["idf"]["close_range_damage"].as<std::int16_t>()),
                             weaponIdf_long_range_damage(node["weapons"]["idf"]["long_range_damage"].as<std::int16_t>()),
+                            weaponIdf_matrix_range_to_reduce_damage(node["weapons"]["idf"]["matrix_range_to_reduce_damage"].as<std::int16_t>()),
                             weaponP90_mag_capacity(node["weapons"]["p90"]["mag_capacity"].as<std::int16_t>()),
                             weaponP90_burst_capacity(node["weapons"]["p90"]["burst_capacity"].as<std::int16_t>()),
                             weaponP90_damage(node["weapons"]["p90"]["damage"].as<std::int16_t>()),
@@ -142,6 +143,10 @@ std::int16_t Configuration::get_weaponIdf_close_range_damage() {
 
 std::int16_t Configuration::get_weaponIdf_long_range_damage() {
     return weaponIdf_long_range_damage;
+}
+
+std::int16_t Configuration::get_weaponIdf_matrix_range_to_reduce_damage() {
+    return weaponIdf_matrix_range_to_reduce_damage;
 }
 
 std::int16_t Configuration::get_weaponP90_mag_capacity() {

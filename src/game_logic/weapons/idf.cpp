@@ -3,9 +3,6 @@
 
 #include <cmath>
 
-#define DISTANCE_LONG_RANGE 5
-
-
 Idf::Idf(std::int16_t id_explosive_grenade,
          std::int16_t id_smoke_grenade) :
          explosive_grenade(id_explosive_grenade),
@@ -14,7 +11,8 @@ Idf::Idf(std::int16_t id_explosive_grenade,
          mag_capacity(CONFIGURATION.get_weaponIdf_mag_capacity()),
          burst_capacity(CONFIGURATION.get_weaponIdf_burst_capacity()),
          close_range_damage(CONFIGURATION.get_weaponIdf_close_range_damage()),
-         long_range_damage(CONFIGURATION.get_weaponIdf_long_range_damage()) {}
+         long_range_damage(CONFIGURATION.get_weaponIdf_long_range_damage()),
+         distance_to_reduce_damage(CONFIGURATION.get_weaponIdf_matrix_range_to_reduce_damage()) {}
 
 void Idf::update(float time) {
     explosive_grenade.update(time);
@@ -27,7 +25,7 @@ void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold
     if (shooting_objects.empty()) return;
     std::int16_t x_matrix_enemy_pos = shooting_objects[0]->get_x_matrix_pos();
     if (bullets > 0) {
-        if (abs(x_sold_pos - x_matrix_enemy_pos) >= DISTANCE_LONG_RANGE) {
+        if (abs(x_sold_pos - x_matrix_enemy_pos) >= distance_to_reduce_damage) {
             shooting_objects[0]->receive_damage(long_range_damage, time);
         } else {
             shooting_objects[0]->receive_damage(close_range_damage, time);

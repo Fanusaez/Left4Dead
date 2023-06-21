@@ -18,6 +18,7 @@ weapons:
     burst_capacity: 20
     close_range_damage: 30
     long_range_damage: 15
+    matrix_range_to_reduce_damage: 5
 
   p90:
     mag_capacity: 30

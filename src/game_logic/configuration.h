@@ -23,6 +23,7 @@ private:
     std::int16_t weaponIdf_burst_capacity;
     std::int16_t weaponIdf_close_range_damage;
     std::int16_t weaponIdf_long_range_damage;
+    std::int16_t weaponIdf_matrix_range_to_reduce_damage;
 
     std::int16_t weaponP90_mag_capacity;
     std::int16_t weaponP90_burst_capacity;
@@ -134,6 +135,7 @@ public:
     std::int16_t get_weaponIdf_burst_capacity();
     std::int16_t get_weaponIdf_close_range_damage();
     std::int16_t get_weaponIdf_long_range_damage();
+    std::int16_t get_weaponIdf_matrix_range_to_reduce_damage();
     std::int16_t get_weaponP90_mag_capacity();
     std::int16_t get_weaponP90_burst_capacity();
     std::int16_t get_weaponP90_damage();
