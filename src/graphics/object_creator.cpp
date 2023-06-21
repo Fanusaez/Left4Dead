@@ -5,6 +5,7 @@
 #include "jumper.h"
 #include "lancer.h"
 #include "grenade.h"
+#include "smoke.h"
 
 std::unique_ptr<RenderableObject> ObjectCreator::create(const SoldierObjectDTO &soldierDTO) const
 {
@@ -33,6 +34,10 @@ std::unique_ptr<RenderableObject> ObjectCreator::create(const ZombieObjectDTO &z
 
 std::unique_ptr <RenderableObject> ObjectCreator::create(const GrenadeObjectDTO &grenadeDTO) const
 {
-	return std::unique_ptr<RenderableObject>(
-		new Grenade(grenadeDTO.id, grenadeDTO.position_x, grenadeDTO.position_y));
+	if (grenadeDTO.grenade_type == EXPLOSIVE_GRENADE)
+		return std::unique_ptr<RenderableObject>(
+			new Grenade(grenadeDTO.id, grenadeDTO.position_x, grenadeDTO.position_y));
+	else
+		return std::unique_ptr<RenderableObject>(
+			new Smoke(grenadeDTO.id, grenadeDTO.position_x, grenadeDTO.position_y));
 }
