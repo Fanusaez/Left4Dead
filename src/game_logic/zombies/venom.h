@@ -58,11 +58,11 @@ public:
 
     bool facing_left() override;
     ZombieType get_type() override;
-
+    std::int16_t get_health() override;
     ~Venom();
 
 // ************************* Metodos de testeo ************************************************8//
-    std::int16_t get_health();
+
     ZombieState* get_state() override;
     void change_chase_state_to_running();
     ChaseState* get_chasing_state();

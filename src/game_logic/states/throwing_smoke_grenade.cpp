@@ -12,7 +12,7 @@
 
 ThrowingSmokeGrenade::ThrowingSmokeGrenade(float time)  :
 start_time(time),
-duration_of_throwing_granade(CONFIGURATION.get_soldierState_time_throwing_smoke_grenade()) {}
+duration_of_throwing_grenade(CONFIGURATION.get_soldierState_time_throwing_smoke_grenade()) {}
 
 State* ThrowingSmokeGrenade::update(float time) {
     if (time_stop_throwing(time)) {
@@ -72,5 +72,5 @@ State *ThrowingSmokeGrenade::stop_action() {
 }
 
 bool ThrowingSmokeGrenade::time_stop_throwing(float time) {
-    return (time - start_time) >= duration_of_throwing_granade;
+    return (time - start_time) >= duration_of_throwing_grenade;
 }

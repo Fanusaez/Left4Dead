@@ -6,8 +6,9 @@
 class Reloading : public State {
 private:
     Weapon* weapon;
-    float waiting_time_to_reload = 0.5;
     float start_time;
+    float waiting_time_to_reload;
+
 public:
     Reloading(Weapon* weapon, float time);
 

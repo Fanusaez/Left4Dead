@@ -16,14 +16,16 @@ void Scout::update(float time) {
 }
 
 void Scout::shoot(std::vector<GameObject *> &shooting_objects, std::uint16_t x_pos_sold, float time) {
-    if (bullets <= 0) return;
+    bullets--;
+    total_bullets_shot++;
+    if (shooting_objects.empty()) return;
     std::uint16_t variant_damage = damage;
     for (const auto& shooting_object : shooting_objects) {
         shooting_object->receive_damage(variant_damage, time);
         variant_damage -= damage_reduction_hit;
         if (!variant_damage) return;
     }
-    bullets--;
+
 }
 
 State* Scout::throw_explosive_grenade(GameMap& map,
@@ -70,4 +72,20 @@ bool Scout::empty() {
 
 std::int16_t Scout::get_bullets() {
     return bullets;
+}
+
+std::int32_t Scout::get_total_bullets_shot() {
+    return total_bullets_shot;
+}
+
+std::int16_t Scout::get_time_to_throw_explosive_grenade() {
+    return explosive_grenade.get_time_to_throw_grenade();
+}
+
+std::int16_t Scout::get_time_to_throw_smoke_grenade() {
+    return smoke_grenade.get_time_to_throw_grenade();
+}
+
+std::int16_t Scout::get_time_to_call_air_strike() {
+    return -1;
 }

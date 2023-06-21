@@ -5,7 +5,7 @@
 
 class Jumping : public ZombieState{
 private:
-    float waiting_time_to_jump = 0.2;
+    float waiting_time_to_jump;
     float last_time_jumped = -1;
 
 public:

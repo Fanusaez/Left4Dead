@@ -11,11 +11,13 @@ class ExplosiveGrenade : public Grenade {
 
 private:
     const std::int16_t grenade_damage;
-    const float time_to_throw_grenade;
+    const float waiting_time_to_throw_grenade;
     std::int16_t radius_range;
+    std::int16_t left_time_to_throw_grenade = 0;
     float last_thrown_grenade = -10;
     GrenadeState* grenade_state = new GrenadeIdle;
 
+    void update_left_time_to_throw(float time);
 public:
     std::int16_t id;
 
@@ -33,9 +35,11 @@ public:
 
     bool time_throw_grenade(float time);
 
-    ~ExplosiveGrenade();
-
     GrenadeState* get_state();
+
+    std::int16_t get_time_to_throw_grenade();
+
+    ~ExplosiveGrenade();
 };
 
 

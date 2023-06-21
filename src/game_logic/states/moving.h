@@ -5,10 +5,11 @@
 
 class Moving : public State {
 private:
-    float waiting_time_to_move = 0.1;
-    std::int16_t direction;
-    float last_time_moved = -1;
     Soldier& soldier;
+    std::int16_t direction;
+    float waiting_time_to_move;
+    float last_time_moved;
+
 public:
     Moving(Soldier& soldier, std::int16_t direction, float start_time);
 

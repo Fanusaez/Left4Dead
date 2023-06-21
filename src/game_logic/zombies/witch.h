@@ -64,11 +64,11 @@ public:
     ZombieType get_type() override;
 
     void change_state(ZombieState* new_state);
-
+    std::int16_t get_health() override;
     ~Witch();
 
 // ************************* Metodos de testeo ************************************************8//
-    std::int16_t get_health();
+
     ZombieState* get_state() override;
     void change_chase_state_to_running();
     ChaseState* get_chasing_state();

@@ -5,7 +5,7 @@
 
 SmokeGrenade::SmokeGrenade(std::int16_t id) :
     id(id),
-    time_to_throw_grenade(CONFIGURATION.get_smokeGrenade_time_to_reThrow()),
+    waiting_time_to_throw_grenade(CONFIGURATION.get_smokeGrenade_time_to_reThrow()),
     radius_range(CONFIGURATION.get_smokeGrenade_radius_range()) {}
 
 void SmokeGrenade::update(float time) {
@@ -14,6 +14,7 @@ void SmokeGrenade::update(float time) {
         delete grenade_state;
         grenade_state = state;
     }
+    update_left_time_to_throw(time);
 }
 
 State* SmokeGrenade::throw_grenade(GameMap& map,
@@ -42,13 +43,27 @@ void SmokeGrenade::explode(float time, std::int16_t x_explosion, std::int16_t y_
 }
 
 bool SmokeGrenade::time_throw_grenade(float time) {
-    return (time - last_thrown_grenade) >= time_to_throw_grenade;
+    return (time - last_thrown_grenade) >= waiting_time_to_throw_grenade;
+}
+
+GrenadeState *SmokeGrenade::get_state() {
+    return grenade_state;
+}
+
+std::int16_t SmokeGrenade::get_time_to_throw_grenade() {
+    return left_time_to_throw_grenade;
+}
+
+void SmokeGrenade::update_left_time_to_throw(float time) {
+    std::int16_t time_since_last_thrown = time - last_thrown_grenade;
+    if (time_since_last_thrown > waiting_time_to_throw_grenade) {
+        left_time_to_throw_grenade = 0;
+    } else {
+        left_time_to_throw_grenade = waiting_time_to_throw_grenade - time_since_last_thrown;
+    }
 }
 
 SmokeGrenade::~SmokeGrenade() {
     delete grenade_state;
 }
 
-GrenadeState *SmokeGrenade::get_state() {
-    return grenade_state;
-}

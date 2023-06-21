@@ -5,6 +5,7 @@ soldier:
 soldierStates:
   time_being_attacked: 0.1
   time_calling_air_strike: 0.3
+  time_permanent_dead: 10
   time_moving: 0.1
   time_reloading: 0.5
   time_shooting: 0.1
@@ -14,11 +15,13 @@ soldierStates:
 weapons:
   idf:
     mag_capacity: 50
+    burst_capacity: 20
     close_range_damage: 30
     long_range_damage: 15
 
   p90:
     mag_capacity: 30
+    burst_capacity: 10
     damage: 15
 
   scout:

@@ -6,8 +6,8 @@
 class ZombieBeingAttacked : public ZombieState {
 
 private:
-    float time_stop_being_attacked = 0.3;
     float start_time;
+    float time_stop_being_attacked;
 
 public:
     ZombieBeingAttacked(float time);

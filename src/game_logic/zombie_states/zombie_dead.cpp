@@ -1,6 +1,6 @@
 #include "zombie_dead.h"
 
-ZombieDead::ZombieDead(float time) : start_time(time) {
+ZombieDead::ZombieDead(float time) {
     zombie_state = DEAD;
 }
 

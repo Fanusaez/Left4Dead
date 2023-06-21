@@ -10,10 +10,12 @@ class Idf : public Weapon {
  private:
     std::int16_t bullets;
     const std::int16_t mag_capacity;
+    const std::int16_t burst_capacity;
     const std::int16_t close_range_damage;
     const std::int16_t long_range_damage;
     ExplosiveGrenade explosive_grenade;
     SmokeGrenade smoke_grenade;
+    std::int32_t total_bullets_shot;
 
 
  public:
@@ -47,5 +49,9 @@ void reload() override;
 bool isFullyLoaded() override;
 bool empty() override;
 std::int16_t get_bullets() override;
+std::int32_t get_total_bullets_shot() override;
+std::int16_t get_time_to_throw_explosive_grenade() override;
+std::int16_t get_time_to_throw_smoke_grenade() override;
+std::int16_t get_time_to_call_air_strike() override;
 };
 #endif // IDF_H_

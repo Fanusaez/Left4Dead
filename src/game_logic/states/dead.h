@@ -6,7 +6,7 @@
 class Dead : public State {
 
 private:
-    float time_to_revive = 10;
+    float time_to_revive;
     float start_time;
 
 public:

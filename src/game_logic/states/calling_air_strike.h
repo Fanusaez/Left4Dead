@@ -5,8 +5,8 @@
 
 class CallingAirStrike : public State{
 private:
-    float time_stop_calling = 0.3; // cuanto tiempo dura la animacion
     float start_time;
+    float time_stop_calling;
 
 public:
     explicit CallingAirStrike(float start_time);

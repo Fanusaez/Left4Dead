@@ -6,7 +6,7 @@
 class ThrowingExplosiveGrenade : public State {
 private:
     float start_time;
-    float duration_of_throwing_granade = 0.2;
+    float duration_of_throwing_grenade;
 
 public:
 

@@ -13,7 +13,7 @@
 class Walking : public ZombieState {
 
 private:
-    float waiting_time_to_walk = 0.2;
+    float waiting_time_to_walk;
     float last_time_moved = - 1;
 
 public:

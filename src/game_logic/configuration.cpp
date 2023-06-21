@@ -12,15 +12,18 @@ Configuration::Configuration(const YAML::Node& node) :
                             soldierGrenade_distance_reach(node["soldier"]["grenade_distance_reach"].as<std::int16_t>()),
                             soldierState_time_being_attacked(node["soldierStates"]["time_being_attacked"].as<float>()),
                             soldierState_time_calling_air_strike(node["soldierStates"]["time_calling_air_strike"].as<float>()),
+                            soldierState_time_permanent_dead(node["soldierStates"]["time_permanent_dead"].as<float>()),
                             soldierState_time_moving(node["soldierStates"]["time_moving"].as<float>()),
                             soldierState_time_reloading(node["soldierStates"]["time_reloading"].as<float>()),
                             soldierState_time_shooting(node["soldierStates"]["time_shooting"].as<float>()),
                             soldierState_time_throwing_explosive_g(node["soldierStates"]["time_throwing_explosive_g"].as<float>()),
                             soldierState_time_throwing_smoke_g(node["soldierStates"]["time_throwing_smoke_g"].as<float>()),
                             weaponIdf_mag_capacity(node["weapons"]["idf"]["mag_capacity"].as<std::int16_t>()),
+                            weaponIdf_burst_capacity(node["weapons"]["idf"]["burst_capacity"].as<std::int16_t>()),
                             weaponIdf_close_range_damage(node["weapons"]["idf"]["close_range_damage"].as<std::int16_t>()),
                             weaponIdf_long_range_damage(node["weapons"]["idf"]["long_range_damage"].as<std::int16_t>()),
                             weaponP90_mag_capacity(node["weapons"]["p90"]["mag_capacity"].as<std::int16_t>()),
+                            weaponP90_burst_capacity(node["weapons"]["p90"]["burst_capacity"].as<std::int16_t>()),
                             weaponP90_damage(node["weapons"]["p90"]["damage"].as<std::int16_t>()),
                             weaponScout_mag_capacity(node["weapons"]["scout"]["mag_capacity"].as<std::int16_t>()),
                             weaponScout_damage(node["weapons"]["scout"]["damage"].as<std::int16_t>()),
@@ -101,6 +104,10 @@ float Configuration::get_soldierState_time_calling_air_strike() {
     return soldierState_time_calling_air_strike;
 }
 
+float Configuration::get_soldierState_time_permanent_dead() {
+    return soldierState_time_permanent_dead;
+}
+
 float Configuration::get_soldierState_time_moving() {
     return soldierState_time_moving;
 }
@@ -125,6 +132,10 @@ std::int16_t Configuration::get_weaponIdf_mag_capacity() {
     return weaponIdf_mag_capacity;
 }
 
+std::int16_t Configuration::get_weaponIdf_burst_capacity() {
+    return weaponIdf_burst_capacity;
+}
+
 std::int16_t Configuration::get_weaponIdf_close_range_damage() {
     return weaponIdf_close_range_damage;
 }
@@ -135,6 +146,10 @@ std::int16_t Configuration::get_weaponIdf_long_range_damage() {
 
 std::int16_t Configuration::get_weaponP90_mag_capacity() {
     return weaponP90_mag_capacity;
+}
+
+std::int16_t Configuration::get_weaponP90_burst_capacity() {
+    return weaponP90_burst_capacity;
 }
 
 std::int16_t Configuration::get_weaponP90_damage() {

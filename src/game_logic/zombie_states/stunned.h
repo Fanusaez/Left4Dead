@@ -6,8 +6,8 @@
 class Stunned : public ZombieState {
 
 private:
-    float waiting_time_to_walk = 0.2;
-    float waiting_time_to_normal = 10; // 10 segundos para dejar de estar stunneado
+    float waiting_time_to_normal;
+    float waiting_time_to_walk;
     float start_time;
     float last_time_moved = - 1;
 

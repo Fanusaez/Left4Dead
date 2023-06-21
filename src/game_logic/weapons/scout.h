@@ -7,12 +7,13 @@
 
 class Scout : public Weapon {
  private:
+    ExplosiveGrenade explosive_grenade;
+    SmokeGrenade smoke_grenade;
     std::uint16_t bullets;
     const std::uint16_t mag_capacity;
     const std::uint16_t damage;
     const std::uint16_t damage_reduction_hit;
-    ExplosiveGrenade explosive_grenade;
-    SmokeGrenade smoke_grenade;
+    std::int32_t total_bullets_shot;
 
  public:
 
@@ -46,6 +47,10 @@ void reload() override;
 bool isFullyLoaded() override;
 bool empty() override;
 std::int16_t get_bullets() override;
+std::int32_t get_total_bullets_shot() override;
+std::int16_t get_time_to_throw_explosive_grenade() override;
+std::int16_t get_time_to_throw_smoke_grenade() override;
+std::int16_t get_time_to_call_air_strike() override;
 };
 
 #endif  // SCOUT_H_

@@ -12,6 +12,7 @@ Idf::Idf(std::int16_t id_explosive_grenade,
          smoke_grenade(id_smoke_grenade),
          bullets(CONFIGURATION.get_weaponIdf_mag_capacity()),
          mag_capacity(CONFIGURATION.get_weaponIdf_mag_capacity()),
+         burst_capacity(CONFIGURATION.get_weaponIdf_burst_capacity()),
          close_range_damage(CONFIGURATION.get_weaponIdf_close_range_damage()),
          long_range_damage(CONFIGURATION.get_weaponIdf_long_range_damage()) {}
 
@@ -22,6 +23,7 @@ void Idf::update(float time) {
 
 void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold_pos, float time) {
     bullets--;
+    total_bullets_shot++;
     if (shooting_objects.empty()) return;
     std::int16_t x_matrix_enemy_pos = shooting_objects[0]->get_x_matrix_pos();
     if (bullets > 0) {
@@ -76,4 +78,20 @@ bool Idf::empty() {
 
 std::int16_t Idf::get_bullets() {
     return bullets;
+}
+
+std::int32_t Idf::get_total_bullets_shot() {
+    return total_bullets_shot * burst_capacity;
+}
+
+std::int16_t Idf::get_time_to_throw_explosive_grenade() {
+    return explosive_grenade.get_time_to_throw_grenade();
+}
+
+std::int16_t Idf::get_time_to_throw_smoke_grenade() {
+    return smoke_grenade.get_time_to_throw_grenade();
+}
+
+std::int16_t Idf::get_time_to_call_air_strike() {
+    return -1;
 }

@@ -62,11 +62,11 @@ public:
 
     bool facing_left() override;
     ZombieType get_type() override;
-
+    std::int16_t get_health() override;
     ~Jumper();
 
 // ************************* Metodos de testeo ************************************************8//
-    std::int16_t get_health();
+
     ZombieState* get_state() override;
 };
 

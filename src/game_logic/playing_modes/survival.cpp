@@ -88,3 +88,14 @@ bool Survival::still_in_game() {
 bool Survival::is_game_over() {
     return game_over;
 }
+
+std::int32_t Survival::get_total_zombies_dead() {
+    std::vector<Zombie*>* zombies = map.get_zombies();
+    std::int32_t total_zombies_killed = 0;
+    for (Zombie* zombie : *zombies) {
+        if (zombie->get_health() <= 0) {
+            total_zombies_killed++;
+        }
+    }
+    return total_zombies_killed;
+}

@@ -5,8 +5,9 @@
 
 class BeingAttacked : public State {
 private:
-    float time_stop_being_attacked = 0.1; // cuanto tiempo dura la animacion
     float start_time;
+    float time_stop_being_attacked;
+
 public:
     BeingAttacked(float start_time);
 

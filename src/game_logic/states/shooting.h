@@ -7,7 +7,7 @@ class Shooting  : public State {
 private:
     Soldier& soldier;
     Weapon* weapon;
-    float waiting_time_to_shoot = 0.10;
+    float waiting_time_to_shoot;
     float start_time = -1;
 public:
     Shooting(Soldier& soldier, Weapon* weapon, float start_time);

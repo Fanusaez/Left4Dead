@@ -236,6 +236,23 @@ ExplosiveGrenade* Soldier::get_explosive_grenade() {
     return weapon->get_explosive_grenade();
 }
 
+std::int32_t Soldier::get_total_bullets_shot() {
+    return weapon->get_total_bullets_shot();
+}
+
+std::int16_t Soldier::get_time_to_throw_explosive_grenade() {
+    return weapon -> get_time_to_throw_explosive_grenade();
+}
+
+std::int16_t Soldier::get_time_to_throw_smoke_grenade() {
+    return weapon -> get_time_to_throw_smoke_grenade();
+}
+
+std::int16_t Soldier::get_time_to_call_air_strike() {
+    return weapon -> get_time_to_call_air_strike();
+}
+
+
 Soldier::~Soldier(){
     delete weapon;
     delete state;

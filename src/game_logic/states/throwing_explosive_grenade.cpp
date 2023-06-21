@@ -11,8 +11,9 @@
 #include "idle.h"
 
 ThrowingExplosiveGrenade::ThrowingExplosiveGrenade(float time)  :
-start_time(time),
-duration_of_throwing_granade(CONFIGURATION.get_soldierState_time_throwing_explosive_grenade()) {
+    start_time(time),
+    duration_of_throwing_grenade(CONFIGURATION.get_soldierState_time_throwing_explosive_grenade())
+{
     soldier_state = THROWING_GRENADE;
 }
 
@@ -74,7 +75,7 @@ State *ThrowingExplosiveGrenade::stop_action() {
 }
 
 bool ThrowingExplosiveGrenade::time_stop_throwing(float time) {
-    return (time - start_time) >= duration_of_throwing_granade;
+    return (time - start_time) >= duration_of_throwing_grenade;
 }
 
 

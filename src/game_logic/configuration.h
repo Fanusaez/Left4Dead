@@ -12,6 +12,7 @@ private:
 
     float soldierState_time_being_attacked;
     float soldierState_time_calling_air_strike;
+    float soldierState_time_permanent_dead;
     float soldierState_time_moving;
     float soldierState_time_reloading;
     float soldierState_time_shooting;
@@ -19,10 +20,12 @@ private:
     float soldierState_time_throwing_smoke_g;
 
     std::int16_t weaponIdf_mag_capacity;
+    std::int16_t weaponIdf_burst_capacity;
     std::int16_t weaponIdf_close_range_damage;
     std::int16_t weaponIdf_long_range_damage;
 
     std::int16_t weaponP90_mag_capacity;
+    std::int16_t weaponP90_burst_capacity;
     std::int16_t weaponP90_damage;
 
     std::int16_t weaponScout_mag_capacity;
@@ -120,6 +123,7 @@ public:
 
     float get_soldierState_time_being_attacked();
     float get_soldierState_time_calling_air_strike();
+    float get_soldierState_time_permanent_dead();
     float get_soldierState_time_moving();
     float get_soldierState_time_reloading();
     float get_soldierState_time_shooting();
@@ -127,9 +131,11 @@ public:
     float get_soldierState_time_throwing_smoke_grenade();
 
     std::int16_t get_weaponIdf_mag_capacity();
+    std::int16_t get_weaponIdf_burst_capacity();
     std::int16_t get_weaponIdf_close_range_damage();
     std::int16_t get_weaponIdf_long_range_damage();
     std::int16_t get_weaponP90_mag_capacity();
+    std::int16_t get_weaponP90_burst_capacity();
     std::int16_t get_weaponP90_damage();
     std::int16_t get_weaponScout_mag_capacity();
     std::int16_t get_weaponScout_damage();

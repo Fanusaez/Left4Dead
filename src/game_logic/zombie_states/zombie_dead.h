@@ -5,8 +5,7 @@
 
 class ZombieDead : public ZombieState {
 private:
-    float time_to_disappear = 20;
-    float start_time;
+
 public:
      explicit ZombieDead(float time);
 

@@ -11,11 +11,14 @@ class GameMap;
 
 class SmokeGrenade : public Grenade{
 private:
-    const float time_to_throw_grenade = 30;
-    std::int16_t radius_range = 3;
-    float last_thrown_grenade = 0;
+    const float waiting_time_to_throw_grenade;
+    std::int16_t radius_range;
+    float last_thrown_grenade = -10;
+    std::int16_t left_time_to_throw_grenade;
     GrenadeState* grenade_state = new GrenadeIdle;
     std::int16_t id;
+
+    void update_left_time_to_throw(float time);
 
 public:
 
@@ -33,9 +36,11 @@ public:
 
     bool time_throw_grenade(float time);
 
-    ~SmokeGrenade();
-
     GrenadeState* get_state();
+
+    std::int16_t get_time_to_throw_grenade();
+
+    ~SmokeGrenade();
 };
 
 #endif //SMOKE_GRENADE_H_

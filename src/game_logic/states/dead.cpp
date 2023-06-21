@@ -1,7 +1,10 @@
 #include "dead.h"
 #include "idle.h"
 
-Dead::Dead(float time_of_death) : start_time(time_of_death) {
+Dead::Dead(float time_of_death) :
+    start_time(time_of_death),
+    time_to_revive(CONFIGURATION.get_soldierState_time_permanent_dead())
+{
     soldier_state = SOLDIER_DEAD;
 }
 

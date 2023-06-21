@@ -6,7 +6,7 @@
 ExplosiveGrenade::ExplosiveGrenade(std::int16_t id) :
     id(id),
     grenade_damage(CONFIGURATION.get_explosiveGrenade_damage()),
-    time_to_throw_grenade(CONFIGURATION.get_explosiveGrenade_time_to_reThrow()),
+    waiting_time_to_throw_grenade(CONFIGURATION.get_explosiveGrenade_time_to_reThrow()),
     radius_range(CONFIGURATION.get_explosiveGrenade_radius_range()) {}
 
 void ExplosiveGrenade::update(float time) {
@@ -15,6 +15,7 @@ void ExplosiveGrenade::update(float time) {
         delete grenade_state;
         grenade_state = state;
     }
+    update_left_time_to_throw(time);
 }
 
 State* ExplosiveGrenade::throw_grenade(GameMap& map,
@@ -45,10 +46,8 @@ void ExplosiveGrenade::explode(float time, std::int16_t x_explosion, std::int16_
 }
 
 bool ExplosiveGrenade::time_throw_grenade(float time) {
-    return (time - last_thrown_grenade) >= time_to_throw_grenade;
+    return (time - last_thrown_grenade) >= waiting_time_to_throw_grenade;
 }
-
-
 
 ExplosiveGrenade::~ExplosiveGrenade() {
     delete grenade_state;
@@ -56,4 +55,17 @@ ExplosiveGrenade::~ExplosiveGrenade() {
 
 GrenadeState *ExplosiveGrenade::get_state() {
     return grenade_state;
+}
+
+std::int16_t ExplosiveGrenade::get_time_to_throw_grenade() {
+    return left_time_to_throw_grenade;
+}
+
+void ExplosiveGrenade::update_left_time_to_throw(float time) {
+    std::int16_t time_since_last_thrown = time - last_thrown_grenade;
+    if (time_since_last_thrown > waiting_time_to_throw_grenade) {
+        left_time_to_throw_grenade = 0;
+    } else {
+        left_time_to_throw_grenade = waiting_time_to_throw_grenade - time_since_last_thrown;
+    }
 }
