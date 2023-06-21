@@ -57,6 +57,7 @@ void GameviewConfigurationsLoader::setSpritesToLoad()
 	this->spritesToLoad.push_back("Soldier_1/Dead.png");
 	this->spritesToLoad.push_back("Soldier_1/Explosion.png");
 	this->spritesToLoad.push_back("Soldier_1/Grenade.png");
+	this->spritesToLoad.push_back("Soldier_3/Smoke.png");
 	this->spritesToLoad.push_back("backgrounds/War1/Pale/Full_Sky.png");
 	this->spritesToLoad.push_back("backgrounds/War1/Pale/Far_Background.png");
 	this->spritesToLoad.push_back("backgrounds/War1/Pale/Floor.png");
@@ -103,6 +104,7 @@ void GameviewConfigurationsLoader::setChunksToLoad()
 	this->chunksToLoad.push_back("Soldier_1/Walk.mp3");
 	this->chunksToLoad.push_back("Soldier_1/Explosion.mp3");
 	this->chunksToLoad.push_back("Soldier_1/Grenade.mp3");
+	this->chunksToLoad.push_back("Soldier_3/Smoke.mp3");
 	this->chunksToLoad.push_back("Jumper/Attack_1.mp3");
 	this->chunksToLoad.push_back("Jumper/Dead.mp3");
 	this->chunksToLoad.push_back("Jumper/Hurt.mp3");

@@ -109,6 +109,7 @@ if(CLIENT)
 			graphics/jumper.cpp
 			graphics/lancer.cpp
 			graphics/grenade.cpp
+			graphics/smoke.cpp
 			graphics/Animation.cpp
 			graphics/texture_loader.cpp
 			graphics/gameview_configs_loader.cpp
