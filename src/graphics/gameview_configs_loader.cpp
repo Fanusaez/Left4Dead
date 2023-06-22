@@ -60,6 +60,7 @@ void GameviewConfigurationsLoader::setSpritesToLoad()
 	this->spritesToLoad.push_back("Soldier_3/Dead.png");
 	this->spritesToLoad.push_back("Soldier_3/Grenade.png");
 	this->spritesToLoad.push_back("Soldier_3/Hurt.png");
+	this->spritesToLoad.push_back("Soldier_3/Idle.png");
 	this->spritesToLoad.push_back("Soldier_3/Recharge.png");
 	this->spritesToLoad.push_back("Soldier_3/Shot_1.png");
 	this->spritesToLoad.push_back("Soldier_3/Smoke.png");
