@@ -4,11 +4,12 @@
 #include <SDL2pp/SDL2pp.hh>
 #include "Animation.h"
 #include "renderable_object.h"
+#include "playable.h"
 #include "texture_loader.h"
 #include "../common/game_object_state.h"
 #include <utility>
 
-class Player : public RenderableObject {
+class Player : public Playable {
 	TextureLoader &textureLoader;
 	Animation an;
 	bool facingLeft;
@@ -17,17 +18,11 @@ class Player : public RenderableObject {
 	int sfxLoops;
 	bool playSFX;
 	int lastChannel;
-	int health_;
-	int bullets_;
 
 public:
-	Player(int id, int initialX, int initialY, int health, int bullets);
+	Player(int id, int initialX, int initialY, int health, int bullets, int cooldown);
 
 	virtual ~Player();
-
-	int getHealth() const;
-
-	int getBullets() const;
 
 	virtual void updateState(const SoldierObjectDTO &soldierDTO) override;
 

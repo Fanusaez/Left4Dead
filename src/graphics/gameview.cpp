@@ -1,8 +1,7 @@
 #include "gameview.h"
 #include <cstdlib>
 #include <utility>
-// TODO: sacar esto
-#include "Player.h"
+#include "playable.h"
 
 #define CHUNK_SIZE 4096
 
@@ -25,6 +24,9 @@ void Gameview::assignMainObject(int id)
 		return;
 
 	RenderableObject &mainObject = *(this->objects.at(id));
+	if (not mainObject.isPlayable())
+		return;
+
 	this->mainObjectID = id;
 	this->previousX = mainObject.getPositionX();
 
@@ -40,7 +42,8 @@ void Gameview::setScene(std::unique_ptr <Scene> &newScene)
 void Gameview::render()
 {
 	this->renderer.Clear();
-	if (not this->mainObjectID.has_value())
+	if (not this->mainObjectID.has_value()
+	or this->objects.find(this->mainObjectID.value()) == this->objects.end())
 		this->renderFixedCamera();
 	else
 		this->renderRelativeToMainObject();
@@ -100,9 +103,8 @@ void Gameview::renderRelativeToMainObject()
 		object.renderAudio(this->mixer);
 	}
 
-	// TODO: Arreglar esto. Exorcisar este cast horrible
-	int health = static_cast<Player &>(mainObject).getHealth();
-	int bullets = static_cast<Player &>(mainObject).getBullets();
+	int health = static_cast<Playable &>(mainObject).getHealth();
+	int bullets = static_cast<Playable &>(mainObject).getAmmo();
 	this->renderHud(health, bullets);
 	this->renderer.Present();
 }
@@ -132,7 +134,7 @@ void Gameview::renderHud(int health, int bullets)
 
 	SDL2pp::Texture textSprite(
 		this->renderer,
-		this->hudFont->RenderText_Blended(text, SDL_Color{255, 255, 255, 255}));
+		this->hudFont->RenderText_Blended(text, SDL_Color{240, 0, 0, 255}));
 	this->renderer.Copy(
 		textSprite,
 		SDL2pp::NullOpt,

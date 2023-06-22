@@ -40,6 +40,8 @@ public:
 
 	void setPositionY(int y);
 
+	virtual bool isPlayable() const;
+
 	virtual ~RenderableObject();
 };
 

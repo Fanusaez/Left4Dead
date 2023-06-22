@@ -12,7 +12,7 @@ std::unique_ptr<RenderableObject> ObjectCreator::create(const SoldierObjectDTO &
 	return std::unique_ptr<RenderableObject>(
 		new Player(soldierDTO.id,
 			   soldierDTO.position_x, soldierDTO.position_y,
-			   soldierDTO.health, soldierDTO.bullets));
+			   soldierDTO.health, soldierDTO.bullets, soldierDTO.time_explosive_grenade));
 }
 
 std::unique_ptr<RenderableObject> ObjectCreator::create(const ZombieObjectDTO &zombieDTO) const

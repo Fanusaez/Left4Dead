@@ -26,4 +26,9 @@ void RenderableObject::setPositionY(int y) {
 	this->yPosition = y * 10;
 }
 
+bool RenderableObject::isPlayable() const
+{
+	return false;
+}
+
 RenderableObject::~RenderableObject() = default;
