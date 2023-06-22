@@ -9,3 +9,7 @@ ZombieState *VenomLongRange::attack(ZombieState *state, Soldier* soldier_to_atta
     y_pos_explosion = soldier_to_attack -> get_y_pos();
     return state->attack_soldier(soldier_to_attack, damage, time);
 }
+
+bool VenomLongRange::are_you_long_range_attack() {
+    return true;
+}
