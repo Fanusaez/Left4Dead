@@ -86,9 +86,10 @@ int main(int argc, char *argv[])
 	Socket socket = lobby.move_socket(); 
 	Client client(std::move(socket));
 	bool running = true;
+	bool end_game = false;
 	GameDTO gameState;
 	ObjectCreator creator;
-	while (running) {
+	while (running && !gameState.is_end_game()) {
 		auto t_start = std::chrono::high_resolution_clock::now();
 		std::optional<GameDTO> game_optional = client.get_game();
 		if (game_optional.has_value()){
