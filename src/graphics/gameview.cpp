@@ -105,7 +105,8 @@ void Gameview::renderRelativeToMainObject()
 
 	int health = static_cast<Playable &>(mainObject).getHealth();
 	int bullets = static_cast<Playable &>(mainObject).getAmmo();
-	this->renderHud(health, bullets);
+	int cooldown = static_cast<Playable &>(mainObject).getCooldown();
+	this->renderHud(health, bullets, cooldown);
 	this->renderer.Present();
 }
 
@@ -124,21 +125,34 @@ void Gameview::renderFixedCamera()
 	this->renderer.Present();
 }
 
-void Gameview::renderHud(int health, int bullets)
+void Gameview::renderHud(int health, int bullets, int cooldown)
 {
-	std::string text =
-		"Health : "
-		+ std::to_string(health)
-		+ "     Ammo: "
-		+ std::to_string(bullets);
-
-	SDL2pp::Texture textSprite(
+	std::string text = "Health   : " + std::to_string(health);
+	SDL2pp::Texture healthSprite(
 		this->renderer,
 		this->hudFont->RenderText_Blended(text, SDL_Color{240, 0, 0, 255}));
 	this->renderer.Copy(
-		textSprite,
+		healthSprite,
 		SDL2pp::NullOpt,
-		SDL2pp::Rect(0, 0, textSprite.GetWidth(), textSprite.GetHeight()));
+		SDL2pp::Rect(0, 0, healthSprite.GetWidth(), healthSprite.GetHeight()));
+
+	text = "Ammo     : " + std::to_string(bullets);
+	SDL2pp::Texture ammoSprite(
+		this->renderer,
+		this->hudFont->RenderText_Blended(text, SDL_Color{240, 0, 0, 255}));
+	this->renderer.Copy(
+		ammoSprite,
+		SDL2pp::NullOpt,
+		SDL2pp::Rect(0, ammoSprite.GetHeight(), ammoSprite.GetWidth(), ammoSprite.GetHeight()));
+
+	text = "Cooldown : " + std::to_string(cooldown);
+	SDL2pp::Texture cdSprite(
+		this->renderer,
+		this->hudFont->RenderText_Blended(text, SDL_Color{240, 0, 0, 255}));
+	this->renderer.Copy(
+		cdSprite,
+		SDL2pp::NullOpt,
+		SDL2pp::Rect(0, 2 * cdSprite.GetHeight(), cdSprite.GetWidth(), cdSprite.GetHeight()));
 }
 
 SDL2pp::Renderer &Gameview::getRenderer()

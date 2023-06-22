@@ -60,7 +60,7 @@ private:
 
 	void renderFixedCamera();
 
-	void renderHud(int health, int bullets);
+	void renderHud(int health, int bullets, int cooldown);
 };
 
 #endif //GAMEVIEW_H
