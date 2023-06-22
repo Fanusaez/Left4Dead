@@ -40,6 +40,7 @@ void move_down(float time);
 void move_right(float time);
 void move_left(float time);
 void revive(float time);
+void revive_partner(float time);
 
 void move_up();
 void move_down();

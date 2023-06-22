@@ -91,6 +91,8 @@ bool check_free_position(std::int16_t x_pos,
 void update(float time);
 void chase_soldiers(float time);
 void attack_soldiers(float time);
+Soldier* get_soldier_to_revive(std::int16_t x_pos, std::int16_t y_pos);
+
 
 void get_position_for_object(std::vector<std::int16_t>& valid_pos);
 Soldier* get_soldier_with_idf();

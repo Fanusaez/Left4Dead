@@ -165,6 +165,13 @@ void Soldier::move_left() {
     }
 }
 
+void Soldier::revive_partner(float time) {
+    Soldier* soldier_to_revive = map.get_soldier_to_revive(get_x_matrix_pos(), get_y_matrix_pos());
+    if (soldier_to_revive) {
+        soldier_to_revive->revive(time);
+    }
+}
+
 void Soldier::revive(float time) {
     State* new_state = state -> revive(time);
     change_state(new_state);

@@ -221,6 +221,23 @@ bool GameMap::check_free_position(std::int16_t x_pos,
     return map[y_pos][x_pos] == nullptr; // !map[y_sold_pos][x_sold_pos]
 }
 
+Soldier* GameMap::get_soldier_to_revive(std::int16_t x_pos, std::int16_t y_pos) {
+    std::int16_t x_start = x_pos - 1;
+    std::int16_t y_start = y_pos - 1;
+    std::int16_t x_finish = x_pos + 1;
+    std::int16_t y_finish = y_pos + 1;
+
+    validate_position_for_explosion(x_start, y_start); // ya no seria para explosion
+    validate_position_for_explosion(x_finish, y_finish);
+
+    for (Soldier* soldier : soldiers) {
+        if (soldier->in_range_of_explosion(x_start, x_finish, y_start, y_finish) && soldier->dead()) {
+            return soldier;
+        }
+    }
+    return nullptr;
+}
+
 Soldier* GameMap::get_soldier_with_idf() {
     std::vector<std::int16_t> soldier_pos;
     get_position_for_object(soldier_pos);

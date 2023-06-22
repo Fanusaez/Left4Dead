@@ -105,7 +105,7 @@ void GameLogic::grenade(InstructionsDTO* instruction) {
 
 void GameLogic::revive(InstructionsDTO* instruction) {
     Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
-    soldier->revive(timer);
+    soldier->revive_partner(timer);
 }
 
 void GameLogic::udpate_game(){
