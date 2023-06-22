@@ -1,7 +1,8 @@
 #include "venom_long_range_attack.h"
-#include "../soldier.h"
-#include "../zombie_states/zombie_state.h"
+#include "../../../soldier.h"
+#include "../../../zombie_states/zombie_state.h"
 
+VenomLongRange::VenomLongRange() : damage(CONFIGURATION.get_venom_damage_long_range()) {}
 
 ZombieState *VenomLongRange::attack(ZombieState *state, Soldier* soldier_to_attack, float time) {
     x_pos_explosion = soldier_to_attack -> get_x_pos();

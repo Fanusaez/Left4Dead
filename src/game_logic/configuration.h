@@ -67,6 +67,13 @@ private:
     std::int16_t spear_distance_to_hit;
     std::int16_t spear_sight_distance;
 
+    std::int16_t venom_health;
+    std::int16_t venom_close_range_damage;
+    std::int16_t venom_long_range_damage;
+    std::int16_t venom_distance_to_hit_long_range;
+    std::int16_t venom_distance_to_hit_close_range;
+    std::int16_t venom_sight_distance;
+
     float zombieState_time_attacking;
     float zombieState_time_jumping;
     float zombieState_time_running;
@@ -176,6 +183,13 @@ public:
     std::int16_t get_spear_damage();
     std::int16_t get_spear_distance_to_hit();
     std::int16_t get_spear_sight_distance();
+
+    std::int16_t get_venom_health();
+    std::int16_t get_venom_damage_close_range();
+    std::int16_t get_venom_damage_long_range();
+    std::int16_t get_venom_distance_to_hit_long_range();
+    std::int16_t get_venom_distance_to_hit_close_range();
+    std::int16_t get_venom_sight_distance();
 
     float get_zombieState_attacking_time();
     float get_zombieState_jumping_time();

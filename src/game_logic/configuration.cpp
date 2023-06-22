@@ -55,6 +55,12 @@ Configuration::Configuration(const YAML::Node& node) :
                             spear_damage(node["spear"]["damage"].as<std::int16_t>()),
                             spear_distance_to_hit(node["spear"]["distance_to_hit"].as<std::int16_t>()),
                             spear_sight_distance(node["spear"]["sight_distance"].as<std::int16_t>()),
+                            venom_health(node["venom"]["health"].as<std::int16_t>()),
+                            venom_close_range_damage(node["venom"]["damage_close_range"].as<std::int16_t>()),
+                            venom_long_range_damage(node["venom"]["damage_long_range"].as<std::int16_t>()),
+                            venom_distance_to_hit_close_range(node["venom"]["distance_to_hit_close_range"].as<std::int16_t>()),
+                            venom_distance_to_hit_long_range(node["venom"]["distance_to_hit_long_range"].as<std::int16_t>()),
+                            venom_sight_distance(node["venom"]["sight_distance"].as<std::int16_t>()),
                             zombieState_time_attacking(node["zombieStates"]["time_attacking"].as<float>()),
                             zombieState_time_jumping(node["zombieStates"]["time_jumping"].as<float>()),
                             zombieState_time_running(node["zombieStates"]["time_running"].as<float>()),
@@ -276,6 +282,30 @@ std::int16_t Configuration::get_spear_distance_to_hit() {
 
 std::int16_t Configuration::get_spear_sight_distance() {
     return spear_sight_distance;
+}
+
+std::int16_t Configuration::get_venom_health() {
+    return venom_health;
+}
+
+std::int16_t Configuration::get_venom_damage_close_range() {
+    return venom_close_range_damage;
+}
+
+std::int16_t Configuration::get_venom_damage_long_range() {
+    return venom_long_range_damage;
+}
+
+std::int16_t Configuration::get_venom_distance_to_hit_close_range() {
+    return venom_distance_to_hit_close_range;
+}
+
+std::int16_t Configuration::get_venom_distance_to_hit_long_range() {
+    return venom_distance_to_hit_long_range;
+}
+
+std::int16_t Configuration::get_venom_sight_distance() {
+    return venom_sight_distance;
 }
 
 float Configuration::get_zombieState_attacking_time() {

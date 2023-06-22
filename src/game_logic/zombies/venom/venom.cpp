@@ -1,19 +1,24 @@
 #include <iostream>
 #include "venom.h"
-#include "../map.h"
-#include "../chaser.h"
-#include "../zombie_states/chasing_states/chase_running.h"
-#include "../soldier.h"
+#include "../../map.h"
+#include "../../chaser.h"
+#include "../../zombie_states/chasing_states/chase_running.h"
+#include "../../soldier.h"
+#include "venom_attack/venom_long_range_attack.h"
+
 #define INVALID_POSITION -1
-#define DISTANCE_TO_HIT_CLOSE 1
-#define DISTANCE_TO_HIT_FAR 8
 
 Venom::Venom(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
+        movements_per_cell(CONFIGURATION.get_movements_per_cell()),
         x_pos(x_pos_wal * movements_per_cell),
         y_pos(y_pos_wal * movements_per_cell),
         id(id),
         map(map),
-        chaser(this, map, x_pos, y_pos) {
+        chaser(this, map, x_pos, y_pos),
+        health(CONFIGURATION.get_venom_health()),
+        distance_to_hit_close(CONFIGURATION.get_venom_distance_to_hit_close_range()),
+        distance_to_hit_long(CONFIGURATION.get_venom_distance_to_hit_long_range()),
+        sight_distance(CONFIGURATION.get_venom_sight_distance()) {
     random_chase_state();
 }
 
@@ -99,13 +104,22 @@ void Venom::attack(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
     if (!closest_soldier) return;
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > DISTANCE_TO_HIT_FAR) return;
-    if (distance < DISTANCE_TO_HIT_FAR && distance > DISTANCE_TO_HIT_CLOSE) {
-        ZombieState* new_state = long_attack.attack(state, closest_soldier, time);
+    if (distance > distance_to_hit_long) return;
+    if (distance > distance_to_hit_close) {
+        //necesita un refactor
+        if (dynamic_cast<VenomLongRange*>(_attack) == nullptr) {
+            delete _attack;
+            _attack = new VenomLongRange;
+        }
+        ZombieState* new_state = _attack -> attack(state, closest_soldier, time);
         change_state(new_state);
         return;
     }
-    ZombieState* new_state = close_attack.attack(state, closest_soldier, time);
+    if (dynamic_cast<VenomCloseRange*>(_attack) == nullptr) {
+        delete _attack;
+        _attack = new VenomCloseRange;
+    }
+    ZombieState* new_state = _attack -> attack(state, closest_soldier, time);
     change_state(new_state);
 }
 
@@ -163,6 +177,7 @@ void Venom::random_chase_state() {
 
 Venom::~Venom() {
     delete state;
+    delete _attack;
     delete chase_state;
 }
 // ************************* Metodos de testeo ************************************************8//

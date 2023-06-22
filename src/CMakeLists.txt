@@ -70,16 +70,16 @@ if(SERVER)
 		./game_logic/zombies/jumper.cpp
 		./game_logic/zombies/witch.cpp
 		./game_logic/zombies/zombie.h
-		./game_logic/zombies/venom.cpp
+		./game_logic/zombies/venom/venom.cpp
 		./game_logic/playing_modes/clear_the_zone.cpp
 		./game_logic/playing_modes/survival.cpp
 		./game_logic/zombies/spear.cpp
         ./game_logic/playing_modes/clear_the_zone.cpp
 		./game_logic/game_factory.cpp
 		./game_logic/configuration.cpp
-		./game_logic/zombies_attack/zombie_attack.h
-		./game_logic/zombies_attack/venom_close_range_attack.cpp
-		./game_logic/zombies_attack/venom_long_range_attack.cpp
+		./game_logic/zombies/venom/venom_attack/venom_attack.h
+		./game_logic/zombies/venom/venom_attack/venom_close_range_attack.cpp
+		./game_logic/zombies/venom/venom_attack/venom_long_range_attack.cpp
 	)
 
 	target_link_libraries(server -lyaml-cpp)

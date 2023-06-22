@@ -3,29 +3,31 @@
 
 #include <complex>
 #include <cstdint>
-#include "zombie.h"
-#include "../game_object.h"
-#include "../zombie_states/zombie_idle.h"
-#include "../zombie_states/chasing_states/chase_walking.h"
-#include "../zombies_attack/venom_close_range_attack.h"
-#include "../zombies_attack/venom_long_range_attack.h"
+#include "../zombie.h"
+#include "../../game_object.h"
+#include "../../zombie_states/zombie_idle.h"
+#include "../../zombie_states/chasing_states/chase_walking.h"
+#include "venom_attack/venom_close_range_attack.h"
+
 
 class Venom : public GameObject, public Zombie {
 private:
-    std::int16_t movements_per_cell = 2;
-    std::int16_t health = 100;
-    std::int16_t damage_attack = 20;
+    std::int16_t movements_per_cell;
     std::int16_t x_pos;
     std::int16_t y_pos;
-    bool dead = false;
-    std::int16_t direction = -1;
-    ZombieState* state = new ZombieIdle;
-    ChaseState* chase_state;
     const std::int16_t id;
     GameMap& map;
     Chaser chaser;
-    VenomCloseRange close_attack;
-    VenomLongRange long_attack;
+    std::int16_t health;
+    std::int16_t distance_to_hit_close;
+    std::int16_t distance_to_hit_long;
+    std::int16_t sight_distance;
+    ChaseState* chase_state;
+    ZombieState* state = new ZombieIdle;
+    VenomAttack* _attack = new VenomCloseRange;
+    bool dead = false;
+    std::int16_t direction = -1;
+
     Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
     std::int16_t get_distance_to_soldier(Soldier* soldier);
     void change_state(ZombieState* new_state);

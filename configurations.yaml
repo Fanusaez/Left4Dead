@@ -70,6 +70,14 @@ spear:
   distance_to_hit: 2
   sight_distance: 30
 
+venom:
+  health: 100
+  damage_close_range: 30
+  damage_long_range: 10
+  distance_to_hit_close_range: 10
+  distance_to_hit_long_range: 10
+  sight_distance: 30
+
 zombieStates:
   time_attacking: 0.2
   time_jumping: 0.2

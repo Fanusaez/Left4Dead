@@ -1,14 +1,15 @@
-#ifndef ZOMBIEATTACK_H_
-#define ZOMBIEATTACK_H_
+#ifndef VENOMATTACK_H_
+#define VENOMATTACK_H_
 
 #include <cstdint>
+#define CONFIGURATION Configuration::getInstance()
 
 class ZombieState;
 class Soldier;
 
-class ZombieAttack {
+class VenomAttack {
 public:
     virtual ZombieState* attack(ZombieState* state, Soldier* soldier_to_attack, float time) = 0;
 };
 
-#endif  // ZOMBIEATTACK_H_
+#endif  // VENOMATTACK_H_
