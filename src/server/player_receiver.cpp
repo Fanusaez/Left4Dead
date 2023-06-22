@@ -22,11 +22,13 @@ void PlayerReceiver::run() {
             try {
                 queue_receiver->push(new_instructionsDTO);
             } catch (const ClosedQueue& e){
+                delete new_instructionsDTO;
                 std::cout<<"Juego finalizado"<<std::endl;
                 break;
             }
         } catch (const std::runtime_error& e) {
             keep_playing = false;
+            delete new_instructionsDTO;
             std::cout<<"Se desconecto el cliente"<<std::endl;
             break;
         }

@@ -50,7 +50,7 @@ bool ProtectedGameList::delete_player(int32_t& player_id) {
             break;
         }
     }
-
+    return false;
 }
 
 void ProtectedGameList::reap_dead() {

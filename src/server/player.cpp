@@ -20,6 +20,7 @@ bool Player::is_dead() {
 void Player::kill() {
     //Con esto le digo a los hilos receiver y sender que corten el loop
     stay_in_match = false;
+    keep_playing = false;
     //Les cierro y le hago shutdown al socket
     peer.shutdown(SHUT_RDWR);
     peer.close();
