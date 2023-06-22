@@ -13,6 +13,10 @@
 
 #define UP -1
 #define DOWN 1
+#define MAP_SIZE_X 150
+#define MAP_SIZE_Y 150
+#define DISTANCE_THROWN 40
+#define REACH_EXPLOSIVE_DAMAGE 8
 
 void testInfectedStartsWithIdleState(void) {
     GameMap map(10, 10, 0);
@@ -269,16 +273,22 @@ void testInfectedgetsShotWhileAttacking(void) {
 
 void testSoldierThrowsSmokeGrenadeAndStunnedZombie(void) {
 
-    GameMap map(10, 10, 0);
+    std::int16_t  x_throwing_place = 80;
+    std::int16_t  y_throwing_place = 75;
+
+    std::int16_t  x_explosion = x_throwing_place + DISTANCE_THROWN;
+    std::int16_t  y_explosion= y_throwing_place;
+
+    GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Soldier soldier(scout, map, 9, 5, 0);
-    map.add_soldier(&soldier, 9, 5);
+    Soldier soldier(scout, map, x_throwing_place, y_throwing_place, 0);
+    map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
 
-    soldier.set_direction(LEFT);
+    soldier.set_direction(RIGHT);
 
-    Infected walker1(5 , 5, 0, map); // donde cae la granada
-    map.add_zombie(&walker1, 5,5);
+    Infected walker1(x_explosion,y_explosion, 0,map); // donde0, cae la granada
+    map.add_zombie(&walker1, x_explosion,y_explosion);
 
     soldier.throw_smoke_grenade(100);
     soldier.update(200);

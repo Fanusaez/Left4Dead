@@ -29,7 +29,7 @@ void get_objects_in_radius(std::int16_t x_grenade_pos,
                              std::int16_t radius_explosion,
                              std::vector<GameObject*>& game_objects);
 
-void validate_position_for_explosion(std::int16_t& x_pos, std::int16_t& y_pos); // para granada, cambiar nombre, confunde
+void get_valid_pos_in_map(std::int16_t& x_pos, std::int16_t& y_pos); // para granada, cambiar nombre, confunde
 
 void collision_with_zombie(std::vector<GameObject*>& game_objects,
                            std::uint16_t x_pos_sold,

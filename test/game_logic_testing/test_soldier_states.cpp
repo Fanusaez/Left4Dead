@@ -21,7 +21,9 @@
 
 #define UP -1
 #define DOWN 1
-#define DAMAGE_GRENADE 40
+#define DAMAGE_GRENADE 50
+#define DISTANCE_THROWN 40
+#define REACH_EXPLOSIVE_DAMAGE 8
 
 void testSoldierStartsWithIdleState(void) {
     GameMap map(10, 10, 0);
@@ -184,7 +186,7 @@ void testSoldierShootsToFastAndOnlyOneBulletIsFired(void) {
      map.empty_vectors();
 }
 
-void testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle(void) {
+void testSoldierShootsUntilRunsOutOfAmmoStateChangesToReloading(void) {
     GameMap map(10, 10, 0);
     Weapon* scout = new Scout(0, 0);
 
@@ -192,15 +194,15 @@ void testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle(void) {
     map.add_soldier(&soldier, 8, 9);
 
     // cada segundo
-    for (int i = 0; i < 100; i++){
-        soldier.shoot(i);
+    for (int i = 0; i < 100; i++) {
+        if (!scout->empty()) {
+            soldier.shoot(i);
+        }
     }
-
-    std::int16_t bullets1 = scout->get_bullets();
+    soldier.shoot(100);
     Shooting* shooting_state = dynamic_cast<Shooting*>(soldier.get_state());
-    Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
+    Reloading* soldier_state = dynamic_cast<Reloading*>(soldier.get_state());
 
-    TEST_CHECK(bullets1 == 0);
     TEST_CHECK(shooting_state == nullptr);
     TEST_CHECK(soldier_state != nullptr);
      map.empty_vectors();
@@ -208,7 +210,7 @@ void testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle(void) {
 
 //**************************************** MOOVING ********************************************************//
 
-void testSoldierMoveUpAndStateChangesToMoving(void) {
+void testSoldierMoveUpAndStateChangesToMoving() {
     GameMap map(10, 10, 0);
     Weapon* scout = new Scout(0, 0);
 
@@ -530,12 +532,13 @@ void testSoldierThrowsGrenadeAndStateChanges(void) {
 }
 
 void testSoldierThrowsGrenadeAndTenSecondsPasses(void) {
-    GameMap map(10, 10, 0);
+    GameMap map(150, 150, 0);
     Weapon *idf = new Idf(0, 0);
 
     Soldier soldier(idf, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
+    soldier.set_direction(RIGHT);
     soldier.throw_explosive_grenade(100);
     soldier.update(110);
 
@@ -546,21 +549,30 @@ void testSoldierThrowsGrenadeAndTenSecondsPasses(void) {
 }
 
 void testSoldierThrows2GrenadeOnly1IsThrown(void) {
-    GameMap map(10, 10, 0);
+
+    std::int16_t  x_throwing_place = 80;
+    std::int16_t  y_throwing_place = 75;
+
+    std::int16_t  x_explosion = x_throwing_place + DISTANCE_THROWN;
+    std::int16_t  y_explosion= y_throwing_place;
+
+    GameMap map(150, 150, 0);
     Weapon *idf = new Scout(0, 0);
 
-    Soldier soldier(idf, map, 2, 2, 0);
-    map.add_soldier(&soldier, 2, 2);
-    soldier.set_direction(DOWN);
+    Soldier soldier(idf, map, x_throwing_place, y_throwing_place, 0);
+    map.add_soldier(&soldier, x_throwing_place, y_throwing_place);
 
-    Infected walker(6, 2, 0, map);
-    map.add_zombie(&walker, 6, 2);
+    soldier.set_direction(RIGHT);
+
+    Infected walker1(x_explosion,y_explosion, 0,map); // donde0, cae la granada
+    map.add_zombie(&walker1, x_explosion,y_explosion);
+
 
     soldier.throw_explosive_grenade(100);
-    soldier.throw_explosive_grenade(101);
+    soldier.throw_explosive_grenade(100.5);
     soldier.update(200);
 
-    std::int16_t walker_health = walker.get_health();
+    std::int16_t walker_health = walker1.get_health();
     TEST_CHECK(walker_health == 100 - DAMAGE_GRENADE);
      map.empty_vectors();
 }
@@ -604,9 +616,9 @@ void testSoldierThrowsSmokeGrenadeAndTenSecondsPasses(void) {
     Soldier soldier(idf, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_smoke_grenade(100);
     soldier.update(110);
-
+    soldier.update(120);
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
 
     TEST_CHECK(soldier_state != nullptr);
@@ -657,7 +669,7 @@ TEST_LIST = {
         {"Soldier updates state after reloading and changes to Idle",         testSoldierUpdatesAfterReloadingAndStateChangesToIdle},
         {"Soldier updates state during reloading and state still reloading",  testSoldierUpdatesDuringReloadingAndStateChanges},
         {"Soldier shoots to fast and only one bullet is fired",               testSoldierShootsToFastAndOnlyOneBulletIsFired},
-        {"Soldier shoots until runs out of ammo, state changes to Idle",      testSoldierShootsUntilRunsOutOfAmmoStateChangesToIdle},
+        {"Soldier shoots until runs out of ammo, state changes to Reloading",      testSoldierShootsUntilRunsOutOfAmmoStateChangesToReloading},
         {"Soldier moves up and state changes to moving",                      testSoldierMoveUpAndStateChangesToMoving},
         {"Soldier moves up and immediately reloads state not change",         testSoldierMovesUpAndImmediatelyReload},
         {"Soldier changes from Moving to Reloading",                          testSoldierMovesUpAndReload},

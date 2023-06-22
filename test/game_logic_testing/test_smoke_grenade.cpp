@@ -10,23 +10,23 @@
 
 #define UP -1
 #define DOWN 1
-#define GRANADE_DAMAGE 40
-#define MAP_SIZE_X 20
-#define MAP_SIZE_Y 20
+
+#define MAP_SIZE_X 150
+#define MAP_SIZE_Y 150
 
 /*
  * La granada se lanza 4 casilleros independientemente de la magnitud del mapa
  * En un Mapa de 20 x 20 (como en este caso), el alcance de dano es de 3 casilleros
  */
 
-#define DISTANCE_THROWN 4
-#define REACH_EXPLOSIVE_DAMAGE 3
+#define DISTANCE_THROWN 40
+#define REACH_EXPLOSIVE_DAMAGE 8
 
 
 void testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies(void) {
 
-    std::int16_t  x_throwing_place = 15;
-    std::int16_t  y_throwing_place = 10;
+    std::int16_t  x_throwing_place = 80;
+    std::int16_t  y_throwing_place = 75;
 
     std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
     std::int16_t  y_explosion= y_throwing_place;
@@ -91,8 +91,8 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies(void) {
 
 void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies(void) {
 
-    std::int16_t  x_throwing_place = 15;
-    std::int16_t  y_throwing_place = 10;
+    std::int16_t  x_throwing_place = 80;
+    std::int16_t  y_throwing_place = 75;
 
     std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
     std::int16_t  y_explosion= y_throwing_place;
@@ -150,8 +150,8 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2(void) {
      * en los limites, no sufran dano
      */
 
-    std::int16_t  x_throwing_place = 15;
-    std::int16_t  y_throwing_place = 10;
+    std::int16_t  x_throwing_place = 80;
+    std::int16_t  y_throwing_place = 75;
 
     std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
     std::int16_t  y_explosion= y_throwing_place;
@@ -205,8 +205,8 @@ void testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2(void) {
 
 void testSoldierThrowsSmokeGrenadeToOtherSoldier(void) {
 
-    std::int16_t  x_throwing_place = 15;
-    std::int16_t  y_throwing_place = 10;
+    std::int16_t  x_throwing_place = 80;
+    std::int16_t  y_throwing_place = 75;
 
     std::int16_t  x_explosion = x_throwing_place - DISTANCE_THROWN;
     std::int16_t  y_explosion= y_throwing_place;
@@ -233,8 +233,8 @@ void testSoldierThrowsSmokeGrenadeToOtherSoldier(void) {
 
 void testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies(void) {
 
-    std::int16_t  x_throwing_place = 10;
-    std::int16_t  y_throwing_place = 5;
+    std::int16_t  x_throwing_place = 80;
+    std::int16_t  y_throwing_place = 75;
 
     std::int16_t  x_explosion = x_throwing_place + DISTANCE_THROWN;
     std::int16_t  y_explosion= y_throwing_place;
@@ -287,10 +287,10 @@ void testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies(void) {
 
 
 TEST_LIST = {
-        {"Soldier throws granade up and damage 5 zombies", testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies},
-        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies},
-        {"Soldier throws granade up and damage 1 zombie", testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2},
-        {"Soldier throws granade up and damages other soldier", testSoldierThrowsSmokeGrenadeToOtherSoldier},
-        {"Soldier throws granade Down and damage 5 zombies",testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies},
+        {"Soldier throws grenade up and stunned 5 zombies", testSoldierThrowsSmokeGrenadeLeftAndDamages5Zombies},
+        {"Soldier throws grenade up and stunned 1 zombie", testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies},
+        {"Soldier throws grenade up and stunned 1 zombie", testSoldierThrowsSmokeGrenadeLeftAndDamages1Zombies2},
+        {"Soldier throws grenade up and stunned other soldier", testSoldierThrowsSmokeGrenadeToOtherSoldier},
+        {"Soldier throws grenade Down and stunned 5 zombies",testSoldierThrowsSmokeGrenadeRightAndDamages5Zombies},
         {NULL, NULL}
 };

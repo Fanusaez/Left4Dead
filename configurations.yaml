@@ -38,7 +38,7 @@ explosiveGrenade:
 
 smokeGrenade:
   time_to_reThrow_grenade: 30
-  radius_range: 3
+  radius_range: 8
 
 grenadeStates:
   time_exploding: 0.4

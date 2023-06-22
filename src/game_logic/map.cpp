@@ -64,11 +64,11 @@ void GameMap::get_objects_in_radius(std::int16_t x_grenade_pos,
                                       std::vector<GameObject*>& game_objects) {
     std::int16_t x_start = x_grenade_pos - radius_explosion;
     std::int16_t y_start = y_grenade_pos - radius_explosion;
-    validate_position_for_explosion(x_start, y_start);
+    get_valid_pos_in_map(x_start, y_start);
 
     std::int16_t x_finish = x_grenade_pos + radius_explosion;
     std::int16_t y_finish = y_grenade_pos + radius_explosion;
-    validate_position_for_explosion(x_finish, y_finish);
+    get_valid_pos_in_map(x_finish, y_finish);
 
     for (Zombie* object : zombies){
         if (object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
@@ -89,11 +89,11 @@ void GameMap::get_objects_in_air_strike(std::vector<GameObject *> &game_objects_
 
     std::int16_t x_start = x_soldier - range_of_safe_space;
     std::int16_t y_start = y_soldier - range_of_safe_space;
-    validate_position_for_explosion(x_start, y_start);
+    get_valid_pos_in_map(x_start, y_start);
 
     std::int16_t x_finish = x_soldier + range_of_safe_space;
     std::int16_t y_finish = y_soldier + range_of_safe_space;
-    validate_position_for_explosion(x_finish, y_finish);
+    get_valid_pos_in_map(x_finish, y_finish);
 
     for (Zombie* object : zombies) {
         if (!object->in_range_of_explosion(x_start, x_finish, y_start, y_finish)) {
@@ -107,8 +107,8 @@ void GameMap::get_objects_in_air_strike(std::vector<GameObject *> &game_objects_
     }
 }
 
-void GameMap::validate_position_for_explosion(  std::int16_t& x_pos,
-                                                std::int16_t& y_pos) {
+void GameMap::get_valid_pos_in_map(  std::int16_t& x_pos,
+                                     std::int16_t& y_pos) {
     if (x_pos > x_size - 1) {
         x_pos = x_size - 1;
     } else if (x_pos < 0) {
@@ -227,8 +227,8 @@ Soldier* GameMap::get_soldier_to_revive(std::int16_t x_pos, std::int16_t y_pos, 
     std::int16_t x_finish = x_pos + range;
     std::int16_t y_finish = y_pos + range;
 
-    validate_position_for_explosion(x_start, y_start); // ya no seria para explosion
-    validate_position_for_explosion(x_finish, y_finish);
+    get_valid_pos_in_map(x_start, y_start); // ya no seria para explosion
+    get_valid_pos_in_map(x_finish, y_finish);
 
     for (Soldier* soldier : soldiers) {
         if (soldier->in_range_of_explosion(x_start, x_finish, y_start, y_finish) && soldier->dead()) {
@@ -246,7 +246,6 @@ Soldier* GameMap::get_soldier_with_idf() {
 
     std::int16_t x_pos = soldier_pos[X_POS];
     std::int16_t y_pos = soldier_pos[Y_POS];
-    //std::cout<<x_pos<<","<<y_pos<<std::endl;
     map[y_pos][x_pos] = soldier;
     return soldier;
 }
