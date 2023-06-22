@@ -11,7 +11,7 @@ private:
 public:
     VenomCloseRange();
     ZombieState* attack(ZombieState *state, Soldier* soldier_to_attack, float time) override;
-
+    bool are_you_long_range_attack() override;
 };
 
 
