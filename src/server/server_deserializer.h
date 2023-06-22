@@ -29,6 +29,8 @@ private:
 
     InstructionsDTO* deserialize_start(bool *was_closed, int32_t& player_id);
 
+    InstructionsDTO* deserialize_revive(bool *was_closed, int32_t& player_id);
+
 public:
     explicit ServerDeserializer(Socket *socket);
 

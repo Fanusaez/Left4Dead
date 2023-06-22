@@ -38,6 +38,8 @@ public:
 
     bool throw_grenade(const int8_t& time);
 
+    bool revive_soldier();
+
     std::optional<GameDTO> get_game();
 
     void join();

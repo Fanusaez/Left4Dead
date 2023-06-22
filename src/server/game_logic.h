@@ -32,6 +32,8 @@ private:
 
     void grenade(InstructionsDTO* instruction); 
 
+    void revive(InstructionsDTO* instruction);
+
 public:
     GameLogic();
 

@@ -12,6 +12,7 @@ enum InstructionsType : char {
     MOVE,
     RELOAD,
     SHOOT,
-    GRENADE
+    GRENADE,
+    REVIVE
 };
 #endif

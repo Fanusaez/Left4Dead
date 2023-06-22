@@ -196,8 +196,13 @@ static bool handleEvents(Client* client, Gameview &view)
 				}
 				case SDLK_s: {
 					if (keyEvent.repeat == 0) {
-						std::cout << "S preesed: " << keyEvent.timestamp << std::endl;
 						client->shoot();
+					}
+					break;
+				}
+				case SDLK_e: {
+					if (keyEvent.repeat == 0) {
+						client->revive_soldier();
 					}
 					break;
 				}

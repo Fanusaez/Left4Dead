@@ -36,6 +36,9 @@ InstructionsDTO* ServerDeserializer::obtener_instruccion(bool *was_closed, int32
         case GRENADE:
             return (deserialize_grenede(was_closed, player_id));
             break;
+        case REVIVE:
+            return (deserialize_revive(was_closed, player_id));
+            break;
         }
 }
 
@@ -87,5 +90,10 @@ GrenadeDTO* ServerDeserializer::deserialize_grenede(bool *was_closed, int32_t& p
 
 InstructionsDTO* ServerDeserializer::deserialize_start(bool *was_closed, int32_t& player_id) {
     InstructionsDTO* instructionDTO = new InstructionsDTO(player_id, START);
+    return instructionDTO;
+}
+
+InstructionsDTO* ServerDeserializer::deserialize_revive(bool *was_closed, int32_t& player_id) {
+    InstructionsDTO* instructionDTO = new InstructionsDTO(player_id, REVIVE);
     return instructionDTO;
 }

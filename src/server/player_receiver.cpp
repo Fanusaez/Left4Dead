@@ -28,7 +28,6 @@ void PlayerReceiver::run() {
             }
         } catch (const std::runtime_error& e) {
             keep_playing = false;
-            delete new_instructionsDTO;
             std::cout<<"Se desconecto el cliente"<<std::endl;
             break;
         }

@@ -30,6 +30,8 @@ void GameLogic::new_instruction(InstructionsDTO* instruction) {
         break;
     case GRENADE:
         grenade(instruction);
+    case REVIVE:
+        revive(instruction);
     default:
         break;
     }
@@ -99,6 +101,11 @@ void GameLogic::grenade(InstructionsDTO* instruction) {
     GrenadeDTO* grenade_dto = dynamic_cast<GrenadeDTO*>(instruction);
     Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
     soldier->throw_explosive_grenade(timer);
+}
+
+void GameLogic::revive(InstructionsDTO* instruction) {
+    Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
+    soldier->revive(timer);
 }
 
 void GameLogic::udpate_game(){
