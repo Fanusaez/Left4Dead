@@ -249,6 +249,10 @@ ExplosiveGrenade* Soldier::get_explosive_grenade() {
     return weapon->get_explosive_grenade();
 }
 
+SmokeGrenade* Soldier::get_smoke_grenade() {
+    return weapon->get_smoke_grenade();
+}
+
 std::int32_t Soldier::get_total_bullets_shot() {
     return weapon->get_total_bullets_shot();
 }
