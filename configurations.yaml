@@ -1,6 +1,7 @@
 soldier:
   health: 100
   grenade_distance_reach: 40
+  matrix_range_to_revive: 1
 
 soldierStates:
   time_being_attacked: 0.1
@@ -97,10 +98,10 @@ survival:
   health_power_up: 10
   damage_power_up: 5
   zombies_probability_respawn:
-    infected: [0, 30]
-    witch: [30, 50]
-    jumper: [50, 60]
-    spear: [60, 100]
+    infected: [0, 40]
+    witch: [40, 50]
+    jumper: [50, 70]
+    spear: [70, 100]
     venom: [0, 0]
 
 gameFactory:

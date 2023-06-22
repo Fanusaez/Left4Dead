@@ -9,6 +9,7 @@ class Configuration {
 private:
     std::int16_t  soldier_health;
     std::int16_t  soldierGrenade_distance_reach;
+    std::int16_t soldier_matrix_range_to_revive;
 
     float soldierState_time_being_attacked;
     float soldierState_time_calling_air_strike;
@@ -121,6 +122,7 @@ public:
 
     std::int16_t get_soldier_health();
     std::int16_t get_soldier_grenade_distance_reach();
+    std::int16_t get_soldier_matrix_range_to_revive();
 
     float get_soldierState_time_being_attacked();
     float get_soldierState_time_calling_air_strike();

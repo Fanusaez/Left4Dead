@@ -19,7 +19,8 @@ Soldier::Soldier(Weapon* weapon,
         y_pos(y_pos * movements_per_cell),
         id(id),
         health(CONFIGURATION.get_soldier_health()),
-        grenade_distance_reach(CONFIGURATION.get_soldier_grenade_distance_reach()) {}
+        grenade_distance_reach(CONFIGURATION.get_soldier_grenade_distance_reach()),
+        matrix_range_to_revive(CONFIGURATION.get_soldier_matrix_range_to_revive()) {}
 
 void Soldier::update(float time) {
     State* new_state = state->update(time);
@@ -166,7 +167,7 @@ void Soldier::move_left() {
 }
 
 void Soldier::revive_partner(float time) {
-    Soldier* soldier_to_revive = map.get_soldier_to_revive(get_x_matrix_pos(), get_y_matrix_pos());
+    Soldier* soldier_to_revive = map.get_soldier_to_revive(get_x_matrix_pos(), get_y_matrix_pos(), matrix_range_to_revive);
     if (soldier_to_revive) {
         soldier_to_revive->revive(time);
     }

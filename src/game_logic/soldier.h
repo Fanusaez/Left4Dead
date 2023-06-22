@@ -18,6 +18,7 @@ class Soldier : public GameObject {
     const std::int16_t id;
     std::int16_t health;
     std::int16_t grenade_distance_reach;
+    std::int16_t matrix_range_to_revive;
     State* state = new Idle;
     std::int16_t direction = RIGHT;
     bool _dead = false;
