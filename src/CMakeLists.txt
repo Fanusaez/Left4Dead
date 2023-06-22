@@ -13,6 +13,7 @@ if(SERVER)
 		./common/instructionsDTO/create_dto.cpp
 		./common/instructionsDTO/move_dto.cpp
 		./common/instructionsDTO/grenade_dto.cpp
+		./common/instructionsDTO/soldier_type_dto.cpp
 		./server/acceptor.cpp
 		./server/server.cpp
 		./server/match_mananger.cpp
@@ -139,6 +140,7 @@ if(CLIENT)
 		./common/instructionsDTO/create_dto.cpp
 		./common/instructionsDTO/start_dto.cpp
 		./common/instructionsDTO/move_dto.cpp
+		./common/instructionsDTO/soldier_type_dto.cpp
 		./client/lobby.cpp
 		./client/lobby_deserializer.cpp
 		./client/lobby_serializer.cpp

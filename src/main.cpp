@@ -251,7 +251,12 @@ static bool handleEvents(Client* client, Gameview &view)
 				}
 				case SDLK_q: {
 					int8_t delta = 10;
-					client->throw_grenade(delta);
+					client->throw_explosive_grenade(delta);
+					break;
+				}
+				case SDLK_w: {
+					int8_t delta = 10;
+					client->throw_smoke_grenade(delta);
 					break;
 				}
 			}

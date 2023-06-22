@@ -46,7 +46,7 @@ void testThrowingGrenade(void){
     std::vector<char> buffer = client_serializer.serialize_throw_grenede(2);
     //- shooting: 0x09
     TEST_CHECK(buffer.size() == 2);
-    TEST_CHECK(buffer.at(0) == GRENADE);
+    TEST_CHECK(buffer.at(0) == THROW_EXPLOSIVE_GRENADE);
     TEST_CHECK(buffer.at(1) == 2);
 }
 

@@ -11,8 +11,21 @@
 
 GameLogic::GameLogic() : game_map(400, 47, 0) {}
 
-void GameLogic::add_soldier(const int32_t& player_id) {
+void GameLogic::add_soldier_idf(const int32_t& player_id) {
+    std::cout<<"Creo un idf"<<std::endl;
     Soldier* soldier = game_map.get_soldier_with_idf();    
+    playerSoldierMap[player_id] = soldier;
+    timer = 0;
+}
+
+void GameLogic::add_soldier_scout(const int32_t& player_id) {
+    Soldier* soldier = game_map.get_soldier_with_scout();    
+    playerSoldierMap[player_id] = soldier;
+    timer = 0;
+}
+
+void GameLogic::add_soldier_p90(const int32_t& player_id) {
+    Soldier* soldier = game_map.get_soldier_with_p90();    
     playerSoldierMap[player_id] = soldier;
     timer = 0;
 }
@@ -28,8 +41,11 @@ void GameLogic::new_instruction(InstructionsDTO* instruction) {
     case SHOOT:
         shoot(instruction);
         break;
-    case GRENADE:
+    case THROW_EXPLOSIVE_GRENADE:
         grenade(instruction);
+        break;
+    case THROW_SMOKE_GRENADE:
+        smoke_grenade(instruction);
     case REVIVE:
         revive(instruction);
     default:
@@ -47,12 +63,20 @@ GameDTO GameLogic::get_game() {
                                 soldier->get_weapon()->get_bullets(),
                                 soldier->get_time_to_throw_explosive_grenade(),
                                 soldier->get_time_to_throw_smoke_grenade(),
-                                soldier->get_state()->soldier_state ,IDF, soldier->facing_left());
+                                soldier->get_state()->soldier_state ,soldier->get_weapon()->get_type(),
+                                soldier->facing_left());
         game_dto.add_soldier(soldier_dto);
         if (ExplosiveGrenade* grenade = soldier->get_explosive_grenade()){
             if (grenade->get_state()->exploting()) {
                 GrenadeObjectDTO grenade_dto(grenade->id,grenade->get_state()->get_x_explosion(),
                 grenade->get_state()->get_y_explosion(),EXPLOSIVE_GRENADE);
+                game_dto.add_element(grenade_dto);
+            }
+        }
+        if (SmokeGrenade* grenade = soldier->get_smoke_grenade()){
+            if (grenade->get_state()->exploting()) {
+                GrenadeObjectDTO grenade_dto(grenade->id,grenade->get_state()->get_x_explosion(),
+                grenade->get_state()->get_y_explosion(),SMOKE_GRENADE);
                 game_dto.add_element(grenade_dto);
             }
         }
@@ -105,6 +129,12 @@ void GameLogic::grenade(InstructionsDTO* instruction) {
     GrenadeDTO* grenade_dto = dynamic_cast<GrenadeDTO*>(instruction);
     Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
     soldier->throw_explosive_grenade(timer);
+}
+
+void GameLogic::smoke_grenade(InstructionsDTO* instruction) {
+    GrenadeDTO* grenade_dto = dynamic_cast<GrenadeDTO*>(instruction);
+    Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
+    soldier->throw_smoke_grenade(timer);
 }
 
 void GameLogic::revive(InstructionsDTO* instruction) {

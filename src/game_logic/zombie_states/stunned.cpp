@@ -3,7 +3,9 @@
 
 Stunned::Stunned(float time) :  start_time(time),
                                 waiting_time_to_normal(CONFIGURATION.get_zombieState_stunned_time()),
-                                waiting_time_to_walk(CONFIGURATION.get_zombieState_walking_time()){}
+                                waiting_time_to_walk(CONFIGURATION.get_zombieState_walking_time()){
+                                    zombie_state = WALKING;
+                                }
 
 ZombieState *Stunned::update(float time) {
     return nullptr;

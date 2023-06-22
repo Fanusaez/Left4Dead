@@ -32,7 +32,7 @@ Soldier* GameFactory::get_soldier_with_scout(std::vector<std::int16_t>& soldier_
 }
 
 Soldier* GameFactory::get_soldier_with_p90(std::vector<std::int16_t>& soldier_pos) {
-    Weapon* p90 = new P90(id++);
+    Weapon* p90 = new class P90(id++);
     return create_soldier(p90, soldier_pos);
 }
 

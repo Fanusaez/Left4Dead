@@ -22,7 +22,9 @@ public:
 
     std::vector<char> serialize_shooting();
 
-    std::vector<char> serialize_throw_grenede(const int8_t& time);
+    std::vector<char> serialize_throw_explosive_grenede(const int8_t& time);
+
+    std::vector<char> serialize_throw_smoke_grenede(const int8_t& time);
 
     std::vector<char> serialize_revive_soldier();
 };

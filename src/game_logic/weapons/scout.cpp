@@ -93,3 +93,7 @@ std::int16_t Scout::get_time_to_throw_smoke_grenade() {
 std::int16_t Scout::get_time_to_call_air_strike() {
     return -1;
 }
+
+SoldierType Scout::get_type() {
+    return SCOUT;
+}

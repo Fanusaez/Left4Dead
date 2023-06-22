@@ -6,6 +6,7 @@
 #include "../common/instructionsDTO/join_dto.h"
 #include "../common/instructionsDTO/move_dto.h"
 #include "../common/instructionsDTO/grenade_dto.h"
+#include "../common/instructionsDTO/soldier_type_dto.h"
 #include "../common/instructions_type.h"
 #include "../common/socket.h"
 #include <string>
@@ -27,9 +28,13 @@ private:
 
     GrenadeDTO* deserialize_grenede(bool *was_closed, int32_t& player_id);
 
+    GrenadeDTO* deserialize_smoke_grenade(bool *was_closed, int32_t& player_id);
+
     InstructionsDTO* deserialize_start(bool *was_closed, int32_t& player_id);
 
     InstructionsDTO* deserialize_revive(bool *was_closed, int32_t& player_id);
+
+    SoldierTypeDTO* deserialize_soldier_type(bool *was_closed, int32_t& player_id);
 
 public:
     explicit ServerDeserializer(Socket *socket);

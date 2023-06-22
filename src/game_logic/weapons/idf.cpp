@@ -98,3 +98,7 @@ std::int16_t Idf::get_time_to_throw_smoke_grenade() {
 std::int16_t Idf::get_time_to_call_air_strike() {
     return -1;
 }
+
+SoldierType Idf::get_type() {
+    return IDF;
+}

@@ -26,8 +26,12 @@ bool Client::shoot(){
     return (queue_sender.try_push(client_seializer.serialize_shooting()));
 }
 
-bool Client::throw_grenade(const int8_t& time){
-    return (queue_sender.try_push(client_seializer.serialize_throw_grenede(time)));
+bool Client::throw_explosive_grenade(const int8_t& time){
+    return (queue_sender.try_push(client_seializer.serialize_throw_explosive_grenede(time)));
+}
+
+bool Client::throw_smoke_grenade(const int8_t& time){
+    return (queue_sender.try_push(client_seializer.serialize_throw_smoke_grenede(time)));
 }
 
 bool Client::revive_soldier(){

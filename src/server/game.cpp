@@ -1,5 +1,6 @@
 #include "game.h"
 #include "../common/move_type.h"
+#include "../common/instructionsDTO/soldier_type_dto.h"
 #include <unistd.h>
 #include <chrono>
 #include <string>
@@ -10,7 +11,7 @@ Game::Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, 
     queue_entrante(10000), code(code), game_name(game_name), game_logic(), keep_playing(true),
     admit_players(true)
 {
-    game_logic.add_soldier(player_id);
+    game_logic.add_soldier_scout(player_id);
     //queue_salientes[player_id] = queue_sender;
     protected_outputs_queue.add_queue(queue_sender,player_id);
 }
@@ -29,8 +30,18 @@ void Game::run(){
             keep_playing = false;
             return;
         }
-        if (instructionDTO->get_instruction() == START)
+        if (instructionDTO->get_instruction() == START) {
             start_players++;
+        }
+/*         else if (instructionDTO->get_instruction() == SOLDIER_TYPE) {
+            SoldierTypeDTO* instructionDTO = dynamic_cast<SoldierTypeDTO*>(instructionDTO);
+            if (instructionDTO->get_soldier_type() == IDF)
+                game_logic.add_soldier_idf(instructionDTO->get_player_id());
+            else if (instructionDTO->get_soldier_type() == SCOUT)
+                game_logic.add_soldier_scout(instructionDTO->get_player_id());
+            else if (instructionDTO->get_soldier_type() == P90)
+                game_logic.add_soldier_p90(instructionDTO->get_player_id());
+        } */
         delete instructionDTO;
     }
     //Comienza el juego
@@ -76,7 +87,7 @@ Queue<InstructionsDTO*> *Game::getQueue(){
 }
 
 void Game::addPlayer(Queue<GameDTO> *queue_sender,int32_t& player_id){
-    game_logic.add_soldier(player_id);
+    game_logic.add_soldier_scout(player_id);
     protected_outputs_queue.add_queue(queue_sender,player_id);
 }
 

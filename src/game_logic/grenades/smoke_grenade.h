@@ -16,11 +16,11 @@ private:
     float last_thrown_grenade = -10;
     std::int16_t left_time_to_throw_grenade;
     GrenadeState* grenade_state = new GrenadeIdle;
-    std::int16_t id;
 
     void update_left_time_to_throw(float time);
 
 public:
+    std::int16_t id;
 
     explicit SmokeGrenade(std::int16_t id);
 

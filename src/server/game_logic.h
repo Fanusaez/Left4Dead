@@ -32,13 +32,19 @@ private:
 
     void grenade(InstructionsDTO* instruction); 
 
+    void smoke_grenade(InstructionsDTO* instruction); 
+
     void revive(InstructionsDTO* instruction);
 
 public:
     GameLogic();
 
-    void add_soldier(const int32_t& player_id);  
+    void add_soldier_idf(const int32_t& player_id);  
 
+    void add_soldier_scout(const int32_t& player_id);  
+    
+    void add_soldier_p90(const int32_t& player_id);  
+    
     void new_instruction(InstructionsDTO* instruction);
 
     GameDTO get_game();

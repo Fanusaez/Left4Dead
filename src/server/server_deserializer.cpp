@@ -33,11 +33,17 @@ InstructionsDTO* ServerDeserializer::obtener_instruccion(bool *was_closed, int32
         case SHOOT:
             return (deserialize_shooting(was_closed, player_id));
             break;
-        case GRENADE:
+        case THROW_EXPLOSIVE_GRENADE:
             return (deserialize_grenede(was_closed, player_id));
+            break;
+        case THROW_SMOKE_GRENADE:
+            return (deserialize_smoke_grenade(was_closed, player_id));
             break;
         case REVIVE:
             return (deserialize_revive(was_closed, player_id));
+            break;
+        case SOLDIER_TYPE:
+            return (deserialize_soldier_type(was_closed, player_id));
             break;
         }
 }
@@ -84,7 +90,14 @@ InstructionsDTO* ServerDeserializer::deserialize_shooting(bool *was_closed, int3
 GrenadeDTO* ServerDeserializer::deserialize_grenede(bool *was_closed, int32_t& player_id) {
     int8_t time;
     socket->recvall(&time, 1, was_closed);
-    GrenadeDTO* instructionDTO = new GrenadeDTO(player_id, time);
+    GrenadeDTO* instructionDTO = new GrenadeDTO(player_id, time, EXPLOSIVE_GRENADE);
+    return instructionDTO;
+}
+
+GrenadeDTO* ServerDeserializer::deserialize_smoke_grenade(bool *was_closed, int32_t& player_id) {
+    int8_t time;
+    socket->recvall(&time, 1, was_closed);
+    GrenadeDTO* instructionDTO = new GrenadeDTO(player_id, time, SMOKE_GRENADE);
     return instructionDTO;
 }
 
@@ -97,3 +110,11 @@ InstructionsDTO* ServerDeserializer::deserialize_revive(bool *was_closed, int32_
     InstructionsDTO* instructionDTO = new InstructionsDTO(player_id, REVIVE);
     return instructionDTO;
 }
+
+SoldierTypeDTO* ServerDeserializer::deserialize_soldier_type(bool *was_closed, int32_t& player_id) {
+    SoldierType soldier_type;
+    socket->recvall(&soldier_type, 1, was_closed);
+    SoldierTypeDTO* soldier_type_dto = new SoldierTypeDTO(player_id, soldier_type);
+    return soldier_type_dto;
+}
+

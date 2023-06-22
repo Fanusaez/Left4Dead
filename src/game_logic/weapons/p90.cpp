@@ -89,3 +89,7 @@ std::int16_t P90::get_time_to_call_air_strike() {
 
 }
 
+SoldierType P90::get_type(){
+    return SoldierType::P90;
+}
+

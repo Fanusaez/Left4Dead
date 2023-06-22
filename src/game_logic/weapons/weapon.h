@@ -3,9 +3,11 @@
 
 #include <vector>
 #include <cstdint>
+#include "../common/soldier_type.h"
 
 #define CONFIGURATION Configuration::getInstance()
 
+enum SoldierType;
 class State;
 class GameObject;
 class GameMap;
@@ -49,6 +51,8 @@ virtual std::int32_t get_total_bullets_shot() = 0;
 virtual std::int16_t get_time_to_throw_explosive_grenade() = 0;
 virtual std::int16_t get_time_to_throw_smoke_grenade() = 0;
 virtual std::int16_t get_time_to_call_air_strike() = 0;
+
+virtual SoldierType get_type() = 0;
 virtual ~Weapon() {}
 };
 #endif  // WEAPON_H_
