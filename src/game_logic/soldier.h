@@ -39,6 +39,7 @@ void move_up(float time);
 void move_down(float time);
 void move_right(float time);
 void move_left(float time);
+void revive(float time);
 
 void move_up();
 void move_down();

@@ -165,6 +165,11 @@ void Soldier::move_left() {
     }
 }
 
+void Soldier::revive(float time) {
+    State* new_state = state -> revive(time);
+    change_state(new_state);
+}
+
 void Soldier::set_direction(std::int16_t new_direction) {
     direction = new_direction;
 }

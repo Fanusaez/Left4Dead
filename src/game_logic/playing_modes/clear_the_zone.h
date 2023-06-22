@@ -44,6 +44,8 @@ public:
 
     bool is_game_over();
 
+    std::int32_t get_total_zombies_dead();
+
 };
 
 
