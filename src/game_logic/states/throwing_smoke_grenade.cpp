@@ -11,8 +11,8 @@
 #include "idle.h"
 
 ThrowingSmokeGrenade::ThrowingSmokeGrenade(float time)  :
-start_time(time),
-duration_of_throwing_grenade(CONFIGURATION.get_soldierState_time_throwing_smoke_grenade()) {}
+ start_time(time),
+ duration_of_throwing_grenade(CONFIGURATION.get_soldierState_time_throwing_smoke_grenade()) {}
 
 State* ThrowingSmokeGrenade::update(float time) {
     if (time_stop_throwing(time)) {

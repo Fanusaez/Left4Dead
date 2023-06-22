@@ -49,12 +49,19 @@ infected:
   damage: 10
   distance_to_hit: 1
   sight_distance: 30
+  probability_walk: [0, 40]
+  probability_run: [40, 100]
+  probability_jump: [0, 0]
+
 
 jumper:
   health: 100
   damage: 10
   distance_to_hit: 1
   sight_distance: 30
+  probability_walk: [ 0, 40 ]
+  probability_run: [ 40, 100 ]
+  probability_jump: [ 0, 0 ]
 
 witch:
   health: 200
@@ -63,12 +70,18 @@ witch:
   zombies_created_for_screaming: 2
   distance_to_hit: 1
   sight_distance: 30
+  probability_walk: [ 0, 40 ]
+  probability_run: [ 40, 100 ]
+  probability_jump: [ 0, 0 ]
 
 spear:
   health: 100
   damage: 10
   distance_to_hit: 2
   sight_distance: 30
+  probability_walk: [ 0, 40 ]
+  probability_run: [ 40, 100 ]
+  probability_jump: [ 0, 0 ]
 
 venom:
   health: 100
@@ -77,6 +90,9 @@ venom:
   distance_to_hit_close_range: 10
   distance_to_hit_long_range: 10
   sight_distance: 30
+  probability_walk: [ 0, 40 ]
+  probability_run: [ 40, 100 ]
+  probability_jump: [ 0, 0 ]
 
 zombieStates:
   time_attacking: 0.2

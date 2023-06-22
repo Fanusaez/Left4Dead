@@ -21,6 +21,9 @@ class Infected : public GameObject, public Zombie {
     std::int16_t damage_attack;
     std::int16_t distance_to_hit;
     std::int16_t sight_distance;
+    std::vector<std::int16_t> prob_to_walk;
+    std::vector<std::int16_t> prob_to_run;
+    std::vector<std::int16_t> prob_to_jump;
     bool dead = false;
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;

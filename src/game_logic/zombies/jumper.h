@@ -24,10 +24,13 @@ private:
     std::int16_t damage_attack;
     std::int16_t distance_to_hit;
     std::int16_t sight_distance;
+    std::vector<std::int16_t> prob_to_walk;
+    std::vector<std::int16_t> prob_to_run;
+    std::vector<std::int16_t> prob_to_jump;
+    ChaseState* chase_state;
     bool dead = false;
     std::int16_t direction = -1;
     ZombieState* state = new ZombieIdle;
-    ChaseState* chase_state = new ChaseRunning;
 
     Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
     std::int16_t get_distance_to_soldier(Soldier* soldier);
@@ -63,6 +66,7 @@ public:
     bool facing_left() override;
     ZombieType get_type() override;
     std::int16_t get_health() override;
+    void random_chase_state();
     ~Jumper();
 
 // ************************* Metodos de testeo ************************************************8//

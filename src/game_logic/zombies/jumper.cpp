@@ -3,6 +3,7 @@
 #include "../map.h"
 #include "../soldier.h"
 #include "../configuration.h"
+#include "../zombie_states/chasing_states/chase_jumping.h"
 
 #define DISTANCE_TO_JUMP 2
 
@@ -17,7 +18,12 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         health(CONFIGURATION.get_jumper_health()),
         damage_attack(CONFIGURATION.get_jumper_damage()),
         distance_to_hit(CONFIGURATION.get_jumper_distance_to_hit()),
-        sight_distance(CONFIGURATION.get_jumper_sight_distance()){}
+        sight_distance(CONFIGURATION.get_jumper_sight_distance()),
+        prob_to_walk(CONFIGURATION.get_jumper_prob_to_walk()),
+        prob_to_run(CONFIGURATION.get_jumper_prob_to_run()),
+        prob_to_jump(CONFIGURATION.get_jumper_prob_to_jump()) {
+    random_chase_state();
+}
 
 Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health, std::int16_t extra_damage) :
         movements_per_cell(CONFIGURATION.get_movements_per_cell()),
@@ -29,7 +35,11 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         health(CONFIGURATION.get_jumper_health()),
         damage_attack(CONFIGURATION.get_jumper_damage()),
         distance_to_hit(CONFIGURATION.get_jumper_distance_to_hit()),
-        sight_distance(CONFIGURATION.get_jumper_sight_distance()) {
+        sight_distance(CONFIGURATION.get_jumper_sight_distance()),
+        prob_to_walk(CONFIGURATION.get_jumper_prob_to_walk()),
+        prob_to_run(CONFIGURATION.get_jumper_prob_to_run()),
+        prob_to_jump(CONFIGURATION.get_jumper_prob_to_jump()){
+    random_chase_state();
     health += extra_health;
     health+= extra_damage;
 }
@@ -171,6 +181,17 @@ void Jumper::change_state(ZombieState *new_state) {
     if (new_state != nullptr) {
         delete state;
         state = new_state;
+    }
+}
+
+void Jumper::random_chase_state() {
+    int random_num = std::rand() % 101;
+    if (random_num >= prob_to_walk[0] && random_num <= prob_to_walk[1]) {
+        chase_state = new ChaseWalking;
+    } else if (random_num >= prob_to_run[0] && random_num <= prob_to_run[1]) {
+        chase_state = new ChaseRunning;
+    } else {
+        chase_state = new ChaseJumping;
     }
 }
 

@@ -41,26 +41,41 @@ Configuration::Configuration(const YAML::Node& node) :
                             infected_damage(node["infected"]["damage"].as<std::int16_t>()),
                             infected_distance_to_hit(node["infected"]["distance_to_hit"].as<std::int16_t>()),
                             infected_sight_distance(node["infected"]["sight_distance"].as<std::int16_t>()),
+                            infected_prob_walk(node["infected"]["probability_walk"].as<std::vector<std::int16_t>>()),
+                            infected_prob_run(node["infected"]["probability_run"].as<std::vector<std::int16_t>>()),
+                            infected_prob_jump(node["infected"]["probability_jump"].as<std::vector<std::int16_t>>()),
                             jumper_health(node["jumper"]["health"].as<std::int16_t>()),
                             jumper_damage(node["jumper"]["damage"].as<std::int16_t>()),
                             jumper_distance_to_hit(node["jumper"]["distance_to_hit"].as<std::int16_t>()),
                             jumper_sight_distance(node["jumper"]["sight_distance"].as<std::int16_t>()),
+                            jumper_prob_walk(node["jumper"]["probability_walk"].as<std::vector<std::int16_t>>()),
+                            jumper_prob_run(node["jumper"]["probability_run"].as<std::vector<std::int16_t>>()),
+                            jumper_prob_jump(node["jumper"]["probability_jump"].as<std::vector<std::int16_t>>()),
                             witch_health(node["witch"]["health"].as<std::int16_t>()),
                             witch_damage(node["witch"]["damage"].as<std::int16_t>()),
                             witch_prob_scream(node["witch"]["probability_scream"].as<std::int16_t>()),
                             witch_zombies_created_for_scream(node["witch"]["zombies_created_for_screaming"].as<std::int16_t>()),
                             witch_distance_to_hit(node["witch"]["distance_to_hit"].as<std::int16_t>()),
                             witch_sight_distance(node["witch"]["sight_distance"].as<std::int16_t>()),
+                            witch_prob_walk(node["witch"]["probability_walk"].as<std::vector<std::int16_t>>()),
+                            witch_prob_run(node["witch"]["probability_run"].as<std::vector<std::int16_t>>()),
+                            witch_prob_jump(node["witch"]["probability_jump"].as<std::vector<std::int16_t>>()),
                             spear_health(node["spear"]["health"].as<std::int16_t>()),
                             spear_damage(node["spear"]["damage"].as<std::int16_t>()),
                             spear_distance_to_hit(node["spear"]["distance_to_hit"].as<std::int16_t>()),
                             spear_sight_distance(node["spear"]["sight_distance"].as<std::int16_t>()),
+                            spear_prob_walk(node["spear"]["probability_walk"].as<std::vector<std::int16_t>>()),
+                            spear_prob_run(node["spear"]["probability_run"].as<std::vector<std::int16_t>>()),
+                            spear_prob_jump(node["spear"]["probability_jump"].as<std::vector<std::int16_t>>()),
                             venom_health(node["venom"]["health"].as<std::int16_t>()),
                             venom_close_range_damage(node["venom"]["damage_close_range"].as<std::int16_t>()),
                             venom_long_range_damage(node["venom"]["damage_long_range"].as<std::int16_t>()),
                             venom_distance_to_hit_close_range(node["venom"]["distance_to_hit_close_range"].as<std::int16_t>()),
                             venom_distance_to_hit_long_range(node["venom"]["distance_to_hit_long_range"].as<std::int16_t>()),
                             venom_sight_distance(node["venom"]["sight_distance"].as<std::int16_t>()),
+                            venom_prob_walk(node["venom"]["probability_walk"].as<std::vector<std::int16_t>>()),
+                            venom_prob_run(node["venom"]["probability_run"].as<std::vector<std::int16_t>>()),
+                            venom_prob_jump(node["venom"]["probability_jump"].as<std::vector<std::int16_t>>()),
                             zombieState_time_attacking(node["zombieStates"]["time_attacking"].as<float>()),
                             zombieState_time_jumping(node["zombieStates"]["time_jumping"].as<float>()),
                             zombieState_time_running(node["zombieStates"]["time_running"].as<float>()),
@@ -228,6 +243,18 @@ std::int16_t Configuration::get_infected_sight_distance() {
     return infected_sight_distance;
 }
 
+std::vector<std::int16_t> Configuration::get_infected_prob_to_walk() {
+    return infected_prob_walk;
+}
+
+std::vector<std::int16_t> Configuration::get_infected_prob_to_run() {
+    return infected_prob_run;
+}
+
+std::vector<std::int16_t> Configuration::get_infected_prob_to_jump() {
+    return infected_prob_jump;
+}
+
 std::int16_t Configuration::get_jumper_health() {
     return jumper_health;
 }
@@ -243,6 +270,19 @@ std::int16_t Configuration::get_jumper_distance_to_hit() {
 std::int16_t Configuration::get_jumper_sight_distance() {
     return jumper_sight_distance;
 }
+
+std::vector<std::int16_t> Configuration::get_jumper_prob_to_walk() {
+    return jumper_prob_walk;
+}
+
+std::vector<std::int16_t> Configuration::get_jumper_prob_to_run() {
+    return jumper_prob_run;
+}
+
+std::vector<std::int16_t> Configuration::get_jumper_prob_to_jump() {
+    return jumper_prob_jump;
+}
+
 
 std::int16_t Configuration::get_witch_health() {
     return witch_health;
@@ -268,6 +308,19 @@ std::int16_t Configuration::get_witch_sight_distance() {
     return witch_sight_distance;
 }
 
+std::vector<std::int16_t> Configuration::get_witch_prob_to_walk() {
+    return witch_prob_walk;
+}
+
+std::vector<std::int16_t> Configuration::get_witch_prob_to_run() {
+    return witch_prob_run;
+}
+
+std::vector<std::int16_t> Configuration::get_witch_prob_to_jump() {
+    return witch_prob_jump;
+}
+
+
 std::int16_t Configuration::get_spear_health() {
     return spear_health;
 }
@@ -283,6 +336,19 @@ std::int16_t Configuration::get_spear_distance_to_hit() {
 std::int16_t Configuration::get_spear_sight_distance() {
     return spear_sight_distance;
 }
+
+std::vector<std::int16_t> Configuration::get_spear_prob_to_walk() {
+    return spear_prob_walk;
+}
+
+std::vector<std::int16_t> Configuration::get_spear_prob_to_run() {
+    return spear_prob_run;
+}
+
+std::vector<std::int16_t> Configuration::get_spear_prob_to_jump() {
+    return spear_prob_jump;
+}
+
 
 std::int16_t Configuration::get_venom_health() {
     return venom_health;
@@ -307,6 +373,19 @@ std::int16_t Configuration::get_venom_distance_to_hit_long_range() {
 std::int16_t Configuration::get_venom_sight_distance() {
     return venom_sight_distance;
 }
+
+std::vector<std::int16_t> Configuration::get_venom_prob_to_walk() {
+    return venom_prob_walk;
+}
+
+std::vector<std::int16_t> Configuration::get_venom_prob_to_run() {
+    return venom_prob_run;
+}
+
+std::vector<std::int16_t> Configuration::get_venom_prob_to_jump() {
+    return venom_prob_jump;
+}
+
 
 float Configuration::get_zombieState_attacking_time() {
     return zombieState_time_attacking;

@@ -17,7 +17,12 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         probability_to_scream(CONFIGURATION.get_witch_prob_scream()),
         zombies_created_for_screaming(CONFIGURATION.get_witch_zombies_created_screaming()),
         distance_to_hit(CONFIGURATION.get_witch_distance_to_hit()),
-        sight_distance(CONFIGURATION.get_witch_sight_distance()) {}
+        sight_distance(CONFIGURATION.get_witch_sight_distance()),
+        prob_to_walk(CONFIGURATION.get_witch_prob_to_walk()),
+        prob_to_run(CONFIGURATION.get_witch_prob_to_run()),
+        prob_to_jump(CONFIGURATION.get_witch_prob_to_jump()) {
+    random_chase_state();
+}
 
 Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health, std::int16_t extra_damage) :
         movements_per_cell(CONFIGURATION.get_movements_per_cell()),
@@ -31,9 +36,13 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         probability_to_scream(CONFIGURATION.get_witch_prob_scream()),
         zombies_created_for_screaming(CONFIGURATION.get_witch_zombies_created_screaming()),
         distance_to_hit(CONFIGURATION.get_witch_distance_to_hit()),
-        sight_distance(CONFIGURATION.get_witch_sight_distance()) {
+        sight_distance(CONFIGURATION.get_witch_sight_distance()),
+        prob_to_walk(CONFIGURATION.get_witch_prob_to_walk()),
+        prob_to_run(CONFIGURATION.get_witch_prob_to_run()),
+        prob_to_jump(CONFIGURATION.get_witch_prob_to_jump()) {
     health += extra_health;
     damage_attack += extra_damage;
+    random_chase_state();
 }
 
 void Witch::update(std::vector<Soldier*> soldiers, float time) {
@@ -171,17 +180,28 @@ std::int16_t Witch::get_random_number() {
     return std::random_device{}() % 101;
 }
 
-Witch::~Witch() {
-    delete state;
-    delete chase_state;
-}
-
 bool Witch::facing_left() {
     return (direction == LEFT);
 }
 
 ZombieType Witch::get_type(){
     return WITCH;
+}
+
+void Witch::random_chase_state() {
+    int random_num = std::rand() % 101;
+    if (random_num >= prob_to_walk[0] && random_num <= prob_to_walk[1]) {
+        chase_state = new ChaseWalking;
+    } else if (random_num >= prob_to_run[0] && random_num <= prob_to_run[1]) {
+        chase_state = new ChaseRunning;
+    } else {
+        chase_state = new ChaseWalking;
+    }
+}
+
+Witch::~Witch() {
+    delete state;
+    delete chase_state;
 }
 
 // ************************* Metodos de testeo ************************************************8//

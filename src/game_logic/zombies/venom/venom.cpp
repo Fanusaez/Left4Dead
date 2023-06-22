@@ -18,7 +18,10 @@ Venom::Venom(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         health(CONFIGURATION.get_venom_health()),
         distance_to_hit_close(CONFIGURATION.get_venom_distance_to_hit_close_range()),
         distance_to_hit_long(CONFIGURATION.get_venom_distance_to_hit_long_range()),
-        sight_distance(CONFIGURATION.get_venom_sight_distance()) {
+        sight_distance(CONFIGURATION.get_venom_sight_distance()),
+        prob_to_walk(CONFIGURATION.get_venom_prob_to_walk()),
+        prob_to_run(CONFIGURATION.get_venom_prob_to_run()),
+        prob_to_jump(CONFIGURATION.get_venom_prob_to_jump()){
     random_chase_state();
 }
 
@@ -167,10 +170,11 @@ void Venom::change_state(ZombieState *new_state) {
 
 void Venom::random_chase_state() {
     int random_num = std::rand() % 101;
-    if (random_num < 50) {
+    if (random_num >= prob_to_walk[0] && random_num <= prob_to_walk[1]) {
+        chase_state = new ChaseWalking;
+    } else if (random_num >= prob_to_run[0] && random_num <= prob_to_run[1]) {
         chase_state = new ChaseRunning;
-    }
-    else {
+    } else {
         chase_state = new ChaseWalking;
     }
 }

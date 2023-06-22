@@ -48,12 +48,18 @@ private:
     std::int16_t infected_damage;
     std::int16_t infected_distance_to_hit;
     std::int16_t infected_sight_distance;
+    std::vector<std::int16_t> infected_prob_walk;
+    std::vector<std::int16_t> infected_prob_run;
+    std::vector<std::int16_t> infected_prob_jump;
 
 
     std::int16_t jumper_health;
     std::int16_t jumper_damage;
     std::int16_t jumper_distance_to_hit;
     std::int16_t jumper_sight_distance;
+    std::vector<std::int16_t> jumper_prob_walk;
+    std::vector<std::int16_t> jumper_prob_run;
+    std::vector<std::int16_t> jumper_prob_jump;
 
     std::int16_t witch_health;
     std::int16_t witch_damage;
@@ -61,11 +67,17 @@ private:
     std::int16_t witch_zombies_created_for_scream;
     std::int16_t witch_distance_to_hit;
     std::int16_t witch_sight_distance;
+    std::vector<std::int16_t> witch_prob_walk;
+    std::vector<std::int16_t> witch_prob_run;
+    std::vector<std::int16_t> witch_prob_jump;
 
     std::int16_t spear_health;
     std::int16_t spear_damage;
     std::int16_t spear_distance_to_hit;
     std::int16_t spear_sight_distance;
+    std::vector<std::int16_t> spear_prob_walk;
+    std::vector<std::int16_t> spear_prob_run;
+    std::vector<std::int16_t> spear_prob_jump;
 
     std::int16_t venom_health;
     std::int16_t venom_close_range_damage;
@@ -73,6 +85,9 @@ private:
     std::int16_t venom_distance_to_hit_long_range;
     std::int16_t venom_distance_to_hit_close_range;
     std::int16_t venom_sight_distance;
+    std::vector<std::int16_t> venom_prob_walk;
+    std::vector<std::int16_t> venom_prob_run;
+    std::vector<std::int16_t> venom_prob_jump;
 
     float zombieState_time_attacking;
     float zombieState_time_jumping;
@@ -166,11 +181,17 @@ public:
     std::int16_t get_infected_damage();
     std::int16_t get_infected_distance_to_hit();
     std::int16_t get_infected_sight_distance();
+    std::vector<std::int16_t> get_infected_prob_to_walk();
+    std::vector<std::int16_t> get_infected_prob_to_run();
+    std::vector<std::int16_t> get_infected_prob_to_jump();
 
     std::int16_t get_jumper_health();
     std::int16_t get_jumper_damage();
     std::int16_t get_jumper_distance_to_hit();
     std::int16_t get_jumper_sight_distance();
+    std::vector<std::int16_t> get_jumper_prob_to_walk();
+    std::vector<std::int16_t> get_jumper_prob_to_run();
+    std::vector<std::int16_t> get_jumper_prob_to_jump();
 
     std::int16_t get_witch_health();
     std::int16_t get_witch_damage();
@@ -178,11 +199,17 @@ public:
     std::int16_t get_witch_zombies_created_screaming();
     std::int16_t get_witch_distance_to_hit();
     std::int16_t get_witch_sight_distance();
+    std::vector<std::int16_t> get_witch_prob_to_walk();
+    std::vector<std::int16_t> get_witch_prob_to_run();
+    std::vector<std::int16_t> get_witch_prob_to_jump();
 
     std::int16_t get_spear_health();
     std::int16_t get_spear_damage();
     std::int16_t get_spear_distance_to_hit();
     std::int16_t get_spear_sight_distance();
+    std::vector<std::int16_t> get_spear_prob_to_walk();
+    std::vector<std::int16_t> get_spear_prob_to_run();
+    std::vector<std::int16_t> get_spear_prob_to_jump();
 
     std::int16_t get_venom_health();
     std::int16_t get_venom_damage_close_range();
@@ -190,6 +217,9 @@ public:
     std::int16_t get_venom_distance_to_hit_long_range();
     std::int16_t get_venom_distance_to_hit_close_range();
     std::int16_t get_venom_sight_distance();
+    std::vector<std::int16_t> get_venom_prob_to_walk();
+    std::vector<std::int16_t> get_venom_prob_to_run();
+    std::vector<std::int16_t> get_venom_prob_to_jump();
 
     float get_zombieState_attacking_time();
     float get_zombieState_jumping_time();

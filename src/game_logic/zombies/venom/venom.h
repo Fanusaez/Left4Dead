@@ -22,6 +22,9 @@ private:
     std::int16_t distance_to_hit_close;
     std::int16_t distance_to_hit_long;
     std::int16_t sight_distance;
+    std::vector<std::int16_t> prob_to_walk;
+    std::vector<std::int16_t> prob_to_run;
+    std::vector<std::int16_t> prob_to_jump;
     ChaseState* chase_state;
     ZombieState* state = new ZombieIdle;
     VenomAttack* _attack = new VenomCloseRange;

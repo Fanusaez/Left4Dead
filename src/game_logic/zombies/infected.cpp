@@ -18,7 +18,10 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         health(CONFIGURATION.get_infected_health()),
         damage_attack(CONFIGURATION.get_infected_damage()),
         distance_to_hit(CONFIGURATION.get_infected_distance_to_hit()),
-        sight_distance(CONFIGURATION.get_infected_sight_distance()){
+        sight_distance(CONFIGURATION.get_infected_sight_distance()),
+        prob_to_walk(CONFIGURATION.get_infected_prob_to_walk()),
+        prob_to_run(CONFIGURATION.get_infected_prob_to_run()),
+        prob_to_jump(CONFIGURATION.get_infected_prob_to_jump()) {
     random_chase_state();
 }
 
@@ -32,7 +35,10 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         health(CONFIGURATION.get_infected_health()),
         damage_attack(CONFIGURATION.get_infected_damage()),
         distance_to_hit(CONFIGURATION.get_infected_distance_to_hit()),
-        sight_distance(CONFIGURATION.get_infected_sight_distance()) {
+        sight_distance(CONFIGURATION.get_infected_sight_distance()),
+        prob_to_walk(CONFIGURATION.get_infected_prob_to_walk()),
+        prob_to_run(CONFIGURATION.get_infected_prob_to_run()),
+        prob_to_jump(CONFIGURATION.get_infected_prob_to_jump()) {
     random_chase_state();
     health += extra_health;
     damage_attack += extra_damage;
@@ -171,11 +177,12 @@ void Infected::change_state(ZombieState *new_state) {
 
 void Infected::random_chase_state() {
     int random_num = std::rand() % 101;
-    if (random_num < 50) {
-        chase_state = new ChaseRunning;
-    }
-    else {
+    if (random_num >= prob_to_walk[0] && random_num <= prob_to_walk[1]) {
         chase_state = new ChaseWalking;
+    } else if (random_num >= prob_to_run[0] && random_num <= prob_to_run[1]) {
+        chase_state = new ChaseRunning;
+    } else {
+        chase_state = new ChaseRunning;
     }
 }
 
