@@ -53,6 +53,10 @@ ExplosiveGrenade* P90::get_explosive_grenade() {
     return nullptr;
 }
 
+SmokeGrenade* P90::get_smoke_grenade() {
+    return nullptr;
+}
+
 void P90::reload() {
     bullets = mag_capacity;
 }

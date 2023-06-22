@@ -7,6 +7,7 @@
 #include "states/idle.h"
 
 class ExplosiveGrenade;
+class SmokeGrenade;
 
 class Soldier : public GameObject {
  private:
@@ -74,6 +75,7 @@ bool chaseable();
 bool dead();
 
 ExplosiveGrenade* get_explosive_grenade();
+SmokeGrenade* get_smoke_grenade();
 std::int32_t get_total_bullets_shot();
 std::int16_t get_time_to_throw_explosive_grenade();
 std::int16_t get_time_to_throw_smoke_grenade();

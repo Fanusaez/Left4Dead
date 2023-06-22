@@ -46,6 +46,7 @@ State* call_air_strike(GameMap& map,
                            float time) override;
 
 ExplosiveGrenade* get_explosive_grenade() override;
+SmokeGrenade* get_smoke_grenade() override;
 void reload() override;
 bool isFullyLoaded() override;
 bool empty() override;

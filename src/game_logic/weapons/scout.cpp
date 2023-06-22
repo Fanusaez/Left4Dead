@@ -58,6 +58,10 @@ ExplosiveGrenade* Scout::get_explosive_grenade() {
     return &explosive_grenade;
 }
 
+SmokeGrenade* Scout::get_smoke_grenade() {
+    return &smoke_grenade;
+}
+
 void Scout::reload() {
     bullets = mag_capacity;
 }

@@ -40,6 +40,7 @@ void shoot(std::vector<GameObject*>& shooting_objects,
                            float time) override;
 
 ExplosiveGrenade* get_explosive_grenade() override;
+SmokeGrenade* get_smoke_grenade() override;
 void reload() override;
 bool isFullyLoaded() override;
 bool empty() override;
