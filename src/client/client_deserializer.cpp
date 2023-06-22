@@ -39,15 +39,15 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
         socket->recvall(&soldier_type, sizeof(char), was_closed);
         socket->recvall(&position_x, sizeof(int16_t), was_closed);
         socket->recvall(&position_y, sizeof(int16_t), was_closed);
-        socket->recvall(&time_explosive_grenade, sizeof(int16_t), was_closed);
-        socket->recvall(&time_smoke_grenade, sizeof(int16_t), was_closed);
         socket->recvall(&facingLeft, sizeof(bool), was_closed);
         socket->recvall(&bullets, sizeof(int16_t), was_closed);
         socket->recvall(&health, sizeof(int16_t), was_closed);
+        socket->recvall(&time_explosive_grenade, sizeof(int16_t), was_closed);
+        socket->recvall(&time_smoke_grenade, sizeof(int16_t), was_closed);
         game_dto.add_soldier(SoldierObjectDTO(ntohl(player_id), ntohs(id), ntohs(health),
-                                    ntohs(position_x), ntohs(position_y), 
+                                    ntohs(position_x), ntohs(position_y), ntohs(bullets), 
                                     ntohs(time_explosive_grenade), ntohs(time_smoke_grenade),
-                                    ntohs(bullets), static_cast<SoldierObjectState>(soldier_state),
+                                    static_cast<SoldierObjectState>(soldier_state),
                                     static_cast<SoldierType>(soldier_type),facingLeft));
     }
     for (int i = 0; i < zombies_size; i++)
