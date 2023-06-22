@@ -44,9 +44,9 @@ GameDTO GameLogic::get_game() {
         Soldier *soldier = piar.second;
         SoldierObjectDTO soldier_dto(piar.first,soldier->get_id(), soldier->get_health(), 
                                 soldier->get_x_pos(), soldier->get_y_pos(), 
+                                soldier->get_weapon()->get_bullets(),
                                 soldier->get_time_to_throw_explosive_grenade(),
                                 soldier->get_time_to_throw_smoke_grenade(),
-                                soldier->get_weapon()->get_bullets(),
                                 soldier->get_state()->soldier_state ,IDF, soldier->facing_left());
         game_dto.add_soldier(soldier_dto);
         if (ExplosiveGrenade* grenade = soldier->get_explosive_grenade()){
