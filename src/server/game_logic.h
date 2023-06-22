@@ -47,5 +47,6 @@ public:
 
     bool game_over();
 
+    void send_stats();
 };
 #endif

@@ -65,6 +65,9 @@ void Game::run(){
 			std::this_thread::sleep_for(std::chrono::duration<double>(rest));
 		}
     }
+    GameDTO game_dto = game_logic.get_game();
+    game_dto.set_end_game(true);
+    protected_outputs_queue.push_game(game_dto);
     queue_entrante.close();
 }
 
