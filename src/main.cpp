@@ -230,7 +230,6 @@ static bool handleEvents(Client* client, Gameview &view)
 					break;
 				}
 				case SDLK_s: {
-					std::cout << "S released: " << keyEvent.timestamp << std::endl;
 					client->move(STOP_MOVE);
 					break;
 				}
