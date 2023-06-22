@@ -105,6 +105,7 @@ if(CLIENT)
 			graphics/renderable_object.cpp
 			graphics/playable.cpp
 			graphics/Player.cpp
+			graphics/scout.cpp
 			graphics/infected.cpp
 			graphics/witch.cpp
 			graphics/jumper.cpp

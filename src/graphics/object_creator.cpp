@@ -1,5 +1,6 @@
 #include "object_creator.h"
 #include "Player.h"
+#include "scout.h"
 #include "infected.h"
 #include "witch.h"
 #include "jumper.h"
@@ -9,10 +10,14 @@
 
 std::unique_ptr<RenderableObject> ObjectCreator::create(const SoldierObjectDTO &soldierDTO) const
 {
-	return std::unique_ptr<RenderableObject>(
-		new Player(soldierDTO.id,
-			   soldierDTO.position_x, soldierDTO.position_y,
-			   soldierDTO.health, soldierDTO.bullets, soldierDTO.time_explosive_grenade));
+	if (soldierDTO.soldier_type == SCOUT)
+		return std::unique_ptr<RenderableObject>(
+			new Scout(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
+				   soldierDTO.health, soldierDTO.bullets, soldierDTO.time_smoke_grenade));
+	else
+		return std::unique_ptr<RenderableObject>(
+			new Player(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
+				   soldierDTO.health, soldierDTO.bullets, soldierDTO.time_explosive_grenade));
 }
 
 std::unique_ptr<RenderableObject> ObjectCreator::create(const ZombieObjectDTO &zombieDTO) const
