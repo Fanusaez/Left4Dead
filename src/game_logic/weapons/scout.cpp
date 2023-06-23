@@ -64,6 +64,10 @@ SmokeGrenade* Scout::get_smoke_grenade() {
     return &smoke_grenade;
 }
 
+AirStrike* Scout::get_air_strike() {
+    return nullptr;
+}
+
 void Scout::reload() {
     bullets = mag_capacity;
 }

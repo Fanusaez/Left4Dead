@@ -76,6 +76,10 @@ std::int16_t AirStrike::get_time_to_call_air_strike() {
     return left_time_to_call;
 }
 
+bool AirStrike::exploding() {
+    return air_strike_state -> exploding();
+}
+
 AirStrike::~AirStrike() {
     delete air_strike_state;
 }

@@ -43,6 +43,7 @@ public:
 
     void update_left_time_to_call(float time);
     std::int16_t get_time_to_call_air_strike();
+    bool exploding();
     ~AirStrike();
 
 

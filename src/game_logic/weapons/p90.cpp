@@ -59,6 +59,10 @@ SmokeGrenade* P90::get_smoke_grenade() {
     return nullptr;
 }
 
+AirStrike* P90::get_air_strike() {
+    return &air_strike;
+}
+
 void P90::reload() {
     bullets = mag_capacity;
 }

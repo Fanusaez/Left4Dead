@@ -13,6 +13,7 @@ public:
     AirStrikeState* update(float time) override;
     AirStrikeState* call_air_strike(float time, std::int16_t x_soldier, std::int16_t y_soldier, GameMap& map, AirStrike* air_strike) override;
     AirStrikeState* explode(float time, std::int16_t x_soldier, std::int16_t y_soldier, GameMap& map, AirStrike* air_strike) override;
+    bool exploding() override;
 
     bool time_to_stop_exploding(float time);
 };

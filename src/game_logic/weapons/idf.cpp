@@ -69,6 +69,10 @@ SmokeGrenade* Idf::get_smoke_grenade() {
     return &smoke_grenade;
 }
 
+AirStrike* Idf::get_air_strike() {
+    return nullptr;
+}
+
 void Idf::reload() {
     bullets = mag_capacity;
 }
