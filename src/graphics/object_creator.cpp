@@ -1,6 +1,7 @@
 #include "object_creator.h"
 #include "Player.h"
 #include "scout.h"
+#include "p90_soldier.h"
 #include "infected.h"
 #include "witch.h"
 #include "jumper.h"
@@ -13,7 +14,11 @@ std::unique_ptr<RenderableObject> ObjectCreator::create(const SoldierObjectDTO &
 	if (soldierDTO.soldier_type == SCOUT)
 		return std::unique_ptr<RenderableObject>(
 			new Scout(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
-				   soldierDTO.health, soldierDTO.bullets, soldierDTO.time_smoke_grenade));
+				  soldierDTO.health, soldierDTO.bullets, soldierDTO.time_smoke_grenade));
+	else if (soldierDTO.soldier_type == P90)
+		return std::unique_ptr<RenderableObject>(
+			new SoldierP90(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
+				       soldierDTO.health, soldierDTO.bullets, soldierDTO.time_explosive_grenade));
 	else
 		return std::unique_ptr<RenderableObject>(
 			new Player(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,

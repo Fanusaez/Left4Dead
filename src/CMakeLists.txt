@@ -108,6 +108,7 @@ if(CLIENT)
 			graphics/playable.cpp
 			graphics/Player.cpp
 			graphics/scout.cpp
+			graphics/p90_soldier.cpp
 			graphics/infected.cpp
 			graphics/witch.cpp
 			graphics/jumper.cpp

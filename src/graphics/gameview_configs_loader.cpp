@@ -57,6 +57,13 @@ void GameviewConfigurationsLoader::setSpritesToLoad()
 	this->spritesToLoad.push_back("Soldier_1/Dead.png");
 	this->spritesToLoad.push_back("Soldier_1/Explosion.png");
 	this->spritesToLoad.push_back("Soldier_1/Grenade.png");
+	this->spritesToLoad.push_back("Soldier_2/Dead.png");
+	this->spritesToLoad.push_back("Soldier_2/Grenade.png");
+	this->spritesToLoad.push_back("Soldier_2/Hurt.png");
+	this->spritesToLoad.push_back("Soldier_2/Idle.png");
+	this->spritesToLoad.push_back("Soldier_2/Recharge.png");
+	this->spritesToLoad.push_back("Soldier_2/Shot_1.png");
+	this->spritesToLoad.push_back("Soldier_2/Walk.png");
 	this->spritesToLoad.push_back("Soldier_3/Dead.png");
 	this->spritesToLoad.push_back("Soldier_3/Grenade.png");
 	this->spritesToLoad.push_back("Soldier_3/Hurt.png");
@@ -111,6 +118,8 @@ void GameviewConfigurationsLoader::setChunksToLoad()
 	this->chunksToLoad.push_back("Soldier_1/Walk.mp3");
 	this->chunksToLoad.push_back("Soldier_1/Explosion.mp3");
 	this->chunksToLoad.push_back("Soldier_1/Grenade.mp3");
+	this->chunksToLoad.push_back("Soldier_2/Shot_1.mp3");
+	this->chunksToLoad.push_back("Soldier_2/Recharge.mp3");
 	this->chunksToLoad.push_back("Soldier_3/Recharge.mp3");
 	this->chunksToLoad.push_back("Soldier_3/Shot_1.mp3");
 	this->chunksToLoad.push_back("Soldier_3/Smoke.mp3");
