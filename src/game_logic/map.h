@@ -68,6 +68,11 @@ void get_objects_in_air_strike( std::vector<GameObject*>& game_objects,
                                 std::int16_t y_soldier,
                                 std::int16_t range_of_safe_space);
 
+void get_positions_of_explosion_air_strike(std::vector<std::vector<int16_t>>& poistions,
+                                           std::int16_t x_pos_called,
+                                           std::int16_t y_pos_called,
+                                           std::int16_t range_safe_space);
+
 void move_object_up(std::int16_t x_pos,
                      std::int16_t y_pos,
                      std::int16_t& new_y_pos_ref);

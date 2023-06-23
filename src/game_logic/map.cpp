@@ -107,6 +107,24 @@ void GameMap::get_objects_in_air_strike(std::vector<GameObject *> &game_objects_
     }
 }
 
+void GameMap::get_positions_of_explosion_air_strike(std::vector<std::vector<int16_t>>& positions,
+                                                    std::int16_t x_pos_called,
+                                                    std::int16_t y_pos_called,
+                                                    std::int16_t range_safe_space) {
+    for (int j = 0; j < y_size; j++) {
+        for (int i = 0; i < x_size; i++) {
+            double distance = std::sqrt(std::pow(i - x_pos_called, 2) + std::pow(j - y_pos_called, 2));
+            if (distance > range_safe_space) {
+                std::vector<std::int16_t> pos;
+                pos.push_back(i);
+                pos.push_back(j);
+                positions.push_back(pos);
+            }
+        }
+    }
+
+}
+
 void GameMap::get_valid_pos_in_map(  std::int16_t& x_pos,
                                      std::int16_t& y_pos) {
     if (x_pos > x_size - 1) {

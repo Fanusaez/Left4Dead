@@ -7,7 +7,8 @@ ExplosiveGrenade::ExplosiveGrenade(std::int16_t id) :
     id(id),
     grenade_damage(CONFIGURATION.get_explosiveGrenade_damage()),
     waiting_time_to_throw_grenade(CONFIGURATION.get_explosiveGrenade_time_to_reThrow()),
-    radius_range(CONFIGURATION.get_explosiveGrenade_radius_range()) {}
+    radius_range(CONFIGURATION.get_explosiveGrenade_radius_range()),
+    last_thrown_grenade(CONFIGURATION.get_explosiveGrenade_time_to_reThrow() * -1){}
 
 void ExplosiveGrenade::update(float time) {
     GrenadeState* state = grenade_state -> update(time);

@@ -6,7 +6,8 @@
 SmokeGrenade::SmokeGrenade(std::int16_t id) :
     id(id),
     waiting_time_to_throw_grenade(CONFIGURATION.get_smokeGrenade_time_to_reThrow()),
-    radius_range(CONFIGURATION.get_smokeGrenade_radius_range()) {}
+    radius_range(CONFIGURATION.get_smokeGrenade_radius_range()),
+    last_thrown_grenade(CONFIGURATION.get_smokeGrenade_time_to_reThrow() * -1) {}
 
 void SmokeGrenade::update(float time) {
     GrenadeState* state = grenade_state -> update(time);

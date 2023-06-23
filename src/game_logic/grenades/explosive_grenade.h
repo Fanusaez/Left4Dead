@@ -13,8 +13,8 @@ private:
     const std::int16_t grenade_damage;
     const float waiting_time_to_throw_grenade;
     std::int16_t radius_range;
+    float last_thrown_grenade;
     std::int16_t left_time_to_throw_grenade = 0;
-    float last_thrown_grenade = -10;
     GrenadeState* grenade_state = new GrenadeIdle;
 
     void update_left_time_to_throw(float time);

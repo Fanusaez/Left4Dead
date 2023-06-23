@@ -16,7 +16,10 @@ private:
     std::int16_t range_of_safe_space;
     const std::int16_t damage_air_strike;
     const float _time_to_call_air_strike;
+    std::int16_t movements_per_cell;
     float last_called_air_strike = - 120;
+    std::int16_t left_time_to_call = 0;
+    std::vector<std::vector<std::int16_t>> matrix_positions_of_explosion;
 
 public:
 
@@ -34,9 +37,15 @@ public:
 
     bool time_to_call_air_strike(float time);
 
+    AirStrikeState* get_state();
+
+    std::vector<std::vector<int16_t>> get_positions_for_explosion();
+
+    void update_left_time_to_call(float time);
+    std::int16_t get_time_to_call_air_strike();
     ~AirStrike();
 
-    AirStrikeState* get_state();
+
 };
 
 
