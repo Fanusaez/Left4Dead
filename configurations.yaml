@@ -20,16 +20,19 @@ weapons:
     close_range_damage: 30
     long_range_damage: 15
     matrix_range_to_reduce_damage: 5
+    rate_of_fire: 0.1
 
   p90:
     mag_capacity: 30
     burst_capacity: 10
     damage: 15
+    rate_of_fire: 0.1
 
   scout:
     mag_capacity: 20
     damage: 40
     damage_reduction_per_hit: 10
+    rate_of_fire: 2.5
 
 explosiveGrenade:
   damage: 50

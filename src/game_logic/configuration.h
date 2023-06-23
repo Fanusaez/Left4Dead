@@ -25,14 +25,17 @@ private:
     std::int16_t weaponIdf_close_range_damage;
     std::int16_t weaponIdf_long_range_damage;
     std::int16_t weaponIdf_matrix_range_to_reduce_damage;
+    float weaponIdf_rate_of_fire;
 
     std::int16_t weaponP90_mag_capacity;
     std::int16_t weaponP90_burst_capacity;
     std::int16_t weaponP90_damage;
+    float weaponP90_rate_of_fire;
 
     std::int16_t weaponScout_mag_capacity;
     std::int16_t weaponScout_damage;
     std::int16_t weaponScout_damage_reduction_per_hit;
+    float weaponScout_rate_of_fire;
 
     std::int16_t explosiveGrenade_damage;
     std::int16_t explosiveGrenade_time_to_reThrow;
@@ -160,12 +163,15 @@ public:
     std::int16_t get_weaponIdf_close_range_damage();
     std::int16_t get_weaponIdf_long_range_damage();
     std::int16_t get_weaponIdf_matrix_range_to_reduce_damage();
+    float get_weaponIdf_rate_of_fire();
     std::int16_t get_weaponP90_mag_capacity();
     std::int16_t get_weaponP90_burst_capacity();
     std::int16_t get_weaponP90_damage();
+    float get_weaponP90_rate_of_fire();
     std::int16_t get_weaponScout_mag_capacity();
     std::int16_t get_weaponScout_damage();
     std::int16_t get_weaponScout_reduction_per_hit();
+    float get_weaponScout_rate_of_fire();
 
     std::int16_t get_explosiveGrenade_damage();
     std::int16_t get_explosiveGrenade_time_to_reThrow();

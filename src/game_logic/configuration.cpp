@@ -24,12 +24,15 @@ Configuration::Configuration(const YAML::Node& node) :
                             weaponIdf_close_range_damage(node["weapons"]["idf"]["close_range_damage"].as<std::int16_t>()),
                             weaponIdf_long_range_damage(node["weapons"]["idf"]["long_range_damage"].as<std::int16_t>()),
                             weaponIdf_matrix_range_to_reduce_damage(node["weapons"]["idf"]["matrix_range_to_reduce_damage"].as<std::int16_t>()),
+                            weaponIdf_rate_of_fire(node["weapons"]["idf"]["rate_of_fire"].as<float>()),
                             weaponP90_mag_capacity(node["weapons"]["p90"]["mag_capacity"].as<std::int16_t>()),
                             weaponP90_burst_capacity(node["weapons"]["p90"]["burst_capacity"].as<std::int16_t>()),
                             weaponP90_damage(node["weapons"]["p90"]["damage"].as<std::int16_t>()),
+                            weaponP90_rate_of_fire(node["weapons"]["p90"]["rate_of_fire"].as<float>()),
                             weaponScout_mag_capacity(node["weapons"]["scout"]["mag_capacity"].as<std::int16_t>()),
                             weaponScout_damage(node["weapons"]["scout"]["damage"].as<std::int16_t>()),
                             weaponScout_damage_reduction_per_hit(node["weapons"]["scout"]["damage_reduction_per_hit"].as<std::int16_t>()),
+                            weaponScout_rate_of_fire(node["weapons"]["scout"]["rate_of_fire"].as<float>()),
                             explosiveGrenade_damage(node["explosiveGrenade"]["damage"].as<std::int16_t>()),
                             explosiveGrenade_time_to_reThrow(node["explosiveGrenade"]["time_to_reThrow_grenade"].as<std::int16_t>()),
                             explosiveGrenade_radius_range(node["explosiveGrenade"]["radius_range"].as<std::int16_t>()),
@@ -175,6 +178,10 @@ std::int16_t Configuration::get_weaponIdf_matrix_range_to_reduce_damage() {
     return weaponIdf_matrix_range_to_reduce_damage;
 }
 
+float Configuration::get_weaponIdf_rate_of_fire() {
+    return weaponIdf_rate_of_fire;
+}
+
 std::int16_t Configuration::get_weaponP90_mag_capacity() {
     return weaponP90_mag_capacity;
 }
@@ -187,6 +194,10 @@ std::int16_t Configuration::get_weaponP90_damage() {
     return weaponP90_damage;
 }
 
+float Configuration::get_weaponP90_rate_of_fire() {
+    return weaponP90_rate_of_fire;
+}
+
 std::int16_t Configuration::get_weaponScout_mag_capacity() {
     return weaponScout_mag_capacity;
 }
@@ -197,6 +208,10 @@ std::int16_t Configuration::get_weaponScout_damage() {
 
 std::int16_t Configuration::get_weaponScout_reduction_per_hit() {
     return weaponScout_damage_reduction_per_hit;
+}
+
+float Configuration::get_weaponScout_rate_of_fire() {
+    return weaponScout_rate_of_fire;
 }
 
 std::int16_t Configuration::get_explosiveGrenade_damage() {

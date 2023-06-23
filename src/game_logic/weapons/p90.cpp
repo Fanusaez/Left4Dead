@@ -9,7 +9,8 @@ P90::P90(std::int16_t id_air_strike) :
     bullets(CONFIGURATION.get_weaponP90_mag_capacity()),
     mag_capacity(CONFIGURATION.get_weaponP90_mag_capacity()),
     burst_capacity(CONFIGURATION.get_weaponP90_burst_capacity()),
-    damage(CONFIGURATION.get_weaponP90_damage()) {}
+    damage(CONFIGURATION.get_weaponP90_damage()),
+    rate_of_fire(CONFIGURATION.get_weaponP90_rate_of_fire()) {}
 
 void P90::update(float time) {
     air_strike.update(time);
@@ -90,7 +91,7 @@ std::int16_t P90::get_time_to_call_air_strike() {
 }
 
 float P90::get_time_to_shoot() {
-    return time_to_shoot;
+    return rate_of_fire;
 }
 
 SoldierType P90::get_type(){

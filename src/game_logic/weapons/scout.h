@@ -13,7 +13,7 @@ class Scout : public Weapon {
     const std::uint16_t mag_capacity;
     const std::uint16_t damage;
     const std::uint16_t damage_reduction_hit;
-    const float time_to_shoot = 1.9;
+    const float rate_of_fire;
     std::int32_t total_bullets_shot;
 
  public:

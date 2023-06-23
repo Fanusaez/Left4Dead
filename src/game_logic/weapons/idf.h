@@ -14,7 +14,7 @@ class Idf : public Weapon {
     const std::int16_t close_range_damage;
     const std::int16_t long_range_damage;
     const std::int16_t distance_to_reduce_damage;
-    const float time_to_shoot = 0.1;
+    const float rate_of_fire;
     ExplosiveGrenade explosive_grenade;
     SmokeGrenade smoke_grenade;
     std::int32_t total_bullets_shot;

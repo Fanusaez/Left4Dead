@@ -8,7 +8,8 @@ Scout::Scout(std::int16_t id_explosive_grenade,
             bullets(CONFIGURATION.get_weaponScout_mag_capacity()),
             mag_capacity(CONFIGURATION.get_weaponScout_mag_capacity()),
             damage(CONFIGURATION.get_weaponScout_damage()),
-            damage_reduction_hit(CONFIGURATION.get_weaponScout_reduction_per_hit()) {}
+            damage_reduction_hit(CONFIGURATION.get_weaponScout_reduction_per_hit()),
+            rate_of_fire(CONFIGURATION.get_weaponScout_rate_of_fire()) {}
 
 void Scout::update(float time) {
     explosive_grenade.update(time);
@@ -95,7 +96,7 @@ std::int16_t Scout::get_time_to_call_air_strike() {
 }
 
 float Scout::get_time_to_shoot() {
-    return time_to_shoot;
+    return rate_of_fire;
 }
 
 SoldierType Scout::get_type() {
