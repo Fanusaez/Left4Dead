@@ -43,11 +43,19 @@ void ClearTheZone::update(float time) {
         respawn_zombies(time);
         last_time_updated = time;
     }
-    if (still_in_game()) {
+    if (still_in_game() && (zombies_not_dead() || quantity_total_zombies > 0)) {
         map.update(time);
     } else {
         game_over = true;
     }
+}
+
+bool ClearTheZone::zombies_not_dead() {
+    std::vector<Zombie*>* zombies = get_zombies();
+    for (const auto& zombie: *zombies) {
+        if (zombie->get_health() > 0) return true;
+    }
+    return false;
 }
 
 void ClearTheZone::respawn_zombies(float time) {

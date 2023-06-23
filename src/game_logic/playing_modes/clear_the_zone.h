@@ -25,6 +25,8 @@ private:
     bool game_over = false;
     bool level_cleared = false;
     std::vector<Soldier*> players;
+    
+bool zombies_not_dead();
 
 void respawn_zombies(float time);
 void place_obstacles();
@@ -46,6 +48,7 @@ public:
     bool is_game_over() override;
 
     std::int32_t get_total_zombies_dead() override;
+
 
 };
 
