@@ -3,12 +3,14 @@
 #include <iostream>
 #include <arpa/inet.h>
 
-std::vector<char> LobbySerializer::serialize_create_scenario(const std::string& scenario_name) {
+std::vector<char> LobbySerializer::serialize_create_scenario(const std::string& scenario_name, const GameMode& game_mode, const int8_t& game_players) {
     std::vector<char> buffer;
     buffer.push_back(CREATE);
     uint8_t length = scenario_name.length();
     buffer.push_back(length);
     buffer.insert(buffer.end(), scenario_name.begin(), scenario_name.end());
+    buffer.push_back(game_mode);
+    buffer.push_back(game_players);
     return buffer;
 }
 
@@ -31,13 +33,10 @@ std::vector<char> LobbySerializer::serialize_game_mode(const GameMode game_mode)
     return buffer;
 }
 
-std::vector<char> LobbySerializer::serialize_soldier(const SoldierType soldier_type) {
+std::vector<char> LobbySerializer::serialize_soldier(const SoldierType& soldier_type) {
     std::vector<char> buffer;
     buffer.push_back(SOLDIER_TYPE);
-    if (soldier_type == IDF || soldier_type == P90 || soldier_type == SCOUT)
-        buffer.push_back(soldier_type);
-    else
-        // Throw error?
+    buffer.push_back(soldier_type);
     return buffer;
 }
 

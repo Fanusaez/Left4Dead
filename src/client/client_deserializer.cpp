@@ -20,6 +20,7 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
     int16_t bullets;
     int16_t time_explosive_grenade;
     int16_t time_smoke_grenade;
+    int16_t time_air_strike;
     char soldier_state; 
     char zobmie_state; 
     char soldier_type;
@@ -44,9 +45,11 @@ GameDTO ClientDeserializer::deserialize_game_dto(bool *was_closed)
         socket->recvall(&health, sizeof(int16_t), was_closed);
         socket->recvall(&time_explosive_grenade, sizeof(int16_t), was_closed);
         socket->recvall(&time_smoke_grenade, sizeof(int16_t), was_closed);
+        socket->recvall(&time_air_strike, sizeof(int16_t), was_closed);
         game_dto.add_soldier(SoldierObjectDTO(ntohl(player_id), ntohs(id), ntohs(health),
                                     ntohs(position_x), ntohs(position_y), ntohs(bullets), 
                                     ntohs(time_explosive_grenade), ntohs(time_smoke_grenade),
+                                    ntohs(time_air_strike),
                                     static_cast<SoldierObjectState>(soldier_state),
                                     static_cast<SoldierType>(soldier_type),facingLeft));
     }

@@ -3,6 +3,7 @@
 
 #include "../common/queue.h"
 #include "./protected_game_list.h"
+#include "../common/game_mode.h"
 #include "game.h"
 
 #include <map>
@@ -29,7 +30,8 @@ public:
     MatchMananger();
 
     Queue<InstructionsDTO*> *create_game(Queue<GameDTO> *queue_sender, std::string& escenario, 
-                                        int32_t& player_id, int32_t& game_code);
+                                        int32_t& player_id, int32_t& game_code,
+                                        GameMode& game_mode, int8_t& game_players);
 
     Queue<InstructionsDTO*> *join(Queue<GameDTO> *queue_sender, int32_t& codigo, int32_t& player_id);
 

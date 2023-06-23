@@ -5,6 +5,7 @@
 #include "../common/thread.h"
 #include "../common/instructionsDTO/instructions_dto.h"
 #include "../common/game_dto.h"
+#include "../common/game_mode.h"
 #include "./protected_outputs_queue.h"
 #include "game_logic.h"
 
@@ -34,8 +35,11 @@ private:
 
     bool admit_players; //Para controlar si se pueden unir jugadores o no
 
+    int8_t game_players;
+
 public:
-    Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, int32_t& player_id);
+    Game(Queue<GameDTO> *queue_sender, int32_t& code, std::string& game_name, int32_t& player_id,
+        GameMode& game_mode, int8_t& game_players);
 
     void run() override;
 

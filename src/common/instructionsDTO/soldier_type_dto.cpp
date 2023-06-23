@@ -1,4 +1,5 @@
 #include "soldier_type_dto.h"
+#include <iostream>
 
 SoldierTypeDTO::SoldierTypeDTO(int32_t& player_id, SoldierType soldier_type) : 
     InstructionsDTO(player_id,SOLDIER_TYPE), soldier_type(soldier_type) {}

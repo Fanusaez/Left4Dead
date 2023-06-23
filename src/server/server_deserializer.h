@@ -30,6 +30,8 @@ private:
 
     GrenadeDTO* deserialize_smoke_grenade(bool *was_closed, int32_t& player_id);
 
+    InstructionsDTO* deserialize_air_strike(bool *was_closed, int32_t& player_id);
+
     InstructionsDTO* deserialize_start(bool *was_closed, int32_t& player_id);
 
     InstructionsDTO* deserialize_revive(bool *was_closed, int32_t& player_id);

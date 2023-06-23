@@ -32,7 +32,7 @@ weapons:
     mag_capacity: 20
     damage: 40
     damage_reduction_per_hit: 10
-    rate_of_fire: 2.5
+    rate_of_fire: 1
 
 explosiveGrenade:
   damage: 50
@@ -111,7 +111,7 @@ mapLogic:
 
 clearTheZone:
   time_respawn_zombies: 5
-  total_quantity_zombies: 80
+  total_quantity_zombies: 5
   zombies_probability_respawn:
     infected: [ 0, 30 ]
     witch: [ 30, 50 ]
@@ -140,10 +140,10 @@ gameFactory:
     venom: [ 0, 0 ]
 
 airStrike:
-  radius_range_safe_space: 2
+  radius_range_safe_space: 10
   damage: 30
-  time_reCall_air_strike: 120
+  time_reCall_air_strike: 1
 
 airStrikeStates:
-  time_exploding: 0.08
+  time_exploding: 0.4
   time_incoming: 1

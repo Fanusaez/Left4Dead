@@ -14,6 +14,7 @@ enum InstructionsType : char {
     SHOOT,
     THROW_EXPLOSIVE_GRENADE,
     THROW_SMOKE_GRENADE,
+    CALL_AIR_STRIKE,
     REVIVE
 };
 #endif

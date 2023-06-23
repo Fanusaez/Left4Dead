@@ -9,6 +9,7 @@
 #include "../game_logic/zombies/zombie.h"
 #include "../game_logic/playing_modes/clear_the_zone.h"
 #include "../game_logic/playing_modes/survival.h"
+#include "../common/game_mode.h"
 #include <map>
 #include <utility>
 
@@ -19,7 +20,7 @@ class GameLogic {
 private:
     float timer;    //Usamos el timer para las animaciones y para los update del juego
 
-    Survival game_map;  //Estilo de juego
+    MapMode* game_map;  //Estilo de juego
 
     //Este mapa guardara los usuarios asociandolos a un soldado con la forma <player_id,soldier>
     std::map<int,Soldier*> playerSoldierMap; 
@@ -34,10 +35,12 @@ private:
 
     void smoke_grenade(InstructionsDTO* instruction); 
 
+    void air_strake(InstructionsDTO* instruction); 
+
     void revive(InstructionsDTO* instruction);
 
 public:
-    GameLogic();
+    GameLogic(GameMode& game_mode);
 
     void add_soldier_idf(const int32_t& player_id);  
 
@@ -54,5 +57,7 @@ public:
     bool game_over();
 
     void send_stats();
+
+    ~GameLogic();
 };
 #endif

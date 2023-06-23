@@ -9,23 +9,28 @@
 #include <vector>
 #include <utility>
 
-GameLogic::GameLogic() : game_map(400, 47, 0) {}
+GameLogic::GameLogic(GameMode& game_mode) {
+    if(game_mode == SURVIVAL)
+        game_map = new Survival(100, 47, 0);
+    else
+        game_map = new ClearTheZone(100, 47, 0);
+
+}
 
 void GameLogic::add_soldier_idf(const int32_t& player_id) {
-    std::cout<<"Creo un idf"<<std::endl;
-    Soldier* soldier = game_map.get_soldier_with_idf();    
+    Soldier* soldier = game_map->get_soldier_with_idf();    
     playerSoldierMap[player_id] = soldier;
     timer = 0;
 }
 
 void GameLogic::add_soldier_scout(const int32_t& player_id) {
-    Soldier* soldier = game_map.get_soldier_with_scout();    
+    Soldier* soldier = game_map->get_soldier_with_scout();    
     playerSoldierMap[player_id] = soldier;
     timer = 0;
 }
 
 void GameLogic::add_soldier_p90(const int32_t& player_id) {
-    Soldier* soldier = game_map.get_soldier_with_p90();    
+    Soldier* soldier = game_map->get_soldier_with_p90();    
     playerSoldierMap[player_id] = soldier;
     timer = 0;
 }
@@ -46,6 +51,8 @@ void GameLogic::new_instruction(InstructionsDTO* instruction) {
         break;
     case THROW_SMOKE_GRENADE:
         smoke_grenade(instruction);
+    case CALL_AIR_STRIKE:
+        air_strake(instruction);
     case REVIVE:
         revive(instruction);
     default:
@@ -63,6 +70,7 @@ GameDTO GameLogic::get_game() {
                                 soldier->get_weapon()->get_bullets(),
                                 soldier->get_time_to_throw_explosive_grenade(),
                                 soldier->get_time_to_throw_smoke_grenade(),
+                                soldier->get_time_to_call_air_strike(),
                                 soldier->get_state()->soldier_state ,soldier->get_weapon()->get_type(),
                                 soldier->facing_left());
         game_dto.add_soldier(soldier_dto);
@@ -80,10 +88,22 @@ GameDTO GameLogic::get_game() {
                 game_dto.add_element(grenade_dto);
             }
         }
-        game_dto.add_game_stats(GameStats(soldier->get_total_bullets_shot(),game_map.get_total_zombies_dead()));
+        if (AirStrike* air_strike = soldier->get_air_strike()){
+            if (air_strike->exploding()) {
+                std::vector<std::vector<int16_t>> matrix = air_strike->get_positions_for_explosion();
+                int i = 0;
+                for(const auto position: matrix){
+                    std::cout<<"Cargo granada"<<position[0]<<", "<<position[1]<<std::endl;
+                    GrenadeObjectDTO grenade_dto(air_strike->id+i, position[0], position[1],EXPLOSIVE_GRENADE);
+                    game_dto.add_element(grenade_dto);
+                    i++;
+                }
+            }
+        }
+        game_dto.add_game_stats(GameStats(soldier->get_total_bullets_shot(),game_map->get_total_zombies_dead()));
     }
     //Obtenemos y recorremos los zombies del mapa
-    std::vector<Zombie*>* zombies = game_map.get_zombies();
+    std::vector<Zombie*>* zombies = game_map->get_zombies();
     for (const auto& zombie: *zombies){
         ZombieObjectDTO zombieDTO(zombie->get_id(), zombie->get_health(), zombie->get_x_pos(),
                                     zombie->get_y_pos(), zombie->get_state()->zombie_state,
@@ -137,6 +157,13 @@ void GameLogic::smoke_grenade(InstructionsDTO* instruction) {
     soldier->throw_smoke_grenade(timer);
 }
 
+void GameLogic::air_strake(InstructionsDTO* instruction) {
+    GrenadeDTO* grenade_dto = dynamic_cast<GrenadeDTO*>(instruction);
+    Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
+    std::cout<<"LLamo a air_strike"<<std::endl;
+    soldier->call_air_strike(timer);
+}
+
 void GameLogic::revive(InstructionsDTO* instruction) {
     Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
     soldier->revive_partner(timer);
@@ -146,10 +173,14 @@ void GameLogic::udpate_game(){
     for (const auto& piar: playerSoldierMap){
         piar.second->update(timer);
     }
-    game_map.update(timer);
+    game_map->update(timer);
     timer += 0.05; //Rate del server loop
 }
 
 bool GameLogic::game_over() {
-    return game_map.is_game_over();
+    return game_map->is_game_over();
+}
+
+GameLogic::~GameLogic() {
+    //delete game_map;
 }

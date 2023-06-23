@@ -40,6 +40,8 @@ public:
 
     bool throw_smoke_grenade(const int8_t& time);
 
+    bool call_air_strike();
+
     bool revive_soldier();
 
     std::optional<GameDTO> get_game();

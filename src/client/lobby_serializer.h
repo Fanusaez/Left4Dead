@@ -13,13 +13,13 @@ private:
 public:
     /*----------------------Lobby message--------------------*/
 
-    std::vector<char> serialize_create_scenario(const std::string& scenario_name);
+    std::vector<char> serialize_create_scenario(const std::string& scenario_name, const GameMode& game_mode, const int8_t& game_players);
 
     std::vector<char> serialize_join_scenario(const int32_t& scenario_code);
 
     std::vector<char> serialize_game_mode(const GameMode game_mode);
 
-    std::vector<char> serialize_soldier(const SoldierType soldier_type);
+    std::vector<char> serialize_soldier(const SoldierType& soldier_type);
 
     std::vector<char> serialize_request_game_list();
 

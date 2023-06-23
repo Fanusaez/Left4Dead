@@ -133,6 +133,10 @@ std::vector<char> ServerSerializer::serialize_game(GameDTO game_dto) {
         int16_t transformed_time_smoke_grenade = htons(obj.time_smoke_grenade);
         p = reinterpret_cast<unsigned char const *>(&transformed_time_smoke_grenade);
         buffer.insert(buffer.end(), p, p + sizeof(int16_t));
+
+        int16_t transformed_time_air_strike = htons(obj.time_air_strike);
+        p = reinterpret_cast<unsigned char const *>(&transformed_time_air_strike);
+        buffer.insert(buffer.end(), p, p + sizeof(int16_t));
     }
 
     for (const auto &obj : zombies) {

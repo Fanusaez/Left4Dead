@@ -26,6 +26,8 @@ public:
 
     std::vector<char> serialize_throw_smoke_grenede(const int8_t& time);
 
+    std::vector<char> serialize_call_air_strike();
+
     std::vector<char> serialize_revive_soldier();
 };
 #endif

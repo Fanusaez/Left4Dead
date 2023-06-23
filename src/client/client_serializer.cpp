@@ -42,6 +42,12 @@ std::vector<char> ClientSerializer::serialize_throw_smoke_grenede(const int8_t& 
     return buffer;
 }
 
+std::vector<char> ClientSerializer::serialize_call_air_strike() {
+    std::vector<char> buffer;
+    buffer.push_back(CALL_AIR_STRIKE);
+    return buffer;
+}
+
 std::vector<char> ClientSerializer::serialize_revive_soldier(){
     std::vector<char> buffer;
     buffer.push_back(REVIVE);

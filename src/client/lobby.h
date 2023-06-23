@@ -23,7 +23,7 @@ private:
 
     LobbyReceiver lobby_receiver;
 
-    LobbySerializer lobby_seializer; 
+    LobbySerializer lobby_serializer; 
     
     Queue<std::vector<char>> queue_sender;
 
@@ -42,9 +42,11 @@ public:
 
     bool running();
 
-    bool create_scenario(const std::string& scenario_name);
+    bool create_scenario(const std::string& scenario_name, const GameMode& game_mode, const int8_t& game_players);
 
     bool join_scenario(const int32_t& scenario_code);
+
+    void soldier_type(const SoldierType& soldier_type);
 
     void start();
 

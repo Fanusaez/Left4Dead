@@ -1,6 +1,7 @@
 #include "player_sender.h"
 #include "../common/instructionsDTO/create_dto.h"
 #include "../common/instructionsDTO/join_dto.h"
+#include "../common/game_mode.h"
 #include <string>
 
 PlayerSender::PlayerSender(Socket *socket, std::atomic<bool> &stay_in_match,  
@@ -59,9 +60,12 @@ void PlayerSender::init_player_receiver(){
                 //Casteo a un CreateDTO para obtener el nombre del escenario
                 CreateDTO* create_dto = dynamic_cast<CreateDTO*>(instruction);
                 std::string game_name = create_dto->get_scenario_name();
+                GameMode game_mode = create_dto->get_game_mode();
+                int8_t game_players = create_dto->get_game_players();
                 //Le digo al match_mananger que quiero crear una partida con ese nombre.
                 queue_receiver = match_mananger->create_game(&queue_sender, game_name, 
-                                                                player_id, game_code);
+                                                                player_id, game_code, 
+                                                                game_mode, game_players);
                 //Si me devuelve un puntero nulo significa que no se pudo crear la partida
                 if (queue_receiver == nullptr)
                     server_serializer.send_error_create(&was_closed);

@@ -34,6 +34,10 @@ bool Client::throw_smoke_grenade(const int8_t& time){
     return (queue_sender.try_push(client_seializer.serialize_throw_smoke_grenede(time)));
 }
 
+bool Client::call_air_strike(){
+    return (queue_sender.try_push(client_seializer.serialize_call_air_strike()));
+}
+
 bool Client::revive_soldier(){
     return (queue_sender.try_push(client_seializer.serialize_revive_soldier()));
 }

@@ -17,6 +17,7 @@ struct SoldierObjectDTO {
     int16_t bullets;
     int16_t time_explosive_grenade;
     int16_t time_smoke_grenade;
+    int16_t time_air_strike;
     SoldierObjectState state;   //Estado del objeto
     SoldierType soldier_type;   //Tipo de soldado
     bool facing_left;
@@ -24,12 +25,12 @@ struct SoldierObjectDTO {
     // Constructor para inicializar los atributos
     SoldierObjectDTO(int32_t player_id, int16_t id, int16_t health, int16_t position_x, 
                     int16_t position_y, uint16_t bullets, int16_t time_explosive_grenade,
-                    int16_t time_smoke_grenade, SoldierObjectState state, 
+                    int16_t time_smoke_grenade, int16_t time_air_strike, SoldierObjectState state, 
                     SoldierType soldier_type, bool facing_left) : player_id(player_id), id(id),
                     health(health), position_x(position_x), position_y(position_y), 
                     bullets(bullets), time_explosive_grenade(time_explosive_grenade),
-                    time_smoke_grenade(time_smoke_grenade), state(state), soldier_type(soldier_type), 
-                    facing_left(facing_left) {}
+                    time_smoke_grenade(time_smoke_grenade), time_air_strike(time_air_strike),
+                    state(state), soldier_type(soldier_type), facing_left(facing_left) {}
 };
 
 struct ZombieObjectDTO {

@@ -22,16 +22,20 @@ bool Lobby::running(){
     return keep_talking;
 }
 
-bool Lobby::create_scenario(const std::string& scenario_name){
-    return (queue_sender.try_push(lobby_seializer.serialize_create_scenario(scenario_name)));
+bool Lobby::create_scenario(const std::string& scenario_name, const GameMode& game_mode, const int8_t& game_players){
+    return (queue_sender.try_push(lobby_serializer.serialize_create_scenario(scenario_name, game_mode, game_players)));
 }
 
 bool Lobby::join_scenario(const int32_t& scenario_code) {
-    return (queue_sender.try_push(lobby_seializer.serialize_join_scenario(scenario_code)));
+    return (queue_sender.try_push(lobby_serializer.serialize_join_scenario(scenario_code)));
 }
 
 void Lobby::start() {
-    queue_sender.try_push(lobby_seializer.serialize_start_playing());
+    queue_sender.try_push(lobby_serializer.serialize_start_playing());
+}
+
+void Lobby::soldier_type(const SoldierType& soldier_type) {
+    queue_sender.try_push(lobby_serializer.serialize_soldier(soldier_type));
 }
 
 void Lobby::exit_lobby() {

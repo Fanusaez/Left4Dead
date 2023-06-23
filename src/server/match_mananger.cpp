@@ -8,7 +8,8 @@ MatchMananger::MatchMananger() {
 }
 
 Queue<InstructionsDTO*> *MatchMananger::create_game(Queue<GameDTO> *queue_sender, 
-                    std::string& escenario, int32_t& player_id, int32_t& game_code)
+                    std::string& escenario, int32_t& player_id, int32_t& game_code,
+                    GameMode& game_mode, int8_t& game_players)
 {
     //Me fijo si algun juego dejo de existir
     reap_dead();
@@ -16,7 +17,7 @@ Queue<InstructionsDTO*> *MatchMananger::create_game(Queue<GameDTO> *queue_sender
         //Le paso la queue a la cual va a tener que pushear el game
         //Tambien es necesario el game_counter que sera el codigo que tendra junto con el nombre
         //y el primer jugador que tendra.
-        Game *new_game = new Game(queue_sender,game_counter,escenario, player_id);
+        Game *new_game = new Game(queue_sender,game_counter,escenario, player_id, game_mode, game_players);
         protected_game_list.add_new_game(new_game);
         game_code = game_counter;
         game_counter++;

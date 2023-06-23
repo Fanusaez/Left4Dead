@@ -39,6 +39,9 @@ InstructionsDTO* ServerDeserializer::obtener_instruccion(bool *was_closed, int32
         case THROW_SMOKE_GRENADE:
             return (deserialize_smoke_grenade(was_closed, player_id));
             break;
+        case CALL_AIR_STRIKE:
+            return (deserialize_air_strike(was_closed, player_id));
+            break;
         case REVIVE:
             return (deserialize_revive(was_closed, player_id));
             break;
@@ -54,7 +57,11 @@ CreateDTO* ServerDeserializer::deserialize_create(bool *was_closed, int32_t& pla
     socket->recvall(&length, 1, was_closed);
     std::vector<char> buffer(length);
     socket->recvall(buffer.data(), length, was_closed);
-    CreateDTO* create_dto = new CreateDTO(player_id, std::string(buffer.begin(), buffer.end()));
+    GameMode game_mode;
+    int8_t game_players;
+    socket->recvall(&game_mode, 1, was_closed);
+    socket->recvall(&game_players, 1, was_closed);
+    CreateDTO* create_dto = new CreateDTO(player_id, std::string(buffer.begin(), buffer.end()),game_mode,game_players);
     return create_dto;
 }
 
@@ -98,6 +105,11 @@ GrenadeDTO* ServerDeserializer::deserialize_smoke_grenade(bool *was_closed, int3
     int8_t time;
     socket->recvall(&time, 1, was_closed);
     GrenadeDTO* instructionDTO = new GrenadeDTO(player_id, time, SMOKE_GRENADE);
+    return instructionDTO;
+}
+
+InstructionsDTO* ServerDeserializer::deserialize_air_strike(bool *was_closed, int32_t& player_id) {
+    InstructionsDTO* instructionDTO = new InstructionsDTO(player_id, CALL_AIR_STRIKE);
     return instructionDTO;
 }
 
