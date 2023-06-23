@@ -11,7 +11,7 @@
 Shooting::Shooting(Soldier& soldier, Weapon *weapon, float start_time) :
                     soldier(soldier),
                     weapon(weapon),
-                    waiting_time_to_shoot(CONFIGURATION.get_soldierState_time_shooting()){
+                    waiting_time_to_shoot(weapon->get_time_to_shoot()) {
     soldier_state = SHOOTING;
     shoot(soldier, weapon, start_time);
 }

@@ -11,6 +11,7 @@ class P90 : public Weapon {
     const std::int16_t mag_capacity;
     const std::int16_t burst_capacity;
     std::int16_t damage;
+    float time_to_shoot = 0.1;
     std::int32_t total_bullets_shot;
 
  public:
@@ -49,7 +50,7 @@ std::int32_t get_total_bullets_shot() override;
 std::int16_t get_time_to_throw_explosive_grenade() override;
 std::int16_t get_time_to_throw_smoke_grenade() override;
 std::int16_t get_time_to_call_air_strike() override;
-
+float get_time_to_shoot() override;
 SoldierType get_type() override;
 };
 

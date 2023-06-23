@@ -99,6 +99,10 @@ std::int16_t Idf::get_time_to_call_air_strike() {
     return -1;
 }
 
+float Idf::get_time_to_shoot() {
+    return time_to_shoot;
+}
+
 SoldierType Idf::get_type() {
     return IDF;
 }

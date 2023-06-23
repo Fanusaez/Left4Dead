@@ -94,6 +94,10 @@ std::int16_t Scout::get_time_to_call_air_strike() {
     return -1;
 }
 
+float Scout::get_time_to_shoot() {
+    return time_to_shoot;
+}
+
 SoldierType Scout::get_type() {
     return SCOUT;
 }

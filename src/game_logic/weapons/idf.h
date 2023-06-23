@@ -14,6 +14,7 @@ class Idf : public Weapon {
     const std::int16_t close_range_damage;
     const std::int16_t long_range_damage;
     const std::int16_t distance_to_reduce_damage;
+    const float time_to_shoot = 0.1;
     ExplosiveGrenade explosive_grenade;
     SmokeGrenade smoke_grenade;
     std::int32_t total_bullets_shot;
@@ -55,7 +56,7 @@ std::int32_t get_total_bullets_shot() override;
 std::int16_t get_time_to_throw_explosive_grenade() override;
 std::int16_t get_time_to_throw_smoke_grenade() override;
 std::int16_t get_time_to_call_air_strike() override;
-
+float get_time_to_shoot() override;
 SoldierType get_type() override;
 };
 #endif // IDF_H_
