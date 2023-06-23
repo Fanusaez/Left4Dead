@@ -41,6 +41,10 @@ AirStrikeState *AirStrikeIncoming::explode(float time,
     return new AirStrikeExploding(time, x_soldier, y_soldier, map, air_strike);
 }
 
+bool AirStrikeIncoming::exploding() {
+    return false;
+}
+
 bool AirStrikeIncoming::time_to_explode(float time) {
     return (time - start_time) >= _time_to_explode;
 }

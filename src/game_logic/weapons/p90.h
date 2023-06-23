@@ -43,6 +43,7 @@ void shoot(std::vector<GameObject*>& shooting_objects,
 
 ExplosiveGrenade* get_explosive_grenade() override;
 SmokeGrenade* get_smoke_grenade() override;
+AirStrike* get_air_strike() override;
 void reload() override;
 bool isFullyLoaded() override;
 bool empty() override;

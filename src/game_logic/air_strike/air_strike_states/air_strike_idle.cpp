@@ -18,4 +18,8 @@ AirStrikeState *AirStrikeIdle::explode(float time, std::int16_t x_soldier, std::
     return nullptr;
 }
 
+bool AirStrikeIdle::exploding() {
+    return false;
+}
+
 

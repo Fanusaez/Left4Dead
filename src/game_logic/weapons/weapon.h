@@ -8,6 +8,8 @@
 #define CONFIGURATION Configuration::getInstance()
 
 enum SoldierType;
+
+class AirStrike;
 class State;
 class GameObject;
 class GameMap;
@@ -47,6 +49,7 @@ virtual bool empty() = 0;
 virtual std::int16_t get_bullets() = 0;
 virtual ExplosiveGrenade* get_explosive_grenade() = 0;
 virtual SmokeGrenade* get_smoke_grenade() = 0;
+virtual AirStrike* get_air_strike() = 0;
 virtual std::int32_t get_total_bullets_shot() = 0;
 virtual std::int16_t get_time_to_throw_explosive_grenade() = 0;
 virtual std::int16_t get_time_to_throw_smoke_grenade() = 0;
