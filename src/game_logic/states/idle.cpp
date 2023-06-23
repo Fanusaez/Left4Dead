@@ -18,7 +18,7 @@ State* Idle::update(float time) {
 }
 
 State* Idle::shoot(Soldier& soldier, Weapon* weapon, float time) {
-    if (weapon->empty()) return nullptr;
+    if (weapon->empty() || !weapon->time_to_shoot(time)) return nullptr;
     return new Shooting(soldier, weapon, time);
 }
 

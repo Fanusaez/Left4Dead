@@ -17,6 +17,7 @@ void P90::update(float time) {
 }
 
 void P90::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold_pos, float time) {
+    last_time_shot = time;
     bullets--;
     total_bullets_shot++;
     if (shooting_objects.empty()) return;
@@ -87,7 +88,11 @@ std::int16_t P90::get_time_to_throw_smoke_grenade() {
 }
 
 std::int16_t P90::get_time_to_call_air_strike() {
+    return air_strike.get_time_to_call_air_strike();
+}
 
+bool P90::time_to_shoot(float time) {
+    return (time - last_time_shot) > rate_of_fire;
 }
 
 float P90::get_time_to_shoot() {

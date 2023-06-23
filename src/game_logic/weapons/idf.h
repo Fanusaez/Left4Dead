@@ -18,6 +18,7 @@ class Idf : public Weapon {
     ExplosiveGrenade explosive_grenade;
     SmokeGrenade smoke_grenade;
     std::int32_t total_bullets_shot;
+    std::int16_t last_time_shot;
 
 
  public:
@@ -57,6 +58,7 @@ std::int16_t get_time_to_throw_explosive_grenade() override;
 std::int16_t get_time_to_throw_smoke_grenade() override;
 std::int16_t get_time_to_call_air_strike() override;
 float get_time_to_shoot() override;
+bool time_to_shoot(float time) override;
 SoldierType get_type() override;
 };
 #endif // IDF_H_

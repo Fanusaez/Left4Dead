@@ -21,6 +21,7 @@ void Idf::update(float time) {
 }
 
 void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold_pos, float time) {
+    last_time_shot = time;
     bullets--;
     total_bullets_shot++;
     if (shooting_objects.empty()) return;
@@ -102,6 +103,10 @@ std::int16_t Idf::get_time_to_call_air_strike() {
 
 float Idf::get_time_to_shoot() {
     return rate_of_fire;
+}
+
+bool Idf::time_to_shoot(float time) {
+    return (time - last_time_shot) > rate_of_fire;
 }
 
 SoldierType Idf::get_type() {
