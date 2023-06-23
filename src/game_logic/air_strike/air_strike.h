@@ -12,7 +12,6 @@ class GameMap;
 class AirStrike {
 private:
     AirStrikeState* air_strike_state = new AirStrikeIdle;
-    std::int16_t id;
     std::int16_t range_of_safe_space;
     const std::int16_t damage_air_strike;
     const float _time_to_call_air_strike;
@@ -22,6 +21,7 @@ private:
     std::vector<std::vector<std::int16_t>> matrix_positions_of_explosion;
 
 public:
+    std::int16_t id;
 
     explicit AirStrike(std::int16_t id);
 

@@ -37,7 +37,13 @@ State* AirStrike::call_air_strike(GameMap& map,
         delete air_strike_state ;
         air_strike_state = new_state;
     }
+    matrix_positions_of_explosion.clear(); // despues de terminar, limpio el vector de pos para la proxima llamada
     map.get_positions_of_explosion_air_strike(matrix_positions_of_explosion, x_matrix_soldier, y_matrix_soldier,range_of_safe_space);
+    for (auto& vector_pos : matrix_positions_of_explosion) {
+        for (auto& pos : vector_pos) {
+            pos *= movements_per_cell;
+        }
+    }
     return current_soldier_state->call_air_strike(time);
 }
 
@@ -47,7 +53,6 @@ void AirStrike::explode(float time, std::int16_t x_matrix_soldier, std::int16_t 
     for (const auto& explosive_object : objects) {
         explosive_object->receive_damage(damage_air_strike, time);
     }
-    matrix_positions_of_explosion.clear(); // despues de terminar, limpio el vector de pos para la proxima llamada
 }
 
 bool AirStrike::time_to_call_air_strike(float time) {
@@ -55,11 +60,6 @@ bool AirStrike::time_to_call_air_strike(float time) {
 }
 
 std::vector<std::vector<int16_t>> AirStrike::get_positions_for_explosion() {
-    for (auto& vector_pos : matrix_positions_of_explosion) {
-        for (auto& pos : vector_pos) {
-            pos *= movements_per_cell;
-        }
-    }
     return matrix_positions_of_explosion;
 }
 
