@@ -7,6 +7,7 @@ enum SoldierObjectState : char {
     RELOADING,
     MOVING,
     THROWING_GRENADE,
+    CALLING_AIR_STRIKE,
     SOLDIER_DEAD,
     SOLDIER_HURT,
     SHOOTING_AND_MOVING
@@ -20,6 +21,7 @@ enum ZombieObjectState : char {
     RUNNING,
     JUMPING,
     ATTACKING,
+    ATTACKING_VENOM_LONG_RANGE,
     SCREAMING,
     STUNNED
 };
