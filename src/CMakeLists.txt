@@ -72,6 +72,7 @@ if(SERVER)
 		./game_logic/zombies/witch.cpp
 		./game_logic/zombies/zombie.h
 		./game_logic/zombies/venom/venom.cpp
+		./game_logic/playing_modes/map_mode.h
 		./game_logic/playing_modes/clear_the_zone.cpp
 		./game_logic/playing_modes/survival.cpp
 		./game_logic/zombies/spear.cpp

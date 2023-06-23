@@ -2,6 +2,7 @@
 #define SURVIVAL_H_
 
 #include <random>
+#include "map_mode.h"
 #include "../soldier.h"
 #include "../map.h"
 #include "../zombies/infected.h"
@@ -9,7 +10,7 @@
 #include "../weapons/scout.h"
 #include "../weapons/p90.h"
 
-class Survival {
+class Survival : public MapMode {
 private:
     float start_time;
     GameMap map;
@@ -38,17 +39,17 @@ public:
 
     Survival(std::int16_t x_size, std::int16_t y_size, float time);
 
-    void update(float time);
+    void update(float time) override;
 
-    Soldier* get_soldier_with_idf();
-    Soldier* get_soldier_with_scout();
-    Soldier* get_soldier_with_p90();
+    Soldier* get_soldier_with_idf() override;
+    Soldier* get_soldier_with_scout() override;
+    Soldier* get_soldier_with_p90() override;
 
-    std::vector<Zombie*>* get_zombies();
+    std::vector<Zombie*>* get_zombies() override;
 
-    bool is_game_over();
+    bool is_game_over() override;
 
-    std::int32_t get_total_zombies_dead();
+    std::int32_t get_total_zombies_dead() override;
 };
 
 
