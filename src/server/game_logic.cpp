@@ -93,7 +93,7 @@ GameDTO GameLogic::get_game() {
                 std::vector<std::vector<int16_t>> matrix = air_strike->get_positions_for_explosion();
                 int i = 0;
                 for(const auto position: matrix){
-                    std::cout<<"Cargo granada"<<position[0]<<", "<<position[1]<<std::endl;
+                    //std::cout<<"Cargo granada"<<position[0]<<", "<<position[1]<<std::endl;
                     GrenadeObjectDTO grenade_dto(air_strike->id+i, position[0], position[1],EXPLOSIVE_GRENADE);
                     game_dto.add_element(grenade_dto);
                     i++;
@@ -148,13 +148,13 @@ void GameLogic::shoot(InstructionsDTO* instruction) {
 void GameLogic::grenade(InstructionsDTO* instruction) {
     GrenadeDTO* grenade_dto = dynamic_cast<GrenadeDTO*>(instruction);
     Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
-    soldier->throw_explosive_grenade(timer);
+    soldier->throw_explosive_grenade(timer, grenade_dto->get_time());
 }
 
 void GameLogic::smoke_grenade(InstructionsDTO* instruction) {
     GrenadeDTO* grenade_dto = dynamic_cast<GrenadeDTO*>(instruction);
     Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
-    soldier->throw_smoke_grenade(timer);
+    soldier->throw_smoke_grenade(timer, grenade_dto->get_time());
 }
 
 void GameLogic::air_strake(InstructionsDTO* instruction) {

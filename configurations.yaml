@@ -1,6 +1,9 @@
 soldier:
   health: 100
-  grenade_distance_reach: 40
+  grenade_distance_short_reach: 20
+  grenade_distance_long_reach: 40
+  grenade_time_change_to_long_reach: 2
+  grenade_time_explode_in_hand: 6
   matrix_range_to_revive: 1
 
 soldierStates:
@@ -30,7 +33,7 @@ weapons:
 
   scout:
     mag_capacity: 20
-    damage: 40
+    damage: 60
     damage_reduction_per_hit: 10
     rate_of_fire: 1
 
@@ -98,7 +101,7 @@ venom:
   probability_jump: [ 0, 0 ]
 
 zombieStates:
-  time_attacking: 0.2
+  time_attacking: 0.4
   time_jumping: 0.2
   time_running: 0.01
   time_screaming: 1.2
@@ -120,7 +123,7 @@ clearTheZone:
     venom: [ 0, 0 ]
 
 survival:
-  time_respawn_zombies: 5
+  time_respawn_zombies: 50
   time_zombies_getting_stronger: 10
   health_power_up: 10
   damage_power_up: 5

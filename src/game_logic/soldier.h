@@ -19,24 +19,28 @@ class Soldier : public GameObject {
     std::int16_t y_pos;
     const std::int16_t id;
     std::int16_t health;
-    std::int16_t grenade_distance_reach;
+    std::int16_t grenade_distance_short_reach;
+    std::int16_t grenade_distance_long_reach;
+    std::int16_t time_change_to_long_distance;
+    std::int16_t time_explode_grenade_in_hand;
     std::int16_t matrix_range_to_revive;
+    std::int16_t grenade_distance_cero = 0;
     State* state = new Idle;
     std::int16_t direction = RIGHT;
     bool _dead = false;
 
 void die(float time);
 void change_state(State* new_state);
-void adjust_position_grenade(std::int16_t& x_grenade_pos);
-
+void adjust_position_grenade(std::int16_t& x_grenade_pos, float time_pressed);
+std::int16_t get_grenade_distance_to_throw(float time_pressed);
  public:
 Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos, std::int16_t id);
 
 void update(float time);
 void reload(float time);
 void shoot(float time);
-void throw_explosive_grenade(float time);
-void throw_smoke_grenade(float time);
+void throw_explosive_grenade(float time, float time_pressed);
+void throw_smoke_grenade(float time, float time_pressed);
 void call_air_strike(float time);
 void move_up(float time);
 void move_down(float time);

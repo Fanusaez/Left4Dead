@@ -8,7 +8,10 @@ class Configuration {
 
 private:
     std::int16_t  soldier_health;
-    std::int16_t  soldierGrenade_distance_reach;
+    std::int16_t  soldierGrenade_distance_short_reach;
+    std::int16_t  soldierGrenade_distance_long_reach;
+    std::int16_t  soldierGrenade_time_change_to_long_reach;
+    std::int16_t  soldierGrenade_time_explode_in_hand;
     std::int16_t soldier_matrix_range_to_revive;
 
     float soldierState_time_being_attacked;
@@ -146,7 +149,10 @@ public:
     Configuration& operator=(const Configuration&) = delete;
 
     std::int16_t get_soldier_health();
-    std::int16_t get_soldier_grenade_distance_reach();
+    std::int16_t get_soldier_grenade_distance_short_reach();
+    std::int16_t get_soldier_grenade_distance_long_reach();
+    std::int16_t get_soldier_grenade_time_change_to_long_range();
+    std::int16_t get_soldier_grenade_time_to_explode_in_hand();
     std::int16_t get_soldier_matrix_range_to_revive();
 
     float get_soldierState_time_being_attacked();

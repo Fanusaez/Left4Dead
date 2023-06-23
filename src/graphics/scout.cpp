@@ -70,6 +70,7 @@ void Scout::changeState(const SoldierObjectState &state)
 
 	if (this->state == SHOOTING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Soldier_3/Shot_1.png"));
+        this->animation.noLoop();
 		this->sfx = this->textureLoader.getChunk("Soldier_3/Shot_1.mp3");
 		this->sfxLoops = -1;
 	} else if (this->state == RELOADING) {
