@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PlayerPick</class>
+ <widget class="QDialog" name="PlayerPick">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>668</width>
+    <height>415</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:BackgroundPopUp.jpg);</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="soldierLebel">
+     <property name="maximumSize">
+      <size>
+       <width>300</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: none;
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>SELECCIONE UN SOLDADO PARA JUGAR:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="idfButton">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>400</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+  border: none;
+  background: none;
+}
+
+QPushButton:hover {
+	background-color: rgb(200, 200, 200);
+}
+
+QPushButton:pressed {
+  background-color: rgb(150, 150, 150);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/IDF.png</normaloff>:/IDF.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="scouttButton">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>400</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+  border: none;
+  background: none;
+}
+
+QPushButton:hover {
+  /* Estilo para cuando se coloca el cursor sobre el botón */
+  /* Puedes ajustar los valores de iluminación según tus preferencias */
+  background-color: rgb(200, 200, 200);
+}
+
+QPushButton:pressed {
+  /* Estilo para cuando se presiona el botón */
+  /* Puedes ajustar los valores de iluminación según tus preferencias */
+  background-color: rgb(150, 150, 150);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/SCOUT.png</normaloff>:/SCOUT.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="p90Button">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>400</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+  border: none;
+  background: none;
+}
+
+QPushButton:hover {
+  /* Estilo para cuando se coloca el cursor sobre el botón */
+  /* Puedes ajustar los valores de iluminación según tus preferencias */
+  background-color: rgb(200, 200, 200);
+}
+
+QPushButton:pressed {
+  /* Estilo para cuando se presiona el botón */
+  /* Puedes ajustar los valores de iluminación según tus preferencias */
+  background-color: rgb(150, 150, 150);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/P90.png</normaloff>:/P90.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButton">
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>SELECCIONAR</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -24,6 +24,10 @@
 #include <chrono>
 #include <sstream>
 
+#include "./graphics_lobby/mainwindow.h"
+
+#include <QApplication>
+
 static bool handleEvents(Client* client, Gameview &view);
 double rate = 0.04;
 
@@ -33,9 +37,13 @@ int main(int argc, char *argv[])
 	Gameloop donde estoy en el lobby. Todo el tiempo estoy chequeando nuevos mensajes de server 
 	ya sea por el create o el join o la lista de partidas o el chat
 	*/
-	Lobby lobby(argv[1], argv[2]);
+ 	Lobby lobby(argv[1], argv[2]);
 	int32_t player_id = lobby.get_player_id();
-	while (lobby.running()) {
+	QApplication app(argc, argv);
+	MainWindow w(&lobby);
+    w.show();
+	app.exec(); 
+ 	/*while (lobby.running()) {
 		std::string input;
 		std::getline(std::cin, input);
 
@@ -46,7 +54,8 @@ int main(int argc, char *argv[])
 		if (mode == "create") {
 			std::string map;
 			iss >> map;
-			lobby.create_scenario(map);
+			lobby.create_scenario(map,SURVIVAL,1);
+			lobby.soldier_type(SCOUT);
 		} else if (mode == "join") {
 			if (iss.eof()) {
 				std::cout<<"Error: se requiere un código para unirse a un escenario."<<std::endl;
@@ -55,6 +64,7 @@ int main(int argc, char *argv[])
 			int32_t code;
 			iss >> code;
 			lobby.join_scenario(code);
+			lobby.soldier_type(IDF);
 		} else if (mode == "start") {
 			lobby.start();
 		} else if (mode == "quit") {
@@ -62,7 +72,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		lobby.update();
-	}
+	} */
 	// TODO: probar algo mejor
 	/*
 	 * Antes tenia el ttf en el gameview pero se destruia antes que el textureloader,
@@ -257,6 +267,11 @@ static bool handleEvents(Client* client, Gameview &view)
 				case SDLK_w: {
 					int8_t delta = 10;
 					client->throw_smoke_grenade(delta);
+					break;
+				}
+				case SDLK_a: {
+					int8_t delta = 10;
+					client->call_air_strike();
 					break;
 				}
 			}

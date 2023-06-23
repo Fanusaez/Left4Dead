@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>AmazMegaGrungeOne.ttf</file>
+        <file>background.jpg</file>
+        <file>BackgroundPopUp.jpg</file>
+        <file>IDF.png</file>
+        <file>P90.png</file>
+        <file>SCOUT.png</file>
+    </qresource>
+</RCC>
