@@ -75,7 +75,8 @@ void Venom::changeState(const ZombieObjectState &state)
 		this->sfx = nullptr;
 	} else if (this->state == ATTACKING) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Venom/Attack2.png"));
-		this->sfx = nullptr;
+		this->sfx = this->textureLoader.getChunk("Venom/Attack2.mp3");
+		this->sfxLoops = -1;
 	} else if (this->state == ATTACKING_VENOM_LONG_RANGE) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Venom/Attack1.png"));
 		this->sfx = nullptr;
