@@ -9,6 +9,8 @@
 #include "zombies/witch.h"
 #include "zombies/spear.h"
 #include "configuration.h"
+#include "game_logic/zombies/venom/venom.h"
+
 #define X_POS 0
 #define Y_POS 1
 
@@ -70,3 +72,8 @@ Zombie* GameFactory::create_witch(std::vector<std::int16_t>& zombie_pos, std::in
 Zombie* GameFactory::create_spear(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health, std::int16_t extra_damage) {
     return new Spear(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, extra_health, extra_damage);
 }
+
+Zombie* GameFactory::create_venom(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health, std::int16_t extra_damage) {
+    return new Venom(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, extra_health, extra_damage);
+}
+

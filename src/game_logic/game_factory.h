@@ -31,6 +31,7 @@ public:
     Zombie* create_jumper(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health, std::int16_t extra_damage);
     Zombie* create_witch(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health, std::int16_t extra_damage);
     Zombie* create_spear(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health, std::int16_t extra_damage);
+    Zombie* create_venom(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health, std::int16_t extra_damage);
     void create_obstacles(std::vector<std::int16_t>& obstacle_pos);
 };
 

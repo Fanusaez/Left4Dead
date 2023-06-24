@@ -16,14 +16,14 @@ soldierStates:
   time_reloading: 0.5
   time_shooting: 0.1
   time_throwing_explosive_g: 1
-  time_throwing_smoke_g: 0.2
+  time_throwing_smoke_g: 1
 
 weapons:
   idf:
     mag_capacity: 50
     burst_capacity: 20
     close_range_damage: 30
-    long_range_damage: 15
+    long_range_damage: 10
     matrix_range_to_reduce_damage: 5
     rate_of_fire: 0.1
 

@@ -347,6 +347,17 @@ void GameMap::add_spear(std::int16_t extra_health, std::int16_t extra_damage) {
     map[y_pos][x_pos] = dynamic_cast<GameObject*>(zombie);
 }
 
+void GameMap::add_venom(std::int16_t extra_health, std::int16_t extra_damage) {
+    std::vector<std::int16_t> zombie_pos;
+    get_position_for_object(zombie_pos);
+    Zombie* zombie = factory.create_venom(zombie_pos, extra_health, extra_damage);
+    zombies.push_back(zombie);
+
+    std::int16_t x_pos = zombie_pos[X_POS];
+    std::int16_t y_pos = zombie_pos[Y_POS];
+    map[y_pos][x_pos] = dynamic_cast<GameObject*>(zombie);
+}
+
 void GameMap::get_position_for_object(std::vector<std::int16_t> &valid_pos) {
     std::random_device rd;
     std::mt19937 gen(rd());

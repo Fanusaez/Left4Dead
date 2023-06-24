@@ -25,6 +25,24 @@ Venom::Venom(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
     random_chase_state();
 }
 
+Venom::Venom(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map,  std::int16_t extra_health, std::int16_t extra_damage) :
+        movements_per_cell(CONFIGURATION.get_movements_per_cell()),
+        x_pos(x_pos_wal * movements_per_cell),
+        y_pos(y_pos_wal * movements_per_cell),
+        id(id),
+        map(map),
+        chaser(this, map, x_pos, y_pos),
+        health(CONFIGURATION.get_venom_health()),
+        distance_to_hit_close(CONFIGURATION.get_venom_distance_to_hit_close_range()),
+        distance_to_hit_long(CONFIGURATION.get_venom_distance_to_hit_long_range()),
+        sight_distance(CONFIGURATION.get_venom_sight_distance()),
+        prob_to_walk(CONFIGURATION.get_venom_prob_to_walk()),
+        prob_to_run(CONFIGURATION.get_venom_prob_to_run()),
+        prob_to_jump(CONFIGURATION.get_venom_prob_to_jump()){
+    random_chase_state();
+    health += extra_health;
+}
+
 void Venom::update(std::vector<Soldier*> soldiers, float time) {
     ZombieState* new_state = state->update(time);
     change_state(new_state);

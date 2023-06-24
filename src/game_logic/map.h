@@ -108,7 +108,7 @@ void add_infected(std::int16_t extra_health, std::int16_t extra_damage);
 void add_jumper(std::int16_t extra_health, std::int16_t extra_damage);
 void add_witch(std::int16_t extra_health, std::int16_t extra_damage);
 void add_spear(std::int16_t extra_health, std::int16_t extra_damage);
-
+void add_venom(std::int16_t extra_health, std::int16_t extra_damage);
 void free_position(std::int16_t x_pos, std::int16_t y_pos);
 
 std::vector<Zombie*>* get_zombies();
