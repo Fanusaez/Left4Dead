@@ -9,6 +9,7 @@
 #include "venom.h"
 #include "grenade.h"
 #include "smoke.h"
+#include "venom_grenade.h"
 
 std::unique_ptr<RenderableObject> ObjectCreator::create(const SoldierObjectDTO &soldierDTO) const
 {
@@ -51,6 +52,9 @@ std::unique_ptr <RenderableObject> ObjectCreator::create(const GrenadeObjectDTO 
 	if (grenadeDTO.grenade_type == EXPLOSIVE_GRENADE)
 		return std::unique_ptr<RenderableObject>(
 			new Grenade(grenadeDTO.id, grenadeDTO.position_x, grenadeDTO.position_y));
+	else if (grenadeDTO.grenade_type == VENOM_GRENADE)
+		return std::unique_ptr<RenderableObject>(
+			new VenomGrenade(grenadeDTO.id, grenadeDTO.position_x, grenadeDTO.position_y));
 	else
 		return std::unique_ptr<RenderableObject>(
 			new Smoke(grenadeDTO.id, grenadeDTO.position_x, grenadeDTO.position_y));

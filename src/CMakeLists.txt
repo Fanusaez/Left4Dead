@@ -116,6 +116,7 @@ if(CLIENT)
 			graphics/venom.cpp
 			graphics/grenade.cpp
 			graphics/smoke.cpp
+			graphics/venom_grenade.cpp
 			graphics/Animation.cpp
 			graphics/texture_loader.cpp
 			graphics/gameview_configs_loader.cpp
