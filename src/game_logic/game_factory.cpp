@@ -9,7 +9,7 @@
 #include "zombies/witch.h"
 #include "zombies/spear.h"
 #include "configuration.h"
-#include "game_logic/zombies/venom/venom.h"
+#include "zombies/venom/venom.h"
 
 #define X_POS 0
 #define Y_POS 1
