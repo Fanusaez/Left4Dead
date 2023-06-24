@@ -1,5 +1,6 @@
 #include "clear_the_zone.h"
 #include "../configuration.h"
+#include <iostream>
 
 #define CONFIGURATION Configuration::getInstance()
 
@@ -17,7 +18,8 @@ ClearTheZone::ClearTheZone(std::int16_t x_size,
                                             infected_prob(CONFIGURATION.get_CTZ_infected_prob_to_respawn()),
                                             witch_prob(CONFIGURATION.get_CTZ_witch_prob_to_respawn()),
                                             jumper_prob(CONFIGURATION.get_CTZ_jumper_prob_to_respawn()),
-                                            spear_prob(CONFIGURATION.get_CTZ_spear_prob_to_respawn()) {}
+                                            spear_prob(CONFIGURATION.get_CTZ_spear_prob_to_respawn()),
+                                            venom_prob(CONFIGURATION.get_CTZ_venom_prob_to_respawn()) {}
 
 Soldier *ClearTheZone::get_soldier_with_idf() {
     Soldier* new_soldier = map.get_soldier_with_idf();
@@ -69,6 +71,8 @@ void ClearTheZone::respawn_zombies(float time) {
         map.add_jumper(NO_EXTRA_HEALTH, NO_EXTRA_HEALTH);
     } else if (random_num >= spear_prob[0] && random_num <= spear_prob[1]) {
         map.add_spear(NO_EXTRA_HEALTH, NO_EXTRA_HEALTH);
+    } else if (random_num >= venom_prob[0] && random_num <= venom_prob[1]) {
+        map.add_venom(NO_EXTRA_HEALTH, NO_EXTRA_HEALTH);
     }
 }
 
