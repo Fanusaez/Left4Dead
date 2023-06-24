@@ -19,6 +19,7 @@ Soldier::Soldier(Weapon* weapon,
         y_pos(y_pos * movements_per_cell),
         id(id),
         health(CONFIGURATION.get_soldier_health()),
+        health_when_revive(CONFIGURATION.get_soldier_health_when_reviving()),
         grenade_distance_short_reach(CONFIGURATION.get_soldier_grenade_distance_short_reach()),
         grenade_distance_long_reach(CONFIGURATION.get_soldier_grenade_distance_long_reach()),
         time_change_to_long_distance(CONFIGURATION.get_soldier_grenade_time_change_to_long_range()),
@@ -88,6 +89,7 @@ void Soldier::call_air_strike(float time) {
 void Soldier::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
     if (health <= 0) {
+        health = 0;
         die(time);
     } else {
         State *new_state = state->being_attacked(time);
@@ -179,6 +181,7 @@ void Soldier::revive_partner(float time) {
 void Soldier::revive(float time) {
     State* new_state = state -> revive(time);
     change_state(new_state);
+    health = health_when_revive;
 }
 
 void Soldier::set_direction(std::int16_t new_direction) {
