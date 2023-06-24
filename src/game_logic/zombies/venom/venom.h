@@ -36,6 +36,8 @@ private:
 
     Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
     std::int16_t get_distance_to_soldier(Soldier* soldier);
+    std::int16_t get_distance_to_soldier_x(Soldier* soldier);
+    std::int16_t get_distance_to_soldier_y(Soldier* soldier);
     void change_state(ZombieState* new_state);
     void random_chase_state();
 

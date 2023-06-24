@@ -100,16 +100,26 @@ Soldier* Venom::get_closest_soldier(std::vector<Soldier*> soldiers) {
 
 std::int16_t Venom::get_distance_to_soldier(Soldier* soldier) {
 
-    std::int16_t x_matrix_sold = soldier->get_x_matrix_pos();
-    std::int16_t y_matrix_sold = soldier->get_y_matrix_pos();
-    std::int16_t x_matrix_walker = get_x_matrix_pos();
-    std::int16_t y_matrix_walker = get_y_matrix_pos();
-
-    std::int16_t x_distance = x_matrix_sold - x_matrix_walker;
-    std::int16_t y_distance = y_matrix_sold - y_matrix_walker;
+    std::int16_t x_distance = get_distance_to_soldier_x(soldier);
+    std::int16_t y_distance = get_distance_to_soldier_y(soldier);
     return std::sqrt(x_distance * x_distance + y_distance * y_distance);
 }
 
+std::int16_t Venom::get_distance_to_soldier_x(Soldier* soldier) {
+
+    std::int16_t x_matrix_sold = soldier->get_x_matrix_pos();
+    std::int16_t x_matrix_walker = get_x_matrix_pos();
+
+    return abs(x_matrix_sold - x_matrix_walker);
+}
+
+std::int16_t Venom::get_distance_to_soldier_y(Soldier* soldier) {
+
+    std::int16_t y_matrix_sold = soldier->get_y_matrix_pos();
+    std::int16_t y_matrix_walker = get_y_matrix_pos();
+
+    return abs(y_matrix_sold - y_matrix_walker);
+}
 
 void Venom::set_direction(std::int16_t direction_to_set) {
     if (direction_to_set == LEFT){
@@ -124,15 +134,17 @@ void Venom::set_direction(std::int16_t direction_to_set) {
 void Venom::attack(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
     if (!closest_soldier) return;
-    std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > distance_to_hit_long) return;
-    if (distance > distance_to_hit_close) {
+    std::int16_t distance_x = get_distance_to_soldier_x(closest_soldier);
+    std::int16_t distance_y = get_distance_to_soldier_y(closest_soldier);
+    if (distance_x > distance_to_hit_long) return;
+    if (distance_x > distance_to_hit_close && distance_y == 0) {
         ZombieState* new_state = attack_long_range.attack(state, closest_soldier, time);
         change_state(new_state);
-        return;
+    } else if (distance_y == 0){
+        ZombieState* new_state = attack_close_range.attack(state, closest_soldier, time);
+        change_state(new_state);
     }
-    ZombieState* new_state = attack_close_range.attack(state, closest_soldier, time);
-    change_state(new_state);
+
 }
 
 void Venom::die(float time) {
