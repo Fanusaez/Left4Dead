@@ -20,6 +20,7 @@ class Soldier : public GameObject {
     const std::int16_t id;
     std::int16_t health;
     std::int16_t health_when_revive;
+    std::int16_t times_can_be_revived;
     std::int16_t grenade_distance_short_reach;
     std::int16_t grenade_distance_long_reach;
     std::int16_t time_change_to_long_distance;

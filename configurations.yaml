@@ -6,6 +6,7 @@ soldier:
   grenade_time_change_to_long_reach: 2
   grenade_time_explode_in_hand: 6
   matrix_range_to_revive: 1
+  times_can_be_revived: 3
 
 soldierStates:
   time_being_attacked: 0.1
