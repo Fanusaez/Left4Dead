@@ -5,6 +5,7 @@
 #include "../common/instructionsDTO/move_dto.h"
 #include "../common/instructionsDTO/grenade_dto.h"
 #include "../common/move_type.h"
+#include "../game_logic/zombies/venom/venom.h"
 #include <ctime>
 #include <vector>
 #include <utility>
@@ -109,6 +110,15 @@ GameDTO GameLogic::get_game() {
                                     zombie->get_y_pos(), zombie->get_state()->zombie_state,
                                     zombie->get_type(), zombie->facing_left());
         game_dto.add_zombie(zombieDTO);
+        ZombieObjectState state = zombie->get_state()->zombie_state;
+        if (state == ATTACKING_VENOM_LONG_RANGE){
+            Venom* venom = dynamic_cast<Venom*>(zombie);
+            if (venom != nullptr) {
+                GrenadeObjectDTO grenade_dto(100,venom->get_pos_of_explosion_long_range()[0],
+                venom->get_pos_of_explosion_long_range()[1],VENOM_GRENADE);
+                game_dto.add_element(grenade_dto);
+            }
+        }
     }
     return game_dto;
 }

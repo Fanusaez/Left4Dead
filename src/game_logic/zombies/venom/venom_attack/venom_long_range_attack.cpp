@@ -7,7 +7,9 @@ VenomLongRange::VenomLongRange() : damage(CONFIGURATION.get_venom_damage_long_ra
 ZombieState *VenomLongRange::attack(ZombieState *state, Soldier* soldier_to_attack, float time) {
     x_pos_explosion = soldier_to_attack -> get_x_pos();
     y_pos_explosion = soldier_to_attack -> get_y_pos();
-    return state->attack_soldier(soldier_to_attack, damage, time);
+    ZombieState* new_state = state->attack_soldier(soldier_to_attack, damage, time);
+    if (new_state != nullptr) new_state->set_long_range();
+    return new_state;
 }
 
 std::vector<std::int16_t> VenomLongRange::get_pos_explosion() {

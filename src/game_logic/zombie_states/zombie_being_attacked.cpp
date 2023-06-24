@@ -81,3 +81,5 @@ bool ZombieBeingAttacked::time_to_stop_being_attacked(float time) {
 }
 
 void ZombieBeingAttacked::set_speed(float speed) {}
+
+void ZombieBeingAttacked::set_long_range() {}

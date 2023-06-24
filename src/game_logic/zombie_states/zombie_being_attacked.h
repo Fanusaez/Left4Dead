@@ -45,6 +45,8 @@ public:
 
      void set_speed(float speed) override;
 
+     void set_long_range() override;
+
 };
 
 

@@ -55,3 +55,5 @@ void ZombieIdle::set_speed(float speed) {
 
 }
 
+void ZombieIdle::set_long_range() {}
+

@@ -47,6 +47,8 @@ public:
     bool time_to_move(float time);
 
     void set_speed(float speed) override;
+
+    void set_long_range() override;
 };
 
 

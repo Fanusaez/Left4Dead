@@ -11,6 +11,14 @@ Attacking::Attacking(Soldier* closest_soldier, std::int16_t damage, float time) 
     closest_soldier->receive_damage(damage, time); // lo ataco de una, despues vemos
 }
 
+Attacking::Attacking(Soldier* closest_soldier, std::int16_t damage, float time, bool long_range)  :
+                    start_time(time),
+                    waiting_time_to_attack(CONFIGURATION.get_zombieState_attacking_time())
+{
+    zombie_state = ATTACKING_VENOM_LONG_RANGE;
+    closest_soldier->receive_damage(damage, time); // lo ataco de una, despues vemos
+}
+
 ZombieState *Attacking::update(float time) {
    if (time_to_attack(time)) {
        return new ZombieIdle;
@@ -85,4 +93,8 @@ bool Attacking::time_to_attack(float time) {
 
 void Attacking::set_speed(float speed) {
     waiting_time_to_attack = speed;
+}
+
+void Attacking::set_long_range() {
+    zombie_state = ATTACKING_VENOM_LONG_RANGE;
 }

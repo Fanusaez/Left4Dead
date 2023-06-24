@@ -88,3 +88,5 @@ void Stunned::set_speed(float speed) {
     waiting_time_to_walk = speed;
 }
 
+void Stunned::set_long_range() {}
+

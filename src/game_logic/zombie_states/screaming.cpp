@@ -85,3 +85,5 @@ bool Screaming::time_stop_screaming(float time) {
 }
 
 void Screaming::set_speed(float speed) {}
+
+void Screaming::set_long_range() {}

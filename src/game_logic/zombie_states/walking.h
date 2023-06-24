@@ -55,6 +55,8 @@ ZombieState* scream(GameMap &map, std::int16_t zombies_to_create, float time) ov
 bool time_to_move(float time);
 
 void set_speed(float speed) override;
+
+void set_long_range() override;
 };
 
 #endif  // WALKING_H_

@@ -49,6 +49,8 @@ public:
     bool time_stop_being_stunned(float time);
 
     void set_speed(float speed) override;
+
+    void set_long_range() override;
 };
 
 

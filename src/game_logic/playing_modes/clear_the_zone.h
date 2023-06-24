@@ -21,6 +21,7 @@ private:
     std::vector<std::int16_t> witch_prob;
     std::vector<std::int16_t> jumper_prob;
     std::vector<std::int16_t> spear_prob;
+    std::vector<std::int16_t> venom_prob;
     float last_time_updated = -1;
     bool game_over = false;
     bool level_cleared = false;

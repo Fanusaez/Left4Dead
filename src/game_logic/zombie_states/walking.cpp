@@ -76,3 +76,5 @@ bool Walking::time_to_move(float time) {
 void Walking::set_speed(float speed) {
     waiting_time_to_walk = speed;
 }
+
+void Walking::set_long_range() {}

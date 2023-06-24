@@ -82,3 +82,4 @@ void Jumping::set_speed(float speed) {
     waiting_time_to_jump = speed;
 }
 
+void Jumping::set_long_range() {}
