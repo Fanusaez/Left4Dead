@@ -38,6 +38,8 @@ virtual ZombieState* chase_soldier_jumping(Chaser& chaser,
 
 virtual ZombieState* attack_soldier(Soldier* closest_soldier, std::int16_t damage, float time) = 0;
 
+virtual ZombieState* attack_soldier_long_range(Soldier* closest_soldier, std::int16_t damage, float time) = 0;
+
 virtual ZombieState* being_attacked(float time) = 0;
 
 virtual ZombieState* die(float time) = 0;
@@ -45,8 +47,6 @@ virtual ZombieState* die(float time) = 0;
 virtual ZombieState* get_stunned(float time) = 0;
 
 virtual ZombieState* scream(GameMap &map, std::int16_t zombies_to_create, float time) = 0;
-
-virtual void set_long_range() = 0;
 
 virtual void set_speed(float speed) = 0;
 };

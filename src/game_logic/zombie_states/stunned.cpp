@@ -1,5 +1,14 @@
 #include "stunned.h"
 #include "../configuration.h"
+#include "../chaser.h"
+#include "attacking_long_range.h"
+#include "zombie_idle.h"
+#include "running.h"
+#include "jumping.h"
+#include "zombie_being_attacked.h"
+#include "zombie_dead.h"
+#include "screaming.h"
+
 
 Stunned::Stunned(float time) :  start_time(time),
                                 waiting_time_to_normal(CONFIGURATION.get_zombieState_stunned_time()),
@@ -59,6 +68,11 @@ ZombieState* Stunned::attack_soldier(Soldier* closest_soldier, std::int16_t dama
     return new Attacking(closest_soldier, damage, time);
 }
 
+ZombieState* Stunned::attack_soldier_long_range(Soldier* closest_soldier, std::int16_t damage, float time) {
+    if (!time_to_walk(time)) return nullptr;
+    return new AttackingLongRange(closest_soldier, damage, time);
+}
+
 ZombieState* Stunned::being_attacked(float time) {
     return new ZombieBeingAttacked(time);
 }
@@ -88,5 +102,4 @@ void Stunned::set_speed(float speed) {
     waiting_time_to_walk = speed;
 }
 
-void Stunned::set_long_range() {}
 

@@ -1,6 +1,14 @@
 #include "screaming.h"
 #include "../map.h"
 #include "../configuration.h"
+#include "attacking_long_range.h"
+#include "zombie_idle.h"
+#include "running.h"
+#include "jumping.h"
+#include "zombie_being_attacked.h"
+#include "zombie_dead.h"
+#include "stunned.h"
+
 
 Screaming::Screaming(GameMap &map, std::int16_t zombies_to_create, float time) :
     waiting_time_to_stop_screaming(CONFIGURATION.get_zombieState_screaming_time())
@@ -27,6 +35,15 @@ ZombieState *Screaming::attack_soldier(Soldier *closest_soldier,
                                                  float time) {
     if (time_stop_screaming(time)) {
         return new Attacking(closest_soldier, damage, time);
+    }
+    return nullptr;
+}
+
+ZombieState *Screaming::attack_soldier_long_range(Soldier *closest_soldier,
+                                       std::int16_t damage,
+                                       float time) {
+    if (time_stop_screaming(time)) {
+        return new AttackingLongRange(closest_soldier, damage, time);
     }
     return nullptr;
 }
@@ -85,5 +102,3 @@ bool Screaming::time_stop_screaming(float time) {
 }
 
 void Screaming::set_speed(float speed) {}
-
-void Screaming::set_long_range() {}

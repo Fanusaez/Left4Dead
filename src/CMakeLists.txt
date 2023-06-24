@@ -46,6 +46,7 @@ if(SERVER)
 		./game_logic/grenades/grenade_state/grenade_idle.cpp
 		./game_logic/grenades/grenade_state/exploding.cpp
 		./game_logic/grenades/grenade_state/thrown_grenade.cpp
+		./game_logic/zombie_states/attacking_long_range.cpp
 		./game_logic/zombie_states/attacking.cpp
 		./game_logic/zombie_states/running.cpp
 		./game_logic/zombie_states/jumping.cpp
@@ -79,7 +80,6 @@ if(SERVER)
         ./game_logic/playing_modes/clear_the_zone.cpp
 		./game_logic/game_factory.cpp
 		./game_logic/configuration.cpp
-		./game_logic/zombies/venom/venom_attack/venom_attack.h
 		./game_logic/zombies/venom/venom_attack/venom_close_range_attack.cpp
 		./game_logic/zombies/venom/venom_attack/venom_long_range_attack.cpp
 	)

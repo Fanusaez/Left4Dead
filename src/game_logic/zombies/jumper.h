@@ -9,6 +9,7 @@
 #include "../zombie_states/zombie_idle.h"
 #include "../zombie_states/chasing_states/chase_walking.h"
 #include "../zombie_states/chasing_states/chase_running.h"
+#include "../chaser.h"
 
 
 class Jumper : public GameObject, public Zombie {

@@ -1,6 +1,17 @@
 #include <cmath>
 #include "walking.h"
+#include "../chaser.h"
 #include "../configuration.h"
+#include "attacking_long_range.h"
+#include "attacking_long_range.h"
+#include "zombie_idle.h"
+#include "running.h"
+#include "jumping.h"
+#include "zombie_being_attacked.h"
+#include "zombie_dead.h"
+#include "stunned.h"
+#include "screaming.h"
+
 
 Walking::Walking(Chaser& chaser,
                  std::int16_t x_pos_chase,
@@ -53,6 +64,11 @@ ZombieState* Walking::attack_soldier(Soldier* closest_soldier, std::int16_t dama
     return new Attacking(closest_soldier, damage, time);
 }
 
+ZombieState* Walking::attack_soldier_long_range(Soldier* closest_soldier, std::int16_t damage, float time) {
+    if (!time_to_move(time)) return nullptr;
+    return new AttackingLongRange(closest_soldier, damage, time);
+}
+
 ZombieState* Walking::being_attacked(float time) {
     return new ZombieBeingAttacked(time);
 }
@@ -76,5 +92,3 @@ bool Walking::time_to_move(float time) {
 void Walking::set_speed(float speed) {
     waiting_time_to_walk = speed;
 }
-
-void Walking::set_long_range() {}

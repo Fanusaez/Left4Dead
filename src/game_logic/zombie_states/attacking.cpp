@@ -1,6 +1,14 @@
 #include "attacking.h"
 #include "../soldier.h"
 #include "../configuration.h"
+#include "attacking_long_range.h"
+#include "zombie_idle.h"
+#include "running.h"
+#include "jumping.h"
+#include "zombie_being_attacked.h"
+#include "zombie_dead.h"
+#include "stunned.h"
+#include "screaming.h"
 
 
 Attacking::Attacking(Soldier* closest_soldier, std::int16_t damage, float time)  :
@@ -11,13 +19,6 @@ Attacking::Attacking(Soldier* closest_soldier, std::int16_t damage, float time) 
     closest_soldier->receive_damage(damage, time); // lo ataco de una, despues vemos
 }
 
-Attacking::Attacking(Soldier* closest_soldier, std::int16_t damage, float time, bool long_range)  :
-                    start_time(time),
-                    waiting_time_to_attack(CONFIGURATION.get_zombieState_attacking_time())
-{
-    zombie_state = ATTACKING_VENOM_LONG_RANGE;
-    closest_soldier->receive_damage(damage, time); // lo ataco de una, despues vemos
-}
 
 ZombieState *Attacking::update(float time) {
    if (time_to_attack(time)) {
@@ -71,6 +72,13 @@ ZombieState *Attacking::attack_soldier(Soldier* closest_soldier,
     return nullptr;
 }
 
+ZombieState* Attacking::attack_soldier_long_range(Soldier *closest_soldier, std::int16_t damage, float time) {
+    if (time_to_attack(time)) {
+       return new AttackingLongRange(closest_soldier, damage, time);
+    }
+    return nullptr;
+}
+
 ZombieState* Attacking::being_attacked(float time) {
     return new ZombieBeingAttacked(time);
 }
@@ -93,8 +101,4 @@ bool Attacking::time_to_attack(float time) {
 
 void Attacking::set_speed(float speed) {
     waiting_time_to_attack = speed;
-}
-
-void Attacking::set_long_range() {
-    zombie_state = ATTACKING_VENOM_LONG_RANGE;
 }

@@ -127,20 +127,11 @@ void Venom::attack(std::vector<Soldier*> soldiers, float time) {
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
     if (distance > distance_to_hit_long) return;
     if (distance > distance_to_hit_close) {
-        //necesita un refactor
-        if (dynamic_cast<VenomLongRange*>(_attack) == nullptr) {
-            delete _attack;
-            _attack = new VenomLongRange;
-        }
-        ZombieState* new_state = _attack -> attack(state, closest_soldier, time);
+        ZombieState* new_state = attack_long_range.attack(state, closest_soldier, time);
         change_state(new_state);
         return;
     }
-    if (dynamic_cast<VenomCloseRange*>(_attack) == nullptr) {
-        delete _attack;
-        _attack = new VenomCloseRange;
-    }
-    ZombieState* new_state = _attack -> attack(state, closest_soldier, time);
+    ZombieState* new_state = attack_close_range.attack(state, closest_soldier, time);
     change_state(new_state);
 }
 
@@ -198,12 +189,11 @@ void Venom::random_chase_state() {
 }
 
 std::vector<std::int16_t> Venom::get_pos_of_explosion_long_range() {
-    return _attack -> get_pos_explosion();
+    return attack_long_range.get_pos_explosion();
 }
 
 Venom::~Venom() {
     delete state;
-    delete _attack;
     delete chase_state;
 }
 // ************************* Metodos de testeo ************************************************8//

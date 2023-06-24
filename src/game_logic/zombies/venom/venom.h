@@ -8,6 +8,8 @@
 #include "../../zombie_states/zombie_idle.h"
 #include "../../zombie_states/chasing_states/chase_walking.h"
 #include "venom_attack/venom_close_range_attack.h"
+#include "../../zombies/venom/venom_attack/venom_long_range_attack.h"
+#include "../../chaser.h"
 
 
 class Venom : public GameObject, public Zombie {
@@ -27,7 +29,8 @@ private:
     std::vector<std::int16_t> prob_to_jump;
     ChaseState* chase_state;
     ZombieState* state = new ZombieIdle;
-    VenomAttack* _attack = new VenomCloseRange;
+    VenomCloseRange attack_close_range;
+    VenomLongRange attack_long_range;
     bool dead = false;
     std::int16_t direction = -1;
 

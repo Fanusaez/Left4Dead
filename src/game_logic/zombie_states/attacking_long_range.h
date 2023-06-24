@@ -1,19 +1,16 @@
-#ifndef RUNNING_H
-#define RUNNING_H
+#ifndef ATTACKING_CLOSE_RANGE_H_
+#define ATTACKING_CLOSE_RANGE_H_
 
-#include "zombie_idle.h"
+#include "zombie_state.h"
 
-class Running : public ZombieState {
+class AttackingLongRange : public ZombieState {
 private:
-    float waiting_time_to_run;
-    float last_time_run = -1;
+    float start_time;
+    float waiting_time_to_attack;
 
 public:
 
-    Running(Chaser& chaser,
-            std::int16_t x_pos_chase,
-            std::int16_t y_pos_chase,
-            float time);
+    AttackingLongRange(Soldier* closest_soldier, std::int16_t damage, float time);
 
     ZombieState* update(float time) override;
 
@@ -23,9 +20,9 @@ public:
                                float time) override;
 
     ZombieState* chase_soldier_running(Chaser& chaser,
-                               std::int16_t x_pos_chase,
-                               std::int16_t y_pos_chase,
-                               float time) override;
+                                       std::int16_t x_pos_chase,
+                                       std::int16_t y_pos_chase,
+                                       float time) override;
 
     ZombieState* chase_soldier_jumping(Chaser& chaser,
                                        Soldier* soldier,
@@ -46,11 +43,10 @@ public:
 
     ZombieState* scream(GameMap &map, std::int16_t zombies_to_create, float time) override;
 
-    bool time_to_move(float time);
-
     void set_speed(float speed) override;
+
+    bool time_to_attack(float time);
 
 };
 
-
-#endif  // RUNNING_H
+#endif // ATTACKING_CLOSE_RANGE_H_

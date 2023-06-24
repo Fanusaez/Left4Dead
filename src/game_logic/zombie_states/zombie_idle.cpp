@@ -1,5 +1,12 @@
 #include "zombie_idle.h"
 #include "screaming.h"
+#include "attacking_long_range.h"
+#include "running.h"
+#include "jumping.h"
+#include "zombie_being_attacked.h"
+#include "zombie_dead.h"
+#include "stunned.h"
+
 
 ZombieState *ZombieIdle::update(float time) {
     return nullptr;
@@ -35,6 +42,10 @@ ZombieState *ZombieIdle::attack_soldier(Soldier* closest_soldier, std::int16_t d
     return new Attacking(closest_soldier, damage, time);
 }
 
+ZombieState *ZombieIdle::attack_soldier_long_range(Soldier *closest_soldier, std::int16_t damage, float time) {
+    return new AttackingLongRange(closest_soldier, damage, time);
+}
+
 ZombieState *ZombieIdle::being_attacked(float time) {
     return new ZombieBeingAttacked(time);
 }
@@ -55,5 +66,4 @@ void ZombieIdle::set_speed(float speed) {
 
 }
 
-void ZombieIdle::set_long_range() {}
 

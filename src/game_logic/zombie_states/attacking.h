@@ -2,7 +2,6 @@
 #define ATTACKING_H_
 
 #include "zombie_state.h"
-#include "walking.h"
 
 class Attacking : public ZombieState {
 
@@ -13,8 +12,6 @@ private:
 public:
 
     Attacking(Soldier* closest_soldier, std::int16_t damage, float time);
-
-    Attacking(Soldier* closest_soldier, std::int16_t damage, float time, bool long_range);
 
     ZombieState* update(float time) override;
 
@@ -37,6 +34,8 @@ public:
 
     ZombieState* attack_soldier(Soldier* closest_soldier, std::int16_t damage, float time) override;
 
+    ZombieState* attack_soldier_long_range(Soldier* closest_soldier, std::int16_t damage, float time) override;
+
     ZombieState* being_attacked(float time) override;
 
     ZombieState* die(float time) override;
@@ -48,8 +47,6 @@ public:
     void set_speed(float speed) override;
 
     bool time_to_attack(float time);
-
-    void set_long_range() override;
 };
 
 

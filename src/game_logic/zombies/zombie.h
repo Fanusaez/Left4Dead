@@ -9,6 +9,7 @@
 #define CONFIGURATION Configuration::getInstance()
 class ZombieState;
 class GameObject;
+
 class Soldier;
 class Zombie {
 

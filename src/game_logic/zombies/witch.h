@@ -6,6 +6,7 @@
 #include "../zombie_states/zombie_idle.h"
 #include "../zombie_states/chasing_states/chase_walking.h"
 #include "../soldier.h"
+#include "../chaser.h"
 
 
 class GameMap;

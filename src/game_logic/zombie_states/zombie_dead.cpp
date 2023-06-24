@@ -38,6 +38,10 @@ ZombieState* ZombieDead::attack_soldier(Soldier* closest_soldier, std::int16_t d
     return nullptr;
 }
 
+ZombieState *ZombieDead::attack_soldier_long_range(Soldier *closest_soldier, std::int16_t damage, float time) {
+    return nullptr;
+}
+
 ZombieState* ZombieDead::being_attacked(float time) {
     return nullptr;
 }
@@ -55,5 +59,3 @@ ZombieState *ZombieDead::scream(GameMap &map, std::int16_t zombies_to_create, fl
 void ZombieDead::set_speed(float speed) {
 
 }
-
-void ZombieDead::set_long_range() {}
