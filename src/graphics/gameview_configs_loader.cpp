@@ -103,6 +103,15 @@ void GameviewConfigurationsLoader::setSpritesToLoad()
 	this->spritesToLoad.push_back("Spear/Idle.png");
 	this->spritesToLoad.push_back("Spear/Run.png");
 	this->spritesToLoad.push_back("Spear/Walk.png");
+	this->spritesToLoad.push_back("Venom/Attack1.png");
+	this->spritesToLoad.push_back("Venom/Attack1a.png");
+	this->spritesToLoad.push_back("Venom/Attack2.png");
+	this->spritesToLoad.push_back("Venom/Dead.png");
+	this->spritesToLoad.push_back("Venom/Hurt.png");
+	this->spritesToLoad.push_back("Venom/Idle.png");
+	this->spritesToLoad.push_back("Venom/Jump.png");
+	this->spritesToLoad.push_back("Venom/Run.png");
+	this->spritesToLoad.push_back("Venom/Walk.png");
 }
 
 void GameviewConfigurationsLoader::setMusicToLoad()

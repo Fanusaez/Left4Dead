@@ -113,6 +113,7 @@ if(CLIENT)
 			graphics/witch.cpp
 			graphics/jumper.cpp
 			graphics/lancer.cpp
+			graphics/venom.cpp
 			graphics/grenade.cpp
 			graphics/smoke.cpp
 			graphics/Animation.cpp

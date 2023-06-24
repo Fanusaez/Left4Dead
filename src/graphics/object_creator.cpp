@@ -6,6 +6,7 @@
 #include "witch.h"
 #include "jumper.h"
 #include "lancer.h"
+#include "venom.h"
 #include "grenade.h"
 #include "smoke.h"
 
@@ -36,6 +37,9 @@ std::unique_ptr<RenderableObject> ObjectCreator::create(const ZombieObjectDTO &z
 	else if (zombieDTO.zombie_type == SPEAR)
 		return std::unique_ptr<RenderableObject>(
 			new Lancer(zombieDTO.id, zombieDTO.position_x, zombieDTO.position_y));
+	else if (zombieDTO.zombie_type == VENOM)
+		return std::unique_ptr<RenderableObject>(
+			new Venom(zombieDTO.id, zombieDTO.position_x, zombieDTO.position_y));
 	else
 		return std::unique_ptr<RenderableObject>(
 			new Witch(zombieDTO.id, zombieDTO.position_x, zombieDTO.position_y));
