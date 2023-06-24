@@ -89,10 +89,10 @@ void SoldierP90::changeState(const SoldierObjectState &state)
 	} else if (this->state == SOLDIER_HURT) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Soldier_2/Hurt.png"));
 		this->sfx = nullptr;
-	} else if(this->state == THROWING_GRENADE) {
+	} else if(this->state == CALLING_AIR_STRIKE) {
 		this->animation.changeTexture(this->textureLoader.getTexture("Soldier_2/Grenade.png"));
 		this->animation.noLoop();
-		this->sfx = this->textureLoader.getChunk("Soldier_1/Grenade.mp3");
+		this->sfx = this->textureLoader.getChunk("Soldier_2/Grenade.mp3");
 		this->sfxLoops = 0;
 	} else {
 		this->animation.changeTexture(this->textureLoader.getTexture("Soldier_2/Idle.png"));

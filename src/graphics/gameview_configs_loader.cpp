@@ -129,6 +129,7 @@ void GameviewConfigurationsLoader::setChunksToLoad()
 	this->chunksToLoad.push_back("Soldier_1/Grenade.mp3");
 	this->chunksToLoad.push_back("Soldier_2/Shot_1.mp3");
 	this->chunksToLoad.push_back("Soldier_2/Recharge.mp3");
+	this->chunksToLoad.push_back("Soldier_2/Grenade.mp3");
 	this->chunksToLoad.push_back("Soldier_3/Recharge.mp3");
 	this->chunksToLoad.push_back("Soldier_3/Shot_1.mp3");
 	this->chunksToLoad.push_back("Soldier_3/Smoke.mp3");
