@@ -18,7 +18,7 @@ void Scout::update(float time) {
 
 void Scout::shoot(std::vector<GameObject *> &shooting_objects, std::uint16_t x_pos_sold, float time) {
     last_time_shot = time;
-    bullets--;
+    bullets --;
     total_bullets_shot++;
     if (shooting_objects.empty()) return;
     std::uint16_t variant_damage = damage;

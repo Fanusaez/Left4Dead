@@ -18,7 +18,7 @@ void P90::update(float time) {
 
 void P90::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold_pos, float time) {
     last_time_shot = time;
-    bullets--;
+    bullets -= burst_capacity;
     total_bullets_shot++;
     if (shooting_objects.empty()) return;
     if (bullets > 0) {

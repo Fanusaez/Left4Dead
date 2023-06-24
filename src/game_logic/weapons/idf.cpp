@@ -22,7 +22,7 @@ void Idf::update(float time) {
 
 void Idf::shoot(std::vector<GameObject*>& shooting_objects, std::uint16_t x_sold_pos, float time) {
     last_time_shot = time;
-    bullets--;
+    bullets -= burst_capacity;
     total_bullets_shot++;
     if (shooting_objects.empty()) return;
     std::int16_t x_matrix_enemy_pos = shooting_objects[0]->get_x_matrix_pos();

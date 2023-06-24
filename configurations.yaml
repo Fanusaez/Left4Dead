@@ -3,8 +3,8 @@ soldier:
   health_when_reviving: 50
   grenade_distance_short_reach: 20
   grenade_distance_long_reach: 40
-  grenade_time_change_to_long_reach: 2
-  grenade_time_explode_in_hand: 6
+  grenade_time_change_to_long_reach: 2000
+  grenade_time_explode_in_hand: 6000
   matrix_range_to_revive: 1
   times_can_be_revived: 3
 
@@ -20,7 +20,7 @@ soldierStates:
 
 weapons:
   idf:
-    mag_capacity: 50
+    mag_capacity: 1000
     burst_capacity: 20
     close_range_damage: 30
     long_range_damage: 10
@@ -28,7 +28,7 @@ weapons:
     rate_of_fire: 0.1
 
   p90:
-    mag_capacity: 30
+    mag_capacity: 300
     burst_capacity: 10
     damage: 15
     rate_of_fire: 0.1
