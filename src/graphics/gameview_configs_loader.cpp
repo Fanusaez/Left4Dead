@@ -142,6 +142,8 @@ void GameviewConfigurationsLoader::setChunksToLoad()
 	this->chunksToLoad.push_back("Witch/Scream.mp3");
 	this->chunksToLoad.push_back("Zombie/Dead.mp3");
 	this->chunksToLoad.push_back("Zombie/Hurt.mp3");
+	this->chunksToLoad.push_back("Venom/Attack1a.mp3");
+	this->chunksToLoad.push_back("Venom/Attack2.mp3");
 }
 
 void GameviewConfigurationsLoader::setFontsToLoad()

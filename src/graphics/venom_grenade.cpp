@@ -7,7 +7,11 @@ VenomGrenade::VenomGrenade(int id, int initialX, int initialY) :
 	animation(textureLoader.getTexture("Venom/Attack1a.png")),
 	playSFX(false),
 	lastChannel(-1)
-{}
+{
+	this->animation.noLoop();
+	this->sfx = this->textureLoader.getChunk("Venom/Attack1a.mp3");
+	this->playSFX = true;
+}
 
 VenomGrenade::~VenomGrenade()
 {}
