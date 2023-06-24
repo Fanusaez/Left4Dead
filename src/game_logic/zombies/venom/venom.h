@@ -64,6 +64,7 @@ public:
     bool facing_left() override;
     ZombieType get_type() override;
     std::int16_t get_health() override;
+    std::vector<std::int16_t> get_pos_of_explosion_long_range();
     ~Venom();
 
 // ************************* Metodos de testeo ************************************************8//
