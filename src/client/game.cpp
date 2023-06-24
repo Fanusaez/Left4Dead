@@ -13,12 +13,13 @@
 
 MainGame::MainGame(int id, Socket &socket) :
 	player_id(id),
-	client(std::move(socket)),
 	configs(GameviewConfigurationsLoader::getInstance()),
 	textureLoader(TextureLoader::getInstance()),
 	objects(),
 	view(this->objects),
-	rate(0.04)
+	rate(0.04),
+	eventTimestamp(0),
+	client(std::move(socket))
 {
 	this->textureLoader.load(this->view.getRenderer(), this->configs.getSpritesToLoad());
 	this->textureLoader.loadMusic(this->configs.getMusicToLoad());
@@ -164,6 +165,18 @@ bool MainGame::handleEvents()
 						}
 						break;
 					}
+					case SDLK_q: {
+						if (keyEvent.repeat == 0) {
+							this->eventTimestamp = keyEvent.timestamp;
+						}
+						break;
+					}
+					case SDLK_w: {
+						if (keyEvent.repeat == 0) {
+							this->eventTimestamp = keyEvent.timestamp;
+						}
+						break;
+					}
 					case SDLK_e: {
 						if (keyEvent.repeat == 0) {
 							this->client.revive_soldier();
@@ -213,17 +226,16 @@ bool MainGame::handleEvents()
 						break;
 					}
 					case SDLK_q: {
-						int8_t delta = 1;
+						int delta = keyEvent.timestamp - this->eventTimestamp;
 						this->client.throw_explosive_grenade(delta);
 						break;
 					}
 					case SDLK_w: {
-						int8_t delta = 10;
+						int delta = keyEvent.timestamp - this->eventTimestamp;
 						this->client.throw_smoke_grenade(delta);
 						break;
 					}
 					case SDLK_a: {
-						int8_t delta = 10;
 						this->client.call_air_strike();
 						break;
 					}

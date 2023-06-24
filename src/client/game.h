@@ -23,6 +23,7 @@ class MainGame {
 	Gameview view;
 	double rate;
 	inline static SDL2pp::SDLTTF ttf;
+	int eventTimestamp;
 
 public:
 	MainGame(int id, Socket &socket);
