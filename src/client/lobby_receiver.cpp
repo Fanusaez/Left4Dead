@@ -11,12 +11,19 @@ LobbyReceiver::LobbyReceiver(Socket *socket, std::atomic<bool> &keep_talking,
 void LobbyReceiver::run() {
     bool was_closed = false;
     while (keep_talking && was_closed == false) {
-        InstructionsDTO* instruction = lobby_deserializer.obtener_instruccion(&was_closed);
-        if (instruction->get_instruction() == START){
-            StartDTO* start_dto = dynamic_cast<StartDTO*>(instruction);
-            if (start_dto->get_could_start())
-                keep_talking = false;
+        try {
+            InstructionsDTO* instruction = lobby_deserializer.obtener_instruccion(&was_closed);
+            if (instruction->get_instruction() == START){
+                StartDTO* start_dto = dynamic_cast<StartDTO*>(instruction);
+                if (start_dto->get_could_start())
+                    keep_talking = false;
+            }
+            queue_receiver->push(instruction);
         }
-        queue_receiver->push(instruction);
+        catch (const std::runtime_error& e) {
+            keep_talking = false;
+            std::cout<<"Se desconecto el cliente"<<std::endl;
+            break;
+        }
     }
 }

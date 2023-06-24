@@ -39,10 +39,20 @@ int main(int argc, char *argv[])
 	*/
  	Lobby lobby(argv[1], argv[2]);
 	int32_t player_id = lobby.get_player_id();
-	QApplication app(argc, argv);
-	MainWindow w(&lobby);
-    w.show();
-	app.exec(); 
+ 	try {
+		QApplication app(argc, argv);
+		MainWindow w(&lobby);
+		w.show();
+		if (app.exec()) {
+				std::cout<<"EXIT"<<std::endl;
+				throw std::runtime_error("La aplicación QT finalizó de forma incorrecta");
+		} 
+	}
+	catch (const std::runtime_error& e) {
+		std::cout<<"No se asocio una partida"<<std::endl;
+		lobby.close();
+		return 0;
+	}
  	/*while (lobby.running()) {
 		std::string input;
 		std::getline(std::cin, input);
@@ -55,6 +65,7 @@ int main(int argc, char *argv[])
 			std::string map;
 			iss >> map;
 			lobby.create_scenario(map,SURVIVAL,1);
+			lobby.start();
 			lobby.soldier_type(SCOUT);
 		} else if (mode == "join") {
 			if (iss.eof()) {
@@ -64,9 +75,11 @@ int main(int argc, char *argv[])
 			int32_t code;
 			iss >> code;
 			lobby.join_scenario(code);
+			lobby.start();
 			lobby.soldier_type(IDF);
 		} else if (mode == "start") {
-			lobby.start();
+			//lobby.start();
+			break;
 		} else if (mode == "quit") {
 			lobby.close();
 			return 0;

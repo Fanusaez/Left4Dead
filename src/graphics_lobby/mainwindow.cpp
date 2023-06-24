@@ -54,7 +54,7 @@ void MainWindow::on_joinButton_clicked()
 
 void MainWindow::on_startButton_clicked()
 {
-    lobby->start();
-    this->close();
+    QApplication::exit();
+    lobby->exit_lobby();
 }
 

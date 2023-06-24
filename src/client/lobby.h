@@ -35,12 +35,15 @@ private:
 
     void get_start(InstructionsDTO* instruction_dto);
 
-    void exit_lobby();
 
 public:
+    void exit_lobby();
+    
     Lobby(char *localhost, char *puerto);
 
     bool running();
+
+    bool create_scenario(const std::string& scenario_name);
 
     bool create_scenario(const std::string& scenario_name, const GameMode& game_mode, const int8_t& game_players);
 

@@ -8,6 +8,9 @@ InstructionsDTO* LobbyDeserializer::obtener_instruccion(bool *was_closed)
 {
     char code = 0;
     socket->recvall(&code, 1, was_closed);
+    if (*was_closed){
+        throw std::runtime_error("Se cerro el socket esperando una instruccion");
+    }
     InstructionsType instruction_type = static_cast<InstructionsType>(code);
     switch (instruction_type) {
         case CREATE:

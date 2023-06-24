@@ -160,7 +160,6 @@ void GameLogic::smoke_grenade(InstructionsDTO* instruction) {
 void GameLogic::air_strake(InstructionsDTO* instruction) {
     GrenadeDTO* grenade_dto = dynamic_cast<GrenadeDTO*>(instruction);
     Soldier* soldier = playerSoldierMap[instruction->get_player_id()];
-    std::cout<<"LLamo a air_strike"<<std::endl;
     soldier->call_air_strike(timer);
 }
 
@@ -182,5 +181,5 @@ bool GameLogic::game_over() {
 }
 
 GameLogic::~GameLogic() {
-    //delete game_map;
+    delete game_map;
 }
