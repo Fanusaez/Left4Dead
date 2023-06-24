@@ -40,6 +40,8 @@ public:
 
 	void render();
 
+	void renderGameOver(int totalBullets, int deadZombies);
+
 	void lowerVolume();
 
 	void increaseVolume();

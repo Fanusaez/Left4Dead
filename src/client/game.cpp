@@ -115,7 +115,9 @@ void MainGame::doMainGameLogic(GameDTO &gameState, ObjectCreator &creator, bool 
 
 void MainGame::doGameOverLogic(GameDTO &gameState, bool &running)
 {
-	running = false;
+	GameStats stats = gameState.get_game_stats();
+	this->view.renderGameOver(stats.total_bullets, stats.total_dead_zombies);
+	running = this->handleQuitGame();
 }
 
 bool MainGame::handleEvents()
@@ -232,5 +234,15 @@ bool MainGame::handleEvents()
 				return false;
 		} // fin switch(event)
 	}	  // fin while(SDL_PollEvents)
+	return true;
+}
+
+bool MainGame::handleQuitGame()
+{
+	SDL_Event event;
+	while (SDL_PollEvent(&event) != 0) {
+		if (event.type == SDL_QUIT)
+			return false;
+	}
 	return true;
 }

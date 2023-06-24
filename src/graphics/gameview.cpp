@@ -155,6 +155,42 @@ void Gameview::renderHud(int health, int bullets, int cooldown)
 		SDL2pp::Rect(0, 2 * cdSprite.GetHeight(), cdSprite.GetWidth(), cdSprite.GetHeight()));
 }
 
+void Gameview::renderGameOver(int totalBullets, int deadZombies)
+{
+	this->mixer.HaltChannel(-1);
+	this->renderer.Clear();
+	this->scene->render(this->renderer);
+
+	std::string text = "GAME OVER";
+	SDL2pp::Texture gameoverSprite(
+		this->renderer,
+		this->hudFont->RenderText_Blended(text, SDL_Color{240, 0, 0, 255}));
+	this->renderer.Copy(
+		gameoverSprite,
+		SDL2pp::NullOpt,
+		SDL2pp::Rect(0, 0, gameoverSprite.GetWidth(), gameoverSprite.GetHeight()));
+
+	text = "Bullets shot:     " + std::to_string(totalBullets);
+	SDL2pp::Texture bulletsSprite(
+		this->renderer,
+		this->hudFont->RenderText_Blended(text, SDL_Color{240, 0, 0, 255}));
+	this->renderer.Copy(
+		bulletsSprite,
+		SDL2pp::NullOpt,
+		SDL2pp::Rect(0, bulletsSprite.GetHeight(), bulletsSprite.GetWidth(), bulletsSprite.GetHeight()));
+
+	text = "Zombies downed:   " + std::to_string(deadZombies);
+	SDL2pp::Texture deadSprite(
+		this->renderer,
+		this->hudFont->RenderText_Blended(text, SDL_Color{240, 0, 0, 255}));
+	this->renderer.Copy(
+		deadSprite,
+		SDL2pp::NullOpt,
+		SDL2pp::Rect(0, 2 * deadSprite.GetHeight(), deadSprite.GetWidth(), deadSprite.GetHeight()));
+
+	this->renderer.Present();
+}
+
 SDL2pp::Renderer &Gameview::getRenderer()
 {
 	return this->renderer;

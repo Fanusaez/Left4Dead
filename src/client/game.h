@@ -34,6 +34,8 @@ public:
 private:
 	bool handleEvents();
 
+	bool handleQuitGame();
+
 	void doMainGameLogic(GameDTO &gameState, ObjectCreator &creator, bool &running, bool &end_game);
 
 	void doGameOverLogic(GameDTO &gameState, bool &running);
