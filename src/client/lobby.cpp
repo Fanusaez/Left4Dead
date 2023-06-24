@@ -26,10 +26,6 @@ bool Lobby::create_scenario(const std::string& scenario_name, const GameMode& ga
     return (queue_sender.try_push(lobby_serializer.serialize_create_scenario(scenario_name, game_mode, game_players)));
 }
 
-bool Lobby::create_scenario(const std::string& scenario_name){
-    return (queue_sender.try_push(lobby_serializer.serialize_create_scenario(scenario_name)));
-}
-
 bool Lobby::join_scenario(const int32_t& scenario_code) {
     return (queue_sender.try_push(lobby_serializer.serialize_join_scenario(scenario_code)));
 }

@@ -43,8 +43,6 @@ public:
 
     bool running();
 
-    bool create_scenario(const std::string& scenario_name);
-
     bool create_scenario(const std::string& scenario_name, const GameMode& game_mode, const int8_t& game_players);
 
     bool join_scenario(const int32_t& scenario_code);
