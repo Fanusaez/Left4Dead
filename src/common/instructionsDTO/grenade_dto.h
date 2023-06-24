@@ -7,14 +7,14 @@
 
 class GrenadeDTO : public InstructionsDTO {
 private:
-    uint8_t time;
+    int32_t time;
 
     GrenadeType grenade_type;
 
 public:
-    explicit GrenadeDTO(int32_t& player_id, uint8_t time, GrenadeType grenade_type); 
+    explicit GrenadeDTO(int32_t& player_id, int32_t time, GrenadeType grenade_type); 
     
-    uint8_t get_time();
+    int32_t get_time();
 
     GrenadeType get_grenade_type();
 };

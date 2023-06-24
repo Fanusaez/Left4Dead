@@ -36,9 +36,9 @@ public:
 
     bool shoot();
 
-    bool throw_explosive_grenade(const int8_t& time);
+    bool throw_explosive_grenade(const int32_t& time);
 
-    bool throw_smoke_grenade(const int8_t& time);
+    bool throw_smoke_grenade(const int32_t& time);
 
     bool call_air_strike();
 

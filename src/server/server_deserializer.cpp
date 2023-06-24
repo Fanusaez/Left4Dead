@@ -95,15 +95,17 @@ InstructionsDTO* ServerDeserializer::deserialize_shooting(bool *was_closed, int3
 }
 
 GrenadeDTO* ServerDeserializer::deserialize_grenede(bool *was_closed, int32_t& player_id) {
-    int8_t time;
-    socket->recvall(&time, 1, was_closed);
+    int32_t time;
+    socket->recvall(&time, sizeof(int32_t), was_closed);
+    time = ntohl(time);
     GrenadeDTO* instructionDTO = new GrenadeDTO(player_id, time, EXPLOSIVE_GRENADE);
     return instructionDTO;
 }
 
 GrenadeDTO* ServerDeserializer::deserialize_smoke_grenade(bool *was_closed, int32_t& player_id) {
-    int8_t time;
-    socket->recvall(&time, 1, was_closed);
+    int32_t time;
+    socket->recvall(&time, sizeof(int32_t), was_closed);
+    time = ntohl(time);
     GrenadeDTO* instructionDTO = new GrenadeDTO(player_id, time, SMOKE_GRENADE);
     return instructionDTO;
 }
