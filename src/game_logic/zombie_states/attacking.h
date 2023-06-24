@@ -14,6 +14,8 @@ public:
 
     Attacking(Soldier* closest_soldier, std::int16_t damage, float time);
 
+    Attacking(Soldier* closest_soldier, std::int16_t damage, float time, bool long_range);
+
     ZombieState* update(float time) override;
 
     ZombieState* chase_soldier(Chaser& chaser,
@@ -47,6 +49,7 @@ public:
 
     bool time_to_attack(float time);
 
+    void set_long_range() override;
 };
 
 

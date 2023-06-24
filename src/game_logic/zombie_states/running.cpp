@@ -81,3 +81,5 @@ bool Running::time_to_move(float time) {
 void Running::set_speed(float speed) {
      waiting_time_to_run = speed;
 }
+
+void Running::set_long_range() {}

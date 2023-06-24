@@ -55,3 +55,5 @@ ZombieState *ZombieDead::scream(GameMap &map, std::int16_t zombies_to_create, fl
 void ZombieDead::set_speed(float speed) {
 
 }
+
+void ZombieDead::set_long_range() {}
