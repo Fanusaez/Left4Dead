@@ -197,6 +197,10 @@ void Venom::random_chase_state() {
     }
 }
 
+std::vector<std::int16_t> Venom::get_pos_of_explosion_long_range() {
+    return _attack -> get_pos_explosion();
+}
+
 Venom::~Venom() {
     delete state;
     delete _attack;

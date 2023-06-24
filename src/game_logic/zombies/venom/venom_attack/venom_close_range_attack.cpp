@@ -11,3 +11,7 @@ ZombieState* VenomCloseRange::attack(ZombieState *state, Soldier* soldier_to_att
 bool VenomCloseRange::are_you_long_range_attack() {
     return false;
 }
+
+std::vector<std::int16_t> VenomCloseRange::get_pos_explosion() {
+    return {-1, -1};
+}
