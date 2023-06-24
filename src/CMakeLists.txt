@@ -148,6 +148,7 @@ if(CLIENT)
 
 	add_executable(l4dclient
 		main.cpp
+			./client/game.cpp
 		./client/client_deserializer.cpp
 		./client/client_serializer.cpp
 		./client/client_sender.cpp
