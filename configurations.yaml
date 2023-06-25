@@ -1,5 +1,5 @@
 soldier:
-  health: 10000
+  health: 100
   health_when_reviving: 50
   grenade_distance_short_reach: 20
   grenade_distance_long_reach: 40
@@ -137,7 +137,7 @@ survival:
   damage_power_up: 5
   zombies_probability_respawn:
     infected: [ 0, 30 ]
-    witch: [ 30, 50 ]
+    witch: [ 40, 50 ]
     jumper: [ 50, 60 ]
     spear: [ 60, 80 ]
     venom: [ 80, 100 ]
