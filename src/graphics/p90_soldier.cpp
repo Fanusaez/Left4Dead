@@ -1,14 +1,17 @@
 #include "p90_soldier.h"
 
-SoldierP90::SoldierP90(int id, int initialX, int initialY, int health, int bullets, int cooldown) :
-	Playable(id, initialX, initialY, health, bullets, cooldown),
+SoldierP90::SoldierP90(const SoldierObjectDTO &soldierDTO) :
+	Playable(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
+		 soldierDTO.health, soldierDTO.bullets),
 	textureLoader(TextureLoader::getInstance()),
 	animation(textureLoader.getTexture("Soldier_2/Idle.png")),
 	facingLeft(false),
 	state(IDLE_SOLDIER),
 	playSFX(false),
 	lastChannel(-1)
-{}
+{
+	this->updateAirStrikeCd(soldierDTO.time_air_strike);
+}
 
 SoldierP90::~SoldierP90()
 {}
@@ -23,7 +26,7 @@ void SoldierP90::updateState(const SoldierObjectDTO &soldierDTO)
 	this->setPositionY(soldierDTO.position_y);
 	this->updateHealth(soldierDTO.health);
 	this->updateAmmo(soldierDTO.bullets);
-	this->updateCooldown(soldierDTO.time_air_strike);
+	this->updateAirStrikeCd(soldierDTO.time_air_strike);
 	this->changeState(soldierDTO.state);
 }
 

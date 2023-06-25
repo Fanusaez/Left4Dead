@@ -2,21 +2,29 @@
 #define GRAPHICS_PLAYABLE_H
 
 #include "renderable_object.h"
+#include <list>
+#include <utility>
+#include <string>
 
 class Playable : public RenderableObject {
 	int health_;
 
 	int ammo_;
 
-	int cd;
+	int explosiveCd;
+
+	int smokeCd;
+
+	int airStrikeCd;
+
 public:
-	Playable(int id, int initialX, int initialY, int health, int bullets, int cooldown);
+	Playable(int id, int initialX, int initialY, int health, int bullets);
 
 	int getHealth() const;
 
 	int getAmmo() const;
 
-	int getCooldown() const;
+	std::list<std::pair<std::string, int>> getCooldowns() const;
 
 	virtual bool isPlayable() const override;
 
@@ -27,7 +35,11 @@ protected:
 
 	void updateAmmo(int ammo);
 
-	void updateCooldown(int cooldown);
+	void updateExplosiveCd(int cooldown);
+
+	void updateSmokeCd(int cooldown);
+
+	void updateAirStrikeCd(int cooldown);
 };
 
 #endif //GRAPHICS_PLAYABLE_H

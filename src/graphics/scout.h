@@ -18,7 +18,7 @@ class Scout : public Playable {
 	int lastChannel;
 
 public:
-	Scout(int id, int initialX, int initialY, int health, int bullets, int cooldown);
+	Scout(const SoldierObjectDTO &soldierDTO);
 
 	virtual ~Scout();
 

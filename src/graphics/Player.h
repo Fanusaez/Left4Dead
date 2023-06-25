@@ -20,7 +20,7 @@ class Player : public Playable {
 	int lastChannel;
 
 public:
-	Player(int id, int initialX, int initialY, int health, int bullets, int cooldown);
+	Player(const SoldierObjectDTO &soldierDTO);
 
 	virtual ~Player();
 

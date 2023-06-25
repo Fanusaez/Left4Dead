@@ -62,7 +62,7 @@ private:
 
 	void renderFixedCamera();
 
-	void renderHud(int health, int bullets, int cooldown);
+	void renderHud(int health, int bullets, std::list<std::pair<std::string, int>> cds);
 };
 
 #endif //GAMEVIEW_H

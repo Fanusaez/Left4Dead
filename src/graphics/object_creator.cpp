@@ -13,18 +13,16 @@
 
 std::unique_ptr<RenderableObject> ObjectCreator::create(const SoldierObjectDTO &soldierDTO) const
 {
-	if (soldierDTO.soldier_type == SCOUT)
+	if (soldierDTO.soldier_type == SCOUT) {
 		return std::unique_ptr<RenderableObject>(
-			new Scout(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
-				  soldierDTO.health, soldierDTO.bullets, soldierDTO.time_smoke_grenade));
-	else if (soldierDTO.soldier_type == P90)
+			new Scout(soldierDTO));
+
+	} else if (soldierDTO.soldier_type == P90)
 		return std::unique_ptr<RenderableObject>(
-			new SoldierP90(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
-				       soldierDTO.health, soldierDTO.bullets, soldierDTO.time_air_strike));
+			new SoldierP90(soldierDTO));
 	else
 		return std::unique_ptr<RenderableObject>(
-			new Player(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
-				   soldierDTO.health, soldierDTO.bullets, soldierDTO.time_explosive_grenade));
+			new Player(soldierDTO));
 }
 
 std::unique_ptr<RenderableObject> ObjectCreator::create(const ZombieObjectDTO &zombieDTO) const

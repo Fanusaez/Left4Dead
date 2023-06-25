@@ -18,7 +18,7 @@ class SoldierP90 : public Playable {
 	int lastChannel;
 
 public:
-	SoldierP90(int id, int initialX, int initialY, int health, int bullets, int cooldown);
+	SoldierP90(const SoldierObjectDTO &soldierDTO);
 
 	virtual ~SoldierP90();
 

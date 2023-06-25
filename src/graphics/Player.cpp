@@ -1,15 +1,19 @@
 #include "Player.h"
 #include <stdexcept>
 
-Player::Player(int id, int initialX, int initialY, int health, int bullets, int cooldown) :
-	Playable(id, initialX, initialY, health, bullets, cooldown),
+Player::Player(const SoldierObjectDTO &soldierDTO) :
+	Playable(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
+		 soldierDTO.health, soldierDTO.bullets),
 	textureLoader(TextureLoader::getInstance()),
 	an(textureLoader.getTexture("Soldier_1/Idle.png")),
 	facingLeft(false),
 	state(IDLE_SOLDIER),
 	playSFX(false),
 	lastChannel(-1)
-{}
+{
+	this->updateExplosiveCd(soldierDTO.time_explosive_grenade);
+	this->updateSmokeCd(soldierDTO.time_smoke_grenade);
+}
 
 Player::~Player() = default;
 
@@ -28,7 +32,8 @@ void Player::updateState(const SoldierObjectDTO &soldierDTO)
 	this->setPositionY(soldierDTO.position_y);
 	this->updateHealth(soldierDTO.health);
 	this->updateAmmo(soldierDTO.bullets);
-	this->updateCooldown(soldierDTO.time_explosive_grenade);
+	this->updateExplosiveCd(soldierDTO.time_explosive_grenade);
+	this->updateSmokeCd(soldierDTO.time_smoke_grenade);
 	this->changeState(soldierDTO.state);
 }
 

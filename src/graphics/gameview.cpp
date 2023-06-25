@@ -105,8 +105,8 @@ void Gameview::renderRelativeToMainObject()
 
 	int health = static_cast<Playable &>(mainObject).getHealth();
 	int bullets = static_cast<Playable &>(mainObject).getAmmo();
-	int cooldown = static_cast<Playable &>(mainObject).getCooldown();
-	this->renderHud(health, bullets, cooldown);
+	std::list<std::pair<std::string, int>> cds = static_cast<Playable &>(mainObject).getCooldowns();
+	this->renderHud(health, bullets, cds);
 	this->renderer.Present();
 }
 
@@ -125,7 +125,7 @@ void Gameview::renderFixedCamera()
 	this->renderer.Present();
 }
 
-void Gameview::renderHud(int health, int bullets, int cooldown)
+void Gameview::renderHud(int health, int bullets, std::list<std::pair<std::string, int>> cds)
 {
 	std::string text = "Health   : " + std::to_string(health);
 	SDL2pp::Texture healthSprite(
@@ -145,14 +145,19 @@ void Gameview::renderHud(int health, int bullets, int cooldown)
 		SDL2pp::NullOpt,
 		SDL2pp::Rect(0, ammoSprite.GetHeight(), ammoSprite.GetWidth(), ammoSprite.GetHeight()));
 
-	text = "Cooldown : " + std::to_string(cooldown);
-	SDL2pp::Texture cdSprite(
-		this->renderer,
-		this->hudFont->RenderText_Blended(text, SDL_Color{240, 0, 0, 255}));
-	this->renderer.Copy(
-		cdSprite,
-		SDL2pp::NullOpt,
-		SDL2pp::Rect(0, 2 * cdSprite.GetHeight(), cdSprite.GetWidth(), cdSprite.GetHeight()));
+	int i = 0;
+	for (auto &cd: cds) {
+		text = cd.first + std::to_string(cd.second);
+		SDL2pp::Texture cdSprite(
+			this->renderer,
+			this->hudFont->RenderText_Blended(text, SDL_Color{240, 0, 0, 255}));
+		this->renderer.Copy(
+			cdSprite,
+			SDL2pp::NullOpt,
+			SDL2pp::Rect(0, (2 + i) * cdSprite.GetHeight(), cdSprite.GetWidth(), cdSprite.GetHeight()));
+
+		i++;
+	}
 }
 
 void Gameview::renderGameOver(int totalBullets, int deadZombies)
