@@ -23,7 +23,7 @@ void SoldierP90::updateState(const SoldierObjectDTO &soldierDTO)
 	this->setPositionY(soldierDTO.position_y);
 	this->updateHealth(soldierDTO.health);
 	this->updateAmmo(soldierDTO.bullets);
-	this->updateCooldown(soldierDTO.time_explosive_grenade);
+	this->updateCooldown(soldierDTO.time_air_strike);
 	this->changeState(soldierDTO.state);
 }
 
