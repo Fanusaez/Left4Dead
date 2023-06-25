@@ -29,6 +29,9 @@ private slots:
 
     void on_exitButton_clicked();
 
+protected:
+     void closeEvent(QCloseEvent *event);
+
 private:
     Ui::MainWindow *ui;
     Lobby* lobby;

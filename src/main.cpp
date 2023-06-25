@@ -31,7 +31,6 @@ int main(int argc, char *argv[])
 				throw std::runtime_error("La aplicación QT finalizó de forma incorrecta");
 		} 
 	} catch (const std::runtime_error& e) {
-		std::cout<<"No se asocio una partida"<<std::endl;
 		lobby.close();
 		return 0;
 	}

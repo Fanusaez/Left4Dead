@@ -43,6 +43,10 @@ MainWindow::~MainWindow()
     if (create_pop_up != nullptr) delete create_pop_up;
 }
 
+void MainWindow::closeEvent(QCloseEvent *e) {
+    QApplication::exit(1);
+}
+
 void MainWindow::on_createButton_clicked() {
     create_pop_up = new createPopUp(lobby);
     create_pop_up->show();
@@ -60,5 +64,5 @@ void MainWindow::on_startButton_clicked() {
 }
 
 void MainWindow::on_exitButton_clicked() {
-    QApplication::exit();
+    QApplication::exit(1);
 }
