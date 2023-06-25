@@ -13,7 +13,7 @@
 Stunned::Stunned(float time) :  start_time(time),
                                 waiting_time_to_normal(CONFIGURATION.get_zombieState_stunned_time()),
                                 waiting_time_to_walk(CONFIGURATION.get_zombieState_walking_time()){
-                                    zombie_state = WALKING;
+                                zombie_state = WALKING;
                                 }
 
 ZombieState *Stunned::update(float time) {
@@ -48,14 +48,12 @@ ZombieState* Stunned::chase_soldier_running(Chaser& chaser,
 }
 
 ZombieState* Stunned::chase_soldier_jumping(Chaser& chaser,
-                                            Soldier* soldier,
-                                            std::int16_t damage,
                                             std::int16_t x_pos_chase,
                                             std::int16_t y_pos_chase,
                                             float time) {
 
     if (time_to_walk(time) && time_stop_being_stunned(time)) {
-        return new Jumping(chaser, soldier, damage, x_pos_chase, y_pos_chase, time);
+        return new Jumping(chaser, x_pos_chase, y_pos_chase, time);
     } else if (time_to_walk(time)) {
         last_time_moved = time;
         chaser.chase(x_pos_chase, y_pos_chase);

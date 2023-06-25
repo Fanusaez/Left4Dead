@@ -52,6 +52,8 @@ private:
     float grenadeState_time_exploding;
     float grenadeState_time_thrown_grenade;
 
+    std::int16_t zombies_sight_distance_after_hit;
+
     std::int16_t infected_health;
     std::int16_t infected_damage;
     std::int16_t infected_distance_to_hit;
@@ -63,7 +65,9 @@ private:
 
     std::int16_t jumper_health;
     std::int16_t jumper_damage;
+    std::int16_t jumper_damage_by_jump;
     std::int16_t jumper_distance_to_hit;
+    std::int16_t jumper_distance_to_hit_by_jump;
     std::int16_t jumper_sight_distance;
     std::vector<std::int16_t> jumper_prob_walk;
     std::vector<std::int16_t> jumper_prob_run;
@@ -193,6 +197,8 @@ public:
     float get_grenadeState_time_exploding();
     float get_grenadeState_time_thrown_grenade();
 
+    std::int16_t get_zombie_sight_distance_after_hit();
+
     std::int16_t get_infected_health();
     std::int16_t get_infected_damage();
     std::int16_t get_infected_distance_to_hit();
@@ -203,7 +209,9 @@ public:
 
     std::int16_t get_jumper_health();
     std::int16_t get_jumper_damage();
+    std::int16_t get_jumper_damage_by_jump();
     std::int16_t get_jumper_distance_to_hit();
+    std::int16_t get_jumper_distance_to_hit_by_jump();
     std::int16_t get_jumper_sight_distance();
     std::vector<std::int16_t> get_jumper_prob_to_walk();
     std::vector<std::int16_t> get_jumper_prob_to_run();

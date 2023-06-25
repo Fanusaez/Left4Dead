@@ -4,8 +4,7 @@
 #include "../soldier.h"
 #include "../configuration.h"
 #include "../zombie_states/chasing_states/chase_jumping.h"
-
-#define DISTANCE_TO_JUMP 2
+#include "../zombie_states/jumping.h"
 
 
 Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
@@ -17,8 +16,11 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         chaser(this, map, x_pos, y_pos),
         health(CONFIGURATION.get_jumper_health()),
         damage_attack(CONFIGURATION.get_jumper_damage()),
+        damage_attack_by_jump(CONFIGURATION.get_jumper_damage_by_jump()),
         distance_to_hit(CONFIGURATION.get_jumper_distance_to_hit()),
+        distance_to_hit_by_jump(CONFIGURATION.get_jumper_distance_to_hit_by_jump()),
         sight_distance(CONFIGURATION.get_jumper_sight_distance()),
+        sight_distance_after_being_hit(CONFIGURATION.get_zombie_sight_distance_after_hit()),
         prob_to_walk(CONFIGURATION.get_jumper_prob_to_walk()),
         prob_to_run(CONFIGURATION.get_jumper_prob_to_run()),
         prob_to_jump(CONFIGURATION.get_jumper_prob_to_jump()) {
@@ -34,14 +36,17 @@ Jumper::Jumper(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, 
         chaser(this, map, x_pos, y_pos),
         health(CONFIGURATION.get_jumper_health()),
         damage_attack(CONFIGURATION.get_jumper_damage()),
+        damage_attack_by_jump(CONFIGURATION.get_jumper_damage_by_jump()),
         distance_to_hit(CONFIGURATION.get_jumper_distance_to_hit()),
+        distance_to_hit_by_jump(CONFIGURATION.get_jumper_distance_to_hit_by_jump()),
         sight_distance(CONFIGURATION.get_jumper_sight_distance()),
+        sight_distance_after_being_hit(CONFIGURATION.get_zombie_sight_distance_after_hit()),
         prob_to_walk(CONFIGURATION.get_jumper_prob_to_walk()),
         prob_to_run(CONFIGURATION.get_jumper_prob_to_run()),
         prob_to_jump(CONFIGURATION.get_jumper_prob_to_jump()){
     random_chase_state();
     health += extra_health;
-    health+= extra_damage;
+    damage_attack += extra_damage;
 }
 
 void Jumper::update(std::vector<Soldier*> soldiers, float time) {
@@ -52,7 +57,7 @@ void Jumper::update(std::vector<Soldier*> soldiers, float time) {
 }
 
 void Jumper::receive_damage(std::uint16_t damage, float time) {
-    sight_distance = 100; // podria hacer que el estado idle lo modifique
+    sight_distance = sight_distance_after_being_hit;
     health -= damage;
     if (health <= 0) {
         die(time);
@@ -83,6 +88,9 @@ void Jumper::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
     std::int16_t y_sold_pos = closest_soldier->get_y_pos();
     ZombieState* new_state = chase_state->chase(state, chaser, x_sold_pos, y_sold_pos, time);
     change_state(new_state);
+    if (chase_state->jumping()) {
+        check_damage_by_jump(closest_soldier, time);
+    }
 }
 
 Soldier* Jumper::get_closest_soldier(std::vector<Soldier*> soldiers) {
@@ -126,20 +134,9 @@ void Jumper::attack(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
     if (!closest_soldier) return;
     std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > DISTANCE_TO_JUMP) return;
-
-    if (distance == DISTANCE_TO_JUMP) {
-        ZombieState* new_state = state->chase_soldier_jumping(chaser,
-                                                              closest_soldier,
-                                                              damage_attack,
-                                                              closest_soldier->get_x_pos(),
-                                                              closest_soldier->get_y_pos(),
-                                                              time);
-        change_state(new_state);
-    } else {
-        ZombieState *new_state = state->attack_soldier(closest_soldier, damage_attack, time);
-        change_state(new_state);
-    }
+    if (distance > distance_to_hit) return;
+    ZombieState *new_state = state->attack_soldier(closest_soldier, damage_attack, time);
+    change_state(new_state);
 }
 
 void Jumper::die(float time) {
@@ -192,6 +189,15 @@ void Jumper::random_chase_state() {
         chase_state = new ChaseRunning;
     } else {
         chase_state = new ChaseJumping;
+    }
+}
+
+void Jumper::check_damage_by_jump(Soldier *soldier, float time) {
+    Jumping* jumping = dynamic_cast<Jumping*>(state);
+    if (!jumping) return;
+    std::int16_t distance_to_soldier = get_distance_to_soldier(soldier);
+    if (distance_to_soldier <= distance_to_hit) {
+        soldier->receive_damage(damage_attack_by_jump, time);
     }
 }
 

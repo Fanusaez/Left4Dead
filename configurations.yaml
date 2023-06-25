@@ -1,5 +1,5 @@
 soldier:
-  health: 10000
+  health: 100
   health_when_reviving: 50
   grenade_distance_short_reach: 20
   grenade_distance_long_reach: 40
@@ -10,7 +10,7 @@ soldier:
 
 soldierStates:
   time_being_attacked: 0.1
-  time_calling_air_strike: 1
+  time_calling_air_strike: 2.5
   time_permanent_dead: 10
   time_moving: 0.1
   time_reloading: 0.5
@@ -52,6 +52,9 @@ grenadeStates:
   time_exploding: 0.4
   time_thrown_grenade: 1
 
+generalToAllZombies:
+  sight_distance_after_being_hit: 100
+
 infected:
   health: 100
   damage: 10
@@ -65,11 +68,13 @@ infected:
 jumper:
   health: 100
   damage: 10
+  damage_by_jump: 30
   distance_to_hit: 1
+  distance_to_hit_by_jump: 1
   sight_distance: 30
-  probability_walk: [ 0, 40 ]
-  probability_run: [ 40, 100 ]
-  probability_jump: [ 0, 0 ]
+  probability_walk: [ 0, 10 ]
+  probability_run: [ 10, 50 ]
+  probability_jump: [ 50, 100 ]
 
 witch:
   health: 200
@@ -104,7 +109,7 @@ venom:
 
 zombieStates:
   time_attacking: 0.6
-  time_jumping: 0.2
+  time_jumping: 0
   time_running: 0.01
   time_screaming: 1.2
   time_stunned: 10
@@ -115,26 +120,26 @@ mapLogic:
   matrix_movements_per_cell: 2
 
 clearTheZone:
-  time_respawn_zombies: 5
-  total_quantity_zombies: 10
+  time_respawn_zombies: 8
+  total_quantity_zombies: 50
   zombies_probability_respawn:
-    infected: [ 0, 0 ]
-    witch: [ 0, 0 ]
-    jumper: [ 0, 0 ]
-    spear: [ 0, 0 ]
-    venom: [ 0, 100 ]
+    infected: [ 0, 30 ]
+    witch: [ 30, 50 ]
+    jumper: [ 50, 60 ]
+    spear: [ 60, 80 ]
+    venom: [ 80, 100 ]
 
 survival:
-  time_respawn_zombies: 50
-  time_zombies_getting_stronger: 10
+  time_respawn_zombies: 8
+  time_zombies_getting_stronger: 15
   health_power_up: 10
   damage_power_up: 5
   zombies_probability_respawn:
-    infected: [0, 40]
-    witch: [40, 50]
-    jumper: [50, 70]
-    spear: [70, 100]
-    venom: [0, 0]
+    infected: [ 0, 30 ]
+    witch: [ 30, 50 ]
+    jumper: [ 50, 60 ]
+    spear: [ 60, 80 ]
+    venom: [ 80, 100 ]
 
 gameFactory:
   zombies_probability_respawn:
@@ -151,4 +156,4 @@ airStrike:
 
 airStrikeStates:
   time_exploding: 0.4
-  time_incoming: 1
+  time_incoming: 3

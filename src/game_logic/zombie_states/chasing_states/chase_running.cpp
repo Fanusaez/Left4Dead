@@ -4,3 +4,7 @@ ZombieState *ChaseRunning::chase(ZombieState *state, Chaser &chaser, std::int16_
                                  float time) {
     return state -> chase_soldier_running(chaser, x_pos_chase, y_pos_chase, time);
 }
+
+bool ChaseRunning::jumping() {
+    return false;
+}

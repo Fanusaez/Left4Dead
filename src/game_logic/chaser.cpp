@@ -60,15 +60,15 @@ void Chaser::move_down(bool &same_place) {
     std::int16_t y_matrix_walker = zombie->get_y_matrix_pos();
     std::int16_t y_new_pos = INVALID_POSITION;
 
-    std::int16_t y_new = y_pos + zombie_speed;
+    std::int16_t y_new = y_pos + zombie_speed_y;
     if ((y_new % movements_per_cell) != 0) {
-        y_pos += zombie_speed;
+        y_pos += zombie_speed_y;
         same_place = false;
         return;
     }
     map.move_object_down(x_matrix_walker, y_matrix_walker, y_new_pos);
     if (y_new_pos != INVALID_POSITION) {
-        y_pos += zombie_speed;
+        y_pos += zombie_speed_y;
         same_place = false;
     }
 }
@@ -79,14 +79,14 @@ void Chaser::move_up(bool &same_place) {
     std::int16_t y_new_pos = INVALID_POSITION;
 
     if ((y_pos % movements_per_cell) != 0) {
-        y_pos -= zombie_speed;
+        y_pos -= zombie_speed_y;
         same_place = false;
         return;
     }
     map.move_object_up(x_matrix_walker, y_matrix_walker, y_new_pos);
     if (y_new_pos != INVALID_POSITION) {
         same_place = false;
-        y_pos -= zombie_speed;
+        y_pos -= zombie_speed_y;
     }
 }
 
@@ -95,16 +95,16 @@ void Chaser::move_right(bool &same_place) {
     std::int16_t y_matrix_walker = zombie->get_y_matrix_pos();
     std::int16_t x_new_pos = INVALID_POSITION;
 
-    std::int16_t x_new = x_pos + zombie_speed;
+    std::int16_t x_new = x_pos + zombie_speed_x;
     if ((x_new % movements_per_cell) != 0) {
-        x_pos += zombie_speed;
+        x_pos += zombie_speed_x;
         same_place = false;
         return;
     }
     map.move_object_right(x_matrix_walker, y_matrix_walker, x_new_pos);
     if (x_new_pos != INVALID_POSITION) {
         same_place = false;
-        x_pos += zombie_speed;
+        x_pos += zombie_speed_x;
     }
 }
 
@@ -114,15 +114,19 @@ void Chaser::move_left(bool &same_place) {
     std::int16_t x_new_pos = INVALID_POSITION;
 
     if ((x_pos % movements_per_cell) != 0) {
-        x_pos -= zombie_speed;
+        x_pos -= zombie_speed_x;
         same_place = false;
         return;
     }
     map.move_object_left(x_matrix_walker, y_matrix_walker, x_new_pos);
     if (x_new_pos != INVALID_POSITION) {
         same_place = false;
-        x_pos -= zombie_speed;
+        x_pos -= zombie_speed_x;
     }
+}
+
+void Chaser::set_speed(std::int16_t speed) {
+    zombie_speed_x = speed;
 }
 
 bool Chaser::too_close_to_move(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {

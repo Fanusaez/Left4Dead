@@ -14,6 +14,8 @@ public:
                        std::int16_t x_pos_chase,
                        std::int16_t y_pos_chase,
                        float time) override;
+
+    bool jumping() override;
 };
 
 

@@ -43,6 +43,7 @@ Configuration::Configuration(const YAML::Node& node) :
                             explosiveGrenade_radius_range(node["explosiveGrenade"]["radius_range"].as<std::int16_t>()),
                             smokeGrenade_time_to_reThrow(node["smokeGrenade"]["time_to_reThrow_grenade"].as<std::int16_t>()),
                             smokeGrenade_radius_range(node["smokeGrenade"]["radius_range"].as<std::int16_t>()),
+                            zombies_sight_distance_after_hit(node["generalToAllZombies"]["sight_distance_after_being_hit"].as<std::int16_t>()),
                             grenadeState_time_exploding(node["grenadeStates"]["time_exploding"].as<float>()),
                             grenadeState_time_thrown_grenade(node["grenadeStates"]["time_thrown_grenade"].as<float>()),
                             infected_health(node["infected"]["health"].as<std::int16_t>()),
@@ -54,7 +55,9 @@ Configuration::Configuration(const YAML::Node& node) :
                             infected_prob_jump(node["infected"]["probability_jump"].as<std::vector<std::int16_t>>()),
                             jumper_health(node["jumper"]["health"].as<std::int16_t>()),
                             jumper_damage(node["jumper"]["damage"].as<std::int16_t>()),
+                            jumper_damage_by_jump(node["jumper"]["damage_by_jump"].as<std::int16_t>()),
                             jumper_distance_to_hit(node["jumper"]["distance_to_hit"].as<std::int16_t>()),
+                            jumper_distance_to_hit_by_jump(node["jumper"]["distance_to_hit_by_jump"].as<std::int16_t>()),
                             jumper_sight_distance(node["jumper"]["sight_distance"].as<std::int16_t>()),
                             jumper_prob_walk(node["jumper"]["probability_walk"].as<std::vector<std::int16_t>>()),
                             jumper_prob_run(node["jumper"]["probability_run"].as<std::vector<std::int16_t>>()),
@@ -267,6 +270,10 @@ float Configuration::get_grenadeState_time_thrown_grenade() {
     return grenadeState_time_thrown_grenade;
 }
 
+std::int16_t Configuration::get_zombie_sight_distance_after_hit() {
+    return zombies_sight_distance_after_hit;
+}
+
 std::int16_t Configuration::get_infected_health() {
     return infected_health;
 }
@@ -303,8 +310,16 @@ std::int16_t Configuration::get_jumper_damage() {
     return jumper_damage;
 }
 
+std::int16_t Configuration::get_jumper_damage_by_jump() {
+    return jumper_damage_by_jump;
+}
+
 std::int16_t Configuration::get_jumper_distance_to_hit() {
     return jumper_distance_to_hit;
+}
+
+std::int16_t Configuration::get_jumper_distance_to_hit_by_jump() {
+    return jumper_distance_to_hit_by_jump;
 }
 
 std::int16_t Configuration::get_jumper_sight_distance() {

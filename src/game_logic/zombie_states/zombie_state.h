@@ -30,8 +30,6 @@ virtual ZombieState* chase_soldier_running(Chaser& chaser,
                                            float time) = 0;
 
 virtual ZombieState* chase_soldier_jumping(Chaser& chaser,
-                                           Soldier* soldier,
-                                           std::int16_t damage,
                                            std::int16_t x_pos_chase,
                                            std::int16_t y_pos_chase,
                                            float time) = 0;

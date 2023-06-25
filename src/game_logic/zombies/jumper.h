@@ -23,8 +23,11 @@ private:
     Chaser chaser;
     std::int16_t health;
     std::int16_t damage_attack;
+    std::int16_t damage_attack_by_jump;
     std::int16_t distance_to_hit;
+    std::int16_t distance_to_hit_by_jump;
     std::int16_t sight_distance;
+    std::int16_t sight_distance_after_being_hit;
     std::vector<std::int16_t> prob_to_walk;
     std::vector<std::int16_t> prob_to_run;
     std::vector<std::int16_t> prob_to_jump;
@@ -36,6 +39,7 @@ private:
     Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
     std::int16_t get_distance_to_soldier(Soldier* soldier);
     void change_state(ZombieState* new_state);
+    void check_damage_by_jump(Soldier* soldier, float time);
 
 public:
 
