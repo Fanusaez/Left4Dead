@@ -21,12 +21,14 @@ public:
 private slots:
     void on_joinButton_clicked();
 
+    void on_selectSoldier_clicked();
 private:
     Ui::JoinPopUp *ui;
 
     Lobby* lobby;
 
     PlayerPick* player_pick;
+    
 };
 
 #endif // JOINPOPUP_H

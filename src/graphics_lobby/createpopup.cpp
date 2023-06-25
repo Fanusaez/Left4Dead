@@ -6,7 +6,8 @@
 createPopUp::createPopUp(Lobby* lobby, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::createPopUp),
-    lobby(lobby)
+    lobby(lobby),
+    player_pick(nullptr)
 {
     ui->setupUi(this);
 
@@ -26,6 +27,7 @@ createPopUp::createPopUp(Lobby* lobby, QWidget *parent) :
             ui->gameMode->setFont(font);
             ui->labelMode->setFont(font);
             ui->labelConfirm->setFont(font);
+            ui->selectSoldier->setFont(font);
         }
     }
 }
@@ -33,6 +35,7 @@ createPopUp::createPopUp(Lobby* lobby, QWidget *parent) :
 createPopUp::~createPopUp()
 {
     delete ui;
+    if (player_pick != nullptr) delete player_pick;
 }
 
 void createPopUp::on_createButton_clicked()
@@ -43,9 +46,23 @@ void createPopUp::on_createButton_clicked()
         lobby->create_scenario(ui->labelName->text().toStdString(), SURVIVAL, game_players);
     else 
         lobby->create_scenario(ui->labelName->text().toStdString(), CLEAR_THE_ZONE, game_players);
-    lobby->start();
+    int32_t game_code = lobby->get_create();
+    if (game_code != -1){
+        QString text = QString("Partida creada. El codigo es: %1").arg(game_code);
+        ui->labelConfirm->setText(text);
+        lobby->start();
+        ui->selectSoldier->setEnabled(true);
+        ui->selectSoldier->setStyleSheet("color: rgb(255, 255, 255);");
+    }
+    else{
+        QString text = QString("Error al crear partida");
+        ui->labelConfirm->setText(text);
+        ui->selectSoldier->setEnabled(false);
+    }
+}
+
+void createPopUp::on_selectSoldier_clicked() {
     this->close();
     player_pick = new PlayerPick(lobby);
     player_pick->show();
 }
-

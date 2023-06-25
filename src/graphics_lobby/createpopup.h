@@ -20,6 +20,8 @@ public:
 
 private slots:
     void on_createButton_clicked();
+    
+    void on_selectSoldier_clicked();
 
 private:
     Ui::createPopUp *ui;

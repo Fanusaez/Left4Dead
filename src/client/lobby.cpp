@@ -59,57 +59,28 @@ Socket Lobby::move_socket(){
     return std::move(socket);
 }
 
-void Lobby::update(){
-    int max_instructions = 0;
-    InstructionsDTO* instruction_dto;
-    //En un futuro tendra que ser asi y no deberia trabarse en un pop. Ahora lo trabamos
-    //para que el usuario tenga una respuesta al instante.
-    //bool could_pop = queue_receiver.try_pop(instruction_dto);
-    bool could_pop = true;
-    instruction_dto = queue_receiver.pop();
-    while (could_pop && max_instructions < 10){
-        switch (instruction_dto->get_instruction()){
-            case CREATE:
-                get_create(instruction_dto);
-                break;
-            case JOIN:
-                get_join(instruction_dto);
-                break;   
-            case START:
-                get_start(instruction_dto);
-                break;             
-        }
-        delete instruction_dto;
-        could_pop = queue_receiver.try_pop(instruction_dto);
-        max_instructions++;
-    }
-}
-
-void Lobby::get_create(InstructionsDTO* instruction_dto) {
+int32_t Lobby::get_create() {
+    InstructionsDTO* instruction_dto = queue_receiver.pop();
     CreateDTO* create_dto = dynamic_cast<CreateDTO*>(instruction_dto);
-    if (create_dto->get_game_code() != -1)
-        std::cout<<"Partida creada. El codigo es: "<<create_dto->get_game_code()<<std::endl;
-    else
-        std::cout<<"Error al crear partida"<<std::endl;
+    int32_t game_code = create_dto->get_game_code(); 
+    delete instruction_dto;
+    return game_code;
 }
 
-void Lobby::get_join(InstructionsDTO* instruction_dto) {
+bool Lobby::get_join() {
+    InstructionsDTO* instruction_dto = queue_receiver.pop();
     JoinDTO* join_dto = dynamic_cast<JoinDTO*>(instruction_dto);
-    if (join_dto->get_could_join())
-        std::cout<<"Te has unido a una partida"<<std::endl;
-    else{
-        std::cout<<"Error al unirse a una partida"<<std::endl;
-    }
+    bool could_join = join_dto->get_could_join();
+    delete join_dto;
+    return could_join;
 }
 
-void Lobby::get_start(InstructionsDTO* instruction_dto) {
+bool Lobby::get_start() {
+    InstructionsDTO* instruction_dto = queue_receiver.pop();
     StartDTO* start_dto = dynamic_cast<StartDTO*>(instruction_dto);
-    if (start_dto->get_could_start()) {
-        std::cout<<"Comienza la partida"<<std::endl;
-        exit_lobby();
-    } else {
-        std::cout<<"Error al querer comenzar la partida"<<std::endl;
-    }
+    bool could_start = start_dto->get_could_start();
+    delete instruction_dto; 
+    return could_start;
 }
 
 int Lobby::get_player_id(){
