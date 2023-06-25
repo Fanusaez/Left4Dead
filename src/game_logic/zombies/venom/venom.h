@@ -23,6 +23,7 @@ private:
     std::int16_t health;
     std::int16_t distance_to_hit_close;
     std::int16_t distance_to_hit_long;
+    std::int16_t distance_to_hit_y;
     std::int16_t sight_distance;
     std::vector<std::int16_t> prob_to_walk;
     std::vector<std::int16_t> prob_to_run;

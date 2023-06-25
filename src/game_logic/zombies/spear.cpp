@@ -36,6 +36,7 @@ Spear::Spear(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         health(CONFIGURATION.get_spear_health()),
         damage_attack(CONFIGURATION.get_spear_damage()),
         distance_to_hit(CONFIGURATION.get_spear_distance_to_hit()),
+        distance_to_hit_y(CONFIGURATION.get_zombies_distance_to_hit_y_axis()),
         sight_distance(CONFIGURATION.get_spear_sight_distance()),
         sight_distance_after_hit(CONFIGURATION.get_zombie_sight_distance_after_hit()),
         prob_to_walk(CONFIGURATION.get_spear_prob_to_walk()),
@@ -141,7 +142,7 @@ void Spear::attack(std::vector<Soldier*> soldiers, float time) {
     if (!closest_soldier) return;
     std::int16_t distance_x = get_distance_to_soldier_x(closest_soldier);
     std::int16_t distance_y = get_distance_to_soldier_y(closest_soldier);
-    if (distance_x > distance_to_hit || distance_y != 0) return;
+    if (distance_x > distance_to_hit || distance_y > distance_to_hit_y) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
     change_state(new_state);
 }

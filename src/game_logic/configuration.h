@@ -53,6 +53,7 @@ private:
     float grenadeState_time_thrown_grenade;
 
     std::int16_t zombies_sight_distance_after_hit;
+    std::int16_t zombies_distance_to_hit_y_axis;
 
     std::int16_t infected_health;
     std::int16_t infected_damage;
@@ -198,6 +199,7 @@ public:
     float get_grenadeState_time_thrown_grenade();
 
     std::int16_t get_zombie_sight_distance_after_hit();
+    std::int16_t get_zombies_distance_to_hit_y_axis();
 
     std::int16_t get_infected_health();
     std::int16_t get_infected_damage();

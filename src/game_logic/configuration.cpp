@@ -44,6 +44,7 @@ Configuration::Configuration(const YAML::Node& node) :
                             smokeGrenade_time_to_reThrow(node["smokeGrenade"]["time_to_reThrow_grenade"].as<std::int16_t>()),
                             smokeGrenade_radius_range(node["smokeGrenade"]["radius_range"].as<std::int16_t>()),
                             zombies_sight_distance_after_hit(node["generalToAllZombies"]["sight_distance_after_being_hit"].as<std::int16_t>()),
+                            zombies_distance_to_hit_y_axis(node["generalToAllZombies"]["distance_to_hit_y"].as<std::int16_t>()),
                             grenadeState_time_exploding(node["grenadeStates"]["time_exploding"].as<float>()),
                             grenadeState_time_thrown_grenade(node["grenadeStates"]["time_thrown_grenade"].as<float>()),
                             infected_health(node["infected"]["health"].as<std::int16_t>()),
@@ -272,6 +273,10 @@ float Configuration::get_grenadeState_time_thrown_grenade() {
 
 std::int16_t Configuration::get_zombie_sight_distance_after_hit() {
     return zombies_sight_distance_after_hit;
+}
+
+std::int16_t Configuration::get_zombies_distance_to_hit_y_axis() {
+    return zombies_distance_to_hit_y_axis;
 }
 
 std::int16_t Configuration::get_infected_health() {
