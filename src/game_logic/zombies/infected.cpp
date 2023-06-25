@@ -19,6 +19,7 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         damage_attack(CONFIGURATION.get_infected_damage()),
         distance_to_hit(CONFIGURATION.get_infected_distance_to_hit()),
         sight_distance(CONFIGURATION.get_infected_sight_distance()),
+        sight_distance_after_hit(CONFIGURATION.get_zombie_sight_distance_after_hit()),
         prob_to_walk(CONFIGURATION.get_infected_prob_to_walk()),
         prob_to_run(CONFIGURATION.get_infected_prob_to_run()),
         prob_to_jump(CONFIGURATION.get_infected_prob_to_jump()) {
@@ -36,6 +37,7 @@ Infected::Infected(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t 
         damage_attack(CONFIGURATION.get_infected_damage()),
         distance_to_hit(CONFIGURATION.get_infected_distance_to_hit()),
         sight_distance(CONFIGURATION.get_infected_sight_distance()),
+        sight_distance_after_hit(CONFIGURATION.get_zombie_sight_distance_after_hit()),
         prob_to_walk(CONFIGURATION.get_infected_prob_to_walk()),
         prob_to_run(CONFIGURATION.get_infected_prob_to_run()),
         prob_to_jump(CONFIGURATION.get_infected_prob_to_jump()) {
@@ -54,7 +56,7 @@ void Infected::update(std::vector<Soldier*> soldiers, float time) {
 
 void Infected::receive_damage(std::uint16_t damage, float time) {
     health -= damage;
-    sight_distance = 100; // podria hacer que el estado idle lo modifique
+    sight_distance = sight_distance_after_hit;
     if (health <= 0) {
         die(time);
         return;

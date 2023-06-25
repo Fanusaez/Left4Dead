@@ -144,10 +144,10 @@ survival:
 gameFactory:
   zombies_probability_respawn:
     infected: [ 0, 30 ]
-    witch: [ 30, 50 ]
+    witch: [ 40, 50 ]
     jumper: [ 50, 60 ]
-    spear: [ 60, 100 ]
-    venom: [ 0, 0 ]
+    spear: [ 60, 80 ]
+    venom: [ 80, 100 ]
 
 airStrike:
   radius_range_safe_space: 10

@@ -13,6 +13,8 @@
 
 #define X_POS 0
 #define Y_POS 1
+#define NO_EXTRA_HEALTH 0
+#define NO_EXTRA_DAMAGE 0
 
 #define CONFIGURATION Configuration::getInstance()
 
@@ -46,15 +48,16 @@ Soldier *GameFactory::create_soldier(Weapon *weapon,std::vector<std::int16_t>& s
 Zombie* GameFactory::create_random_zombie(std::vector<std::int16_t>& zombie_pos) {
     int random_num = std::rand() % 101;
     if (random_num >= infected_prob[0] && random_num <= infected_prob[1]) {
-        return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+        return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, NO_EXTRA_HEALTH, NO_EXTRA_DAMAGE);
     } else if (random_num >= witch_prob[0] && random_num <= witch_prob[1]) {
-         return new Witch(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+         return new Witch(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, NO_EXTRA_HEALTH, NO_EXTRA_DAMAGE);
     } else if (random_num >= jumper_prob[0] && random_num <= jumper_prob[1]) {
-        return new Jumper(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+        return new Jumper(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, NO_EXTRA_HEALTH, NO_EXTRA_DAMAGE);
     } else if (random_num >= spear_prob[0] && random_num <= spear_prob[1]) {
-        return new Spear(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map);
+        return new Spear(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, NO_EXTRA_HEALTH, NO_EXTRA_DAMAGE);
+    } else {
+        return new Venom(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, NO_EXTRA_HEALTH, NO_EXTRA_DAMAGE);
     }
-    return new Infected(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map); // porlas
 }
 
 Zombie* GameFactory::create_infected(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health, std::int16_t extra_damage) {
