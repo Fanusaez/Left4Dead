@@ -54,7 +54,7 @@ void Soldier::reload(float time) {
     change_state(new_state);
 }
 
-void Soldier::throw_explosive_grenade(float time, float time_pressed) {
+void Soldier::throw_explosive_grenade(float time, int32_t time_pressed) {
     std::int16_t x_grenade_pos = get_x_matrix_pos();
     adjust_position_grenade(x_grenade_pos, time_pressed);
 
@@ -66,7 +66,7 @@ void Soldier::throw_explosive_grenade(float time, float time_pressed) {
     change_state(new_state);
 }
 
-void Soldier::throw_smoke_grenade(float time, float time_pressed) {
+void Soldier::throw_smoke_grenade(float time, int32_t time_pressed) {
     std::int16_t x_grenade_pos = get_x_matrix_pos();
     adjust_position_grenade(x_grenade_pos, time_pressed);
 
@@ -241,7 +241,7 @@ void Soldier::change_state(State *new_state) {
     }
 }
 
-void Soldier::adjust_position_grenade(std::int16_t& x_grenade_pos, float time_pressed) {
+void Soldier::adjust_position_grenade(std::int16_t& x_grenade_pos, int32_t time_pressed) {
     std::int16_t grenade_distance_thrown = get_grenade_distance_to_throw(time_pressed);
     if (direction == LEFT) {
         x_grenade_pos -= grenade_distance_thrown;
@@ -251,7 +251,7 @@ void Soldier::adjust_position_grenade(std::int16_t& x_grenade_pos, float time_pr
 
 }
 
-std::int16_t Soldier::get_grenade_distance_to_throw(float time_pressed) {
+std::int16_t Soldier::get_grenade_distance_to_throw(int32_t time_pressed) {
     if (time_pressed > time_explode_grenade_in_hand) return grenade_distance_cero;
     if (time_pressed > time_change_to_long_distance) return grenade_distance_long_reach;
     return grenade_distance_short_reach;

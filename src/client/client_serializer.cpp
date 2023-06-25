@@ -35,7 +35,6 @@ std::vector<char> ClientSerializer::serialize_throw_explosive_grenede(const int3
     int32_t transformed_time = htonl(time);
     unsigned char const* p = reinterpret_cast<unsigned char const *>(&transformed_time);
     buffer.insert(buffer.end(), p, p + sizeof(int32_t));
-    buffer.push_back(time);
     return buffer;
 }
 
@@ -45,7 +44,6 @@ std::vector<char> ClientSerializer::serialize_throw_smoke_grenede(const int32_t&
     int32_t transformed_time = htonl(time);
     unsigned char const* p = reinterpret_cast<unsigned char const *>(&transformed_time);
     buffer.insert(buffer.end(), p, p + sizeof(int32_t));
-    buffer.push_back(time);
     return buffer;
 }
 

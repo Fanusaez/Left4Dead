@@ -50,7 +50,9 @@ std::vector<char> ServerSerializer::serialize_create_scenario(const int32_t &sce
 std::vector<char> ServerSerializer::serialize_error_create() {
     std::vector<char> buffer;
     buffer.push_back(CREATE);
-    buffer.push_back(0x01);
+    int32_t transformed_scenario_code = htonl(-1);
+    unsigned char const * p = reinterpret_cast<unsigned char const *>(&transformed_scenario_code);
+    buffer.insert(buffer.end(), p, p + sizeof(int32_t));
     return buffer;
 }
 

@@ -52,10 +52,13 @@ void GameLogic::new_instruction(InstructionsDTO* instruction) {
         break;
     case THROW_SMOKE_GRENADE:
         smoke_grenade(instruction);
+        break;
     case CALL_AIR_STRIKE:
         air_strake(instruction);
+        break;
     case REVIVE:
         revive(instruction);
+        break;
     default:
         break;
     }

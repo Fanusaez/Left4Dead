@@ -33,16 +33,16 @@ class Soldier : public GameObject {
 
 void die(float time);
 void change_state(State* new_state);
-void adjust_position_grenade(std::int16_t& x_grenade_pos, float time_pressed);
-std::int16_t get_grenade_distance_to_throw(float time_pressed);
+void adjust_position_grenade(std::int16_t& x_grenade_pos, int32_t time_pressed);
+std::int16_t get_grenade_distance_to_throw(int32_t time_pressed);
  public:
 Soldier(Weapon* weapon, GameMap& map, std::int16_t x_pos, std::int16_t y_pos, std::int16_t id);
 
 void update(float time);
 void reload(float time);
 void shoot(float time);
-void throw_explosive_grenade(float time, float time_pressed);
-void throw_smoke_grenade(float time, float time_pressed);
+void throw_explosive_grenade(float time, int32_t time_pressed);
+void throw_smoke_grenade(float time, int32_t time_pressed);
 void call_air_strike(float time);
 void move_up(float time);
 void move_down(float time);

@@ -21,28 +21,31 @@ void Game::run(){
     bool could_pop;
     int start_players = 0;
     //Espero a popoear la señal de start de todos los jugadores
-    while (start_players < game_players && keep_playing) {
+    while (start_players <  protected_outputs_queue.number_of_players() && keep_playing) {
         try {
-            instructionDTO = queue_entrante.pop();  
-        }
-        catch (const ClosedQueue& e) {
+            could_pop = queue_entrante.try_pop(instructionDTO);  
+            if(could_pop) {
+                if (instructionDTO->get_instruction() == START) {
+                    start_players++;
+                    delete instructionDTO;
+                }
+                else if (instructionDTO->get_instruction() == SOLDIER_TYPE) {
+                    SoldierTypeDTO* soldier_dto = dynamic_cast<SoldierTypeDTO*>(instructionDTO);
+                    if (soldier_dto->get_soldier_type() == IDF)
+                        game_logic.add_soldier_idf(soldier_dto->get_player_id());
+                    else if (soldier_dto->get_soldier_type() == SCOUT)
+                        game_logic.add_soldier_scout(soldier_dto->get_player_id());
+                    else if (soldier_dto->get_soldier_type() == P90)
+                        game_logic.add_soldier_p90(soldier_dto->get_player_id());
+                    delete instructionDTO;
+                }
+            }
+		std::this_thread::sleep_for(std::chrono::duration<double>(rate));
+        } catch (const ClosedQueue& e) {
             std::cout<<"Juego finalizado"<<std::endl;
             keep_playing = false;
             return;
         }
-        if (instructionDTO->get_instruction() == START) {
-            start_players++;
-        }
-        else if (instructionDTO->get_instruction() == SOLDIER_TYPE) {
-            SoldierTypeDTO* soldier_dto = dynamic_cast<SoldierTypeDTO*>(instructionDTO);
-            if (soldier_dto->get_soldier_type() == IDF)
-                game_logic.add_soldier_idf(soldier_dto->get_player_id());
-            else if (soldier_dto->get_soldier_type() == SCOUT)
-                game_logic.add_soldier_scout(soldier_dto->get_player_id());
-            else if (soldier_dto->get_soldier_type() == P90)
-                game_logic.add_soldier_p90(soldier_dto->get_player_id());
-        }
-        delete instructionDTO;
     }
     //Comienza el juego
     admit_players = false;
