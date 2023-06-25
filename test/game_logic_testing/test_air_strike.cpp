@@ -28,21 +28,21 @@ void testSoldierCallsAirStrikeAndDamages4Zombies(void) {
     std::int16_t  y_limit_safe_down = y_called_place + REACH_SAFE_AREA;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* p90 = new P90(0);
+    Weapon* p90 = new class P90(0);
 
     Soldier soldier(p90, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier, x_called_place, y_called_place);
 
-    Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, 0,map); // donde cae la granada
+    Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, 0,map, 0, 0); // donde cae la granada
     map.add_zombie(&walker1, x_limit_safe_left - 1,y_limit_safe_up);
 
-    Infected walker2(x_limit_safe_right + 1,y_limit_safe_up, 0,map);
+    Infected walker2(x_limit_safe_right + 1,y_limit_safe_up, 0,map, 0, 0);
     map.add_zombie(&walker2, x_limit_safe_right + 1,y_limit_safe_up);
 
-    Infected walker3(x_limit_safe_left - 1,y_limit_safe_down,0, map);
+    Infected walker3(x_limit_safe_left - 1,y_limit_safe_down,0, map, 0, 0);
     map.add_zombie(&walker3, x_limit_safe_left - 1,y_limit_safe_down);
 
-    Infected walker4(x_limit_safe_right + 1,y_limit_safe_down, 0, map);
+    Infected walker4(x_limit_safe_right + 1,y_limit_safe_down, 0, map, 0, 0);
     map.add_zombie(&walker4, x_limit_safe_right + 1,y_limit_safe_down);
 
     soldier.call_air_strike(100);
@@ -72,21 +72,21 @@ void testSoldierCallsAirStrikeAndDamages4Zombies2(void) {
     std::int16_t  y_limit_safe_down = y_called_place + REACH_SAFE_AREA;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* p90 = new P90(0);
+    Weapon* p90 = new class P90(0);
 
     Soldier soldier(p90, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier, x_called_place, y_called_place);
 
-    Infected walker1(MAP_SIZE_X - 1, MAP_SIZE_Y - 1, 0,map);
+    Infected walker1(MAP_SIZE_X - 1, MAP_SIZE_Y - 1, 0,map, 0, 0);
     map.add_zombie(&walker1, MAP_SIZE_X - 1,MAP_SIZE_Y - 1);
 
-    Infected walker2(0,0, 0,map);
+    Infected walker2(0,0, 0,map, 0, 0);
     map.add_zombie(&walker2, 0, 0);
 
-    Infected walker3(0,MAP_SIZE_Y - 1, 0,map);
+    Infected walker3(0,MAP_SIZE_Y - 1, 0,map, 0, 0);
     map.add_zombie(&walker3, 0,MAP_SIZE_Y - 1);
 
-    Infected walker4(MAP_SIZE_X - 1,0, 0, map);
+    Infected walker4(MAP_SIZE_X - 1, 0, 0, map, 0, 0);
     map.add_zombie(&walker4, MAP_SIZE_X - 1,0);
 
     soldier.call_air_strike(100);
@@ -116,7 +116,7 @@ void testSoldierCallsAirStrikeWith2ExtraSoldiersByHisSideAndDamages4Zombies(void
     std::int16_t  y_limit_safe_down = y_called_place + REACH_SAFE_AREA;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* p90 = new P90(0);
+    Weapon* p90 = new class P90(0);
     Weapon* idf = new Idf(0, 0);
     Weapon* idf2 = new Idf(0, 0);
 
@@ -129,16 +129,16 @@ void testSoldierCallsAirStrikeWith2ExtraSoldiersByHisSideAndDamages4Zombies(void
     Soldier soldier3(idf2, map, x_limit_safe_left, y_limit_safe_down, 0);
     map.add_soldier(&soldier3, x_limit_safe_left, y_limit_safe_down);
 
-    Infected walker1(MAP_SIZE_X - 1,MAP_SIZE_Y - 1, 0,map); // donde cae la granada
+    Infected walker1(MAP_SIZE_X - 1,MAP_SIZE_Y - 1, 0,map, 0, 0); // donde cae la granada
     map.add_zombie(&walker1, MAP_SIZE_X - 1,MAP_SIZE_Y - 1);
 
-    Infected walker2(0,0, 0, map);
+    Infected walker2(0, 0, 0, map, 0, 0);
     map.add_zombie(&walker2, 0,0);
 
-    Infected walker3(0,MAP_SIZE_Y - 1, 0,map);
+    Infected walker3(0,MAP_SIZE_Y - 1, 0,map, 0, 0);
     map.add_zombie(&walker3, 0,MAP_SIZE_Y - 1);
 
-    Infected walker4(MAP_SIZE_X - 1, 0, 0, map);
+    Infected walker4(MAP_SIZE_X - 1, 0, 0, map, 0, 0);
     map.add_zombie(&walker4, MAP_SIZE_X - 1,0);
 
     soldier1.call_air_strike(100);
@@ -181,16 +181,16 @@ void testSoldierCallsAirStrikeWithIDFButNothingHappen(void) {
     Soldier soldier(idf, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier, x_called_place, y_called_place);
 
-    Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, 0,map); // donde cae la granada
+    Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, 0,map, 0, 0); // donde cae la granada
     map.add_zombie(&walker1, x_limit_safe_left - 1,y_limit_safe_up);
 
-    Infected walker2(x_limit_safe_right + 1,y_limit_safe_up, 0,map);
+    Infected walker2(x_limit_safe_right + 1,y_limit_safe_up, 0,map, 0, 0);
     map.add_zombie(&walker2, x_limit_safe_right + 1,y_limit_safe_up);
 
-    Infected walker3(x_limit_safe_left - 1,y_limit_safe_down,0, map);
+    Infected walker3(x_limit_safe_left - 1,y_limit_safe_down,0, map, 0, 0);
     map.add_zombie(&walker3, x_limit_safe_left - 1,y_limit_safe_down);
 
-    Infected walker4(x_limit_safe_right + 1,y_limit_safe_down, 0,map);
+    Infected walker4(x_limit_safe_right + 1,y_limit_safe_down, 0,map, 0, 0);
     map.add_zombie(&walker4, x_limit_safe_right + 1,y_limit_safe_down);
 
     soldier.call_air_strike(100);
@@ -225,16 +225,16 @@ void testSoldierCallsAirStrikeWithScoutButNothingHappen(void) {
     Soldier soldier(scout, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier, x_called_place, y_called_place);
 
-    Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, 0,map); // donde cae la granada
+    Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, 0,map, 0, 0); // donde cae la granada
     map.add_zombie(&walker1, x_limit_safe_left - 1,y_limit_safe_up);
 
-    Infected walker2(x_limit_safe_right + 1,y_limit_safe_up, 0,map);
+    Infected walker2(x_limit_safe_right + 1,y_limit_safe_up, 0,map, 0, 0);
     map.add_zombie(&walker2, x_limit_safe_right + 1,y_limit_safe_up);
 
-    Infected walker3(x_limit_safe_left - 1,y_limit_safe_down,0, map);
+    Infected walker3(x_limit_safe_left - 1,y_limit_safe_down,0, map, 0, 0);
     map.add_zombie(&walker3, x_limit_safe_left - 1,y_limit_safe_down);
 
-    Infected walker4(x_limit_safe_right + 1,y_limit_safe_down, 0, map);
+    Infected walker4(x_limit_safe_right + 1,y_limit_safe_down, 0, map, 0, 0);
     map.add_zombie(&walker4, x_limit_safe_right + 1,y_limit_safe_down);
 
     soldier.call_air_strike(100);
@@ -264,21 +264,21 @@ void testSoldierCalls2AirStrikeOnlyCallsOne(void) {
     std::int16_t  y_limit_safe_down = y_called_place + REACH_SAFE_AREA;
 
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);
-    Weapon* p90 = new P90(0);
+    Weapon* p90 = new class P90(0);
 
     Soldier soldier(p90, map, x_called_place, y_called_place, 0);
     map.add_soldier(&soldier, x_called_place, y_called_place);
 
-    Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, 0,map); // donde cae la granada
+    Infected walker1(x_limit_safe_left - 1,y_limit_safe_up, 0,map, 0, 0); // donde cae la granada
     map.add_zombie(&walker1, x_limit_safe_left - 1,y_limit_safe_up);
 
-    Infected walker2(x_limit_safe_right + 1,y_limit_safe_up, 0,map);
+    Infected walker2(x_limit_safe_right + 1,y_limit_safe_up, 0,map, 0, 0);
     map.add_zombie(&walker2, x_limit_safe_right + 1,y_limit_safe_up);
 
-    Infected walker3(x_limit_safe_left - 1,y_limit_safe_down,0, map);
+    Infected walker3(x_limit_safe_left - 1,y_limit_safe_down,0, map, 0, 0);
     map.add_zombie(&walker3, x_limit_safe_left - 1,y_limit_safe_down);
 
-    Infected walker4(x_limit_safe_right + 1,y_limit_safe_down, 0,map);
+    Infected walker4(x_limit_safe_right + 1,y_limit_safe_down, 0,map, 0, 0);
     map.add_zombie(&walker4, x_limit_safe_right + 1,y_limit_safe_down);
 
     soldier.call_air_strike(100);

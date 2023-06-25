@@ -10,6 +10,12 @@
 #include "game_logic/states/idle.h"
 #include "game_logic/weapons/scout.h"
 #include "game_logic/zombies/witch.h"
+#include "game_logic/zombie_states/attacking.h"
+#include "game_logic/zombie_states/zombie_being_attacked.h"
+#include "game_logic/zombie_states/zombie_dead.h"
+#include "game_logic/zombie_states/stunned.h"
+#include "game_logic/zombie_states/screaming.h"
+
 
 #define UP -1
 #define DOWN 1
@@ -25,7 +31,7 @@ void testInfectedStartsWithIdleState(void) {
     Soldier soldier(scout, map, 8, 9, 0);
     map.add_soldier(&soldier, 8, 9);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 5);
 
     ZombieIdle* walker_state = dynamic_cast<ZombieIdle*>(walker.get_state());
@@ -43,7 +49,7 @@ void testInfectedChaseAndStateChangesToWalking(void) {
     Soldier soldier(scout, map, 8, 9, 0);
     map.add_soldier(&soldier, 8, 9);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 5);
     walker.set_walking();
 
@@ -63,7 +69,7 @@ void testInfectedChaseTwiceTooFastAndmoves1Time(void) {
     Soldier soldier(scout, map, 8, 9, 0);
     map.add_soldier(&soldier, 8, 9);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -86,7 +92,7 @@ void testInfectedChaseTwiceAndmoves2Times(void) {
     Soldier soldier(scout, map, 8, 9, 0);
     map.add_soldier(&soldier, 8, 9);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 5);
 
     map.chase_soldiers(1);
@@ -108,7 +114,7 @@ void testInfectedAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldie
     Soldier soldier(scout, map, 5, 6, 0);
     map.add_soldier(&soldier, 5, 6);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 5);
 
     map.attack_soldiers(1);
@@ -131,7 +137,7 @@ void testInfectedAttacks2TimesToFastOnlyAttacksOnce(void) {
     Soldier soldier(scout, map, 5, 6, 0);
     map.add_soldier(&soldier, 5, 6);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 5);
 
     map.attack_soldiers(1);
@@ -150,7 +156,7 @@ void testInfectedAttacks2Times(void) {
     Soldier soldier(scout, map, 5, 6, 0);
     map.add_soldier(&soldier, 5, 6);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 5);
 
     map.attack_soldiers(1);
@@ -173,7 +179,7 @@ void testInfectedGetsAttacked(void) {
     map.add_soldier(&soldier, 6, 5);
     soldier.set_direction(LEFT);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 5);
 
     soldier.shoot(1);
@@ -195,7 +201,7 @@ void testInfectedWalkingAndGetsAttacked(void) {
     map.add_soldier(&soldier, 6, 5);
     soldier.set_direction(LEFT);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     walker.set_walking();
     map.add_zombie(&walker, 5, 5);
     map.chase_soldiers(1);
@@ -220,7 +226,7 @@ void testInfectedgetsShotAndDie(void) {
     map.add_soldier(&soldier, 6, 5);
     soldier.set_direction(LEFT);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     walker.set_walking();
     map.add_zombie(&walker, 5, 5);
     map.chase_soldiers(1);
@@ -252,7 +258,7 @@ void testInfectedgetsShotWhileAttacking(void) {
     map.add_soldier(&soldier2, 6, 5);
     soldier2.set_direction(LEFT);
 
-    Infected walker(5, 5, 0, map);
+    Infected walker(5, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 5);
     map.attack_soldiers(1);
 
@@ -287,10 +293,10 @@ void testSoldierThrowsSmokeGrenadeAndStunnedZombie(void) {
 
     soldier.set_direction(RIGHT);
 
-    Infected walker1(x_explosion,y_explosion, 0,map); // donde0, cae la granada
+    Infected walker1(x_explosion,y_explosion, 0, map, 0, 0); // donde0, cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    soldier.throw_smoke_grenade(100);
+    soldier.throw_smoke_grenade(100, 10000);
     soldier.update(200);
 
     Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
@@ -306,7 +312,7 @@ void testWitcherScreamsStatesChanges(void) {
     GameMap map(10, 10, 0);
     Weapon* scout = new Scout(0, 0);
 
-    Witch witch(5, 5,0, map); // donde cae la granada
+    Witch witch(5, 5, 0, map, 0, 0); // donde cae la granada
     map.add_zombie(&witch, 5,5);
 
     witch.scream(1);

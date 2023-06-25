@@ -45,22 +45,22 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages5Zombies(void) {
 
     soldier.set_direction(LEFT);
 
-    Infected walker1(x_explosion,y_explosion, 0, map); // donde0, cae la granada
+    Infected walker1(x_explosion,y_explosion, 0, map, 0, 0); // donde0, cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    Infected walker2(x_limit_damage_left,y_limit_damage_up, 0,map);
+    Infected walker2(x_limit_damage_left,y_limit_damage_up, 0,map, 0, 0);
     map.add_zombie(&walker2, x_limit_damage_left,y_limit_damage_up);
 
-    Infected walker3(x_limit_damage_right,y_limit_damage_up,0, map);
+    Infected walker3(x_limit_damage_right,y_limit_damage_up,0, map, 0, 0);
     map.add_zombie(&walker3, x_limit_damage_right,y_limit_damage_up);
 
-    Infected walker4(x_limit_damage_left, y_limit_damage_down, 0, map);
+    Infected walker4(x_limit_damage_left, y_limit_damage_down, 0, map, 0, 0);
     map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down);
 
-    Infected walker5(x_limit_damage_right,y_limit_damage_down, 0, map);
+    Infected walker5(x_limit_damage_right,y_limit_damage_down, 0, map, 0, 0);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_explosive_grenade(100, 100000);
     soldier.update(200);
 
     std::uint16_t remaining_health1 = walker1.get_health();
@@ -99,22 +99,22 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies(void) {
 
     soldier.set_direction(LEFT);
 
-    Infected walker1(x_explosion, y_explosion, 0, map); // donde0, cae la granada
+    Infected walker1(x_explosion, y_explosion, 0, map, 0, 0); // donde0, cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    Infected walker2(x_limit_damage_left - 1, y_limit_damage_up, 0, map);
+    Infected walker2(x_limit_damage_left - 1, y_limit_damage_up, 0, map, 0, 0);
     map.add_zombie(&walker2, x_limit_damage_left - 1,y_limit_damage_up);
 
-    Infected walker3(x_limit_damage_right + 1, y_limit_damage_up, 0, map);
+    Infected walker3(x_limit_damage_right + 1, y_limit_damage_up, 0, map, 0, 0);
     map.add_zombie(&walker3, x_limit_damage_right + 1 ,y_limit_damage_up);
 
-    Infected walker4(x_limit_damage_left, y_limit_damage_down + 1, 0, map);
+    Infected walker4(x_limit_damage_left, y_limit_damage_down + 1, 0, map, 0, 0);
     map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down + 1);
 
-    Infected walker5(x_limit_damage_right, y_limit_damage_down + 1, 0, map);
+    Infected walker5(x_limit_damage_right, y_limit_damage_down + 1, 0, map, 0, 0);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down + 1);
 
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_explosive_grenade(100, 100000);
     soldier.update(200);
 
     std::uint16_t remaining_health1 = walker1.get_health();
@@ -158,22 +158,22 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies2(void) {
 
     soldier.set_direction(LEFT);
 
-    Infected walker1(x_explosion,y_explosion, 0,map); // donde0, cae la granada
+    Infected walker1(x_explosion,y_explosion, 0, map, 0, 0); // donde0, cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    Infected walker2(x_limit_damage_left,y_limit_damage_up - 1, 0, map);
+    Infected walker2(x_limit_damage_left,y_limit_damage_up - 1, 0, map, 0, 0);
     map.add_zombie(&walker2, x_limit_damage_left,y_limit_damage_up - 1);
 
-    Infected walker3(x_limit_damage_right,y_limit_damage_up - 1, 0, map);
+    Infected walker3(x_limit_damage_right,y_limit_damage_up - 1, 0, map, 0, 0);
     map.add_zombie(&walker3, x_limit_damage_right,y_limit_damage_up - 1);
 
-    Infected walker4(x_limit_damage_left,y_limit_damage_down + 1, 0, map);
+    Infected walker4(x_limit_damage_left,y_limit_damage_down + 1, 0, map, 0, 0);
     map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down + 1);
 
-    Infected walker5(x_limit_damage_right,y_limit_damage_down + 1, 0, map);
+    Infected walker5(x_limit_damage_right,y_limit_damage_down + 1, 0, map, 0, 0);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down + 1);
 
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_explosive_grenade(100, 100000);
     soldier.update(200);
 
     std::uint16_t remaining_health1 = walker1.get_health();
@@ -210,7 +210,7 @@ void testSoldierThrowsExplosiveGrenadeToOtherSoldier(void) {
     map.add_soldier(&soldier2, x_explosion,y_explosion);
 
     soldier1.set_direction(LEFT);
-    soldier1.throw_explosive_grenade(100);
+    soldier1.throw_explosive_grenade(100, 100000);
     soldier1.update(200);
 
     std::int16_t remaining_health1 = soldier1.get_health();
@@ -243,22 +243,22 @@ void testSoldierThrowsExplosiveGrenadeRightAndDamages5Zombies(void) {
 
     soldier.set_direction(RIGHT);
 
-    Infected walker1(x_explosion,y_explosion, 0,map); // donde0, cae la granada
+    Infected walker1(x_explosion,y_explosion, 0, map, 0, 0); // donde0, cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    Infected walker2(x_limit_damage_left,y_limit_damage_up, 0,map);
+    Infected walker2(x_limit_damage_left,y_limit_damage_up, 0,map, 0, 0);
     map.add_zombie(&walker2, x_limit_damage_left,y_limit_damage_up);
 
-    Infected walker3(x_limit_damage_right, y_limit_damage_up, 0, map);
+    Infected walker3(x_limit_damage_right, y_limit_damage_up, 0, map, 0, 0);
     map.add_zombie(&walker3, x_limit_damage_right, y_limit_damage_up);
 
-    Infected walker4(x_limit_damage_left,y_limit_damage_down, 0,map);
+    Infected walker4(x_limit_damage_left,y_limit_damage_down, 0,map, 0, 0);
     map.add_zombie(&walker4, x_limit_damage_left,y_limit_damage_down);
 
-    Infected walker5(x_limit_damage_right, y_limit_damage_down, 0, map);
+    Infected walker5(x_limit_damage_right, y_limit_damage_down, 0, map, 0, 0);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_explosive_grenade(100, 100000);
     soldier.update(200);
 
     std::uint16_t remaining_health1 = walker1.get_health();

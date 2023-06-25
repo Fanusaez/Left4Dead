@@ -60,7 +60,7 @@ void testNotMoveSoldierRightForCollisionWithZombie(){
     Soldier soldier(scout, map, 3, 7, 0);
     map.add_soldier(&soldier, 3, 7);
 
-    Infected walker(5, 7, 0, map);
+    Infected walker(5, 7, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 7);
 
     for (float i = 0; i < 100; i++){
@@ -83,7 +83,7 @@ void testMoveSoldierRightWithZombieClose() {
     Soldier soldier(scout, map, 3, 8, 0);
     map.add_soldier(&soldier, 3, 8);
 
-    Infected walker(4, 9, 0, map);
+    Infected walker(4, 9, 0, map, 0, 0);
     map.add_zombie(&walker, 4, 9);
 
     for (int i = 0; i < 150; i++){

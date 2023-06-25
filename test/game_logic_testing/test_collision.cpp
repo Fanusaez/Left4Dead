@@ -28,7 +28,7 @@ void testCollisionSameLineUp(void) {
     Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 8, 9);
 
-    Infected walker(8, 1, 0, map);
+    Infected walker(8, 1, 0, map, 0, 0);
     map.add_zombie(&walker, 8, 1);
 
     TEST_ASSERT(map.collision(UP, 8, 8) == true);
@@ -43,7 +43,7 @@ void testCollisionSameLineDown(void) {
     Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 7, 0);
 
-    Infected walker(7, 5, 0, map);
+    Infected walker(7, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 7, 5);
 
     TEST_ASSERT(map.collision(DOWN, 7, 1) == true);
@@ -58,7 +58,7 @@ void testCollisionNotSameLineLeftUp(void) {
     Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 8, 9);
 
-    Infected walker(7, 1, 0, map);
+    Infected walker(7, 1, 0, map, 0, 0);
     map.add_zombie(&walker, 7, 1);
 
     TEST_ASSERT(map.collision(UP, 8, 8) == false);
@@ -73,7 +73,7 @@ void testCollisionNotSameLineRightUp(void) {
     Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 7, 9);
 
-    Infected walker(8, 1, 0, map);
+    Infected walker(8, 1, 0, map, 0, 0);
     map.add_zombie(&walker, 8, 1);
 
     TEST_ASSERT(map.collision(UP, 7, 8) == true);
@@ -88,7 +88,7 @@ void testCollisionNotSameLineLeftDown(void) {
     Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 1, 1);
 
-    Infected walker(0, 9, 0, map);
+    Infected walker(0, 9, 0, map, 0, 0);
     map.add_zombie(&walker, 0, 9);
 
     TEST_ASSERT(map.collision(DOWN, 1, 2) == false);
@@ -103,7 +103,7 @@ void testCollisionNotSameLineRightDown(void) {
     Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 1, 1);
 
-    Infected walker(2, 9, 0, map);
+    Infected walker(2, 9, 0, map, 0, 0);
     map.add_zombie(&walker, 2, 9);
 
     TEST_ASSERT(map.collision(DOWN, 1, 2) == true);
@@ -118,7 +118,7 @@ void testNoCollisionUp(void) {
     Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 8, 9);
 
-    Infected walker(1, 1, 0, map);
+    Infected walker(1, 1, 0, map, 0, 0);
     map.add_zombie(&walker, 1, 1);
 
     TEST_ASSERT(map.collision(UP, 8, 8) == false);
@@ -133,7 +133,7 @@ void testNoCollisionDown(void) {
     Soldier* soldier = new Soldier(idf, map, 0, 0, 0);
     map.add_soldier(soldier, 1, 1);
 
-    Infected walker(8, 9, 0, map);
+    Infected walker(8, 9, 0, map, 0, 0);
     map.add_zombie(&walker, 8, 9);
 
     TEST_ASSERT(map.collision(DOWN, 5, 2) == false);

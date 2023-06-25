@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <cstdint>
-#include "../common/soldier_type.h"
+#include "../../common/soldier_type.h"
 
 #define CONFIGURATION Configuration::getInstance()
 

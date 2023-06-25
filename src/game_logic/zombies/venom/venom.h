@@ -43,8 +43,13 @@ private:
     void random_chase_state();
 
 public:
-    Venom(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map);
-    Venom(std::int16_t x_pos, std::int16_t y_pos, std::int16_t id, GameMap& map, std::int16_t extra_health, std::int16_t extra_damage);
+    Venom(std::int16_t x_pos,
+          std::int16_t y_pos,
+          std::int16_t id,
+          GameMap& map,
+          std::int16_t extra_health,
+          std::int16_t extra_damage);
+
     void update(std::vector<Soldier*> soldiers, float time) override;
 
     void receive_damage(std::uint16_t damage, float time) override;

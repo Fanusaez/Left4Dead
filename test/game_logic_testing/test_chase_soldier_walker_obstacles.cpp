@@ -27,7 +27,7 @@ void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacle() {
     Obstacle obstacle(5, 5, 0);
     map.add_obstacle(&obstacle, 5, 5);
 
-    Infected walker(5, 6, 0, map);
+    Infected walker(5, 6, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < MOVEMENTS_PER_CELL; i++) {
@@ -52,7 +52,7 @@ void testInfectedChaseSoldierdiagonallyUpAndRightWithObstacleFaceToFace() {
     Obstacle obstacle(5 , 5 , 0);
     map.add_obstacle(&obstacle, 5, 5);
 
-    Infected walker(5, 6, 0, map);
+    Infected walker(5, 6, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < 100; i++) {
@@ -77,7 +77,7 @@ void testInfectedChaseSoldierdiagonallyUpAndLeftWithObstacle() {
     Obstacle osbtacle(6, 4, 0);
     map.add_obstacle(&osbtacle, 6, 4);
 
-    Infected walker(6, 5, 0, map);
+    Infected walker(6, 5, 0, map, 0, 0);
     map.add_zombie(&walker, 6, 5);
 
     map.chase_soldiers(1);
@@ -101,7 +101,7 @@ void testInfectedChaseSoldierdiagonallyUpLeftWithObstacleFaceToFace() {
     Obstacle osbtacle(5, 5, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
-    Infected walker(5, 6, 0, map);
+    Infected walker(5, 6, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < 100; i++) { // enough to encounter the soldier face to face
@@ -127,7 +127,7 @@ void testInfectedChaseSoldierdiagonallyDownAndLeftWithObstacleFaceToFace() {
     Obstacle osbtacle(5, 5, 0);
     map.add_obstacle(&osbtacle, 5, 5);
 
-    Infected walker(5, 6, 0, map);
+    Infected walker(5, 6, 0, map, 0, 0);
     map.add_zombie(&walker, 5, 6);
 
     for (int i = 0; i < 140; i++) { // enough to encounter the soldier face to face

@@ -10,7 +10,7 @@
 void testWitcherScreamsAndAttractsZombies(void) {
     GameMap map(10, 10, 0);
 
-    Witch witch(1,8, 0, map);
+    Witch witch(1, 8, 0, map, 0, 0);
     witch.scream(1);
     std::int16_t objects_in_map = map.objects_in_map();
     TEST_CHECK(objects_in_map > 0);

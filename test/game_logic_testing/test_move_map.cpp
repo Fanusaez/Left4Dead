@@ -61,7 +61,7 @@ void testNotMoveSoldierDownForCompleteCollisionWithZombie(){
     Soldier soldier(scout, map, 3, 7, 0);
     map.add_soldier(&soldier, 3, 7);
 
-    Infected walker(3,  8,0,  map);
+    Infected walker(3, 8, 0, map, 0, 0);
     map.add_zombie(&walker, 3, 8);
 
     for (float i = 0; i < MOVEMENTS_PER_CELL; i++){
@@ -87,7 +87,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie(){
 
     soldier.move_right();
 
-    Infected walker(4, 8, 0, map);
+    Infected walker(4, 8, 0, map, 0, 0);
     map.add_zombie(&walker, 4, 8);
 
     for (float i = 0; i < 30; i++){
@@ -112,7 +112,7 @@ void testNotMoveSoldierDownForPartialCollisionWithZombie2(){
 
     soldier.move_left();
 
-    Infected walker(2, 8, 0, map);
+    Infected walker(2, 8, 0, map, 0, 0);
     map.add_zombie(&walker, 2, 8);
 
     for (float i = 0; i < 30; i++){
@@ -177,7 +177,7 @@ void testNotMoveSoldierUpForCompleteCollisionWithZombie(){
     Soldier soldier(scout, map, 3 , 7, 0);
     map.add_soldier(&soldier, 3, 7);
 
-    Infected walker(3, 6, 0, map);
+    Infected walker(3, 6, 0, map, 0, 0);
     map.add_zombie(&walker, 3, 6);
 
     for (float i = 0; i < MOVEMENTS_PER_CELL + 10; i++){
@@ -204,7 +204,7 @@ void testNotMoveSoldierUpForPartialCollisionWithZombie() {
 
     soldier.move_right();
 
-    Infected walker(4,  6,0,  map);
+    Infected walker(4, 6, 0, map, 0, 0);
     map.add_zombie(&walker, 4, 6);
 
     for (float i = 0; i < MOVEMENTS_PER_CELL; i++) {
@@ -231,7 +231,7 @@ void testNotMoveSoldierUpForPartialCollisionWithZombie2(){
 
     soldier.move_left();
 
-    Infected walker(2, 6, 0, map);
+    Infected walker(2, 6, 0, map, 0, 0);
     map.add_zombie(&walker, 2, 6);
 
     for (float i = 0; i < 20; i++){
@@ -302,7 +302,7 @@ void testNotMoveSoldierRightForCollisionWithZombieAndCheckMap(){
     Soldier soldier(scout, map, 3, 7, 0);
     map.add_soldier(&soldier, 3, 7);
 
-    Infected walker(4, 7, 0, map);
+    Infected walker(4, 7, 0, map, 0, 0);
     map.add_zombie(&walker, 4, 7);
 
     for (float i = 0; i <  MOVEMENTS_PER_CELL + 5; i++){
@@ -326,7 +326,7 @@ void testMoveSoldierRightWithZombieCloseAndCheckMap(){
     Soldier soldier(scout, map, 3, 8, 0);
     map.add_soldier(&soldier, 3, 8);
 
-    Infected walker(4, 9, 0, map);
+    Infected walker(4, 9, 0, map, 0, 0);
     map.add_zombie(&walker, 4, 9);
 
     for (float i = 0; i < MOVEMENTS_PER_CELL; i++){
@@ -387,7 +387,7 @@ void testNotMoveSoldierLeftForCollisionWithZombieAndCheckMap(){
     Soldier soldier(scout, map, 3, 7, 0);
     map.add_soldier(&soldier, 3, 7);
 
-    Infected walker(2, 7, 0, map);
+    Infected walker(2, 7, 0, map, 0, 0);
     map.add_zombie(&walker, 2, 7);
 
     for (float i = 0; i < 3; i++){
@@ -411,7 +411,7 @@ void testMoveSoldierLeftWithZombieCloseAndCheckMap(){
     Soldier soldier(scout, map, 6, 8, 0);
     map.add_soldier(&soldier, 6, 8);
 
-    Infected walker(4, 9, 0, map);
+    Infected walker(4, 9, 0, map, 0, 0);
     map.add_zombie(&walker, 4, 9);
 
     for (float i = 0; i < MOVEMENTS_PER_CELL; i++){

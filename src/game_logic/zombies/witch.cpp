@@ -5,26 +5,6 @@
 #include <iostream>
 #include "../configuration.h"
 
-Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map) :
-        movements_per_cell(CONFIGURATION.get_movements_per_cell()),
-        x_pos(x_pos_wal * movements_per_cell),
-        y_pos(y_pos_wal * movements_per_cell),
-        id(id),
-        map(map),
-        chaser(this, map, x_pos, y_pos),
-        health(CONFIGURATION.get_witch_health()),
-        damage_attack(CONFIGURATION.get_witch_damage()),
-        probability_to_scream(CONFIGURATION.get_witch_prob_scream()),
-        zombies_created_for_screaming(CONFIGURATION.get_witch_zombies_created_screaming()),
-        distance_to_hit(CONFIGURATION.get_witch_distance_to_hit()),
-        sight_distance(CONFIGURATION.get_witch_sight_distance()),
-        sight_distance_after_hit(CONFIGURATION.get_zombie_sight_distance_after_hit()),
-        prob_to_walk(CONFIGURATION.get_witch_prob_to_walk()),
-        prob_to_run(CONFIGURATION.get_witch_prob_to_run()),
-        prob_to_jump(CONFIGURATION.get_witch_prob_to_jump()) {
-    random_chase_state();
-}
-
 Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map, std::int16_t extra_health, std::int16_t extra_damage) :
         movements_per_cell(CONFIGURATION.get_movements_per_cell()),
         x_pos(x_pos_wal * movements_per_cell),

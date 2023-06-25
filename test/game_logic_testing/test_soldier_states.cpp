@@ -366,7 +366,7 @@ void testSoldierStartsIdleAndIsAttacked(void) {
     Soldier soldier(scout, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    Infected walker(2, 3, 0, map);
+    Infected walker(2, 3, 0, map, 0, 0);
     map.add_zombie(&walker, 2, 3);
 
     map.attack_soldiers(1);
@@ -387,7 +387,7 @@ void testSoldierShootingAndIsAttacked(void) {
     Soldier soldier(scout, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    Infected walker(2, 3, 0, map);
+    Infected walker(2, 3, 0, map, 0, 0);
     map.add_zombie(&walker, 2, 3);
 
     soldier.shoot(0);
@@ -410,7 +410,7 @@ void testSoldierReloadingAndIsAttacked(void) {
     Soldier soldier(scout, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    Infected walker(2, 3, 0, map);
+    Infected walker(2, 3, 0, map, 0, 0);
     map.add_zombie(&walker, 2, 3);
 
     soldier.shoot(0);
@@ -438,7 +438,7 @@ void testSoldierGetsKilledAndStateChanges(void) {
     Soldier soldier(scout, map, 2, 3, 0);
     map.add_soldier(&soldier, 2, 3);
 
-    Infected walker(3, 3, 0, map);
+    Infected walker(3, 3, 0, map, 0, 0);
     map.add_zombie(&walker, 3, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -458,7 +458,7 @@ void testSoldierGetsKilledAndTryToMove(void) {
     Soldier soldier(scout, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    Infected walker(2, 3, 0, map);
+    Infected walker(2, 3, 0, map, 0, 0);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -479,7 +479,7 @@ void testSoldierGetsKilledAndTryToShoot(void) {
     Soldier soldier(scout, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    Infected walker(2, 3, 0, map);
+    Infected walker(2, 3, 0, map, 0, 0);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -500,7 +500,7 @@ void testSoldierGetsKilledAndTryToReload(void) {
     Soldier soldier(scout, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    Infected walker(2, 3, 0, map);
+    Infected walker(2, 3, 0, map, 0, 0);
     map.add_zombie(&walker, 2, 3);
 
     for (int i = 0; i < 15; i++) {
@@ -523,7 +523,7 @@ void testSoldierThrowsGrenadeAndStateChanges(void) {
     Soldier soldier(idf, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_explosive_grenade(100, 10000);
 
     ThrowingExplosiveGrenade* soldier_state = dynamic_cast<ThrowingExplosiveGrenade*>(soldier.get_state());
 
@@ -539,7 +539,7 @@ void testSoldierThrowsGrenadeAndTenSecondsPasses(void) {
     map.add_soldier(&soldier, 2, 2);
 
     soldier.set_direction(RIGHT);
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_explosive_grenade(100, 10000);
     soldier.update(110);
 
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
@@ -564,12 +564,12 @@ void testSoldierThrows2GrenadeOnly1IsThrown(void) {
 
     soldier.set_direction(RIGHT);
 
-    Infected walker1(x_explosion,y_explosion, 0,map); // donde0, cae la granada
+    Infected walker1(x_explosion,y_explosion, 0, map, 0, 0); // donde0, cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
 
-    soldier.throw_explosive_grenade(100);
-    soldier.throw_explosive_grenade(100.5);
+    soldier.throw_explosive_grenade(100, 10000);
+    soldier.throw_explosive_grenade(100.5, 1000000);
     soldier.update(200);
 
     std::int16_t walker_health = walker1.get_health();
@@ -579,12 +579,12 @@ void testSoldierThrows2GrenadeOnly1IsThrown(void) {
 
 void testSoldierThrowsGrenadeWithP90AndStateNotChanges(void) {
     GameMap map(10, 10, 0);
-    Weapon *p90 = new P90(0);
+    Weapon *p90 = new class P90(0);
 
     Soldier soldier(p90, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    soldier.throw_explosive_grenade(100);
+    soldier.throw_explosive_grenade(100, 10000);
 
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
 
@@ -601,7 +601,7 @@ void testSoldierThrowsSmokeGrenadeAndStateChanges(void) {
     Soldier soldier(idf, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    soldier.throw_smoke_grenade(100);
+    soldier.throw_smoke_grenade(100, 10000);
 
     ThrowingSmokeGrenade* soldier_state = dynamic_cast<ThrowingSmokeGrenade*>(soldier.get_state());
 
@@ -616,7 +616,7 @@ void testSoldierThrowsSmokeGrenadeAndTenSecondsPasses(void) {
     Soldier soldier(idf, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    soldier.throw_smoke_grenade(100);
+    soldier.throw_smoke_grenade(100, 10000);
     soldier.update(110);
     soldier.update(120);
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
@@ -627,12 +627,12 @@ void testSoldierThrowsSmokeGrenadeAndTenSecondsPasses(void) {
 
 void testSoldierThrowsSmokeGrenadeWithP90AndStateNotChanges(void) {
     GameMap map(10, 10, 0);
-    Weapon *p90 = new P90(0);
+    Weapon *p90 = new class P90(0);
 
     Soldier soldier(p90, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);
 
-    soldier.throw_smoke_grenade(100);
+    soldier.throw_smoke_grenade(100, 10000);
 
     Idle* soldier_state = dynamic_cast<Idle*>(soldier.get_state());
 
@@ -644,7 +644,7 @@ void testSoldierThrowsSmokeGrenadeWithP90AndStateNotChanges(void) {
 
 void testSoldierCallsAirStrikeWithP90AndStateChanges(void) {
     GameMap map(10, 10, 0);
-    Weapon *p90 = new P90(0);
+    Weapon *p90 = new class P90(0);
 
     Soldier soldier(p90, map, 2, 2, 0);
     map.add_soldier(&soldier, 2, 2);

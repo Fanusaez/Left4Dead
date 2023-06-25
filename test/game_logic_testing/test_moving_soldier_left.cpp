@@ -60,7 +60,7 @@ void testNotMoveSoldierLeftForCollisionWithZombie(){
     Soldier soldier(scout, map, 3, 7, 0);
     map.add_soldier(&soldier, 3, 7);
 
-    Infected walker(2, 7, 0,map);
+    Infected walker(2, 7, 0,map, 0, 0);
     map.add_zombie(&walker, 2, 7);
 
     for (float i = 0; i < MOVEMENTS_PER_CELL; i++){
