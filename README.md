@@ -76,6 +76,10 @@ Los comandos para jugar al juego son los siguientes:
 * Flecha `←`: mueve el jugador hacia la izquierda 
 * Letra `S`: para disparar
 * Letra `R`: para recargar
+* Letra `Q`: para tirar granada explosiva
+* Letra `W`: para tirar granada de humo
+* Letra `A`: para llamar ataque aereo
+* Letra `E`: para revivir un compañero
 * Letra `P`: para pausar la musica
 * Letra `O`: para renaudar la musica
 * Tecla `-`: para bajar el volumen
