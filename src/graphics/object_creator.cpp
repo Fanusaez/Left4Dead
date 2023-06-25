@@ -20,7 +20,7 @@ std::unique_ptr<RenderableObject> ObjectCreator::create(const SoldierObjectDTO &
 	else if (soldierDTO.soldier_type == P90)
 		return std::unique_ptr<RenderableObject>(
 			new SoldierP90(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
-				       soldierDTO.health, soldierDTO.bullets, soldierDTO.time_explosive_grenade));
+				       soldierDTO.health, soldierDTO.bullets, soldierDTO.time_air_strike));
 	else
 		return std::unique_ptr<RenderableObject>(
 			new Player(soldierDTO.id, soldierDTO.position_x, soldierDTO.position_y,
