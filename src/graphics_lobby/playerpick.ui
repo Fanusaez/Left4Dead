@@ -21,7 +21,7 @@
     <widget class="QLabel" name="soldierLebel">
      <property name="maximumSize">
       <size>
-       <width>300</width>
+       <width>1000</width>
        <height>30</height>
       </size>
      </property>
