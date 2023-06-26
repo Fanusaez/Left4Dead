@@ -43,16 +43,19 @@ void testShootingGun(void){
 
 void testThrowingGrenade(void){
     ClientSerializer client_serializer;
-    std::vector<char> buffer = client_serializer.serialize_throw_grenede(2);
+    std::vector<char> buffer = client_serializer.serialize_throw_explosive_grenede(2);
     //- shooting: 0x09
-    TEST_CHECK(buffer.size() == 2);
+    TEST_CHECK(buffer.size() == 5);
     TEST_CHECK(buffer.at(0) == THROW_EXPLOSIVE_GRENADE);
-    TEST_CHECK(buffer.at(1) == 2);
+    TEST_CHECK(buffer.at(1) == 0);
+    TEST_CHECK(buffer.at(2) == 0);
+    TEST_CHECK(buffer.at(3) == 0);
+    TEST_CHECK(buffer.at(4) == 2);
 }
 
 TEST_LIST = {
     {"Testing serialization: move soldier", testMovingSoldier},
     {"Testing serialization: reloading gun", testReloadingGun},
     {"Testing serialization: shooting gun", testShootingGun},
-    {"Testing serialization: shooting gun", testThrowingGrenade},
+    {"Testing serialization: throwing grenade ", testThrowingGrenade},
     {NULL, NULL}};

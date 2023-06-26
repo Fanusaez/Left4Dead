@@ -5,6 +5,8 @@
 #include "../client/lobby.h"
 #include "createpopup.h"
 #include "joinpopup.h"
+#include <QTimer>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,13 +31,16 @@ private slots:
 
     void on_exitButton_clicked();
 
+     void hideTemporaryLabel();
+
 protected:
      void closeEvent(QCloseEvent *event);
-
+     
 private:
     Ui::MainWindow *ui;
     Lobby* lobby;
     createPopUp* create_pop_up;
     JoinPopUp* join_pop_up;
+    QTimer *timer;
 };
 #endif // MAINWINDOW_H

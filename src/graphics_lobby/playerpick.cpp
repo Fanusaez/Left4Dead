@@ -26,6 +26,9 @@ PlayerPick::PlayerPick(Lobby* lobby, QWidget *parent) :
             ui->pushButton->setFont(font);
         }
     }
+    ui->pushButton->setEnabled(false);
+    ui->pushButton->setStyleSheet("color: rgb(157, 157, 157);");
+
 }
 
 PlayerPick::~PlayerPick()
@@ -38,6 +41,8 @@ void PlayerPick::on_idfButton_clicked()
     QString name = "IDF";
     QString text = QString("SELECCIONE UN SOLDADO PARA JUGAR: %1").arg(name);
     ui->soldierLebel->setText(text);
+    ui->pushButton->setEnabled(true);
+    ui->pushButton->setStyleSheet("color: rgb(255, 255, 255);");
 }
 
 
@@ -46,6 +51,8 @@ void PlayerPick::on_scouttButton_clicked()
     QString name = "SCOUT";
     QString text = QString("SELECCIONE UN SOLDADO PARA JUGAR: %1").arg(name);
     ui->soldierLebel->setText(text);
+    ui->pushButton->setEnabled(true);
+    ui->pushButton->setStyleSheet("color: rgb(255, 255, 255);");
 }
 
 
@@ -54,6 +61,8 @@ void PlayerPick::on_p90Button_clicked()
     QString name = "P90";
     QString text = QString("SELECCIONE UN SOLDADO PARA JUGAR: %1").arg(name);
     ui->soldierLebel->setText(text);
+    ui->pushButton->setEnabled(true);
+    ui->pushButton->setStyleSheet("color: rgb(255, 255, 255);");
 }
 
 
@@ -70,3 +79,16 @@ void PlayerPick::on_pushButton_clicked()
     this->close();
 }
 
+void PlayerPick::closeEvent(QCloseEvent *e) {
+    if (!ui->pushButton->isEnabled())
+        lobby->soldier_type(IDF);
+    else{
+        QString weapon = ui->soldierLebel->text();
+        if (weapon.toStdString() == "SELECCIONE UN SOLDADO PARA JUGAR: IDF")
+            lobby->soldier_type(IDF);
+        if (weapon.toStdString() == "SELECCIONE UN SOLDADO PARA JUGAR: SCOUT")
+            lobby->soldier_type(SCOUT);
+        if (weapon.toStdString() == "SELECCIONE UN SOLDADO PARA JUGAR: P90")
+            lobby->soldier_type(P90);
+    }
+}

@@ -25,6 +25,9 @@ private slots:
 
     void on_pushButton_clicked();
 
+protected:
+     void closeEvent(QCloseEvent *event);
+
 private:
     Ui::PlayerPick *ui;
 

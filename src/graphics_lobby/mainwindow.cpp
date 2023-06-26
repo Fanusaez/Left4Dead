@@ -4,6 +4,7 @@
 #include <QCloseEvent>
 #include <iostream>
 
+
 /* MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -33,13 +34,18 @@ MainWindow::MainWindow(Lobby* lobby, QWidget *parent)
             ui->settingsButton->setFont(font);
             ui->exitButton->setFont(font);
             ui->startButton->setFont(font);
+            ui->labelMatch->setFont(font);
         }
     }
+    ui->labelMatch->hide();
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(hideTemporaryLabel()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete timer;
     if (join_pop_up != nullptr) delete join_pop_up;
     if (create_pop_up != nullptr) delete create_pop_up;
 }
@@ -49,14 +55,24 @@ void MainWindow::closeEvent(QCloseEvent *e) {
 }
 
 void MainWindow::on_createButton_clicked() {
-    create_pop_up = new createPopUp(lobby,ui->startButton);
-    create_pop_up->show();
+    if(ui->startButton->isEnabled()){
+        ui->labelMatch->show();
+        timer->start(2000);
+    } else {
+        create_pop_up = new createPopUp(lobby,ui->startButton);
+        create_pop_up->show();
+    }
 }
 
 
 void MainWindow::on_joinButton_clicked() {
-    join_pop_up = new JoinPopUp(lobby,ui->startButton);
-    join_pop_up ->show();
+    if(ui->startButton->isEnabled()){
+        ui->labelMatch->show();
+        timer->start(2000);
+    } else {
+        join_pop_up = new JoinPopUp(lobby,ui->startButton);
+        join_pop_up ->show();
+    }   
 }
 
 void MainWindow::on_startButton_clicked() {
@@ -66,4 +82,10 @@ void MainWindow::on_startButton_clicked() {
 
 void MainWindow::on_exitButton_clicked() {
     QApplication::exit(1);
+}
+
+void MainWindow::hideTemporaryLabel()
+{
+    ui->labelMatch->hide();
+    timer->stop();
 }
