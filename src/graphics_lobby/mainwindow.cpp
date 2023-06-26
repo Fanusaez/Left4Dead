@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QFontDatabase>
 #include <QCloseEvent>
+#include <iostream>
 
 /* MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -44,7 +45,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::closeEvent(QCloseEvent *e) {
-    QApplication::exit(1);
+    if (!ui->startButton->isEnabled())
+        QApplication::exit(1);
 }
 
 void MainWindow::on_createButton_clicked() {

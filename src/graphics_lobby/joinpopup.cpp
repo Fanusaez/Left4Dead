@@ -26,11 +26,15 @@ JoinPopUp::JoinPopUp(Lobby* lobby, QPushButton* startButton, QWidget *parent) :
             ui->selectSoldier->setFont(font);
         }
     }
+
+    validator = new QIntValidator(this);
+    ui->gameCode->setValidator(validator);
 }
 
 JoinPopUp::~JoinPopUp()
 {
     delete ui;
+    delete validator;
     if (player_pick != nullptr) delete player_pick;
 }
 

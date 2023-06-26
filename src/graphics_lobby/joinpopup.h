@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "playerpick.h"
 #include "../client/lobby.h"
+#include <QIntValidator>
 
 namespace Ui {
 class JoinPopUp;
@@ -30,6 +31,8 @@ private:
     PlayerPick* player_pick;
 
     QPushButton* startButton;
+
+    QIntValidator* validator;
     
 };
 
