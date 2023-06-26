@@ -17,6 +17,7 @@ Witch::Witch(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         probability_to_scream(CONFIGURATION.get_witch_prob_scream()),
         zombies_created_for_screaming(CONFIGURATION.get_witch_zombies_created_screaming()),
         distance_to_hit(CONFIGURATION.get_witch_distance_to_hit()),
+        distance_to_hit_y(CONFIGURATION.get_zombies_distance_to_hit_y_axis()),
         sight_distance(CONFIGURATION.get_witch_sight_distance()),
         sight_distance_after_hit(CONFIGURATION.get_zombie_sight_distance_after_hit()),
         prob_to_walk(CONFIGURATION.get_witch_prob_to_walk()),
@@ -94,14 +95,25 @@ void Witch::scream(float time) {
 
 std::int16_t Witch::get_distance_to_soldier(Soldier* soldier) {
 
+    std::int16_t x_distance = get_distance_to_soldier_x(soldier);
+    std::int16_t y_distance = get_distance_to_soldier_y(soldier);
+    return std::sqrt(x_distance * x_distance + y_distance * y_distance);
+}
+
+std::int16_t Witch::get_distance_to_soldier_x(Soldier* soldier) {
+
     std::int16_t x_matrix_sold = soldier->get_x_matrix_pos();
-    std::int16_t y_matrix_sold = soldier->get_y_matrix_pos();
     std::int16_t x_matrix_walker = get_x_matrix_pos();
+
+    return abs(x_matrix_sold - x_matrix_walker);
+}
+
+std::int16_t Witch::get_distance_to_soldier_y(Soldier* soldier) {
+
+    std::int16_t y_matrix_sold = soldier->get_y_matrix_pos();
     std::int16_t y_matrix_walker = get_y_matrix_pos();
 
-    std::int16_t x_distance = x_matrix_sold - x_matrix_walker;
-    std::int16_t y_distance = y_matrix_sold - y_matrix_walker;
-    return std::sqrt(x_distance * x_distance + y_distance * y_distance);
+    return abs(y_matrix_sold - y_matrix_walker);
 }
 
 
@@ -118,8 +130,9 @@ void Witch::set_direction(std::int16_t direction_to_set) {
 void Witch::attack(std::vector<Soldier*> soldiers, float time) {
     Soldier* closest_soldier = get_closest_soldier(soldiers);
     if (!closest_soldier) return;
-    std::int16_t distance = get_distance_to_soldier(closest_soldier);
-    if (distance > distance_to_hit) return;
+    std::int16_t distance_x = get_distance_to_soldier_x(closest_soldier);
+    std::int16_t distance_y = get_distance_to_soldier_y(closest_soldier);
+    if (distance_x > distance_to_hit || distance_y > distance_to_hit_y) return;
     ZombieState* new_state = state->attack_soldier(closest_soldier, damage_attack, time);
     change_state(new_state);
 }

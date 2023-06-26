@@ -25,6 +25,7 @@ private:
     std::int16_t probability_to_scream;
     std::int16_t zombies_created_for_screaming;
     std::int16_t distance_to_hit;
+    std::int16_t distance_to_hit_y;
     std::int16_t sight_distance;
     std::int16_t sight_distance_after_hit;
     std::vector<std::int16_t> prob_to_walk;
@@ -37,6 +38,8 @@ private:
 
     Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
     std::int16_t get_distance_to_soldier(Soldier* soldier);
+    std::int16_t get_distance_to_soldier_x(Soldier* soldier);
+    std::int16_t get_distance_to_soldier_y(Soldier* soldier);
     std::int16_t get_random_number();
 public:
     Witch(std::int16_t x_pos,

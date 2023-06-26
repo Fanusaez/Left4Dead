@@ -1,5 +1,5 @@
 soldier:
-  health: 100
+  health: 10000
   health_when_reviving: 50
   grenade_distance_short_reach: 20
   grenade_distance_long_reach: 40
@@ -110,7 +110,7 @@ venom:
 
 zombieStates:
   time_attacking: 0.6
-  time_jumping: 0
+  time_jumping: 0.05
   time_running: 0.01
   time_screaming: 1.2
   time_stunned: 10
@@ -124,11 +124,11 @@ clearTheZone:
   time_respawn_zombies: 8
   total_quantity_zombies: 50
   zombies_probability_respawn:
-    infected: [ 0, 0 ]
-    witch: [ 0, 0 ]
-    jumper: [ 0, 0 ]
-    spear: [ 0, 50 ]
-    venom: [ 50, 100 ]
+    infected: [ 0, 30 ]
+    witch: [ 40, 50 ]
+    jumper: [ 50, 60 ]
+    spear: [ 60, 80 ]
+    venom: [ 80, 100 ]
 
 survival:
   time_respawn_zombies: 8

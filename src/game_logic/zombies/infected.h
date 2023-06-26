@@ -21,6 +21,7 @@ class Infected : public GameObject, public Zombie {
     std::int16_t health;
     std::int16_t damage_attack;
     std::int16_t distance_to_hit;
+    std::int16_t distance_to_hit_y;
     std::int16_t sight_distance;
     std::int16_t sight_distance_after_hit;
     std::vector<std::int16_t> prob_to_walk;
@@ -31,11 +32,10 @@ class Infected : public GameObject, public Zombie {
     ZombieState* state = new ZombieIdle;
     ChaseState* chase_state;
 
-
-
-
 Soldier* get_closest_soldier(std::vector<Soldier*> soldiers);
 std::int16_t get_distance_to_soldier(Soldier* soldier);
+std::int16_t get_distance_to_soldier_x(Soldier* soldier);
+std::int16_t get_distance_to_soldier_y(Soldier* soldier);
 void change_state(ZombieState* new_state);
 void random_chase_state();
 
