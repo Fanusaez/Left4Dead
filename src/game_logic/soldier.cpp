@@ -253,8 +253,8 @@ void Soldier::adjust_position_grenade(std::int16_t& x_grenade_pos, int32_t time_
 
 std::int16_t Soldier::get_grenade_distance_to_throw(int32_t time_pressed) {
     if (time_pressed > time_explode_grenade_in_hand) return grenade_distance_cero;
-    if (time_pressed > time_change_to_long_distance) return grenade_distance_long_reach;
-    return grenade_distance_short_reach;
+    std::cout<<time_pressed<<std::endl;
+    return time_pressed*0.02;
 }
 
 bool Soldier::dead() {
