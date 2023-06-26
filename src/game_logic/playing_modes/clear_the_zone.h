@@ -50,6 +50,8 @@ public:
 
     std::int32_t get_total_zombies_dead() override;
 
+    ~ClearTheZone();
+
 
 };
 

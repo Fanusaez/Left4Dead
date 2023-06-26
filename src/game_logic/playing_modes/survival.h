@@ -50,6 +50,8 @@ public:
     bool is_game_over() override;
 
     std::int32_t get_total_zombies_dead() override;
+
+    ~Survival();
 };
 
 

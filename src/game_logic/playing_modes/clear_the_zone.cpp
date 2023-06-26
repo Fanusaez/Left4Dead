@@ -113,3 +113,5 @@ std::int32_t ClearTheZone::get_total_zombies_dead() {
     }
     return total_zombies_killed;
 }
+
+ClearTheZone::~ClearTheZone() {}

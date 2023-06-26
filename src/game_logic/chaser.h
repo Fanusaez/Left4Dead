@@ -14,7 +14,7 @@ private:
     GameMap& map;
     std::int16_t zombie_speed_x = 1;
     std::int16_t zombie_speed_y = 1;
-    std::int16_t movements_per_cell = 2;
+    std::int16_t movements_per_cell;
 
     void move_right(bool& same_place);
     void move_left(bool& same_place);

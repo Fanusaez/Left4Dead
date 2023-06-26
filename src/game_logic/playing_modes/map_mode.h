@@ -20,6 +20,7 @@ public:
     virtual bool is_game_over() = 0;
 
     virtual std::int32_t get_total_zombies_dead() = 0;
+    virtual ~MapMode() {};
 };
 
 #endif  // MAP_MODE_H_

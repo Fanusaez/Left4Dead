@@ -53,7 +53,7 @@ std::int16_t get_time_to_throw_explosive_grenade() override;
 std::int16_t get_time_to_throw_smoke_grenade() override;
 std::int16_t get_time_to_call_air_strike() override;
 float get_time_to_shoot() override;
-    bool time_to_shoot(float time) override;
+bool time_to_shoot(float time) override;
 SoldierType get_type() override;
 };
 

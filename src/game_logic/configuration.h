@@ -146,8 +146,6 @@ private:
     Configuration(const YAML::Node& node);
     void parse_configurations(const YAML::Node& configNode);
 
-    ~Configuration();
-
 public:
 
     static Configuration& getInstance();
@@ -287,6 +285,8 @@ public:
 
     float get_air_strike_state_time_exploding();
     float get_air_strike_state_time_incoming();
+
+    ~Configuration();
 };
 
 
