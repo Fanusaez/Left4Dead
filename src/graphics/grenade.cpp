@@ -1,8 +1,8 @@
 #include "grenade.h"
 #include <stdexcept>
 
-Grenade::Grenade(int id, int initialX, int initialY) :
-	RenderableObject(id, initialX, initialY),
+Grenade::Grenade(const GrenadeObjectDTO &grenadeDTO) :
+	RenderableObject(grenadeDTO.id, grenadeDTO.position_x, grenadeDTO.position_y),
 	textureLoader(TextureLoader::getInstance()),
 	animation(textureLoader.getTexture("Soldier_1/Explosion.png")),
 	playSFX(false),
@@ -10,6 +10,8 @@ Grenade::Grenade(int id, int initialX, int initialY) :
 {
 	this->animation.noLoop();
 	this->sfx = this->textureLoader.getChunk("Soldier_1/Explosion.mp3");
+	if (grenadeDTO.grenade_type == AIR_STRIKE)
+		this->sfx->SetVolume(10);
 	this->playSFX = true;
 }
 

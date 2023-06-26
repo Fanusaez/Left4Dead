@@ -13,7 +13,7 @@ class Grenade : public RenderableObject {
 	int lastChannel;
 
 public:
-	Grenade(int id, int initialX, int initialY);
+	Grenade(const GrenadeObjectDTO &grenadeDTO);
 
 	virtual ~Grenade();
 

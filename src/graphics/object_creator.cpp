@@ -47,13 +47,13 @@ std::unique_ptr<RenderableObject> ObjectCreator::create(const ZombieObjectDTO &z
 
 std::unique_ptr <RenderableObject> ObjectCreator::create(const GrenadeObjectDTO &grenadeDTO) const
 {
-	if (grenadeDTO.grenade_type == EXPLOSIVE_GRENADE)
-		return std::unique_ptr<RenderableObject>(
-			new Grenade(grenadeDTO.id, grenadeDTO.position_x, grenadeDTO.position_y));
-	else if (grenadeDTO.grenade_type == VENOM_GRENADE)
+	if (grenadeDTO.grenade_type == VENOM_GRENADE)
 		return std::unique_ptr<RenderableObject>(
 			new VenomGrenade(grenadeDTO.id, grenadeDTO.position_x, grenadeDTO.position_y));
-	else
+	else if (grenadeDTO.grenade_type == SMOKE_GRENADE)
 		return std::unique_ptr<RenderableObject>(
 			new Smoke(grenadeDTO.id, grenadeDTO.position_x, grenadeDTO.position_y));
+	else
+		return std::unique_ptr<RenderableObject>(
+			new Grenade(grenadeDTO));
 }
