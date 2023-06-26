@@ -8,7 +8,7 @@ VenomGrenade::VenomGrenade(int id, int initialX, int initialY) :
 	playSFX(false),
 	lastChannel(-1)
 {
-	this->animation.noLoop();
+	//this->animation.noLoop();
 	this->sfx = this->textureLoader.getChunk("Venom/Attack1a.mp3");
 	this->playSFX = true;
 }
