@@ -27,7 +27,6 @@ void Game::run(){
             if(could_pop) {
                 if (instructionDTO->get_instruction() == START) {
                     start_players++;
-                    delete instructionDTO;
                 }
                 else if (instructionDTO->get_instruction() == SOLDIER_TYPE) {
                     SoldierTypeDTO* soldier_dto = dynamic_cast<SoldierTypeDTO*>(instructionDTO);
@@ -37,8 +36,8 @@ void Game::run(){
                         game_logic.add_soldier_scout(soldier_dto->get_player_id());
                     else if (soldier_dto->get_soldier_type() == P90)
                         game_logic.add_soldier_p90(soldier_dto->get_player_id());
-                    delete instructionDTO;
                 }
+                delete instructionDTO;
             }
 		std::this_thread::sleep_for(std::chrono::duration<double>(rate));
         } catch (const ClosedQueue& e) {
