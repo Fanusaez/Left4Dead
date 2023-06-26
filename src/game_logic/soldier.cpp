@@ -253,7 +253,6 @@ void Soldier::adjust_position_grenade(std::int16_t& x_grenade_pos, int32_t time_
 
 std::int16_t Soldier::get_grenade_distance_to_throw(int32_t time_pressed) {
     if (time_pressed > time_explode_grenade_in_hand) return grenade_distance_cero;
-    std::cout<<time_pressed<<std::endl;
     return time_pressed*0.02;
 }
 
