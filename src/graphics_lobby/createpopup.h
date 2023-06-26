@@ -1,6 +1,7 @@
 #ifndef CREATEPOPUP_H
 #define CREATEPOPUP_H
 
+#include <QMainWindow>
 #include "playerpick.h"
 #include "../client/lobby.h"
 #include <QDialog>
@@ -15,7 +16,7 @@ class createPopUp : public QDialog
 
 public:
     //explicit createPopUp(QWidget *parent = nullptr);
-    createPopUp(Lobby* lobby, QWidget *parent = nullptr);
+    createPopUp(Lobby* lobby, QPushButton* startButton, QWidget *parent = nullptr);
     ~createPopUp();
 
 private slots:
@@ -29,6 +30,8 @@ private:
     Lobby* lobby;
 
     PlayerPick* player_pick;
+
+    QPushButton* startButton;
 };
 
 #endif // CREATEPOPUP_H

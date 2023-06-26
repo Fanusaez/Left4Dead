@@ -48,13 +48,13 @@ void MainWindow::closeEvent(QCloseEvent *e) {
 }
 
 void MainWindow::on_createButton_clicked() {
-    create_pop_up = new createPopUp(lobby);
+    create_pop_up = new createPopUp(lobby,ui->startButton);
     create_pop_up->show();
 }
 
 
 void MainWindow::on_joinButton_clicked() {
-    join_pop_up = new JoinPopUp(lobby);
+    join_pop_up = new JoinPopUp(lobby,ui->startButton);
     join_pop_up ->show();
 }
 

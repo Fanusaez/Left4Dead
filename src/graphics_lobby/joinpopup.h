@@ -15,7 +15,7 @@ class JoinPopUp : public QDialog
 
 public:
     //explicit JoinPopUp(QWidget *parent = nullptr);
-    JoinPopUp(Lobby* lobby, QWidget *parent = nullptr);
+    JoinPopUp(Lobby* lobby, QPushButton* startButton, QWidget *parent = nullptr);
     ~JoinPopUp();
 
 private slots:
@@ -28,6 +28,8 @@ private:
     Lobby* lobby;
 
     PlayerPick* player_pick;
+
+    QPushButton* startButton;
     
 };
 

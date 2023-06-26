@@ -3,11 +3,12 @@
 #include <QFontDatabase>
 #include "../common/game_mode.h"
 
-createPopUp::createPopUp(Lobby* lobby, QWidget *parent) :
+createPopUp::createPopUp(Lobby* lobby, QPushButton* startButton,  QWidget *parent) :
     QDialog(parent),
     ui(new Ui::createPopUp),
     lobby(lobby),
-    player_pick(nullptr)
+    player_pick(nullptr),
+    startButton(startButton)
 {
     ui->setupUi(this);
 
@@ -53,6 +54,15 @@ void createPopUp::on_createButton_clicked()
         lobby->start();
         ui->selectSoldier->setEnabled(true);
         ui->selectSoldier->setStyleSheet("color: rgb(255, 255, 255);");
+        startButton->setEnabled(true);
+        startButton->setStyleSheet("QPushButton {"
+                            "border: none;"
+                            "background: none;"
+                            "color: rgb(255, 255, 255);"
+                        "}"
+                        "QPushButton:hover {"
+                            "color: rgb(176, 10, 10);"
+                        "}");
     }
     else{
         QString text = QString("Error al crear partida");
