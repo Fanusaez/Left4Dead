@@ -67,6 +67,7 @@ void GameLogic::new_instruction(InstructionsDTO* instruction) {
 GameDTO GameLogic::get_game() {
     GameDTO game_dto;
     //Recorremos los soldados que hay dentro del mapa
+    int16_t sum_bullets = 0;
     for (const auto& piar: playerSoldierMap){
         Soldier *soldier = piar.second;
         SoldierObjectDTO soldier_dto(piar.first,soldier->get_id(), soldier->get_health(), 
@@ -104,8 +105,9 @@ GameDTO GameLogic::get_game() {
                 }
             }
         }
-        game_dto.add_game_stats(GameStats(soldier->get_total_bullets_shot(),game_map->get_total_zombies_dead()));
+        sum_bullets += soldier->get_total_bullets_shot();
     }
+    game_dto.add_game_stats(GameStats(sum_bullets,game_map->get_total_zombies_dead()));
     //Obtenemos y recorremos los zombies del mapa
     std::vector<Zombie*>* zombies = game_map->get_zombies();
     for (const auto& zombie: *zombies){
