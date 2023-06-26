@@ -45,8 +45,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::closeEvent(QCloseEvent *e) {
-    if (!ui->startButton->isEnabled())
-        QApplication::exit(1);
+    QApplication::exit(1);
 }
 
 void MainWindow::on_createButton_clicked() {
@@ -61,7 +60,7 @@ void MainWindow::on_joinButton_clicked() {
 }
 
 void MainWindow::on_startButton_clicked() {
-    this->close();
+    QApplication::exit();
     lobby->exit_lobby();
 }
 
