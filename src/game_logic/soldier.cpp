@@ -185,6 +185,7 @@ void Soldier::revive(float time) {
     State* new_state = state -> revive(time);
     change_state(new_state);
     health = health_when_revive;
+    _dead = false;
 }
 
 void Soldier::set_direction(std::int16_t new_direction) {
