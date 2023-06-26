@@ -13,15 +13,17 @@ void testSerializeCreateScenario(void)
 {
     LobbySerializer lobby_serializer;
     std::string scenario_name = "Map1";
-    std::vector<char> buffer = lobby_serializer.serialize_create_scenario(scenario_name);
+    std::vector<char> buffer = lobby_serializer.serialize_create_scenario(scenario_name,SURVIVAL,2);
     //- create: 0x01 <scenario len> <scenario name>
-    TEST_CHECK(buffer.size() == 6);
+    TEST_CHECK(buffer.size() == 8);
     TEST_CHECK(buffer.at(0) == CREATE);
     TEST_CHECK(buffer.at(1) == 0x04);
     TEST_CHECK(buffer.at(2) == 'M');
     TEST_CHECK(buffer.at(3) == 'a');
     TEST_CHECK(buffer.at(4) == 'p');
     TEST_CHECK(buffer.at(5) == '1');
+    TEST_CHECK(buffer.at(6) == SURVIVAL);
+    TEST_CHECK(buffer.at(7) == 2);
 }
 
 void testSerializeJoinScenario(void)
