@@ -19,3 +19,32 @@ renderiza transformando las distancias a pixeles.
 Para mover el background y que se de la ilusion de movimiento se calcula un offset. Este offset es cuanto se
 movio el objeto principal y se actualiza cada vez que se llama a render(). A partir de este offset las componentes
 del background se renderizan corridas.
+
+## Resumen de las clases:
+
+### Gameview
+Clase principal de la vista. Encapsula el proceso de renderizado.
+
+### Scene
+Entidad que representa el background, incluyendo el piso, la musica y tambien tiene la logica del movimiento de este.
+
+### RenderableObject
+Interfaz de un objeto que puede ser renderizado (sin incluir Scene). En principio todo lo que debe conocer el Gameview
+
+### Playable
+Sub-clase de RenderableObject. Agrega un par de metodos para el hud. Gameview tambien termina conociendo esta clase.
+
+Luego se tienen clases como Scout, Infected, Witch o Grenade que implementan RenderableObject y/o Playable.
+
+### Animation
+Logica de la animacion de objetos.
+
+### ObjectCreator
+Factory de RenderableObject.
+
+### TextureLoader
+Singleton. Carga texturas. Tambien se extendio para cargar musica, sfx y fonts asi que el nombre le termino quedando chico.
+La idea es que solo haya un asset de cada tipo en memoria y no se repitan.
+
+### GameviewConfigurationsLoader
+Singleton. Clase que encapsula configuraciones de la vista.
