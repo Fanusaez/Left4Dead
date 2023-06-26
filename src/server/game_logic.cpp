@@ -99,7 +99,7 @@ GameDTO GameLogic::get_game() {
                 int i = 0;
                 for(const auto position: matrix){
                     //std::cout<<"Cargo granada"<<position[0]<<", "<<position[1]<<std::endl;
-                    GrenadeObjectDTO grenade_dto(air_strike->id+i, position[0], position[1],EXPLOSIVE_GRENADE);
+                    GrenadeObjectDTO grenade_dto(air_strike->id+i, position[0], position[1],AIR_STRIKE);
                     game_dto.add_element(grenade_dto);
                     i++;
                 }

@@ -11,7 +11,7 @@ Grenade::Grenade(const GrenadeObjectDTO &grenadeDTO) :
 	this->animation.noLoop();
 	this->sfx = this->textureLoader.getChunk("Soldier_1/Explosion.mp3");
 	if (grenadeDTO.grenade_type == AIR_STRIKE)
-		this->sfx->SetVolume(10);
+		this->sfx->SetVolume(20);
 	this->playSFX = true;
 }
 
