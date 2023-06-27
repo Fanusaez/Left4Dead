@@ -8,7 +8,7 @@
 
 #define INVALID_POSITION -1
 
-Venom::Venom(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, GameMap& map,  std::int16_t extra_health, std::int16_t extra_damage) :
+Venom::Venom(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, std::int16_t id_attack_long, GameMap& map,  std::int16_t extra_health, std::int16_t extra_damage) :
         movements_per_cell(CONFIGURATION.get_movements_per_cell()),
         x_pos(x_pos_wal * movements_per_cell),
         y_pos(y_pos_wal * movements_per_cell),
@@ -22,7 +22,8 @@ Venom::Venom(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         sight_distance(CONFIGURATION.get_venom_sight_distance()),
         prob_to_walk(CONFIGURATION.get_venom_prob_to_walk()),
         prob_to_run(CONFIGURATION.get_venom_prob_to_run()),
-        prob_to_jump(CONFIGURATION.get_venom_prob_to_jump()){
+        prob_to_jump(CONFIGURATION.get_venom_prob_to_jump()),
+        attack_long_range(id_attack_long) {
     random_chase_state();
     health += extra_health;
 }
@@ -186,6 +187,10 @@ void Venom::random_chase_state() {
 
 std::vector<std::int16_t> Venom::get_pos_of_explosion_long_range() {
     return attack_long_range.get_pos_explosion();
+}
+
+std::int16_t Venom::get_id_attack_long_range() {
+    return attack_long_range.get_id_attack_long();
 }
 
 Venom::~Venom() {

@@ -119,7 +119,7 @@ GameDTO GameLogic::get_game() {
         if (state == ATTACKING_VENOM_LONG_RANGE){
             Venom* venom = dynamic_cast<Venom*>(zombie);
             if (venom != nullptr) {
-                GrenadeObjectDTO grenade_dto(100,venom->get_pos_of_explosion_long_range()[0],
+                GrenadeObjectDTO grenade_dto(venom->get_id_attack_long_range(),venom->get_pos_of_explosion_long_range()[0],
                 venom->get_pos_of_explosion_long_range()[1],VENOM_GRENADE);
                 game_dto.add_element(grenade_dto);
             }

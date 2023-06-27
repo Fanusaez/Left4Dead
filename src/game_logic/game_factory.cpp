@@ -56,7 +56,7 @@ Zombie* GameFactory::create_random_zombie(std::vector<std::int16_t>& zombie_pos)
     } else if (random_num >= spear_prob[0] && random_num <= spear_prob[1]) {
         return new Spear(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, NO_EXTRA_HEALTH, NO_EXTRA_DAMAGE);
     } else {
-        return new Venom(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, NO_EXTRA_HEALTH, NO_EXTRA_DAMAGE);
+        return new Venom(zombie_pos[X_POS], zombie_pos[Y_POS], id++, id++, map, NO_EXTRA_HEALTH, NO_EXTRA_DAMAGE);
     }
 }
 
@@ -77,6 +77,6 @@ Zombie* GameFactory::create_spear(std::vector<std::int16_t>& zombie_pos, std::in
 }
 
 Zombie* GameFactory::create_venom(std::vector<std::int16_t>& zombie_pos, std::int16_t extra_health, std::int16_t extra_damage) {
-    return new Venom(zombie_pos[X_POS], zombie_pos[Y_POS], id++, map, extra_health, extra_damage);
+    return new Venom(zombie_pos[X_POS], zombie_pos[Y_POS], id++, id++, map, extra_health, extra_damage);
 }
 

@@ -2,7 +2,8 @@
 #include "../../../soldier.h"
 #include "../../../zombie_states/zombie_state.h"
 
-VenomLongRange::VenomLongRange() :  damage(CONFIGURATION.get_venom_damage_long_range()),
+VenomLongRange::VenomLongRange(std::int16_t id) : id(id),
+                                    damage(CONFIGURATION.get_venom_damage_long_range()),
                                     time_to_attack_again(CONFIGURATION.get_venom_time_to_attack_long_range()),
                                     last_time_attacked(CONFIGURATION.get_venom_time_to_attack_long_range() * -1) {}
 
@@ -26,4 +27,8 @@ std::vector<std::int16_t> VenomLongRange::get_pos_explosion() {
 
 bool VenomLongRange::time_to_attack(float time) {
     return time - last_time_attacked > time_to_attack_again;
+}
+
+std::int16_t VenomLongRange::get_id_attack_long() {
+    return id;
 }

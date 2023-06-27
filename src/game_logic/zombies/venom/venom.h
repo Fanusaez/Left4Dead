@@ -46,6 +46,7 @@ public:
     Venom(std::int16_t x_pos,
           std::int16_t y_pos,
           std::int16_t id,
+          std::int16_t id_attack_long,
           GameMap& map,
           std::int16_t extra_health,
           std::int16_t extra_damage);
@@ -76,6 +77,7 @@ public:
     ZombieType get_type() override;
     std::int16_t get_health() override;
     std::vector<std::int16_t> get_pos_of_explosion_long_range();
+    std::int16_t get_id_attack_long_range();
     ~Venom();
 
 // ************************* Metodos de testeo ************************************************8//
