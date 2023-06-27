@@ -31,7 +31,6 @@ MainWindow::MainWindow(Lobby* lobby, QWidget *parent)
             QFont font(fontFamily, 24); // Crea una instancia de QFont con el nombre de la familia y el tamaño deseado
             ui->createButton->setFont(font);
             ui->joinButton->setFont(font);
-            ui->settingsButton->setFont(font);
             ui->exitButton->setFont(font);
             ui->startButton->setFont(font);
             ui->labelMatch->setFont(font);
