@@ -31,3 +31,4 @@
 * Sonidos del juego
 * Manejo de eventos
 * Cmake
+* Instalador
