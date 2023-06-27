@@ -12,7 +12,7 @@ Queue<InstructionsDTO*> *MatchMananger::create_game(Queue<GameDTO> *queue_sender
                     GameMode& game_mode, int8_t& game_players)
 {
     //Me fijo si algun juego dejo de existir
-    reap_dead();
+    //reap_dead();
     if (!game_name_exist(escenario)){   //Si el escenario no existe crearlo
         //Le paso la queue a la cual va a tener que pushear el game
         //Tambien es necesario el game_counter que sera el codigo que tendra junto con el nombre

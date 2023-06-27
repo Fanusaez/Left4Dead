@@ -58,7 +58,7 @@ bool ProtectedGameList::delete_player(int32_t& player_id) {
 void ProtectedGameList::reap_dead() {
     std::lock_guard<std::mutex> lock(m);
     games.remove_if([](Game *g) {
-    if (g->is_not_playing()) {
+    if (!g->is_not_playing()) {
         g->join();  //Si se murio le hago un join al game
         delete g;   //Elimino el game
         return true;
