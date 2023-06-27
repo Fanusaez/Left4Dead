@@ -14,7 +14,6 @@ void testSerializeCreateScenario(void)
     LobbySerializer lobby_serializer;
     std::string scenario_name = "Map1";
     std::vector<char> buffer = lobby_serializer.serialize_create_scenario(scenario_name,SURVIVAL,2);
-    //- create: 0x01 <scenario len> <scenario name>
     TEST_CHECK(buffer.size() == 8);
     TEST_CHECK(buffer.at(0) == CREATE);
     TEST_CHECK(buffer.at(1) == 0x04);
@@ -31,7 +30,6 @@ void testSerializeJoinScenario(void)
     LobbySerializer lobby_serializer;
     int32_t scenario_code = 10;
     std::vector<char> buffer = lobby_serializer.serialize_join_scenario(scenario_code);
-    //- join: 0x02 <code>
     TEST_CHECK(buffer.size() == 5);
     TEST_CHECK(buffer.at(0) == JOIN);
     TEST_CHECK(buffer.at(1) == 0);

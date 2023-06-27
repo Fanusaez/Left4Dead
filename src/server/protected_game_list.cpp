@@ -30,6 +30,7 @@ Game* ProtectedGameList::game_code_exist(const int32_t& codigo) {
 }
 
 void ProtectedGameList::join_games() {
+    std::lock_guard<std::mutex> lock(m);
     for (Game *game : games){
         game->stop_playing();
         game->join();
@@ -39,6 +40,7 @@ void ProtectedGameList::join_games() {
 }
 
 bool ProtectedGameList::delete_player(int32_t& player_id) {
+    std::lock_guard<std::mutex> lock(m);
     for (Game *game: games){
         if (game->delete_player(player_id)){
             if (game->is_empty()){  //Chequeo si no hay mas jugadores en la partida.
@@ -54,6 +56,7 @@ bool ProtectedGameList::delete_player(int32_t& player_id) {
 }
 
 void ProtectedGameList::reap_dead() {
+    std::lock_guard<std::mutex> lock(m);
     games.remove_if([](Game *g) {
     if (g->is_not_playing()) {
         g->join();  //Si se murio le hago un join al game
