@@ -15,10 +15,6 @@ void testMovingSoldier(void)
     ClientSerializer client_serializer;
     MoveType move_type = UP;
     std::vector<char> buffer = client_serializer.serialize_move(move_type);
-    //- mode: 0x07 <code>: 0x00 RIGHT
-    //                     0x01 LEFT
-    //                     0x02 UP
-    //                     0x03 DOWN
     TEST_CHECK(buffer.size() == 2);
     TEST_CHECK(buffer.at(0) == MOVE);
     TEST_CHECK(buffer.at(1) == UP);
@@ -28,7 +24,6 @@ void testReloadingGun(void)
 {
     ClientSerializer client_serializer;
     std::vector<char> buffer = client_serializer.serialize_reloading();
-    //- reloading: 0x08
     TEST_CHECK(buffer.size() == 1);
     TEST_CHECK(buffer.at(0) == RELOAD);
 }
@@ -36,7 +31,6 @@ void testReloadingGun(void)
 void testShootingGun(void){
     ClientSerializer client_serializer;
     std::vector<char> buffer = client_serializer.serialize_shooting();
-    //- shooting: 0x09
     TEST_CHECK(buffer.size() == 1);
     TEST_CHECK(buffer.at(0) == SHOOT);
 }
