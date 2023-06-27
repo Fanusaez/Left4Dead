@@ -11,7 +11,7 @@
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
 #define CLOSE_RANGE_DAMAGE 30
-#define LONG_RANGE_DAMAGE 15
+#define LONG_RANGE_DAMAGE 10
 
 void testSoldierShootsIdfCloseRangeLeft(void) {
     GameMap map(MAP_SIZE_X, MAP_SIZE_Y, 0);

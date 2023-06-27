@@ -1324,9 +1324,9 @@ target_link_libraries(testAirStrikeStates -lyaml-cpp)
 # target_link_libraries(testPrueba PRIVATE myLibrary)
 # Despues agregar el target aca y listo
 set(testTargets
-        #testProtocolLobby
-        #testProtocolClient
-        #testProtocolServer
+        testProtocolLobby
+        testProtocolClient
+        testProtocolServer
         testCollision
         testShooting
         testShootingIdf

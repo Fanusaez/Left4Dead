@@ -23,6 +23,7 @@
 #define MAP_SIZE_Y 150
 #define DISTANCE_THROWN 40
 #define REACH_EXPLOSIVE_DAMAGE 8
+#define TIME_PRESSED_MAX_REACH 2000
 
 void testInfectedStartsWithIdleState(void) {
     GameMap map(10, 10, 0);
@@ -156,8 +157,8 @@ void testInfectedAttacks2Times(void) {
     Soldier soldier(scout, map, 5, 6, 0);
     map.add_soldier(&soldier, 5, 6);
 
-    Infected walker(5, 5, 0, map, 0, 0);
-    map.add_zombie(&walker, 5, 5);
+    Infected walker(6, 6, 0, map, 0, 0);
+    map.add_zombie(&walker, 6, 6);
 
     map.attack_soldiers(1);
     std::int16_t health = soldier.get_health();
@@ -296,7 +297,7 @@ void testSoldierThrowsSmokeGrenadeAndStunnedZombie(void) {
     Infected walker1(x_explosion,y_explosion, 0, map, 0, 0); // donde0, cae la granada
     map.add_zombie(&walker1, x_explosion,y_explosion);
 
-    soldier.throw_smoke_grenade(100, 10000);
+    soldier.throw_smoke_grenade(100, 2000);
     soldier.update(200);
 
     Stunned* zombie_state1 = dynamic_cast<Stunned*>(walker1.get_state());
@@ -328,7 +329,6 @@ TEST_LIST = {
         {"Infected shoots and reloads state changes to Reloading", testInfectedChaseAndStateChangesToWalking},
         {"Infected gets called 2 times chase but too fast", testInfectedChaseTwiceTooFastAndmoves1Time},
         {"Infected gets called 2 times chase and moves 2 times",testInfectedChaseTwiceAndmoves2Times},
-        //{"Infected attacks and state change to Attacking", testInfectedAttacksSoldierAndStateChangesToAttackingButDoesNotHurtTheSoldierYet},
         {"Infected attacks 2 times fast, only attacks once",testInfectedAttacks2TimesToFastOnlyAttacksOnce},
         {"Infected attacks twice",testInfectedAttacks2Times},
         {"Infected gets attacked, state changes and health decrease",testInfectedGetsAttacked},

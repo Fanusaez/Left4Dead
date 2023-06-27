@@ -125,10 +125,6 @@ void Chaser::move_left(bool &same_place) {
     }
 }
 
-void Chaser::set_speed(std::int16_t speed) {
-    zombie_speed_x = speed;
-}
-
 bool Chaser::too_close_to_move(std::int16_t x_pos_chase, std::int16_t y_pos_chase) {
     if (abs(x_pos_chase - x_pos) <= movements_per_cell && abs(y_pos_chase - y_pos) == 0) return true;
     return false;

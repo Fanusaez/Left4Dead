@@ -11,15 +11,15 @@
 
 #define UP -1
 #define DOWN 1
-#define AIR_DAMAGE 30
-#define REACH_SAFE_AREA 2
-#define MAP_SIZE_X 20
-#define MAP_SIZE_Y 20
+#define AIR_DAMAGE 60
+#define REACH_SAFE_AREA 10
+#define MAP_SIZE_X 100
+#define MAP_SIZE_Y 100
 
 void testSoldierCallsAirStrikeAndDamages4Zombies(void) {
 
-    std::int16_t  x_called_place = 10;
-    std::int16_t  y_called_place = 10;
+    std::int16_t  x_called_place = 50;
+    std::int16_t  y_called_place = 50;
 
     std::int16_t  x_limit_safe_left = x_called_place - REACH_SAFE_AREA;
     std::int16_t  x_limit_safe_right = x_called_place + REACH_SAFE_AREA;
@@ -62,8 +62,8 @@ void testSoldierCallsAirStrikeAndDamages4Zombies(void) {
 
 void testSoldierCallsAirStrikeAndDamages4Zombies2(void) {
 
-    std::int16_t  x_called_place = 10;
-    std::int16_t  y_called_place = 10;
+    std::int16_t  x_called_place = 50;
+    std::int16_t  y_called_place = 50;
 
     std::int16_t  x_limit_safe_left = x_called_place - REACH_SAFE_AREA;
     std::int16_t  x_limit_safe_right = x_called_place + REACH_SAFE_AREA;
@@ -106,8 +106,8 @@ void testSoldierCallsAirStrikeAndDamages4Zombies2(void) {
 
 void testSoldierCallsAirStrikeWith2ExtraSoldiersByHisSideAndDamages4Zombies(void) {
 
-    std::int16_t  x_called_place = 10;
-    std::int16_t  y_called_place = 10;
+    std::int16_t  x_called_place = 50;
+    std::int16_t  y_called_place = 50;
 
     std::int16_t  x_limit_safe_left = x_called_place - REACH_SAFE_AREA;
     std::int16_t  x_limit_safe_right = x_called_place + REACH_SAFE_AREA;
@@ -166,8 +166,8 @@ void testSoldierCallsAirStrikeWith2ExtraSoldiersByHisSideAndDamages4Zombies(void
 
 void testSoldierCallsAirStrikeWithIDFButNothingHappen(void) {
 
-    std::int16_t  x_called_place = 10;
-    std::int16_t  y_called_place = 10;
+    std::int16_t  x_called_place = 50;
+    std::int16_t  y_called_place = 50;
 
     std::int16_t  x_limit_safe_left = x_called_place - REACH_SAFE_AREA;
     std::int16_t  x_limit_safe_right = x_called_place + REACH_SAFE_AREA;
@@ -210,8 +210,8 @@ void testSoldierCallsAirStrikeWithIDFButNothingHappen(void) {
 
 void testSoldierCallsAirStrikeWithScoutButNothingHappen(void) {
 
-    std::int16_t  x_called_place = 10;
-    std::int16_t  y_called_place = 10;
+    std::int16_t  x_called_place = 50;
+    std::int16_t  y_called_place = 50;
 
     std::int16_t  x_limit_safe_left = x_called_place - REACH_SAFE_AREA;
     std::int16_t  x_limit_safe_right = x_called_place + REACH_SAFE_AREA;
@@ -254,8 +254,8 @@ void testSoldierCallsAirStrikeWithScoutButNothingHappen(void) {
 
 void testSoldierCalls2AirStrikeOnlyCallsOne(void) {
 
-    std::int16_t  x_called_place = 10;
-    std::int16_t  y_called_place = 10;
+    std::int16_t  x_called_place = 50;
+    std::int16_t  y_called_place = 50;
 
     std::int16_t  x_limit_safe_left = x_called_place - REACH_SAFE_AREA;
     std::int16_t  x_limit_safe_right = x_called_place + REACH_SAFE_AREA;

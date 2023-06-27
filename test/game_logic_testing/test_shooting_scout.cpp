@@ -10,7 +10,7 @@
 #define DOWN 1
 #define MAP_SIZE_X 10
 #define MAP_SIZE_Y 10
-#define STARTING_DAMAGE 40
+#define STARTING_DAMAGE 60
 #define DAMAGE_REDUCTION 10
 
 void testSoldierShootsScoutWith2InfectedsInLineRight(void) {

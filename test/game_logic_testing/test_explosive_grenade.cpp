@@ -10,18 +10,14 @@
 
 #define UP -1
 #define DOWN 1
-#define GRANADE_DAMAGE 40
+#define GRANADE_DAMAGE 50
 #define MAP_SIZE_X 150
 #define MAP_SIZE_Y 150
 
-/*
- * La granada se lanza 4 casilleros independientemente de la magnitud del mapa
- * En un Mapa de 20 x 20 (como en este caso), el alcance de dano es de 3 casilleros
- */
 
 #define DISTANCE_THROWN 40
 #define REACH_EXPLOSIVE_DAMAGE 8
-
+#define TIME_PRESSED_MAX_REACH 2000
 
 void testSoldierThrowsExplosiveGrenadeLeftAndDamages5Zombies(void) {
 
@@ -60,7 +56,7 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages5Zombies(void) {
     Infected walker5(x_limit_damage_right,y_limit_damage_down, 0, map, 0, 0);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
-    soldier.throw_explosive_grenade(100, 100000);
+    soldier.throw_explosive_grenade(100, TIME_PRESSED_MAX_REACH);
     soldier.update(200);
 
     std::uint16_t remaining_health1 = walker1.get_health();
@@ -114,7 +110,7 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies(void) {
     Infected walker5(x_limit_damage_right, y_limit_damage_down + 1, 0, map, 0, 0);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down + 1);
 
-    soldier.throw_explosive_grenade(100, 100000);
+    soldier.throw_explosive_grenade(100, TIME_PRESSED_MAX_REACH);
     soldier.update(200);
 
     std::uint16_t remaining_health1 = walker1.get_health();
@@ -173,7 +169,7 @@ void testSoldierThrowsExplosiveGrenadeLeftAndDamages1Zombies2(void) {
     Infected walker5(x_limit_damage_right,y_limit_damage_down + 1, 0, map, 0, 0);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down + 1);
 
-    soldier.throw_explosive_grenade(100, 100000);
+    soldier.throw_explosive_grenade(100, TIME_PRESSED_MAX_REACH);
     soldier.update(200);
 
     std::uint16_t remaining_health1 = walker1.get_health();
@@ -210,7 +206,7 @@ void testSoldierThrowsExplosiveGrenadeToOtherSoldier(void) {
     map.add_soldier(&soldier2, x_explosion,y_explosion);
 
     soldier1.set_direction(LEFT);
-    soldier1.throw_explosive_grenade(100, 100000);
+    soldier1.throw_explosive_grenade(100, TIME_PRESSED_MAX_REACH);
     soldier1.update(200);
 
     std::int16_t remaining_health1 = soldier1.get_health();
@@ -258,7 +254,7 @@ void testSoldierThrowsExplosiveGrenadeRightAndDamages5Zombies(void) {
     Infected walker5(x_limit_damage_right, y_limit_damage_down, 0, map, 0, 0);
     map.add_zombie(&walker5, x_limit_damage_right,y_limit_damage_down);
 
-    soldier.throw_explosive_grenade(100, 100000);
+    soldier.throw_explosive_grenade(100, TIME_PRESSED_MAX_REACH);
     soldier.update(200);
 
     std::uint16_t remaining_health1 = walker1.get_health();

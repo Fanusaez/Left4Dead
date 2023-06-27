@@ -41,11 +41,11 @@ weapons:
 
 explosiveGrenade:
   damage: 50
-  time_to_reThrow_grenade: 1
+  time_to_reThrow_grenade: 15
   radius_range: 8
 
 smokeGrenade:
-  time_to_reThrow_grenade: 30
+  time_to_reThrow_grenade: 15
   radius_range: 8
 
 grenadeStates:
@@ -153,7 +153,7 @@ gameFactory:
 
 airStrike:
   radius_range_safe_space: 10
-  damage: 30
+  damage: 60
   time_reCall_air_strike: 1
 
 airStrikeStates:

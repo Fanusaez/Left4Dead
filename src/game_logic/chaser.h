@@ -12,9 +12,9 @@ private:
     std::int16_t& y_pos;
     Zombie* zombie;
     GameMap& map;
-    std::int16_t zombie_speed_x = 1;
-    std::int16_t zombie_speed_y = 1;
     std::int16_t movements_per_cell;
+    const std::int16_t zombie_speed_x = 1;
+    const std::int16_t zombie_speed_y = 1;
 
     void move_right(bool& same_place);
     void move_left(bool& same_place);
@@ -28,7 +28,6 @@ public:
 
     void chase(std::int16_t x_pos_chase, std::int16_t y_pos_chase);
 
-    void set_speed(std::int16_t speed);
 };
 
 

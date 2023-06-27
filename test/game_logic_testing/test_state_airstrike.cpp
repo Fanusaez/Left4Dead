@@ -13,8 +13,8 @@
 
 #define UP -1
 #define DOWN 1
-#define AIR_DAMAGE 40
-#define REACH_SAFE_AREA 2
+#define AIR_DAMAGE 60
+#define REACH_SAFE_AREA 10
 #define MAP_SIZE_X 20
 #define MAP_SIZE_Y 20
 
