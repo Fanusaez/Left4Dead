@@ -23,3 +23,11 @@
 * Lógica de estados de granadas, ataques aereos
 * Configuración Yaml
 * Testeo correspondiente a la lógica del juego
+
+### Integrante 3
+
+#### Ignacio Bertolin
+* Gráficos del juego
+* Sonidos del juego
+* Manejo de eventos
+* Cmake
