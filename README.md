@@ -40,6 +40,8 @@ Cuando se quiera inciar el juego se ejecuta `start` y es necesario que el usuari
 
 Para cerrar el servidor hay que ingresar la letra `q` y para salir del juego alcanza con cerrar la ventana del juego.
 
+![lobby](https://github.com/Fanusaez/Left4Dead/assets/79915723/892d6dd3-6d2b-466f-afbc-95df2e6bba83)
+
 ### Ejemplo de ejecucion
 Jugador 1:
 ```
