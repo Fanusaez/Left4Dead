@@ -1,10 +1,9 @@
 option(INSTALL "Apply install settings" OFF)
-if (INSTALL EQUAL OFF)
+if (INSTALL EQUAL ON)
 	message(STATUS "Applying install settings")
 	set(CONFIG_FILE "/var/games/l4d/configurations.yaml")
 	set(BINDIR "/usr/local/bin")
 	set(VARDIR "/var/games/l4d")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 else()
 	set(CONFIG_FILE "${CMAKE_SOURCE_DIR}/configurations.yaml")
 	set(BINDIR ${CMAKE_BINARY_DIR})
@@ -190,7 +189,6 @@ if(CLIENT)
 				
 	# Use the Widgets module from Qt 5.
 	target_link_libraries(l4dclient PUBLIC Qt5::Widgets Qt5::Core)
-	
 	#add_subdirectory(${PROJECT_SOURCE_DIR}/src/graphics_lobby)
 	#target_link_libraries(l4dclient PUBLIC lobby)
 	target_link_libraries(l4dclient PUBLIC gameview)
@@ -204,7 +202,7 @@ if(CLIENT)
 endif()
 
 if(SERVER AND INSTALL)
-	install (FILES ${CMAKE_SOURCE_DIR}/configurations.yaml
+	install (FILES "${CMAKE_SOURCE_DIR}/configurations.yaml"
 			DESTINATION ${VARDIR})
 	install(TARGETS l4dserver
 			RUNTIME DESTINATION ${BINDIR}
@@ -212,16 +210,12 @@ if(SERVER AND INSTALL)
 endif()
 
 if(CLIENT AND INSTALL)
-	install(TARGETS SDL2pp
-			ARCHIVE DESTINATION ${LIBDIR}
-	)
-
 	install(TARGETS l4dclient
 			RUNTIME DESTINATION ${BINDIR}
+			)
+	install(TARGETS SDL2pp
 			ARCHIVE DESTINATION ${LIBDIR}
-			LIBRARY DESTINATION ${LIBDIR}
-	)
-
+			)
 	install(DIRECTORY ${CMAKE_SOURCE_DIR}/assets
 			DESTINATION ${VARDIR}
 			)
