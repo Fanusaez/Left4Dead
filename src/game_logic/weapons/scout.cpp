@@ -9,7 +9,8 @@ Scout::Scout(std::int16_t id_explosive_grenade,
             mag_capacity(CONFIGURATION.get_weaponScout_mag_capacity()),
             damage(CONFIGURATION.get_weaponScout_damage()),
             damage_reduction_hit(CONFIGURATION.get_weaponScout_reduction_per_hit()),
-            rate_of_fire(CONFIGURATION.get_weaponScout_rate_of_fire()) {}
+            rate_of_fire(CONFIGURATION.get_weaponScout_rate_of_fire()),
+            last_time_shot(CONFIGURATION.get_weaponScout_rate_of_fire() * -1) {}
 
 void Scout::update(float time) {
     explosive_grenade.update(time);

@@ -13,7 +13,8 @@ Idf::Idf(std::int16_t id_explosive_grenade,
          close_range_damage(CONFIGURATION.get_weaponIdf_close_range_damage()),
          long_range_damage(CONFIGURATION.get_weaponIdf_long_range_damage()),
          distance_to_reduce_damage(CONFIGURATION.get_weaponIdf_matrix_range_to_reduce_damage()),
-         rate_of_fire(CONFIGURATION.get_weaponIdf_rate_of_fire()) {}
+         rate_of_fire(CONFIGURATION.get_weaponIdf_rate_of_fire()),
+         last_time_shot(CONFIGURATION.get_weaponIdf_rate_of_fire() * -1) {}
 
 void Idf::update(float time) {
     explosive_grenade.update(time);

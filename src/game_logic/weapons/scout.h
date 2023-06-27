@@ -14,7 +14,7 @@ class Scout : public Weapon {
     const std::uint16_t damage;
     const std::uint16_t damage_reduction_hit;
     const float rate_of_fire;
-    std::int32_t total_bullets_shot;
+    std::int32_t total_bullets_shot = 0;
     std::int16_t last_time_shot;
 
  public:

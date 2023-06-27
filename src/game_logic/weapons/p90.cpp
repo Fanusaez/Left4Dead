@@ -10,7 +10,8 @@ P90::P90(std::int16_t id_air_strike) :
     mag_capacity(CONFIGURATION.get_weaponP90_mag_capacity()),
     burst_capacity(CONFIGURATION.get_weaponP90_burst_capacity()),
     damage(CONFIGURATION.get_weaponP90_damage()),
-    rate_of_fire(CONFIGURATION.get_weaponP90_rate_of_fire()) {}
+    rate_of_fire(CONFIGURATION.get_weaponP90_rate_of_fire()),
+    last_time_shot(CONFIGURATION.get_weaponP90_rate_of_fire() * -1) {}
 
 void P90::update(float time) {
     air_strike.update(time);

@@ -18,6 +18,7 @@ Venom::Venom(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, Ga
         health(CONFIGURATION.get_venom_health()),
         distance_to_hit_close(CONFIGURATION.get_venom_distance_to_hit_close_range()),
         distance_to_hit_long(CONFIGURATION.get_venom_distance_to_hit_long_range()),
+        distance_to_hit_y(CONFIGURATION.get_zombies_distance_to_hit_y_axis()),
         sight_distance(CONFIGURATION.get_venom_sight_distance()),
         prob_to_walk(CONFIGURATION.get_venom_prob_to_walk()),
         prob_to_run(CONFIGURATION.get_venom_prob_to_run()),
@@ -120,7 +121,7 @@ void Venom::attack(std::vector<Soldier*> soldiers, float time) {
     std::int16_t distance_x = get_distance_to_soldier_x(closest_soldier);
     std::int16_t distance_y = get_distance_to_soldier_y(closest_soldier);
     if (distance_x > distance_to_hit_long) return;
-    if (distance_x > distance_to_hit_close && distance_y == distance_to_hit_y) {
+    if (distance_x > distance_to_hit_close && distance_y <= distance_to_hit_y) {
         ZombieState* new_state = attack_long_range.attack(state, closest_soldier, time);
         change_state(new_state);
     } else if (distance_y == distance_to_hit_y){

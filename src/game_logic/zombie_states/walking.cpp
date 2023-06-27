@@ -22,6 +22,9 @@ Walking::Walking(Chaser& chaser,
 }
 
 ZombieState *Walking::update(float time) {
+    if (time_to_move(time)) {
+        return new ZombieIdle;
+    }
     return nullptr;
 }
 
@@ -58,7 +61,6 @@ ZombieState* Walking::chase_soldier_jumping(Chaser& chaser,
 }
 
 ZombieState* Walking::attack_soldier(Soldier* closest_soldier, std::int16_t damage, float time) {
-    if (!time_to_move(time)) return nullptr;
     return new Attacking(closest_soldier, damage, time);
 }
 

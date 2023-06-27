@@ -1,5 +1,5 @@
 soldier:
-  health: 10000
+  health: 100
   health_when_reviving: 50
   grenade_distance_short_reach: 20
   grenade_distance_long_reach: 40
@@ -121,7 +121,7 @@ mapLogic:
   matrix_movements_per_cell: 2
 
 clearTheZone:
-  time_respawn_zombies: 8
+  time_respawn_zombies: 10
   total_quantity_zombies: 50
   zombies_probability_respawn:
     infected: [ 0, 30 ]

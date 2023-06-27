@@ -12,8 +12,8 @@ class P90 : public Weapon {
     const std::int16_t burst_capacity;
     std::int16_t damage;
     float rate_of_fire;
-    std::int32_t total_bullets_shot;
     std::int16_t last_time_shot;
+    std::int32_t total_bullets_shot = 0;
 
  public:
 
