@@ -21,10 +21,8 @@ class Soldier : public GameObject {
     std::int16_t health;
     std::int16_t health_when_revive;
     std::int16_t times_can_be_revived;
-    std::int16_t grenade_distance_short_reach;
-    std::int16_t grenade_distance_long_reach;
-    std::int16_t time_change_to_long_distance;
     std::int16_t time_explode_grenade_in_hand;
+    float grenade_constant_reach;
     std::int16_t matrix_range_to_revive;
     std::int16_t grenade_distance_cero = 0;
     State* state = new Idle;

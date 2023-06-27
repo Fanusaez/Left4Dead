@@ -21,10 +21,8 @@ Soldier::Soldier(Weapon* weapon,
         health(CONFIGURATION.get_soldier_health()),
         health_when_revive(CONFIGURATION.get_soldier_health_when_reviving()),
         times_can_be_revived(CONFIGURATION.get_soldier_times_can_be_revived()),
-        grenade_distance_short_reach(CONFIGURATION.get_soldier_grenade_distance_short_reach()),
-        grenade_distance_long_reach(CONFIGURATION.get_soldier_grenade_distance_long_reach()),
-        time_change_to_long_distance(CONFIGURATION.get_soldier_grenade_time_change_to_long_range()),
         time_explode_grenade_in_hand(CONFIGURATION.get_soldier_grenade_time_to_explode_in_hand()),
+        grenade_constant_reach(CONFIGURATION.get_soldier_grenade_constant_reach()),
         matrix_range_to_revive(CONFIGURATION.get_soldier_matrix_range_to_revive()) {}
 
 void Soldier::update(float time) {

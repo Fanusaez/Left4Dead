@@ -10,10 +10,8 @@ private:
     std::int16_t  soldier_health;
     std::int16_t  soldier_health_when_reviving;
     std::int16_t  soldier_times_can_be_revived;
-    std::int16_t  soldierGrenade_distance_short_reach;
-    std::int16_t  soldierGrenade_distance_long_reach;
-    std::int16_t  soldierGrenade_time_change_to_long_reach;
     std::int16_t  soldierGrenade_time_explode_in_hand;
+    float soldierGrenade_constant_reach;
     std::int16_t soldier_matrix_range_to_revive;
 
     float soldierState_time_being_attacked;
@@ -157,10 +155,8 @@ public:
     std::int16_t get_soldier_health();
     std::int16_t get_soldier_health_when_reviving();
     std::int16_t get_soldier_times_can_be_revived();
-    std::int16_t get_soldier_grenade_distance_short_reach();
-    std::int16_t get_soldier_grenade_distance_long_reach();
-    std::int16_t get_soldier_grenade_time_change_to_long_range();
     std::int16_t get_soldier_grenade_time_to_explode_in_hand();
+    float get_soldier_grenade_constant_reach();
     std::int16_t get_soldier_matrix_range_to_revive();
 
     float get_soldierState_time_being_attacked();

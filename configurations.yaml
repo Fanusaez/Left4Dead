@@ -1,10 +1,8 @@
 soldier:
   health: 100
   health_when_reviving: 50
-  grenade_distance_short_reach: 20
-  grenade_distance_long_reach: 40
-  grenade_time_change_to_long_reach: 2000
   grenade_time_explode_in_hand: 6000
+  grenade_constant_reach: 0.02
   matrix_range_to_revive: 1
   times_can_be_revived: 3
 

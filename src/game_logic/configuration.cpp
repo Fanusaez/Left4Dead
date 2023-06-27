@@ -11,9 +11,7 @@ Configuration::Configuration(const YAML::Node& node) :
                             soldier_health(node["soldier"]["health"].as<std::int16_t>()),
                             soldier_health_when_reviving(node["soldier"]["health_when_reviving"].as<std::int16_t>()),
                             soldier_times_can_be_revived(node["soldier"]["times_can_be_revived"].as<std::int16_t>()),
-                            soldierGrenade_distance_short_reach(node["soldier"]["grenade_distance_short_reach"].as<std::int16_t>()),
-                            soldierGrenade_distance_long_reach(node["soldier"]["grenade_distance_long_reach"].as<std::int16_t>()),
-                            soldierGrenade_time_change_to_long_reach(node["soldier"]["grenade_time_change_to_long_reach"].as<std::int16_t>()),
+                            soldierGrenade_constant_reach(node["soldier"]["grenade_constant_reach"].as<float>()),
                             soldierGrenade_time_explode_in_hand(node["soldier"]["grenade_time_explode_in_hand"].as<std::int16_t>()),
                             soldier_matrix_range_to_revive(node["soldier"]["matrix_range_to_revive"].as<std::int16_t>()),
                             soldierState_time_being_attacked(node["soldierStates"]["time_being_attacked"].as<float>()),
@@ -136,20 +134,12 @@ std::int16_t Configuration::get_soldier_times_can_be_revived() {
     return soldier_times_can_be_revived;
 }
 
-std::int16_t Configuration::get_soldier_grenade_distance_short_reach() {
-    return soldierGrenade_distance_short_reach;
-}
-
-std::int16_t Configuration::get_soldier_grenade_distance_long_reach() {
-    return soldierGrenade_distance_long_reach;
-}
-
-std::int16_t Configuration::get_soldier_grenade_time_change_to_long_range() {
-    return soldierGrenade_time_change_to_long_reach;
-}
-
 std::int16_t Configuration::get_soldier_grenade_time_to_explode_in_hand() {
     return soldierGrenade_time_explode_in_hand;
+}
+
+float Configuration::get_soldier_grenade_constant_reach() {
+    return soldierGrenade_constant_reach;
 }
 
 std::int16_t Configuration::get_soldier_matrix_range_to_revive() {
