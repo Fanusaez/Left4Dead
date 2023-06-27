@@ -36,8 +36,6 @@ void PlayerSender::run() {
         if (queue_receiver != nullptr)
             match_mananger->delete_player(player_id); //Elimino al jugador de la partida en la que estaba
     }
-    std::cout<<"Salgo"<<std::endl;
-
 }
 
 void PlayerSender::join_player_receiver(){
