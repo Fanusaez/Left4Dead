@@ -1,9 +1,13 @@
 #include "texture_loader.h"
 #include <utility>
+#include <iostream>
 
 static const std::string AssetsPath = ASSETS_PATH;
 
-TextureLoader::TextureLoader() {}
+TextureLoader::TextureLoader()
+{
+	std::cout << "TextureLoader: Loading assets from " << AssetsPath << std::endl;
+}
 
 TextureLoader &TextureLoader::getInstance() {
 	static TextureLoader instance;
