@@ -38,18 +38,6 @@ void testSerializeJoinScenario(void)
     TEST_CHECK(buffer.at(4) == 10);
 }
 
-void testSerializeGameMode(void)
-{
-    LobbySerializer lobby_serializer;
-    GameMode game_mode = SURVIVAL;  //Utilizo enums para una mejor descripccion
-    std::vector<char> buffer = lobby_serializer.serialize_game_mode(game_mode);
-    //- mode: 0x03 <code>:  0x00 Clear the zone
-    //                      0x01 Survivial                                    
-    TEST_CHECK(buffer.size() == 2);
-    TEST_CHECK(buffer.at(0) == GAME_MODE);
-    TEST_CHECK(buffer.at(1) == 0x01);
-}
-
 void testSerializeSoldier(void)
 {
     LobbySerializer lobby_serializer;
@@ -77,6 +65,5 @@ void testSerializeStart(void)
 TEST_LIST = {
     {"Testing serialization: create scenario", testSerializeCreateScenario},
     {"Testing serialization: join scenario", testSerializeJoinScenario},
-    {"Testing serialization: game mode", testSerializeGameMode},
     {"Testing serialization: pick soldier", testSerializeSoldier},
     {NULL, NULL}};

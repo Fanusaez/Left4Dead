@@ -2,8 +2,10 @@
 #include <fstream>
 #include <iostream>
 
+static const std::string configPath = CONFIG_PATH;
+
 Configuration& Configuration::getInstance() {
-    static Configuration instance(YAML::LoadFile("../configurations.yaml"));
+    static Configuration instance(YAML::LoadFile(configPath));
     return instance;
 }
 

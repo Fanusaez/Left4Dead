@@ -119,6 +119,7 @@ add_executable(testCollision
         ../src/game_logic/states/throwing_explosive_grenade.cpp
         ../src/game_logic/states/throwing_smoke_grenade.cpp
 )
+target_compile_definitions(testCollision PUBLIC CONFIG_PATH="${PROJECT_SOURCE_DIR}")
 target_link_libraries(testCollision -lyaml-cpp)
 
 add_executable(testShooting
@@ -1354,6 +1355,7 @@ set(testTargets
 )
 
 foreach(target ${testTargets})
+		target_compile_definitions(${target} PUBLIC CONFIG_PATH="${CMAKE_SOURCE_DIR}/configurations.yaml")
         add_test(NAME "${target}" COMMAND "${target}")
         add_dependencies(test "${target}")
 endforeach()
