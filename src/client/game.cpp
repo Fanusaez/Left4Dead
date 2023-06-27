@@ -13,13 +13,13 @@
 
 MainGame::MainGame(int id, Socket &socket) :
 	player_id(id),
+	client(std::move(socket)),
 	configs(GameviewConfigurationsLoader::getInstance()),
 	textureLoader(TextureLoader::getInstance()),
 	objects(),
 	view(this->objects),
 	rate(0.04),
-	eventTimestamp(0),
-	client(std::move(socket))
+	eventTimestamp(0)
 {
 	this->textureLoader.load(this->view.getRenderer(), this->configs.getSpritesToLoad());
 	this->textureLoader.loadMusic(this->configs.getMusicToLoad());
@@ -73,7 +73,7 @@ void MainGame::doMainGameLogic(GameDTO &gameState, ObjectCreator &creator, bool 
 	for (auto& soldier: soldiers){
 		idsToKeep.insert(soldier.id);
 		if(objects.find(soldier.id) == objects.end()) {
-			std::unique_ptr<RenderableObject> ptr = std::move(creator.create(soldier));
+			std::unique_ptr<RenderableObject> ptr = creator.create(soldier);
 			objects[ptr->getID()] = std::move(ptr);
 			if (soldier.player_id == player_id)
 				view.assignMainObject(soldier.id);
@@ -86,7 +86,7 @@ void MainGame::doMainGameLogic(GameDTO &gameState, ObjectCreator &creator, bool 
 	for (auto& zombie: zombies){
 		idsToKeep.insert(zombie.id);
 		if(objects.find(zombie.id) == objects.end()) {
-			std::unique_ptr<RenderableObject> ptr = std::move(creator.create(zombie));
+			std::unique_ptr<RenderableObject> ptr = creator.create(zombie);
 			objects[ptr->getID()] = std::move(ptr);
 		} else {
 			RenderableObject &object = *(objects.at(zombie.id));
@@ -97,7 +97,7 @@ void MainGame::doMainGameLogic(GameDTO &gameState, ObjectCreator &creator, bool 
 	for (auto &element: elements) {
 		idsToKeep.insert(element.id);
 		if (objects.find(element.id) == objects.end()) {
-			std::unique_ptr <RenderableObject> ptr = std::move(creator.create(element));
+			std::unique_ptr <RenderableObject> ptr = creator.create(element);
 			objects[ptr->getID()] = std::move(ptr);
 		}
 	}
