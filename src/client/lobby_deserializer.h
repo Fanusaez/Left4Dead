@@ -26,8 +26,6 @@ public:
 
     JoinDTO* deserialize_join_scenario(bool *was_closed);
     
-    InstructionsDTO* deserialize_game_list(bool *was_closed);
-
     StartDTO* deserialize_start_game(bool *was_closed);    
 };
 #endif

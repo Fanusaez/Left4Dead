@@ -17,8 +17,6 @@ public:
 
     std::vector<char> serialize_join_scenario(const int32_t& scenario_code);
 
-    std::vector<char> serialize_game_mode(const GameMode game_mode);
-
     std::vector<char> serialize_soldier(const SoldierType& soldier_type);
 
     std::vector<char> serialize_request_game_list();

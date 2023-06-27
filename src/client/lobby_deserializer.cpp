@@ -19,9 +19,6 @@ InstructionsDTO* LobbyDeserializer::obtener_instruccion(bool *was_closed)
         case JOIN:
             return (deserialize_join_scenario(was_closed));
             break;
-/*         case GAME_LIST:
-            return (deserialize_game_list(was_closed));
-            break; */
         case START:
             return (deserialize_start_game(was_closed));
             break;
@@ -46,15 +43,6 @@ JoinDTO* LobbyDeserializer::deserialize_join_scenario(bool *was_closed)
     JoinDTO* join_dto = new JoinDTO(could_join);
     return join_dto;
 }
-
-/* InstructionsDTO LobbyDeserializer::deserialize_game_list(bool *was_closed) {
-    int games;
-    socket->recvall(&games, 1, was_closed);
-    std::vector<char> buffer(games*5); //Code + cantidad de personas
-    socket->recvall(&buffer, games*5, was_closed);
-    InstructionsDTO instructionsDTO(GAME_LIST, buffer);
-    return instructionsDTO;
-} */
 
 StartDTO* LobbyDeserializer::deserialize_start_game(bool *was_closed) {
     bool could_start;

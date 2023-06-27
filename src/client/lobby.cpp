@@ -18,10 +18,6 @@ Lobby::Lobby(char *localhost, char *puerto) : socket(localhost,puerto), queue_se
     lobby_receiver.start();
 }
 
-bool Lobby::running(){
-    return keep_talking;
-}
-
 bool Lobby::create_scenario(const std::string& scenario_name, const GameMode& game_mode, const int8_t& game_players){
     return (queue_sender.try_push(lobby_serializer.serialize_create_scenario(scenario_name, game_mode, game_players)));
 }
@@ -38,13 +34,6 @@ void Lobby::soldier_type(const SoldierType& soldier_type) {
     queue_sender.try_push(lobby_serializer.serialize_soldier(soldier_type));
 }
 
-void Lobby::exit_lobby() {
-    keep_talking = false;
-    queue_sender.close();
-    lobby_sender.join();
-    lobby_receiver.join(); 
-}
-
 void Lobby::close() {
     keep_talking = false;
     socket.shutdown(SHUT_RDWR);
@@ -52,6 +41,13 @@ void Lobby::close() {
     queue_sender.close();
     lobby_sender.join();
     queue_receiver.close();
+    lobby_receiver.join(); 
+}
+
+void Lobby::exit_lobby() {
+    keep_talking = false;
+    queue_sender.close();
+    lobby_sender.join();
     lobby_receiver.join(); 
 }
 
@@ -73,14 +69,6 @@ bool Lobby::get_join() {
     bool could_join = join_dto->get_could_join();
     delete join_dto;
     return could_join;
-}
-
-bool Lobby::get_start() {
-    InstructionsDTO* instruction_dto = queue_receiver.pop();
-    StartDTO* start_dto = dynamic_cast<StartDTO*>(instruction_dto);
-    bool could_start = start_dto->get_could_start();
-    delete instruction_dto; 
-    return could_start;
 }
 
 int Lobby::get_player_id(){

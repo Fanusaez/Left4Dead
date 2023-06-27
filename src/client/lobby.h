@@ -30,33 +30,27 @@ private:
     Queue<InstructionsDTO*> queue_receiver;
 
 public:
-    void exit_lobby();
     
     Lobby(char *localhost, char *puerto);
-
-    bool running();
 
     bool create_scenario(const std::string& scenario_name, const GameMode& game_mode, const int8_t& game_players);
 
     bool join_scenario(const int32_t& scenario_code);
 
-    void soldier_type(const SoldierType& soldier_type);
-
     void start();
 
-    void set_game_list();
+    void soldier_type(const SoldierType& soldier_type);
 
     void close();
+    
+    void exit_lobby();
 
     Socket move_socket();
 
-    void update();
-    
     int32_t get_create();
 
     bool get_join();
     
-    bool get_start();
     
     int get_player_id();
 };

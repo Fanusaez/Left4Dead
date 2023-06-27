@@ -23,26 +23,10 @@ std::vector<char> LobbySerializer::serialize_join_scenario(const int32_t& scenar
     return buffer;
 }
 
-std::vector<char> LobbySerializer::serialize_game_mode(const GameMode game_mode) {
-    std::vector<char> buffer;
-    buffer.push_back(GAME_MODE);
-    if (game_mode == CLEAR_THE_ZONE || game_mode == SURVIVAL)
-        buffer.push_back(game_mode);
-    else
-        // Throw error?
-    return buffer;
-}
-
 std::vector<char> LobbySerializer::serialize_soldier(const SoldierType& soldier_type) {
     std::vector<char> buffer;
     buffer.push_back(SOLDIER_TYPE);
     buffer.push_back(soldier_type);
-    return buffer;
-}
-
-std::vector<char> LobbySerializer::serialize_request_game_list() {
-    std::vector<char> buffer;
-    buffer.push_back(GAME_LIST);
     return buffer;
 }
 
