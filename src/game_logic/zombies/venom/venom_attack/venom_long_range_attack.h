@@ -9,9 +9,9 @@ class Soldier;
 
 class VenomLongRange {
 private:
-    float last_time_attacked = -1;
-    float time_to_attack_again = 0.8;
     std::int16_t damage;
+    float time_to_attack_again;
+    float last_time_attacked;
     std::int16_t x_pos_explosion;
     std::int16_t y_pos_explosion;
 

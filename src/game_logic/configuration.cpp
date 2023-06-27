@@ -88,6 +88,7 @@ Configuration::Configuration(const YAML::Node& node) :
                             venom_prob_walk(node["venom"]["probability_walk"].as<std::vector<std::int16_t>>()),
                             venom_prob_run(node["venom"]["probability_run"].as<std::vector<std::int16_t>>()),
                             venom_prob_jump(node["venom"]["probability_jump"].as<std::vector<std::int16_t>>()),
+                            venom_time_to_attack_long_range(node["venom"]["time_to_attack_long_range"].as<float>()),
                             zombieState_time_attacking(node["zombieStates"]["time_attacking"].as<float>()),
                             zombieState_time_jumping(node["zombieStates"]["time_jumping"].as<float>()),
                             zombieState_time_running(node["zombieStates"]["time_running"].as<float>()),
@@ -446,6 +447,9 @@ std::vector<std::int16_t> Configuration::get_venom_prob_to_jump() {
     return venom_prob_jump;
 }
 
+float Configuration::get_venom_time_to_attack_long_range() {
+    return venom_time_to_attack_long_range;
+}
 
 float Configuration::get_zombieState_attacking_time() {
     return zombieState_time_attacking;

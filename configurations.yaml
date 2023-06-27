@@ -107,6 +107,7 @@ venom:
   probability_walk: [ 0, 40 ]
   probability_run: [ 40, 100 ]
   probability_jump: [ 0, 0 ]
+  time_to_attack_long_range: 0.8
 
 zombieStates:
   time_attacking: 0.6

@@ -2,7 +2,9 @@
 #include "../../../soldier.h"
 #include "../../../zombie_states/zombie_state.h"
 
-VenomLongRange::VenomLongRange() : damage(CONFIGURATION.get_venom_damage_long_range()) {}
+VenomLongRange::VenomLongRange() :  damage(CONFIGURATION.get_venom_damage_long_range()),
+                                    time_to_attack_again(CONFIGURATION.get_venom_time_to_attack_long_range()),
+                                    last_time_attacked(CONFIGURATION.get_venom_time_to_attack_long_range() * -1) {}
 
 ZombieState *VenomLongRange::attack(ZombieState *state, Soldier* soldier_to_attack, float time) {
     if (!time_to_attack(time)) {

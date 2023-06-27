@@ -101,6 +101,7 @@ private:
     std::vector<std::int16_t> venom_prob_walk;
     std::vector<std::int16_t> venom_prob_run;
     std::vector<std::int16_t> venom_prob_jump;
+    float venom_time_to_attack_long_range;
 
     float zombieState_time_attacking;
     float zombieState_time_jumping;
@@ -244,6 +245,7 @@ public:
     std::vector<std::int16_t> get_venom_prob_to_walk();
     std::vector<std::int16_t> get_venom_prob_to_run();
     std::vector<std::int16_t> get_venom_prob_to_jump();
+    float get_venom_time_to_attack_long_range();
 
     float get_zombieState_attacking_time();
     float get_zombieState_jumping_time();
