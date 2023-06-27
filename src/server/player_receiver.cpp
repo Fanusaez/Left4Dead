@@ -8,9 +8,10 @@
 #include <arpa/inet.h>
 
 PlayerReceiver::PlayerReceiver(Socket *socket, std::atomic<bool> &stay_in_match,
-                             std::atomic<bool> &keep_playing, int32_t& player_id) 
-    : player_id(player_id), stay_in_match(stay_in_match), keep_playing(keep_playing),
-    server_deserializer(socket) {
+                             std::atomic<bool> &keep_playing, int32_t& player_id,
+                             Queue<GameDTO> &queue_sender) : queue_sender(queue_sender),
+                             player_id(player_id), stay_in_match(stay_in_match), keep_playing(keep_playing),
+                            server_deserializer(socket) {
         queue_receiver = nullptr;   //Comienza en nullptr. El player_sender le va a setear la queue
     }
 
@@ -32,7 +33,9 @@ void PlayerReceiver::run() {
             break;
         }
     }
+    keep_playing = false;
     stay_in_match = false;
+    queue_sender.close();
 }
 
 void PlayerReceiver::setQueueReceiver(Queue<InstructionsDTO*> *queue_receiver){

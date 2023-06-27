@@ -22,12 +22,15 @@ private:
     std::atomic<bool>& keep_playing;
     
     ServerDeserializer server_deserializer;
+    
+    Queue<GameDTO> &queue_sender;
 
     int32_t player_id;
 
 public:
     PlayerReceiver(Socket *socket, std::atomic<bool> &stay_in_match, 
-                std::atomic<bool> &keep_playing, int32_t& player_id);
+                std::atomic<bool> &keep_playing, int32_t& player_id,
+                Queue<GameDTO> &queue_sender);
 
     void run() override;
 

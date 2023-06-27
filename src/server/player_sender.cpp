@@ -7,7 +7,7 @@
 PlayerSender::PlayerSender(Socket *socket, std::atomic<bool> &stay_in_match,  
     std::atomic<bool> &keep_playing, MatchMananger *match_mananger, int32_t& player_id) : 
     stay_in_match(stay_in_match), keep_playing(keep_playing), queue_sender(10000), 
-    player_receiver(socket,stay_in_match, keep_playing, player_id),match_mananger(match_mananger),
+    player_receiver(socket,stay_in_match, keep_playing, player_id,queue_sender),match_mananger(match_mananger),
     server_deserializer(socket), server_serializer(socket), player_id(player_id) {
     queue_receiver = nullptr;   //Al inicio es un nullptr ya que no tiene ninguna partida asociada.
     stay_in_match = true;
@@ -31,10 +31,13 @@ void PlayerSender::run() {
             std::cout<<"Se cerro la cola correctamente"<<std::endl;
         }
         stay_in_match = false;   //En el caso de que se haya cerrado el socket pongo stay_in_match=false.
+        keep_playing = false; 
         //Si esta asociada a una partida lo elimino de la partida
         if (queue_receiver != nullptr)
             match_mananger->delete_player(player_id); //Elimino al jugador de la partida en la que estaba
     }
+    std::cout<<"Salgo"<<std::endl;
+
 }
 
 void PlayerSender::join_player_receiver(){
