@@ -1,9 +1,18 @@
+option(INSTALL "Apply install settings" OFF)
+if (INSTALL)
+	set(BINDIR "/usr/local/bin")
+	set(VARDIR "/var/games/l4d")
+else()
+	set(BINDIR ${CMAKE_BINARY_DIR})
+	set(VARDIR ${CMAKE_SOURCE_DIR})
+endif()
+set(LIBDIR "/usr/local/lib")
 
 option(SERVER "Build server" ON)
 
 if(SERVER)
 	SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pthread")
-	add_executable(server
+	add_executable(l4dserver
 		./server/server_main.cpp
 		./common/socket.cpp
 		./common/resolver.cpp
@@ -84,13 +93,12 @@ if(SERVER)
 		./game_logic/zombies/venom/venom_attack/venom_long_range_attack.cpp
 	)
 
-	target_link_libraries(server -lyaml-cpp)
-	target_include_directories(server PUBLIC ${PROJECT_SOURCE_DIR}/src/game_logic)
+	target_link_libraries(l4dserver -lyaml-cpp)
+	target_include_directories(l4dserver PUBLIC ${PROJECT_SOURCE_DIR}/src/game_logic)
 	set(SERVER_OUTPUT_DIR ${CMAKE_BINARY_DIR})
-	set_target_properties(server
+	set_target_properties(l4dserver
 			PROPERTIES
 			RUNTIME_OUTPUT_DIRECTORY ${SERVER_OUTPUT_DIR})
-	
 endif()
 
 
@@ -127,7 +135,7 @@ if(CLIENT)
 	target_include_directories(gameview PUBLIC ${PROJECT_SOURCE_DIR}/lib/libSDL2pp)
 	target_include_directories(gameview PRIVATE ${PROJECT_SOURCE_DIR}/src/graphics)
 	target_link_libraries(gameview PUBLIC SDL2pp)
-	target_compile_definitions(gameview PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
+	target_compile_definitions(gameview PUBLIC ASSETS_PATH="${VARDIR}/assets/")
 
 	# Find the QtWidgets library
 	find_package(Qt5Widgets CONFIG REQUIRED)
@@ -187,7 +195,28 @@ if(CLIENT)
 	set(CLIENT_OUTPUT_DIR ${CMAKE_BINARY_DIR})
 	set_target_properties(l4dclient
 			PROPERTIES
-			RUNTIME_OUTPUT_DIRECTORY ${CLIENT_OUTPUT_DIR})
+			RUNTIME_OUTPUT_DIRECTORY ${CLIENT_OUTPUT_DIR}
+			INSTALL_RPATH ${LIBDIR})
 endif()
-	
-#add_subdirectory(${PROJECT_SOURCE_DIR}/src/graphics_lobby)
+
+if(SERVER AND INSTALL)
+	install(TARGETS l4dserver
+			RUNTIME DESTINATION ${BINDIR}
+	)
+endif()
+
+if(CLIENT AND INSTALL)
+	install(TARGETS SDL2pp
+			ARCHIVE DESTINATION ${LIBDIR}
+	)
+
+	install(TARGETS l4dclient
+			RUNTIME DESTINATION ${BINDIR}
+			ARCHIVE DESTINATION ${LIBDIR}
+			LIBRARY DESTINATION ${LIBDIR}
+	)
+
+	install(DIRECTORY ${CMAKE_SOURCE_DIR}/assets
+			DESTINATION ${VARDIR}
+			)
+endif()

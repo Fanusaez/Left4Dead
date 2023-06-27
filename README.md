@@ -1,11 +1,11 @@
 # Left4Dead
 
-## Instalación
+## Compilación
 
 ### Dependencias
 
 * SDL2 (desarrollado con la version 2.26.5)
-* SDL2_image y SDL2_mixer
+* SDL2_image, SDL2_mixer y SDL2_ttf
 
 ### Comandos
 
@@ -19,10 +19,23 @@ Desde el root del proyecto:
 
 Esto generará dos binarios: el cliente y el servidor.
 
+### Instalación
+
+Para instalar los programas localmente, correr el script installer.sh y seguir las instrucciones.
+
+`bash installer.sh`
+
+Este instalará los binarios en _/usr/local/bin_, las bibliotecas en _/usr/local/lib_ 
+y los assets en _/var/games/l4d_.
+
+También se puede desinstalar mediante este mismo script.
+
+[Instalador de referencia](https://github.com/brunograssano/SuperMarioBros-Honguitos/blob/master/Instalador.sh)
+
 ## Ejecución
 
 Para correr el juego se tiene que ejecutar primero el servidor:
-* `./server <puerto>`
+* `./l4dserver <puerto>`
 El servidor se cierra apretando q
 
 Luego se ejecuta la ccantidad de clientes que se quiera de la siguiente forma:
