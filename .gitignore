@@ -7,3 +7,5 @@
 
 # CMake build directory
 build/
+
+.plantuml

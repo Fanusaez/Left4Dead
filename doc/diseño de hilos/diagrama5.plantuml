@@ -1,0 +1,26 @@
+@startuml
+
+participant Client
+participant PlayerSender
+participant PlayerReceiver
+participant Game
+
+loop hasta que termine la partida
+
+Client -> PlayerReceiver: instructionsDTO
+
+PlayerReceiver -> PlayerReceiver: push(instructionsDTO)
+
+Game -> Game: try_pop(instructionsDTO)
+
+Game -> Game: updateGame(instructionsDTO)
+
+Game -> Game: try_push(GameDTO)
+
+PlayerSender -> PlayerSender: pop(GameDTO)
+
+PlayerSender -> Client: GameDTO
+
+
+end
+@enduml
