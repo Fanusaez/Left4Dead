@@ -1,7 +1,7 @@
 option(INSTALL "Apply install settings" OFF)
 if (INSTALL EQUAL OFF)
-	set(CONFIG_FILE "/var/games/l4d/configurations.yaml")
 	message(STATUS "Applying install settings")
+	set(CONFIG_FILE "/var/games/l4d/configurations.yaml")
 	set(BINDIR "/usr/local/bin")
 	set(VARDIR "/var/games/l4d")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
@@ -15,6 +15,7 @@ set(LIBDIR "/usr/local/lib")
 option(SERVER "Build server" ON)
 if(SERVER)
 	SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pthread")
+
 	add_executable(l4dserver
 		./server/server_main.cpp
 		./common/socket.cpp
@@ -95,9 +96,11 @@ if(SERVER)
 		./game_logic/zombies/venom/venom_attack/venom_close_range_attack.cpp
 		./game_logic/zombies/venom/venom_attack/venom_long_range_attack.cpp
 	)
+	target_compile_definitions(l4dserver PUBLIC CONFIG_PATH="${CONFIG_FILE}")
 	target_link_libraries(l4dserver -lyaml-cpp)
 	target_include_directories(l4dserver PUBLIC ${PROJECT_SOURCE_DIR}/src/game_logic)
 	set(SERVER_OUTPUT_DIR ${CMAKE_BINARY_DIR})
+
 	set_target_properties(l4dserver
 			PROPERTIES
 			RUNTIME_OUTPUT_DIRECTORY ${SERVER_OUTPUT_DIR})
@@ -194,7 +197,6 @@ if(CLIENT)
 	target_include_directories(l4dclient PRIVATE ${PROJECT_SOURCE_DIR}/src)
 	target_include_directories(l4dclient PUBLIC ${PROJECT_SOURCE_DIR}/src/client)
 	set(CLIENT_OUTPUT_DIR ${CMAKE_BINARY_DIR})
-	target_compile_definitions(l4dserver PUBLIC CONFIG_PATH=${CONFIG_FILE})
 	set_target_properties(l4dclient
 			PROPERTIES
 			RUNTIME_OUTPUT_DIRECTORY ${CLIENT_OUTPUT_DIR}
@@ -202,7 +204,7 @@ if(CLIENT)
 endif()
 
 if(SERVER AND INSTALL)
-	install (FILES "${CMAKE_SOURCE_DIR}/configurations.yaml"
+	install (FILES ${CMAKE_SOURCE_DIR}/configurations.yaml
 			DESTINATION ${VARDIR})
 	install(TARGETS l4dserver
 			RUNTIME DESTINATION ${BINDIR}
