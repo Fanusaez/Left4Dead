@@ -20,6 +20,7 @@ Venom::Venom(std::int16_t x_pos_wal, std::int16_t y_pos_wal, std::int16_t id, st
         distance_to_hit_long(CONFIGURATION.get_venom_distance_to_hit_long_range()),
         distance_to_hit_y(CONFIGURATION.get_zombies_distance_to_hit_y_axis()),
         sight_distance(CONFIGURATION.get_venom_sight_distance()),
+        sight_distance_after_hit(CONFIGURATION.get_zombie_sight_distance_after_hit()),
         prob_to_walk(CONFIGURATION.get_venom_prob_to_walk()),
         prob_to_run(CONFIGURATION.get_venom_prob_to_run()),
         prob_to_jump(CONFIGURATION.get_venom_prob_to_jump()),
@@ -36,6 +37,7 @@ void Venom::update(std::vector<Soldier*> soldiers, float time) {
 }
 
 void Venom::receive_damage(std::uint16_t damage, float time) {
+    sight_distance = sight_distance_after_hit;
     health -= damage;
     if (health <= 0) {
         die(time);
@@ -71,7 +73,7 @@ void Venom::chase_closest_soldier(std::vector<Soldier*> soldiers, float time) {
 
 Soldier* Venom::get_closest_soldier(std::vector<Soldier*> soldiers) {
     Soldier* closest_soldier = nullptr;
-    std::int16_t min_distance = MAX_DISTANCE;
+    std::int16_t min_distance = sight_distance;
 
     for (Soldier* soldier : soldiers) {
         std::int16_t new_distance = get_distance_to_soldier(soldier);

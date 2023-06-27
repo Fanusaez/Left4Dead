@@ -5,7 +5,6 @@
 #include <cstdint>
 #include "../../common/zombie_type.h"
 
-#define MAX_DISTANCE 30
 #define CONFIGURATION Configuration::getInstance()
 class ZombieState;
 class GameObject;
