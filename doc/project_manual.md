@@ -5,7 +5,14 @@
 ### Integrante 1 
 
 
-### Integrante 2 
+### Tomas Ezequiel Galian
+* Protocolo de comunicación del servidor
+* Protocolo de comunicación del cliente
+* Diseño del manejo de partidas y de los nuevos clientes
+* Diseño del diagrama de hilos del lado del cliente y del servidor
+* Diseño del diagrama de hilos del lado del servidor
+* Diseño del lobby en QT
+
 
 
 ### Edgardo Francisco Saez
