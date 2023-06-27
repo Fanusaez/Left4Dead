@@ -126,5 +126,5 @@ bool Game::can_join() {
 }
 
 bool Game::is_not_playing() {
-    return keep_playing;
+    return !keep_playing;
 }
