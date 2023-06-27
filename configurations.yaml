@@ -152,7 +152,7 @@ gameFactory:
 airStrike:
   radius_range_safe_space: 10
   damage: 60
-  time_reCall_air_strike: 1
+  time_reCall_air_strike: 60
 
 airStrikeStates:
   time_exploding: 0.4
