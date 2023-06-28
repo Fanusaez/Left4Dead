@@ -76,6 +76,7 @@ Servidor:
 ```
 >  ./servidor 8080
 ```
+https://github.com/Fanusaez/Left4Dead/assets/79915723/7fb519e6-87a2-4e8c-a66b-25731ecae496
 
 ## Instrucciones de juego
 
