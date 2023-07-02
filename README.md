@@ -59,7 +59,8 @@ Una vez que finaliza el juego ya sea por muerte (en modo survival) o por que gan
 
 Para cerrar el servidor hay que ingresar la letra `q` y para salir del juego alcanza con cerrar la ventana del juego.
 
-![lobby](https://github.com/Fanusaez/Left4Dead/assets/79915723/892d6dd3-6d2b-466f-afbc-95df2e6bba83)
+https://github.com/Fanusaez/Left4Dead/assets/79915723/9310fe47-1935-473e-8751-b8f11777f881
+
 
 ### Ejemplo de ejecucion
 Jugador 1:
@@ -76,7 +77,7 @@ Servidor:
 ```
 >  ./servidor 8080
 ```
-https://github.com/Fanusaez/Left4Dead/assets/79915723/7fb519e6-87a2-4e8c-a66b-25731ecae496
+https://github.com/Fanusaez/Left4Dead/assets/79915723/53782614-6dbd-4031-ae16-e32671e0f3bf
 
 ## Instrucciones de juego
 
