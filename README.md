@@ -5,8 +5,8 @@
 # Left4Dead
 
 ## Indice 
-  - [Compilacion](#Compilacion)
-  - [Ejecucion](#Ejecucion)
+  - [Compilación](#Compilacion)
+  - [Ejecución](#Ejecucion)
   - [Instrucciones de juego](#Instrucciones_de_juego)
   - [Testing](#Testing)
 
