@@ -9,6 +9,7 @@
   - [Ejecución](#Ejecucion)
   - [Instrucciones de juego](#Instrucciones_de_juego)
   - [Testing](#Testing)
+  - [Demostracion de juego](#Demostracion_de_juego)
 
 ## Compilación
 
@@ -106,7 +107,12 @@ Los comandos para jugar al juego son los siguientes:
 * Letra `P`: para pausar la musica
 * Letra `O`: para renaudar la musica
 * Tecla `-`: para bajar el volumen
-* Tecla `+`: para subir el volumen 
+* Tecla `+`: para subir el volumen
+
+## Demostracion de Juego
+
+* [Modo Survival](https://youtu.be/ufmdzz_7h9w)
+* [Modo Clear the Zone](https://youtu.be/RwqRDsZJz24)
 
 ## Testing
 
